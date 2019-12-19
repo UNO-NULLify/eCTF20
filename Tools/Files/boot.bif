@@ -1,0 +1,6 @@
+image : {
+    [init]register_init.int
+    [bootloader]zynq_fsbl.elf
+    system_wrapper.bit
+    [load = 0x4000000,startup = 0x4000000]linux.z
+}
