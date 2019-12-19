@@ -6,18 +6,6 @@ This petalinux project targets the Vivado block diagram project found here: http
 
 #### Warning: You should only use this repo when it is checked out on a release tag
 
-## BSP Features
-
-The project includes the following features by default:
-
-* Ethernet with Unique MAC address and DHCP support (see known issues)
-* USB Host support
-* UIO drivers for onboard buttons and LEDs
-* SSH server
-* Build essentials package group for on-board compilation using gcc, etc. 
-* U-boot environment variables can be overriden during SD boot by including uEnv.txt
-  in the root directory of the SD card (see u-boot documentation).
-
 ## Quick-Start Guide
 
 This guide will walk you through some basic steps to get you booted into Linux and rebuild the Petalinux project. After completing it, you should refer
