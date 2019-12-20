@@ -1,9 +1,13 @@
 #!/bin/bash
 
 AUTHOR=@ArtificialAmateur
-VERSION=v0.03
-
+VERSION=v0.04
 TIME=time-$(date +%Y-%m-%d)
+
+if [ ! -d "../logs" ]; then
+    mkdir ../logs
+fi
+
 if [[ -e $TIME.log ]] ; then
     i=0
     while [[ -e $TIME-$i.log ]] ; do
@@ -11,15 +15,18 @@ if [[ -e $TIME.log ]] ; then
     done
     TIME=$TIME-$i
 fi
-touch "$TIME".log
 
 if [ ! -d ".petalinux" ]; then
     printf "You are not in a Petalinux project directory!\n"
     exit 1
 fi
 
-printf "NULLify's\nPetalinux Configuration and Build Script %s\n" $VERSION
+printf "NULLify's\nPetalinux Configuration and Build Script %s\n\n" $VERSION
 touch ../logs/"$TIME".log
+
+# Set local linux directory
+LINUX_DIR=$(realpath ./components/ext_sources/linux/)
+sed -i "s|LINUX_DIR|$LINUX_DIR|g" ./project-spec/configs/config
 
 : '
 #-|-------------- Configure Hardware --------------|-
@@ -123,7 +130,7 @@ fi
 
 #-|-------------- Package --------------|-
 
-cp ../Tools/Files/{boot.bif,register_init.int} ./images/linux/
+cp ../files/{boot.bif,register_init.int} ./images/linux/
 pushd ./images/linux/
 cat zImage system.dtb > linux.z
 bootgen -image boot.bif -o BOOT.BIN -w on
