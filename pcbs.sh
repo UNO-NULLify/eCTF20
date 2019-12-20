@@ -1,7 +1,7 @@
 #!/bin/bash
 
 AUTHOR=@ArtificialAmateur
-VERSION=v0.01
+VERSION=v0.03
 
 TIME=time-$(date +%Y-%m-%d)
 if [[ -e $TIME.log ]] ; then
@@ -19,7 +19,7 @@ if [ ! -d ".petalinux" ]; then
 fi
 
 printf "NULLify's\nPetalinux Configuration and Build Script %s\n" $VERSION
-touch ../"$TIME".log
+touch ../logs/"$TIME".log
 
 : '
 #-|-------------- Configure Hardware --------------|-
@@ -54,9 +54,9 @@ fi
 
 read -p "Configure Petalinux? (y/n) " config_choice
 
-echo -e "petalinux-config:\n" >> ../"$TIME".log
+echo -e "petalinux-config:\n" >> ../logs/"$TIME".log
 case "$config_choice" in
-  y|Y ) (time petalinux-config) 2>> ../"$TIME".log;;
+  y|Y ) (time petalinux-config) 2>> ../logs/"$TIME".log;;
 esac
 
 if [ ! $? -eq 0 ]; then
@@ -69,9 +69,9 @@ fi
 
 read -p "Configure Linux kernel? (y/n) " linux_choice
 
-echo -e "\n\npetalinux-config -c kernel:\n" >> ../"$TIME".log
+echo -e "\n\npetalinux-config -c kernel:\n" >> ../logs/"$TIME".log
 case "$linux_choice" in
-  y|Y ) (time petalinux-config -c kernel) 2>> ../"$TIME".log;;
+  y|Y ) (time petalinux-config -c kernel) 2>> ../logs/"$TIME".log;;
 esac
 
 if [ ! $? -eq 0 ]; then
@@ -84,9 +84,9 @@ fi
 
 read -p "Configure root filesystem? (y/n) " rootfs_choice
 
-echo -e "\n\npetalinux-config -c rootfs:\n" >> ../"$TIME".log
+echo -e "\n\npetalinux-config -c rootfs:\n" >> ../logs/"$TIME".log
 case "$rootfs_choice" in
-  y|Y ) (time petalinux-config -c rootfs) 2>> ../"$TIME".log;;
+  y|Y ) (time petalinux-config -c rootfs) 2>> ../logs/"$TIME".log;;
 esac
 
 if [ ! $? -eq 0 ]; then
@@ -112,8 +112,8 @@ fi
 #-|-------------- Build --------------|-
 
 printf "\nBuilding system...\n"
-echo -e "\n\npetalinux-build:\n" >> ../"$TIME".log
-(time petalinux-build) 2>> ../"$TIME".log
+echo -e "\n\npetalinux-build:\n" >> ../logs/"$TIME".log
+(time petalinux-build) 2>> ../logs/"$TIME".log
 
 if [ ! $? -eq 0 ]; then
     printf "\n\nBuild Failed!\n"
@@ -123,14 +123,16 @@ fi
 
 #-|-------------- Package --------------|-
 
-printf "\nPackaging system...\n"
-echo -e "\n\npetalinux-package:\n" >> ../"$TIME".log
-(time petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system_wrapper.bit --u-boot) 2>> ../"$TIME".log
+cp ../Tools/Files/{boot.bif,register_init.int} ./images/linux/
+pushd ./images/linux/
+cat zImage system.dtb > linux.z
+bootgen -image boot.bif -o BOOT.BIN -w on
 
 if [ ! $? -eq 0 ]; then
-    printf "\n\nPackage Failed!\n"
+    printf "\n\nPackaging Failed!\n"
     exit 1
 fi
+popd
 
 
 #-|-------------- Done --------------|-
@@ -138,10 +140,8 @@ fi
 printf "\nDone!!!\n"
 printf "\nFollowing Steps:
         0. Partition SD card with 512MB fat32 BOOT and the rest ext4 ROOTFS.
-        1. Copy ./images/linux/BOOT.BIN and ./images/linux/image.ub to your SD card's 'BOOT' partition.
-        2. Copy ./images/linux/rootfs.cpio to your SD card's 'ROOTFS' partition.
-        3. Inside your 'ROOTFS' parition, run 'sudo pax -rvf rootfs.cpio'.
-        4. Insert SD card into Cora-7Z, plug Cora-Z7 into computer, run 'minicom -b 115200 /dev/[INSERT_TTY_HERE]'.
+        1. Copy ONLY ./images/linux/BOOT.BIN to your SD card's 'BOOT' partition.
+        2. Insert SD card into Cora-7Z, plug Cora-Z7 into computer, run 'minicom -b 115200 /dev/[INSERT_TTY_HERE]'.
 
         Congratulations! You should now see Linux booting up on your serial terminal.\n"
 
