@@ -130,7 +130,7 @@ fi
 
 #-|-------------- Package --------------|-
 
-cp ../files/{boot.bif,register_init.int} ./images/linux/
+cp ../files/{boot.bif,registers_init.int} ./images/linux/
 pushd ./images/linux/
 cat zImage system.dtb > linux.z
 bootgen -image boot.bif -o BOOT.BIN -w on
