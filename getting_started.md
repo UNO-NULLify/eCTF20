@@ -14,6 +14,11 @@ then add the MITRE repo as another remote. Follow these steps below.
 git clone -b dev https://github.com/UNO-NULLify/eCTF20 --recursive
 ``` 
 
+2. Switch to an existing relevant topic/feature branch or create a new one:
+```bash
+git checkout <git_branch> # Switch to existing branch
+git checkout -b <git_branch> # Create new branch
+```
 
 ## Download Xilinx Tools
 We require using the two main Xilinx tools for the development of your
