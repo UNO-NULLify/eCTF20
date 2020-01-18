@@ -24,14 +24,6 @@ git checkout <git_branch> # Switch to existing branch
 
 git checkout -b <git_branch> # Create new branch
 ```
-4. Add the fork as the new origin
-```bash
-git remote add origin <git_path>.git
-```
-
-You can now fetch and push as you normally would using `git fetch origin` and `git push origin`.
-If we push out updated code, you can fetch this new code using `git fetch mitre`.
-
 
 ## Download Xilinx Tools
 We require using the two main Xilinx tools for the development of your
