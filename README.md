@@ -20,4 +20,4 @@ The example code is structured as follows
  * `vivado-boards/` - Contains Vivado libraries for the board
  * `Vagrantfile` - Vagrantfile for launching the Vagrant environment - DO NOT CHANGE
  * `sample-audio` - Sample audio files for you to use
- * `scripts` - Contains useful scripts for developer convenience
+ * `scripts/` - Contains useful scripts for developer convenience
