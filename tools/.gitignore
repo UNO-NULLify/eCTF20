@@ -13,3 +13,4 @@ songs/
 *.drm
 *.wav
 *.secrets
+./global_provisioning/*
