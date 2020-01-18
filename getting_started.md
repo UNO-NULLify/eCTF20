@@ -11,14 +11,10 @@ then add the MITRE repo as another remote. Follow these steps below.
 
 1. Clone the eCTF repository using ssh or https 
 ```bash
-git clone https://github.com/UNO-NULLify/eCTF20 --recursive
+git clone -b dev https://github.com/UNO-NULLify/eCTF20 --recursive
 ``` 
-2. Change the current branch to dev
-```bash
-git checkout dev
-```
 
-3. Switch to an existing relevant topic/feature branch or create a new one:
+2. Switch to an existing relevant topic/feature branch or create a new one:
 ```bash
 git checkout <git_branch> # Switch to existing branch
 
