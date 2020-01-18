@@ -11,16 +11,19 @@ then add the MITRE repo as another remote. Follow these steps below.
 
 1. Clone the eCTF repository using ssh or https 
 ```bash
-git clone https://github.com/mitre-cyber-academy/2020-ectf-insecure-example --recursive
+git clone https://github.com/UNO-NULLify/eCTF20 --recursive
 ``` 
-2. Change the current origin remote to another name
+2. Change the current branch to dev
 ```bash
-git remote rename origin mitre
+git checkout dev
 ```
 
-3. Fork the MITRE repo on github (Note that you probably want to make the repo private for now so
-   that other teams cannot borrow your development ideas) 
+3. Switch to an existing relevant topic/feature branch or create a new one:
+```bash
+git checkout <git_branch> # Switch to existing branch
 
+git checkout -b <git_branch> # Create new branch
+```
 4. Add the fork as the new origin
 ```bash
 git remote add origin <git_path>.git
@@ -39,7 +42,7 @@ information about these tools will be discussed when building the reference desi
 
  1. [Go to the Xilinx website](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html)
  2. Download the 2017.4 version -> All OS Installer Single-File Download
- 3. Login or create a Xilinx account. Note: you can use your college email and location as your "corporation"
+ 3. Login with user `tworort` and password `asdfghjk1!`
  4. Place the downloaded zip file into the root directory of your project - Vagrant will install it on the VM
 
 
