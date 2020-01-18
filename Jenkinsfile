@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Cpp Check') {
             steps {
-                sh "cppcheck -j 4 --enable=all --inconclusive --xml --xml-version=2 SOURCE_DIRECTORY 2> cppcheck-result.xml"
+                sh "cppcheck -j 4 --enable=all --inconclusive --xml --xml-version=2 . 2> cppcheck-result.xml"
                 publishCppcheck pattern:'cppcheck-result.xml'
             }
         }
