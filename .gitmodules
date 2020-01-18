@@ -4,6 +4,6 @@
 [submodule "pl"]
 	path = pl
 	url = git@github.com:UNO-NULLify/eCTF20-base-linux.git
-[submodule "scripts"]
-	path = scripts
+[submodule "scripts/clang-format-hooks"]
+	path = scripts/clang-format-hooks
 	url = https://github.com/barisione/clang-format-hooks.git
