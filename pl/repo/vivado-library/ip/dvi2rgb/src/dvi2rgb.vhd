@@ -93,8 +93,7 @@ entity dvi2rgb is
       PixelClk : out std_logic; --pixel-clock recovered from the DVI interface
       
       SerialClk : out std_logic; -- advanced use only; 5x PixelClk
-      aPixelClkLckd : out std_logic; -- DEPRECATED advanced use only; PixelClk and SerialClk stable
-      pLocked : out std_logic; -- PixelClk and SerialClk stable, async de-assert, assert sync to PixelClk
+      aPixelClkLckd : out std_logic; -- advanced use only; PixelClk and SerialClk stable
       
       -- Optional DDC port
       SDA_I : in std_logic;
@@ -212,18 +211,7 @@ LockLostReset: entity work.ResetBridge
       aRst => not aLocked,
       OutClk => PixelClk_int,
       oRst => pLockLostRst);
-
--- Sync our locked signal back to the PixelClk domain, because the reset controller block
--- expects it that way.
--- TODO: might need to sync to PixelClk, if BUFG is inserted below
-LockedSync: entity work.ResetBridge
-   generic map (
-      kPolarity => '0')
-   port map (
-      aRst => aLocked,
-      OutClk => PixelClk_int,
-      oRst => pLocked);
-               
+         
 -- Three data channel decoders
 DataDecoders: for iCh in 2 downto 0 generate
    DecoderX: entity work.TMDS_Decoder

@@ -12,6 +12,10 @@
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
 *
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -29,7 +33,7 @@
 /**
 *
 * @file xuartns550_options.c
-* @addtogroup uartns550_v3_5
+* @addtogroup uartns550_v3_3
 * @{
 *
 * The implementation of the options functions for the XUartNs550 driver.
@@ -47,8 +51,6 @@
 * 2.00a ktn  10/20/09 Converted all register accesses to 32 bit access.
 *		      Updated to use HAL Processor APIs. _m is removed from the
 *		      name of all the macro definitions.
-* 3.4   sk   11/10/15 Used UINTPTR instead of u32 for Baseaddress CR# 867425.
-*                     Changed the prototype of ReadFcrRegister API.
 * </pre>
 *
 *****************************************************************************/
@@ -102,7 +104,7 @@ static Mapping OptionsTable[] = {
 
 /************************** Function Prototypes *****************************/
 
-static u32 ReadFcrRegister(UINTPTR BaseAddress);
+static u32 ReadFcrRegister(u32 BaseAddress);
 
 /****************************************************************************/
 /**
@@ -483,7 +485,7 @@ int XUartNs550_IsSending(XUartNs550 *InstancePtr)
 * @note		None.
 *
 *****************************************************************************/
-static u32 ReadFcrRegister(UINTPTR BaseAddress)
+static u32 ReadFcrRegister(u32 BaseAddress)
 {
 	u32 LcrRegister;
 	u32 FcrRegister;

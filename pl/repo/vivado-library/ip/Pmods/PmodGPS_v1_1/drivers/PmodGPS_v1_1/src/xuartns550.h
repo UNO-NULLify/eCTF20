@@ -12,6 +12,10 @@
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
 *
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -29,7 +33,7 @@
 /**
 *
 * @file xuartns550.h
-* @addtogroup uartns550_v3_5
+* @addtogroup uartns550_v3_3
 * @{
 * @details
 *
@@ -160,16 +164,6 @@
 * 3.2   adk 15/10/14  Fixed CR:826435 changes are made in the driver tcl file.
 * 3.3	nsk  04/13/15 Fixed CR:857013 changes are made in xuartns550.c and
 *		      xuartns550_l.c.
-* 3.4   sk   11/10/15 Used UINTPTR instead of u32 for Baseaddress CR# 867425.
-*                     Changed the prototype of XUartNs550_CfgInitialize API.
-*       ms   01/23/17 Added xil_printf statement in main function for all
-*                     examples to ensure that "Successfully ran" and "Failed"
-*                     strings are available in all examples. This is a fix
-*                     for CR-965028.
-*       ms   03/17/17 Added readme.txt file in examples folder for doxygen
-*                     generation.
-* 3.5   ms   04/18/17 Modified tcl file to add suffix U for all macros
-*                     definitions of uartns550 in xparameters.h
 * </pre>
 *
 *****************************************************************************/
@@ -314,7 +308,7 @@ extern "C" {
  */
 typedef struct {
 	u16 DeviceId;		/**< Unique ID  of device */
-	UINTPTR BaseAddress;	/**< Base address of device */
+	u32 BaseAddress;	/**< Base address of device */
 	u32 InputClockHz;	/**< Input clock frequency */
 	u32 DefaultBaudRate;	/**< Baud Rate in bps, ie 1200 */
 } XUartNs550_Config;
@@ -383,7 +377,7 @@ typedef struct {
  */
 typedef struct {
 	XUartNs550Stats Stats;	/**< Statistics */
-	UINTPTR BaseAddress;	/**< Base address of device  */
+	u32 BaseAddress;	/**< Base address of device  */
 	u32 InputClockHz;	/**< Input clock frequency */
 	int IsReady;		/**< Device is initialized and ready */
 	u32 BaudRate;		/**< Current baud rate of hw */
@@ -411,7 +405,7 @@ XUartNs550_Config *XUartNs550_LookupConfig(u16 DeviceId);
  */
 int XUartNs550_CfgInitialize(XUartNs550 *InstancePtr,
 				XUartNs550_Config *Config,
-				 UINTPTR EffectiveAddr);
+				 u32 EffectiveAddr);
 unsigned int XUartNs550_Send(XUartNs550 *InstancePtr, u8 *BufferPtr,
 				unsigned int NumBytes);
 unsigned int XUartNs550_Recv(XUartNs550 *InstancePtr, u8 *BufferPtr,

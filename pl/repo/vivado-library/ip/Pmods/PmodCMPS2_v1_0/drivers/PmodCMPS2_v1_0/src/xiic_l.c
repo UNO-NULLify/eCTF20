@@ -1,6 +1,6 @@
 /******************************************************************************
 *
-* Copyright (C) 2002 - 2018 Xilinx, Inc.  All rights reserved.
+* Copyright (C) 2002 - 2015 Xilinx, Inc.  All rights reserved.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -11,6 +11,10 @@
 *
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
+*
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
 *
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,7 +33,7 @@
 /**
 *
 * @file xiic_l.c
-* @addtogroup iic_v3_4
+* @addtogroup iic_v3_1
 * @{
 *
 * This file contains low-level driver functions that can be used to access the
@@ -76,25 +80,12 @@
 *		      Direction of Tx bit must be disabled in Receive
 *		      condition It Fixes the CR:685759 Changes are done
 *		      in the function XIic_Recv.
-* 3.2   sk   11/10/15 Used UINTPTR instead of u32 for Baseaddress CR# 867425.
-*                     Changed the prototypes of RecvData, SendData,
-*                     DynRecvData, DynSendData APIs.
-* 3.2	sd   18/02/16 In Low level driver in repeated start condition
-*                     NACK for last byte is added. Changes are done in
-*                     XIic_Recv for CR# 862303
-* 3.3   sk   06/17/16 Added bus busy checks for slave send/recv and master
-*                     send/recv.
-* 3.3   als  06/27/16 Added Low-level XIic_CheckIsBusBusy API.
-* 3.3   als  06/27/16 Added low-level XIic_WaitBusFree API.
-* 3.4	nk   16/11/16 Reduced sleeping time in Bus-busy check.
-* 3.5   sd   08/29/18 Fix bus busy check for the NACK case.
 * </pre>
 *
 ****************************************************************************/
 
 /***************************** Include Files *******************************/
 
-#include <sleep.h>
 #include "xil_types.h"
 #include "xil_assert.h"
 #include "xiic_l.h"
@@ -107,13 +98,13 @@
 
 /************************** Function Prototypes ****************************/
 
-static unsigned RecvData(UINTPTR BaseAddress, u8 *BufferPtr,
+static unsigned RecvData(u32 BaseAddress, u8 *BufferPtr,
 			 unsigned ByteCount, u8 Option);
-static unsigned SendData(UINTPTR BaseAddress, u8 *BufferPtr,
+static unsigned SendData(u32 BaseAddress, u8 *BufferPtr,
 			 unsigned ByteCount, u8 Option);
 
-static unsigned DynRecvData(UINTPTR BaseAddress, u8 *BufferPtr, u8 ByteCount);
-static unsigned DynSendData(UINTPTR BaseAddress, u8 *BufferPtr,
+static unsigned DynRecvData(u32 BaseAddress, u8 *BufferPtr, u8 ByteCount);
+static unsigned DynSendData(u32 BaseAddress, u8 *BufferPtr,
 				u8 ByteCount, u8 Option);
 
 /************************** Variable Definitions **************************/
@@ -122,8 +113,8 @@ static unsigned DynSendData(UINTPTR BaseAddress, u8 *BufferPtr,
 /**
 * Receive data as a master on the IIC bus.  This function receives the data
 * using polled I/O and blocks until the data has been received. It only
-* supports 7 bit addressing mode of operation. This function returns zero
-* if bus is busy.
+* supports 7 bit addressing mode of operation. The user is responsible for
+* ensuring the bus is not busy if multiple masters are present on the bus.
 *
 * @param	BaseAddress contains the base address of the IIC device.
 * @param	Address contains the 7 bit IIC address of the device to send the
@@ -139,7 +130,7 @@ static unsigned DynSendData(UINTPTR BaseAddress, u8 *BufferPtr,
 * @note		None.
 *
 ******************************************************************************/
-unsigned XIic_Recv(UINTPTR BaseAddress, u8 Address,
+unsigned XIic_Recv(u32 BaseAddress, u8 Address,
 			u8 *BufferPtr, unsigned ByteCount, u8 Option)
 {
 	u32 CntlReg;
@@ -205,9 +196,6 @@ unsigned XIic_Recv(UINTPTR BaseAddress, u8 Address,
 		 * must be disabled
 		 */
 		CntlReg &= ~XIIC_CR_DIR_IS_TX_MASK;
-		if (ByteCount == 1) {
-			CntlReg |= XIIC_CR_NO_ACK_MASK;
-		}
 		XIic_WriteReg(BaseAddress,  XIIC_CR_REG_OFFSET, CntlReg);
 		/* Already owns the Bus indicating that its a Repeated Start
 		 * call. 7 bit slave address, send the address for a read
@@ -229,11 +217,6 @@ unsigned XIic_Recv(UINTPTR BaseAddress, u8 Address,
 		 * number of bytes that was received
 		 */
 		XIic_WriteReg(BaseAddress,  XIIC_CR_REG_OFFSET, 0);
-	}
-
-	/* Wait until I2C bus is freed, exit if timed out. */
-	if (XIic_WaitBusFree(BaseAddress) != XST_SUCCESS) {
-		return 0;
 	}
 
 	/* Return the number of bytes that was received */
@@ -266,7 +249,7 @@ unsigned XIic_Recv(UINTPTR BaseAddress, u8 Address,
 * after this function returns.
 *
 ******************************************************************************/
-static unsigned RecvData(UINTPTR BaseAddress, u8 *BufferPtr,
+static unsigned RecvData(u32 BaseAddress, u8 *BufferPtr,
 			 unsigned ByteCount, u8 Option)
 {
 	u32 CntlReg;
@@ -392,8 +375,8 @@ static unsigned RecvData(UINTPTR BaseAddress, u8 *BufferPtr,
 /**
 * Send data as a master on the IIC bus.  This function sends the data
 * using polled I/O and blocks until the data has been sent. It only supports
-* 7 bit addressing mode of operation.  This function returns zero
-* if bus is busy.
+* 7 bit addressing mode of operation.  The user is responsible for ensuring
+* the bus is not busy if multiple masters are present on the bus.
 *
 * @param	BaseAddress contains the base address of the IIC device.
 * @param	Address contains the 7 bit IIC address of the device to send the
@@ -408,17 +391,12 @@ static unsigned RecvData(UINTPTR BaseAddress, u8 *BufferPtr,
 * @note		None.
 *
 ******************************************************************************/
-unsigned XIic_Send(UINTPTR BaseAddress, u8 Address,
+unsigned XIic_Send(u32 BaseAddress, u8 Address,
 		   u8 *BufferPtr, unsigned ByteCount, u8 Option)
 {
 	unsigned RemainingByteCount;
 	u32 ControlReg;
 	volatile u32 StatusReg;
-
-	/* Wait until I2C bus is freed, exit if timed out. */
-	if (XIic_WaitBusFree(BaseAddress) != XST_SUCCESS) {
-		return 0;
-	}
 
 	/* Check to see if already Master on the Bus.
 	 * If Repeated Start bit is not set send Start bit by setting
@@ -492,19 +470,17 @@ unsigned XIic_Send(UINTPTR BaseAddress, u8 Address,
 		if ((ControlReg & XIIC_CR_MSMS_MASK) != 0) {
 			XIic_WriteReg(BaseAddress,  XIIC_CR_REG_OFFSET,
 				 (ControlReg & ~XIIC_CR_MSMS_MASK));
-		}
-
-		if ((XIic_ReadReg(BaseAddress, XIIC_SR_REG_OFFSET) &
-		    XIIC_SR_ADDR_AS_SLAVE_MASK) != 0) {
-			XIic_WriteReg(BaseAddress,  XIIC_CR_REG_OFFSET, 0);
-		}
-		else {
 			StatusReg = XIic_ReadReg(BaseAddress,
 					XIIC_SR_REG_OFFSET);
 			while ((StatusReg & XIIC_SR_BUS_BUSY_MASK) != 0) {
 				StatusReg = XIic_ReadReg(BaseAddress,
 						XIIC_SR_REG_OFFSET);
 			}
+		}
+
+		if ((XIic_ReadReg(BaseAddress, XIIC_SR_REG_OFFSET) &
+		    XIIC_SR_ADDR_AS_SLAVE_MASK) != 0) {
+			XIic_WriteReg(BaseAddress,  XIIC_CR_REG_OFFSET, 0);
 		}
 	}
 
@@ -532,7 +508,7 @@ unsigned XIic_Send(UINTPTR BaseAddress, u8 Address,
 * that could cause the function not to return if the hardware is not working.
 *
 ******************************************************************************/
-static unsigned SendData(UINTPTR BaseAddress, u8 *BufferPtr,
+static unsigned SendData(u32 BaseAddress, u8 *BufferPtr,
 			 unsigned ByteCount, u8 Option)
 {
 	u32 IntrStatus;
@@ -655,7 +631,8 @@ static unsigned SendData(UINTPTR BaseAddress, u8 *BufferPtr,
 /**
 * Receive data as a master on the IIC bus. This function receives the data
 * using polled I/O and blocks until the data has been received. It only
-* supports 7 bit addressing. This function returns zero if bus is busy.
+* supports 7 bit addressing. The user is responsible for ensuring the bus is
+* not busy if multiple masters are present on the bus.
 *
 * @param	BaseAddress contains the base address of the IIC Device.
 * @param	Address contains the 7 bit IIC Device address of the device to
@@ -670,7 +647,7 @@ static unsigned SendData(UINTPTR BaseAddress, u8 *BufferPtr,
 *		already enabled in the CR register.
 *
 ******************************************************************************/
-unsigned XIic_DynRecv(UINTPTR BaseAddress, u8 Address, u8 *BufferPtr, u8 ByteCount)
+unsigned XIic_DynRecv(u32 BaseAddress, u8 Address, u8 *BufferPtr, u8 ByteCount)
 {
 	unsigned RemainingByteCount;
 	u32 StatusRegister;
@@ -720,11 +697,6 @@ unsigned XIic_DynRecv(UINTPTR BaseAddress, u8 Address, u8 *BufferPtr, u8 ByteCou
 	 */
 	RemainingByteCount = DynRecvData(BaseAddress, BufferPtr, ByteCount);
 
-	/* Wait until I2C bus is freed, exit if timed out. */
-	if (XIic_WaitBusFree(BaseAddress) != XST_SUCCESS) {
-		return 0;
-	}
-
 	/*
 	 * The receive is complete. Return the number of bytes that were
 	 * received.
@@ -754,7 +726,7 @@ unsigned XIic_DynRecv(UINTPTR BaseAddress, u8 Address, u8 *BufferPtr, u8 ByteCou
 *		to return if the hardware is not working.
 *
 ******************************************************************************/
-static unsigned DynRecvData(UINTPTR BaseAddress, u8 *BufferPtr, u8 ByteCount)
+static unsigned DynRecvData(u32 BaseAddress, u8 *BufferPtr, u8 ByteCount)
 {
 	u32 StatusReg;
 	u32 IntrStatus;
@@ -817,7 +789,8 @@ static unsigned DynRecvData(UINTPTR BaseAddress, u8 *BufferPtr, u8 ByteCount)
 /**
 * Send data as a master on the IIC bus. This function sends the data using
 * polled I/O and blocks until the data has been sent. It only supports 7 bit
-* addressing. This function returns zero if bus is busy.
+* addressing. The user is responsible for ensuring the bus is not busy if
+* multiple masters are present on the bus.
 *
 * @param	BaseAddress contains the base address of the IIC Device.
 * @param	Address contains the 7 bit IIC address of the device to send the
@@ -832,16 +805,11 @@ static unsigned DynRecvData(UINTPTR BaseAddress, u8 *BufferPtr, u8 ByteCount)
 * @note		None.
 *
 ******************************************************************************/
-unsigned XIic_DynSend(UINTPTR BaseAddress, u16 Address, u8 *BufferPtr,
+unsigned XIic_DynSend(u32 BaseAddress, u16 Address, u8 *BufferPtr,
 			u8 ByteCount, u8 Option)
 {
 	unsigned RemainingByteCount;
 	u32 StatusRegister;
-
-	/* Wait until I2C bus is freed, exit if timed out. */
-	if (XIic_WaitBusFree(BaseAddress) != XST_SUCCESS) {
-		return 0;
-	}
 
 	/*
 	 * Clear the latched interrupt status so that it will be updated with
@@ -915,7 +883,7 @@ unsigned XIic_DynSend(UINTPTR BaseAddress, u16 Address, u8 *BufferPtr,
 *		because it is designed for minimal code space and complexity.
 *
 ******************************************************************************/
-static unsigned DynSendData(UINTPTR BaseAddress, u8 *BufferPtr,
+static unsigned DynSendData(u32 BaseAddress, u8 *BufferPtr,
 			    u8 ByteCount, u8 Option)
 {
 	u32 IntrStatus;
@@ -1003,7 +971,7 @@ static unsigned DynSendData(UINTPTR BaseAddress, u8 *BufferPtr,
 * @note		None.
 *
 ******************************************************************************/
-int XIic_DynInit(UINTPTR BaseAddress)
+int XIic_DynInit(u32 BaseAddress)
 {
 	u32 Status;
 
@@ -1041,57 +1009,5 @@ int XIic_DynInit(UINTPTR BaseAddress)
 	}
 
 	return XST_FAILURE;
-}
-
-/*****************************************************************************
-*
-* This is a function which tells whether the I2C bus is busy or free.
-*
-* @param	BaseAddr is the base address of the I2C core to work on.
-*
-* @return
-*		- TRUE if the bus is busy.
-*		- FALSE if the bus is NOT busy.
-*
-* @note		None.
-*
-******************************************************************************/
-u32 XIic_CheckIsBusBusy(UINTPTR BaseAddress)
-{
-	u32 StatusReg;
-
-	StatusReg = XIic_ReadReg(BaseAddress, XIIC_SR_REG_OFFSET);
-	if (StatusReg & XIIC_SR_BUS_BUSY_MASK) {
-		return TRUE;
-	} else {
-		return FALSE;
-	}
-}
-
-/******************************************************************************/
-/**
-* This function will wait until the I2C bus is free or timeout.
-*
-* @param	BaseAddress contains the base address of the I2C device.
-*
-* @return
-*		- XST_SUCCESS if the I2C bus was freed before the timeout.
-*		- XST_FAILURE otherwise.
-*
-* @note		None.
-*
-*******************************************************************************/
-u32 XIic_WaitBusFree(UINTPTR BaseAddress)
-{
-	u32 BusyCount = 0;
-
-	while (XIic_CheckIsBusBusy(BaseAddress)) {
-		if (BusyCount++ > 10000) {
-			return XST_FAILURE;
-		}
-		usleep(100);
-	}
-
-	return XST_SUCCESS;
 }
 /** @} */

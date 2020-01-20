@@ -68,7 +68,7 @@ extern "C" {
     #define ntohs(A) (A)
     #define ntohl(A) (A)
 #else
-    #warning "Must define either BIG_ENDIAN or LITTLE_ENDIAN" // NOTE(andreW): Currently the compiler will always trip on this preprocessor, and as an #error will fail the build step. This solution allows compilation without removing the message.
+    #error "Must define either BIG_ENDIAN or LITTLE_ENDIAN"
 #endif
 
 #ifdef __cplusplus

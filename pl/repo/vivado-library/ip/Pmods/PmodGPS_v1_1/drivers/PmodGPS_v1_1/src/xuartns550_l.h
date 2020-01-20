@@ -12,6 +12,10 @@
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
 *
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -29,7 +33,7 @@
 /**
 *
 * @file xuartns550_l.h
-* @addtogroup uartns550_v3_5
+* @addtogroup uartns550_v3_3
 * @{
 *
 * This header file contains identifiers and low-level driver functions (or
@@ -48,9 +52,6 @@
 * 2.00a ktn  10/20/09 Converted all register accesses to 32 bit access.
 *		      Updated to use HAL Processor APIs. _m is removed from the
 *		      name of all the macro definitions.
-* 3.4   sk   11/10/15 Used UINTPTR instead of u32 for Baseaddress CR# 867425.
-*                     Changed the prototypes of XUartNs550_SendByte,
-*                     XUartNs550_RecvByte, XUartNs550_SetBaud APIs.
 * </pre>
 *
 ******************************************************************************/
@@ -331,11 +332,11 @@ extern "C" {
 
 /************************** Function Prototypes ******************************/
 
-void XUartNs550_SendByte(UINTPTR BaseAddress, u8 Data);
+void XUartNs550_SendByte(u32 BaseAddress, u8 Data);
 
-u8 XUartNs550_RecvByte(UINTPTR BaseAddress);
+u8 XUartNs550_RecvByte(u32 BaseAddress);
 
-void XUartNs550_SetBaud(UINTPTR BaseAddress, u32 InputClockHz, u32 BaudRate);
+void XUartNs550_SetBaud(u32 BaseAddress, u32 InputClockHz, u32 BaudRate);
 
 /************************** Variable Definitions *****************************/
 

@@ -213,7 +213,7 @@ typedef struct DHCPDG_T
     uint8_t     sname[64];      // server name, almost always 0s
     uint8_t     file[128];      // file name, bootp record, almost always 0s
     IPv4        MagicCookie;    // always 99.130.83.99; not really an IP, but it is easy to make it as such (I think 0x63538263).
-    uint8_t     options[0];      // variable lenght options ends with the end opiton of 0xFF
+    uint8_t     options[];      // variable lenght options ends with the end opiton of 0xFF
 } DHCPDG;
 #pragma pack(pop)
 

@@ -1,6 +1,6 @@
 /******************************************************************************
 *
-* Copyright (C) 2002 - 2019 Xilinx, Inc.  All rights reserved.
+* Copyright (C) 2002 - 2015 Xilinx, Inc.  All rights reserved.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -11,6 +11,10 @@
 *
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
+*
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
 *
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,7 +33,7 @@
 /**
 *
 * @file xtmrctr.h
-* @addtogroup tmrctr_v4_6
+* @addtogroup tmrctr_v4_0
 * @{
 * @details
 *
@@ -44,6 +48,8 @@
 *   - PWM operation
 *   - Cascade Operation (This is to be used for getting a 64 bit timer and this
 *     feature is present in the latest versions of the axi_timer IP)
+*
+* The driver does not currently support the PWM operation of the device.
 *
 * The timer counter operates in 2 primary modes, compare and capture. In
 * either mode, the timer counter may count up or down, with up being the
@@ -144,23 +150,6 @@
 * 4.0   als  09/30/15 Updated initialization API.
 * 4.1   sk   11/10/15 Used UINTPTR instead of u32 for Baseaddress CR# 867425.
 *                     Changed the prototype of XTmrCtr_CfgInitialize API.
-* 4.2   nsk  15/09/16 Updated tcl, to get correct device id for canonical defines,
-*                     when there exist more than one timer perepheral
-*       ms   01/23/17 Added xil_printf statement in main function for all
-*                     examples to ensure that "Successfully ran" and "Failed"
-*                     strings are available in all examples. This is a fix
-*                     for CR-965028.
-*       ms   03/17/17 Added readme.txt file in examples folder for doxygen
-*                     generation.
-* 4.4   ms   04/18/17 Modified tcl file to add suffix U for all macros
-*                     definitions of tmrctr in xparameters.h
-* 4.5   cjp  03/22/18 Added APIs to support PWM feature. XTmrCtr_PwmConfigure
-*                     is used to configure PWM to operate for specific period
-*                     and high time. XTmrCtr_PwmEnable and XTmrCtr_PwmDisable
-*                     are used to enable/disable the PWM output.
-* 4.6   mus  03/13/19 tmrctr_tapp tcl is updated to support scenario where
-*                     AXI TIMER is interrupting ARM processor through more
-*                     than one interrupt pin. Fix for CR#1024699
 * </pre>
 *
 ******************************************************************************/
@@ -218,12 +207,6 @@ extern "C" {
 #define XTC_EXT_COMPARE_OPTION		0x00000002UL
 /*@}*/
 
-/* Round division  */
-#define XTC_ROUND_DIV(a, b)		((a + (b / 2)) / b)
-
-/* Convert clock frequency in hertz to period in nano seconds */
-#define XTC_HZ_TO_NS(Hz)		XTC_ROUND_DIV(1000000000, Hz)
-
 /**************************** Type Definitions *******************************/
 
 /**
@@ -270,7 +253,6 @@ typedef struct {
 	u32 IsReady;		 /**< Device is initialized and ready */
 	u32 IsStartedTmrCtr0;	 /**< Is Timer Counter 0 started */
 	u32 IsStartedTmrCtr1;	 /**< Is Timer Counter 1 started */
-	u32 IsPwmEnabled;        /**< Is PWM Enabled */
 
 	XTmrCtr_Handler Handler; /**< Callback function */
 	void *CallBackRef;	 /**< Callback reference for handler */
@@ -295,9 +277,6 @@ void XTmrCtr_SetResetValue(XTmrCtr * InstancePtr, u8 TmrCtrNumber,
 u32 XTmrCtr_GetCaptureValue(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
 int XTmrCtr_IsExpired(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
 void XTmrCtr_Reset(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
-u8 XTmrCtr_PwmConfigure(XTmrCtr *InstancePtr, u32 PwmPeriod, u32 PwmHighTime);
-void XTmrCtr_PwmEnable(XTmrCtr *InstancePtr);
-void XTmrCtr_PwmDisable(XTmrCtr *InstancePtr);
 
 /* Lookup configuration in xtmrctr_sinit.c */
 XTmrCtr_Config *XTmrCtr_LookupConfig(u16 DeviceId);
