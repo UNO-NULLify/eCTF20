@@ -21,3 +21,4 @@ The example code is structured as follows
  * `Vagrantfile` - Vagrantfile for launching the Vagrant environment - DO NOT CHANGE
  * `sample-audio` - Sample audio files for you to use
  * `scripts/` - Contains useful scripts for developer convenience
+ * `docs/` - Contains all documentation for the project
