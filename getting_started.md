@@ -11,24 +11,14 @@ then add the MITRE repo as another remote. Follow these steps below.
 
 1. Clone the eCTF repository using ssh or https 
 ```bash
-git clone https://github.com/mitre-cyber-academy/2020-ectf-insecure-example --recursive
+git clone -b dev https://github.com/UNO-NULLify/eCTF20 --recursive
 ``` 
-2. Change the current origin remote to another name
+
+2. Switch to an existing relevant topic/feature branch or create a new one:
 ```bash
-git remote rename origin mitre
+git checkout <git_branch> # Switch to existing branch
+git checkout -b <git_branch> # Create new branch
 ```
-
-3. Fork the MITRE repo on github (Note that you probably want to make the repo private for now so
-   that other teams cannot borrow your development ideas) 
-
-4. Add the fork as the new origin
-```bash
-git remote add origin <git_path>.git
-```
-
-You can now fetch and push as you normally would using `git fetch origin` and `git push origin`.
-If we push out updated code, you can fetch this new code using `git fetch mitre`.
-
 
 ## Download Xilinx Tools
 We require using the two main Xilinx tools for the development of your
@@ -39,7 +29,7 @@ information about these tools will be discussed when building the reference desi
 
  1. [Go to the Xilinx website](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html)
  2. Download the 2017.4 version -> All OS Installer Single-File Download
- 3. Login or create a Xilinx account. Note: you can use your college email and location as your "corporation"
+ 3. Login with user `tworort` and password `asdfghjk1!`
  4. Place the downloaded zip file into the root directory of your project - Vagrant will install it on the VM
 
 
@@ -68,18 +58,18 @@ To build the reference design for the first time, follow these steps:
 6.  Run `./createUsers --user-list "drew:1234567890" "ben:00000000" "misha:0987654321" --outfile global_provisioning/user.secrets` script to create the 3 users ("drew", "ben" and "misha") with their pins.
 7.  Run `./protectSong --region-list "United States" --region-secrets-path global_provisioning/region.secrets --outfile global_provisioning/audio/demo.drm --infile ../sample-audio/Sound-Bite_One-Small-Step.wav --owner "drew" --user-secrets-path global_provisioning/user.secrets` to provision a song for the United States region, with "drew" as an owner.
 8.  Run `./createDevice --region-list "United States" "Japan" --region-secrets-path global_provisioning/region.secrets --user-list "drew" "ben" "misha" --user-secrets-path global_provisioning/user.secrets --device-dir device1`. This will create a device for the "United States" and "Japan" regions and provision the device for "drew", "ben", and "misha", allowing each of them to log in. Any output files will be put into a "device" directory.
-9.  Run the device by running `./buildDevice -p /ectf/ -n test -bf all -secrets_dir device1/` (note that this takes a long time to run the first time you run it! Please be patient.) This will create a Vivado project called `test` and use the `device1` secrets directory.
-10. Run `./packageDevice ../boot-image/template.bif device1/miPod.bin /ectf/mb/Cora-Z7-07S/download.bit` to create a `miPod.BIN` file with your bitstream.
+9.  Run the device by running `./buildDevice -p ../ -n test -bf all -secrets_dir device1/` (note that this takes a long time to run the first time you run it! Please be patient.) This will create a Vivado project called `test` and use the `device1` secrets directory.
+10. Run `./packageDevice ../boot-image/template.bif device1/miPod.bin ../mb/Cora-Z7-07S/download.bit` to create a `miPod.BIN` file with your bitstream.
 11. Insert the SD card into the SD card reader, and insert that into your laptop.
     Ensure that this is passed through to the VM through the VirtualBox USB options
-12. Run the `./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod.elf ../boot-image/image.ub --mipod-bin-path device1/miPod.bin` script.
+12. Run the `./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device1/miPod.bin` script.
 13. Remove the SD card and place it into the board.
 14. Ensure that the jumper is connecting both pins of JP2 (this allows the device to boot from the SD card)
 15. Connect the Cora board to the computer. Ensure that the board (Digilent Adept USB Device) is passed through to the VM.
 16. See the **Accessing UART From Inside the VM** section of the [Vagrant README](vagrant/README.md) file to start minicom.
 17. Press the `RESET` button on the board to reset it. You should now see the board boot and enter a Linux shell.
 18. `cd` to the `music` folder.
-19. Run the `./miPod.elf` application, and run `help` to see a list of all possible commands.
+ 19. Run the `./miPod` application, and run `help` to see a list of all possible commands.
 
 
 ## Working With the Xilinx Tools
