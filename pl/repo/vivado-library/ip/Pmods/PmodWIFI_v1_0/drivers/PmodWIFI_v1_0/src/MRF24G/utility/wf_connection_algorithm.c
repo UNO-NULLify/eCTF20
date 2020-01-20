@@ -43,11 +43,11 @@
 //==============================================================================
 //                                  INCLUDES
 //==============================================================================
-#include "./ud_inc/shared/wf_universal_driver.h"
-#include "./ud_inc/internal/wf_global_includes.h"
-
 #include <stdio.h>
 #include <string.h>
+
+#include "./ud_inc/shared/wf_universal_driver.h"
+#include "./ud_inc/internal/wf_global_includes.h"
 
 //==============================================================================
 //                                  LOCAL DATA TYPES

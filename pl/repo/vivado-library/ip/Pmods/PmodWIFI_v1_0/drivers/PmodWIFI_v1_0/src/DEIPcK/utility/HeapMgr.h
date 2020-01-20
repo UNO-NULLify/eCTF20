@@ -69,7 +69,7 @@ typedef struct RRHE_T
 {
     uint16_t        cbData;
     uint16_t        fInUse;
-    uint8_t         rgbData[0];
+    uint8_t         rgbData[];
 } RRHE;
 
 typedef struct RRHEAP_T
@@ -78,7 +78,7 @@ typedef struct RRHEAP_T
     uint32_t cbHeap;
     uint16_t cFail;
     uint16_t cInUse;
-    uint8_t rgbHeap[0];
+    uint8_t rgbHeap[];
 } RRHEAP;
 
 
@@ -125,7 +125,7 @@ typedef struct PMGR_T
     uint8_t             cPages;             // max of 255 pages 0-254; 0x255 == PMGRFreePage is reserved
     uint8_t             cAlloc;             // number of alloced pages
     uint8_t             cbAllocMap;         // how many bytes are in the allocation map
-    uint8_t             rgAllocMap[0];       // A bit map of pages in use 1 = in use, 0 free
+    uint8_t             rgAllocMap[];       // A bit map of pages in use 1 = in use, 0 free
 } PMGR;
 
 // the stream manager is typically used internally by a socket,
@@ -142,7 +142,7 @@ typedef struct SMGR_T
     uint32_t    iStart;         // linear start offset into the stream
     uint32_t    iEnd;           // linear end offset into the stream
     uint8_t     cPages;
-    PGID        rgPages[0];
+    PGID        rgPages[];
 } SMGR;
 
 // Stream Manager

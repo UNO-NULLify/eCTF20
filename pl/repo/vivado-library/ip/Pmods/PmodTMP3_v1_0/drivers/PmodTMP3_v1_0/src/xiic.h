@@ -1,6 +1,6 @@
 /******************************************************************************
 *
-* Copyright (C) 2002 - 2016 Xilinx, Inc.  All rights reserved.
+* Copyright (C) 2002 - 2015 Xilinx, Inc.  All rights reserved.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -11,6 +11,10 @@
 *
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
+*
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
 *
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,7 +33,7 @@
 /**
 *
 * @file xiic.h
-* @addtogroup iic_v3_4
+* @addtogroup iic_v3_1
 * @{
 * @details
 *
@@ -289,23 +293,6 @@
 *                     bytes have been received/sent by the Master
 *                     to the user callback (CR: 828504). Changes are made in the
 *		      file xiic_slave.c.
-* 3.2   sk   11/10/15 Used UINTPTR instead of u32 for Baseaddress CR# 867425.
-*                     Changed the prototype of XIic_CfgInitialize API.
-* 3.2	sd   18/02/16 In Low level driver in repeated start condition
-*                     NACK for last byte is added. Changes are done in
-*                     XIic_Recv for CR# 862303
-* 3.3   sk   06/17/16 Added bus busy checks for slave send/recv and master
-*                     send/recv.
-* 3.3   als  06/27/16 XIic_IsIicBusy now a wrapper for XIic_CheckIsBusBusy.
-* 3.4   ms   01/23/17 Added xil_printf statement in main function for all
-*                     examples to ensure that "Successfully ran" and "Failed"
-*                     strings are available in all examples. This is a fix
-*                     for CR-965028.
-*       ms   03/17/17 Added readme.txt file in examples folder for doxygen
-*                     generation.
-*       ms   04/05/17 Modified Comment lines in functions of iic
-*                     examples to recognize it as documentation block
-*                     for doxygen generation.
 * </pre>
 *
 ******************************************************************************/
@@ -400,7 +387,7 @@ extern "C" {
  */
 typedef struct {
 	u16 DeviceId;	  /**< Unique ID  of device */
-	UINTPTR BaseAddress;  /**< Device base address */
+	u32 BaseAddress;  /**< Device base address */
 	int Has10BitAddr; /**< Does device have 10 bit address decoding */
 	u8 GpOutWidth;	  /**< Number of bits in general purpose output */
 } XIic_Config;
@@ -465,7 +452,7 @@ typedef struct {
  */
 typedef struct {
 	XIicStats Stats;	/**< Statistics */
-	UINTPTR BaseAddress;	/**< Device base address */
+	u32 BaseAddress;	/**< Device base address */
 	int Has10BitAddr;	/**< TRUE when 10 bit addressing in design */
 	int IsReady;		/**< Device is initialized and ready */
 	int IsStarted;		/**< Device has been started */
@@ -495,24 +482,6 @@ typedef struct {
 
 /***************** Macros (Inline Functions) Definitions *********************/
 
-/*****************************************************************************
-*
-* This is a function which tells whether the I2C bus is busy or free.
-*
-* @param	InstancePtr points to the XIic instance to be worked on.
-*
-* @return
-*		- TRUE if the bus is busy.
-*		- FALSE if the bus is NOT busy.
-*
-* @note		None.
-*
-******************************************************************************/
-static inline u32 XIic_IsIicBusy(XIic *InstancePtr)
-{
-	return XIic_CheckIsBusBusy(InstancePtr->BaseAddress);
-}
-
 /************************** Function Prototypes ******************************/
 
 /*
@@ -525,7 +494,7 @@ XIic_Config *XIic_LookupConfig(u16 DeviceId);
  * Functions in xiic.c
  */
 int XIic_CfgInitialize(XIic *InstancePtr, XIic_Config *Config,
-		       UINTPTR EffectiveAddr);
+		       u32 EffectiveAddr);
 
 int XIic_Start(XIic *InstancePtr);
 int XIic_Stop(XIic *InstancePtr);

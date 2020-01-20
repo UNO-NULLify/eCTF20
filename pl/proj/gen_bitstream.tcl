@@ -65,4 +65,3 @@ time {
   while { [get_property STATUS [get_runs impl_1]] != $bitstream_comp } {
   }
 }
-

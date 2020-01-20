@@ -12,10 +12,6 @@
 /* y-axis to north angle in degrees as well as the cardinal direction string  */
 /* for that angle.                                                            */
 /*                                                                            */
-/* In order to use the "tan" functions from the math library, the math        */
-/* library must be included in the linker libraries property of the           */
-/* Application Project. See https://www.xilinx.com/support/answers/52971.html */
-/* for more information.                                                      */
 /******************************************************************************/
 /* Revision History:                                                          */
 /*                                                                            */

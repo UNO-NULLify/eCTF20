@@ -12,6 +12,10 @@
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
 *
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -29,7 +33,7 @@
 /**
 *
 * @file xspi.c
-* @addtogroup spi_v4_4
+* @addtogroup spi_v4_1
 * @{
 *
 * Contains required functions of the XSpi driver component.  See xspi.h for
@@ -91,11 +95,6 @@
 * 4.1	bss 08/07/14  Modified XSpi_Transfer to check for Interrupt Status
 *		      register Tx Empty bit instead of Status register
 *		      CR#810294.
-* 4.2   sk   11/10/15 Used UINTPTR instead of u32 for Baseaddress CR# 867425.
-*                     Changed the prototype of XSpi_CfgInitialize API.
-* 4.4	tjs  11/28/17 When receive fifo exists, we need to check for status
-*                     register rx fifo empty flag. If clear we can proceed for
-*                     read. Otherwise we will hit execption. CR# 989938
 * </pre>
 *
 ******************************************************************************/
@@ -160,11 +159,10 @@ void XSpi_Abort(XSpi *InstancePtr);
 *
 ******************************************************************************/
 int XSpi_CfgInitialize(XSpi *InstancePtr, XSpi_Config *Config,
-			UINTPTR EffectiveAddr)
+			u32 EffectiveAddr)
 {
 	u8  Buffer[3];
 	u32 ControlReg;
-	u32 StatusReg;
 	
 	Xil_AssertNonvoid(InstancePtr != NULL);
 
@@ -263,14 +261,8 @@ int XSpi_CfgInitialize(XSpi *InstancePtr, XSpi_Config *Config,
 		XSpi_SetControlReg(InstancePtr, ControlReg);
 		
 		/* Read the Rx Data Register */
-		StatusReg = XSpi_GetStatusReg(InstancePtr);
-		if ((StatusReg & XSP_SR_RX_EMPTY_MASK) == 0) {
-			XSpi_ReadReg(InstancePtr->BaseAddr, XSP_DRR_OFFSET);
-		}
-		StatusReg = XSpi_GetStatusReg(InstancePtr);
-		if ((StatusReg & XSP_SR_RX_EMPTY_MASK) == 0) {
-			XSpi_ReadReg(InstancePtr->BaseAddr, XSP_DRR_OFFSET);
-		}
+		XSpi_ReadReg(InstancePtr->BaseAddr, XSP_DRR_OFFSET);
+		XSpi_ReadReg(InstancePtr->BaseAddr, XSP_DRR_OFFSET);
 	}
 	
 	/*
