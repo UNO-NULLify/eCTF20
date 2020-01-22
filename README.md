@@ -8,6 +8,8 @@ Use this code at your own risk!
 ## Getting Started
 Please see the [Getting Started Guide](getting_started.md).
 
+If you are wanting to use the development server rather than your local machine [see HERE](devserver.md).
+
 ## Project structure
 The example code is structured as follows
 
@@ -22,3 +24,4 @@ The example code is structured as follows
  * `Vagrantfile` - Vagrantfile for launching the Vagrant environment - DO NOT CHANGE
  * `sample-audio` - Sample audio files for you to use
  * `scripts/` - Contains useful scripts for developer convenience
+ * `docs/` - Contains all documentation for the project

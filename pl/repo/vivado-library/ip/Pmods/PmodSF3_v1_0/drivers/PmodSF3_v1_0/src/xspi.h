@@ -12,6 +12,10 @@
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
 *
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -29,7 +33,7 @@
 /**
 *
 * @file xspi.h
-* @addtogroup spi_v4_4
+* @addtogroup spi_v4_1
 * @{
 * @details
 *
@@ -280,21 +284,8 @@
 *		      xspi_selftest.c to check for Interrupt Status
 *		      register Tx Empty bit instead of Status register
 *		      CR#810294.
-* 4.2   sk   11/10/15 Used UINTPTR instead of u32 for Baseaddress CR# 867425.
-*                     Changed the prototype of XSpi_CfgInitialize API.
-*       ms   01/23/17 Added xil_printf statement in main function for all
-*                     examples to ensure that "Successfully ran" and "Failed"
-*                     strings are available in all examples. This is a
-*                     fix for CR-965028.
-*       ms   03/17/17 Added readme.txt file in examples folder for doxygen
-*                     generation.
-*       ms   04/05/17 Modified Comment lines in functions of spi
-*                     examples to follow doxygen rules.
-* 4.3   ms   04/18/17 Modified tcl file to add suffix U for all macros
-*                     definitions of spi in xparameters.h
-* 4.4	tjs  11/28/17 When receive fifo exists, we need to check for status
-*                     register rx fifo empty flag. If clear we can proceed for
-*                     read. Otherwise we will hit execption. CR# 989938
+* 
+*
 * </pre>
 *
 ******************************************************************************/
@@ -398,7 +389,7 @@ typedef struct {
  */
 typedef struct {
 	u16 DeviceId;		/**< Unique ID  of device */
-	UINTPTR BaseAddress;	/**< Base address of the device */
+	u32 BaseAddress;	/**< Base address of the device */
 	int HasFifos;		/**< Does device have FIFOs? */
 	u32 SlaveOnly;		/**< Is the device slave only? */
 	u8 NumSlaveBits;	/**< Num of slave select bits on the device */
@@ -418,7 +409,7 @@ typedef struct {
  */
 typedef struct {
 	XSpi_Stats Stats;	/**< Statistics */
-	UINTPTR BaseAddr;		/**< Base address of device (IPIF) */
+	u32 BaseAddr;		/**< Base address of device (IPIF) */
 	int IsReady;		/**< Device is initialized and ready */
 	int IsStarted;		/**< Device has been started */
 	int HasFifos;		/**< Device is configured with FIFOs or not */
@@ -809,7 +800,7 @@ XSpi_Config *XSpi_LookupConfig(u16 DeviceId);
  * Functions, in xspi.c
  */
 int XSpi_CfgInitialize(XSpi *InstancePtr, XSpi_Config * Config,
-		       UINTPTR EffectiveAddr);
+		       u32 EffectiveAddr);
 
 int XSpi_Start(XSpi *InstancePtr);
 int XSpi_Stop(XSpi *InstancePtr);

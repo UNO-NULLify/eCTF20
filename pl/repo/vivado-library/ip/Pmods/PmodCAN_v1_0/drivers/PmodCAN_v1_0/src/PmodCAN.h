@@ -127,7 +127,7 @@ typedef enum CAN_Mode {
    CAN_ModeSleep,
    CAN_ModeLoopback,
    CAN_ModeListenOnly,
-   CAN_ModeConfiguration = 0x80
+   CAN_ModeConfiguration
 } CAN_Mode;
 
 typedef struct PmodCAN {

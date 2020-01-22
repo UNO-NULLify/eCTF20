@@ -764,7 +764,7 @@ u8 RTCC_getYear(PmodRTCC *InstancePtr) {
 **      This function sets the second register of the target with the value.
 */
 void RTCC_setSec(PmodRTCC *InstancePtr, RTCC_Target dest, u8 value) {
-   u8 rgbSec[2];
+   u8 rgbSec[0];
    rgbSec[1] = value;
    u8 data;
 

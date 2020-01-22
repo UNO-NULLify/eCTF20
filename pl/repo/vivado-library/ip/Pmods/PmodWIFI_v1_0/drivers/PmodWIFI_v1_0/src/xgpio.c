@@ -12,6 +12,10 @@
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
 *
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -28,7 +32,7 @@
 /*****************************************************************************/
 /**
 * @file xgpio.c
-* @addtogroup gpio_v4_3
+* @addtogroup gpio_v4_1
 * @{
 *
 * The implementation of the XGpio driver's basic functionality. See xgpio.h
@@ -58,9 +62,6 @@
 *		      macros to remove _m from the name.
 * 4.1   lks  11/18/15 Clean up of the comments in the code and
 *		      removed support for DCR bridge
-* 4.2   sk   08/16/16 Used UINTPTR instead of u32 for Baseaddress as part of
-*                     adding 64 bit support. CR# 867425.
-*                     Changed the prototype of XGpio_CfgInitialize API.
 * </pre>
 *
 *****************************************************************************/
@@ -115,7 +116,7 @@
 *
 *****************************************************************************/
 int XGpio_CfgInitialize(XGpio * InstancePtr, XGpio_Config * Config,
-			UINTPTR EffectiveAddr)
+			u32 EffectiveAddr)
 {
 	/* Assert arguments */
 	Xil_AssertNonvoid(InstancePtr != NULL);

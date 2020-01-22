@@ -12,6 +12,10 @@
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
 *
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -29,7 +33,7 @@
 /**
 *
 * @file xtmrctr_sinit.c
-* @addtogroup tmrctr_v4_6
+* @addtogroup tmrctr_v4_0
 * @{
 *
 * This file contains static initialization methods for the XTmrCtr driver.
@@ -42,7 +46,6 @@
 * Ver   Who  Date     Changes
 * ----- ---- -------- -----------------------------------------------
 * 4.0   als  09/30/15 Creation of this file. Moved LookupConfig from xtmrctr.c.
-* 4.4	mn   07/31/17 Resolve Compilation warning
 * </pre>
 *
 ******************************************************************************/
@@ -84,7 +87,7 @@ extern XTmrCtr_Config XTmrCtr_ConfigTable[XPAR_XTMRCTR_NUM_INSTANCES];
 XTmrCtr_Config *XTmrCtr_LookupConfig(u16 DeviceId)
 {
 	XTmrCtr_Config *CfgPtr = NULL;
-	u16 Index;
+	int Index;
 
 	for (Index = 0; Index < XPAR_XTMRCTR_NUM_INSTANCES; Index++) {
 		if (XTmrCtr_ConfigTable[Index].DeviceId == DeviceId) {

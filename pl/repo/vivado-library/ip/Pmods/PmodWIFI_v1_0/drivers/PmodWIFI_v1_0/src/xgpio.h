@@ -12,6 +12,10 @@
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
 *
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
@@ -28,7 +32,7 @@
 /*****************************************************************************/
 /**
 * @file xgpio.h
-* @addtogroup gpio_v4_3
+* @addtogroup gpio_v4_1
 * @{
 * @details
 *
@@ -102,17 +106,6 @@
 * 4.1   lks  11/18/15 Updated to use cannonical xparameters in examples and
 *		      clean up of the comments, removed support for DCR bridge
 *		      and removed xgpio_intr_example for CR 900381
-* 4.2   sk   08/16/16 Used UINTPTR instead of u32 for Baseaddress as part of
-*                     adding 64 bit support. CR# 867425.
-*                     Changed the prototype of XGpio_CfgInitialize API.
-* 4.3   sk   09/29/16 Modified the example to make it work when LED_bits are
-*                     configured as an output. CR# 958644
-*       ms   01/23/17 Added xil_printf statement in main function for all
-*                     examples to ensure that "Successfully ran" and "Failed"
-*                     strings are available in all examples. This is a fix
-*                     for CR-965028.
-*       ms   03/17/17 Added readme.txt file in examples folder for doxygen
-*                     generation.
 *
 * </pre>
 *****************************************************************************/
@@ -140,7 +133,7 @@ extern "C" {
  */
 typedef struct {
 	u16 DeviceId;		/* Unique ID  of device */
-	UINTPTR BaseAddress;	/* Device base address */
+	u32 BaseAddress;	/* Device base address */
 	int InterruptPresent;	/* Are interrupts supported in h/w */
 	int IsDual;		/* Are 2 channels supported in h/w */
 } XGpio_Config;
@@ -151,7 +144,7 @@ typedef struct {
  * to a variable of this type is then passed to the driver API functions.
  */
 typedef struct {
-	UINTPTR BaseAddress;	/* Device base address */
+	u32 BaseAddress;	/* Device base address */
 	u32 IsReady;		/* Device is initialized and ready */
 	int InterruptPresent;	/* Are interrupts supported in h/w */
 	int IsDual;		/* Are 2 channels supported in h/w */
@@ -172,7 +165,7 @@ XGpio_Config *XGpio_LookupConfig(u16 DeviceId);
  * API Basic functions implemented in xgpio.c
  */
 int XGpio_CfgInitialize(XGpio *InstancePtr, XGpio_Config * Config,
-			UINTPTR EffectiveAddr);
+			u32 EffectiveAddr);
 void XGpio_SetDataDirection(XGpio *InstancePtr, unsigned Channel,
 			    u32 DirectionMask);
 u32 XGpio_GetDataDirection(XGpio *InstancePtr, unsigned Channel);

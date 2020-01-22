@@ -1,8 +1,8 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
---Date        : Wed May 29 10:13:19 2019
---Host        : MM235512-PC running 64-bit major release  (build 9200)
+--Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
+--Date        : Sun Jan 19 17:06:31 2020
+--Host        : vagrant-eCTF running 64-bit Ubuntu 18.10
 --Command     : generate_target system_wrapper.bd
 --Design      : system_wrapper
 --Purpose     : IP block netlist

@@ -1,6 +1,6 @@
 /******************************************************************************
 *
-* Copyright (C) 2002 - 2018 Xilinx, Inc.  All rights reserved.
+* Copyright (C) 2002 - 2015 Xilinx, Inc.  All rights reserved.
 *
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -11,6 +11,10 @@
 *
 * The above copyright notice and this permission notice shall be included in
 * all copies or substantial portions of the Software.
+*
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
 *
 * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -29,7 +33,7 @@
 /**
 *
 * @file xtmrctr_l.h
-* @addtogroup tmrctr_v4_6
+* @addtogroup tmrctr_v4_0
 * @{
 *
 * This header file contains identifiers and low-level driver functions (or
@@ -54,10 +58,6 @@
 *		      versions of the axi_timer IP. Please check the HW
 *		      Datasheet to see whether this feature is present in the
 *		      version of the IP that you are using.
-* 4.4   mus  07/21/17 Updated XTmrCtr_DisableIntr macro to not to clear
-*             T0INT flag
-* 4.5   cjp  03/22/18 Added macros for timer/counter instance number and max
-*                     load value.
 * </pre>
 *
 ******************************************************************************/
@@ -86,13 +86,6 @@ extern "C" {
 /* Each timer counter consumes 16 bytes of address space */
 
 #define XTC_TIMER_COUNTER_OFFSET	16
-
-/* Timer counter instance number used for PWM */
-#define XTC_TIMER_0			0
-#define XTC_TIMER_1			1
-
-/* Max supported load value for timer/counter */
-#define XTC_MAX_LOAD_VALUE		0xFFFFFFFF
 
 /** @name Register Offset Definitions
  * Register offsets within a timer counter, there are multiple
@@ -386,8 +379,7 @@ XTmrCtr_ReadReg((BaseAddress), (TmrCtrNumber), XTC_TLR_OFFSET)
 #define XTmrCtr_DisableIntr(BaseAddress, TmrCtrNumber)			   \
 	XTmrCtr_WriteReg((BaseAddress), (TmrCtrNumber), XTC_TCSR_OFFSET,  \
 	(XTmrCtr_ReadReg((BaseAddress), (TmrCtrNumber),		   \
-		XTC_TCSR_OFFSET) & ~ (XTC_CSR_ENABLE_INT_MASK \
-         | XTC_CSR_INT_OCCURED_MASK)))
+		XTC_TCSR_OFFSET) & ~ XTC_CSR_ENABLE_INT_MASK))
 
 /****************************************************************************/
 /**
