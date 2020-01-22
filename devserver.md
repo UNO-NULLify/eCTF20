@@ -2,7 +2,7 @@
 
 Below is the overview of how to set up your build environment within the remote devserver.
 
-## Connect to the server
+## First time setup
 
 1. Install the school VPN - [Cisco Anyconnect](https://www.unomaha.edu/information-technology-services/information-security/vpn/connecting-nebraska-vpn.php).
 
@@ -23,3 +23,7 @@ Below is the overview of how to set up your build environment within the remote 
 9. VNC into the devserver. When the VNC client prompts you for an IP/host write `137.48.185.127:<YOUR_NUMBER_HERE>`.
 
 10. Continue with instructions at [Getting Started Guide](getting_started.md), for your convenience the Vivado/SDK archive file is stored in /data so there is no need to download again and take an hour, copy it to your repo with `cp /data/Xilinx_Vivado_SDK_2017.4_1216_1.tar.gz ~/eCTF20/`
+
+## Future use
+
+After the first time setup you will only have to run step 2. and 9.
