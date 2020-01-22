@@ -8,6 +8,8 @@ Use this code at your own risk!
 ## Getting Started
 Please see the [Getting Started Guide](getting_started.md).
 
+If you are wanting to use the development server rather than your local machine [see HERE](devserver.md).
+
 ## Project structure
 The example code is structured as follows
 
