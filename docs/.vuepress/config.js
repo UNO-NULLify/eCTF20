@@ -5,6 +5,7 @@ module.exports = {
 		nav: [
 			{ text: 'Home', link: '/' },
 			{ text: 'Getting Started', link: '/getting-started/' },
+			{ text: 'Documentation', link: '/documentation/' },
 			{ text: 'NULLify Website', link: 'https://nullify.uno' }
 		],
 		logo: '/uno.png',
