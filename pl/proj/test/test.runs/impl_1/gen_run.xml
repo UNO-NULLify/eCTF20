@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z007sclg400-1" LaunchTime="1579667387">
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="BG-DRC" Name="system_wrapper.drc"/>
+  <File Type="BG-BGN" Name="system_wrapper.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="system_wrapper.sysdef"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="system_wrapper.ltx"/>
+  <File Type="BITSTR-MMI" Name="system_wrapper.mmi"/>
+  <File Type="BITSTR-BMM" Name="system_wrapper_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="system_wrapper.nky"/>
+  <File Type="BITSTR-RBT" Name="system_wrapper.rbt"/>
+  <File Type="BITSTR-MSK" Name="system_wrapper.msk"/>
+  <File Type="BG-BIN" Name="system_wrapper.bin"/>
+  <File Type="BG-BIT" Name="system_wrapper.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="system_wrapper_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="system_wrapper_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="system_wrapper_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="system_wrapper_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="system_wrapper_postroute_physopt.dcp"/>
+  <File Type="ROUTE-CLK" Name="system_wrapper_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="system_wrapper_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="system_wrapper_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="system_wrapper_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="system_wrapper_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="system_wrapper_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="system_wrapper_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="system_wrapper_power_routed.rpx"/>
+  <File Type="INIT-TIMING" Name="system_wrapper_timing_summary_init.rpt"/>
+  <File Type="OPT-DRC" Name="system_wrapper_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="system_wrapper_opt.dcp"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="system_wrapper_methodology_drc_opted.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="system_wrapper_incremental_reuse_pre_placed.rpt"/>
+  <File Type="OPT-HWDEF" Name="system_wrapper.hwdef"/>
+  <File Type="OPT-TIMING" Name="system_wrapper_timing_summary_opted.rpt"/>
+  <File Type="REPORTS-TCL" Name="system_wrapper_reports.tcl"/>
+  <File Type="PWROPT-DCP" Name="system_wrapper_pwropt.dcp"/>
+  <File Type="PWROPT-DRC" Name="system_wrapper_drc_pwropted.rpt"/>
+  <File Type="RDI-RDI" Name="system_wrapper.vdi"/>
+  <File Type="PWROPT-TIMING" Name="system_wrapper_timing_summary_pwropted.rpt"/>
+  <File Type="PLACE-IO" Name="system_wrapper_io_placed.rpt"/>
+  <File Type="PA-TCL" Name="system_wrapper.tcl"/>
+  <File Type="PLACE-DCP" Name="system_wrapper_placed.dcp"/>
+  <File Type="PLACE-CLK" Name="system_wrapper_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-TIMING" Name="system_wrapper_timing_summary_placed.rpt"/>
+  <File Type="PLACE-UTIL" Name="system_wrapper_utilization_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="system_wrapper_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="system_wrapper_utilization_placed.pb"/>
+  <File Type="PHYSOPT-TIMING" Name="system_wrapper_timing_summary_physopted.rpt"/>
+  <File Type="PLACE-CTRL" Name="system_wrapper_control_sets_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="system_wrapper_incremental_reuse_placed.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="system_wrapper_postplace_pwropt.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="system_wrapper_physopt.dcp"/>
+  <File Type="PHYSOPT-DRC" Name="system_wrapper_drc_physopted.rpt"/>
+  <File Type="ROUTE-ERROR-DCP" Name="system_wrapper_routed_error.dcp"/>
+  <File Type="ROUTE-DCP" Name="system_wrapper_routed.dcp"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="system_wrapper_routed_bb.dcp"/>
+  <File Type="ROUTE-DRC" Name="system_wrapper_drc_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="system_wrapper_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="system_wrapper_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="system_wrapper_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-RPX" Name="system_wrapper_drc_routed.rpx"/>
+  <File Type="ROUTE-PWR" Name="system_wrapper_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="system_wrapper_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="system_wrapper_power_summary_routed.pb"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../src/hdl/i2s_output.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../src/bd/system/system.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../src/bd/system/hdl/system_wrapper.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="system_wrapper"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../../src/constraints/Cora-Z7-Master.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PPRDIR/../../src/constraints/Cora-Z7-Master.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Performance_ExtraTimingOpt" Flow="Vivado Implementation 2017"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design">
+      <Option Id="Directive">4</Option>
+    </Step>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design">
+      <Option Id="Directive">15</Option>
+    </Step>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design" EnableStepBool="1">
+      <Option Id="Directive">0</Option>
+    </Step>
+    <Step Id="route_design">
+      <Option Id="Directive">5</Option>
+    </Step>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_4"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_3"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_5"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_rst_ps7_0_100M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_int_axi_gpio_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_mdm_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_ins_lmb_bram_if_cntlr_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_i2s_output_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_data_lmb_bram_if_cntlr_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axis_data_fifo_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_microblaze_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xadc_wiz_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_fifo_count_axi_gpio_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_intc_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_mb_dma_axi_bram_ctrl_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_dma_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_10"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_dma_blk_mem_gen_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_dma_axi_bram_ctrl_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_data_lmb_v10_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_blk_mem_gen_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_clk_wiz_25M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_2"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_proc_sys_reset_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xlconstant_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_8"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_rgb_PWM_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xbar_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_share_axi_bram_ctrl_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_share_axi_bram_ctrl_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_6"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_share_blk_mem_gen_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xlconcat_2_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xlconstant_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_7"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_9"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_ins_lmb_v10_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_0"/>
+</GenRun>

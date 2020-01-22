@@ -1,0 +1,727 @@
+
+*** Running vivado
+    with args -log system_mb_dma_axi_bram_ctrl_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_mb_dma_axi_bram_ctrl_0_0.tcl
+
+
+****** Vivado v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source system_mb_dma_axi_bram_ctrl_0_0.tcl -notrace
+Command: synth_design -top system_mb_dma_axi_bram_ctrl_0_0 -part xc7z007sclg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 5122 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:14 ; elapsed = 00:00:35 . Memory (MB): peak = 1237.570 ; gain = 82.000 ; free physical = 847 ; free virtual = 3109
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'system_mb_dma_axi_bram_ctrl_0_0' [/ectf/pl/src/bd/system/ip/system_mb_dma_axi_bram_ctrl_0_0/synth/system_mb_dma_axi_bram_ctrl_0_0.vhd:108]
+	Parameter C_BRAM_INST_MODE bound to: EXTERNAL - type: string 
+	Parameter C_MEMORY_DEPTH bound to: 8192 - type: integer 
+	Parameter C_BRAM_ADDR_WIDTH bound to: 13 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 15 - type: integer 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ID_WIDTH bound to: 3 - type: integer 
+	Parameter C_S_AXI_PROTOCOL bound to: AXI4 - type: string 
+	Parameter C_S_AXI_SUPPORTS_NARROW_BURST bound to: 1 - type: integer 
+	Parameter C_SINGLE_PORT_BRAM bound to: 1 - type: integer 
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_SELECT_XPM bound to: 1 - type: integer 
+	Parameter C_S_AXI_CTRL_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_CTRL_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_ECC bound to: 0 - type: integer 
+	Parameter C_ECC_TYPE bound to: 0 - type: integer 
+	Parameter C_FAULT_INJECT bound to: 0 - type: integer 
+	Parameter C_ECC_ONOFF_RESET_VALUE bound to: 0 - type: integer 
+INFO: [Synth 8-3491] module 'axi_bram_ctrl' declared at '/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23741' bound to instance 'U0' of component 'axi_bram_ctrl' [/ectf/pl/src/bd/system/ip/system_mb_dma_axi_bram_ctrl_0_0/synth/system_mb_dma_axi_bram_ctrl_0_0.vhd:261]
+INFO: [Synth 8-638] synthesizing module 'axi_bram_ctrl' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23911]
+	Parameter C_BRAM_INST_MODE bound to: EXTERNAL - type: string 
+	Parameter C_MEMORY_DEPTH bound to: 8192 - type: integer 
+	Parameter C_BRAM_ADDR_WIDTH bound to: 13 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 15 - type: integer 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ID_WIDTH bound to: 3 - type: integer 
+	Parameter C_S_AXI_PROTOCOL bound to: AXI4 - type: string 
+	Parameter C_S_AXI_SUPPORTS_NARROW_BURST bound to: 1 - type: integer 
+	Parameter C_SINGLE_PORT_BRAM bound to: 1 - type: integer 
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_SELECT_XPM bound to: 1 - type: integer 
+	Parameter C_S_AXI_CTRL_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_CTRL_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_ECC bound to: 0 - type: integer 
+	Parameter C_ECC_TYPE bound to: 0 - type: integer 
+	Parameter C_FAULT_INJECT bound to: 0 - type: integer 
+	Parameter C_ECC_ONOFF_RESET_VALUE bound to: 0 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'axi_bram_ctrl_top' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22911]
+	Parameter C_BRAM_ADDR_WIDTH bound to: 13 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 15 - type: integer 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ID_WIDTH bound to: 3 - type: integer 
+	Parameter C_S_AXI_PROTOCOL bound to: AXI4 - type: string 
+	Parameter C_S_AXI_SUPPORTS_NARROW_BURST bound to: 1 - type: integer 
+	Parameter C_SINGLE_PORT_BRAM bound to: 1 - type: integer 
+	Parameter C_S_AXI_CTRL_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_CTRL_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_ECC bound to: 0 - type: integer 
+	Parameter C_ECC_TYPE bound to: 0 - type: integer 
+	Parameter C_FAULT_INJECT bound to: 0 - type: integer 
+	Parameter C_ECC_ONOFF_RESET_VALUE bound to: 0 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'full_axi' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21854]
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 15 - type: integer 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ID_WIDTH bound to: 3 - type: integer 
+	Parameter C_S_AXI_PROTOCOL bound to: AXI4 - type: string 
+	Parameter C_S_AXI_SUPPORTS_NARROW_BURST bound to: 1 - type: integer 
+	Parameter C_SINGLE_PORT_BRAM bound to: 1 - type: integer 
+	Parameter C_S_AXI_CTRL_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_CTRL_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_ECC bound to: 0 - type: integer 
+	Parameter C_ECC_WIDTH bound to: 0 - type: integer 
+	Parameter C_ECC_TYPE bound to: 0 - type: integer 
+	Parameter C_FAULT_INJECT bound to: 0 - type: integer 
+	Parameter C_ECC_ONOFF_RESET_VALUE bound to: 0 - type: integer 
+	Parameter C_ENABLE_AXI_CTRL_REG_IF bound to: 0 - type: integer 
+	Parameter C_CE_FAILING_REGISTERS bound to: 0 - type: integer 
+	Parameter C_UE_FAILING_REGISTERS bound to: 0 - type: integer 
+	Parameter C_ECC_STATUS_REGISTERS bound to: 0 - type: integer 
+	Parameter C_ECC_ONOFF_REGISTER bound to: 0 - type: integer 
+	Parameter C_CE_COUNTER_WIDTH bound to: 0 - type: integer 
+INFO: [Synth 8-3919] null assignment ignored [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21922]
+INFO: [Synth 8-3919] null assignment ignored [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22099]
+INFO: [Synth 8-638] synthesizing module 'sng_port_arb' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9219]
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 15 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'sng_port_arb' (1#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9219]
+INFO: [Synth 8-638] synthesizing module 'wr_chnl' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:17016]
+	Parameter C_AXI_ADDR_WIDTH bound to: 15 - type: integer 
+	Parameter C_BRAM_ADDR_ADJUST_FACTOR bound to: 2 - type: integer 
+	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_AXI_ID_WIDTH bound to: 3 - type: integer 
+	Parameter C_S_AXI_SUPPORTS_NARROW bound to: 1 - type: integer 
+	Parameter C_S_AXI_PROTOCOL bound to: AXI4 - type: string 
+	Parameter C_SINGLE_PORT_BRAM bound to: 1 - type: integer 
+	Parameter C_ECC bound to: 0 - type: integer 
+	Parameter C_ECC_WIDTH bound to: 0 - type: integer 
+	Parameter C_ECC_TYPE bound to: 0 - type: integer 
+INFO: [Synth 8-506] null port 'FaultInjectECC' ignored [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:16983]
+INFO: [Synth 8-638] synthesizing module 'wrap_brst' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:10218]
+	Parameter C_AXI_ADDR_WIDTH bound to: 15 - type: integer 
+	Parameter C_BRAM_ADDR_ADJUST_FACTOR bound to: 2 - type: integer 
+	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'wrap_brst' (2#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:10218]
+INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18358]
+INFO: [Synth 8-638] synthesizing module 'ua_narrow' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9752]
+	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_BRAM_ADDR_ADJUST_FACTOR bound to: 2 - type: integer 
+	Parameter C_NARROW_BURST_CNT_LEN bound to: 2 - type: integer 
+INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9931]
+INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9970]
+INFO: [Synth 8-256] done synthesizing module 'ua_narrow' (3#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9752]
+INFO: [Synth 8-638] synthesizing module 'SRL_FIFO' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:133]
+	Parameter C_DATA_BITS bound to: 3 - type: integer 
+	Parameter C_DEPTH bound to: 8 - type: integer 
+	Parameter C_XON bound to: 0 - type: bool 
+INFO: [Synth 8-3491] module 'FDR' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3951' bound to instance 'Data_Exists_DFF' of component 'FDR' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:230]
+INFO: [Synth 8-638] synthesizing module 'FDR' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3951]
+	Parameter INIT bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'FDR' (4#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3951]
+INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
+INFO: [Synth 8-638] synthesizing module 'MUXCY_L' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636]
+INFO: [Synth 8-256] done synthesizing module 'MUXCY_L' (5#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636]
+INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
+INFO: [Synth 8-638] synthesizing module 'XORCY' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717]
+INFO: [Synth 8-256] done synthesizing module 'XORCY' (6#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717]
+INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
+INFO: [Synth 8-638] synthesizing module 'FDRE' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964]
+	Parameter INIT bound to: 1'b0 
+	Parameter IS_C_INVERTED bound to: 1'b0 
+	Parameter IS_D_INVERTED bound to: 1'b0 
+	Parameter IS_R_INVERTED bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'FDRE' (7#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964]
+INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
+INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
+INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
+INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
+INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
+INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
+INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
+INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
+INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-638] synthesizing module 'SRL16E' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705]
+	Parameter INIT bound to: 16'b0000000000000000 
+	Parameter IS_CLK_INVERTED bound to: 1'b0 
+INFO: [Synth 8-256] done synthesizing module 'SRL16E' (8#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-256] done synthesizing module 'SRL_FIFO' (9#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:133]
+WARNING: [Synth 8-6014] Unused sequential element curr_awsize_reg_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18174]
+WARNING: [Synth 8-6014] Unused sequential element curr_awlen_reg_1_or_2_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18451]
+INFO: [Synth 8-256] done synthesizing module 'wr_chnl' (10#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:17016]
+INFO: [Synth 8-638] synthesizing module 'rd_chnl' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:11498]
+	Parameter C_AXI_ADDR_WIDTH bound to: 15 - type: integer 
+	Parameter C_BRAM_ADDR_ADJUST_FACTOR bound to: 2 - type: integer 
+	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_AXI_ID_WIDTH bound to: 3 - type: integer 
+	Parameter C_S_AXI_SUPPORTS_NARROW bound to: 1 - type: integer 
+	Parameter C_S_AXI_PROTOCOL bound to: AXI4 - type: string 
+	Parameter C_SINGLE_PORT_BRAM bound to: 1 - type: integer 
+	Parameter C_ECC bound to: 0 - type: integer 
+	Parameter C_ECC_WIDTH bound to: 0 - type: integer 
+	Parameter C_ECC_TYPE bound to: 0 - type: integer 
+INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12774]
+WARNING: [Synth 8-6014] Unused sequential element curr_arsize_reg_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12641]
+WARNING: [Synth 8-6014] Unused sequential element no_ar_ack_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:14982]
+WARNING: [Synth 8-6014] Unused sequential element do_cmplt_burst_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:16034]
+WARNING: [Synth 8-6014] Unused sequential element axi_arsize_pipe_max_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12181]
+INFO: [Synth 8-256] done synthesizing module 'rd_chnl' (11#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:11498]
+INFO: [Synth 8-256] done synthesizing module 'full_axi' (12#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21854]
+INFO: [Synth 8-256] done synthesizing module 'axi_bram_ctrl_top' (13#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22911]
+INFO: [Synth 8-256] done synthesizing module 'axi_bram_ctrl' (14#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23911]
+INFO: [Synth 8-256] done synthesizing module 'system_mb_dma_axi_bram_ctrl_0_0' (15#1) [/ectf/pl/src/bd/system/ip/system_mb_dma_axi_bram_ctrl_0_0/synth/system_mb_dma_axi_bram_ctrl_0_0.vhd:108]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[14]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[13]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[12]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[11]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[10]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[9]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[8]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[7]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[6]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[5]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[4]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[3]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[2]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[1]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[0]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[14]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[13]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[12]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[11]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[10]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[9]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[8]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[7]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[6]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[5]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[4]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[3]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[2]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[1]
+WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_ARADDR[0]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port curr_axlen[7]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port curr_axlen[6]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port curr_axlen[5]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port curr_axlen[4]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_ld[2]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[14]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[13]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[12]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[11]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[10]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[9]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[8]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[7]
+WARNING: [Synth 8-3331] design wrap_brst has unconnected port bram_addr_int[6]
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARLOCK
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARCACHE[3]
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARCACHE[2]
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARCACHE[1]
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARCACHE[0]
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARPROT[2]
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARPROT[1]
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARPROT[0]
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port AXI_ARVALID
+WARNING: [Synth 8-3331] design rd_chnl has unconnected port Enable_ECC
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWLOCK
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWCACHE[3]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWCACHE[2]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWCACHE[1]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWCACHE[0]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWPROT[2]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWPROT[1]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWPROT[0]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port AXI_AWVALID
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port Enable_ECC
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[31]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[30]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[29]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[28]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[27]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[26]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[25]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[24]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[23]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[22]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[21]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[20]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[19]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[18]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[17]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[16]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[15]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[14]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[13]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[12]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[11]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[10]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[9]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[8]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[7]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[6]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[5]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[4]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[3]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[2]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[1]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port FaultInjectData[0]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port BRAM_RdData[31]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port BRAM_RdData[30]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port BRAM_RdData[29]
+WARNING: [Synth 8-3331] design wr_chnl has unconnected port BRAM_RdData[28]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:22 ; elapsed = 00:01:01 . Memory (MB): peak = 1357.102 ; gain = 201.531 ; free physical = 783 ; free virtual = 3046
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:23 ; elapsed = 00:01:02 . Memory (MB): peak = 1357.102 ; gain = 201.531 ; free physical = 785 ; free virtual = 3047
+---------------------------------------------------------------------------------
+INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Device 21-403] Loading part xc7z007sclg400-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/ectf/pl/src/bd/system/ip/system_mb_dma_axi_bram_ctrl_0_0/system_mb_dma_axi_bram_ctrl_0_0_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_mb_dma_axi_bram_ctrl_0_0/system_mb_dma_axi_bram_ctrl_0_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [/ectf/pl/proj/test/test.runs/system_mb_dma_axi_bram_ctrl_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_mb_dma_axi_bram_ctrl_0_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 5 instances were transformed.
+  FDR => FDRE: 1 instances
+  MUXCY_L => MUXCY: 4 instances
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1595.117 ; gain = 0.000 ; free physical = 950 ; free virtual = 3212
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:45 ; elapsed = 00:01:59 . Memory (MB): peak = 1595.117 ; gain = 439.547 ; free physical = 834 ; free virtual = 3097
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z007sclg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:45 ; elapsed = 00:01:59 . Memory (MB): peak = 1595.117 ; gain = 439.547 ; free physical = 834 ; free virtual = 3096
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf/pl/proj/test/test.runs/system_mb_dma_axi_bram_ctrl_0_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:45 ; elapsed = 00:01:59 . Memory (MB): peak = 1595.117 ; gain = 439.547 ; free physical = 831 ; free virtual = 3094
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5544] ROM "max_wrap_burst" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "max_wrap_burst" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "max_wrap_burst" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wrap_burst_total_cmb" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wrap_burst_total_cmb" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "wrap_burst_total_cmb" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "buffer_Empty" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "buffer_Full" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "curr_wrap_burst" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "curr_incr_burst" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "curr_fixed_burst" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-802] inferred FSM for state register 'rd_data_sm_cs_reg' in module 'rd_chnl'
+INFO: [Synth 8-802] inferred FSM for state register 'rlast_sm_cs_reg' in module 'rd_chnl'
+INFO: [Synth 8-5544] ROM "curr_wrap_burst" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "curr_incr_burst" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "curr_fixed_burst" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "axi_rd_burst_two" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "set_last_bram_addr" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "axi_rvalid_set_cmb" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rd_data_sm_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rd_data_sm_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rd_data_sm_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rd_data_sm_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rd_data_sm_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "rlast_sm_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                             0000 |                             0000
+                sng_addr |                             0001 |                             0001
+                sec_addr |                             0010 |                             0010
+               full_pipe |                             0011 |                             0011
+           full_throttle |                             0100 |                             0100
+               last_addr |                             0101 |                             0101
+           last_throttle |                             0110 |                             0110
+               last_data |                             0111 |                             0111
+       last_data_ar_pend |                             1000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rd_data_sm_cs_reg' using encoding 'sequential' in module 'rd_chnl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    idle |                              000 |                              000
+          w8_throttle_b2 |                              001 |                              100
+             w8_throttle |                              010 |                              001
+        w8_2nd_last_data |                              011 |                              010
+            w8_last_data |                              100 |                              011
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'rlast_sm_cs_reg' using encoding 'sequential' in module 'rd_chnl'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:47 ; elapsed = 00:02:01 . Memory (MB): peak = 1595.117 ; gain = 439.547 ; free physical = 819 ; free virtual = 3082
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 22    
+	   2 Input     10 Bit       Adders := 1     
+	   2 Input      9 Bit       Adders := 2     
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      3 Bit       Adders := 1     
+	   3 Input      2 Bit       Adders := 2     
+	   2 Input      2 Bit       Adders := 4     
++---XORs : 
+	   2 Input      1 Bit         XORs := 4     
++---Registers : 
+	               32 Bit    Registers := 1     
+	               13 Bit    Registers := 1     
+	               12 Bit    Registers := 2     
+	                8 Bit    Registers := 1     
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 6     
+	                2 Bit    Registers := 8     
+	                1 Bit    Registers := 108   
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   5 Input     13 Bit        Muxes := 2     
+	   2 Input     13 Bit        Muxes := 5     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   8 Input      4 Bit        Muxes := 4     
+	  19 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   8 Input      3 Bit        Muxes := 2     
+	   2 Input      3 Bit        Muxes := 2     
+	   9 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 2     
+	   3 Input      2 Bit        Muxes := 2     
+	   2 Input      2 Bit        Muxes := 16    
+	   5 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 57    
+	   4 Input      1 Bit        Muxes := 16    
+	   3 Input      1 Bit        Muxes := 1     
+	   9 Input      1 Bit        Muxes := 19    
+	   5 Input      1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module wrap_brst 
+Detailed RTL Component Info : 
++---Registers : 
+	               12 Bit    Registers := 1     
+	                3 Bit    Registers := 1     
++---Muxes : 
+	   5 Input     13 Bit        Muxes := 1     
+	   8 Input      3 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   3 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+Module SRL_FIFO 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      1 Bit         XORs := 4     
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 2     
+Module ua_narrow 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 11    
+	   2 Input      9 Bit       Adders := 1     
+	   3 Input      2 Bit       Adders := 1     
++---Muxes : 
+	   8 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+Module wr_chnl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      3 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 2     
++---Registers : 
+	                4 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 4     
+	                1 Bit    Registers := 45    
++---Muxes : 
+	   2 Input     13 Bit        Muxes := 1     
+	   8 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   5 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 7     
+	   4 Input      1 Bit        Muxes := 8     
+	   2 Input      1 Bit        Muxes := 13    
+Module rd_chnl 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 1     
+	   2 Input      2 Bit       Adders := 2     
++---Registers : 
+	               32 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
+	                3 Bit    Registers := 2     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 58    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     13 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
+	   8 Input      4 Bit        Muxes := 1     
+	  19 Input      4 Bit        Muxes := 1     
+	   9 Input      3 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 6     
+	   2 Input      1 Bit        Muxes := 29    
+	   3 Input      1 Bit        Muxes := 1     
+	   9 Input      1 Bit        Muxes := 19    
+	   5 Input      1 Bit        Muxes := 2     
+Module sng_port_arb 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   5 Input      2 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 4     
+	   4 Input      1 Bit        Muxes := 8     
+Module full_axi 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     10 Bit       Adders := 1     
++---Registers : 
+	               13 Bit    Registers := 1     
++---Muxes : 
+	   2 Input     13 Bit        Muxes := 3     
+	   2 Input     10 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 66 (col length:40)
+BRAMs: 100 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "axi_rd_burst_two" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (U0/\gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_RD_CHNL/axi_b2b_brst_reg )
+INFO: [Synth 8-3886] merging instance 'U0/gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_RD_CHNL/GEN_RRESP.axi_rresp_int_reg[0]' (FDRE) to 'U0/gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_RD_CHNL/GEN_RRESP.axi_rresp_int_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (U0/\gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_RD_CHNL/GEN_RRESP.axi_rresp_int_reg[1] )
+INFO: [Synth 8-3886] merging instance 'U0/gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_WR_CHNL/GEN_BRESP.axi_bresp_int_reg[0]' (FDRE) to 'U0/gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_WR_CHNL/GEN_BRESP.axi_bresp_int_reg[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (U0/\gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_WR_CHNL/GEN_BRESP.axi_bresp_int_reg[1] )
+INFO: [Synth 8-3332] Sequential element (gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_WR_CHNL/GEN_BRESP.axi_bresp_int_reg[1]) is unused and will be removed from module axi_bram_ctrl.
+INFO: [Synth 8-3332] Sequential element (gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_RD_CHNL/axi_b2b_brst_reg) is unused and will be removed from module axi_bram_ctrl.
+INFO: [Synth 8-3332] Sequential element (gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_RD_CHNL/GEN_RRESP.axi_rresp_int_reg[1]) is unused and will be removed from module axi_bram_ctrl.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:49 ; elapsed = 00:02:06 . Memory (MB): peak = 1595.117 ; gain = 439.547 ; free physical = 787 ; free virtual = 3050
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:58 ; elapsed = 00:02:22 . Memory (MB): peak = 1595.117 ; gain = 439.547 ; free physical = 545 ; free virtual = 2807
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:00 ; elapsed = 00:02:25 . Memory (MB): peak = 1624.133 ; gain = 468.562 ; free physical = 483 ; free virtual = 2745
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:00 ; elapsed = 00:02:26 . Memory (MB): peak = 1632.141 ; gain = 476.570 ; free physical = 479 ; free virtual = 2741
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:01 ; elapsed = 00:02:27 . Memory (MB): peak = 1632.141 ; gain = 476.570 ; free physical = 477 ; free virtual = 2740
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:01 ; elapsed = 00:02:27 . Memory (MB): peak = 1632.141 ; gain = 476.570 ; free physical = 477 ; free virtual = 2740
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:01 ; elapsed = 00:02:27 . Memory (MB): peak = 1632.141 ; gain = 476.570 ; free physical = 477 ; free virtual = 2740
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:01 ; elapsed = 00:02:27 . Memory (MB): peak = 1632.141 ; gain = 476.570 ; free physical = 477 ; free virtual = 2740
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:01 ; elapsed = 00:02:27 . Memory (MB): peak = 1632.141 ; gain = 476.570 ; free physical = 477 ; free virtual = 2740
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:01 ; elapsed = 00:02:28 . Memory (MB): peak = 1632.141 ; gain = 476.570 ; free physical = 477 ; free virtual = 2740
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+--------+------+
+|      |Cell    |Count |
++------+--------+------+
+|1     |CARRY4  |     2|
+|2     |LUT1    |     2|
+|3     |LUT2    |    30|
+|4     |LUT3    |    53|
+|5     |LUT4    |    40|
+|6     |LUT5    |    72|
+|7     |LUT6    |   140|
+|8     |MUXCY_L |     3|
+|9     |SRL16E  |     3|
+|10    |XORCY   |     4|
+|11    |FDR     |     1|
+|12    |FDRE    |   229|
++------+--------+------+
+
+Report Instance Areas: 
++------+--------------------------------------+------------------+------+
+|      |Instance                              |Module            |Cells |
++------+--------------------------------------+------------------+------+
+|1     |top                                   |                  |   579|
+|2     |  U0                                  |axi_bram_ctrl     |   579|
+|3     |    \gext_inst.abcv4_0_ext_inst       |axi_bram_ctrl_top |   579|
+|4     |      \GEN_AXI4.I_FULL_AXI            |full_axi          |   579|
+|5     |        \GEN_ARB.I_SNG_PORT           |sng_port_arb      |    33|
+|6     |        I_RD_CHNL                     |rd_chnl           |   332|
+|7     |          \GEN_UA_NARROW.I_UA_NARROW  |ua_narrow_0       |     6|
+|8     |          I_WRAP_BRST                 |wrap_brst_1       |    59|
+|9     |        I_WR_CHNL                     |wr_chnl           |   194|
+|10    |          BID_FIFO                    |SRL_FIFO          |    32|
+|11    |          \GEN_UA_NARROW.I_UA_NARROW  |ua_narrow         |    10|
+|12    |          I_WRAP_BRST                 |wrap_brst         |    43|
++------+--------------------------------------+------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:01 ; elapsed = 00:02:28 . Memory (MB): peak = 1632.141 ; gain = 476.570 ; free physical = 477 ; free virtual = 2740
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 293 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:48 ; elapsed = 00:01:46 . Memory (MB): peak = 1632.141 ; gain = 238.555 ; free physical = 534 ; free virtual = 2796
+Synthesis Optimization Complete : Time (s): cpu = 00:01:01 ; elapsed = 00:02:28 . Memory (MB): peak = 1632.148 ; gain = 476.570 ; free physical = 542 ; free virtual = 2805
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 2 instances were transformed.
+  (MUXCY,XORCY) => CARRY4: 1 instances
+  FDR => FDRE: 1 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+104 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:03 ; elapsed = 00:02:30 . Memory (MB): peak = 1632.148 ; gain = 489.949 ; free physical = 549 ; free virtual = 2812
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_mb_dma_axi_bram_ctrl_0_0_synth_1/system_mb_dma_axi_bram_ctrl_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf/pl/src/bd/system/ip/system_mb_dma_axi_bram_ctrl_0_0/system_mb_dma_axi_bram_ctrl_0_0.xci
+INFO: [Coretcl 2-1174] Renamed 11 cell refs.
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_mb_dma_axi_bram_ctrl_0_0_synth_1/system_mb_dma_axi_bram_ctrl_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file system_mb_dma_axi_bram_ctrl_0_0_utilization_synth.rpt -pb system_mb_dma_axi_bram_ctrl_0_0_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.18 . Memory (MB): peak = 1656.152 ; gain = 0.000 ; free physical = 551 ; free virtual = 2813
+INFO: [Common 17-206] Exiting Vivado at Wed Jan 22 03:55:41 2020...
