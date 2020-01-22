@@ -8,7 +8,7 @@ Below is the overview of how to set up your build environment within the remote 
 
 2. Connect to school VPN (the second password would be push,phone,sms, depending on your dual-authentication method).
 
-3. SSH into the devserver: `ssh <firstletter_lastname>@137.48.185.127`
+3. SSH into the devserver: `ssh <firstletter_lastname>@137.48.185.127`. Your default password is `changeme`.
 
 4. Log in to your github to automatically clone the eCTF20 repo in your home directory.
 
