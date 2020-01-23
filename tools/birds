@@ -2,11 +2,16 @@
 
 ####################
 # @ArtificialAmateur
-# v 0.1
 ####################
 
+VERSION=v0.02
+
 echo "
-  B.I.R.D.S
+  　　　　_,,,
+　　 _/::o・ｧ
+　∈ミ;;;ﾉ,ﾉ
+
+  B.I.R.D.S $VERSION
   
   Build &
   Implementation
@@ -25,14 +30,83 @@ if [ ! -d ../.git ]; then
   exit 1
 fi
 
+TIME=time-$(date +%Y-%m-%d)
+if [[ -e $TIME.log ]] ; then
+    i=0
+    while [[ -e $TIME-$i.log ]] ; do
+        let i++
+    done
+    TIME=$TIME-$i
+fi
+
+mkdir ../.logs
+touch ../.logs/"$TIME".log
+
 build_reference() {
   mkdir global_provisioning/audio -p
-  ./createRegions --region-list "United States" "Japan" "Australia" --outfile global_provisioning/region.secrets
-  ./createUsers --user-list "drew:1234567890" "ben:00000000" "misha:0987654321" --outfile global_provisioning/user.secrets
-  ./protectSong --region-list "United States" --region-secrets-path global_provisioning/region.secrets --outfile global_provisioning/audio/demo.drm --infile ../sample-audio/Sound-Bite_One-Small-Step.wav --owner "drew" --user-secrets-path global_provisioning/user.secrets
-  ./createDevice --region-list "United States" "Japan" --region-secrets-path global_provisioning/region.secrets --user-list "drew" "ben" "misha" --user-secrets-path global_provisioning/user.secrets --device-dir device1
-  ./buildDevice -p /ectf/ -n test -bf all -secrets_dir device1/
-  ./packageDevice ../boot-image/template.bif device1/miPod.bin /ectf/mb/Cora-Z7-07S/download.bit
+  
+#-|-------------- Create Regions --------------|-
+
+  printf "\n\nRunning createRegions...\n"
+  (./createRegions --region-list "United States" "Japan" "Australia" --outfile global_provisioning/region.secrets) 2>> ../.logs/"$TIME".log;;
+  
+  if [ ! $? -eq 0 ]; then
+    1>&2 printf "\nERROR: %s\n" "createRegions Failed!"
+    exit 1
+  fi 
+
+#-|-------------- Create Users --------------|-
+
+  printf "\n\nRunning createUsers...\n"
+  (./createUsers --user-list "drew:1234567890" "ben:00000000" "misha:0987654321" --outfile global_provisioning/user.secrets) 2>> ../.logs/"$TIME".log;;
+ 
+  if [ ! $? -eq 0 ]; then
+    1>&2 printf "\nERROR: %s\n" "createUsers Failed!"
+    exit 1
+  fi 
+  
+#-|-------------- Protect Song --------------|-
+  
+  printf "\n\nRunning protectSong...\n"
+  (./protectSong --region-list "United States" --region-secrets-path global_provisioning/region.secrets --outfile global_provisioning/audio/demo.drm --infile ../sample-audio/Sound-Bite_One-Small-Step.wav --owner "drew" --user-secrets-path global_provisioning/user.secrets) 2>> ../.logs/"$TIME".log;;
+  
+  if [ ! $? -eq 0 ]; then
+    1>&2 printf "\nERROR: %s\n" "protectSong Failed!"
+    exit 1
+  fi 
+
+#-|-------------- Create Device --------------|-
+
+  printf "\n\nRunning createDevice...\n"
+  (./createDevice --region-list "United States" "Japan" --region-secrets-path global_provisioning/region.secrets --user-list "drew" "ben" "misha" --user-secrets-path global_provisioning/user.secrets --device-dir device1) 2>> ../.logs/"$TIME".log;;
+  
+  if [ ! $? -eq 0 ]; then
+    1>&2 printf "\nERROR: %s\n" "createDevice Failed!"
+    exit 1
+  fi 
+
+#-|-------------- Build Device --------------|-
+
+  printf "\n\nRunning buildDevice...\n"  
+  (./buildDevice -p /ectf/ -n test -bf all -secrets_dir device1/) 2>> ../.logs/"$TIME".log;;
+  
+  if [ ! $? -eq 0 ]; then
+    1>&2 printf "\nERROR: %s\n" "buildDevice Failed!"
+    exit 1
+  fi 
+  
+#-|-------------- Package Device --------------|-
+
+  printf "\n\nRunning packageDevice...\n"
+  (./packageDevice ../boot-image/template.bif device1/miPod.bin /ectf/mb/Cora-Z7-07S/download.bit) 2>> ../.logs/"$TIME".log;;
+  
+  if [ ! $? -eq 0 ]; then
+    1>&2 printf "\nERROR: %s\n" "packageDevice Failed!"
+    exit 1
+  fi 
+  
+#-|-------------- Deploy Device --------------|-
+
   printf "\nInsert SD Card. Pass-through to VM."
   printf "\nPress any key to continue...\n"
   while [ true ] ; do
@@ -41,7 +115,15 @@ build_reference() {
       exit $?;
     fi
   done
-  ./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod.elf ../boot-image/image.ub --mipod-bin-path device1/miPod.bin
+  
+  printf "\n\nRunning deployDevice...\n"  
+  (./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod.elf ../boot-image/image.ub --mipod-bin-path device1/miPod.bin) 2>> ../.logs/"$TIME".log;;
+
+  if [ ! $? -eq 0 ]; then
+    1>&2 printf "\nERROR: %s\n" "deployDevice Failed!"
+    exit 1
+  fi
+  
   printf "\nFinished building and deploying!"
 }
 
