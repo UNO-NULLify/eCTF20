@@ -39,7 +39,7 @@ if [[ -e $TIME.log ]] ; then
     TIME=$TIME-$i
 fi
 
-mkdir ../.logs
+mkdir -p ../.logs
 touch ../.logs/"$TIME".log
 
 build_reference() {
@@ -48,7 +48,7 @@ build_reference() {
 #-|-------------- Create Regions --------------|-
 
   printf "\n\nRunning createRegions...\n"
-  (./createRegions --region-list "United States" "Japan" "Australia" --outfile global_provisioning/region.secrets) 2>> ../.logs/"$TIME".log
+  (time ./createRegions --region-list "United States" "Japan" "Australia" --outfile global_provisioning/region.secrets) 2>> ../.logs/"$TIME".log
   
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "createRegions Failed!"
@@ -58,7 +58,7 @@ build_reference() {
 #-|-------------- Create Users --------------|-
 
   printf "\n\nRunning createUsers...\n"
-  (./createUsers --user-list "drew:1234567890" "ben:00000000" "misha:0987654321" --outfile global_provisioning/user.secrets) 2>> ../.logs/"$TIME".log
+  (time ./createUsers --user-list "drew:1234567890" "ben:00000000" "misha:0987654321" --outfile global_provisioning/user.secrets) 2>> ../.logs/"$TIME".log
  
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "createUsers Failed!"
@@ -68,7 +68,7 @@ build_reference() {
 #-|-------------- Protect Song --------------|-
   
   printf "\n\nRunning protectSong...\n"
-  (./protectSong --region-list "United States" --region-secrets-path global_provisioning/region.secrets --outfile global_provisioning/audio/demo.drm --infile ../sample-audio/Sound-Bite_One-Small-Step.wav --owner "drew" --user-secrets-path global_provisioning/user.secrets) 2>> ../.logs/"$TIME".log
+  (time ./protectSong --region-list "United States" --region-secrets-path global_provisioning/region.secrets --outfile global_provisioning/audio/demo.drm --infile ../sample-audio/Sound-Bite_One-Small-Step.wav --owner "drew" --user-secrets-path global_provisioning/user.secrets) 2>> ../.logs/"$TIME".log
   
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "protectSong Failed!"
@@ -78,7 +78,7 @@ build_reference() {
 #-|-------------- Create Device --------------|-
 
   printf "\n\nRunning createDevice...\n"
-  (./createDevice --region-list "United States" "Japan" --region-secrets-path global_provisioning/region.secrets --user-list "drew" "ben" "misha" --user-secrets-path global_provisioning/user.secrets --device-dir device1) 2>> ../.logs/"$TIME".log
+  (time ./createDevice --region-list "United States" "Japan" --region-secrets-path global_provisioning/region.secrets --user-list "drew" "ben" "misha" --user-secrets-path global_provisioning/user.secrets --device-dir device1) 2>> ../.logs/"$TIME".log
   
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "createDevice Failed!"
@@ -98,7 +98,7 @@ build_reference() {
 #-|-------------- Package Device --------------|-
 
   printf "\n\nRunning packageDevice...\n"
-  (./packageDevice ../boot-image/template.bif device1/miPod.bin /ectf/mb/Cora-Z7-07S/download.bit) 2>> ../.logs/"$TIME".log
+  (time ./packageDevice ../boot-image/template.bif device1/miPod.bin /ectf/mb/Cora-Z7-07S/download.bit) 2>> ../.logs/"$TIME".log
   
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "packageDevice Failed!"
@@ -117,7 +117,7 @@ build_reference() {
   done
   
   printf "\n\nRunning deployDevice...\n"  
-  (./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod.elf ../boot-image/image.ub --mipod-bin-path device1/miPod.bin) 2>> ../.logs/"$TIME".log
+  (time ./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod.elf ../boot-image/image.ub --mipod-bin-path device1/miPod.bin) 2>> ../.logs/"$TIME".log
 
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "deployDevice Failed!"
@@ -127,7 +127,15 @@ build_reference() {
   printf "\nFinished building and deploying!"
 }
 
+read -p "Clean all working files? (Warning: This will delete all uncommitted changes) (y/n) " choice
+case "$choice" in 
+  y|Y ) printf git reset --hard; git clean -d -fx
+esac
+
 read -p "Build default reference design? (y/n) " choice
 case "$choice" in 
   y|Y ) build_reference
 esac
+
+printf "\n\nGoodbye!"
+exit 0
