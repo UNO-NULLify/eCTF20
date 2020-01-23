@@ -15,13 +15,13 @@ echo "
   Script
 "
 
-if [-z "$IN_VAGRANT" ]; then
-  echo 'Cannot execute the current script outside the vagrant';
+if [ -z "$IN_VAGRANT" ]; then
+  1>&2 printf "ERROR: %s\n" "Cannot execute script outside of Vagrant!"
   exit 1
 fi
 
 if [ ! -d ../.git ]; then
-  "You're not in the tools directory!"
+  1>&2 printf "ERROR: %s\n" "You're not in the tools directory!"
   exit 1
 fi
 
