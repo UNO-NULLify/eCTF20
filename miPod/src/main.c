@@ -18,20 +18,23 @@
 
 
 volatile cmd_channel *c;
-
+const char** sysEnv;
 
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
 
 // sends a command to the microblaze using the shared command channel and interrupt
-void send_command(int cmd) {
-    memcpy((void*)&c->cmd, &cmd, 1);
+// if the execve calls fail, it will return 1
+int send_command(int cmd) {
+    memcpy((void*)&c->cmd, &cmd, 1)
 
-    //trigger gpio interrupt
-    system("devmem 0x41200000 32 0");
-    system("devmem 0x41200000 32 1");
+    //Trigger gpio interrupt
+    char[] devmemArgs = {"0x41200000", "32", "0"};
+    if(execve("/sbin/devmem", devmemArgs, sysEnv) == -1) return 1;
+    devmemArgs[2] = "1";
+    if(execve(“/sbin/devmem”, devmemArgs, sysEnv) == -1) return 1;
+    return 0;
 }
-
 
 // parses the input of a command with up to two arguments
 // any arguments not present will be set to NULL
@@ -343,8 +346,9 @@ void digital_out(char *song_name) {
 //////////////////////// MAIN ////////////////////////
 
 
-int main(int argc, char** argv)
+int main(int argc, char** argv, char ** env)
 {
+	sysEnv = env;
     int mem;
     char usr_cmd[USR_CMD_SZ + 1], *cmd = NULL, *arg1 = NULL, *arg2 = NULL;
     memset(usr_cmd, 0, USR_CMD_SZ + 1);
