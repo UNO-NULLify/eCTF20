@@ -1,5 +1,5 @@
 #include "drm.h"
-#include "sodium.h"
+#include "include/sodium.h"
 
 //////////////////////// GLOBALS ////////////////////////
 // Current user struct
@@ -34,7 +34,7 @@ void Login(char[] username, char[] pin) {
         // search username
         int i;
         for (i = 0; i <= GetUserTotal(); i++) {
-            if (strcmp(creds[i][0], username)) {
+            if (sodium_memcmp(creds[i][0], username)) {
                 // generate and search hash
                 if (crypto_pwhash_str_verify
                             (creds[i][1], pin, strlen(pin))) {
@@ -54,6 +54,7 @@ void LogOut() {
         mb_printf("Logging out...\r\n");
         // zero-out user struct
         sodium_memzero(u, sizeof(u));
+        sodium_mem
         // double check?
         u.logged_in = 0;
     } else {
