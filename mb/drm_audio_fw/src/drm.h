@@ -5,11 +5,13 @@
 #ifndef DRM_AUDIO_FW_DRM_H
 #define DRM_AUDIO_FW_DRM_H
 
-#define LOGIN_DELAY 5 // microseconds
+#define LOGIN_DELAY 5 // seconds
 
 #define MAX_USERNAME_SZ 64
 #define MAX_HASH_SZ crypto_pwhash_STRBYTES
 #define MAX_USERS 64
+
+typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
 typedef struct {
   char user[MAX_USERNAME_SZ];
@@ -27,6 +29,7 @@ typedef struct {
 typedef struct {
   int num_user;
   int num_region;
+  STATE state;
 
 } drm_md;
 
