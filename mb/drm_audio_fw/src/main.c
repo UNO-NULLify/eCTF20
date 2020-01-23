@@ -2,6 +2,8 @@
  * eCTF Collegiate 2020 MicroBlaze Example Code
  * Audio Digital Rights Management
  */
+ 
+// Test 1
 
 #include <stdio.h>
 #include "platform.h"
