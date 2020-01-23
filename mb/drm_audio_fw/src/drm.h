@@ -5,7 +5,7 @@
 #ifndef DRM_AUDIO_FW_DRM_H
 #define DRM_AUDIO_FW_DRM_H
 
-#define LOGIN_DELAY 5 // seconds
+#define LOGIN_DELAY 5  // seconds
 
 #define MAX_USERNAME_SZ 64
 #define MAX_HASH_SZ crypto_pwhash_STRBYTES

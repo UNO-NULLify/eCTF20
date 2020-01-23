@@ -1,4 +1,12 @@
 #include "drm.h"
+#include "sleep.h"
+#include "util.h"
+#include "xaxidma.h"
+#include "xil_exception.h"
+#include "xil_mem.h"
+#include "xintc.h"
+#include "xparameters.h"
+#include "xstatus.h"
 #include "include/sodium.h"
 
 //////////////////////// GLOBALS ////////////////////////
@@ -20,36 +28,36 @@ static XAxiDma sAxiDma;
 
 //////////////////////// INITIALIZATION ////////////////////////
 int InitMicroBlaze() {
-    u32 status;
+  u32 status;
 
-    // Initialize MicroBlaze platform
-    init_platform();
-    microblaze_register_handler((XInterruptHandler)myISR, (void *)0);
-    microblaze_enable_interrupts();
+  // Initialize MicroBlaze platform
+  init_platform();
+  microblaze_register_handler((XInterruptHandler)myISR, (void *)0);
+  microblaze_enable_interrupts();
 
-    // Initialize the interrupt controller driver so that it is ready to use.
-    status = XIntc_Initialize(&InterruptController, XPAR_INTC_0_DEVICE_ID);
-    if (status != XST_SUCCESS) {
-        return XST_FAILURE;
-    }
+  // Initialize the interrupt controller driver so that it is ready to use.
+  status = XIntc_Initialize(&InterruptController, XPAR_INTC_0_DEVICE_ID);
+  if (status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-    // Set up the Interrupt System.
-    status = SetUpInterruptSystem(&InterruptController, (XInterruptHandler)myISR);
-    if (status != XST_SUCCESS) {
-        return XST_FAILURE;
-    }
+  // Set up the Interrupt System.
+  status = SetUpInterruptSystem(&InterruptController, (XInterruptHandler)myISR);
+  if (status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-    // Configure the DMA
-    status = fnConfigDma(&sAxiDma);
-    if (status != XST_SUCCESS) {
-        mb_printf("DMA configuration ERROR\r\n");
-        return XST_FAILURE;
-    }
+  // Configure the DMA
+  status = fnConfigDma(&sAxiDma);
+  if (status != XST_SUCCESS) {
+    mb_printf("DMA configuration ERROR\r\n");
+    return XST_FAILURE;
+  }
 
-    // Start the LED
-    enableLED(led);
+  // Start the LED
+  enableLED(led);
 
-    SetState(STOPPED);
+  SetState(STOPPED);
 }
 
 // TODO: Copy num_users and num_regions into drm_md
@@ -66,22 +74,19 @@ int GetUserTotal() { return d.num_user; }
 
 // Set state of drm and LED color
 void SetState(STATE state) {
-    d.state = state;
-    switch (state) {
-        case WORKING:
-            setLED(led, YELLOW);
-            break;
-        case PLAYING:
-            setLED(led, GREEN):
-            break;
-        case PAUSED:
-            setLED(led, BLUE):
-            break;
-        case STOPPED:
-        default:
-            setLED(led, RED)
-            break;
-    }
+  d.state = state;
+  switch (state) {
+    case WORKING:
+      setLED(led, YELLOW);
+      break;
+    case PLAYING:
+      setLED(led, GREEN) : break;
+    case PAUSED:
+      setLED(led, BLUE) : break;
+    case STOPPED:
+    default:
+      setLED(led, RED) break;
+  }
 }
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
@@ -125,80 +130,113 @@ void LogOut() {
 
 void Share() {
   // check if logged in
+  if (GetLogin()) {
+      /*
+       * TODO:
+       * - Check if owner
+       * - Check if recipient exists
+       */
+
+  } else {
+    mb_printf("Not logged in\r\n");
+  }
 }
 
 void Query() {
   // check if logged in
+  if (GetLogin()) {
+      /*
+       * TODO:
+       * - Song query sutff
+       */
+
+  } else {
+    mb_printf("Not logged in\r\n");
+  }
 }
 
 void DigitalOut() {
   // check if logged in
+  if (GetLogin()) {
+      /*
+       * TODO:
+       * - Check if owner or shared to
+       */
+
+  } else {
+    mb_printf("Not logged in\r\n");
+  }
 }
 
 void Play() {
   // check if logged in
-  // check if song is playing
-  // check who is logged in and whether they have access
-
-  /* pause
-   * resume
-   * stop
-   * restart
-   */
+  if (GetLogin()) {
+    /* TODO:
+     * - Check if owner or shared to
+     * - Check if song is playing
+     * - Implement pause
+     * - Implement resume
+     * - Implement stop
+     * - Implement restart
+     */
+  } else {
+    mb_printf("Not logged in\r\n");
+  }
 }
 
+//////////////////////// MAIN FUNCTION ////////////////////////
 int main() {
-    if (InitMicroBlaze() == XST_FAILURE) {
-        return XST_FAILURE;
+  if (InitMicroBlaze() == XST_FAILURE) {
+    return XST_FAILURE;
+  }
+
+  // clear command channel
+  // memset((void *)c, 0, sizeof(cmd_channel));
+
+  mb_printf("Audio DRM Module has Booted\n\r");
+
+  // run forever
+  while (1) {
+    // wait for interrupt to start
+    if (InterruptProcessed) {
+      InterruptProcessed = FALSE;
+      SetState(WORKING);
+
+      /* TODO: Set command to something
+       * command is set by the miPod player
+       */
+      switch (command) {
+        case LOGIN:
+          Login();
+          break;
+        case LOGOUT:
+          LogOut();
+          break;
+        case QUERY_SONG:
+          Query();
+          break;
+        case SHARE:
+          Share();
+          break;
+        case PLAY:
+          Play();
+          mb_printf("Done Playing Song\r\n");
+          break;
+        case DIGITAL_OUT:
+          DigitalOut();
+          break;
+        default:
+          mb_printf("Not a command!\r\n");
+          break;
+      }
+
+      // Not sure why, but MITRE does this
+      usleep(500);
+      SetState(STOPPED);
     }
+  }
 
-    // clear command channel
-    // memset((void *)c, 0, sizeof(cmd_channel));
-
-    mb_printf("Audio DRM Module has Booted\n\r");
-
-    // run forever
-    while (1) {
-        // wait for interrupt to start
-        if (InterruptProcessed) {
-            InterruptProcessed = FALSE;
-            SetState(WORKING);
-
-            /* TODO: Set command to something
-             * command is set by the miPod player
-             */
-            switch (command) {
-                case LOGIN:
-                    Login();
-                    break;
-                case LOGOUT:
-                    LogOut();
-                    break;
-                case QUERY_SONG:
-                    Query();
-                    break;
-                case SHARE:
-                    Share();
-                    break;
-                case PLAY:
-                    Play();
-                    mb_printf("Done Playing Song\r\n");
-                    break;
-                case DIGITAL_OUT:
-                    DigitalOut();
-                    break;
-                default:
-                    mb_printf("Not a command!\r\n");
-                    break;
-            }
-
-            // Not sure why, but MITRE does this
-            usleep(500);
-            SetState(STOPPED);
-        }
-    }
-
-    // TODO: Set a way to reach this unreachable code
-    cleanup_platform();
-    return 0;
+  // TODO: Set a way to reach this unreachable code
+  cleanup_platform();
+  return 0;
 }
