@@ -1,4 +1,6 @@
 #include "drm.h"
+
+#include "include/sodium.h"
 #include "sleep.h"
 #include "util.h"
 #include "xaxidma.h"
@@ -7,7 +9,6 @@
 #include "xintc.h"
 #include "xparameters.h"
 #include "xstatus.h"
-#include "include/sodium.h"
 
 //////////////////////// GLOBALS ////////////////////////
 // Current user struct
@@ -127,17 +128,17 @@ void LogOut() {
   }
 }
 
-
 void Share() {
   // check if logged in
   if (GetLogin()) {
-      /*
-       * TODO:
-       * - Check if owner using checkAuthorization() 
-       * - If the person sharing is not the owner -- don't share
-       * - Check if recipient exists
-       * - Check if recipient already have access to the song -- if so error out with that info
-       */
+    /*
+     * TODO:
+     * - Check if owner using checkAuthorization()
+     * - If the person sharing is not the owner -- don't share
+     * - Check if recipient exists
+     * - Check if recipient already have access to the song -- if so error out
+     * with that info
+     */
 
   } else {
     mb_printf("Not logged in\r\n");
@@ -147,10 +148,10 @@ void Share() {
 void Query() {
   // check if logged in
   if (GetLogin()) {
-      /*
-       * TODO:
-       * - Song query stuff
-       */
+    /*
+     * TODO:
+     * - Song query stuff
+     */
 
   } else {
     mb_printf("Not logged in\r\n");
@@ -159,12 +160,11 @@ void Query() {
 
 // AARON W
 int checkAuthorization() {
-  if(GetLogin()) {
-    
+  if (GetLogin()) {
     /*
-    * TODO:
-    * - Check if owner or shared to
-    */
+     * TODO:
+     * - Check if owner or shared to
+     */
   } else {
     mb_printf("Not logged in\r\n");
   }
@@ -173,11 +173,11 @@ int checkAuthorization() {
 void DigitalOut() {
   // check if logged in
   if (GetLogin()) {
-      /*
-       * TODO:
-       * - Check authorization using checkAuthorization()
-       * - Output to digital interface
-       */
+    /*
+     * TODO:
+     * - Check authorization using checkAuthorization()
+     * - Output to digital interface
+     */
   } else {
     mb_printf("Not logged in\r\n");
   }
