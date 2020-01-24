@@ -127,13 +127,16 @@ void LogOut() {
   }
 }
 
+
 void Share() {
   // check if logged in
   if (GetLogin()) {
       /*
        * TODO:
-       * - Check if owner
+       * - Check if owner using checkAuthorization() 
+       * - If the person sharing is not the owner -- don't share
        * - Check if recipient exists
+       * - Check if recipient already have access to the song -- if so error out with that info
        */
 
   } else {
@@ -154,24 +157,38 @@ void Query() {
   }
 }
 
-void DigitalOut() {
-  // check if logged in
-  if (GetLogin()) {
-      /*
-       * TODO:
-       * - Check if owner or shared to
-       */
-
+// AARON W
+int checkAuthorization() {
+  if(GetLogin()) {
+    
+    /*
+    * TODO:
+    * - Check if owner or shared to
+    */
   } else {
     mb_printf("Not logged in\r\n");
   }
 }
 
+void DigitalOut() {
+  // check if logged in
+  if (GetLogin()) {
+      /*
+       * TODO:
+       * - Check authorization using checkAuthorization()
+       * - Output to digital interface
+       */
+  } else {
+    mb_printf("Not logged in\r\n");
+  }
+}
+
+// AARON W
 void Play() {
   // check if logged in
   if (GetLogin()) {
     /* TODO:
-     * - Check if owner or shared to
+     * - Check authorization using checkAuthorization()
      * - Check if song is playing
      * - Implement pause
      * - Implement resume
