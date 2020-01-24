@@ -30,7 +30,6 @@ typedef struct {
   int num_user;
   int num_region;
   STATE state;
-
 } drm_md;
 
 #endif  // DRM_AUDIO_FW_DRM_H

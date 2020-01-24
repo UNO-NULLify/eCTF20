@@ -183,7 +183,6 @@ void DigitalOut() {
   }
 }
 
-// AARON W
 void Play() {
   // check if logged in
   if (GetLogin()) {
