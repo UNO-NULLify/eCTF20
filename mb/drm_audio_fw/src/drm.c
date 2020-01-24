@@ -120,9 +120,8 @@ void LogOut() {
     mb_printf("Logging out...\r\n");
     // zero-out user struct
     sodium_memzero(u, sizeof(u));
-    sodium_mem
-        // double check?
-        u.logged_in = 0;
+    // double check?
+    u.logged_in = 0;
   } else {
     mb_printf("Not logged in\r\n");
   }
@@ -147,7 +146,7 @@ void Query() {
   if (GetLogin()) {
       /*
        * TODO:
-       * - Song query sutff
+       * - Song query stuff
        */
 
   } else {
