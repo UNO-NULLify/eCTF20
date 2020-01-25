@@ -1,4 +1,4 @@
-# 2020 MITRE Collegiate eCTF Example Code
+# 2020 MITRE Collegiate eCTF UNO Code
 
 This repository contains an example reference system for MITRE's 2020 [Embedded System CTF](http://mitrecyberacademy.org/competitions/embedded/).
 This code is incomplete, insecure, and does not meet MITRE standards for quality.
