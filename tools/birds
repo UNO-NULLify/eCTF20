@@ -117,6 +117,17 @@ build_reference() {
   done
   
   printf "\n\nRunning deployDevice...\n"  
+    
+  read -p "Are you using a MITRE-provided board? (y/n) " choice
+  case "$choice" in 
+    y|Y )
+           cp ../boot-image/uno_design_phase_BOOT.BIN ../BOOT.BIN
+           ;;
+    n|N ) 
+           cp ../boot-image/purchased_boards_BOOT.BIN ../BOOT.BIN
+           ;;
+  esac
+  
   (time ./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod.elf ../boot-image/image.ub --mipod-bin-path device1/miPod.bin) 2>> ../.logs/"$TIME".log
 
   if [ ! $? -eq 0 ]; then
