@@ -8,8 +8,41 @@ module.exports = {
 			{ text: 'Documentation', link: '/documentation/' },
 			{ text: 'NULLify Website', link: 'https://nullify.uno' }
 		],
-		logo: '/uno.png',
-		sidebar: 'auto',
+		logo: '/nullify_lock.png',
+		sidebar: [
+			{
+				title: 'Home',
+				path: '/', 
+				collapsable: false,
+				sidebarDepth: 1,
+			},
+			{
+				title: 'Getting Started',
+				path: '/getting-started/',
+				collapsable: true,
+				sidebarDepth: 3,
+			},
+			{
+				title: 'Hardware',
+				path: '/hardware/',
+				collapsable: true,
+				sidebarDepth: 3,
+			},
+			{
+				title: 'Software',
+				path: '/software/',
+				collapsable: true,
+				sidebarDepth: 3,
+			},
+			{
+				title: 'Attack',
+				path: '/attack/',
+				collapsable: true,
+				sidebarDepth: 3,
+			}
+		],
+		sidebarDepth: 3,
+		displayAllHeaders: true,
 		smoothScroll: true,
 	},
 
