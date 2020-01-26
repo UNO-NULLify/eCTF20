@@ -6,6 +6,9 @@ Use: Once per user
 
 import json
 from argparse import ArgumentParser
+from nacl import pwhash, secret, utils, encoding, public
+from nacl.pwhash.argon2i import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
+
 
 
 def main(user_list, outfile):
@@ -13,19 +16,40 @@ def main(user_list, outfile):
     args:
         users_ (string): string of users and pins seperated by colons e.g. user1:123456789
         outfile (string): name of file to write user_secrets to """
+    print("Salt Bytes: {}\nOps Limit: {}\nMem Limit: {}".format(SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE))
     try:
         secrets = open(outfile, "w")
     except Exception as e:
         print("Unable to open secrets file: %s" % (e,))
         return 0
+    try:                               
+        user_dict = {}
+        for user in user_list:
+            u = user.split(":")
+            salt = utils.random(SALTBYTES) # 16 bytes
+            # generating an argon2i hash of user pin with custom salt; encoded in base64
+            # OPSLIMIT_SENSITIVE MEMLIMIT_SENSITIVE are default settings for kdf function below
+            hashed = pwhash.argon2id.str(bytes(u[1], encoding="utf-8"))
+            # generate a public / private keypair (Curve25519)
+            pvt_key = public.PrivateKey.generate()
+            user_dict[u[0]] = {"pin": u[1],                                 # PIN
+                               "pin_hash": hashed.decode(),                          # PIN hash convert bytes(hash, encoding="utf-8")
+                               "salt": salt.hex(),                          # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
+                               "pvt_key": bytes(pvt_key).hex(),
+                               "pvt_key_enc": "",                           #  nacl.bindings.crypto_aead_chacha20poly1305...?
+                               "pub_key": bytes(pvt_key.public_key).hex(),
+                               "hw_secret": utils.random(10).hex(),       
+                               }
+        # generate pubic private key pair for additional integrity checks (Curve25519)
+        root_pvt = public.PrivateKey.generate()
+        user_dict["root_pub"] = bytes(root_pvt).hex()
+        user_dict["root_priv"] = bytes(root_pvt.public_key).hex()
 
-    try:
-        user_dict = {user.split(":")[0]: {"pin": user.split(":")[1], "id": num} for num, user in enumerate(user_list)}
-    except IndexError:
+    except IndexError:                     
         raise Exception(
             "Unable to parse user name and pin. Please make sure you entered the user-list as "
             "space seperated pairs of usernames and pins. Example: --user-list user1:12345678 user2:12345689")
-    info = json.dumps(user_dict)
+    info = json.dumps(user_dict, indent=4, sort_keys=True)
     secrets.write(info)
     secrets.close()
 

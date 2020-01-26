@@ -5,6 +5,7 @@ Use: Once per ecosystem of devices
 """
 import json
 from argparse import ArgumentParser
+from nacl import utils, public, secret
 
 
 def main(region_dict, file_name):
@@ -14,7 +15,8 @@ def main(region_dict, file_name):
         print("Unable to open secrets file: %s" % (e,))
         return 0
 
-    json.dump(region_dict, secrets)
+    info = json.dumps(region_dict, indent=4, sort_keys=True)
+    secrets.write(info)
     secrets.close()
 
 
@@ -31,5 +33,13 @@ def get_args():
 if __name__ == '__main__':
     region_list, outfile = get_args()
     print("generating system specific secrets")
-    regions = {region: num for num, region in enumerate(region_list)}  # Create region IDs based on increasing integers
+    regions = {}
+    for r in region_list:
+        # create a public / private key pair (Curve25519)
+        pvt_key = public.PrivateKey.generate()
+        regions[r] = {"pub_key": bytes(pvt_key).hex(),                  # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
+                      "priv_key": bytes(pvt_key).hex(),
+                      "priv_key_enc": "",
+                      "rand_pass": utils.random(10).hex(),         
+                      }                  
     main(regions, outfile)
