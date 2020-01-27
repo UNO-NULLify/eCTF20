@@ -158,13 +158,15 @@ void Query() {
   }
 }
 
-// AARON W
+// calls the function to decrypt the song, gets the header information,
+// checks the owner/shared user information, and returns values
+// RETURN Values: 1 for owner, 2 for shared user, 3 for 30 seconds
 int checkAuthorization() {
   if (GetLogin()) {
-    /*
-     * TODO:
-     * - Check if owner or shared to
-     */
+      //decrypt the song
+      //get/read the header
+      //check if the requester is owner or someone who has had it shared with them
+      //return 1 for owner, 2 for shared, and 3 for 30 seconds
   } else {
     mb_printf("Not logged in\r\n");
   }
