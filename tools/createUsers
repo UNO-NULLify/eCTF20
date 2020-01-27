@@ -6,10 +6,13 @@ Use: Once per user
 
 import json
 from argparse import ArgumentParser
-from nacl import pwhash, secret, utils, encoding, public
+from nacl import pwhash, secret, utils, encoding, public, hash
 from nacl.pwhash.argon2i import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
+import nacl.signing
 
 
+#Define hashing method
+HASHER = hash.blake2b
 
 def main(user_list, outfile):
     """writes user secrets to json file
@@ -21,8 +24,8 @@ def main(user_list, outfile):
         secrets = open(outfile, "w")
     except Exception as e:
         print("Unable to open secrets file: %s" % (e,))
-        return 0
-    try:                               
+        return 1
+    try:
         user_dict = {}
         for user in user_list:
             u = user.split(":")
@@ -32,20 +35,46 @@ def main(user_list, outfile):
             hashed = pwhash.argon2id.str(bytes(u[1], encoding="utf-8"))
             # generate a public / private keypair (Curve25519)
             pvt_key = public.PrivateKey.generate()
+
+            #Key used for securing the private key. hash(hashpin + pin + salt)
+            secure_key = HASHER(bytes((hashed.decode()+u[1]+salt.hex()), encoding="utf-8"), encoder=encoding.HexEncoder)[:32]
+
+            #Encrypting private key with the secure key
+
+            print(f"Encrypting user private key with {secure_key} length {len(secure_key)}")
+
+            box = secret.SecretBox(secure_key)
+
+
+            pvt_key_enc = box.encrypt(bytes(pvt_key))
+
             user_dict[u[0]] = {"pin": u[1],                                 # PIN
                                "pin_hash": hashed.decode(),                          # PIN hash convert bytes(hash, encoding="utf-8")
                                "salt": salt.hex(),                          # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
                                "pvt_key": bytes(pvt_key).hex(),
-                               "pvt_key_enc": "",                           #  nacl.bindings.crypto_aead_chacha20poly1305...?
+                               "pvt_key_enc": pvt_key_enc.hex(),                           #  nacl.bindings.crypto_aead_chacha20poly1305...?
                                "pub_key": bytes(pvt_key.public_key).hex(),
-                               "hw_secret": utils.random(10).hex(),       
+                               "hw_secret": utils.random(10).hex(),
                                }
         # generate pubic private key pair for additional integrity checks (Curve25519)
-        root_pvt = public.PrivateKey.generate()
-        user_dict["root_pub"] = bytes(root_pvt).hex()
-        user_dict["root_priv"] = bytes(root_pvt.public_key).hex()
+        signing_key = nacl.signing.SigningKey.generate()
 
-    except IndexError:                     
+        #EXAMPLE USE CASE: DELETE IN FINAL CODE
+        #print(signing_key.encode(encoder=encoding.HexEncoder))
+        #print(signing_key.encode(encoder=encoding.HexEncoder).hex())
+        #key_hex = signing_key.encode(encoder=encoding.HexEncoder).hex()
+        #test_key = nacl.signing.SigningKey(bytes.fromhex(key_hex), encoder=encoding.HexEncoder)
+        #signed_msg = test_key.sign(b"Attack at Dawn")
+        #bad_msg = signed_msg[:-4]
+
+        verify_key = signing_key.verify_key
+        #print(verify_key.verify(signed_msg))
+
+
+        user_dict["root_sign"] = signing_key.encode(encoder=encoding.HexEncoder).hex()
+        user_dict["root_verify"] = verify_key.encode(encoder=nacl.encoding.HexEncoder).hex()
+
+    except IndexError:
         raise Exception(
             "Unable to parse user name and pin. Please make sure you entered the user-list as "
             "space seperated pairs of usernames and pins. Example: --user-list user1:12345678 user2:12345689")

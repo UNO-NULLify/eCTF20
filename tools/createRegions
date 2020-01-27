@@ -37,9 +37,9 @@ if __name__ == '__main__':
     for r in region_list:
         # create a public / private key pair (Curve25519)
         pvt_key = public.PrivateKey.generate()
-        regions[r] = {"pub_key": bytes(pvt_key).hex(),                  # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
+        regions[r] = {"pub_key": bytes(pvt_key.public_key).hex(),                  # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
                       "priv_key": bytes(pvt_key).hex(),
                       "priv_key_enc": "",
-                      "rand_pass": utils.random(10).hex(),         
-                      }                  
+                      "rand_pass": utils.random(10).hex(),
+                      }
     main(regions, outfile)
