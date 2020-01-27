@@ -45,10 +45,9 @@ def main(user_list, outfile):
 
             box = secret.SecretBox(secure_key)
 
-
             pvt_key_enc = box.encrypt(bytes(pvt_key))
 
-            user_dict[u[0]] = {"pin": u[1],                                 # PIN
+            user_dict[u[0]] = {"pin": u[1],                                 # PIN   NEVER TOUCH DEVICE
                                "pin_hash": hashed.decode(),                          # PIN hash convert bytes(hash, encoding="utf-8")
                                "salt": salt.hex(),                          # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
                                "pvt_key": bytes(pvt_key).hex(),
