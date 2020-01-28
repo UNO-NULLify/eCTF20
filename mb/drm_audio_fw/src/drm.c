@@ -1,5 +1,6 @@
-#include "drm.h"
+#include <sys/prctl.h>
 
+#include "drm.h"
 #include "include/sodium.h"
 #include "sleep.h"
 #include "util.h"
@@ -207,8 +208,11 @@ int main() {
     return XST_FAILURE;
   }
 
-  // clear command channel
+  // Clear command channel
   // memset((void *)c, 0, sizeof(cmd_channel));
+
+  // Prevent core from being dumpable
+  prctl(PR_SET_DUMPABLE, 0);
 
   mb_printf("Audio DRM Module has Booted\n\r");
 
