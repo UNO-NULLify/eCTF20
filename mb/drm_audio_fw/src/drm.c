@@ -1,6 +1,8 @@
-#include <sys/prctl.h>
-
 #include "drm.h"
+
+#include <sys/prctl.h>
+#include <sys/ptrace.h>
+
 #include "include/sodium.h"
 #include "sleep.h"
 #include "util.h"
@@ -91,6 +93,33 @@ void SetState(STATE state) {
   }
 }
 
+/*
+ * Checks the "TracerPid" entry in the /proc/self/status file. If the value
+ * is not zero then a debugger has attached. If a debugger is attached then
+ * signal to the parent pid and exit.
+ */
+void CheckProc() {
+  FILE *proc_status = fopen("/proc/self/status", "r");
+  if (proc_status == NULL) {
+    return;
+  }
+
+  char line[1024] = {};
+  char *fgets(char *s, int size, FILE *stream);
+  while (fgets(line, sizeof(line), proc_status) != NULL) {
+    const char traceString[] = "TracerPid:";
+    char *tracer = strstr(line, traceString);
+    if (tracer != NULL) {
+      int pid = atoi(tracer + sizeof(traceString) - 1);
+      if (pid != 0) {
+        fclose(proc_status);
+        exit(EXIT_FAILURE);
+      }
+    }
+  }
+  fclose(proc_status);
+}
+
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
 void Login(char[] username, char[] pin) {
   // check if logged in
@@ -164,10 +193,10 @@ void Query() {
 // RETURN Values: 1 for owner, 2 for shared user, 3 for 30 seconds
 int checkAuthorization() {
   if (GetLogin()) {
-      //decrypt the song
-      //get/read the header
-      //check if the requester is owner or someone who has had it shared with them
-      //return 1 for owner, 2 for shared, and 3 for 30 seconds
+    // decrypt the song
+    // get/read the header
+    // check if the requester is owner or someone who has had it shared with
+    // them return 1 for owner, 2 for shared, and 3 for 30 seconds
   } else {
     mb_printf("Not logged in\r\n");
   }
@@ -216,6 +245,48 @@ int main() {
 
   mb_printf("Audio DRM Module has Booted\n\r");
 
+  int fork_pid = fork();
+  if (fork_pid == 0) {
+    // set the process as undumpable
+    prctl(PR_SET_DUMPABLE, 0);
+
+    // trace the parent process
+    int parent = getppid();
+    if (ptrace(PTRACE_ATTACH, parent, NULL, NULL) != 0) {
+      kill(parent, SIGKILL);
+      exit(EXIT_FAILURE);
+    }
+
+    // restart the parent so it can keep processing like normal
+    int status = 0;
+    wait(&status);
+    if (ptrace(PTRACE_SETOPTIONS, parent, NULL,
+               PTRACE_O_TRACEFORK | PTRACE_O_EXITKILL) != 0) {
+      kill(parent, SIGKILL);
+      exit(EXIT_FAILURE);
+    }
+    ptrace(PTRACE_CONT, parent, NULL, NULL);
+
+    // handle any signals that may come in from traces
+    while (true) {
+      CheckProc();
+      int pid = waitpid(-1, &status, WNOHANG);
+      if (pid == 0) {
+        sleep(1);
+        continue;
+      }
+
+      if (status >> 16 == PTRACE_EVENT_FORK) {
+        // follow the fork
+        long newpid = 0;
+        ptrace(PTRACE_GETEVENTMSG, pid, NULL, &newpid);
+        ptrace(PTRACE_ATTACH, newpid, NULL, NULL);
+        ptrace(PTRACE_CONT, newpid, NULL, NULL);
+      }
+      ptrace(PTRACE_CONT, pid, NULL, NULL);
+    }
+  }
+
   // run forever
   while (1) {
     // wait for interrupt to start
@@ -261,3 +332,8 @@ int main() {
   cleanup_platform();
   return 0;
 }
+
+/*
+ * Before we enter main check to see if a debugger is present
+ */
+void __attribute__((constructor)) before_main() { CheckProc(); }
