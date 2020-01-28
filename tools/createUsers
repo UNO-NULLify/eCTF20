@@ -7,7 +7,7 @@ Use: Once per user
 import json
 from argparse import ArgumentParser
 from nacl import pwhash, secret, utils, encoding, public, hash
-from nacl.pwhash.argon2i import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
+from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
 import nacl.signing
 
 
@@ -27,10 +27,11 @@ def main(user_list, outfile):
         return 1
     try:
         user_dict = {}
+        print(user_dict)
         for user in user_list:
             u = user.split(":")
             salt = utils.random(SALTBYTES) # 16 bytes
-            # generating an argon2i hash of user pin with custom salt; encoded in base64
+            # generating an argon2id hash of user pin with custom salt; encoded in base64
             # OPSLIMIT_SENSITIVE MEMLIMIT_SENSITIVE are default settings for kdf function below
             hashed = pwhash.argon2id.str(bytes(u[1], encoding="utf-8"))
             # generate a public / private keypair (Curve25519)
@@ -69,15 +70,16 @@ def main(user_list, outfile):
         verify_key = signing_key.verify_key
         #print(verify_key.verify(signed_msg))
 
-
-        user_dict["root_sign"] = signing_key.encode(encoder=encoding.HexEncoder).hex()
-        user_dict["root_verify"] = verify_key.encode(encoder=nacl.encoding.HexEncoder).hex()
+        json_dict = {}
+        json_dict["root_sign"] = signing_key.encode(encoder=encoding.HexEncoder).hex()
+        json_dict["root_verify"] = verify_key.encode(encoder=nacl.encoding.HexEncoder).hex()
+        json_dict["users"] = user_dict
 
     except IndexError:
         raise Exception(
             "Unable to parse user name and pin. Please make sure you entered the user-list as "
             "space seperated pairs of usernames and pins. Example: --user-list user1:12345678 user2:12345689")
-    info = json.dumps(user_dict, indent=4, sort_keys=True)
+    info = json.dumps(json_dict, indent=4, sort_keys=True)
     secrets.write(info)
     secrets.close()
 
