@@ -6,7 +6,26 @@ Use: Once per device
 import os
 import json
 from argparse import ArgumentParser
+from pprint import pprint
 
+def write_region(region_names, region_secrets):
+    f_str = f""
+    for r in region_names:
+        f_str += f"region_data[{r}].rand = \"{region_secrets[r]['rand_pass']}\";\n"
+        f_str += f"region_data[{r}].pub_key = \"{region_secrets[r]['pub_key']}\";\n"
+        f_str += f"region_data[{r}].priv_key = \"{region_secrets[r]['priv_key_enc']}\";\n\n"
+    return f_str
+
+def write_users(user_names, user_secrets):
+
+    f_str = f""
+    for u in user_names:
+        f_str += f"user_data[{u}].hw_secret = \"{user_secrets['users'][u]['hw_secret']}\";\n"
+        f_str += f"user_data[{u}].pin = \"{user_secrets['users'][u]['pin_hash']}\";\n"
+        f_str += f"user_data[{u}].pub_key = \"{user_secrets['users'][u]['pub_key']}\";\n"
+        f_str += f"user_data[{u}].pvt_key = \"{user_secrets['users'][u]['pvt_key_enc']}\";\n"
+        f_str += f"user_data[{u}].salt = \"{user_secrets['users'][u]['salt']}\";\n\n"
+    return f_str
 
 
 def main(region_names, user_names, user_secrets, region_secrets, device_dir):
@@ -27,8 +46,14 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
         return
 
     # check for valid region names
+    
+    
     try:
-        rids = [str(region_secrets[r]) for r in region_names]
+        #rids = list(str(region_secrets[r]) for r in region_names)
+        rids = list(region_secrets[r] for r in region_names)
+        
+        print("\nRegion Secrets\n")
+        pprint(rids)
     except Exception as e:
         print("Unable to create secrets file: {e} "
               "Please ensure all regions entered are in the list: {user_secrets}".format(e=e, user_secrets=user_secrets.keys()))
@@ -36,10 +61,13 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 
     # check for valid user names
     try:
-        uids = [str(user_secrets[u]['id']) for u in usernames]
+        #users = [str(user_secrets['users'][u].items()) for u in usernames]
+        users = list(user_secrets["users"][u].values() for u in user_names)
+        print("\nUser Secrets\n")
+        pprint(users)
     except Exception as e:
         print("Unable to create secrets file: {e} "
-              "Please ensure all regions entered are in the list: {user_secrets}".format(e=e, user_secrets=user_secrets.keys()))
+              "Please ensure all users entered are in the list: {user_secrets}".format(e=e, user_secrets=user_secrets["users"].keys()))
         return
 
     # write secrets
@@ -47,20 +75,37 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 #ifndef SECRETS_H
 #define SECRETS_H
 
-#define NUM_REGIONS {len(region_secrets)}
-const char *REGION_NAMES[] = {{ {", ".join(['"' + r + '"' for r in region_secrets])} }};
-const u8 REGION_IDS[] = {{ {", ".join([str(r) for r in region_secrets.values()])} }};
-
 #define NUM_PROVISIONED_REGIONS {len(region_names)}
-const u8 PROVISIONED_RIDS[] = {{ {", ".join(rids)} }};
 
-#define NUM_USERS {len(user_secrets)}
-const char *USERNAMES[] = {{ {", ".join(['"' + u + '"' for u in user_secrets])} }};
-const u8 USER_IDS[] = {{ {", ".join([str(user_secrets[u]['id']) for u in user_names])} }};
+enum REGIONS {{ {", ".join([ r  for r in region_names])} }};
 
-#define NUM_PROVISIONED_USERS {len(user_names)}
-const u8 PROVISIONED_UIDS[] = {{ {", ".join(uids)} }};
-const char *PROVISIONED_PINS[] = {{ {", ".join(['"' + user_secrets[u]['pin'] + '"' for u in user_names])} }};
+struct R_Data {{
+    char *pub_key;
+    char *priv_key;
+    char *rand;
+}};
+
+struct R_Data region_data[{len(region_names)}];
+
+{ write_region(region_names, region_secrets) }
+
+struct U_Data {{
+    char *hw_secret;
+    char *pin;
+    char *pub_key;
+    char *pvt_key;
+    char *salt;
+}};
+
+#define NUM_USERS {len(user_names)};
+enum USERNAMES {{ {", ".join([u for u in user_names])} }};
+
+struct U_data user_data[{len(user_names)}];
+
+{ write_users(user_names, user_secrets) }
+
+#define ROOT_SIGN \"{user_secrets["root_sign"]}\";
+#define ROOT_VERIFY \"{user_secrets["root_verify"]}\";
 
 #endif // SECRETS_H
 ''')
