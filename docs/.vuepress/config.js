@@ -9,7 +9,7 @@ module.exports = {
 			{ text: 'Home', link: '/' },
 			{ text: 'User Guide', link: '/user/' },
 			{ text: 'Technical Reference', link: '/technical/' },
-			{ text: 'Documentation', link: '/documentation/' }
+			{ text: 'Internal', link: '/internal/' }
 		],
 		logo: '/nullify_lock.png',
 		sidebar: [
@@ -32,10 +32,20 @@ module.exports = {
 				children: [
 					'/technical/hardware',
 					'/technical/software',
-					'/technical/attack'
+					'/technical/attack',
 				]
 			},
-			'documentation/',
+			{
+			    title: 'Internal Documentation',
+				path: '/internal/',
+				sidebarDepth: 2,
+				collapsable: false,
+				children: [
+					'/internal/zune-devs',
+					'/internal/multiple-priority',
+					'/internal/birdwatching'
+				]
+			}
 		]
 	},
 	repo: 'something/eCTF-2020',
