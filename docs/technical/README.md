@@ -1,4 +1,4 @@
-# Getting Started
+# Technical Reference
 
 Below is the overview of how to set up the reference implementation for the 2020 Collegiate eCTF.
 
@@ -126,4 +126,3 @@ To update the DRM:
        2. `mb/Cora-Z7-07S/download.bit` - the bitstream loaded with the DRM ELF (created by step 4)
 6. Insert the SD card into the Cora board and the RESET button next to the power jack. When Linux finishes
    booting, the MicroBlaze should have the updated bitstream.
-

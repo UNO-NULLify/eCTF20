@@ -1,51 +1,43 @@
 module.exports = {
 	title: 'eCTF Documentation',
 	description: 'NULLify',
+	plugins: ['vuepress-plugin-export'],
 	themeConfig: {
+		searchPlaceholder: 'Search...',
+		lastUpdated: 'Last Updated',
 		nav: [
 			{ text: 'Home', link: '/' },
-			{ text: 'Getting Started', link: '/getting-started/' },
-			{ text: 'Documentation', link: '/documentation/' },
-			{ text: 'NULLify Website', link: 'https://nullify.uno' }
+			{ text: 'User Guide', link: '/user/' },
+			{ text: 'Technical Reference', link: '/technical/' },
+			{ text: 'Documentation', link: '/documentation/' }
 		],
 		logo: '/nullify_lock.png',
 		sidebar: [
+			'/',
 			{
-				title: 'Home',
-				path: '/', 
+				title: 'User Guide',
+				path: '/user/',
+				sidebarDepth: 2,
 				collapsable: false,
-				sidebarDepth: 1,
+				// children: [
+				// 	'/user/load-song',
+				// 	'/user/play-song',
+				// ]
 			},
 			{
-				title: 'Getting Started',
-				path: '/getting-started/',
-				collapsable: true,
-				sidebarDepth: 3,
+				title: 'Technical Reference',
+				path: '/technical/',
+				sidebarDepth: 2,
+				collapsable: false,
+				children: [
+					'/technical/hardware',
+					'/technical/software',
+					'/technical/attack'
+				]
 			},
-			{
-				title: 'Hardware',
-				path: '/hardware/',
-				collapsable: true,
-				sidebarDepth: 3,
-			},
-			{
-				title: 'Software',
-				path: '/software/',
-				collapsable: true,
-				sidebarDepth: 3,
-			},
-			{
-				title: 'Attack',
-				path: '/attack/',
-				collapsable: true,
-				sidebarDepth: 3,
-			}
-		],
-		sidebarDepth: 3,
-		displayAllHeaders: true,
-		smoothScroll: true,
+			'documentation/',
+		]
 	},
-
 	repo: 'something/eCTF-2020',
 	repoLabel: 'Github',
 	docsDir: 'docs',
