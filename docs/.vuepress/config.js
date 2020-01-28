@@ -19,10 +19,9 @@ module.exports = {
 				path: '/user/',
 				sidebarDepth: 2,
 				collapsable: false,
-				// children: [
-				// 	'/user/load-song',
-				// 	'/user/play-song',
-				// ]
+				children: [
+				 //	'/user/usage',
+				]
 			},
 			{
 				title: 'Technical Reference',
