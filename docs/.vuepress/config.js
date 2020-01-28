@@ -31,7 +31,6 @@ module.exports = {
 				children: [
 					'/technical/hardware',
 					'/technical/software',
-					'/technical/attack',
 				]
 			},
 			{
@@ -40,9 +39,10 @@ module.exports = {
 				sidebarDepth: 2,
 				collapsable: false,
 				children: [
+					'/internal/attack',
 					'/internal/zune-devs',
 					'/internal/multiple-priority',
-					'/internal/birdwatching'
+					'/internal/birdwatching',
 				]
 			}
 		]
