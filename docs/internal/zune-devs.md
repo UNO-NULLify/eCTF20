@@ -38,3 +38,18 @@ gantt
 </mermaid>
 
 ### Assessment Plan
+
+A wholistic assessment plan for this team should take the following into consideration:
+
+**Timeliness:** How well did we follow MITRE's timeline? How well did we follow our own timeline and, in the event of falling behind, was there a legitimate roadblock and how did we address it?
+
+**State of the Art:** Are we using third party libraries with known vulnerabilities? Are we using libraries that make our implementation easier to secure? Are we using proven cryptographic algorithms?
+
+**Theoretical Knowledge** Are we aware of the literature surrounding this project? Do we understand the implications of the decisions we make? Are our ideas on how to implement cryptography sound? Are we aware of the attack surface of our system? 
+
+**Innovation:** This project gives us an opportunity to work out real world problems: how elegant are our solutions?
+
+**Implementation:** Have we taken the above and build something that works as we designed it? How secure was our c programming really? Did we make any logical errors or bad assumptions in our implementation?
+
+**Contribution and Collaboration:** Everyone has a role to play some people act as architects others are better technicians did everyone try reaching beyond their comfort zone to learn? Did anyone's actions create a roadblock? Is there good communication both within the team and between teams?  
+
