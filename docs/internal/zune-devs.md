@@ -224,26 +224,25 @@ Our team's main task is tackling the core development of the project, which to d
 
 ### Project Timeline
 
-<mermaid>
+- DRM core dev
+- DRM extras dev 
+- Testing/timing each function
+- Anti-RE measures
+- Developing attack methods
+
+
+<!-- <mermaid>
 gantt
   title Zune Dev's Project Timeline
   dateFormat  DD-MM-YYYY
   section Competition <br>Phases
     Secure Design    :a1, 01-15-2020, 42d
     Attack           :after a1  , 20d
-  section Frank
+  section Zune Devs
     Task in sec      :2014-01-12  , 13d
     another task      : 24d
-  section Jeff
-    Task in sec      :2014-01-12  , 13d
-    another task      : 24d
-  section Drew
-    Task in sec      :2014-01-12  , 13d
-    another task      : 24d
-  section Aaron
-    Task in sec      :2014-01-12  , 13d
-    another task      : 24d
-</mermaid>
+
+</mermaid> -->
 
 ### Assessment Plan
 
