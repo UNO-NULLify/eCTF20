@@ -23,7 +23,7 @@ Our support material consists of many software vulnerability discovery books, a 
 * [StackOverFlow](https://stackoverflow.com/)
 
 ## Project Timeline
-![Project Timeline](link)
+![Project Timeline](https://github.com/UNO-NULLify/eCTF20/blob/dev/docs/internal/MPD-Timeline.png)
 
 ## Assessment Plan
 The assessment plan will follow closely with the tasks outlined in the gantt chart. Our team is not centered around creating a product as much as it is assessing the security of both the reference design and the eventual creation of the team at large. For this reason prototype demonstrations are not entirely applicable to our assessment. For the automated attacks phase this would most likely come into play by illustrating that we have created some automated form of exploiting common vulnerabilities in the reference design and for the software security team, it will be the discussion/presentation of the security or anti-reverse engineering measures that were taken or implemented. The remainder of our assessment will most likely depend on continual documentation of our research into the security of miPod designs (both ours and other teams' designs). In total, our assessment will be made up of about 50% prototype demonstrations/presentations and 50% reports/documentation. These demonstrations/presentations will be a combination of design prototypes as well as exploit prototypes. 
