@@ -25,7 +25,6 @@ Things being secured by crypto:
 - No listening to full songs you don't have perms to
 - No listening to song preview on non MiPod device 
 
-
 ### Song Protection Process
 
 <mermaid>
@@ -48,6 +47,12 @@ This script is used to securely package songs to be used with the DRM system. <c
 - <code>&lt;PATH_TO_SONG&gt;</code>: The absolute or relative path to the input song to protect. Input song must conform to our audio requirements (see section 11.1).
 - <code>&lt;PATH_TO_OUTPUT_SONG&gt;</code>: the absolute or relative path to save the output song to.
 - <code>&lt;USER&gt;</code>: The username that the song is owned by.
+
+##### Usage:
+
+```bash
+./protectSong --region-list <REGION_LIST> --region-secrets-path <PATH_TO_REGION_SECRETS> --infile <PATH_TO_SONG> --outfile <PATH_TO_OUTPUT_SONG> --owner <USER> --user-secrets-path <USER_SECRETS>
+```
 
 <mermaid>
 graph LR
@@ -86,7 +91,13 @@ As a result of this process, <code>ProtectSong.py</code> should have an output i
 
 #### CreateRegions.py
 
-This script is used to provision the secret components for an ecosystem of devicesbelonging to various regions. It will only be run once to globally provision all regions. <code>CreateRegions.py</code> takes in 1 parameter, <code>&lt;REGION_LIST&gt;</code>.
+This script is used to provision the secret components for an ecosystem of devices belonging to various regions. It will only be run once to globally provision all regions. <code>CreateRegions.py</code> takes in 1 parameter, <code>&lt;REGION_LIST&gt;</code>.
+
+##### Usage:
+
+```bash
+./createRegions –-region-list <REGION_LIST> --outfile <REGION_SECRETS>
+```
 
 <mermaid>
 graph LR
@@ -123,10 +134,17 @@ As a result of this process, <code>CreateRegions.py</code> should output to <cod
     }
 }
 ```
+It is important to note that <code>priv_key</code> should **never** go on the device, only <code>priv_key_enc</code>. This is only generated to be passed to children scripts.
 
 #### CreateUsers.py
 
 This script is used to provision all possible users that could exist on any device. It will only be run once to globally provision all provided users. <code>CreateUsers.py</code> takes in 1 parameter, <code>&lt;USER_PIN_LIST&gt;</code>.
+
+##### Usage:
+
+```bash
+./createUsers --user-list <USER_PIN_LIST> --outfile <USER_SECRETS>
+```
 
 <mermaid>
 graph LR
@@ -144,7 +162,6 @@ graph LR
     s --> hp
     hp --> pke
     p --> pke
-    s --> pke
   end
 </mermaid>
 
@@ -174,51 +191,26 @@ As a result of this process, <code>CreateUsers.py</code> should output to <code>
     },
 }
 ```
+It is important to note that the <code>pin</code> and <code>pvt_key</code> should **never** go on the device, only <code>pin_hash</code> and <code>pvt_key_enc</code> respectivly. These is only generated to be passed to children scripts.
 
-### Device Provisioning Process
+#### Known Weaknesses
 
-<mermaid>
-graph LR
-  classDef py fill:#4CAF50;
-  classDef secret fill:#F44336;
-  classDef wav fill:#2196F3;
-  classDef elf fill:#9C27B0;
-  region_secrets:::secret --> CreateDevice.py:::py
-  user_secrets:::secret --> CreateDevice.py
-  CreateDevice.py:::py --> device_secrets:::secret
-  device_secrets --> BuildDevice.py:::py
-  BuildDevice.py --> miPod:::elf
-</mermaid>
+First 30 seconds if secret is stolen can be played off of the device
 
-<!-- #### Secret File Formatting
+If the region private key is stolen then the regionkey can be used on another device to play a song. This needs to be as hard as possible to steal.
 
-<mermaid>
-classDiagram
-class user_secrets {
-    User
-    Pin
-    HashedPin
-    Public Key
-    Private Key Encrypted
-    HardwareSecret
-    RootPublicKey
-    RootPrivateKey
-}
-class region_secrets {
-    Region List
-    Public Key
-    RandomPassword
-    Private Key Encrypted
-}
-</mermaid> -->
+If the hardware secret is compromised and the pin is compromised (very likely for this flag) then a song can be generated using our own protectsong function.
+
+DecryptSong.c (30 second song) is a point of weakness for custom music.
+
 
 ### Implications
 
-This competition simulates the typical challenges and issues that security engineering teams face in the real world. We are presented with four opportunities, in particular, that contribute to our growth as Cybersecurity professionals directly. 
+This competition simulates the typical challenges and issues that security engineering teams face in the real world. We are presented with four opportunities, in particular, that contribute to our growth as Cybersecurity professionals directly.
 
-First, implementing a strong cryptographic solution that both ensures the provisioned media's confidentiality and integrity and does not effect said media's availability to authorized users. This challenge imposes strict availability expectations and we have relatively weak hardware to pull off an effective cryptography scheme given these constraints. In short we will probably face the harsh reality of choosing between user experience or enhanced security. 
+First, implementing a strong cryptographic solution that both ensures the provisioned media's confidentiality and integrity and does not effect said media's availability to authorized users. This challenge imposes strict availability expectations and we have relatively weak hardware to pull off an effective cryptography scheme given these constraints. In short we will probably face the harsh reality of choosing between user experience or enhanced security.
 
-Second, this team is also responsible for implementing the software for the digital rights management module. The provided reference project contained numerous instances of well documented, insecure functions of which we must find a better alternative. Further, we are charged with implementing additional functionality like skipping 5 seconds within a song and playing a song with an enhanced sample rate. Both of these tasks, and our cryptographic duties, are largely dependant on the constraints of the provided hardware; requiring the outside expertise of hardware engineers. 
+Second, this team is also responsible for implementing the software for the digital rights management module. The provided reference project contained numerous instances of well documented, insecure functions of which we must find a better alternative. Further, we are charged with implementing additional functionality like skipping 5 seconds within a song and playing a song with an enhanced sample rate. Both of these tasks, and our cryptographic duties, are largely dependant on the constraints of the provided hardware; requiring the outside expertise of hardware engineers.
 
 Third, growth manifests as collaboration with other teams to deliver a product, and later break other's products, within hard deadlines. We are working in parallel with team Multiple Priority Disorder to ensure our implementation is secure. We are also working in conjunction with team Bird Watching to form effective, secure solutions. Namely, they will help us store certain cryptographic keys securely at the hardware level. Bird Watching also identified areas in memory that the base--untrusted--system cannot access, but it is limited in size.  We will, therefore, collaborate on how to leverage this secure space effectively.
 
@@ -234,21 +226,21 @@ Our team's main task is tackling the core development of the project, which to d
 
 <mermaid>
 gantt
-    title Zune Dev's Project Timeline
-    dateFormat  DD-MM-YYYY
-    section Competition <br>Phases
+  title Zune Dev's Project Timeline
+  dateFormat  DD-MM-YYYY
+  section Competition <br>Phases
     Secure Design    :a1, 01-15-2020, 42d
     Attack           :after a1  , 20d
-    section Frank
+  section Frank
     Task in sec      :2014-01-12  , 13d
     another task      : 24d
-	section Jeff
+  section Jeff
     Task in sec      :2014-01-12  , 13d
     another task      : 24d
-	section Drew
+  section Drew
     Task in sec      :2014-01-12  , 13d
     another task      : 24d
-	section Aaron
+  section Aaron
     Task in sec      :2014-01-12  , 13d
     another task      : 24d
 </mermaid>
