@@ -93,7 +93,7 @@ struct R_Data region_data[{len(region_names)}];
 
 struct U_Data {{
     char *hw_secret;
-    char *pin;
+    char *pin_hash;
     char *pub_key;
     char *pvt_key;
     char *salt;
@@ -101,7 +101,6 @@ struct U_Data {{
 
 { write_users(user_names, user_secrets) }
 
-#define ROOT_SIGN \"{user_secrets["root_sign"]}\"
 #define ROOT_VERIFY \"{user_secrets["root_verify"]}\"
 
 #endif // SECRETS_H
