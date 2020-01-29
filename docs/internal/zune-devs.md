@@ -193,6 +193,47 @@ As a result of this process, <code>CreateUsers.py</code> should output to <code>
 ```
 It is important to note that the <code>pin</code> and <code>pvt_key</code> should **never** go on the device, only <code>pin_hash</code> and <code>pvt_key_enc</code> respectivly. These is only generated to be passed to children scripts.
 
+<code>createDevice.py</code> should output <code>device_secrets</code> in the following format:
+
+```c
+
+#ifndef SECRETS_H
+#define SECRETS_H
+
+#define NUM_PROVISIONED_REGIONS 2
+
+
+
+struct R_Data {
+    char *pub_key;
+    char *priv_key;
+    char *rand;
+};
+
+struct R_Data region_data[2];
+
+struct R_Data Canada = { "ea7ac8e4071dcd5da97c46906adeb38cfdc45e3a7e1a77fafe89b969a322484e", "d42fd75e04672802275328456040ed52374a862441bba7fafdfe598f67fe5760af35d2e6c1bcf09423d5cd7c0d5ceae3fb88aa49d4cceae9e9accc283bafb0da4acdb50f9edaf961", "bb57a11b66efa7190fb18ddf2fd7f1503dfc0487436453daeddadc85d4a3c521" };
+struct R_Data USA = { "8bfa59f7db48603f89894615f462984e7bfdd230251569b73ffcef6529654254", "832047f041e9d5c556f30cfca94af42e56ad1f40fe09da4cd192b3685ece1b13fdecdbf530fcb6a68062e6262e8415c4541f875859ffc2c45812cb8560df188fdb99fbc3b9fae9c9", "a864181554b109af422435fcf5f8ecde5724839acbdbfcfcf75a1744eec8b402" };
+
+
+struct U_Data {
+    char *hw_secret;
+    char *pin_hash;
+    char *pub_key;
+    char *pvt_key;
+    char *salt;
+};
+
+struct U_Data user1 = {  "0f107a6e044096ceb1a1", "$argon2id$v=19$m=65536,t=2,p=1$aTDsfn5xzuXYCQGCVbQN/A$NPeXpxDAxBItyc0T5Re9mjbSpeSgHo42RvsfR/jgivs", "6a3f6a4cbc5aeff1935536e271b987bf062d42e9fa551cd7914e335ce535cc6e", "5a642275cec89b0bb660f665dbb41b619d1310d35232f7ff54725f88e9336204e862cbeaaa3cd05f4d94077beb4d7249c08049cd52d3363e409ad327a513efeb62288176b4e28aac", "ef510ff4f5ac5c9b0f8698f1eec21dc3" };
+struct U_Data user2 = {  "06e948d27bddf81b5331", "$argon2id$v=19$m=65536,t=2,p=1$1FV86KT72ZsxKcLa1UYD8Q$WsznfN6EgKqnkrdpNJMJcYsBVUHe90KbSNMHV92Wx4k", "e6b3074dca47e57b9d08f1e412e58f12715aa6828aeff02e28e6fbcf70aa5b4b", "97e458a56e552f868487264b3f5406a506f436632aaa8fef13e8ff9d04aef76b8614fc52ee1f7c0fbea47532372bcff5ed7ad40f1c7ea47f2a8031a8a0c3d910ef7536f538b25f12", "47006afbcbcdce2284600b895cdb4186" };
+
+
+#define ROOT_VERIFY "35653930656464626466313231653064633631653837643961306333333238623966313333376264373539376435396663383739623531356136323962356666"
+
+#endif // SECRETS_H
+
+```
+
 #### Known Weaknesses
 
 First 30 seconds if secret is stolen can be played off of the device
