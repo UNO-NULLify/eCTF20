@@ -56,7 +56,7 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
         pprint(rids)
     except Exception as e:
         print("Unable to create secrets file: {e} "
-              "Please ensure all regions entered are in the list: {user_secrets}".format(e=e, user_secrets=user_secrets.keys()))
+              "Please ensure all regions entered are in the list: {region_secrets}".format(e=e, region_secrets=region_secrets.keys()))
         return
 
     # check for valid user names
