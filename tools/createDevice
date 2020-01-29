@@ -11,20 +11,22 @@ from pprint import pprint
 def write_region(region_names, region_secrets):
     f_str = f""
     for r in region_names:
-        f_str += f"region_data[{r}].rand = \"{region_secrets[r]['rand_pass']}\";\n"
-        f_str += f"region_data[{r}].pub_key = \"{region_secrets[r]['pub_key']}\";\n"
-        f_str += f"region_data[{r}].priv_key = \"{region_secrets[r]['priv_key_enc']}\";\n\n"
+        #f_str += f"region_data[{r}].rand = \"{region_secrets[r]['rand_pass']}\";\n"
+        #f_str += f"region_data[{r}].pub_key = \"{region_secrets[r]['pub_key']}\";\n"
+        #f_str += f"region_data[{r}].priv_key = \"{region_secrets[r]['priv_key_enc']}\";\n\n"
+        f_str += f'struct R_Data {r} = {{ \"{region_secrets[r]["pub_key"]}\", \"{region_secrets[r]["priv_key_enc"]}\", \"{region_secrets[r]["rand_pass"]}\" }};\n'
     return f_str
 
 def write_users(user_names, user_secrets):
 
     f_str = f""
     for u in user_names:
-        f_str += f"user_data[{u}].hw_secret = \"{user_secrets['users'][u]['hw_secret']}\";\n"
-        f_str += f"user_data[{u}].pin = \"{user_secrets['users'][u]['pin_hash']}\";\n"
-        f_str += f"user_data[{u}].pub_key = \"{user_secrets['users'][u]['pub_key']}\";\n"
-        f_str += f"user_data[{u}].pvt_key = \"{user_secrets['users'][u]['pvt_key_enc']}\";\n"
-        f_str += f"user_data[{u}].salt = \"{user_secrets['users'][u]['salt']}\";\n\n"
+        #f_str += f"user_data[{u}].hw_secret = \"{user_secrets['users'][u]['hw_secret']}\";\n"
+        #f_str += f"user_data[{u}].pin = \"{user_secrets['users'][u]['pin_hash']}\";\n"
+        #f_str += f"user_data[{u}].pub_key = \"{user_secrets['users'][u]['pub_key']}\";\n"
+        #f_str += f"user_data[{u}].pvt_key = \"{user_secrets['users'][u]['pvt_key_enc']}\";\n"
+        #f_str += f"user_data[{u}].salt = \"{user_secrets['users'][u]['salt']}\";\n\n"
+        f_str += f"struct U_Data {u} = {{  \"{user_secrets['users'][u]['hw_secret']}\", \"{user_secrets['users'][u]['pin_hash']}\", \"{user_secrets['users'][u]['pub_key']}\", \"{user_secrets['users'][u]['pvt_key_enc']}\", \"{user_secrets['users'][u]['salt']}\" }};\n"
     return f_str
 
 
@@ -77,7 +79,7 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 
 #define NUM_PROVISIONED_REGIONS {len(region_names)}
 
-enum REGIONS {{ {", ".join([ r  for r in region_names])} }};
+
 
 struct R_Data {{
     char *pub_key;
@@ -97,19 +99,15 @@ struct U_Data {{
     char *salt;
 }};
 
-#define NUM_USERS {len(user_names)};
-enum USERNAMES {{ {", ".join([u for u in user_names])} }};
-
-struct U_data user_data[{len(user_names)}];
-
 { write_users(user_names, user_secrets) }
 
-#define ROOT_SIGN \"{user_secrets["root_sign"]}\";
-#define ROOT_VERIFY \"{user_secrets["root_verify"]}\";
+#define ROOT_SIGN \"{user_secrets["root_sign"]}\"
+#define ROOT_VERIFY \"{user_secrets["root_verify"]}\"
 
 #endif // SECRETS_H
 ''')
 
+# enum USERNAMES {{ {", ".join([u for u in user_names])} }};
 
 def get_args():
     """gets arguments from command line"""
