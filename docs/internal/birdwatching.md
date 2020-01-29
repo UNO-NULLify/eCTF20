@@ -12,7 +12,7 @@ However, the provided reference design has several security issues, some of whic
 level and can only be worsened by software vulnerabilities. These include but are not limited to:
 
 * Some DDR memory is shared with the compromised main processor
-* The Microblaze is directly interupted by a potentially exploitable GPIO module
+* The Microblaze is directly interrupted by a potentially exploitable GPIO module
 * Some debugging faculties are left unsecured and may be accessible through the main processor
 
 This proposal introduces some changes to the reference design, as well as some additions, in order to
@@ -40,7 +40,7 @@ described in the hardware integrity module section bellow.
 
 Side channel vulnerabilities, especially those that depend on fault injection, can be abated by minimizing
 the coupling between the main processor and the Microblaze. We propose replacing the GPIO based interrupt
-scheme with a more specialized command reigster, thus abstracting the DRM system, be used to do this. This
+scheme with a more specialized command register, thus abstracting the DRM system, be used to do this. This
 command register should be the primary means for issuing instructions to the Microblaze going forward. Side
 channel resistant programming practices are also important for this goal, a primary task of the hardware team during
 the both phases should be to locate such vulnerabilities.
@@ -66,10 +66,10 @@ something to base their timing off of. Often this trigger is based on power anal
 side-channel measures.
 
 Both types of glitch attacks, while difficult to prevent, can be detected using specialized glitch detection
-circuits. These circuits are designed to be especially vulnerable to glitching, thus providing an early indication that a glitch has occured. This indication can then by used to help secure the system, such as by issuing a reset. The
+circuits. These circuits are designed to be especially vulnerable to glitching, thus providing an early indication that a glitch has occurred. This indication can then by used to help secure the system, such as by issuing a reset. The
 detection of glitch attacks can also be used to issue mockery to attackers via error messages. FPGA timing analysis
 tools can be used to construct such a detector circuit, and the operation of such a circuit can be verified in actual
-hardware by routing the clock input to a more easily accesible location.
+hardware by routing the clock input to a more easily accessible location.
 
 Our target device contains two ADCs which can be configured in a window compare mode to monitor
 internal voltages as well as die temperature. Each unit has a sampling rate of up to one megasample per second.
@@ -79,7 +79,7 @@ operation at excessively high or low voltages, which could otherwise be used to 
 aforementioned attacks.
 
 We propose that both the aforementioned integrity monitoring solutions be employed within our hardware
-design, as well as any fault detection features whose utility becomes aparent during software design.
+design, as well as any fault detection features whose utility becomes apparent during software design.
 
 #### Command Register
 
@@ -96,7 +96,7 @@ Secondly, we can send interrupts to the embedded processor automatically when th
 This makes the issuing of commands slightly more deterministic compared to the reference, but hides the
 acknowledgement by the Microblaze from the processor. This scheme may help reduce side channel vulnerability of
 the embedded processor by reducing the attack surface for fault injection. In the reference design, such a fault
-injection might consist of modfying values in the command channel struct while they are in use by the Microblaze.
+injection might consist of modifying values in the command channel struct while they are in use by the Microblaze.
 
 One should note that the command register need not be a simple register. Each bit or group of bits can be
 individually read or write protected, indicate status, trigger an interrupt, or perform another special function. For
@@ -161,7 +161,7 @@ when initially setting up tools.
 
 A good hardware design should be assessed by its effect on the overall device development process.
 Therefore an objective way to assess the hardware team’s success is by surveying the other teams impression of their
-effect on the project as a whole. Some survery criteria might include
+effect on the project as a whole. Some survey criteria might include
 * Was the hardware team thorough in documentation?
 * Did the hardware team’s changes have a positive effect on the security of the finished product?
 * Was the hardware team instrumental in the various other aspects of the project?
@@ -170,4 +170,4 @@ effect on the project as a whole. Some survery criteria might include
 
 This project, having been designed to represent a real world design problem, presents a unique learning
 experience. Several topics which may not otherwise be encountered in a typical computer engineering course, such
-as FPGA development, hardware secuirty, and secure system design will be explored.
+as FPGA development, hardware security, and secure system design will be explored.
