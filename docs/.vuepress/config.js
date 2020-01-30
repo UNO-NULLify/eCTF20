@@ -40,9 +40,9 @@ module.exports = {
 				collapsable: false,
 				children: [
 					'/internal/attack',
-					'/internal/zune-devs',
-					'/internal/multiple-priority',
 					'/internal/birdwatching',
+					'/internal/multiple-priority',
+					'/internal/zune-devs',
 				]
 			}
 		]
