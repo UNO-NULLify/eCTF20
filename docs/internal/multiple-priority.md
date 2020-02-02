@@ -65,3 +65,15 @@ mb-gcc -Wall -O0 -g3 -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessag
 ~~~
 mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conversion -fstack-check -mxl-reorder -Wstack-protector --param ssp-buffer-size=4 -ftrapv -Wl,-z,relro,-z,now -Wl,-z,noexecstack -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessage-length=0 -MT"$@" -I"../../drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 ~~~
+
+## Reference Front-end Code review notes
+### /miPod/src/main.c
+### /miPod/src/mipod.h
+
+## Reference Back-end Code review notes
+### /mb/drm_audio_fw/src/constants.h
+### /mb/drm_audio_fw/src/main.c
+### /mb/drm_audio_fw/src/platform.h
+### /mb/drm_audio_fw/src/platform.c
+
+
