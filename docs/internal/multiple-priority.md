@@ -76,4 +76,8 @@ mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conv
 ### /mb/drm_audio_fw/src/platform.h
 ### /mb/drm_audio_fw/src/platform.c
 
-
+## Review of our design
+### /mb/drm_audio_fw/src/drm.h
+### /mb/drm_audio_fw/src/drm.c
+### /mb/drm_audio_fw/src/platform.h
+### /mb/drm_audio_fw/src/platform.c
