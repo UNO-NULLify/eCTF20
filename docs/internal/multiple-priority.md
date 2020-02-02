@@ -53,7 +53,7 @@ mb-gcc -Wall -O0 -g3 -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessag
 
 `` -g3`` Tells the compiler to include debug symbols, this will be replaced with ``-s -fvisability=hidden`` to strip the symbols out of the binary.
 
-``-static`` Tells the compiler to statically link all binaries so we will not rely on third party functions.
+``-static`` Tells the compiler to statically link all binaries, third party libraries cant be used to affect the functionality of our code
 
 ``mxl-reorder`` To cause some chaos in reverse engeneering and exploit development by reordering instructions on run.
 
