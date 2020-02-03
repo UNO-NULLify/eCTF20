@@ -13,7 +13,7 @@ exclude:
 - /docs/.*
 - /vagrant/.*
 - /pl/.*
-- /mb/Cora-Z7-07S /.*
+- /mb/Cora-Z7-07S/.*
 - /mb/drm_audio_fw_bsp/.*
 - /mb/README.md
 - /mb/system_wrapper.hdf
