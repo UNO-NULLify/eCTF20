@@ -1,6 +1,41 @@
-# The Zune Devs
+# Initial Plans
 
-## Initial Plan
+## Multiple Priority Disorder
+
+Our team consists of three students in the class and one volunteer. Of those three students, two are pursuing their Master’s degree in Cybersecurity (Aaron and Greg), one is pursuing a Bachelor’s and Master’s degree in Cybersecurity (Marvin), and one is pursuing a Bachelor’s degree in Computer Science with a minor in Cybersecurity (Jacob). Our group is split into a software security team (Aaron and Jacob) and a team preparing for the attack phase (Greg and Marvin). The software security team’s goal was to secure the front-end programs <code>eCTF20/miPod/src/main.c</code> and <code>eCTF20/miPod/src/miPod.h</code>, however we soon realized after beginning work on these files, that they could be recompiled and all of our work would be for nothing. Additionally, since the attackers had root privileges, they could essentially still perform any of the attacks that we were beginning to mitigate vulnerabilities for (environment and path manipulation). From here on out the software security team is focusing on reviewing the reference design for potential attack vectors, looking for design weaknesses in our design, assisting in the remediation of any such weaknesses, programming specific security focused functions (IPC between the front-end and back-end and creating an authorization function), making it more difficult to reverse engineer the final design, and communicating our findings with the attack group and the other software engineering team. The attack group’s focus remains finding exploitable vulnerabilities and creating an automated means of exploiting them.
+
+### Process
+
+Our team has 3 primary objectives, assess the reference design for vulnerabilities and execution flow that can be utilized in the attack phase, assess and ensure the quality of code that enters our repository to ensure the attack surface is as minimal as possible, our final objective is to increase the time investment of opposing teams in the attack phase by researching and implementing anti-reverse engineering methods such as detaching ptrace, or replacing function calls with pointers. The process for achieving these objectives will largely be focused on research and experimentation. This will begin by reviewing the code both in an automated manner as well as manually. It will also be valuable to research common attacks to our specific set of hardware in order to understand what changes may be futile due to hardware vulnerabilities to optimize time and effort. The majority of the research we intend to perform will utilize the resource materials indicated below. These will allow us to be efficient with our time by eliminating any blind experimentation. Additionally, there will be work to implement the use of the hardware register for inter-process communication (IPC), implement an authorization security function for playing/sharing music, and review the design for weaknesses or vulnerabilities.
+
+### Implications
+
+Our new or enhanced knowledge in software security engineering, software assurance, and embedded system security will further our education by providing high-pressure hands-on experience. Specifically, it allows us to apply these skills in a competitive environment, where we build our own system, assess others, exploit them, and have the opportunity to learn the potential downfalls of our design. That's what many of us will take from this, the experience of designing and securing a system, then learning how the things that we implemented added to the security of the system and how the design may have been exploited. All of these things go far beyond what a normal lab, class, or project could provide.
+
+### Support Material
+
+Our support material consists of many software vulnerability discovery books, a Youtube channel about various kinds of exploitation, and a commonly used website for programming errors or questions. They are as follows:
+
+* 25 Deadly Sins of Software Security by Howard, LeBlanc, and Viega
+* Exploiting Software by Greg Hoglund and Gary McGraw
+* Secure Programming Cookbook for C and C++ by Viega and Messier
+* Understanding the Linux Kernel by Bovet and Cesati
+* Linux System Programming by Love
+* Hacking: The Art of Exploitation by Erickson
+* THe Art of Software Security Assessment by Dowd, McDonald, and Schuh
+* [The "Ultimate" Anti-Debugging Reference by Peter Ferrie](https://anti-reversing.com/Downloads/Anti-Reversing/The_Ultimate_Anti-Reversing_Reference.pdf)
+* [LiveOverFlow](https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w)
+* [StackOverFlow](https://stackoverflow.com/)
+
+### Project Timeline
+
+![Project Timeline](/MPD-Timeline.png)
+
+### Assessment Plan
+
+The assessment plan will follow closely with the tasks outlined in the gantt chart. Our team is not centered around creating a product as much as it is assessing the security of both the reference design and the eventual creation of the team at large. For this reason prototype demonstrations are not entirely applicable to our assessment. For the automated attacks phase this would most likely come into play by illustrating that we have created some automated form of exploiting common vulnerabilities in the reference design and for the software security team, it will be the discussion/presentation of the security or anti-reverse engineering measures that were taken or implemented. The remainder of our assessment will most likely depend on continual documentation of our research into the security of miPod designs (both ours and other teams' designs). In total, our assessment will be made up of about 50% prototype demonstrations/presentations and 50% reports/documentation. These demonstrations/presentations will be a combination of design prototypes as well as exploit prototypes.
+
+## The Zune Devs
 
 The Zune Devs (Frank, Jeff, Drew, and Aaron 3) have been hard at work creating secure encryption methods to ensure the validity of passed data.
 In practice, the encryption that we use and write will be performed using the libsodium library. 
@@ -301,5 +336,174 @@ A wholistic assessment plan for this team should take the following into conside
 
 **Contribution and Collaboration:** Everyone has a role to play some people act as architects others are better technicians did everyone try reaching beyond their comfort zone to learn? Did anyone's actions create a roadblock? Is there good communication both within the team and between teams? 
 
-## Week 1
+## Birdwatching
 
+The overarching theme of this competition is to create a secure system in spite of a major element being
+compromised. In this case, our attackers have root access and therefore full authority over the main processor. This
+significantly reduces our options to produce a secure application. The reference design suggests we answer this
+challenge with a Microblaze embedded processor, isolated as much as possible from the compromised portion of the
+device.
+
+However, the provided reference design has several security issues, some of which begin at a hardware
+level and can only be worsened by software vulnerabilities. These include but are not limited to:
+
+* Some DDR memory is shared with the compromised main processor
+* The Microblaze is directly interrupted by a potentially exploitable GPIO module
+* Some debugging faculties are left unsecured and may be accessible through the main processor
+
+This proposal introduces some changes to the reference design, as well as some additions, in order to
+reinforce the intrinsic security as well as to improve the security of the entire solution.
+
+### Hardware Changes
+
+The overall layout of the programmable logic for this project will be left the same as the reference design.
+However, several key channels used to communicate between the main processor and the Microblaze will be
+changed to make them more secure, the overall goals for these changes are as follows.
+
+* Reduce overall attack surface
+* Protect from informed hardware attacks
+* Reduce side channel vulnerabilities
+
+The first goal will be addressed by reducing the use of the shared DDR memory present in the reference
+design, since the main processor has full authority over it. The DDR memory should always be considered untrusted
+and unreliable. It is preferable that the DDR is interacted with as little as possible, and that only strongly encrypted
+data be stored in it. Information should only be decrypted inside the programmable logic, where it is far safer.
+
+The second goal will be the subject of a proposed hardware integrity monitoring module. Since our
+attackers have access to all the information used to create our programmable logic, including the Vivado project,
+they will have copious information with which to devise hardware based attacks. Some of these attacks are
+described in the hardware integrity module section bellow.
+
+Side channel vulnerabilities, especially those that depend on fault injection, can be abated by minimizing
+the coupling between the main processor and the Microblaze. We propose replacing the GPIO based interrupt
+scheme with a more specialized command register, thus abstracting the DRM system, be used to do this. This
+command register should be the primary means for issuing instructions to the Microblaze going forward. Side
+channel resistant programming practices are also important for this goal, a primary task of the hardware team during
+the both phases should be to locate such vulnerabilities.
+
+#### Hardware Integrity Module
+
+A hardware component should be provided to protect the other trusted components from physical attacks.
+This is especially important since attackers will have access to all resources necessary to implement the
+programmable logic, making such attacks highly informed and providing copious testing capabilities. The proposed
+module, hereafter referred to as the Basic Integrity Recording Device (BIRD), should provide protections from two
+basic forms of tampering: clock glitch attacks and voltage glitch attacks.
+
+Clock glitch attacks are spurious rising edges injected into a system with the purpose of violating setup
+times at specific points. One common use of clock glitching is to skip compare and branch instructions, which may
+compromise the target system by skipping security checks or placing the machine in an illegal state.
+
+Voltage glitch attacks are conducted by periodically shorting power to ground, creating a low voltage spike.
+The goal of a voltage glitch attack is very similiar to a clock glitch attack, to cause a malfunction that then
+compromises the system.
+
+One characteristic of both types of fault attack are that in order to have useful behavior they usually need
+something to base their timing off of. Often this trigger is based on power analysis, which increases the value of anti
+side-channel measures.
+
+Both types of glitch attacks, while difficult to prevent, can be detected using specialized glitch detection
+circuits. These circuits are designed to be especially vulnerable to glitching, thus providing an early indication that a glitch has occurred. This indication can then by used to help secure the system, such as by issuing a reset. The
+detection of glitch attacks can also be used to issue mockery to attackers via error messages. FPGA timing analysis
+tools can be used to construct such a detector circuit, and the operation of such a circuit can be verified in actual
+hardware by routing the clock input to a more easily accessible location.
+
+Our target device contains two ADCs which can be configured in a window compare mode to monitor
+internal voltages as well as die temperature. Each unit has a sampling rate of up to one megasample per second.
+Unfortunately this sampling rate may not be fast enough to detect voltage glitches, especially since each ADC's
+attention would have to be divided among several voltage rails. However, the ADCs can be used to prevent
+operation at excessively high or low voltages, which could otherwise be used to exacerbate the effects of
+aforementioned attacks.
+
+We propose that both the aforementioned integrity monitoring solutions be employed within our hardware
+design, as well as any fault detection features whose utility becomes apparent during software design.
+
+#### Command Register
+
+In contrast to the provided reference design, which sends commands via a shared area in DDR, we propose
+a register based method of issuing commands to the embedded processor. Accessing this command register can be
+done almost identically to configuring a peripheral on a microcontroller. Using this scheme has two primary
+advantages over sharing memory.
+
+Firstly, we will have full physical control over the behavior of the register. For example, if we detect that
+the Microblaze has been compromised, we can lock the command register so that information cannot be smuggled
+out of the PL.
+
+Secondly, we can send interrupts to the embedded processor automatically when the register is written to.
+This makes the issuing of commands slightly more deterministic compared to the reference, but hides the
+acknowledgement by the Microblaze from the processor. This scheme may help reduce side channel vulnerability of
+the embedded processor by reducing the attack surface for fault injection. In the reference design, such a fault
+injection might consist of modifying values in the command channel struct while they are in use by the Microblaze.
+
+One should note that the command register need not be a simple register. Each bit or group of bits can be
+individually read or write protected, indicate status, trigger an interrupt, or perform another special function. For
+example, bits may feed into a shift register or block ram. This would allow for longer commands to be shifted into a
+safe area which only the Microblaze may access, again reducing the surface for fault injection attacks.
+
+An example implementation of the command register could be structured as follows, an 8 bit alignment was
+chosen to ensure that writes are made with a single instruction, and to allow use of the write strobe feature of the
+AXI bus.
+
+```
+MSB                                                              LSB
+[   COMMAND   (W)][   DATA IN   (W)][   STATUS   (R)][   RESP   (R)]
+W: write only, reads will return zero 
+R: read only, writes will have no effect
+```
+
+The command field in this instance should allow the main processor to signal any of the commands as implemented in the reference design. These are:
+|               |               |
+|:-------------:|:-------------:|
+| load_file     | query_song    |
+| login         | share_song    |
+| logout        | play_song     |
+| query_player  | digital_out   |
+
+The command register and DMA should be locked whenever a fault is detected, and only unlocked after the proper booting of the Microblaze. Additionally any areas which may contain secrets should be erased, such as the microblaze RAM and ROM, and the secrets container, if one is used. This functionality should be controlled by the basic integrity recording device (BIRD) discussed above.
+
+To avoid potential fault injection, the command register should not generate interrupts when they are not anticipated. In a scheme where the main processor polls the DRM, status flags, which may be presented in the status field in this example, should be the only method of stalling the main processor when the Microblaze is busy.
+
+### Deliverables
+
+The primary deliverable for the hardware team is the Vivado project with the described features added. This
+is used in the final submission and is also critical for the software teams to be able to debug at a full project level. In
+order to assist in software development, the hardware team should also provide code examples, utilities, and
+documentation as necessary. A high level overview of the updated hardware design should also be provided to be
+used with the final device documentation.
+
+### Project Timeline
+
+The goals of the hardware team should firstly adhere to the design milestone goals suggested by MITRE.
+
+Additionally, we propose several dates for reaching hardware development goals.
+ - 01/31/2020: Initial command register implementation
+ - 02/01/2020: Relevant design document section prepared (Submission by 02/05)
+ - 02/05/2020: Command register low level code examples
+ - 02/07/2020: Initial BIRD (Integrity Module) implementation and preliminary testing
+ - 02/12/2020: Implement optional crypto acceleration IP integration.
+ - 02/20/2020: Hardware design lockout (No non-essential changes to core design)
+
+### Reference Materials
+
+Since this project is conducted using primary Xilinx SoC tools, namely Vivado studio, Xilinx
+documentation should be the primary source for authoritative device information. Datasheets and application notes
+should kept organized in case they need to referenced later. Additionally, several third party sources have proven
+useful in the research leading up to this proposal. Dr. Dan Gisselquist, of Gisselquist Technologies has authored an
+extensive series of tutorials and articles about hardware design, without which some of the tasks created here would
+be vastly more daunting. The unending knowledge pool known as Stack Exchange has also proven useful for
+answering questions pertaining to low level programming, it is forseeable that it will be used extensively, especially
+when initially setting up tools.
+
+### Assessment
+
+A good hardware design should be assessed by its effect on the overall device development process.
+Therefore an objective way to assess the hardware team’s success is by surveying the other teams impression of their
+effect on the project as a whole. Some survey criteria might include
+* Was the hardware team thorough in documentation?
+* Did the hardware team’s changes have a positive effect on the security of the finished product?
+* Was the hardware team instrumental in the various other aspects of the project?
+
+### Learning Implications
+
+This project, having been designed to represent a real world design problem, presents a unique learning
+experience. Several topics which may not otherwise be encountered in a typical computer engineering course, such
+as FPGA development, hardware security, and secure system design will be explored.

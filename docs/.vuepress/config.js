@@ -31,6 +31,7 @@ module.exports = {
 				children: [
 					'/technical/hardware',
 					'/technical/software',
+					'/technical/compiler-fixes',
 				]
 			},
 			{
@@ -39,10 +40,9 @@ module.exports = {
 				sidebarDepth: 2,
 				collapsable: false,
 				children: [
+					'/internal/initial-plans',
+					'/internal/code-reviews',
 					'/internal/attack',
-					'/internal/birdwatching',
-					'/internal/multiple-priority',
-					'/internal/zune-devs',
 				]
 			}
 		]
