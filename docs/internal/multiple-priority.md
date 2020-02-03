@@ -68,7 +68,6 @@ mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conv
 
 ## Reference Front-end Code review notes
 ### /miPod/src/main.c
-#### Notes from flawfinder
 <code>lines 31 and 32</code>
 Uses system to call devmem -- this binary is located at /sbin/devmem and can be replaced with a malicious binary.
 
@@ -78,15 +77,34 @@ Uses strcopy -- does not perform bounds checking.
 <code>line 200</code>
 Uses strcopy -- does not perform bounds checking.
 
-#### Manual analysis
 
 ### /miPod/src/mipod.h
-#### Notes from flawfinder
-<code>lines 31 and 32</code>
+<code>lines 25, 28, and 29</code>
+Format string attack is possible on uses of mp_printf(), print_prompt(), and print_prompt_msg() -- not format specified.
 
+<code>lines </code>
 
-#### Manual analysis
+// TODO: reformat the rest of this
+./main.c:28: [2] (buffer) memcpy: Does not check for buffer overflows when copying to destination (CWE-120). Make sure destination can always hold the source data.
 
+./main.c:78: [2] (misc) open: Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+
+./main.c:215: [2] (misc) open: Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+
+./main.c:322: [2] (misc) open: Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+
+./main.c:353: [2] (misc) open: Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+****** THIS IS THE FILE FOR IPC ****
+<code>
+    mem = open("/dev/uio0", O_RDWR);
+    c = mmap(NULL, sizeof(cmd_channel), PROT_READ | PROT_WRITE, MAP_SHARED, mem, 0);</code>
+Not vulnerable to environment manipulation, but we can watch it.
+
+./main.c:89: [1] (buffer) read: Check buffer boundaries if used in a loop including recursive loops (CWE-120, CWE-20).
+**** check the size of the buffer vs what is passed
+
+<code>lines 272, 275, 278</code>
+uses depricated usleep instead of nanosleep() or setitimer().
 
 ## Reference Back-end Code review notes
 ### /mb/drm_audio_fw/src/constants.h
