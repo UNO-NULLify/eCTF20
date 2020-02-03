@@ -68,6 +68,9 @@ mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conv
 
 ## Reference Front-end Code review notes
 ### /miPod/src/main.c
+#### Notes from flawfinder
+
+#### Manual analysis
 ### /miPod/src/mipod.h
 
 ## Reference Back-end Code review notes
