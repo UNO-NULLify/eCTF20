@@ -75,7 +75,6 @@ mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conv
 
     system("devmem 0x41200000 32 1");
 </code>
-
 Uses system to call devmem -- this binary is located at /sbin/devmem and can be replaced with a malicious binary.
 
 
@@ -86,7 +85,6 @@ Uses system to call devmem -- this binary is located at /sbin/devmem and can be 
 
     strcpy((void*)c->pin, pin);
 </code>
-
 Uses strcopy -- does not perform bounds checking.
 
 
@@ -95,7 +93,6 @@ Uses strcopy -- does not perform bounds checking.
 
     strcpy((char *)c->username, username);
 </code>
-
 Uses strcopy -- does not perform bounds checking.
 
 
@@ -104,7 +101,6 @@ Uses strcopy -- does not perform bounds checking.
 
     fd = open(fname, O_RDONLY);
 </code>
-
 We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
 
 
@@ -113,7 +109,6 @@ We will be able to manipulate the environment to change what is opened or use a 
 
     fd = open(song_name, O_WRONLY);
 </code>
-
 We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
 
 
@@ -122,7 +117,6 @@ We will be able to manipulate the environment to change what is opened or use a 
 
     int fd = open(fname, O_WRONLY | O_CREAT | O_TRUNC);
 </code>
-
 We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
 
 
@@ -133,7 +127,6 @@ We will be able to manipulate the environment to change what is opened or use a 
 
     c = mmap(NULL, sizeof(cmd_channel), PROT_READ | PROT_WRITE, MAP_SHARED, mem, 0);
 </code>
-
 Not vulnerable to environment manipulation, but we can watch it.
 
 
@@ -142,7 +135,6 @@ Not vulnerable to environment manipulation, but we can watch it.
 
     read(fd, song_buf, sb.st_size);
 </code>
-
 Check the size of the buffer vs what is passed.
 
 <code>
@@ -158,7 +150,6 @@ Check the size of the buffer vs what is passed.
 
     usleep(200000); // wait for DRM to print
 </code>
-
 uses depricated usleep instead of nanosleep() or setitimer().
 
 ### /miPod/src/mipod.h
@@ -173,7 +164,6 @@ uses depricated usleep instead of nanosleep() or setitimer().
 
     #define print_prompt_msg(...) printf(USER_PROMPT, __VA_ARGS__)
 </code>
-
 Format string attack is possible on uses of mp_printf(), print_prompt(), and print_prompt_msg() -- not format specified.
 
 ## Reference Back-end Code review notes
