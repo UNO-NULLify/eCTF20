@@ -14,7 +14,7 @@ python3 createUsers --user-list user1:12345678 user2:12345679 user3:12345677 --o
 
 python3 createDevice --region-list Canada USA --region-secrets-path region_secrets.json --user-list user1 user2 --user-secrets-path user_secrets.json --device-dir ./device
 
-gcc -Wall -pedantic -std=c1x -g -o ./device/test test.c
+gcc -Wall -pedantic -std=c1x -g -o  ./device/test test.c -lsodium
 
 ./device/test
 
