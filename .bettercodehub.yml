@@ -20,3 +20,4 @@ exclude:
 languages:
 - cpp
 - python
+- script
