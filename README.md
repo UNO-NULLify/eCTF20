@@ -1,6 +1,7 @@
 # 2020 MITRE Collegiate eCTF UNO Code
+[![BCH compliance](https://bettercodehub.com/edge/badge/UNO-NULLify/eCTF20?branch=master&token=182997d625276862ccf0a76c4e51029ff540bcf8)](https://bettercodehub.com/) | [![DepShield Badge](https://depshield.sonatype.org/badges/UNO-NULLify/eCTF20/depshield.svg)](https://depshield.github.io) | [![CodeFactor](https://www.codefactor.io/repository/github/uno-nullify/ectf20/badge?s=35447e9371dcafdd05706cca0eba475aaa7d79a8)](https://www.codefactor.io/repository/github/uno-nullify/ectf20)
 
-This repository contains an example reference system for MITRE's 2020 [Embedded System CTF](http://mitrecyberacademy.org/competitions/embedded/).
+This repository contains an example reference system for MITRE's 2020 [Embedded System CTF](http://mitrecyberacademy.org/competitions/embedded/). 
 This code is incomplete, insecure, and does not meet MITRE standards for quality.
 This code is being provided for educational purposes to serve as a simple example that meets the minimum functional requirements for the 2020 MITRE eCTF competition.
 Use this code at your own risk!
@@ -23,5 +24,4 @@ The example code is structured as follows
  * `vivado-boards/` - Contains Vivado libraries for the board
  * `Vagrantfile` - Vagrantfile for launching the Vagrant environment - DO NOT CHANGE
  * `sample-audio` - Sample audio files for you to use
- * `scripts/` - Contains useful scripts for developer convenience
  * `docs/` - Contains all documentation for the project
