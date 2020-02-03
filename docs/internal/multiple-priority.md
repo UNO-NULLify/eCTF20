@@ -68,7 +68,8 @@ mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conv
 
 ## Reference Front-end Code review notes
 ### /miPod/src/main.c
-<code>lines 31 and 32
+<code>
+	(lines 31 and 32)
 
     system("devmem 0x41200000 32 0");
 
@@ -78,7 +79,8 @@ mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conv
 Uses system to call devmem -- this binary is located at /sbin/devmem and can be replaced with a malicious binary.
 
 
-<code>lines 109 and 110
+<code>
+	(lines 109 and 110)
 
     strcpy((void*)c->username, username);
 
@@ -88,7 +90,8 @@ Uses system to call devmem -- this binary is located at /sbin/devmem and can be 
 Uses strcopy -- does not perform bounds checking.
 
 
-<code>line 200
+<code>
+	(line 200)
 
     strcpy((char *)c->username, username);
 </code>
@@ -96,7 +99,8 @@ Uses strcopy -- does not perform bounds checking.
 Uses strcopy -- does not perform bounds checking.
 
 
-<code>line 78
+<code>
+	(line 78)
 
     fd = open(fname, O_RDONLY);
 </code>
@@ -104,7 +108,8 @@ Uses strcopy -- does not perform bounds checking.
 We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
 
 
-<code>line 215
+<code>
+	(line 215)
 
     fd = open(song_name, O_WRONLY);
 </code>
@@ -112,7 +117,8 @@ We will be able to manipulate the environment to change what is opened or use a 
 We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
 
 
-<code>line 322
+<code>
+	(line 322)
 
     int fd = open(fname, O_WRONLY | O_CREAT | O_TRUNC);
 </code>
@@ -120,7 +126,8 @@ We will be able to manipulate the environment to change what is opened or use a 
 We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
 
 
-<code>line 353
+<code>
+	(line 353)
 
     mem = open("/dev/uio0", O_RDWR);
 
@@ -130,14 +137,16 @@ We will be able to manipulate the environment to change what is opened or use a 
 Not vulnerable to environment manipulation, but we can watch it.
 
 
-<code>line 89
+<code>
+	(line 89)
 
     read(fd, song_buf, sb.st_size);
 </code>
 
 Check the size of the buffer vs what is passed.
 
-<code>lines 272, 275, 278
+<code>
+	(lines 272, 275, 278)
 
     usleep(200000); // wait for DRM to print
 
@@ -153,7 +162,8 @@ Check the size of the buffer vs what is passed.
 uses depricated usleep instead of nanosleep() or setitimer().
 
 ### /miPod/src/mipod.h
-<code>lines 25, 28, and 29
+<code>
+	(lines 25, 28, and 29)
 
     usleep(200000); // wait for DRM to print
 
