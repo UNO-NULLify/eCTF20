@@ -69,9 +69,24 @@ mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conv
 ## Reference Front-end Code review notes
 ### /miPod/src/main.c
 #### Notes from flawfinder
+<code>lines 31 and 32</code>
+Uses system to call devmem -- this binary is located at /sbin/devmem and can be replaced with a malicious binary.
+
+<code>lines 109 and 110</code>
+Uses strcopy -- does not perform bounds checking.
+
+<code>line 200</code>
+Uses strcopy -- does not perform bounds checking.
 
 #### Manual analysis
+
 ### /miPod/src/mipod.h
+#### Notes from flawfinder
+<code>lines 31 and 32</code>
+
+
+#### Manual analysis
+
 
 ## Reference Back-end Code review notes
 ### /mb/drm_audio_fw/src/constants.h
