@@ -88,7 +88,7 @@ build_reference() {
 #-|-------------- Build Device --------------|-
 
   printf "\n\nRunning buildDevice...\n"  
-  (./buildDevice -p /ectf/ -n test -bf all -secrets_dir device1/) 2>> ../.logs/"$TIME".log
+  (./buildDevice -p ../ -n test -bf all -secrets_dir device1/) 2>> ../.logs/"$TIME".log
   
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "buildDevice Failed!"
@@ -98,7 +98,7 @@ build_reference() {
 #-|-------------- Package Device --------------|-
 
   printf "\n\nRunning packageDevice...\n"
-  (time ./packageDevice ../boot-image/template.bif device1/miPod.bin /ectf/mb/Cora-Z7-07S/download.bit) 2>> ../.logs/"$TIME".log
+  (time ./packageDevice ../boot-image/template.bif device1/miPod.bin ../mb/Cora-Z7-07S/download.bit) 2>> ../.logs/"$TIME".log
   
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "packageDevice Failed!"
@@ -128,7 +128,7 @@ build_reference() {
            ;;
   esac
   
-  (time ./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod.elf ../boot-image/image.ub --mipod-bin-path device1/miPod.bin) 2>> ../.logs/"$TIME".log
+  (time ./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device1/miPod.bin) 2>> ../.logs/"$TIME".log
 
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "deployDevice Failed!"
