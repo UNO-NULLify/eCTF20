@@ -27,7 +27,6 @@ def main(user_list, outfile):
         return 1
     try:
         user_dict = {}
-        print(user_dict)
         for user in user_list:
             u = user.split(":")
             salt = utils.random(SALTBYTES) # 16 bytes

@@ -32,7 +32,7 @@ def get_args():
 
 if __name__ == '__main__':
     region_list, outfile = get_args()
-    print("generating system specific secrets")
+    print("generating region specific secrets")
     regions = {}
     for r in region_list:
         # create a public / private key pair (Curve25519)
@@ -46,6 +46,6 @@ if __name__ == '__main__':
         regions[r] = {"pub_key": bytes(pvt_key.public_key).hex(),                  # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
                       "priv_key": bytes(pvt_key).hex(), #NEVER TOUCH DEVICE
                       "priv_key_enc": pvt_key_enc.hex(),
-                      "rand_pass": secure_key.hex(),   #Goes on devices that are from this region. Store in secure place. 
+                      "rand_pass": secure_key.hex(),   #Goes on devices that are from this region. Store in secure place.
                       }
     main(regions, outfile)

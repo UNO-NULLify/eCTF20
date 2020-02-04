@@ -9,7 +9,10 @@ import os
 import wave
 from argparse import ArgumentParser
 import numpy as np
-
+from nacl import pwhash, secret, utils, encoding, public, hash
+from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
+import nacl.signing
+from nacl.public import PrivateKey, SealedBox
 
 class ProtectedSong(object):
     """Example song object for protected song"""
@@ -85,6 +88,7 @@ def create_metadata(regions, user, user_secret_location, region_info):
 
 
 def main():
+    #Take in command line arguments.
     parser = ArgumentParser(description='main interface to protect songs')
     parser.add_argument('--region-list', nargs='+', help='List of regions song can be played in', required=True)
     parser.add_argument('--region-secrets-path', help='File location for the region secrets file',
@@ -95,13 +99,44 @@ def main():
     parser.add_argument('--user-secrets-path', help='File location for the user secrets file', required=True)
     args = parser.parse_args()
 
+    #Take input from secret files
     regions = json.load(open(os.path.abspath(args.region_secrets_path)))
-    try:
-        metadata = create_metadata(args.region_list, args.owner, args.user_secrets_path, regions)
-    except ValueError:
-        raise ValueError('Ensure all user IDs are integers and all regions are in the provided region_information.json')
-    protected_song = ProtectedSong(args.infile, metadata)
-    protected_song.save_secured_song_to_wave(args.outfile)
+    users = json.load(open(os.path.abspath(args.user_secrets_path)))
+
+    #Unique song ID for the song. In place of song name.
+    songID = utils.random(16).hex()
+
+    #Define hashing method
+    HASHER = hash.blake2b
+
+    #Key used for securing encrypting and sharing the song. hash(hashpin + pin + SongName)
+    songKey = HASHER(bytes((users["users"][args.owner]["pin_hash"]+users["users"][args.owner]["pin"]+songID),
+                            encoding="utf-8"), encoder=encoding.HexEncoder)
+    regionKey = utils.random(32)
+    print(regionKey.hex())
+
+    regionSecretList = []
+
+    for regionIn in args.region_list:
+        pvt_key = public.PrivateKey(regions[regionIn]["priv_key"],encoder=encoding.HexEncoder)
+        encrypted = SealedBox(pvt_key.public_key).encrypt(regionKey)
+        regionSecretList.append([regionIn, encrypted.hex()])
+        #print(f"decrypted:{SealedBox(pvt_key).decrypt(encrypted).hex()}") #This is how you decrypt the secret
+
+    hardwareSecretHash = HASHER(bytes((users["users"][args.owner]["hw_secret"]+songID),
+                            encoding="utf-8"), encoder=encoding.HexEncoder)
+    encryptionKey = HASHER(bytes((songKey.hex()+regionKey.hex()+hardwareSecretHash.hex()),
+                            encoding="utf-8"), encoder=encoding.HexEncoder)[:32]
+    print(f"encryption key {encryptionKey.hex()}")
+    
+
+
+    # try:
+    #     metadata = create_metadata(args.region_list, args.owner, args.user_secrets_path, regions)
+    # except ValueError:
+    #     raise ValueError('Ensure all user IDs are integers and all regions are in the provided region_information.json')
+    # protected_song = ProtectedSong(args.infile, metadata)
+    # protected_song.save_secured_song_to_wave(args.outfile)
 
 
 if __name__ == '__main__':
