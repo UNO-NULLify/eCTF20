@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-// Date        : Wed Jan 22 04:06:10 2020
+// Date        : Wed Feb  5 00:22:53 2020
 // Host        : vagrant-eCTF running 64-bit Ubuntu 18.10
 // Command     : write_verilog -force -mode funcsim
 //               /ectf/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/system_share_axi_bram_ctrl_1_0_sim_netlist.v

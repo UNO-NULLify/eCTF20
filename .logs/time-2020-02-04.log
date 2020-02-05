@@ -1,0 +1,32 @@
+
+real	0m0.045s
+user	0m0.037s
+sys	0m0.008s
+
+real	0m0.099s
+user	0m0.091s
+sys	0m0.008s
+
+real	0m5.392s
+user	0m5.759s
+sys	0m0.309s
+
+real	0m0.035s
+user	0m0.031s
+sys	0m0.004s
+rlwrap: warning: your $TERM is 'xterm-256color' but rlwrap couldn't find it in the terminfo database. Expect some problems.
+
+(SWT:20973): Gtk-WARNING **: 01:05:49.512: Unable to locate theme engine in module_path: "pixmap",
+
+(SWT:20973): Gtk-WARNING **: 01:05:49.513: Unable to locate theme engine in module_path: "pixmap",
+
+(SWT:20973): Gtk-WARNING **: 01:05:49.513: Unable to locate theme engine in module_path: "pixmap",
+
+(SWT:20973): Gtk-WARNING **: 01:05:49.514: Unable to locate theme engine in module_path: "pixmap",
+
+(SWT:20973): Gtk-WARNING **: 01:05:49.514: Unable to locate theme engine in module_path: "pixmap",
+rlwrap: warning: your $TERM is 'xterm-256color' but rlwrap couldn't find it in the terminfo database. Expect some problems.
+
+real	0m0.277s
+user	0m0.227s
+sys	0m0.036s

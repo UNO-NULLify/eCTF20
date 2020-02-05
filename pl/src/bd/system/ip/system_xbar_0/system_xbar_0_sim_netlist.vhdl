@@ -1,7 +1,7 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
--- Date        : Wed Jan 22 04:17:50 2020
+-- Date        : Wed Feb  5 00:39:58 2020
 -- Host        : vagrant-eCTF running 64-bit Ubuntu 18.10
 -- Command     : write_vhdl -force -mode funcsim /ectf/pl/src/bd/system/ip/system_xbar_0/system_xbar_0_sim_netlist.vhdl
 -- Design      : system_xbar_0

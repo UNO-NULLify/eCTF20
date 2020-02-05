@@ -11,14 +11,24 @@ then add the MITRE repo as another remote. Follow these steps below.
 
 1. Clone the eCTF repository using ssh or https 
 ```bash
-git clone -b dev https://github.com/UNO-NULLify/eCTF20 --recursive
+git clone https://github.com/mitre-cyber-academy/2020-ectf-insecure-example --recursive
 ``` 
-
-2. Switch to an existing relevant topic/feature branch or create a new one:
+2. Change the current origin remote to another name
 ```bash
-git checkout <git_branch> # Switch to existing branch
-git checkout -b <git_branch> # Create new branch
+git remote rename origin mitre
 ```
+
+3. Fork the MITRE repo on github (Note that you probably want to make the repo private for now so
+   that other teams cannot borrow your development ideas) 
+
+4. Add the fork as the new origin
+```bash
+git remote add origin <git_path>.git
+```
+
+You can now fetch and push as you normally would using `git fetch origin` and `git push origin`.
+If we push out updated code, you can fetch this new code using `git fetch mitre`.
+
 
 ## Download Xilinx Tools
 We require using the two main Xilinx tools for the development of your
@@ -29,7 +39,7 @@ information about these tools will be discussed when building the reference desi
 
  1. [Go to the Xilinx website](https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html)
  2. Download the 2017.4 version -> All OS Installer Single-File Download
- 3. Login with user `tworort` and password `asdfghjk1!`
+ 3. Login or create a Xilinx account. Note: you can use your college email and location as your "corporation"
  4. Place the downloaded zip file into the root directory of your project - Vagrant will install it on the VM
 
 
@@ -69,8 +79,7 @@ To build the reference design for the first time, follow these steps:
 16. See the **Accessing UART From Inside the VM** section of the [Vagrant README](vagrant/README.md) file to start minicom.
 17. Press the `RESET` button on the board to reset it. You should now see the board boot and enter a Linux shell.
 18. `cd` to the `music` folder.
- 19. Run the `./miPod` application, and run `help` to see a list of all possible commands.
-
+19. Run the `./miPod` application, and run `help` to see a list of all possible commands.
 
 ## Working With the Xilinx Tools
 You can launch `vivado` to modify the reference implementation programmable logic (PL).

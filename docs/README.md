@@ -1,10 +1,10 @@
 ---
 home: true
-heroImage: /uno.png
+heroImage: /nullify_banner.svg
 heroText: Mitre eCTF Documentation
 tagline: NULLify - University of Nebraska at Omaha
 actionText: Get Started →
-actionLink: /getting-started/
+actionLink: /user/
 # features:
 # - title: Simplicity First
 #   details: Minimal setup with markdown-centered project structure helps you focus on writing.

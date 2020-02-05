@@ -14,9 +14,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 5083 
+INFO: Helper process launched with PID 14284 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:16 . Memory (MB): peak = 1241.574 ; gain = 86.000 ; free physical = 998 ; free virtual = 3260
+Starting RTL Elaboration : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1241.578 ; gain = 86.000 ; free physical = 11434 ; free virtual = 14207
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'system_int_axi_gpio_0_0' [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/synth/system_int_axi_gpio_0_0.vhd:84]
 	Parameter C_FAMILY bound to: zynq - type: string 
@@ -207,7 +207,7 @@ WARNING: [Synth 8-3331] design slave_attachment has unconnected port S_AXI_WSTRB
 WARNING: [Synth 8-3331] design slave_attachment has unconnected port S_AXI_WSTRB[1]
 WARNING: [Synth 8-3331] design slave_attachment has unconnected port S_AXI_WSTRB[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:18 . Memory (MB): peak = 1286.105 ; gain = 130.531 ; free physical = 1007 ; free virtual = 3269
+Finished RTL Elaboration : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1286.109 ; gain = 130.531 ; free physical = 11446 ; free virtual = 14220
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -217,7 +217,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:19 . Memory (MB): peak = 1286.105 ; gain = 130.531 ; free physical = 1006 ; free virtual = 3269
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:24 . Memory (MB): peak = 1286.109 ; gain = 130.531 ; free physical = 11444 ; free virtual = 14217
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -240,23 +240,23 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 6 instances were transformed.
   FDR => FDRE: 6 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1589.707 ; gain = 0.000 ; free physical = 638 ; free virtual = 2900
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.13 . Memory (MB): peak = 1638.727 ; gain = 0.000 ; free physical = 11056 ; free virtual = 13829
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:35 ; elapsed = 00:01:18 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 686 ; free virtual = 2948
+Finished Constraint Validation : Time (s): cpu = 00:01:14 ; elapsed = 00:01:52 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 11095 ; free virtual = 13869
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:35 ; elapsed = 00:01:18 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 686 ; free virtual = 2948
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:14 ; elapsed = 00:01:52 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 11095 ; free virtual = 13869
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:01:18 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 687 ; free virtual = 2949
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:14 ; elapsed = 00:01:52 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 11097 ; free virtual = 13871
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "s_axi_rresp_i" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "s_axi_rresp_i" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
@@ -264,7 +264,7 @@ INFO: [Synth 8-5544] ROM "s_axi_bresp_i" won't be mapped to Block RAM because ad
 INFO: [Synth 8-5544] ROM "s_axi_bresp_i" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 WARNING: [Synth 8-6014] Unused sequential element INCLUDE_DPHASE_TIMER.dpto_cnt_reg was removed.  [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2674]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:36 ; elapsed = 00:01:19 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 676 ; free virtual = 2939
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:15 ; elapsed = 00:01:53 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 11086 ; free virtual = 13860
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -481,7 +481,7 @@ INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/bus2
 INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[1]) is unused and will be removed from module axi_gpio.
 INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[0]) is unused and will be removed from module axi_gpio.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:36 ; elapsed = 00:01:20 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 665 ; free virtual = 2927
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:16 ; elapsed = 00:01:54 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 11080 ; free virtual = 13854
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -493,13 +493,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:45 ; elapsed = 00:01:36 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 538 ; free virtual = 2801
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:35 ; elapsed = 00:02:20 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10952 ; free virtual = 13726
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:01:36 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 538 ; free virtual = 2800
+Finished Timing Optimization : Time (s): cpu = 00:01:35 ; elapsed = 00:02:20 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -513,7 +513,7 @@ Start Technology Mapping
 INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bresp_i_reg[0]) is unused and will be removed from module axi_gpio.
 INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i_reg[0]) is unused and will be removed from module axi_gpio.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:45 ; elapsed = 00:01:36 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 537 ; free virtual = 2800
+Finished Technology Mapping : Time (s): cpu = 00:01:35 ; elapsed = 00:02:20 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -537,7 +537,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:01:38 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 537 ; free virtual = 2800
+Finished IO Insertion : Time (s): cpu = 00:01:37 ; elapsed = 00:02:22 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -550,7 +550,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:01:38 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 537 ; free virtual = 2800
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:37 ; elapsed = 00:02:22 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -562,25 +562,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:01:38 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 537 ; free virtual = 2800
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:37 ; elapsed = 00:02:22 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:01:38 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 537 ; free virtual = 2800
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:37 ; elapsed = 00:02:22 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:01:38 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 537 ; free virtual = 2800
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:37 ; elapsed = 00:02:22 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:01:38 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 537 ; free virtual = 2800
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:37 ; elapsed = 00:02:22 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -620,11 +620,11 @@ Report Instance Areas:
 |8     |    gpio_core_1                                                           |GPIO_Core                 |    11|
 +------+--------------------------------------------------------------------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:01:38 . Memory (MB): peak = 1589.707 ; gain = 434.133 ; free physical = 537 ; free virtual = 2800
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:37 ; elapsed = 00:02:22 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 10951 ; free virtual = 13725
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 39 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:55 . Memory (MB): peak = 1589.707 ; gain = 130.531 ; free physical = 594 ; free virtual = 2857
-Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:01:38 . Memory (MB): peak = 1589.715 ; gain = 434.133 ; free physical = 602 ; free virtual = 2864
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:08 ; elapsed = 00:01:19 . Memory (MB): peak = 1638.727 ; gain = 130.531 ; free physical = 11009 ; free virtual = 13783
+Synthesis Optimization Complete : Time (s): cpu = 00:01:37 ; elapsed = 00:02:22 . Memory (MB): peak = 1638.727 ; gain = 483.148 ; free physical = 11009 ; free virtual = 13783
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -634,11 +634,11 @@ No Unisim elements were transformed.
 INFO: [Common 17-83] Releasing license: Synthesis
 127 Infos, 99 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:47 ; elapsed = 00:01:39 . Memory (MB): peak = 1589.715 ; gain = 447.512 ; free physical = 584 ; free virtual = 2846
+synth_design: Time (s): cpu = 00:01:41 ; elapsed = 00:02:24 . Memory (MB): peak = 1638.727 ; gain = 496.520 ; free physical = 11000 ; free virtual = 13774
 INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/system_int_axi_gpio_0_0.dcp' has been generated.
 INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0.xci
 INFO: [Coretcl 2-1174] Renamed 7 cell refs.
 INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/system_int_axi_gpio_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_int_axi_gpio_0_0_utilization_synth.rpt -pb system_int_axi_gpio_0_0_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.19 . Memory (MB): peak = 1613.719 ; gain = 0.000 ; free physical = 582 ; free virtual = 2844
-INFO: [Common 17-206] Exiting Vivado at Wed Jan 22 03:54:41 2020...
+report_utilization: Time (s): cpu = 00:00:00.16 ; elapsed = 00:00:00.21 . Memory (MB): peak = 1662.738 ; gain = 0.000 ; free physical = 10997 ; free virtual = 13771
+INFO: [Common 17-206] Exiting Vivado at Wed Feb  5 00:07:57 2020...

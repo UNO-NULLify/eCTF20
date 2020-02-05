@@ -2,8 +2,8 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Wed Jan 22 03:52:12 2020
-# Process ID: 4913
+# Start of session at: Wed Feb  5 00:04:18 2020
+# Process ID: 14090
 # Current directory: /ectf/pl/proj/test/test.runs/system_ins_lmb_bram_if_cntlr_0_0_synth_1
 # Command line: vivado -log system_ins_lmb_bram_if_cntlr_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_ins_lmb_bram_if_cntlr_0_0.tcl
 # Log file: /ectf/pl/proj/test/test.runs/system_ins_lmb_bram_if_cntlr_0_0_synth_1/system_ins_lmb_bram_if_cntlr_0_0.vds
@@ -11,4 +11,4 @@
 #-----------------------------------------------------------
 source system_ins_lmb_bram_if_cntlr_0_0.tcl -notrace
 INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_ins_lmb_bram_if_cntlr_0_0, cache-ID = 47f5695fcf0e0253.
-INFO: [Common 17-206] Exiting Vivado at Wed Jan 22 03:52:30 2020...
+INFO: [Common 17-206] Exiting Vivado at Wed Feb  5 00:04:49 2020...
