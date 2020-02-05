@@ -18,14 +18,14 @@ int main(void)
 {
     puts("test suite for device provisioning process\n");
     puts("Region:");
-    printf("Rand: %s\nPub: %s\nPriv: %s\n\n", region_data[Canada].rand, region_data[Canada].pub_key, region_data[Canada].priv_key);
+    printf("Rand: %s\nPub: %s\nPriv: %s\n\n", region_data[0].rand, region_data[0].pub_key, region_data[0].priv_key);
 
     puts("Users:");
-    printf("HW: %s\nPin: %s\nPub: %s\nPriv: %s\n", user_data[user1].hw_secret, user_data[user1].pin_hash, user_data[user1].pub_key, user_data[user1].pvt_key);
+    printf("HW: %s\nPin: %s\nPub: %s\nPriv: %s\n", user_data[0].hw_secret, user_data[0].pin_hash, user_data[0].pub_key, user_data[0].pvt_key);
 
     puts("\ndecrypting user pin\n");
 
-    if (crypto_pwhash_str_verify(user_data[user1].pin_hash, "12345678", strlen("12345678")) != 0) //strlen("12345678")
+    if (crypto_pwhash_str_verify(user_data[0].pin_hash, "12345678", strlen("12345678")) != 0) //strlen("12345678")
     { //strlen(PASSWORD)
         puts("nope");
     }
