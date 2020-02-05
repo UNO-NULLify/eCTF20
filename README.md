@@ -1,5 +1,5 @@
 # 2020 MITRE Collegiate eCTF UNO Code
-[![BCH compliance](https://bettercodehub.com/edge/badge/UNO-NULLify/eCTF20?branch=master&token=182997d625276862ccf0a76c4e51029ff540bcf8)](https://bettercodehub.com/) | [![DepShield Badge](https://depshield.sonatype.org/badges/UNO-NULLify/eCTF20/depshield.svg)](https://depshield.github.io) | [![CodeFactor](https://www.codefactor.io/repository/github/uno-nullify/ectf20/badge?s=35447e9371dcafdd05706cca0eba475aaa7d79a8)](https://www.codefactor.io/repository/github/uno-nullify/ectf20)
+[![BCH compliance](https://bettercodehub.com/edge/badge/UNO-NULLify/eCTF20?branch=dev&token=12e66cbb9b0f3fad17e50db1d92c48b8533b2da0)](https://bettercodehub.com/) | [![CodeFactor](https://www.codefactor.io/repository/github/uno-nullify/ectf20/badge?s=35447e9371dcafdd05706cca0eba475aaa7d79a8)](https://www.codefactor.io/repository/github/uno-nullify/ectf20)
 
 This repository contains an example reference system for MITRE's 2020 [Embedded System CTF](http://mitrecyberacademy.org/competitions/embedded/). 
 This code is incomplete, insecure, and does not meet MITRE standards for quality.
