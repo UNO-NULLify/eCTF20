@@ -32,42 +32,44 @@
 #include "xstatus.h"
 #include "xtmrctr.h"
 
+
 /************ Macro Definitions ************/
 
 // Register address definitions
 #define HYGRO_CONFIG 0x2
-#define HYGRO_HUM 0x1
-#define HYGRO_TEMP 0x0
+#define HYGRO_HUM    0x1
+#define HYGRO_TEMP   0x0
 
 // Bit mask definitions
-#define HYGRO_CONFIG_RST 0x8000
-#define HYGRO_CONFIG_HEAT 0x2000
-#define HYGRO_CONFIG_MODE 0x1000
-#define HYGRO_CONFIG_BTST 0x0800
-#define HYGRO_CONFIG_TRES 0x0400
-#define HYGRO_CONFIG_HRES8 0x0200
-#define HYGRO_CONFIG_HRES11 0x0100
+#define HYGRO_CONFIG_RST     0x8000
+#define HYGRO_CONFIG_HEAT    0x2000
+#define HYGRO_CONFIG_MODE    0x1000
+#define HYGRO_CONFIG_BTST    0x0800
+#define HYGRO_CONFIG_TRES    0x0400
+#define HYGRO_CONFIG_HRES8   0x0200
+#define HYGRO_CONFIG_HRES11  0x0100
 
 #define HYGRO_CONFIG_DEFAULT 0x1000
+
 
 /************ Type Definitions ************/
 
 typedef struct PmodHYGRO {
-  XIic HYGROIic;
-  XTmrCtr HYGROTimer;
-  u32 clockFreqHz;
-  u8 chipAddr;
-  u8 currentRegister;
-  u8 recvbytes;
-  u8 *recv;
+   XIic HYGROIic;
+   XTmrCtr HYGROTimer;
+   u32 clockFreqHz;
+   u8 chipAddr;
+   u8 currentRegister;
+   u8 recvbytes;
+   u8 *recv;
 } PmodHYGRO;
 
 void HYGRO_begin(PmodHYGRO *InstancePtr, u32 IIC_Address, u8 Chip_Address,
-                 u32 TMR_Address, UINTPTR TMR_DeviceId, u32 TMR_SysClockFreqHz);
+      u32 TMR_Address, UINTPTR TMR_DeviceId, u32 TMR_SysClockFreqHz);
 void HYGRO_TimerInit(XTmrCtr *TMRInstancePtr, XTmrCtr_Config *TMRConfigPtr);
 int HYGRO_IICInit(XIic *IicInstancePtr);
 void HYGRO_ReadIIC(PmodHYGRO *InstancePtr, u8 reg, u8 *Data, int nData,
-                   u32 conversion_delay_ms);
+      u32 conversion_delay_ms);
 void HYGRO_WriteIIC(PmodHYGRO *InstancePtr, u8 reg, u8 *Data, int nData);
 void HYGRO_DelayMillis(PmodHYGRO *InstancePtr, u32 millis);
 

@@ -25,12 +25,14 @@
 #include "xil_types.h"
 #include "xstatus.h"
 
+
 /************ Type Definitions ************/
 
 typedef struct PmodMAXSONAR {
-  u32 GPIO_addr;
-  u32 ClockFreq;
+   u32 GPIO_addr;
+   u32 ClockFreq;
 } PmodMAXSONAR;
+
 
 /************ Function Prototypes ************/
 

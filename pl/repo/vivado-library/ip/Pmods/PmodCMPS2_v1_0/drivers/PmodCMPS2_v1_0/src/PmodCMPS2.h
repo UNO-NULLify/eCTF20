@@ -31,25 +31,25 @@
 
 /****************** Register Definitions ********************/
 
-#define CMPS2_INTCONREG0_REG 0x07
+#define CMPS2_INTCONREG0_REG            0x07
 #define CMPS2_INTCONREG0_SETSENSOR_MASK 0x20
-#define CMPS2_INTCONREG0_TAKEMEAS_MASK 0x01
-#define CMPS2_INTCONREG1_REG 0x08
-#define CMPS2_STATUS_REG 0x06
-#define CMPS2_STATUS_MEASDONE_MASK 0x01
+#define CMPS2_INTCONREG0_TAKEMEAS_MASK  0x01
+#define CMPS2_INTCONREG1_REG            0x08
+#define CMPS2_STATUS_REG                0x06
+#define CMPS2_STATUS_MEASDONE_MASK      0x01
 
 /****************** Type Definitions ********************/
 
 typedef struct CMPS2_DataPacket {
-  u16 x, y, z;
+   u16 x, y, z;
 } CMPS2_DataPacket;
 
 typedef struct PmodCMPS2 {
-  XIic CMPS2Iic;
-  u8 chipAddr;
-  u8 currentRegister;
-  u8 recvbytes;
-  u8 *recv;
+   XIic CMPS2Iic;
+   u8 chipAddr;
+   u8 currentRegister;
+   u8 recvbytes;
+   u8 *recv;
 } PmodCMPS2;
 
 /****************** Function Definitions ********************/

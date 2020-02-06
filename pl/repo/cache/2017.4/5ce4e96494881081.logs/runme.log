@@ -1,0 +1,595 @@
+
+*** Running vivado
+    with args -log system_auto_cc_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_auto_cc_0.tcl
+
+
+****** Vivado v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source system_auto_cc_0.tcl -notrace
+Command: synth_design -top system_auto_cc_0 -part xc7z007sclg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 1396 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1231.812 ; gain = 87.000 ; free physical = 1020 ; free virtual = 9046
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'system_auto_cc_0' [/ectf_master/pl/src/bd/system/ip/system_auto_cc_0/synth/system_auto_cc_0.v:58]
+INFO: [Synth 8-638] synthesizing module 'axi_clock_converter_v2_1_14_axi_clock_converter' [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:650]
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_AXI_ID_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ACLK_RATIO bound to: 2 - type: integer 
+	Parameter C_M_AXI_ACLK_RATIO bound to: 1 - type: integer 
+	Parameter C_AXI_IS_ACLK_ASYNC bound to: 0 - type: integer 
+	Parameter C_AXI_PROTOCOL bound to: 2 - type: integer 
+	Parameter C_AXI_SUPPORTS_USER_SIGNALS bound to: 0 - type: integer 
+	Parameter C_AXI_AWUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_ARUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_WUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_RUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_BUSER_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_SUPPORTS_WRITE bound to: 1 - type: integer 
+	Parameter C_AXI_SUPPORTS_READ bound to: 1 - type: integer 
+	Parameter C_SYNCHRONIZER_STAGE bound to: 3 - type: integer 
+	Parameter P_AXI4 bound to: 0 - type: integer 
+	Parameter P_AXI3 bound to: 1 - type: integer 
+	Parameter P_AXILITE bound to: 2 - type: integer 
+	Parameter P_LIGHT_WT bound to: 0 - type: integer 
+	Parameter P_FULLY_REG bound to: 1 - type: integer 
+	Parameter P_LUTRAM_ASYNC bound to: 12 - type: integer 
+	Parameter P_SI_LT_MI bound to: 1'b0 
+	Parameter P_ROUNDING_OFFSET bound to: 0 - type: integer 
+	Parameter P_ACLK_RATIO bound to: 2 - type: integer 
+	Parameter C_AWUSER_RIGHT bound to: 0 - type: integer 
+	Parameter C_AWUSER_WIDTH bound to: 0 - type: integer 
+	Parameter C_AWQOS_RIGHT bound to: 0 - type: integer 
+	Parameter C_AWQOS_WIDTH bound to: 0 - type: integer 
+	Parameter C_AWREGION_RIGHT bound to: 0 - type: integer 
+	Parameter C_AWREGION_WIDTH bound to: 0 - type: integer 
+	Parameter C_AWPROT_RIGHT bound to: 0 - type: integer 
+	Parameter C_AWPROT_WIDTH bound to: 3 - type: integer 
+	Parameter C_AWCACHE_RIGHT bound to: 3 - type: integer 
+	Parameter C_AWCACHE_WIDTH bound to: 0 - type: integer 
+	Parameter C_AWLOCK_RIGHT bound to: 3 - type: integer 
+	Parameter C_AWLOCK_WIDTH bound to: 0 - type: integer 
+	Parameter C_AWBURST_RIGHT bound to: 3 - type: integer 
+	Parameter C_AWBURST_WIDTH bound to: 0 - type: integer 
+	Parameter C_AWSIZE_RIGHT bound to: 3 - type: integer 
+	Parameter C_AWSIZE_WIDTH bound to: 0 - type: integer 
+	Parameter C_AWLEN_RIGHT bound to: 3 - type: integer 
+	Parameter C_AWLEN_WIDTH bound to: 0 - type: integer 
+	Parameter C_AWADDR_RIGHT bound to: 3 - type: integer 
+	Parameter C_AWADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_AWID_RIGHT bound to: 35 - type: integer 
+	Parameter C_AWID_WIDTH bound to: 0 - type: integer 
+	Parameter C_AW_WIDTH bound to: 35 - type: integer 
+	Parameter C_FIFO_AW_WIDTH bound to: 35 - type: integer 
+	Parameter C_WUSER_RIGHT bound to: 0 - type: integer 
+	Parameter C_WUSER_WIDTH bound to: 0 - type: integer 
+	Parameter C_WLAST_RIGHT bound to: 0 - type: integer 
+	Parameter C_WLAST_WIDTH bound to: 0 - type: integer 
+	Parameter C_WSTRB_RIGHT bound to: 0 - type: integer 
+	Parameter C_WSTRB_WIDTH bound to: 4 - type: integer 
+	Parameter C_WDATA_RIGHT bound to: 4 - type: integer 
+	Parameter C_WDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_WID_RIGHT bound to: 36 - type: integer 
+	Parameter C_WID_WIDTH bound to: 0 - type: integer 
+	Parameter C_W_WIDTH bound to: 36 - type: integer 
+	Parameter C_FIFO_W_WIDTH bound to: 36 - type: integer 
+	Parameter C_BUSER_RIGHT bound to: 0 - type: integer 
+	Parameter C_BUSER_WIDTH bound to: 0 - type: integer 
+	Parameter C_BRESP_RIGHT bound to: 0 - type: integer 
+	Parameter C_BRESP_WIDTH bound to: 2 - type: integer 
+	Parameter C_BID_RIGHT bound to: 2 - type: integer 
+	Parameter C_BID_WIDTH bound to: 0 - type: integer 
+	Parameter C_B_WIDTH bound to: 2 - type: integer 
+	Parameter C_FIFO_B_WIDTH bound to: 2 - type: integer 
+	Parameter C_ARUSER_RIGHT bound to: 0 - type: integer 
+	Parameter C_ARUSER_WIDTH bound to: 0 - type: integer 
+	Parameter C_ARQOS_RIGHT bound to: 0 - type: integer 
+	Parameter C_ARQOS_WIDTH bound to: 0 - type: integer 
+	Parameter C_ARREGION_RIGHT bound to: 0 - type: integer 
+	Parameter C_ARREGION_WIDTH bound to: 0 - type: integer 
+	Parameter C_ARPROT_RIGHT bound to: 0 - type: integer 
+	Parameter C_ARPROT_WIDTH bound to: 3 - type: integer 
+	Parameter C_ARCACHE_RIGHT bound to: 3 - type: integer 
+	Parameter C_ARCACHE_WIDTH bound to: 0 - type: integer 
+	Parameter C_ARLOCK_RIGHT bound to: 3 - type: integer 
+	Parameter C_ARLOCK_WIDTH bound to: 0 - type: integer 
+	Parameter C_ARBURST_RIGHT bound to: 3 - type: integer 
+	Parameter C_ARBURST_WIDTH bound to: 0 - type: integer 
+	Parameter C_ARSIZE_RIGHT bound to: 3 - type: integer 
+	Parameter C_ARSIZE_WIDTH bound to: 0 - type: integer 
+	Parameter C_ARLEN_RIGHT bound to: 3 - type: integer 
+	Parameter C_ARLEN_WIDTH bound to: 0 - type: integer 
+	Parameter C_ARADDR_RIGHT bound to: 3 - type: integer 
+	Parameter C_ARADDR_WIDTH bound to: 32 - type: integer 
+	Parameter C_ARID_RIGHT bound to: 35 - type: integer 
+	Parameter C_ARID_WIDTH bound to: 0 - type: integer 
+	Parameter C_AR_WIDTH bound to: 35 - type: integer 
+	Parameter C_FIFO_AR_WIDTH bound to: 35 - type: integer 
+	Parameter C_RUSER_RIGHT bound to: 0 - type: integer 
+	Parameter C_RUSER_WIDTH bound to: 0 - type: integer 
+	Parameter C_RLAST_RIGHT bound to: 0 - type: integer 
+	Parameter C_RLAST_WIDTH bound to: 0 - type: integer 
+	Parameter C_RRESP_RIGHT bound to: 0 - type: integer 
+	Parameter C_RRESP_WIDTH bound to: 2 - type: integer 
+	Parameter C_RDATA_RIGHT bound to: 2 - type: integer 
+	Parameter C_RDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_RID_RIGHT bound to: 34 - type: integer 
+	Parameter C_RID_WIDTH bound to: 0 - type: integer 
+	Parameter C_R_WIDTH bound to: 34 - type: integer 
+	Parameter C_FIFO_R_WIDTH bound to: 34 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* KEEP = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:686]
+INFO: [Synth 8-5534] Detected attribute (* KEEP = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:687]
+INFO: [Synth 8-5534] Detected attribute (* KEEP = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:745]
+INFO: [Synth 8-5534] Detected attribute (* KEEP = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:746]
+INFO: [Synth 8-638] synthesizing module 'axi_clock_converter_v2_1_14_axic_sync_clock_converter' [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:63]
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_PAYLOAD_WIDTH bound to: 35 - type: integer 
+	Parameter C_S_ACLK_RATIO bound to: 2 - type: integer 
+	Parameter C_M_ACLK_RATIO bound to: 1 - type: integer 
+	Parameter C_MODE bound to: 0 - type: integer 
+	Parameter ZERO bound to: 2'b10 
+	Parameter ONE bound to: 2'b11 
+	Parameter TWO bound to: 2'b01 
+	Parameter INIT bound to: 2'b00 
+	Parameter P_LIGHT_WT bound to: 0 - type: integer 
+	Parameter P_FULLY_REG bound to: 1 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element gen_sync_clock_converter.m_tstorage_r_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:221]
+INFO: [Synth 8-256] done synthesizing module 'axi_clock_converter_v2_1_14_axic_sync_clock_converter' (1#1) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:63]
+INFO: [Synth 8-638] synthesizing module 'axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:63]
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_PAYLOAD_WIDTH bound to: 36 - type: integer 
+	Parameter C_S_ACLK_RATIO bound to: 2 - type: integer 
+	Parameter C_M_ACLK_RATIO bound to: 1 - type: integer 
+	Parameter C_MODE bound to: 0 - type: integer 
+	Parameter ZERO bound to: 2'b10 
+	Parameter ONE bound to: 2'b11 
+	Parameter TWO bound to: 2'b01 
+	Parameter INIT bound to: 2'b00 
+	Parameter P_LIGHT_WT bound to: 0 - type: integer 
+	Parameter P_FULLY_REG bound to: 1 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element gen_sync_clock_converter.m_tstorage_r_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:221]
+INFO: [Synth 8-256] done synthesizing module 'axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized0' (1#1) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:63]
+INFO: [Synth 8-638] synthesizing module 'axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized1' [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:63]
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_PAYLOAD_WIDTH bound to: 2 - type: integer 
+	Parameter C_S_ACLK_RATIO bound to: 1 - type: integer 
+	Parameter C_M_ACLK_RATIO bound to: 2 - type: integer 
+	Parameter C_MODE bound to: 0 - type: integer 
+	Parameter ZERO bound to: 2'b10 
+	Parameter ONE bound to: 2'b11 
+	Parameter TWO bound to: 2'b01 
+	Parameter INIT bound to: 2'b00 
+	Parameter P_LIGHT_WT bound to: 0 - type: integer 
+	Parameter P_FULLY_REG bound to: 1 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element gen_sync_clock_converter.m_tstorage_r_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:221]
+INFO: [Synth 8-256] done synthesizing module 'axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized1' (1#1) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:63]
+INFO: [Synth 8-638] synthesizing module 'axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized2' [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:63]
+	Parameter C_FAMILY bound to: zynq - type: string 
+	Parameter C_PAYLOAD_WIDTH bound to: 34 - type: integer 
+	Parameter C_S_ACLK_RATIO bound to: 1 - type: integer 
+	Parameter C_M_ACLK_RATIO bound to: 2 - type: integer 
+	Parameter C_MODE bound to: 0 - type: integer 
+	Parameter ZERO bound to: 2'b10 
+	Parameter ONE bound to: 2'b11 
+	Parameter TWO bound to: 2'b01 
+	Parameter INIT bound to: 2'b00 
+	Parameter P_LIGHT_WT bound to: 0 - type: integer 
+	Parameter P_FULLY_REG bound to: 1 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element gen_sync_clock_converter.m_tstorage_r_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:221]
+INFO: [Synth 8-256] done synthesizing module 'axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized2' (1#1) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:63]
+INFO: [Synth 8-638] synthesizing module 'axi_clock_converter_v2_1_14_axic_sample_cycle_ratio' [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:359]
+	Parameter C_RATIO bound to: 2 - type: integer 
+	Parameter P_DELAY bound to: 1 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* shreg_extract = "no" *) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:393]
+INFO: [Synth 8-256] done synthesizing module 'axi_clock_converter_v2_1_14_axic_sample_cycle_ratio' (2#1) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:359]
+INFO: [Synth 8-256] done synthesizing module 'axi_clock_converter_v2_1_14_axi_clock_converter' (3#1) [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:650]
+INFO: [Synth 8-256] done synthesizing module 'system_auto_cc_0' (4#1) [/ectf_master/pl/src/bd/system/ip/system_auto_cc_0/synth/system_auto_cc_0.v:58]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized2 has unconnected port SAMPLE_CYCLE_EARLY
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axic_sync_clock_converter has unconnected port SAMPLE_CYCLE
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized1 has unconnected port SAMPLE_CYCLE_EARLY
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized0 has unconnected port SAMPLE_CYCLE
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awid[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[7]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[6]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[5]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[4]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awsize[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awsize[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awsize[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awburst[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awburst[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlock[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awcache[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awcache[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awcache[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awcache[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awregion[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awregion[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awregion[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awregion[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awqos[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awqos[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awqos[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awqos[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awuser[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_wid[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_wlast
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_wuser[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arid[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlen[7]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlen[6]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlen[5]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlen[4]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlen[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlen[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlen[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlen[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arsize[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arsize[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arsize[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arburst[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arburst[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arlock[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arcache[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arcache[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arcache[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arcache[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arregion[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arregion[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arregion[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arregion[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arqos[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arqos[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arqos[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arqos[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_aruser[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port m_axi_bid[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port m_axi_buser[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port m_axi_rid[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port m_axi_rlast
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port m_axi_ruser[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:34 ; elapsed = 00:01:00 . Memory (MB): peak = 1354.344 ; gain = 209.531 ; free physical = 948 ; free virtual = 8976
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:35 ; elapsed = 00:01:01 . Memory (MB): peak = 1354.344 ; gain = 209.531 ; free physical = 940 ; free virtual = 8967
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7z007sclg400-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_auto_cc_0/system_auto_cc_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_auto_cc_0/system_auto_cc_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_auto_cc_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_auto_cc_0_synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1599.367 ; gain = 0.000 ; free physical = 1213 ; free virtual = 9334
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:01:06 ; elapsed = 00:02:07 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 1002 ; free virtual = 9141
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z007sclg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:06 ; elapsed = 00:02:07 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 1002 ; free virtual = 9141
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf_master/pl/proj/test/test.runs/system_auto_cc_0_synth_1/dont_touch.xdc, line 9).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:06 ; elapsed = 00:02:07 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 1004 ; free virtual = 9143
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:06 ; elapsed = 00:02:08 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 994 ; free virtual = 9133
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               36 Bit    Registers := 1     
+	               35 Bit    Registers := 2     
+	               34 Bit    Registers := 1     
+	                2 Bit    Registers := 6     
+	                1 Bit    Registers := 29    
++---Muxes : 
+	   7 Input      2 Bit        Muxes := 8     
+	   2 Input      2 Bit        Muxes := 2     
+	   6 Input      2 Bit        Muxes := 4     
+	   2 Input      1 Bit        Muxes := 7     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module axi_clock_converter_v2_1_14_axic_sync_clock_converter 
+Detailed RTL Component Info : 
++---Registers : 
+	               35 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   7 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 1     
+Module axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	               36 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   7 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 1     
+Module axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                2 Bit    Registers := 2     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 1     
+	   6 Input      2 Bit        Muxes := 2     
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized2 
+Detailed RTL Component Info : 
++---Registers : 
+	               34 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 5     
++---Muxes : 
+	   2 Input      2 Bit        Muxes := 1     
+	   6 Input      2 Bit        Muxes := 2     
+	   7 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 2     
+Module axi_clock_converter_v2_1_14_axic_sample_cycle_ratio 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 4     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 66 (col length:40)
+BRAMs: 100 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-4471] merging register 'gen_clock_conv.gen_sync_conv.gen_conv_write_ch.w_sync_clock_converter/gen_sync_clock_converter.m_tready_hold_reg' into 'gen_clock_conv.gen_sync_conv.gen_conv_write_ch.aw_sync_clock_converter/gen_sync_clock_converter.m_tready_hold_reg' [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:211]
+INFO: [Synth 8-4471] merging register 'gen_clock_conv.gen_sync_conv.gen_conv_read_ch.ar_sync_clock_converter/gen_sync_clock_converter.m_tready_hold_reg' into 'gen_clock_conv.gen_sync_conv.gen_conv_write_ch.aw_sync_clock_converter/gen_sync_clock_converter.m_tready_hold_reg' [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:211]
+WARNING: [Synth 8-6014] Unused sequential element gen_clock_conv.gen_sync_conv.gen_conv_write_ch.w_sync_clock_converter/gen_sync_clock_converter.m_tready_hold_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:211]
+WARNING: [Synth 8-6014] Unused sequential element gen_clock_conv.gen_sync_conv.gen_conv_read_ch.ar_sync_clock_converter/gen_sync_clock_converter.m_tready_hold_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/445f/hdl/axi_clock_converter_v2_1_vl_rfs.v:211]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awid[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[7]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[6]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[5]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[4]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlen[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awsize[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awsize[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awsize[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awburst[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awburst[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awlock[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awcache[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awcache[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awcache[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awcache[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awregion[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awregion[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awregion[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awregion[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awqos[3]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awqos[2]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awqos[1]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awqos[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_awuser[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_wid[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_wlast
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_wuser[0]
+WARNING: [Synth 8-3331] design axi_clock_converter_v2_1_14_axi_clock_converter has unconnected port s_axi_arid[0]
+INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_clock_conv.gen_sync_conv.gen_conv_write_ch.aw_sync_clock_converter/gen_sync_clock_converter.m_tready_hold_reg )
+INFO: [Synth 8-3332] Sequential element (gen_clock_conv.gen_sync_conv.gen_conv_write_ch.aw_sync_clock_converter/gen_sync_clock_converter.m_tready_hold_reg) is unused and will be removed from module axi_clock_converter_v2_1_14_axi_clock_converter.
+INFO: [Synth 8-3886] merging instance 'inst/gen_clock_conv.gen_sync_conv.gen_conv_read_ch.ar_sync_clock_converter/gen_sync_clock_converter.m_aresetn_r_reg' (FD) to 'inst/gen_clock_conv.gen_sync_conv.gen_conv_write_ch.w_sync_clock_converter/gen_sync_clock_converter.m_aresetn_r_reg'
+INFO: [Synth 8-3886] merging instance 'inst/gen_clock_conv.gen_sync_conv.gen_conv_write_ch.w_sync_clock_converter/gen_sync_clock_converter.m_aresetn_r_reg' (FD) to 'inst/gen_clock_conv.gen_sync_conv.gen_conv_write_ch.aw_sync_clock_converter/gen_sync_clock_converter.m_aresetn_r_reg'
+INFO: [Synth 8-3886] merging instance 'inst/gen_clock_conv.gen_sync_conv.gen_conv_read_ch.r_sync_clock_converter/gen_sync_clock_converter.s_aresetn_r_reg' (FD) to 'inst/gen_clock_conv.gen_sync_conv.gen_conv_write_ch.b_sync_clock_converter/gen_sync_clock_converter.s_aresetn_r_reg'
+INFO: [Synth 8-3886] merging instance 'inst/gen_clock_conv.gen_sync_conv.gen_conv_read_ch.r_sync_clock_converter/gen_sync_clock_converter.m_aresetn_r_reg' (FD) to 'inst/gen_clock_conv.gen_sync_conv.gen_conv_write_ch.b_sync_clock_converter/gen_sync_clock_converter.m_aresetn_r_reg'
+INFO: [Synth 8-3886] merging instance 'inst/gen_clock_conv.gen_sync_conv.gen_conv_read_ch.ar_sync_clock_converter/gen_sync_clock_converter.s_aresetn_r_reg' (FD) to 'inst/gen_clock_conv.gen_sync_conv.gen_conv_write_ch.w_sync_clock_converter/gen_sync_clock_converter.s_aresetn_r_reg'
+INFO: [Synth 8-3886] merging instance 'inst/gen_clock_conv.gen_sync_conv.gen_conv_write_ch.w_sync_clock_converter/gen_sync_clock_converter.s_aresetn_r_reg' (FD) to 'inst/gen_clock_conv.gen_sync_conv.gen_conv_write_ch.aw_sync_clock_converter/gen_sync_clock_converter.s_aresetn_r_reg'
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:07 ; elapsed = 00:02:09 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 981 ; free virtual = 9120
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:19 ; elapsed = 00:02:28 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 1038 ; free virtual = 9192
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:01:19 ; elapsed = 00:02:28 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 1036 ; free virtual = 9190
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:01:19 ; elapsed = 00:02:28 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 1001 ; free virtual = 9188
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:01:20 ; elapsed = 00:02:30 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 913 ; free virtual = 9163
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:20 ; elapsed = 00:02:30 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 913 ; free virtual = 9163
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:20 ; elapsed = 00:02:30 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 912 ; free virtual = 9162
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:20 ; elapsed = 00:02:30 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 912 ; free virtual = 9162
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:20 ; elapsed = 00:02:30 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 912 ; free virtual = 9162
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:20 ; elapsed = 00:02:30 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 912 ; free virtual = 9162
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     3|
+|2     |LUT2 |     2|
+|3     |LUT3 |     4|
+|4     |LUT4 |     9|
+|5     |LUT5 |    10|
+|6     |LUT6 |     6|
+|7     |FDRE |   172|
++------+-----+------+
+
+Report Instance Areas: 
++------+-----------------------------------------------------------------------------+----------------------------------------------------------------------+------+
+|      |Instance                                                                     |Module                                                                |Cells |
++------+-----------------------------------------------------------------------------+----------------------------------------------------------------------+------+
+|1     |top                                                                          |                                                                      |   206|
+|2     |  inst                                                                       |axi_clock_converter_v2_1_14_axi_clock_converter                       |   206|
+|3     |    \gen_clock_conv.gen_sync_conv.axic_sample_cycle_inst                     |axi_clock_converter_v2_1_14_axic_sample_cycle_ratio                   |     9|
+|4     |    \gen_clock_conv.gen_sync_conv.gen_conv_read_ch.ar_sync_clock_converter   |axi_clock_converter_v2_1_14_axic_sync_clock_converter                 |    43|
+|5     |    \gen_clock_conv.gen_sync_conv.gen_conv_read_ch.r_sync_clock_converter    |axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized2 |    44|
+|6     |    \gen_clock_conv.gen_sync_conv.gen_conv_write_ch.aw_sync_clock_converter  |axi_clock_converter_v2_1_14_axic_sync_clock_converter_0               |    47|
+|7     |    \gen_clock_conv.gen_sync_conv.gen_conv_write_ch.b_sync_clock_converter   |axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized1 |    19|
+|8     |    \gen_clock_conv.gen_sync_conv.gen_conv_write_ch.w_sync_clock_converter   |axi_clock_converter_v2_1_14_axic_sync_clock_converter__parameterized0 |    44|
++------+-----------------------------------------------------------------------------+----------------------------------------------------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:20 ; elapsed = 00:02:30 . Memory (MB): peak = 1599.367 ; gain = 454.555 ; free physical = 912 ; free virtual = 9162
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 66 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:02 ; elapsed = 00:01:39 . Memory (MB): peak = 1599.367 ; gain = 209.531 ; free physical = 978 ; free virtual = 9227
+Synthesis Optimization Complete : Time (s): cpu = 00:01:21 ; elapsed = 00:02:30 . Memory (MB): peak = 1599.375 ; gain = 454.555 ; free physical = 978 ; free virtual = 9227
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+39 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:01:23 ; elapsed = 00:02:32 . Memory (MB): peak = 1599.375 ; gain = 467.934 ; free physical = 951 ; free virtual = 9205
+INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_auto_cc_0_synth_1/system_auto_cc_0.dcp' has been generated.

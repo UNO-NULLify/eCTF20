@@ -1,0 +1,100 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Wed Feb  5 21:17:29 2020
+# Process ID: 16148
+# Current directory: /ectf_master/pl
+# Command line: vivado -mode batch -source ..//pl/proj/gen_bitstream.tcl -tclargs --project_file ..//pl/proj/test/test.xpr
+# Log file: /ectf_master/pl/vivado.log
+# Journal file: /ectf_master/pl/vivado.jou
+#-----------------------------------------------------------
+source ..//pl/proj/gen_bitstream.tcl
+# set origin_dir "."
+# set project_bd "$origin_dir/src/bd/system/system.bd"
+# set synth_comp "synth_design Complete!"
+# set impl_run "Running Design Initialization..."
+# set bitstream_comp "write_bitstream Complete!"
+# if { $::argc > 0 } {
+#   for {set i 0} {$i < [llength $::argc]} {incr i} {
+#     set option [string trim [lindex $::argv $i]]
+#     switch -regexp -- $option {
+#       "--project_file" { incr i; set project_file [lindex $::argv $i] }
+#       default {
+#         if { [regexp {^-} $option] } {
+#           puts "ERROR: Unknown option '$option' specified, expecting --project_file arg.\n"
+#           return 1
+#         }
+#       }
+#     }
+#   }
+#   open_project $project_file
+#   open_bd_design $project_bd
+# }
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/ectf_master/pl/repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2017.4/data/ip'.
+open_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:17 . Memory (MB): peak = 1219.855 ; gain = 88.438 ; free physical = 3052 ; free virtual = 12492
+Adding cell -- xilinx.com:ip:axi_dma:7.1 - axi_dma_0
+Adding cell -- xilinx.com:ip:axi_intc:4.1 - axi_intc_0
+Adding cell -- xilinx.com:ip:axis_data_fifo:1.1 - axis_data_fifo_0
+Adding cell -- xilinx.com:ip:blk_mem_gen:8.4 - blk_mem_gen_0
+Adding cell -- xilinx.com:ip:clk_wiz:5.4 - clk_wiz_25M
+Adding cell -- xilinx.com:ip:lmb_bram_if_cntlr:4.0 - data_lmb_bram_if_cntlr_1
+Adding cell -- xilinx.com:ip:lmb_v10:3.0 - data_lmb_v10_1
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - dma_axi_bram_ctrl_1
+Adding cell -- xilinx.com:ip:blk_mem_gen:8.4 - dma_blk_mem_gen_1
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - fifo_count_axi_gpio_0
+Adding cell -- xilinx.com:module_ref:i2s_output:1.0 - i2s_output_1
+Adding cell -- xilinx.com:ip:lmb_bram_if_cntlr:4.0 - ins_lmb_bram_if_cntlr_0
+Adding cell -- xilinx.com:ip:lmb_v10:3.0 - ins_lmb_v10_0
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - int_axi_gpio_0
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - mb_dma_axi_bram_ctrl_0
+Adding cell -- xilinx.com:ip:mdm:3.2 - mdm_0
+Adding cell -- xilinx.com:ip:microblaze:10.0 - microblaze_0
+WARNING: [xilinx.com:ip:microblaze:10.0-19] /microblaze_0: When using frequency optimization it is highly recommended to enable the branch target cache, in order to improve computational performance.
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_0
+Adding cell -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding cell -- digilentinc.com:IP:PWM:2.0 - rgb_PWM_0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_0_100M
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - share_axi_bram_ctrl_0
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - share_axi_bram_ctrl_1
+Adding cell -- xilinx.com:ip:blk_mem_gen:8.4 - share_blk_mem_gen_1
+Adding cell -- xilinx.com:ip:xadc_wiz:3.3 - xadc_wiz_0
+Adding cell -- xilinx.com:ip:xlconcat:2.1 - xlconcat_2
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_0
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_1
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_1
+WARNING: [BD 41-1731] Type mismatch between connected pins: /int_axi_gpio_0/gpio_io_o(undef) and /axi_intc_0/intr(intr)
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_clock_converter:2.1 - auto_cc
+Adding cell -- xilinx.com:ip:axi_clock_converter:2.1 - auto_cc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_clock_converter:2.1 - auto_cc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Excluding </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> from </microblaze_0/Data>
+Excluding </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> from </microblaze_0/Instruction>
+Excluding </mdm_0/S_AXI/Reg> from </mdm_0/Data>
+Excluding </processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM> from </mdm_0/Data>
+Excluding </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> from </mdm_0/Data>
+Successfully read diagram <system> from BD file <./src/bd/system/system.bd>
+open_bd_design: Time (s): cpu = 00:00:05 ; elapsed = 00:00:09 . Memory (MB): peak = 1303.250 ; gain = 71.609 ; free physical = 2997 ; free virtual = 12455
+# puts "Launching Synthesis"
+Launching Synthesis
+# save_bd_design
+Wrote  : </ectf_master/pl/src/bd/system/ui/bd_c954508f.ui> 
+# launch_runs synth_1 -jobs 2
+ERROR: [Common 17-69] Command failed:  Run 'synth_1' needs to be reset before launching. The run can be reset using the Tcl command 'reset_run synth_1'.
+INFO: [Common 17-206] Exiting Vivado at Wed Feb  5 21:18:04 2020...
