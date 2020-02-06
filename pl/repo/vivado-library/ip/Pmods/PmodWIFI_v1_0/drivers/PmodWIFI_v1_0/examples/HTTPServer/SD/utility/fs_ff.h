@@ -124,7 +124,7 @@ typedef struct {
 #endif
 #if _USE_FASTSEEK
   DWORD
-      *cltbl; /* Pointer to the cluster link map table (Nulled on file open) */
+  *cltbl; /* Pointer to the cluster link map table (Nulled on file open) */
 #endif
 #if _FS_LOCK
   UINT lockid; /* File lock ID origin from 1 (index of file semaphore table

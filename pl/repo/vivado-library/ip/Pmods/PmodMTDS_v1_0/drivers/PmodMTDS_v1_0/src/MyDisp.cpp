@@ -925,11 +925,11 @@ bool MYDISP::enableButton(int id, bool fEn) {
      */
     if ((rgbtn[id].fs & fsBtnEnabled) == 0) {
       /* Only grab the background if the button isn't already enabled. In some
-      *cases
-      ** the user needs to be able to enable a button that is already enabled
-      *and we
-      ** don't want to overwrite the saved background data when that occurs.
-      */
+       *cases
+       ** the user needs to be able to enable a button that is already enabled
+       *and we
+       ** don't want to overwrite the saved background data when that occurs.
+       */
       mtds.SetDrawingSurface(hdsBlt, rgbtn[id].hbmpBg);
       mtds.BitBlt(hdsBlt, 0, 0, rgbtn[id].dxco, rgbtn[id].dyco, hdsDisp,
                   rgbtn[id].rct.xcoLeft, rgbtn[id].rct.ycoTop, ropSrcCopy);
@@ -1270,9 +1270,9 @@ void MYDISP::checkTouch() {
    */
   if (idBtnTrack == -1) {
     /* We're not currently tracking, If this is a finger 1 down message, we may
-    *need
-    ** to start tracking for a button press.
-    */
+     *need
+     ** to start tracking for a button press.
+     */
     if (mtch.msg == msgFinger1Down) {
       if ((idBtn = IdBtnFromXcoYco(mtch.xco, mtch.yco)) != -1) {
         /* We have a finger down over a button, so start tracking for a button
@@ -1284,9 +1284,9 @@ void MYDISP::checkTouch() {
     }
   } else {
     /* We are currently tracking finger 1. Check that the finger is still over
-    *the
-    ** button.
-    */
+     *the
+     ** button.
+     */
     if (mtch.msg == msgFinger1Move) {
       if (!mtds.PointInRect(&(rgbtn[idBtnTrack].rct), mtch.xco, mtch.yco)) {
         /* The finger has moved off of the button, stop tracking it.

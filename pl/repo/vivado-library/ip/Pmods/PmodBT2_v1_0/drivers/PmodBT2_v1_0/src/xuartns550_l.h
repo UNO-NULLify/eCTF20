@@ -85,12 +85,13 @@ extern "C" {
 #define XUN_THR_OFFSET (XUN_REG_OFFSET)        /**< Transmit holding register */
 #define XUN_IER_OFFSET (XUN_REG_OFFSET + 0x04) /**< Interrupt enable */
 #define XUN_IIR_OFFSET (XUN_REG_OFFSET + 0x08) /**< Interrupt id, read only */
-#define XUN_FCR_OFFSET (XUN_REG_OFFSET + 0x08) /**< Fifo control, write only   \
-                                                */
-#define XUN_LCR_OFFSET (XUN_REG_OFFSET + 0x0C) /**< Line Control Register */
-#define XUN_MCR_OFFSET (XUN_REG_OFFSET + 0x10) /**< Modem Control Register */
-#define XUN_LSR_OFFSET (XUN_REG_OFFSET + 0x14) /**< Line Status Register */
-#define XUN_MSR_OFFSET (XUN_REG_OFFSET + 0x18) /**< Modem Status Register */
+#define XUN_FCR_OFFSET                                                         \
+  (XUN_REG_OFFSET + 0x08)                       /**< Fifo control, write only  \
+                                                 */
+#define XUN_LCR_OFFSET (XUN_REG_OFFSET + 0x0C)  /**< Line Control Register */
+#define XUN_MCR_OFFSET (XUN_REG_OFFSET + 0x10)  /**< Modem Control Register */
+#define XUN_LSR_OFFSET (XUN_REG_OFFSET + 0x14)  /**< Line Status Register */
+#define XUN_MSR_OFFSET (XUN_REG_OFFSET + 0x18)  /**< Modem Status Register */
 #define XUN_DRLS_OFFSET (XUN_REG_OFFSET + 0x00) /**< Divisor Register LSB */
 #define XUN_DRLM_OFFSET (XUN_REG_OFFSET + 0x04) /**< Divisor Register MSB */
 /* @} */

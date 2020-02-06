@@ -47,8 +47,8 @@
  * 1.00a drg/jz 01/30/10 First release
  * 1.00a sdm    09/22/11 Removed unused code
  * 3.0	sk	   11/03/14 Removed TimeOut Register value check
- *			   01/31/15	Modified the code according to MISRAC 2012
- *Compliant.
+ *			   01/31/15	Modified the code according to MISRAC
+ *2012 Compliant.
  * </pre>
  *
  ******************************************************************************/

@@ -535,26 +535,26 @@ void NAV_WriteRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr,
 
 /* ------------------------------------------------------------ */
 /*** void NAV_ReadRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr,
-*uint8_t bCntBytes, uint8_t *pData)
-**
-**   Parameters:
-**      InstancePtr - instance of PmodNAV
-**      bInst       - instrument Chip Select to be used: Accelerometer/Gyro,
-**                    Magnetometer or Altimeter
-**      bAddr       - register address to start reading bytes from
-**      bCntBytes   - number of bytes to be read
-**      pData       - pointer to the 16 bit data array to be read
-**
-**   Return Value:
-**      None
-**
-**   Errors:
-**      None
-**
-**   Description:
-**      Reads bCntBytes bytes from device via SPI, from register having
-**      consecutive addresses, starting with bAddr.
-*/
+ *uint8_t bCntBytes, uint8_t *pData)
+ **
+ **   Parameters:
+ **      InstancePtr - instance of PmodNAV
+ **      bInst       - instrument Chip Select to be used: Accelerometer/Gyro,
+ **                    Magnetometer or Altimeter
+ **      bAddr       - register address to start reading bytes from
+ **      bCntBytes   - number of bytes to be read
+ **      pData       - pointer to the 16 bit data array to be read
+ **
+ **   Return Value:
+ **      None
+ **
+ **   Errors:
+ **      None
+ **
+ **   Description:
+ **      Reads bCntBytes bytes from device via SPI, from register having
+ **      consecutive addresses, starting with bAddr.
+ */
 void NAV_ReadRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr,
                       uint8_t bCntBytes, uint8_t *pData) {
   u8 recv[bCntBytes + 1];
@@ -1028,28 +1028,28 @@ u8 NAV_GetIntSrcXLG(PmodNAV *InstancePtr, u8 bInstMode) {
 
 /* ------------------------------------------------------------ */
 /*** void NAV_SetIntThresholdXL(PmodNAV *InstancePtr, float thValX, float
-*thValY, float thValZ, u8 intDuration, bool wait)
-**
-**   Parameters:
-**      InstancePtr            - instance of PmodNAV
-**      thValX, thValY, thValZ - Parameters containing the threshold value on
-**                               each axis
-**      intDuration            - parameter indicating the duration of the
-**                               enter/exit interrupt
-**      wait                   - parameter enabling or disabling the wait time
-**                               before exiting the interrupt routine.
-**
-**   Return Value:
-**      None
-**
-**   Errors:
-**      None
-**
-**   Description:
-**      The function sets the interrupt threshold for each axis and also the
-**      duration of the enter/exit interrupt. Enables or disables the wait on
-**      duration before exiting interrupt.
-*/
+ *thValY, float thValZ, u8 intDuration, bool wait)
+ **
+ **   Parameters:
+ **      InstancePtr            - instance of PmodNAV
+ **      thValX, thValY, thValZ - Parameters containing the threshold value on
+ **                               each axis
+ **      intDuration            - parameter indicating the duration of the
+ **                               enter/exit interrupt
+ **      wait                   - parameter enabling or disabling the wait time
+ **                               before exiting the interrupt routine.
+ **
+ **   Return Value:
+ **      None
+ **
+ **   Errors:
+ **      None
+ **
+ **   Description:
+ **      The function sets the interrupt threshold for each axis and also the
+ **      duration of the enter/exit interrupt. Enables or disables the wait on
+ **      duration before exiting interrupt.
+ */
 void NAV_SetIntThresholdXL(PmodNAV *InstancePtr, float thValX, float thValY,
                            float thValZ, u8 intDuration, bool wait) {
   u8 bthValX, bthValY, bthValZ;

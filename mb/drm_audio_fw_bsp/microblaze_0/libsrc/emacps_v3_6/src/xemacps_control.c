@@ -46,8 +46,8 @@
  * ----- ---- -------- -------------------------------------------------------
  * 1.00a wsy  01/10/10 First release
  * 1.02a asa  11/05/12 Added a new API for deleting an entry from the HASH
- *					   register. Added a new API for setting the
- *BURST length in DMACR register. 2.1   srt  07/15/14 Add support for Zynq
+ *					   register. Added a new API for setting
+ *the BURST length in DMACR register. 2.1   srt  07/15/14 Add support for Zynq
  *Ultrascale Mp architecture. 3.0   kvn  02/13/15 Modified code for MISRA-C:2012
  *compliance. 3.0   hk   02/20/15 Added support for jumbo frames. 3.2   hk
  *02/22/16 Added SGMII support for Zynq Ultrascale+ MPSoC.

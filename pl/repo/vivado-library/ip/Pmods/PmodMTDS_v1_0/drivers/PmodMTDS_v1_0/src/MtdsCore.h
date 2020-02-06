@@ -56,21 +56,21 @@
 #define verMtdsMinor 1 // library minor version number
 
 /* The cbSyncLimit value specifies the maximum number of bytes to send to the
-*shield
-** when attempting to synchronize the communications channel. The worst case
-*would
-** normally be we we attempt to synchronize when the shield thinks it sending
-*back a
-** maximum size data packet.
-** cbSyncCount specifies the number of sync bytes we need to receive in a row to
-*decide
-** that the shield is in the synchronization state
-** cbStartCount specifies the maximum number of start bytes to send to get the
-*shield
-** out of the sync state and into the idle state so that we can start actually
-*talking
-** to it.
-*/
+ *shield
+ ** when attempting to synchronize the communications channel. The worst case
+ *would
+ ** normally be we we attempt to synchronize when the shield thinks it sending
+ *back a
+ ** maximum size data packet.
+ ** cbSyncCount specifies the number of sync bytes we need to receive in a row
+ *to decide
+ ** that the shield is in the synchronization state
+ ** cbStartCount specifies the maximum number of start bytes to send to get the
+ *shield
+ ** out of the sync state and into the idle state so that we can start actually
+ *talking
+ ** to it.
+ */
 #define cbSyncLimit 768
 #define cbStartLimit 5
 #define cbSyncCount 10
@@ -323,9 +323,9 @@ struct PRM4A8B {
 #pragma pack(pop)
 
 /* A 32 bit value, four 16 bit values, a 32 bit value, and up to three 16 bit
-*values.
-** These is used by BitBlt and DrawBitmap
-*/
+ *values.
+ ** These is used by BitBlt and DrawBitmap
+ */
 #pragma pack(push, 1)
 struct PRM1A4B1A {
   uint32_t valA1;

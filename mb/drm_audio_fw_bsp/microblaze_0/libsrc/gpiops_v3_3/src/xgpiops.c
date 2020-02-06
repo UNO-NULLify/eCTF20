@@ -162,8 +162,8 @@ s32 XGpioPs_CfgInitialize(XGpioPs *InstancePtr, XGpioPs_Config *ConfigPtr,
  *
  * @return	Current value of the Data register.
  *
- * @note		This function is used for reading the state of all the GPIO
- *pins of specified bank.
+ * @note		This function is used for reading the state of all the
+ *GPIO pins of specified bank.
  *
  *****************************************************************************/
 u32 XGpioPs_Read(XGpioPs *InstancePtr, u8 Bank) {
@@ -299,8 +299,9 @@ void XGpioPs_WritePin(XGpioPs *InstancePtr, u32 Pin, u32 Data) {
  *
  * @return	None.
  *
- * @note		This function is used for setting the direction of all the
- *pins in the specified bank. The previous state of the pins is not maintained.
+ * @note		This function is used for setting the direction of all
+ *the pins in the specified bank. The previous state of the pins is not
+ *maintained.
  *
  *****************************************************************************/
 void XGpioPs_SetDirection(XGpioPs *InstancePtr, u8 Bank, u32 Direction) {
@@ -429,9 +430,9 @@ u32 XGpioPs_GetDirectionPin(XGpioPs *InstancePtr, u32 Pin) {
  *
  * @return	None.
  *
- * @note		This function is used for setting the Output Enables of all
- *the pins in the specified bank. The previous state of the Output Enables is
- *not maintained.
+ * @note		This function is used for setting the Output Enables of
+ *all the pins in the specified bank. The previous state of the Output Enables
+ *is not maintained.
  *
  *****************************************************************************/
 void XGpioPs_SetOutputEnable(XGpioPs *InstancePtr, u8 Bank, u32 OpEnable) {

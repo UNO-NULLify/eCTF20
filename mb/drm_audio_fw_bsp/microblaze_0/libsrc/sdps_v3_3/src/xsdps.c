@@ -50,31 +50,27 @@
  * 2.2   hk     07/28/14 Make changes to enable use of data cache.
  * 2.3   sk     09/23/14 Send command for relative card address
  *                       when re-initialization is done.CR# 819614.
- *						Use XSdPs_Change_ClkFreq API whenever
- *changing clock.CR# 816586.
+ *						Use XSdPs_Change_ClkFreq API
+ *whenever changing clock.CR# 816586.
  * 2.4	sk	   12/04/14 Added support for micro SD without
  * 						WP/CD. CR# 810655.
- *						Checked for DAT Inhibit mask instead of
- *CMD Inhibit mask in Cmd Transfer API. Added Support for SD Card v1.0
- * 2.5 	sg	   07/09/15 Added SD 3.0 features
- *       kvn    07/15/15 Modified the code according to MISRAC-2012.
- * 2.6   sk     10/12/15 Added support for SD card v1.0 CR# 840601.
- * 2.7   sk     11/24/15 Considered the slot type befoe checking CD/WP pins.
- *       sk     12/10/15 Added support for MMC cards.
- *       sk     02/16/16 Corrected the Tuning logic.
- *       sk     03/01/16 Removed Bus Width check for eMMC. CR# 938311.
- * 2.8   sk     05/03/16 Standard Speed for SD to 19MHz in ZynqMPSoC. CR#951024
- * 3.0   sk     06/09/16 Added support for mkfs to calculate sector count.
- *       sk     07/16/16 Added support for UHS modes.
- *       sk     07/07/16 Used usleep API for both arm and microblaze.
- *       sk     07/16/16 Added Tap delays accordingly to different SD/eMMC
- *                       operating modes.
- * 3.1   mi     09/07/16 Removed compilation warnings with extra compiler flags.
- *       sk     10/13/16 Reduced the delay during power cycle to 1ms as per spec
- *       sk     10/19/16 Used emmc_hwreset pin to reset eMMC.
- *       sk     11/07/16 Enable Rst_n bit in ext_csd reg if not enabled.
- * 3.2   sk     11/30/16 Modified the voltage switching sequence as per spec.
- *       sk     02/01/17 Added HSD and DDR mode support for eMMC.
+ *						Checked for DAT Inhibit mask instead
+ *of CMD Inhibit mask in Cmd Transfer API. Added Support for SD Card v1.0 2.5
+ *sg	   07/09/15 Added SD 3.0 features kvn    07/15/15 Modified the code
+ *according to MISRAC-2012. 2.6   sk     10/12/15 Added support for SD card v1.0
+ *CR# 840601. 2.7   sk     11/24/15 Considered the slot type befoe checking
+ *CD/WP pins. sk     12/10/15 Added support for MMC cards. sk     02/16/16
+ *Corrected the Tuning logic. sk     03/01/16 Removed Bus Width check for eMMC.
+ *CR# 938311. 2.8   sk     05/03/16 Standard Speed for SD to 19MHz in ZynqMPSoC.
+ *CR#951024 3.0   sk     06/09/16 Added support for mkfs to calculate sector
+ *count. sk     07/16/16 Added support for UHS modes. sk     07/07/16 Used
+ *usleep API for both arm and microblaze. sk     07/16/16 Added Tap delays
+ *accordingly to different SD/eMMC operating modes. 3.1   mi     09/07/16
+ *Removed compilation warnings with extra compiler flags. sk     10/13/16
+ *Reduced the delay during power cycle to 1ms as per spec sk     10/19/16 Used
+ *emmc_hwreset pin to reset eMMC. sk     11/07/16 Enable Rst_n bit in ext_csd
+ *reg if not enabled. 3.2   sk     11/30/16 Modified the voltage switching
+ *sequence as per spec. sk     02/01/17 Added HSD and DDR mode support for eMMC.
  *       vns    02/09/17 Added ARMA53_32 support for ZynqMP CR#968397
  *       sk     03/20/17 Add support for EL1 non-secure mode.
  * 3.3   mn     05/17/17 Add support for 64bit DMA addressing

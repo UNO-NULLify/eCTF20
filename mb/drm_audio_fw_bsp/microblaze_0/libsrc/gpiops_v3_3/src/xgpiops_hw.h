@@ -71,22 +71,25 @@ extern "C" {
 /** @name Register offsets for the GPIO. Each register is 32 bits.
  *  @{
  */
-#define XGPIOPS_DATA_LSW_OFFSET 0x00000000U /* Mask and Data Register LSW, WO  \
-                                             */
-#define XGPIOPS_DATA_MSW_OFFSET 0x00000004U /* Mask and Data Register MSW, WO  \
-                                             */
-#define XGPIOPS_DATA_OFFSET 0x00000040U     /* Data Register, RW */
-#define XGPIOPS_DATA_RO_OFFSET 0x00000060U  /* Data Register - Input, RO */
-#define XGPIOPS_DIRM_OFFSET 0x00000204U     /* Direction Mode Register, RW */
-#define XGPIOPS_OUTEN_OFFSET 0x00000208U    /* Output Enable Register, RW */
-#define XGPIOPS_INTMASK_OFFSET 0x0000020CU  /* Interrupt Mask Register, RO */
-#define XGPIOPS_INTEN_OFFSET 0x00000210U    /* Interrupt Enable Register, WO */
-#define XGPIOPS_INTDIS_OFFSET 0x00000214U   /* Interrupt Disable Register, WO*/
-#define XGPIOPS_INTSTS_OFFSET 0x00000218U   /* Interrupt Status Register, RO */
-#define XGPIOPS_INTTYPE_OFFSET 0x0000021CU  /* Interrupt Type Register, RW */
-#define XGPIOPS_INTPOL_OFFSET 0x00000220U   /* Interrupt Polarity Register, RW \
-                                             */
-#define XGPIOPS_INTANY_OFFSET 0x00000224U   /* Interrupt On Any Register, RW */
+#define XGPIOPS_DATA_LSW_OFFSET                                                \
+  0x00000000U /* Mask and Data Register LSW, WO                                \
+               */
+#define XGPIOPS_DATA_MSW_OFFSET                                                \
+  0x00000004U                              /* Mask and Data Register MSW, WO   \
+                                            */
+#define XGPIOPS_DATA_OFFSET 0x00000040U    /* Data Register, RW */
+#define XGPIOPS_DATA_RO_OFFSET 0x00000060U /* Data Register - Input, RO */
+#define XGPIOPS_DIRM_OFFSET 0x00000204U    /* Direction Mode Register, RW */
+#define XGPIOPS_OUTEN_OFFSET 0x00000208U   /* Output Enable Register, RW */
+#define XGPIOPS_INTMASK_OFFSET 0x0000020CU /* Interrupt Mask Register, RO */
+#define XGPIOPS_INTEN_OFFSET 0x00000210U   /* Interrupt Enable Register, WO */
+#define XGPIOPS_INTDIS_OFFSET 0x00000214U  /* Interrupt Disable Register, WO*/
+#define XGPIOPS_INTSTS_OFFSET 0x00000218U  /* Interrupt Status Register, RO */
+#define XGPIOPS_INTTYPE_OFFSET 0x0000021CU /* Interrupt Type Register, RW */
+#define XGPIOPS_INTPOL_OFFSET                                                  \
+  0x00000220U                             /* Interrupt Polarity Register, RW   \
+                                           */
+#define XGPIOPS_INTANY_OFFSET 0x00000224U /* Interrupt On Any Register, RW */
 /* @} */
 
 /** @name Register offsets for each Bank.

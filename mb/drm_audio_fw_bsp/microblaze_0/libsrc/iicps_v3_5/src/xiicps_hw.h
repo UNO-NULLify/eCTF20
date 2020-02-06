@@ -48,8 +48,8 @@
  * 1.00a drg/jz  01/30/10 First release
  * 1.04a kpc		11/07/13 Added function prototype.
  * 3.0	sk		11/03/14 Modified the TimeOut Register value to 0xFF
- *				01/31/15 Modified the code according to MISRAC 2012
- *Compliant.
+ *				01/31/15 Modified the code according to MISRAC
+ *2012 Compliant.
  * </pre>
  *
  ******************************************************************************/

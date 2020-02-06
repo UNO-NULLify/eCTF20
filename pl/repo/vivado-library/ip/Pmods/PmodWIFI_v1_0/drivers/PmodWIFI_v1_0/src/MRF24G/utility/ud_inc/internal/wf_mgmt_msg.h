@@ -183,8 +183,8 @@ typedef enum {
   PARAM_ENABLE_DEBUG_PRINT = 35,       /* enable WPS / P2P debug prints       */
   PARAM_BROADCAST_PROBE_RESPONSE = 36, /* enable broadcast probe response */
   PARAM_LINK_DOWN_THRESHOLD = 37,      /* sets link down threshold      */
-  PARAM_STACK_VERSION = 38,            /* notifies stack version to RF FW            */
-  PARAM_SET_PSK = 39,                  /* set psk                  */
+  PARAM_STACK_VERSION = 38, /* notifies stack version to RF FW            */
+  PARAM_SET_PSK = 39,       /* set psk                  */
   PARAM_YIELD_PASSPHRASE_TOHOST =
       40, /* forces module FW to send passphrase to host in WPS            */
   PARAM_USE_SW_MULTICAST_FILTER =

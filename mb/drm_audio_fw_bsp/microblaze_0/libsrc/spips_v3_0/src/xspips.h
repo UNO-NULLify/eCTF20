@@ -323,15 +323,18 @@ extern "C" {
  *
  * @{
  */
-#define XSPIPS_MASTER_OPTION 0x00000001U         /**< Master mode option */
-#define XSPIPS_CLK_ACTIVE_LOW_OPTION 0x00000002U /**< Active Low Clock option  \
-                                                  */
-#define XSPIPS_CLK_PHASE_1_OPTION 0x00000004U    /**< Clock Phase one option */
-#define XSPIPS_DECODE_SSELECT_OPTION 0x00000008U /**< Select 16 slaves Option  \
-                                                  */
-#define XSPIPS_FORCE_SSELECT_OPTION 0x00000010U  /**< Force Slave Select */
-#define XSPIPS_MANUAL_START_OPTION 0x00000020U   /**< Manual Start mode option \
-                                                  */
+#define XSPIPS_MASTER_OPTION 0x00000001U /**< Master mode option */
+#define XSPIPS_CLK_ACTIVE_LOW_OPTION                                           \
+  0x00000002U                                 /**< Active Low Clock option     \
+                                               */
+#define XSPIPS_CLK_PHASE_1_OPTION 0x00000004U /**< Clock Phase one option */
+#define XSPIPS_DECODE_SSELECT_OPTION                                           \
+  0x00000008U                                   /**< Select 16 slaves Option   \
+                                                 */
+#define XSPIPS_FORCE_SSELECT_OPTION 0x00000010U /**< Force Slave Select */
+#define XSPIPS_MANUAL_START_OPTION                                             \
+  0x00000020U /**< Manual Start mode option                                    \
+               */
 /*@}*/
 
 /** @name SPI Clock Prescaler options

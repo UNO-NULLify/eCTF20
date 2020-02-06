@@ -109,27 +109,23 @@
  * 2.2   hk     07/28/14 Make changes to enable use of data cache.
  * 2.3   sk     09/23/14 Send command for relative card address
  *                       when re-initialization is done.CR# 819614.
- *						Use XSdPs_Change_ClkFreq API whenever
- *changing clock.CR# 816586.
+ *						Use XSdPs_Change_ClkFreq API
+ *whenever changing clock.CR# 816586.
  * 2.4	sk	   12/04/14 Added support for micro SD without
  * 						WP/CD. CR# 810655.
- *						Checked for DAT Inhibit mask instead of
- *CMD Inhibit mask in Cmd Transfer API. Added Support for SD Card v1.0
- * 2.5 	sg		07/09/15 Added SD 3.0 features
- *       kvn     07/15/15 Modified the code according to MISRAC-2012.
- * 2.6   sk     10/12/15 Added support for SD card v1.0 CR# 840601.
- * 2.7   sk     11/24/15 Considered the slot type befoe checking CD/WP pins.
- *       sk     12/10/15 Added support for MMC cards.
- *              01/08/16 Added workaround for issue in auto tuning mode
- *                       of SDR50, SDR104 and HS200.
- *       sk     02/16/16 Corrected the Tuning logic.
- *       sk     03/01/16 Removed Bus Width check for eMMC. CR# 938311.
- * 2.8   sk     04/20/16 Added new workaround for auto tuning.
- *              05/03/16 Standard Speed for SD to 19MHz in ZynqMPSoC. CR#951024
- * 3.0   sk     06/09/16 Added support for mkfs to calculate sector count.
- *       sk     07/16/16 Added support for UHS modes.
- *       sk     07/07/16 Used usleep API for both arm and microblaze.
- *       sk     07/16/16 Added Tap delays accordingly to different SD/eMMC
+ *						Checked for DAT Inhibit mask instead
+ *of CMD Inhibit mask in Cmd Transfer API. Added Support for SD Card v1.0 2.5
+ *sg		07/09/15 Added SD 3.0 features kvn     07/15/15 Modified the
+ *code according to MISRAC-2012. 2.6   sk     10/12/15 Added support for SD card
+ *v1.0 CR# 840601. 2.7   sk     11/24/15 Considered the slot type befoe checking
+ *CD/WP pins. sk     12/10/15 Added support for MMC cards. 01/08/16 Added
+ *workaround for issue in auto tuning mode of SDR50, SDR104 and HS200. sk
+ *02/16/16 Corrected the Tuning logic. sk     03/01/16 Removed Bus Width check
+ *for eMMC. CR# 938311. 2.8   sk     04/20/16 Added new workaround for auto
+ *tuning. 05/03/16 Standard Speed for SD to 19MHz in ZynqMPSoC. CR#951024 3.0 sk
+ *06/09/16 Added support for mkfs to calculate sector count. sk     07/16/16
+ *Added support for UHS modes. sk     07/07/16 Used usleep API for both arm and
+ *microblaze. sk     07/16/16 Added Tap delays accordingly to different SD/eMMC
  *                       operating modes.
  *       sk     08/13/16 Removed sleep.h from xsdps.h as a temporary fix for
  *                       CR#956899.

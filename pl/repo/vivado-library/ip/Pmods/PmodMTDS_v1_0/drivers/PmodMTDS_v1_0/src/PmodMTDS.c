@@ -51,22 +51,22 @@
 XSpi_Config MTDSConfig = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
 /* ------------------------------------------------------------ */
 /***	void MTDS_begin(PmodMTDS* InstancePtr, u32 GPIO_Address, u32
-*SPI_Address)
-**
-**	Parameters:
-**		InstancePtr: A PmodMTDS object to start
-**		GPIO_Address: The Base address of the PmodMTDS GPIO
-**		SPI_Address: The Base address of the PmodMTDS SPI
-**
-**	Return Value:
-**		none
-**
-**	Errors:
-**		none
-**
-**	Description:
-**		Initialize the PmodMTDS.
-*/
+ *SPI_Address)
+ **
+ **	Parameters:
+ **		InstancePtr: A PmodMTDS object to start
+ **		GPIO_Address: The Base address of the PmodMTDS GPIO
+ **		SPI_Address: The Base address of the PmodMTDS SPI
+ **
+ **	Return Value:
+ **		none
+ **
+ **	Errors:
+ **		none
+ **
+ **	Description:
+ **		Initialize the PmodMTDS.
+ */
 void MTDS_begin(PmodMTDS *InstancePtr, u32 GPIO_Address, u32 SPI_Address) {
   InstancePtr->GPIO_addr = GPIO_Address;
   MTDSConfig.BaseAddress = SPI_Address;
@@ -221,7 +221,7 @@ void MTDS_WriteSpi(PmodMTDS *InstancePtr, u8 reg, u8 *wData, int nData) {
   // As requested by documentation, first byte contains:
   //	bit 7 = 0 because is a write operation
   //	bit 6 = 1 if more than one bytes is written, 0 if a single byte is
-  //written
+  // written
   // 	bits 5-0 - the address
   u8 bytearray[nData + 1];
   bytearray[0] = ((nData > 1) ? 0x40 : 0) | (reg & 0x3F);
@@ -256,7 +256,7 @@ void MTDS_ReadSpi(PmodMTDS *InstancePtr, u8 reg, u8 *rData, int nData) {
   // As requested by documentation, first byte contains:
   //	bit 7 = 1 because is a read operation
   //	bit 6 = 1 if more than one bytes is written, 0 if a single byte is
-  //written
+  // written
   // 	bits 5-0 - the address
   u8 bytearray[nData + 1];
 
@@ -276,8 +276,8 @@ void MTDS_ReadSpi(PmodMTDS *InstancePtr, u8 reg, u8 *rData, int nData) {
 *communicate with *				u8 bRegisterAddress 	- the
 *address of the register whose bits are set *				u8 bMask
 *- the mask indicating which bits are affected
-**				bool fValue					- 1
-*if the bits are set or 0 if their bits are reset
+**				bool fValue					-
+*1 if the bits are set or 0 if their bits are reset
 **
 **
 **        Return Values:
@@ -307,14 +307,14 @@ void MTDS_SetRegisterBits(PmodMTDS *InstancePtr, u8 reg, u8 mask, bool fValue) {
 /*        GetRegisterBits
 **
 **        Synopsis:
-**				return GetRegisterBits(&MTDSobj, MTDS_ADR_BW_RATE,
-*MSK_BW_RATE_RATE);
+**				return GetRegisterBits(&MTDSobj,
+*MTDS_ADR_BW_RATE, MSK_BW_RATE_RATE);
 **        Parameters:
 **        		PmodMTDS *InstancePtr	- the PmodMTDS object to
 *communicate with *				u8 bRegisterAddress 	- the
 *address of the register whose bits are read
-**				u8 bMask				- the mask
-*indicating which bits are read
+**				u8 bMask				- the
+*mask indicating which bits are read
 **
 **
 **        Return Values:

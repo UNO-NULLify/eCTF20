@@ -45,8 +45,8 @@
  * ----- ------  -------- --------------------------------------------
  * 1.04a kpc     11/07/13 First release
  * 3.0	sk		11/03/14 Modified TimeOut Register value to 0xFF
- *				01/31/15 Modified the code according to MISRAC 2012
- *Compliant.
+ *				01/31/15 Modified the code according to MISRAC
+ *2012 Compliant.
  *
  * </pre>
  *
