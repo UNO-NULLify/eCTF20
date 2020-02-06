@@ -688,8 +688,8 @@ unsigned XIic_DynRecv(u32 BaseAddress, u8 Address, u8 *BufferPtr,
  *
  * @return	The number of bytes remaining to be received.
  *
- * @note		This function contains loops that could cause the function
- *not to return if the hardware is not working.
+ * @note		This function contains loops that could cause the
+ *function not to return if the hardware is not working.
  *
  ******************************************************************************/
 static unsigned DynRecvData(u32 BaseAddress, u8 *BufferPtr, u8 ByteCount) {

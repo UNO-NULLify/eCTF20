@@ -241,9 +241,9 @@ bool MtdsReadDataPacket(uint16_t cbMax, uint8_t *pb, uint16_t *pcbRes) {
 
   if (MtdsReadDhdr((uint8_t *)&dhdrMtdsData)) {
     /* We have the data in packet header. We need to read up to the requested
-    *amount
-    ** of data into the specified buffer.
-    */
+     *amount
+     ** of data into the specified buffer.
+     */
     cbCur = dhdrMtdsData.cb;
     if (cbCur > cbMax) {
       cbCur = cbMax;

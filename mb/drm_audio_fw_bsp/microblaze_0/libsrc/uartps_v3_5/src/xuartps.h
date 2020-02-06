@@ -156,14 +156,14 @@
  * 3.0   vm     12/09/14 Modified source code according to misrac guideline.
  *			Support for Zynq Ultrascale Mp added.
  * 3.1	kvn    04/10/15 Modified code for latest RTL changes. Also added
- *						platform variable in driver instance
- *structure. 3.1   adk   14/03/16  Include interrupt examples in the peripheral
- *test when uart is connected to a valid interrupt controller CR#946803. 3.2 rk
- *07/20/16 Modified the logic for transmission break bit set 3.4   ms 01/23/17
- *Added xil_printf statement in main function for all examples to ensure that
- *"Successfully ran" and "Failed" strings are available in all examples. This is
- *a fix for CR-965028. ms     03/17/17 Added readme.txt file in examples folder
- *for doxygen generation.
+ *						platform variable in driver
+ *instance structure. 3.1   adk   14/03/16  Include interrupt examples in the
+ *peripheral test when uart is connected to a valid interrupt controller
+ *CR#946803. 3.2 rk 07/20/16 Modified the logic for transmission break bit
+ *set 3.4   ms 01/23/17 Added xil_printf statement in main function for all
+ *examples to ensure that "Successfully ran" and "Failed" strings are available
+ *in all examples. This is a fix for CR-965028. ms     03/17/17 Added readme.txt
+ *file in examples folder for doxygen generation.
  *
  * </pre>
  *

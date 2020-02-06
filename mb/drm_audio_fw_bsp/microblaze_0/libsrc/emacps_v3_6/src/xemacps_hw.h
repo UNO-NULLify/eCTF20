@@ -54,13 +54,13 @@
  *					  to 0x1fff. This fixes the CR#744902.
  * 2.1   srt  07/15/14 Add support for Zynq Ultrascale Mp GEM specification.
  * 3.0   kvn  12/16/14 Changed name of XEMACPS_NWCFG_LENGTHERRDSCRD_MASK to
- *					  XEMACPS_NWCFG_LENERRDSCRD_MASK as it exceeds
- *31 characters. 3.0  kpc   1/23/15  Corrected the extended descriptor macro
- *values. 3.0  kvn   02/13/15 Modified code for MISRA-C:2012 compliance. 3.0  hk
- *03/18/15 Added support for jumbo frames. Remove "used bit set" from TX error
- *interrupt masks. 3.1  hk   08/10/15 Update upper 32 bit tx and rx queue ptr
- *register offsets. 3.2   hk   02/22/16 Added SGMII support for Zynq Ultrascale+
- *MPSoC.
+ *					  XEMACPS_NWCFG_LENERRDSCRD_MASK as it
+ *exceeds 31 characters. 3.0  kpc   1/23/15  Corrected the extended descriptor
+ *macro values. 3.0  kvn   02/13/15 Modified code for MISRA-C:2012
+ *compliance. 3.0  hk 03/18/15 Added support for jumbo frames. Remove "used bit
+ *set" from TX error interrupt masks. 3.1  hk   08/10/15 Update upper 32 bit tx
+ *and rx queue ptr register offsets. 3.2   hk   02/22/16 Added SGMII support for
+ *Zynq Ultrascale+ MPSoC.
  * </pre>
  *
  ******************************************************************************/
@@ -329,9 +329,10 @@ typedef enum {
   0x000001B4U /**< Last statistic counter                                      \
                    offset, for clearing */
 
-#define XEMACPS_1588_SEC_OFFSET 0x000001D0U     /**< 1588 second counter */
-#define XEMACPS_1588_NANOSEC_OFFSET 0x000001D4U /**< 1588 nanosecond counter   \
-                                                 */
+#define XEMACPS_1588_SEC_OFFSET 0x000001D0U /**< 1588 second counter */
+#define XEMACPS_1588_NANOSEC_OFFSET                                            \
+  0x000001D4U /**< 1588 nanosecond counter                                     \
+               */
 #define XEMACPS_1588_ADJ_OFFSET                                                \
   0x000001D8U /**< 1588 nanosecond                                             \
                    adjustment counter */
@@ -666,11 +667,12 @@ typedef enum {
  * useful info.
  * @{
  */
-#define XEMACPS_RXBUF_BCAST_MASK 0x80000000U     /**< Broadcast frame */
-#define XEMACPS_RXBUF_MULTIHASH_MASK 0x40000000U /**< Multicast hashed frame   \
-                                                  */
-#define XEMACPS_RXBUF_UNIHASH_MASK 0x20000000U   /**< Unicast hashed frame */
-#define XEMACPS_RXBUF_EXH_MASK 0x08000000U       /**< buffer exhausted */
+#define XEMACPS_RXBUF_BCAST_MASK 0x80000000U /**< Broadcast frame */
+#define XEMACPS_RXBUF_MULTIHASH_MASK                                           \
+  0x40000000U                                  /**< Multicast hashed frame     \
+                                                */
+#define XEMACPS_RXBUF_UNIHASH_MASK 0x20000000U /**< Unicast hashed frame */
+#define XEMACPS_RXBUF_EXH_MASK 0x08000000U     /**< buffer exhausted */
 #define XEMACPS_RXBUF_AMATCH_MASK                                              \
   0x06000000U                                    /**< Specific address         \
                                                       matched */

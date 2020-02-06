@@ -305,9 +305,9 @@ static void DynSendMasterData(XIic *InstancePtr) {
  *		set to the general call address. This is not allowed for Master
  *		receive mode.
  *
- * @note		The receive FIFO threshold is a zero based count such that
- *1 must be subtracted from the desired count to get the correct value. When
- *receiving data it is also necessary to not receive the last byte with the
+ * @note		The receive FIFO threshold is a zero based count such
+ *that 1 must be subtracted from the desired count to get the correct value.
+ *When receiving data it is also necessary to not receive the last byte with the
  *prior bytes because the acknowledge must be setup before the last byte is
  *received.
  *

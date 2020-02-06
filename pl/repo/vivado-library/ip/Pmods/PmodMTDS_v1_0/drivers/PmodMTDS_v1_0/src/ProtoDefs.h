@@ -47,7 +47,8 @@
  */
 /*		Packet class byte (e.g. clsStaGdi)
  */
-/*		Command byte that this is the return value for (e.g. CmdGdiGetDs)
+/*		Command byte that this is the return value for (e.g.
+ * CmdGdiGetDs)
  */
 /*		Status code byte
  */
@@ -163,9 +164,9 @@ struct UPDHDR {
 #define chnStaNak (clsProtoChan + 0x2F)    // shield detected protocol error
 
 /* These channel status codes are used internally by the mtds library code and
-*aren't
-** actually sent over the SPI interface.
-*/
+ *aren't
+ ** actually sent over the SPI interface.
+ */
 #define chnStaSuccess (clsProtoChan + 0x30)  // no error
 #define chnStaClsError (clsProtoChan + 0x31) // unexpected byte for packet class
 #define chnStaTimeout                                                          \
@@ -453,11 +454,11 @@ struct UPDHDR {
 #define staFsInvalidHandle 0x14
 
 /* Status codes returned by the GetUpdateStatus() function. These are a special
-*case
-** as they aren't really about command success/failure, but about the ongoing
-*status
-** of the firmware update process.
-*/
+ *case
+ ** as they aren't really about command success/failure, but about the ongoing
+ *status
+ ** of the firmware update process.
+ */
 #define staUpdateSuccess 0x01
 #define staUpdateBusy 0x02  // firmware updater is still working
 #define staUpdateAbort 0x03 // firmware updater couldn't start

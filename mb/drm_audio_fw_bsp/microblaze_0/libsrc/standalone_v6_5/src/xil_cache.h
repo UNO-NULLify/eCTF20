@@ -51,9 +51,9 @@
  *                     whether the write-back or write-through caches are
  *                     used (cr #630532).
  * 3.10a asa  05/04/13 This version of MicroBlaze BSP adds support for system
- *					  cache/L2 cache. The existing/old APIs/macros
- *in this file are renamed to imply that they deal with L1 cache. New
- *macros/APIs are added to address similar features for L2 cache. Users can
+ *					  cache/L2 cache. The existing/old
+ *APIs/macros in this file are renamed to imply that they deal with L1 cache.
+ *New macros/APIs are added to address similar features for L2 cache. Users can
  *include this file in their application to use the various cache related APIs.
  *These changes are done for implementing PR #697214.
  *

@@ -200,11 +200,11 @@ extern "C" {
                * de-assertion between                                          \
                * word transfers mask */
 #define XSPIPS_DR_NSS_SHIFT                                                    \
-  24U /**< Delay for slave select                                              \
-       * de-assertion between                                                  \
-       * word transfers shift */
-#define XSPIPS_DR_BTWN_MASK                                                    \
-  0x00FF0000U                            /**< Delay Between Transfers	mask */
+  24U                                    /**< Delay for slave select           \
+                                          * de-assertion between               \
+                                          * word transfers shift */
+#define XSPIPS_DR_BTWN_MASK 0x00FF0000U  /**< Delay Between Transfers	mask     \
+                                          */
 #define XSPIPS_DR_BTWN_SHIFT 16U         /**< Delay Between Transfers shift */
 #define XSPIPS_DR_AFTER_MASK 0x0000FF00U /**< Delay After Transfers mask */
 #define XSPIPS_DR_AFTER_SHIFT 8U         /**< Delay After Transfers shift */
