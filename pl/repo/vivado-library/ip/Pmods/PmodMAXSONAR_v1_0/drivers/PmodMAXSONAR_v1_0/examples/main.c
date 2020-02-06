@@ -26,7 +26,6 @@
 #include "xil_cache.h"
 #include "xparameters.h"
 
-
 /************ Macro Definitions ************/
 
 #define PMOD_MAXSONAR_BASEADDR XPAR_PMODMAXSONAR_0_AXI_LITE_GPIO_BASEADDR
@@ -37,11 +36,9 @@
 #define CLK_FREQ 100000000 // FCLK0 frequency not found in xparameters.h
 #endif
 
-
 /************ Global Variables ************/
 
 PmodMAXSONAR myDevice;
-
 
 /************ Function Prototypes ************/
 
@@ -55,43 +52,39 @@ void EnableCaches();
 
 void DisableCaches();
 
-
 /************ Function Definitions ************/
 
 int main(void) {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
-   MAXSONAR_begin(&myDevice, PMOD_MAXSONAR_BASEADDR, CLK_FREQ);
+  EnableCaches();
+  MAXSONAR_begin(&myDevice, PMOD_MAXSONAR_BASEADDR, CLK_FREQ);
 }
-
 
 void DemoRun() {
-   print("\n\r");
-   u32 dist;
-   while (1) {
-      dist = MAXSONAR_getDistance(&myDevice);
-      xil_printf("dist (in) = %3d\r", dist);
-      usleep(200000);
-   }
+  print("\n\r");
+  u32 dist;
+  while (1) {
+    dist = MAXSONAR_getDistance(&myDevice);
+    xil_printf("dist (in) = %3d\r", dist);
+    usleep(200000);
+  }
 }
 
-void DemoCleanup() {
-   DisableCaches();
-}
+void DemoCleanup() { DisableCaches(); }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -99,10 +92,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

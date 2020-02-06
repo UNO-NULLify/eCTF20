@@ -45,10 +45,10 @@
 **      Initialize the PmodENC.
 */
 void ENC_begin(PmodENC *InstancePtr, u32 GPIO_Address) {
-   InstancePtr->GPIO_addr = GPIO_Address;
+  InstancePtr->GPIO_addr = GPIO_Address;
 
-   // 0b1111 for input 0b0000 for output, 0b0001 for pin1 in pin 2 out etc.
-   Xil_Out32(InstancePtr->GPIO_addr + 4, 0xFF);
+  // 0b1111 for input 0b0000 for output, 0b0001 for pin1 in pin 2 out etc.
+  Xil_Out32(InstancePtr->GPIO_addr + 4, 0xFF);
 }
 
 /* ------------------------------------------------------------ */
@@ -67,9 +67,9 @@ void ENC_begin(PmodENC *InstancePtr, u32 GPIO_Address) {
 **      returns the current state of the encoder GPIO pins.
 */
 u32 ENC_getState(PmodENC *InstancePtr) {
-   u32 rvalue = 0;
-   rvalue = Xil_In32(InstancePtr->GPIO_addr) & 0xF;
-   return rvalue;
+  u32 rvalue = 0;
+  rvalue = Xil_In32(InstancePtr->GPIO_addr) & 0xF;
+  return rvalue;
 }
 
 /* ------------------------------------------------------------ */
@@ -92,18 +92,18 @@ u32 ENC_getState(PmodENC *InstancePtr) {
 **      or following pin A's positive edge
 */
 int ENC_getRotation(u32 state, u32 laststate) {
-   //   if posedge(pinA), then
-   //      if B is low, return RIGHT
-   //      if B is high, return LEFT
-   if ((state & ENC_GPIO_PIN_A) != 0 && (laststate & ENC_GPIO_PIN_A) == 0) {
-      if ((state & ENC_GPIO_PIN_B) != 0) {
-         return 1;
-      } else {
-         return -1;
-      }
-   } else {
-      return 0;
-   }
+  //   if posedge(pinA), then
+  //      if B is low, return RIGHT
+  //      if B is high, return LEFT
+  if ((state & ENC_GPIO_PIN_A) != 0 && (laststate & ENC_GPIO_PIN_A) == 0) {
+    if ((state & ENC_GPIO_PIN_B) != 0) {
+      return 1;
+    } else {
+      return -1;
+    }
+  } else {
+    return 0;
+  }
 }
 
 /* ------------------------------------------------------------ */
@@ -121,9 +121,7 @@ int ENC_getRotation(u32 state, u32 laststate) {
 **   Description:
 **      Simple wrapper function for determining the button GPIO state
 */
-int ENC_buttonPressed(u32 state) {
-   return state & ENC_GPIO_PIN_BTN;
-}
+int ENC_buttonPressed(u32 state) { return state & ENC_GPIO_PIN_BTN; }
 
 /* ------------------------------------------------------------ */
 /*** int ENC_switchOn(u32 state)
@@ -140,6 +138,4 @@ int ENC_buttonPressed(u32 state) {
 **   Description:
 **      Simple wrapper function for determining the switch GPIO state
 */
-int ENC_switchOn(u32 state) {
-   return state & ENC_GPIO_PIN_SWT;
-}
+int ENC_switchOn(u32 state) { return state & ENC_GPIO_PIN_SWT; }

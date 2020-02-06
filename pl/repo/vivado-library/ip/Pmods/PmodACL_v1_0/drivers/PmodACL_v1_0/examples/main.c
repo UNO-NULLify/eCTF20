@@ -27,11 +27,11 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include <stdio.h>
 #include "PmodACL.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xparameters.h"
+#include <stdio.h>
 
 void DemoInitialize();
 void DemoRun();
@@ -42,48 +42,46 @@ void DisableCaches();
 PmodACL acl;
 
 int main(void) {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
-   xil_printf("ACL Demo Initializing");
-   ACL_begin(&acl, XPAR_PMODACL_0_AXI_LITE_GPIO_BASEADDR,
-         XPAR_PMODACL_0_AXI_LITE_SPI_BASEADDR);
-   ACL_SetMeasure(&acl, 0);
-   ACL_SetGRange(&acl, ACL_PAR_GRANGE_PM4G);
-   ACL_SetMeasure(&acl, 1);
-   ACL_CalibrateOneAxisGravitational(&acl, ACL_PAR_AXIS_ZP);
-   sleep(1); // After calibration, some delay is required for the new settings
-             // to take effect.
+  EnableCaches();
+  xil_printf("ACL Demo Initializing");
+  ACL_begin(&acl, XPAR_PMODACL_0_AXI_LITE_GPIO_BASEADDR,
+            XPAR_PMODACL_0_AXI_LITE_SPI_BASEADDR);
+  ACL_SetMeasure(&acl, 0);
+  ACL_SetGRange(&acl, ACL_PAR_GRANGE_PM4G);
+  ACL_SetMeasure(&acl, 1);
+  ACL_CalibrateOneAxisGravitational(&acl, ACL_PAR_AXIS_ZP);
+  sleep(1); // After calibration, some delay is required for the new settings
+            // to take effect.
 }
 
 void DemoRun() {
-   float x, y, z;
+  float x, y, z;
 
-   xil_printf("ACL Demo Launched");
+  xil_printf("ACL Demo Launched");
 
-   while (1) {
-      ACL_ReadAccelG(&acl, &x, &y, &z);
-      printf("X=%f\tY=%f\tZ=%f\n\r", x, y, z);
-      usleep(100000);
-   }
+  while (1) {
+    ACL_ReadAccelG(&acl, &x, &y, &z);
+    printf("X=%f\tY=%f\tZ=%f\n\r", x, y, z);
+    usleep(100000);
+  }
 }
 
-void DemoCleanup() {
-   DisableCaches();
-}
+void DemoCleanup() { DisableCaches(); }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -91,10 +89,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

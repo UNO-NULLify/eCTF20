@@ -25,11 +25,11 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include <stdio.h>
 #include "PmodTC1.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xparameters.h"
+#include <stdio.h>
 
 void DemoInitialize();
 void DemoRun();
@@ -40,41 +40,41 @@ void DisableCaches();
 PmodTC1 myDevice;
 
 int main(void) {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
-   TC1_begin(&myDevice, XPAR_PMODTC1_0_AXI_LITE_SPI_BASEADDR);
+  EnableCaches();
+  TC1_begin(&myDevice, XPAR_PMODTC1_0_AXI_LITE_SPI_BASEADDR);
 }
 
 void DemoRun() {
-   double celsius, fahrenheit;
-   printf("Starting Pmod TC1 Demo...\n\r");
+  double celsius, fahrenheit;
+  printf("Starting Pmod TC1 Demo...\n\r");
 
-   while (1) {
-      celsius = TC1_getTemp(&myDevice);
-      fahrenheit = TC1_tempC2F(celsius);
-      printf("Temperature: %f deg F   %f deg C\n\r", (fahrenheit), (celsius));
-      usleep(500000);
-   }
+  while (1) {
+    celsius = TC1_getTemp(&myDevice);
+    fahrenheit = TC1_tempC2F(celsius);
+    printf("Temperature: %f deg F   %f deg C\n\r", (fahrenheit), (celsius));
+    usleep(500000);
+  }
 }
 
 void DemoCleanup() {
-   TC1_end(&myDevice);
-   DisableCaches();
+  TC1_end(&myDevice);
+  DisableCaches();
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -82,10 +82,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #endif
 }

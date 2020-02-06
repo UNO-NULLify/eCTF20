@@ -28,20 +28,20 @@
 /****************************** Include Files ***************************/
 
 #include "xil_io.h"
-#include "xstatus.h"
 #include "xil_types.h"
+#include "xstatus.h"
 
 /**************************** Type Definitions **************************/
 
 typedef struct PmodKYPD {
-   u32 GPIO_addr;
-   u8 keytable[16];
-   u32 keytable_loaded;
+  u32 GPIO_addr;
+  u8 keytable[16];
+  u32 keytable_loaded;
 } PmodKYPD;
 
-#define KYPD_NO_KEY     0
+#define KYPD_NO_KEY 0
 #define KYPD_SINGLE_KEY 1
-#define KYPD_MULTI_KEY  2
+#define KYPD_MULTI_KEY 2
 
 /************************** Function Definitions ************************/
 

@@ -2,7 +2,6 @@
 #ifndef PWM_H
 #define PWM_H
 
-
 /****************** Include Files ********************/
 #include "xil_types.h"
 #include "xstatus.h"
@@ -11,7 +10,6 @@
 #define PWM_PWM_AXI_SLV_REG1_OFFSET 4
 #define PWM_PWM_AXI_SLV_REG2_OFFSET 8
 #define PWM_PWM_AXI_SLV_REG3_OFFSET 12
-
 
 /**************************** Type Definitions *****************************/
 /**
@@ -31,8 +29,8 @@
  * 	void PWM_mWriteReg(u32 BaseAddress, unsigned RegOffset, u32 Data)
  *
  */
-#define PWM_mWriteReg(BaseAddress, RegOffset, Data) \
-  	Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
+#define PWM_mWriteReg(BaseAddress, RegOffset, Data)                            \
+  Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
 
 /**
  *
@@ -51,8 +49,8 @@
  * 	u32 PWM_mReadReg(u32 BaseAddress, unsigned RegOffset)
  *
  */
-#define PWM_mReadReg(BaseAddress, RegOffset) \
-    Xil_In32((BaseAddress) + (RegOffset))
+#define PWM_mReadReg(BaseAddress, RegOffset)                                   \
+  Xil_In32((BaseAddress) + (RegOffset))
 
 /************************** Function Prototypes ****************************/
 /**
@@ -71,9 +69,10 @@
  *    - XST_FAILURE   if any self-test code failed
  *
  * @note    Caching must be turned off for this function to work.
- * @note    Self test may fail if data memory and device are not on the same bus.
+ * @note    Self test may fail if data memory and device are not on the same
+ * bus.
  *
  */
-XStatus PWM_Reg_SelfTest(void * baseaddr_p);
+XStatus PWM_Reg_SelfTest(void *baseaddr_p);
 
 #endif // PWM_H

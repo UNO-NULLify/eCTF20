@@ -2,13 +2,9 @@
    function returns its address for use by the macro errno defined in
    errno.h.  */
 
+#include "xil_types.h"
 #include <errno.h>
 #include <reent.h>
-#include "xil_types.h"
-sint32 * __errno (void);
+sint32 *__errno(void);
 
-sint32 *
-__errno (void)
-{
-  return &_REENT->_errno;
-}
+sint32 *__errno(void) { return &_REENT->_errno; }
