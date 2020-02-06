@@ -276,8 +276,8 @@ void MTDS_ReadSpi(PmodMTDS *InstancePtr, u8 reg, u8 *rData, int nData) {
 *communicate with *				u8 bRegisterAddress 	- the
 *address of the register whose bits are set *				u8 bMask
 *- the mask indicating which bits are affected
-**				bool fValue					-
-*1 if the bits are set or 0 if their bits are reset
+**				bool fValue - 1 if the bits are set or 0 if
+*their bits are reset
 **
 **
 **        Return Values:

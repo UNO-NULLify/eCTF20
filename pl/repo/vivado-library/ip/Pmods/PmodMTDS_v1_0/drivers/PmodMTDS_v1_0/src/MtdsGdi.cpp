@@ -1960,8 +1960,8 @@ bool MTDS::Ellipse(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
  **		Draws a cord of an ellipse. The arc of the chord is drawn from
  *the *		intersection of the ellipse with the radial line defined by
  *xcoRad1,ycoRad. *		It is drawn from there counterclockwise to the
- *point of intersection of the *		elipse with the radial line defined
- *by xcoRad2, ycoRad2.
+ *point of intersection of the *		elipse with the radial line
+ *defined by xcoRad2, ycoRad2.
  */
 
 bool MTDS::Chord(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
@@ -2020,8 +2020,8 @@ bool MTDS::Chord(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
  **		Draws a pie section of an ellipse. The arc of the pie is drawn
  *from the *		intersection of the ellipse with the radial line defined
  *by xcoRad1,ycoRad. *		It is drawn from there counterclockwise to the
- *point of intersection of the *		elipse with the radial line defined
- *by xcoRad2, ycoRad2.
+ *point of intersection of the *		elipse with the radial line
+ *defined by xcoRad2, ycoRad2.
  */
 
 bool MTDS::Pie(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
@@ -2292,9 +2292,9 @@ bool MTDS::PatBlt(HDS hds, int16_t xco, int16_t yco, int16_t dxco, int16_t dyco,
  **	Description:
  **		Copy pixels from the specified rectangle on the source bitmap to
  *the *		specified rectangle on the destination bitmap. This is different
- *than *		BitBlt in that it doesn't use a raster-op to combine source
- *and *		destination pixels. This function also pays attention to the
- *current *		background drawing mode and if bkTransparent is in
+ *than *		BitBlt in that it doesn't use a raster-op to combine
+ *source and *		destination pixels. This function also pays attention to
+ *the current *		background drawing mode and if bkTransparent is in
  *effect, it does not *		copy pixels from the source bitmap whose color
  *matches the current *		transparency color.
  */
