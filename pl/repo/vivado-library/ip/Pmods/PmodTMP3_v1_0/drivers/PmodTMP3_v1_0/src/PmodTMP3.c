@@ -27,13 +27,7 @@
 
 /************************** Function Definitions ***************************/
 
-XIic_Config TMP3_Config =
-{
-   0,
-   0,
-   0,
-   2
-};
+XIic_Config TMP3_Config = {0, 0, 0, 2};
 
 /* ------------------------------------------------------------ */
 /*** void TMP3_begin(PmodTMP3 *InstancePtr, u32 IIC_Address, u8 Chip_Address)
@@ -53,11 +47,11 @@ XIic_Config TMP3_Config =
 **      Initialize the PmodTMP3.
 */
 void TMP3_begin(PmodTMP3 *InstancePtr, u32 IIC_Address, u8 Chip_Address) {
-   TMP3_Config.BaseAddress = IIC_Address;
-   InstancePtr->chipAddr = Chip_Address;
-   TMP3_IICInit(&InstancePtr->TMP3Iic);
-   XIic_SetAddress(&InstancePtr->TMP3Iic, XII_ADDR_TO_SEND_TYPE,
-         InstancePtr->chipAddr);
+  TMP3_Config.BaseAddress = IIC_Address;
+  InstancePtr->chipAddr = Chip_Address;
+  TMP3_IICInit(&InstancePtr->TMP3Iic);
+  XIic_SetAddress(&InstancePtr->TMP3Iic, XII_ADDR_TO_SEND_TYPE,
+                  InstancePtr->chipAddr);
 }
 
 /* ------------------------------------------------------------ */
@@ -75,9 +69,7 @@ void TMP3_begin(PmodTMP3 *InstancePtr, u32 IIC_Address, u8 Chip_Address) {
 **   Description:
 **      Stops the device
 */
-void TMP3_end(PmodTMP3 *InstancePtr) {
-   XIic_Stop(&InstancePtr->TMP3Iic);
-}
+void TMP3_end(PmodTMP3 *InstancePtr) { XIic_Stop(&InstancePtr->TMP3Iic); }
 
 /* ------------------------------------------------------------ */
 /*** int TMP3_IICInit(XIic *IicInstancePtr)
@@ -96,25 +88,25 @@ void TMP3_end(PmodTMP3 *InstancePtr) {
 */
 
 int TMP3_IICInit(XIic *IicInstancePtr) {
-   int Status;
+  int Status;
 
-   Status = XIic_CfgInitialize(IicInstancePtr, &TMP3_Config,
-         TMP3_Config.BaseAddress);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status =
+      XIic_CfgInitialize(IicInstancePtr, &TMP3_Config, TMP3_Config.BaseAddress);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   /*
-    * Start the IIC driver so that the device is enabled.
-    */
-   XIic_Start(IicInstancePtr);
+  /*
+   * Start the IIC driver so that the device is enabled.
+   */
+  XIic_Start(IicInstancePtr);
 
-   /*
-    * Disable Global interrupt to use polled mode operation
-    */
-   XIic_IntrGlobalDisable(IicInstancePtr);
+  /*
+   * Disable Global interrupt to use polled mode operation
+   */
+  XIic_IntrGlobalDisable(IicInstancePtr);
 
-   return XST_SUCCESS;
+  return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -136,24 +128,24 @@ int TMP3_IICInit(XIic *IicInstancePtr) {
 **      Reads nData data bytes from register reg
 */
 void TMP3_ReadIIC(PmodTMP3 *InstancePtr, u8 reg, u8 *Data, int nData) {
-   int Status;
-   Status = XIic_Start(&InstancePtr->TMP3Iic);
-   if (Status != XST_SUCCESS) {
-      return;
-   }
-   if (InstancePtr->currentRegister != reg) {
+  int Status;
+  Status = XIic_Start(&InstancePtr->TMP3Iic);
+  if (Status != XST_SUCCESS) {
+    return;
+  }
+  if (InstancePtr->currentRegister != reg) {
 
-      XIic_Send(InstancePtr->TMP3Iic.BaseAddress, InstancePtr->chipAddr, &reg,
-            1, XII_REPEATED_START_OPTION);
-      InstancePtr->currentRegister = reg;
-   }
-   XIic_Recv(InstancePtr->TMP3Iic.BaseAddress, InstancePtr->chipAddr, Data,
-         nData, XIIC_STOP);
+    XIic_Send(InstancePtr->TMP3Iic.BaseAddress, InstancePtr->chipAddr, &reg, 1,
+              XII_REPEATED_START_OPTION);
+    InstancePtr->currentRegister = reg;
+  }
+  XIic_Recv(InstancePtr->TMP3Iic.BaseAddress, InstancePtr->chipAddr, Data,
+            nData, XIIC_STOP);
 
-   Status = XIic_Stop(&InstancePtr->TMP3Iic);
-   if (Status != XST_SUCCESS) {
-      return;
-   }
+  Status = XIic_Stop(&InstancePtr->TMP3Iic);
+  if (Status != XST_SUCCESS) {
+    return;
+  }
 }
 
 /* ------------------------------------------------------------ */
@@ -175,25 +167,25 @@ void TMP3_ReadIIC(PmodTMP3 *InstancePtr, u8 reg, u8 *Data, int nData) {
 **      Writes nData data bytes to register reg
 */
 void TMP3_WriteIIC(PmodTMP3 *InstancePtr, u8 reg, u8 *Data, int nData) {
-   u8 out[10];
-   out[0] = reg;
-   out[1] = *Data;
-   int Status;
+  u8 out[10];
+  out[0] = reg;
+  out[1] = *Data;
+  int Status;
 
-   if (InstancePtr->currentRegister != reg) {
-      InstancePtr->currentRegister = reg;
-   }
-   Status = XIic_Start(&InstancePtr->TMP3Iic);
-   if (Status != XST_SUCCESS) {
-      return;
-   }
-   XIic_Send(InstancePtr->TMP3Iic.BaseAddress, InstancePtr->chipAddr, out,
-         nData + 1, XIIC_STOP);
+  if (InstancePtr->currentRegister != reg) {
+    InstancePtr->currentRegister = reg;
+  }
+  Status = XIic_Start(&InstancePtr->TMP3Iic);
+  if (Status != XST_SUCCESS) {
+    return;
+  }
+  XIic_Send(InstancePtr->TMP3Iic.BaseAddress, InstancePtr->chipAddr, out,
+            nData + 1, XIIC_STOP);
 
-   Status = XIic_Stop(&InstancePtr->TMP3Iic);
-   if (Status != XST_SUCCESS) {
-      return;
-   }
+  Status = XIic_Stop(&InstancePtr->TMP3Iic);
+  if (Status != XST_SUCCESS) {
+    return;
+  }
 }
 
 /* ------------------------------------------------------------ */
@@ -211,12 +203,13 @@ void TMP3_WriteIIC(PmodTMP3 *InstancePtr, u8 reg, u8 *Data, int nData) {
 **      none
 **
 **   Description:
-**      Configures the PmodTMP3's Microchip TCN75A. Does not need to be called on startup.
+**      Configures the PmodTMP3's Microchip TCN75A. Does not need to be called
+*on startup.
 */
 void TMP3_config(PmodTMP3 *InstancePtr, u8 configuration) {
-   u8 buf[1];
-   buf[0] = configuration;
-   TMP3_WriteIIC(InstancePtr, TMP3_REG_CONFIG, buf, 1);
+  u8 buf[1];
+  buf[0] = configuration;
+  TMP3_WriteIIC(InstancePtr, TMP3_REG_CONFIG, buf, 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -235,28 +228,28 @@ void TMP3_config(PmodTMP3 *InstancePtr, u8 configuration) {
 **      Requests and returns the temperature off of the PmodTMP3
 */
 double TMP3_getTemp(PmodTMP3 *InstancePtr) {
-   double tempResult;
-   u16 uResult = 0;
-   int wResult = 0;
-   u8 buf[2] = {0};
+  double tempResult;
+  u16 uResult = 0;
+  int wResult = 0;
+  u8 buf[2] = {0};
 
-   // Read temperature register into buf
-   TMP3_ReadIIC(InstancePtr, TMP3_REG_TEMP, buf, 2);
+  // Read temperature register into buf
+  TMP3_ReadIIC(InstancePtr, TMP3_REG_TEMP, buf, 2);
 
-   uResult = buf[1] | (buf[0] << 8);
-   if ((buf[0] & 0x80) == 0) {
-      // Result is positive
-      wResult = (int) uResult;
-   } else {
-      // Result negative -- two's complement
-      wResult = -1 * (int) (~uResult + 1);
-   }
+  uResult = buf[1] | (buf[0] << 8);
+  if ((buf[0] & 0x80) == 0) {
+    // Result is positive
+    wResult = (int)uResult;
+  } else {
+    // Result negative -- two's complement
+    wResult = -1 * (int)(~uResult + 1);
+  }
 
-   // 9 bit resolution has 0.5 *C resolution, stored in the uppermost 9 bits of
-   // the buffer
-   tempResult = (double) wResult / 256.0;
+  // 9 bit resolution has 0.5 *C resolution, stored in the uppermost 9 bits of
+  // the buffer
+  tempResult = (double)wResult / 256.0;
 
-   return tempResult;
+  return tempResult;
 }
 
 /* ------------------------------------------------------------ */
@@ -275,11 +268,11 @@ double TMP3_getTemp(PmodTMP3 *InstancePtr) {
 **      Converts temperature in Fahrenheit to Celsius
 */
 double TMP3_FtoC(double tempF) {
-   double tempC;
+  double tempC;
 
-   tempC = (tempF - 32.0) / 1.8;
+  tempC = (tempF - 32.0) / 1.8;
 
-   return tempC;
+  return tempC;
 }
 
 /* ------------------------------------------------------------ */
@@ -298,9 +291,9 @@ double TMP3_FtoC(double tempF) {
 **      Converts temperature in Celsius to Fahrenheit
 */
 double TMP3_CtoF(double tempC) {
-   double tempF;
+  double tempF;
 
-   tempF = (tempC * 1.8) + 32.0;
+  tempF = (tempC * 1.8) + 32.0;
 
-   return tempF;
+  return tempF;
 }

@@ -30,11 +30,11 @@
 /*                  Definitions                                 */
 /* ------------------------------------------------------------ */
 
-#define AD1_NUM_BITS  12
+#define AD1_NUM_BITS 12
 #define AD1_DATA_MASK 0xFFF
 
 typedef struct PmodAD1 {
-   u32 BaseAddress;
+  u32 BaseAddress;
 } PmodAD1;
 
 typedef u16 AD1_RawData[2];
@@ -47,6 +47,6 @@ typedef float AD1_PhysicalData[2];
 void AD1_begin(PmodAD1 *InstancePtr, u32 SPI_Address);
 void AD1_GetSample(PmodAD1 *InstancePtr, AD1_RawData *RawDataPtr);
 void AD1_RawToPhysical(float ReferenceVoltage, AD1_RawData RawData,
-      AD1_PhysicalData *PhysicalDataPtr);
+                       AD1_PhysicalData *PhysicalDataPtr);
 
 #endif // PMODAD1_H

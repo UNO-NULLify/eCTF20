@@ -24,23 +24,9 @@
 
 #include "PmodDPG1.h"
 
-
 /************************** Function Definitions ***************************/
 
-XSpi_Config DPG1Config =
-{
-   0,
-   0,
-   1,
-   0,
-   1,
-   8,
-   0,
-   0,
-   0,
-   0,
-   0
-};
+XSpi_Config DPG1Config = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
 
 /* ------------------------------------------------------------ */
 /*** void DPG1_begin(PmodDPG1 *InstancePtr, u32 SPI_Address)
@@ -59,8 +45,8 @@ XSpi_Config DPG1Config =
  **     Initialize the PmodDPG1.
  */
 void DPG1_begin(PmodDPG1 *InstancePtr, u32 SPI_Address) {
-   DPG1Config.BaseAddress = SPI_Address;
-   DPG1_SPIInit(&InstancePtr->DPG1Spi);
+  DPG1Config.BaseAddress = SPI_Address;
+  DPG1_SPIInit(&InstancePtr->DPG1Spi);
 }
 
 /* ------------------------------------------------------------ */
@@ -78,9 +64,7 @@ void DPG1_begin(PmodDPG1 *InstancePtr, u32 SPI_Address) {
  **  Description:
  **     Stops the device
  */
-void DPG1_end(PmodDPG1 *InstancePtr) {
-   XSpi_Stop(&InstancePtr->DPG1Spi);
-}
+void DPG1_end(PmodDPG1 *InstancePtr) { XSpi_Stop(&InstancePtr->DPG1Spi); }
 
 /* ------------------------------------------------------------ */
 /*** DPG1_SPIInit
@@ -98,37 +82,38 @@ void DPG1_end(PmodDPG1 *InstancePtr) {
  **     Initializes the PmodDPG1 SPI.
  */
 int DPG1_SPIInit(XSpi *SpiInstancePtr) {
-   int Status;
+  int Status;
 
-   Status = XSpi_CfgInitialize(SpiInstancePtr, &DPG1Config,
-         DPG1Config.BaseAddress);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status =
+      XSpi_CfgInitialize(SpiInstancePtr, &DPG1Config, DPG1Config.BaseAddress);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   Status = XSpi_SetOptions(SpiInstancePtr, (XSP_MASTER_OPTION
-         | XSP_CLK_ACTIVE_LOW_OPTION | XSP_CLK_PHASE_1_OPTION)
-         | XSP_MANUAL_SSELECT_OPTION);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status = XSpi_SetOptions(
+      SpiInstancePtr,
+      (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_CLK_PHASE_1_OPTION) |
+          XSP_MANUAL_SSELECT_OPTION);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   /*
-    * Start the SPI driver so that the device is enabled.
-    */
-   XSpi_Start(SpiInstancePtr);
+  /*
+   * Start the SPI driver so that the device is enabled.
+   */
+  XSpi_Start(SpiInstancePtr);
 
-   /*
-    * Disable Global interrupt to use polled mode operation
-    */
-   XSpi_IntrGlobalDisable(SpiInstancePtr);
+  /*
+   * Disable Global interrupt to use polled mode operation
+   */
+  XSpi_IntrGlobalDisable(SpiInstancePtr);
 
-   return XST_SUCCESS;
+  return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -152,14 +137,14 @@ int DPG1_SPIInit(XSpi *SpiInstancePtr) {
  **     data.
  */
 void DPG1_readData(PmodDPG1 *InstancePtr) {
-   u8 byte[4];
-   InstancePtr->data = 0;
-   XSpi_Transfer(&InstancePtr->DPG1Spi, byte, byte, 4);
+  u8 byte[4];
+  InstancePtr->data = 0;
+  XSpi_Transfer(&InstancePtr->DPG1Spi, byte, byte, 4);
 
-   // Convert the byte array to an int
-   InstancePtr->data |= byte[0];
-   InstancePtr->data = InstancePtr->data << 8;
-   InstancePtr->data |= byte[1];
+  // Convert the byte array to an int
+  InstancePtr->data |= byte[0];
+  InstancePtr->data = InstancePtr->data << 8;
+  InstancePtr->data |= byte[1];
 }
 
 /* ------------------------------------------------------------ */
@@ -183,23 +168,23 @@ void DPG1_readData(PmodDPG1 *InstancePtr) {
  **     units of kPa.
  */
 double DPG1_GetPressure(int pType, PmodDPG1 *InstancePtr) {
-   // Calculate kPa from raw data
-   double kPa = (InstancePtr->data / 4096.0 - 0.08) / 0.09;
+  // Calculate kPa from raw data
+  double kPa = (InstancePtr->data / 4096.0 - 0.08) / 0.09;
 
-   switch (pType) {
-   case 0:
-      return kPa; // kilopascal (kPa)
-   case 1:
-      return kPa / 101.325; // atmospheres (atm)
-   case 2:
-      return kPa * 0.145038; // pound-force per square inch (psi)
-   case 3:
-      return kPa * 4.01865; // inches of water (inH2O)
-   case 4:
-      return kPa * 10.1972; // centimeters of water (cmH2O)
-   case 5:
-      return kPa * 760.0 / 101.325; // millimeters of mercury (mmHg)
-   default:
-      return kPa;
-   }
+  switch (pType) {
+  case 0:
+    return kPa; // kilopascal (kPa)
+  case 1:
+    return kPa / 101.325; // atmospheres (atm)
+  case 2:
+    return kPa * 0.145038; // pound-force per square inch (psi)
+  case 3:
+    return kPa * 4.01865; // inches of water (inH2O)
+  case 4:
+    return kPa * 10.1972; // centimeters of water (cmH2O)
+  case 5:
+    return kPa * 760.0 / 101.325; // millimeters of mercury (mmHg)
+  default:
+    return kPa;
+  }
 }

@@ -22,20 +22,7 @@
 
 /************************** Function Definitions ***************************/
 
-XSpi_Config XSpi_ALSConfig =
-{
-   0,
-   0,
-   1,
-   0,
-   1,
-   8,
-   0,
-   0,
-   0,
-   0,
-   0
-};
+XSpi_Config XSpi_ALSConfig = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
 
 /* ------------------------------------------------------------ */
 /*** XStatus ALS_begin(PmodALS *InstancePtr, u32 GPIO_Address, u32 SPI_Address)
@@ -51,8 +38,8 @@ XSpi_Config XSpi_ALSConfig =
 **      Initialize the PmodALS.
 */
 XStatus ALS_begin(PmodALS *InstancePtr, u32 SPI_Address) {
-   XSpi_ALSConfig.BaseAddress = SPI_Address;
-   return ALS_SPIInit(&InstancePtr->ALSSpi);
+  XSpi_ALSConfig.BaseAddress = SPI_Address;
+  return ALS_SPIInit(&InstancePtr->ALSSpi);
 }
 
 /* ------------------------------------------------------------ */
@@ -68,47 +55,47 @@ XStatus ALS_begin(PmodALS *InstancePtr, u32 SPI_Address) {
 **      Initializes the PmodALS SPI.
 */
 XStatus ALS_SPIInit(XSpi *SpiInstancePtr) {
-   XStatus Status;
-   XSpi_Config *ConfigPtr;
+  XStatus Status;
+  XSpi_Config *ConfigPtr;
 
-   /*
-    * Initialize the SPI driver so that it is ready to use.
-    */
-   ConfigPtr = &XSpi_ALSConfig;
-   if (ConfigPtr == NULL) {
-      return XST_DEVICE_NOT_FOUND;
-   }
+  /*
+   * Initialize the SPI driver so that it is ready to use.
+   */
+  ConfigPtr = &XSpi_ALSConfig;
+  if (ConfigPtr == NULL) {
+    return XST_DEVICE_NOT_FOUND;
+  }
 
-   Status = XSpi_CfgInitialize(SpiInstancePtr, ConfigPtr,
-         ConfigPtr->BaseAddress);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status =
+      XSpi_CfgInitialize(SpiInstancePtr, ConfigPtr, ConfigPtr->BaseAddress);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   u32 options = (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION
-         | XSP_CLK_PHASE_1_OPTION) | XSP_MANUAL_SSELECT_OPTION;
-   Status =
-         XSpi_SetOptions(SpiInstancePtr, options); // Manual SS off
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  u32 options =
+      (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_CLK_PHASE_1_OPTION) |
+      XSP_MANUAL_SSELECT_OPTION;
+  Status = XSpi_SetOptions(SpiInstancePtr, options); // Manual SS off
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   /*
-    * Start the SPI driver so that the device is enabled.
-    */
-   XSpi_Start(SpiInstancePtr);
+  /*
+   * Start the SPI driver so that the device is enabled.
+   */
+  XSpi_Start(SpiInstancePtr);
 
-   /*
-    * Disable Global interrupt to use polled mode operation
-    */
-   XSpi_IntrGlobalDisable(SpiInstancePtr);
+  /*
+   * Disable Global interrupt to use polled mode operation
+   */
+  XSpi_IntrGlobalDisable(SpiInstancePtr);
 
-   return XST_SUCCESS;
+  return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -123,8 +110,8 @@ XStatus ALS_SPIInit(XSpi *SpiInstancePtr) {
 **   Description:
 **      Captures ambient light sensor data
 */
-u8 ALS_read(PmodALS* InstancePtr) {
-   u8 light[2];
-   XSpi_Transfer(&InstancePtr->ALSSpi, light, light, 2);
-   return (light[0] << 3) | (light[1] >> 5);
+u8 ALS_read(PmodALS *InstancePtr) {
+  u8 light[2];
+  XSpi_Transfer(&InstancePtr->ALSSpi, light, light, 2);
+  return (light[0] << 3) | (light[1] >> 5);
 }

@@ -26,13 +26,13 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include <stdio.h>
 #include "PmodAD1.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xil_io.h"
 #include "xil_types.h"
 #include "xparameters.h"
+#include <stdio.h>
 
 PmodAD1 myDevice;
 const float ReferenceVoltage = 3.3;
@@ -44,50 +44,48 @@ void EnableCaches();
 void DisableCaches();
 
 int main() {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
+  EnableCaches();
 
-   AD1_begin(&myDevice, XPAR_PMODAD1_0_AXI_LITE_SAMPLE_BASEADDR);
+  AD1_begin(&myDevice, XPAR_PMODAD1_0_AXI_LITE_SAMPLE_BASEADDR);
 
-   // Wait for AD1 to finish powering on
-   usleep(1); // 1 us (minimum)
+  // Wait for AD1 to finish powering on
+  usleep(1); // 1 us (minimum)
 }
 
 void DemoRun() {
-   AD1_RawData RawData;
-   AD1_PhysicalData PhysicalData;
+  AD1_RawData RawData;
+  AD1_PhysicalData PhysicalData;
 
-   while (1) {
-      AD1_GetSample(&myDevice, &RawData); // Capture raw samples
+  while (1) {
+    AD1_GetSample(&myDevice, &RawData); // Capture raw samples
 
-      // Convert raw samples into floats scaled to 0 - VDD
-      AD1_RawToPhysical(ReferenceVoltage, RawData, &PhysicalData);
+    // Convert raw samples into floats scaled to 0 - VDD
+    AD1_RawToPhysical(ReferenceVoltage, RawData, &PhysicalData);
 
-      printf("Input Data 1: %.02f;   ", PhysicalData[0]);
-      printf("Input Data 2: %.02f\r\n", PhysicalData[1]);
+    printf("Input Data 1: %.02f;   ", PhysicalData[0]);
+    printf("Input Data 2: %.02f\r\n", PhysicalData[1]);
 
-      // Do this 10x per second
-      usleep(100000);
-   }
+    // Do this 10x per second
+    usleep(100000);
+  }
 }
 
-void DemoCleanup() {
-   DisableCaches();
-}
+void DemoCleanup() { DisableCaches(); }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -95,10 +93,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

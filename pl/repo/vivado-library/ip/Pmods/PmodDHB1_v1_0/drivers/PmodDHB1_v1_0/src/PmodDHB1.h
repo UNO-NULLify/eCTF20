@@ -25,20 +25,18 @@
 
 #include "xil_types.h"
 
-
 /************ Type Definitions ************/
 
 typedef struct PmodDHB1 {
-   u32 GPIO_addr;
-   u32 PWM_addr;
-   u32 PWM_per;
+  u32 GPIO_addr;
+  u32 PWM_addr;
+  u32 PWM_per;
 } PmodDHB1;
-
 
 /************ Function Prototypes ************/
 
 void DHB1_begin(PmodDHB1 *InstancePtr, u32 GPIO_Address, u32 PWM_Address,
-      u32 Clk_Freq, u32 PWM_Per);
+                u32 Clk_Freq, u32 PWM_Per);
 
 void DHB1_motorEnable(PmodDHB1 *InstancePtr);
 

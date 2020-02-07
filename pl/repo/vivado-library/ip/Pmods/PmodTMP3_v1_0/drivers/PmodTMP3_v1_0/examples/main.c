@@ -36,78 +36,78 @@ void DisableCaches();
 PmodTMP3 myDevice;
 
 int main(void) {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
+  EnableCaches();
 
-   xil_printf("\x1B[H");  // Move terminal cursor to top left
-   xil_printf("\x1B[1K"); // Clear terminal
-   xil_printf("Connected to PmodTMP3 Demo over UART\n\r");
+  xil_printf("\x1B[H");  // Move terminal cursor to top left
+  xil_printf("\x1B[1K"); // Clear terminal
+  xil_printf("Connected to PmodTMP3 Demo over UART\n\r");
 
-   TMP3_begin(&myDevice, XPAR_PMODTMP3_0_AXI_LITE_IIC_BASEADDR, TMP3_ADDR);
-   xil_printf("Connected to PmodTMP3 over IIC on JB\n\r\n\r");
+  TMP3_begin(&myDevice, XPAR_PMODTMP3_0_AXI_LITE_IIC_BASEADDR, TMP3_ADDR);
+  xil_printf("Connected to PmodTMP3 over IIC on JB\n\r\n\r");
 }
 
 void DemoRun() {
-   double temp  = 0.0;
-   double temp2 = 0.0;
-   double temp3 = 0.0;
+  double temp = 0.0;
+  double temp2 = 0.0;
+  double temp3 = 0.0;
 
-   while (1) {
-      temp  = TMP3_getTemp(&myDevice);
-      temp2 = TMP3_CtoF(temp);
-      temp3 = TMP3_FtoC(temp2);
+  while (1) {
+    temp = TMP3_getTemp(&myDevice);
+    temp2 = TMP3_CtoF(temp);
+    temp3 = TMP3_FtoC(temp2);
 
-      int temp2_round = 0;
-      int temp2_int   = 0;
-      int temp2_frac  = 0;
-      // Round to nearest hundredth, multiply by 100
-      if (temp2 < 0) {
-         temp2_round = (int) (temp2 * 1000 - 5) / 10;
-         temp2_frac  = -temp2_round % 100;
-      } else {
-         temp2_round = (int) (temp2 * 1000 + 5) / 10;
-         temp2_frac  = temp2_round % 100;
-      }
-      temp2_int = temp2_round / 100;
+    int temp2_round = 0;
+    int temp2_int = 0;
+    int temp2_frac = 0;
+    // Round to nearest hundredth, multiply by 100
+    if (temp2 < 0) {
+      temp2_round = (int)(temp2 * 1000 - 5) / 10;
+      temp2_frac = -temp2_round % 100;
+    } else {
+      temp2_round = (int)(temp2 * 1000 + 5) / 10;
+      temp2_frac = temp2_round % 100;
+    }
+    temp2_int = temp2_round / 100;
 
-      int temp3_round = 0;
-      int temp3_int   = 0;
-      int temp3_frac  = 0;
-      if (temp3 < 0) {
-         temp3_round = (int) (temp3 * 1000 - 5) / 10;
-         temp3_frac  = -temp3_round % 100;
-      } else {
-         temp3_round = (int) (temp3 * 1000 + 5) / 10;
-         temp3_frac  = temp3_round % 100;
-      }
-      temp3_int = temp3_round / 100;
+    int temp3_round = 0;
+    int temp3_int = 0;
+    int temp3_frac = 0;
+    if (temp3 < 0) {
+      temp3_round = (int)(temp3 * 1000 - 5) / 10;
+      temp3_frac = -temp3_round % 100;
+    } else {
+      temp3_round = (int)(temp3 * 1000 + 5) / 10;
+      temp3_frac = temp3_round % 100;
+    }
+    temp3_int = temp3_round / 100;
 
-      xil_printf("Temperature: %d.%d in Fahrenheit\n\r", temp2_int, temp2_frac);
-      xil_printf("Temperature: %d.%d in Celsius\n\r", temp3_int, temp3_frac);
-      print("\n\r");
-      sleep(1); // Delay
-   }
+    xil_printf("Temperature: %d.%d in Fahrenheit\n\r", temp2_int, temp2_frac);
+    xil_printf("Temperature: %d.%d in Celsius\n\r", temp3_int, temp3_frac);
+    print("\n\r");
+    sleep(1); // Delay
+  }
 }
 
 void DemoCleanup() {
-   TMP3_end(&myDevice);
-   xil_printf("PmodTMP3 Disconnected\n\r");
-   xil_printf("Closing UART Connection\n\r");
+  TMP3_end(&myDevice);
+  xil_printf("PmodTMP3 Disconnected\n\r");
+  xil_printf("Closing UART Connection\n\r");
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -115,10 +115,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

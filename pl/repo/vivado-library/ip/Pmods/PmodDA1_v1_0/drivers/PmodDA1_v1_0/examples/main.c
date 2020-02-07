@@ -43,52 +43,52 @@ void DisableCaches();
 PmodDA1 myDevice;
 
 int main(void) {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
-   DA1_begin(&myDevice, XPAR_PMODDA1_0_AXI_LITE_SPI_BASEADDR);
+  EnableCaches();
+  DA1_begin(&myDevice, XPAR_PMODDA1_0_AXI_LITE_SPI_BASEADDR);
 }
 
 void DemoRun() {
-   float dMaxValue = 3.0;
-   float dMinValue = 0.0;
-   float dStep = 0.05;
-   float dValue;
+  float dMaxValue = 3.0;
+  float dMinValue = 0.0;
+  float dStep = 0.05;
+  float dValue;
 
-   xil_printf("Starting Pmod DA1 demo...\n\r");
+  xil_printf("Starting Pmod DA1 demo...\n\r");
 
-   while (1) {
-      // Increase physical value from minimum to maximum value
-      for (dValue = dMinValue; dValue <= dMaxValue; dValue += dStep) {
-         // Send value to the DA converter
-         DA1_WritePhysicalValue(&myDevice, dValue);
-      }
+  while (1) {
+    // Increase physical value from minimum to maximum value
+    for (dValue = dMinValue; dValue <= dMaxValue; dValue += dStep) {
+      // Send value to the DA converter
+      DA1_WritePhysicalValue(&myDevice, dValue);
+    }
 
-      // Decrease physical value from maximum to minimum value
-      for (dValue = dMaxValue; dValue >= dMinValue; dValue -= dStep) {
-         // Send value to the DA converter
-         DA1_WritePhysicalValue(&myDevice, dValue);
-      }
-   }
+    // Decrease physical value from maximum to minimum value
+    for (dValue = dMaxValue; dValue >= dMinValue; dValue -= dStep) {
+      // Send value to the DA converter
+      DA1_WritePhysicalValue(&myDevice, dValue);
+    }
+  }
 }
 
 void DemoCleanup() {
-   DA1_end(&myDevice);
-   DisableCaches();
+  DA1_end(&myDevice);
+  DisableCaches();
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -96,10 +96,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

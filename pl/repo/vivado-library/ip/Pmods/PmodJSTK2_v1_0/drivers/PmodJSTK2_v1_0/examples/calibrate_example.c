@@ -37,12 +37,12 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include <stdio.h>
 #include "PmodJSTK2.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xil_printf.h"
 #include "xparameters.h"
+#include <stdio.h>
 
 #ifdef __MICROBLAZE__
 #define CPU_CLOCK_FREQ_HZ (XPAR_CPU_CORE_CLOCK_FREQ_HZ)
@@ -59,96 +59,95 @@ void EnableCaches();
 void DisableCaches();
 
 int main() {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
+  EnableCaches();
 
-   // Init joystick
-   JSTK2_begin(
-      &joystick,
-      XPAR_PMODJSTK2_0_AXI_LITE_SPI_BASEADDR,
-      XPAR_PMODJSTK2_0_AXI_LITE_GPIO_BASEADDR
-   );
+  // Init joystick
+  JSTK2_begin(&joystick, XPAR_PMODJSTK2_0_AXI_LITE_SPI_BASEADDR,
+              XPAR_PMODJSTK2_0_AXI_LITE_GPIO_BASEADDR);
 }
 
 void DemoRun() {
-   u8 Status;
+  u8 Status;
 
-   // Reload calibration values from flash in case users run this demo
-   // multiple times without power-cycling the system board in order to
-   // make sure that the original collected values are correct and not
-   // the RAM values from the previous run-through.
-   xil_printf("Starting up by reloading calibration values from flash memory\r\n");
-   JSTK2_startFlashReload(&joystick);
-   usleep(100); // Delay for 100 us
-   // Check if the reload was successful
-   Status = JSTK2_getStatus(&joystick);
-   xil_printf("Reload %s\r\n\n",
-         (Status & JSTK2_bitLastFRS) != 0 ? "successful" : "failed");
+  // Reload calibration values from flash in case users run this demo
+  // multiple times without power-cycling the system board in order to
+  // make sure that the original collected values are correct and not
+  // the RAM values from the previous run-through.
+  xil_printf(
+      "Starting up by reloading calibration values from flash memory\r\n");
+  JSTK2_startFlashReload(&joystick);
+  usleep(100); // Delay for 100 us
+  // Check if the reload was successful
+  Status = JSTK2_getStatus(&joystick);
+  xil_printf("Reload %s\r\n\n",
+             (Status & JSTK2_bitLastFRS) != 0 ? "successful" : "failed");
 
-   xil_printf("Values stored in flash:\r\n");
+  xil_printf("Values stored in flash:\r\n");
 
-   xil_printf("power-up smpXMin: %d\r\n", JSTK2_getCalXMin(&joystick));
-   xil_printf("power-up smpXMax: %d\r\n", JSTK2_getCalXMax(&joystick));
-   xil_printf("power-up smpYMin: %d\r\n", JSTK2_getCalYMin(&joystick));
-   xil_printf("power-up smpYMax: %d\r\n", JSTK2_getCalYMax(&joystick));
-   xil_printf("power-up smpXCenterMin: %d\r\n", JSTK2_getCalXCenMin(&joystick));
-   xil_printf("power-up smpXCenterMax: %d\r\n", JSTK2_getCalXCenMax(&joystick));
-   xil_printf("power-up smpYCenterMin: %d\r\n", JSTK2_getCalYCenMin(&joystick));
-   xil_printf("power-up smpYCenterMax: %d\r\n", JSTK2_getCalYCenMax(&joystick));
+  xil_printf("power-up smpXMin: %d\r\n", JSTK2_getCalXMin(&joystick));
+  xil_printf("power-up smpXMax: %d\r\n", JSTK2_getCalXMax(&joystick));
+  xil_printf("power-up smpYMin: %d\r\n", JSTK2_getCalYMin(&joystick));
+  xil_printf("power-up smpYMax: %d\r\n", JSTK2_getCalYMax(&joystick));
+  xil_printf("power-up smpXCenterMin: %d\r\n", JSTK2_getCalXCenMin(&joystick));
+  xil_printf("power-up smpXCenterMax: %d\r\n", JSTK2_getCalXCenMax(&joystick));
+  xil_printf("power-up smpYCenterMin: %d\r\n", JSTK2_getCalYCenMin(&joystick));
+  xil_printf("power-up smpYCenterMax: %d\r\n", JSTK2_getCalYCenMax(&joystick));
 
-   xil_printf("\n");
+  xil_printf("\n");
 
-   xil_printf("calibrating, rotate the Joystick around in all directions then let it rest for 1 second\r\n");
+  xil_printf("calibrating, rotate the Joystick around in all directions then "
+             "let it rest for 1 second\r\n");
 
-   JSTK2_startCalibration(&joystick);
-   sleep(1);
+  JSTK2_startCalibration(&joystick);
+  sleep(1);
 
-   // Wait until calibration is completed
-   while ((JSTK2_getStatus(&joystick) & JSTK2_bitCalibrating) != 0) {
-      usleep(100000);
-   }
+  // Wait until calibration is completed
+  while ((JSTK2_getStatus(&joystick) & JSTK2_bitCalibrating) != 0) {
+    usleep(100000);
+  }
 
-   xil_printf("calibration complete!\r\n");
+  xil_printf("calibration complete!\r\n");
 
-   JSTK2_setInversion(&joystick, 0, 1);
+  JSTK2_setInversion(&joystick, 0, 1);
 
-   xil_printf("Saving to flash memory....\n\r");
+  xil_printf("Saving to flash memory....\n\r");
 
-   JSTK2_startFlashWrite(&joystick);
-   usleep(5000);
-   // Check if the write was successful
-   Status = JSTK2_getStatus(&joystick);
-   xil_printf("Save %s\n\r",
-         (Status & JSTK2_bitLastFWS) != 0 ? "successful" : "failed");
+  JSTK2_startFlashWrite(&joystick);
+  usleep(5000);
+  // Check if the write was successful
+  Status = JSTK2_getStatus(&joystick);
+  xil_printf("Save %s\n\r",
+             (Status & JSTK2_bitLastFWS) != 0 ? "successful" : "failed");
 
-   xil_printf("saved smpXMin: %d\r\n", JSTK2_getCalXMin(&joystick));
-   xil_printf("saved smpXMax: %d\r\n", JSTK2_getCalXMax(&joystick));
-   xil_printf("saved smpYMin: %d\r\n", JSTK2_getCalYMin(&joystick));
-   xil_printf("saved smpYMax: %d\r\n", JSTK2_getCalYMax(&joystick));
-   xil_printf("saved smpXCenterMin: %d\r\n", JSTK2_getCalXCenMin(&joystick));
-   xil_printf("saved smpXCenterMax: %d\r\n", JSTK2_getCalXCenMax(&joystick));
-   xil_printf("saved smpYCenterMin: %d\r\n", JSTK2_getCalYCenMin(&joystick));
-   xil_printf("saved smpYCenterMax: %d\r\n", JSTK2_getCalYCenMax(&joystick));
+  xil_printf("saved smpXMin: %d\r\n", JSTK2_getCalXMin(&joystick));
+  xil_printf("saved smpXMax: %d\r\n", JSTK2_getCalXMax(&joystick));
+  xil_printf("saved smpYMin: %d\r\n", JSTK2_getCalYMin(&joystick));
+  xil_printf("saved smpYMax: %d\r\n", JSTK2_getCalYMax(&joystick));
+  xil_printf("saved smpXCenterMin: %d\r\n", JSTK2_getCalXCenMin(&joystick));
+  xil_printf("saved smpXCenterMax: %d\r\n", JSTK2_getCalXCenMax(&joystick));
+  xil_printf("saved smpYCenterMin: %d\r\n", JSTK2_getCalYCenMin(&joystick));
+  xil_printf("saved smpYCenterMax: %d\r\n", JSTK2_getCalYCenMax(&joystick));
 }
 
 void DemoCleanup() {
-   JSTK2_end(&joystick);
-   DisableCaches();
+  JSTK2_end(&joystick);
+  DisableCaches();
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -156,10 +155,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

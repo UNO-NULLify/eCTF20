@@ -45,9 +45,9 @@
 **      Initialize the PmodGPIO and set the tristate
 */
 void GPIO_begin(PmodGPIO *InstancePtr, u32 GPIO_Address, u8 bitmap) {
-   InstancePtr->GPIO_addr = GPIO_Address;
-   // 0b1111 for input 0b0000 for output, 0b0001 for pin1 in pin 2 out etc.
-   Xil_Out32(InstancePtr->GPIO_addr + 4, bitmap);
+  InstancePtr->GPIO_addr = GPIO_Address;
+  // 0b1111 for input 0b0000 for output, 0b0001 for pin1 in pin 2 out etc.
+  Xil_Out32(InstancePtr->GPIO_addr + 4, bitmap);
 }
 
 /* ------------------------------------------------------------ */
@@ -66,10 +66,10 @@ void GPIO_begin(PmodGPIO *InstancePtr, u32 GPIO_Address, u8 bitmap) {
 **      Reads the 8 states of the GPIO pins and returns them in an 8 bit number
 */
 u8 GPIO_getPins(PmodGPIO *InstancePtr) {
-   u32 data = 0;
-   data = Xil_In32(InstancePtr->GPIO_addr);
+  u32 data = 0;
+  data = Xil_In32(InstancePtr->GPIO_addr);
 
-   return data;
+  return data;
 }
 
 /* ------------------------------------------------------------ */
@@ -89,7 +89,7 @@ u8 GPIO_getPins(PmodGPIO *InstancePtr) {
 **      Sets all 8 outputs at once
 */
 void GPIO_setPins(PmodGPIO *InstancePtr, u8 value) {
-   Xil_Out32(InstancePtr->GPIO_addr, value);
+  Xil_Out32(InstancePtr->GPIO_addr, value);
 }
 
 /* ------------------------------------------------------------ */
@@ -109,14 +109,14 @@ void GPIO_setPins(PmodGPIO *InstancePtr, u8 value) {
 **      Sets all 8 outputs at once
 */
 u8 GPIO_getPin(PmodGPIO *InstancePtr, u8 pinNumber) {
-   u32 data = 0;
-   data = Xil_In32(InstancePtr->GPIO_addr);
-   data = data & (1 << (pinNumber - 1));
+  u32 data = 0;
+  data = Xil_In32(InstancePtr->GPIO_addr);
+  data = data & (1 << (pinNumber - 1));
 
-   if (data)
-      return 1;
-   else
-      return 0;
+  if (data)
+    return 1;
+  else
+    return 0;
 }
 
 /* ------------------------------------------------------------ */
@@ -137,13 +137,13 @@ u8 GPIO_getPin(PmodGPIO *InstancePtr, u8 pinNumber) {
 **      Initialize the PmodGPIO.
 */
 void GPIO_setPin(PmodGPIO *InstancePtr, u8 pinNumber, u8 value) {
-   u32 data = 0;
+  u32 data = 0;
 
-   data = Xil_In32(InstancePtr->GPIO_addr);
+  data = Xil_In32(InstancePtr->GPIO_addr);
 
-   if (value != 0) {
-      Xil_Out32(InstancePtr->GPIO_addr, (data | (1 << (pinNumber - 1))));
-   } else {
-      Xil_Out32(InstancePtr->GPIO_addr, (data & ~(1 << (pinNumber - 1))));
-   }
+  if (value != 0) {
+    Xil_Out32(InstancePtr->GPIO_addr, (data | (1 << (pinNumber - 1))));
+  } else {
+    Xil_Out32(InstancePtr->GPIO_addr, (data & ~(1 << (pinNumber - 1))));
+  }
 }

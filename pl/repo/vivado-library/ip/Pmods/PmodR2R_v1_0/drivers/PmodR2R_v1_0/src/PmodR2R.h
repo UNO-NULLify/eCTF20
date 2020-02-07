@@ -33,7 +33,7 @@
 /******************* Definitions *********************/
 
 typedef struct PmodR2R {
-   u32 GPIO_addr;
+  u32 GPIO_addr;
 } PmodR2R;
 
 void R2R_begin(PmodR2R *InstancePtr, u32 GPIO_Address);

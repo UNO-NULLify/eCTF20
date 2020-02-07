@@ -7,47 +7,48 @@
 *******************************************************************************/
 
 /* MRF24WG0M Universal Driver
-*
-* Copyright (c) 2012-2013, Microchip <www.microchip.com>
-* Contact Microchip for the latest version.
-*
-* This program is free software; distributed under the terms of BSD
-* license:
-*
-* Redistribution and use in source and binary forms, with or without modification,
-* are permitted provided that the following conditions are met:
-*
-* 1.    Redistributions of source code must retain the above copyright notice, this
-*        list of conditions and the following disclaimer.
-* 2.    Redistributions in binary form must reproduce the above copyright notice,
-*        this list of conditions and the following disclaimer in the documentation
-*        and/or other materials provided with the distribution.
-* 3.    Neither the name(s) of the above-listed copyright holder(s) nor the names
-*        of its contributors may be used to endorse or promote products derived
-*        from this software without specific prior written permission.
-*
-* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
-* IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
-* INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
-* BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-* DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
-* OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
-* OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+ *
+ * Copyright (c) 2012-2013, Microchip <www.microchip.com>
+ * Contact Microchip for the latest version.
+ *
+ * This program is free software; distributed under the terms of BSD
+ * license:
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * 1.    Redistributions of source code must retain the above copyright notice,
+ * this list of conditions and the following disclaimer.
+ * 2.    Redistributions in binary form must reproduce the above copyright
+ * notice, this list of conditions and the following disclaimer in the
+ * documentation and/or other materials provided with the distribution.
+ * 3.    Neither the name(s) of the above-listed copyright holder(s) nor the
+ * names of its contributors may be used to endorse or promote products derived
+ *        from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
 
 //==============================================================================
 //                                  INCLUDES
 //==============================================================================
-#include "./ud_inc/shared/wf_universal_driver.h"
 #include "./ud_inc/internal/wf_global_includes.h"
+#include "./ud_inc/shared/wf_universal_driver.h"
 
 //==============================================================================
 //                                  LOCAL GLOBALS
 //==============================================================================
-// using global buffers because the register functions are called from the 
+// using global buffers because the register functions are called from the
 // external interrupt routine, and for parts that use overlay memory using local
 // buffers fails.
 static uint8_t g_txBuf[3];
@@ -63,19 +64,15 @@ static uint8_t g_rxBuf[3];
  *
  *  NOTES: Reads WF 8-bit register
  *****************************************************************************/
-uint8_t Read8BitWFRegister(uint8_t regId)
-{
-    g_txBuf[0] = regId | WF_READ_REGISTER_MASK;
-    WF_SpiEnableChipSelect();
+uint8_t Read8BitWFRegister(uint8_t regId) {
+  g_txBuf[0] = regId | WF_READ_REGISTER_MASK;
+  WF_SpiEnableChipSelect();
 
-    WF_SpiTxRx(g_txBuf,
-               1,
-               g_rxBuf,
-               2);
+  WF_SpiTxRx(g_txBuf, 1, g_rxBuf, 2);
 
-    WF_SpiDisableChipSelect();
+  WF_SpiDisableChipSelect();
 
-    return g_rxBuf[1];   /* register value returned in the second byte clocking */
+  return g_rxBuf[1]; /* register value returned in the second byte clocking */
 }
 
 /*****************************************************************************
@@ -89,19 +86,15 @@ uint8_t Read8BitWFRegister(uint8_t regId)
  *
  *  NOTES: Writes WF 8-bit register
  *****************************************************************************/
-void Write8BitWFRegister(uint8_t regId, uint8_t value)
-{
-    g_txBuf[0] = regId | WF_WRITE_REGISTER_MASK;
-    g_txBuf[1] = value;
+void Write8BitWFRegister(uint8_t regId, uint8_t value) {
+  g_txBuf[0] = regId | WF_WRITE_REGISTER_MASK;
+  g_txBuf[1] = value;
 
-    WF_SpiEnableChipSelect();
+  WF_SpiEnableChipSelect();
 
-    WF_SpiTxRx(g_txBuf,
-               2,
-               g_rxBuf,
-               1);
+  WF_SpiTxRx(g_txBuf, 2, g_rxBuf, 1);
 
-    WF_SpiDisableChipSelect();
+  WF_SpiDisableChipSelect();
 }
 
 /*****************************************************************************
@@ -115,20 +108,16 @@ void Write8BitWFRegister(uint8_t regId, uint8_t value)
  *
  *  NOTES: Writes WF 16-bit register
  *****************************************************************************/
-void Write16BitWFRegister(uint8_t regId, uint16_t value)
-{
-    g_txBuf[0] = regId | WF_WRITE_REGISTER_MASK;
-    g_txBuf[1] = (uint8_t)(value >> 8);       /* MS byte being written     */
-    g_txBuf[2] = (uint8_t)(value & 0x00ff);   /* LS byte being written     */
+void Write16BitWFRegister(uint8_t regId, uint16_t value) {
+  g_txBuf[0] = regId | WF_WRITE_REGISTER_MASK;
+  g_txBuf[1] = (uint8_t)(value >> 8);     /* MS byte being written     */
+  g_txBuf[2] = (uint8_t)(value & 0x00ff); /* LS byte being written     */
 
-    WF_SpiEnableChipSelect();
+  WF_SpiEnableChipSelect();
 
-    WF_SpiTxRx(g_txBuf,
-               3,
-               g_rxBuf,
-               1);
+  WF_SpiTxRx(g_txBuf, 3, g_rxBuf, 1);
 
-    WF_SpiDisableChipSelect();
+  WF_SpiDisableChipSelect();
 }
 
 /*****************************************************************************
@@ -141,19 +130,15 @@ void Write16BitWFRegister(uint8_t regId, uint16_t value)
  *
  *  NOTES: Reads WF 16-bit register
  *****************************************************************************/
-uint16_t Read16BitWFRegister(uint8_t regId)
-{
-    g_txBuf[0] = regId | WF_READ_REGISTER_MASK;
-    WF_SpiEnableChipSelect();
+uint16_t Read16BitWFRegister(uint8_t regId) {
+  g_txBuf[0] = regId | WF_READ_REGISTER_MASK;
+  WF_SpiEnableChipSelect();
 
-    WF_SpiTxRx(g_txBuf,
-               1,
-               g_rxBuf,
-               3);
+  WF_SpiTxRx(g_txBuf, 1, g_rxBuf, 3);
 
-    WF_SpiDisableChipSelect();
+  WF_SpiDisableChipSelect();
 
-    return (((uint16_t)g_rxBuf[1]) << 8) | ((uint16_t)(g_rxBuf[2]));
+  return (((uint16_t)g_rxBuf[1]) << 8) | ((uint16_t)(g_rxBuf[2]));
 }
 
 /*****************************************************************************
@@ -168,25 +153,18 @@ uint16_t Read16BitWFRegister(uint8_t regId)
  *
  *  NOTES: Writes a data block to specified raw register
  *****************************************************************************/
-void WriteWFArray(uint8_t regId, const uint8_t *p_Buf, uint16_t length)
-{
-    g_txBuf[0] = regId;
+void WriteWFArray(uint8_t regId, const uint8_t *p_Buf, uint16_t length) {
+  g_txBuf[0] = regId;
 
-    WF_SpiEnableChipSelect();
+  WF_SpiEnableChipSelect();
 
-    /* output cmd byte */
-    WF_SpiTxRx(g_txBuf,
-               1,
-               g_rxBuf,
-               1);
+  /* output cmd byte */
+  WF_SpiTxRx(g_txBuf, 1, g_rxBuf, 1);
 
-    /* output data array bytes */
-    WF_SpiTxRx(p_Buf,
-               length,
-               0,
-               1);
+  /* output data array bytes */
+  WF_SpiTxRx(p_Buf, length, 0, 1);
 
-    WF_SpiDisableChipSelect();
+  WF_SpiDisableChipSelect();
 }
 
 /*****************************************************************************
@@ -201,25 +179,16 @@ void WriteWFArray(uint8_t regId, const uint8_t *p_Buf, uint16_t length)
  *
  *  NOTES: Reads a block of data from a raw register
  *****************************************************************************/
-void ReadWFArray(uint8_t  regId, uint8_t *p_Buf, uint16_t length)
-{
-    WF_SpiEnableChipSelect();
+void ReadWFArray(uint8_t regId, uint8_t *p_Buf, uint16_t length) {
+  WF_SpiEnableChipSelect();
 
-    /* output command byte */
-    g_txBuf[0] = regId | WF_READ_REGISTER_MASK;
-    WF_SpiTxRx(g_txBuf,
-               1,
-               g_rxBuf,
-               1);
+  /* output command byte */
+  g_txBuf[0] = regId | WF_READ_REGISTER_MASK;
+  WF_SpiTxRx(g_txBuf, 1, g_rxBuf, 1);
 
-    /* read data array */
-    WF_SpiTxRx(g_txBuf,
-               1,   /* garbage tx byte */
-               p_Buf,
-               length);
+  /* read data array */
+  WF_SpiTxRx(g_txBuf, 1, /* garbage tx byte */
+             p_Buf, length);
 
-    WF_SpiDisableChipSelect();
+  WF_SpiDisableChipSelect();
 }
-
-
-

@@ -27,22 +27,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-  
+
 /************************** Function Definitions ***************************/
-XSpi_Config TC1Config =
-{
-   0,
-   0,
-   1,
-   0,
-   1,
-   8,
-   0,
-   0,
-   0,
-   0,
-   0
-};
+XSpi_Config TC1Config = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
 
 /* ------------------------------------------------------------ */
 /*** void TC1_begin()
@@ -61,8 +48,8 @@ XSpi_Config TC1Config =
 **      Initialize the PmodTC1.
 */
 void TC1_begin(PmodTC1 *InstancePtr, u32 SPI_Address) {
-   TC1Config.BaseAddress = SPI_Address;
-   TC1_SPIInit(&InstancePtr->TC1Spi);
+  TC1Config.BaseAddress = SPI_Address;
+  TC1_SPIInit(&InstancePtr->TC1Spi);
 }
 
 /* ------------------------------------------------------------ */
@@ -80,9 +67,7 @@ void TC1_begin(PmodTC1 *InstancePtr, u32 SPI_Address) {
 **   Description:
 **      Stops the device
 */
-void TC1_end(PmodTC1 *InstancePtr) {
-   XSpi_Stop(&InstancePtr->TC1Spi);
-}
+void TC1_end(PmodTC1 *InstancePtr) { XSpi_Stop(&InstancePtr->TC1Spi); }
 
 /* ------------------------------------------------------------ */
 /*** TC1_SPIInit()
@@ -101,38 +86,38 @@ void TC1_end(PmodTC1 *InstancePtr) {
 */
 
 int TC1_SPIInit(XSpi *SpiInstancePtr) {
-   int Status;
+  int Status;
 
-   Status = XSpi_CfgInitialize(SpiInstancePtr, &TC1Config,
-         TC1Config.BaseAddress);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status =
+      XSpi_CfgInitialize(SpiInstancePtr, &TC1Config, TC1Config.BaseAddress);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   u32 options = (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION
-         | XSP_CLK_PHASE_1_OPTION) | XSP_MANUAL_SSELECT_OPTION;
-   Status = XSpi_SetOptions(SpiInstancePtr, options);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  u32 options =
+      (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_CLK_PHASE_1_OPTION) |
+      XSP_MANUAL_SSELECT_OPTION;
+  Status = XSpi_SetOptions(SpiInstancePtr, options);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   /*
-    * Start the SPI driver so that the device is enabled.
-    */
-   XSpi_Start(SpiInstancePtr);
+  /*
+   * Start the SPI driver so that the device is enabled.
+   */
+  XSpi_Start(SpiInstancePtr);
 
-   /*
-    * Disable Global interrupt to use polled mode operation
-    */
-   XSpi_IntrGlobalDisable(SpiInstancePtr);
+  /*
+   * Disable Global interrupt to use polled mode operation
+   */
+  XSpi_IntrGlobalDisable(SpiInstancePtr);
 
-   return XST_SUCCESS;
-
+  return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -152,18 +137,18 @@ int TC1_SPIInit(XSpi *SpiInstancePtr) {
 **      "data" of type int. Reads one int per function call.
 */
 void TC1_readData(PmodTC1 *InstancePtr) {
-   u8 byte[4];
-   InstancePtr->data = 0;
-   XSpi_Transfer(&InstancePtr->TC1Spi, byte, byte, 4);
+  u8 byte[4];
+  InstancePtr->data = 0;
+  XSpi_Transfer(&InstancePtr->TC1Spi, byte, byte, 4);
 
-   // Convert the byte array to an int
-   InstancePtr->data |= byte[0];
-   InstancePtr->data = InstancePtr->data << 8;
-   InstancePtr->data |= byte[1];
-   InstancePtr->data = InstancePtr->data << 8;
-   InstancePtr->data |= byte[2];
-   InstancePtr->data = InstancePtr->data << 8;
-   InstancePtr->data |= byte[3];
+  // Convert the byte array to an int
+  InstancePtr->data |= byte[0];
+  InstancePtr->data = InstancePtr->data << 8;
+  InstancePtr->data |= byte[1];
+  InstancePtr->data = InstancePtr->data << 8;
+  InstancePtr->data |= byte[2];
+  InstancePtr->data = InstancePtr->data << 8;
+  InstancePtr->data |= byte[3];
 }
 
 /* ------------------------------------------------------------ */
@@ -183,23 +168,23 @@ void TC1_readData(PmodTC1 *InstancePtr) {
 */
 double TC1_getTemp(PmodTC1 *InstancePtr) {
 
-   int modded = 0;
-   int buffer = 0;
-   double temp = 0;
+  int modded = 0;
+  int buffer = 0;
+  double temp = 0;
 
-   TC1_readData(InstancePtr);
+  TC1_readData(InstancePtr);
 
-   buffer = InstancePtr->data & 0xFFFC0000;
+  buffer = InstancePtr->data & 0xFFFC0000;
 
-   // Shift over to LSB
-   buffer = buffer >> 18;
+  // Shift over to LSB
+  buffer = buffer >> 18;
 
-   modded = buffer % 4;
-   temp = (double) (buffer / 4);
+  modded = buffer % 4;
+  temp = (double)(buffer / 4);
 
-   temp = temp + (modded * .25);
+  temp = temp + (modded * .25);
 
-   return temp;
+  return temp;
 }
 
 /* ------------------------------------------------------------ */
@@ -217,23 +202,23 @@ double TC1_getTemp(PmodTC1 *InstancePtr) {
 **   Description:
 **      Will extract the chip temperature data from the data stream
 */
-double TC1_getAMBTemp(PmodTC1 *InstancePtr){
-   int buffer = 0;
-   double ambTemp = 0;
-   int modded = 0;
+double TC1_getAMBTemp(PmodTC1 *InstancePtr) {
+  int buffer = 0;
+  double ambTemp = 0;
+  int modded = 0;
 
-   TC1_readData(InstancePtr);
+  TC1_readData(InstancePtr);
 
-   buffer = InstancePtr->data & 0x0000FFF0;
+  buffer = InstancePtr->data & 0x0000FFF0;
 
-   buffer = buffer >> 4;
+  buffer = buffer >> 4;
 
-   modded = buffer % 16;
-   ambTemp = (double) (buffer / 16);
+  modded = buffer % 16;
+  ambTemp = (double)(buffer / 16);
 
-   ambTemp = ambTemp + (modded * .0625);
+  ambTemp = ambTemp + (modded * .0625);
 
-   return ambTemp;
+  return ambTemp;
 }
 
 /* ------------------------------------------------------------ */
@@ -251,6 +236,4 @@ double TC1_getAMBTemp(PmodTC1 *InstancePtr){
 **   Description:
 **      Converts a temperature in celsius to farenheit
 */
-double TC1_tempC2F(double celsius) {
-   return (celsius * 1.8) + 32;
-}
+double TC1_tempC2F(double celsius) { return (celsius * 1.8) + 32; }

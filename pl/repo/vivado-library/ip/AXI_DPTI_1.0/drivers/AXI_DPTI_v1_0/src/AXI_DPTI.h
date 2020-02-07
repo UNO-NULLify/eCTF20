@@ -13,10 +13,12 @@
  * This program is free software; distributed under the terms of BSD 3-clause
  * license ("Revised BSD License", "New BSD License", or "Modified BSD License")
  *
- * Redistribution and use in source and binary forms, with or without modification,
+ * Redistribution and use in source and binary forms, with or without
+ modification,
  * are permitted provided that the following conditions are met:
  *
- * 1. Redistributions of source code must retain the above copyright notice, this
+ * 1. Redistributions of source code must retain the above copyright notice,
+ this
  *    list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
@@ -28,7 +30,8 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+ LIABLE
  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -43,7 +46,8 @@
  * MODIFICATION HISTORY:
  *
  * Ver   Who            Date         Changes
- * ----- -------------- ------------ -----------------------------------------------
+ * ----- -------------- ------------
+ -----------------------------------------------
  * 1.00  Sergiu Arpadi  2016-Sep-20  First release
  *
  * </pre>
@@ -52,7 +56,6 @@
 
 #ifndef AXI_DPTI_H
 #define AXI_DPTI_H
-
 
 /****************** Include Files ********************/
 #include "xil_types.h"
@@ -65,10 +68,9 @@
 #define DPTI_TO_STREAM 2
 #define STREAM_TO_DPTI 1
 
-
 /************************** Function Prototypes ****************************/
- 
-XStatus DPTI_SimpleTransfer (u32 BaseAddress, u8 Direction, u32 TransferLength);
+
+XStatus DPTI_SimpleTransfer(u32 BaseAddress, u8 Direction, u32 TransferLength);
 XStatus AXI_DPTI_Reg_SelfTest(u32 baseaddr);
 
 #endif // AXI_DPTI_H

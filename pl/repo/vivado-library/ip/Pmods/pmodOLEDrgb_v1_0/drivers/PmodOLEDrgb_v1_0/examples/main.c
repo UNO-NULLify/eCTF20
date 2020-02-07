@@ -21,8 +21,8 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include "bitmap.h"
 #include "PmodOLEDrgb.h"
+#include "bitmap.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xparameters.h"
@@ -36,65 +36,63 @@ void DisableCaches();
 PmodOLEDrgb oledrgb;
 
 u8 rgbUserFont[] = {
-   0x00, 0x04, 0x02, 0x1F, 0x02, 0x04, 0x00, 0x00, // 0x00
-   0x0E, 0x1F, 0x15, 0x1F, 0x17, 0x10, 0x1F, 0x0E, // 0x01
-   0x00, 0x1F, 0x11, 0x00, 0x00, 0x11, 0x1F, 0x00, // 0x02
-   0x00, 0x0A, 0x15, 0x11, 0x0A, 0x04, 0x00, 0x00, // 0x03
-   0x07, 0x0C, 0xFA, 0x2F, 0x2F, 0xFA, 0x0C, 0x07  // 0x04
+    0x00, 0x04, 0x02, 0x1F, 0x02, 0x04, 0x00, 0x00, // 0x00
+    0x0E, 0x1F, 0x15, 0x1F, 0x17, 0x10, 0x1F, 0x0E, // 0x01
+    0x00, 0x1F, 0x11, 0x00, 0x00, 0x11, 0x1F, 0x00, // 0x02
+    0x00, 0x0A, 0x15, 0x11, 0x0A, 0x04, 0x00, 0x00, // 0x03
+    0x07, 0x0C, 0xFA, 0x2F, 0x2F, 0xFA, 0x0C, 0x07  // 0x04
 }; // This table defines 5 user characters, although only one is used
 
 int main(void) {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
-   OLEDrgb_begin(&oledrgb, XPAR_PMODOLEDRGB_0_AXI_LITE_GPIO_BASEADDR,
-         XPAR_PMODOLEDRGB_0_AXI_LITE_SPI_BASEADDR);
+  EnableCaches();
+  OLEDrgb_begin(&oledrgb, XPAR_PMODOLEDRGB_0_AXI_LITE_GPIO_BASEADDR,
+                XPAR_PMODOLEDRGB_0_AXI_LITE_SPI_BASEADDR);
 }
 
 void DemoRun() {
-   char ch;
+  char ch;
 
-   // Define the user definable characters
-   for (ch = 0; ch < 5; ch++) {
-      OLEDrgb_DefUserChar(&oledrgb, ch, &rgbUserFont[ch * 8]);
-   }
+  // Define the user definable characters
+  for (ch = 0; ch < 5; ch++) {
+    OLEDrgb_DefUserChar(&oledrgb, ch, &rgbUserFont[ch * 8]);
+  }
 
-   OLEDrgb_SetCursor(&oledrgb, 2, 1);
-   OLEDrgb_PutString(&oledrgb, "Digilent"); // Default color (green)
-   OLEDrgb_SetCursor(&oledrgb, 4, 4);
-   OLEDrgb_SetFontColor(&oledrgb, OLEDrgb_BuildRGB(0, 0, 255)); // Blue font
-   OLEDrgb_PutString(&oledrgb, "OledRGB");
+  OLEDrgb_SetCursor(&oledrgb, 2, 1);
+  OLEDrgb_PutString(&oledrgb, "Digilent"); // Default color (green)
+  OLEDrgb_SetCursor(&oledrgb, 4, 4);
+  OLEDrgb_SetFontColor(&oledrgb, OLEDrgb_BuildRGB(0, 0, 255)); // Blue font
+  OLEDrgb_PutString(&oledrgb, "OledRGB");
 
-   OLEDrgb_SetFontColor(&oledrgb, OLEDrgb_BuildRGB(200, 200, 44));
-   OLEDrgb_SetCursor(&oledrgb, 1, 6);
-   OLEDrgb_PutChar(&oledrgb, 4);
+  OLEDrgb_SetFontColor(&oledrgb, OLEDrgb_BuildRGB(200, 200, 44));
+  OLEDrgb_SetCursor(&oledrgb, 1, 6);
+  OLEDrgb_PutChar(&oledrgb, 4);
 
-   OLEDrgb_SetFontColor(&oledrgb, OLEDrgb_BuildRGB(200, 12, 44));
-   OLEDrgb_SetCursor(&oledrgb, 5, 6);
-   OLEDrgb_PutString(&oledrgb, "Demo");
-   OLEDrgb_PutChar(&oledrgb, 0);
+  OLEDrgb_SetFontColor(&oledrgb, OLEDrgb_BuildRGB(200, 12, 44));
+  OLEDrgb_SetCursor(&oledrgb, 5, 6);
+  OLEDrgb_PutString(&oledrgb, "Demo");
+  OLEDrgb_PutChar(&oledrgb, 0);
 
-   sleep(5); // Wait 5 seconds
+  sleep(5); // Wait 5 seconds
 
-   OLEDrgb_DrawBitmap(&oledrgb, 0, 0, 95, 63, (u8*) tommy);
+  OLEDrgb_DrawBitmap(&oledrgb, 0, 0, 95, 63, (u8 *)tommy);
 }
 
-void DemoCleanup() {
-   DisableCaches();
-}
+void DemoCleanup() { DisableCaches(); }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -102,10 +100,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

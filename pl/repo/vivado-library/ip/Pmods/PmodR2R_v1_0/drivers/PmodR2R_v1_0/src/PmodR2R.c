@@ -45,10 +45,10 @@
 **      Initialize the PmodR2R.
 */
 void R2R_begin(PmodR2R *InstancePtr, u32 GPIO_Address) {
-   InstancePtr->GPIO_addr = GPIO_Address;
+  InstancePtr->GPIO_addr = GPIO_Address;
 
-   // Set tri-state direction to all output
-   Xil_Out32(InstancePtr->GPIO_addr + 4, 0x00);
+  // Set tri-state direction to all output
+  Xil_Out32(InstancePtr->GPIO_addr + 4, 0x00);
 }
 
 /* ------------------------------------------------------------ */
@@ -69,5 +69,5 @@ void R2R_begin(PmodR2R *InstancePtr, u32 GPIO_Address) {
 **      Set output voltage of R2R.
 */
 void R2R_write(PmodR2R *InstancePtr, u32 data) {
-   Xil_Out32(InstancePtr->GPIO_addr, data);
+  Xil_Out32(InstancePtr->GPIO_addr, data);
 }
