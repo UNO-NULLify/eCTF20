@@ -30,7 +30,7 @@ if [ ! $? -eq 0 ]; then
 
   echo "Region bank created in test_regions.txt" 
 
-# end generate test data 
+# end generate test data
 
 python3 createRegions --region-list $(cat ./provision_test/test_regions.txt) \
                       --outfile ./provision_test/region_secrets.json 
