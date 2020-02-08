@@ -14,7 +14,7 @@ from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITI
 import nacl.signing
 from nacl.public import PrivateKey, SealedBox
 from makeAudio import make_sample
-
+from subprocess import call
 
 
 def main():
@@ -56,17 +56,12 @@ def main():
                             encoding="utf-8"), encoder=encoding.HexEncoder)
     hardwareSecretHash30 = HASHER(bytes((users["users"][args.owner]["hw_secret"]+songID+"30"),
                             encoding="utf-8"), encoder=encoding.HexEncoder)
-    encryptionKey = HASHER(bytes((songKey.hex()+regionKey.hex()+hardwareSecretHash.hex()),
-                            encoding="utf-8"), encoder=encoding.HexEncoder)
-    print(f"encryption key {encryptionKey}")
-    print(f"encryption parts: {songKey.hex()}{regionKey.hex()}{hardwareSecretHash.hex()}")
+    #print(f"encryption parts: {str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())}")
     print(f"Creating 30 second chunk:")
     smallFile = make_sample(args.infile)
-    print(hardwareSecretHash30.hex())
-
-    print(f"Encrypting:{args.infile}")
-
-
+    call(["./encryptFile", smallFile, "30EncryptedSong.out", str(hardwareSecretHash30.hex())])
+    call(["./encryptFile", args.infile, "EncryptedSong.out", str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())])
+    #call(["./decryptFile", "out", "PlayMe", str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())])
 
 if __name__ == '__main__':
     main()
