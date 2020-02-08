@@ -12,12 +12,12 @@ if __name__ == "__main__":
     users = ""
 
     for _ in range(64):
-        user = ''.join(random.choice(string.ascii_letters) for i in range(random.randrange(1,15)))
-        pin = ''.join(random.choice(string.digits) for i in range(random.randrange(8,64)))
+        user = "".join(random.choice(string.ascii_letters) for i in range(random.randrange(1,15)))
+        pin = "".join(random.choice(string.digits) for i in range(random.randrange(8,64)))
         rand_user = user + ":" + pin + " "
         users += rand_user
-
-    print(users)
-
-    file = open(os.getcwd() + "/test_users.txt","w")
+    
+    print("Generating user/pin pairs")
+    #print(users)
+    file = open(os.getcwd() + "/provision_test/test_users.txt","w")
     file.writelines(users)

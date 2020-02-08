@@ -1,4 +1,6 @@
 # A testing script that generates 32 regions
+import os
+
 
 countries = "Afghanistan \
 Albania \
@@ -36,6 +38,6 @@ Colombia"
 if __name__ == "__main__":
     
     print("Generating Test Regions")
-    print(countries)
-    file = open(os.getcwd() + "/test_regions.txt","w")
+    # print(countries)
+    file = open(os.getcwd() + "/provision_test/test_regions.txt","w")
     file.writelines(countries)

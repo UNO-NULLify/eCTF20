@@ -41,7 +41,7 @@ def main(user_list, outfile):
 
             #Encrypting private key with the secure key
 
-            print(f"Encrypting user private key with {secure_key} length {len(secure_key)}")
+            #print(f"Encrypting user private key with {secure_key} length {len(secure_key)}")
 
             box = secret.SecretBox(secure_key)
 
@@ -96,5 +96,5 @@ def get_args():
 
 if __name__ == '__main__':
     users, loc = get_args()
-    print("generating user specific secrets")
+    #print("generating user specific secrets")
     main(users, loc)

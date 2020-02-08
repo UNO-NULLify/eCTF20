@@ -30,9 +30,9 @@ if __name__ == "__main__":
     sample2 = sound2.to_audio_segment(duration=DURATION)
     mix = AudioSegment.from_mono_audiosegments(sample1, sample2)
    
-    mix.export(os.getcwd() + "/device/test.wav", format="wav")
+    mix.export(os.getcwd() + "/provision_test/test.wav", format="wav")
     print("Generating Sample")
-    make_sample(os.getcwd() + "/device/test.wav")
+    make_sample(os.getcwd() + "/provision_test/test.wav")
     #mix[0:30000].export(os.getcwd() + "/device/30_test.wav", format="wav")
 
     #play(sample)
