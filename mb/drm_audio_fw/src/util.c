@@ -112,7 +112,6 @@ XStatus fnConfigDma(XAxiDma *AxiDma) {
   // Ensures that the DMA hardware has been loaded
   pCfgPtr = XAxiDma_LookupConfig(XPAR_AXIDMA_0_DEVICE_ID);
   if (!pCfgPtr) {
-
     xil_printf(MB_PROMPT "No config found for %d\r\n", XPAR_AXIDMA_0_DEVICE_ID);
 
     return XST_FAILURE;
@@ -123,7 +122,6 @@ XStatus fnConfigDma(XAxiDma *AxiDma) {
   // about the DMA to the AxiDma variable
   Status = XAxiDma_CfgInitialize(AxiDma, pCfgPtr);
   if (Status != XST_SUCCESS) {
-
     xil_printf(MB_PROMPT "Initialization failed %d\r\n");
 
     return XST_FAILURE;

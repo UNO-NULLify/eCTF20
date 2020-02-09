@@ -6,26 +6,79 @@ Use: Once per user
 
 import json
 from argparse import ArgumentParser
+from nacl import pwhash, secret, utils, encoding, public, hash
+from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
+import nacl.signing
 
+
+#Define hashing method
+HASHER = hash.blake2b
 
 def main(user_list, outfile):
     """writes user secrets to json file
     args:
         users_ (string): string of users and pins seperated by colons e.g. user1:123456789
         outfile (string): name of file to write user_secrets to """
+    print("Salt Bytes: {}\nOps Limit: {}\nMem Limit: {}".format(SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE))
     try:
         secrets = open(outfile, "w")
     except Exception as e:
         print("Unable to open secrets file: %s" % (e,))
-        return 0
-
+        return 1
     try:
-        user_dict = {user.split(":")[0]: {"pin": user.split(":")[1], "id": num} for num, user in enumerate(user_list)}
+        user_dict = {}
+        for user in user_list:
+            u = user.split(":")
+            salt = utils.random(SALTBYTES) # 16 bytes
+            # generating an argon2id hash of user pin with custom salt; encoded in base64
+            # OPSLIMIT_SENSITIVE MEMLIMIT_SENSITIVE are default settings for kdf function below
+            hashed = pwhash.argon2id.str(bytes(u[1], encoding="utf-8"))
+            # generate a public / private keypair (Curve25519)
+            pvt_key = public.PrivateKey.generate()
+
+            #Key used for securing the private key. hash(hashpin + pin + salt)
+            secure_key = HASHER(bytes((hashed.decode()+u[1]+salt.hex()), encoding="utf-8"), encoder=encoding.HexEncoder)[:32]
+
+            #Encrypting private key with the secure key
+
+            #print(f"Encrypting user private key with {secure_key} length {len(secure_key)}")
+
+            box = secret.SecretBox(secure_key)
+
+            pvt_key_enc = box.encrypt(bytes(pvt_key))
+
+            user_dict[u[0]] = {"pin": u[1],                                 # PIN   NEVER TOUCH DEVICE
+                               "pin_hash": hashed.decode(),                          # PIN hash convert bytes(hash, encoding="utf-8")
+                               "salt": salt.hex(),                          # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
+                               "pvt_key": bytes(pvt_key).hex(),
+                               "pvt_key_enc": pvt_key_enc.hex(),                           #  nacl.bindings.crypto_aead_chacha20poly1305...?
+                               "pub_key": bytes(pvt_key.public_key).hex(),
+                               "hw_secret": utils.random(10).hex(),
+                               }
+        # generate pubic private key pair for additional integrity checks (Curve25519)
+        signing_key = nacl.signing.SigningKey.generate()
+
+        #EXAMPLE USE CASE: DELETE IN FINAL CODE
+        #print(signing_key.encode(encoder=encoding.HexEncoder))
+        #print(signing_key.encode(encoder=encoding.HexEncoder).hex())
+        #key_hex = signing_key.encode(encoder=encoding.HexEncoder).hex()
+        #test_key = nacl.signing.SigningKey(bytes.fromhex(key_hex), encoder=encoding.HexEncoder)
+        #signed_msg = test_key.sign(b"Attack at Dawn")
+        #bad_msg = signed_msg[:-4]
+
+        verify_key = signing_key.verify_key
+        #print(verify_key.verify(signed_msg))
+
+        json_dict = {}
+        json_dict["root_sign"] = signing_key.encode(encoder=encoding.HexEncoder).hex()
+        json_dict["root_verify"] = verify_key.encode(encoder=nacl.encoding.HexEncoder).hex()
+        json_dict["users"] = user_dict
+
     except IndexError:
         raise Exception(
             "Unable to parse user name and pin. Please make sure you entered the user-list as "
             "space seperated pairs of usernames and pins. Example: --user-list user1:12345678 user2:12345689")
-    info = json.dumps(user_dict)
+    info = json.dumps(json_dict, indent=4, sort_keys=True)
     secrets.write(info)
     secrets.close()
 
@@ -43,5 +96,5 @@ def get_args():
 
 if __name__ == '__main__':
     users, loc = get_args()
-    print("generating user specific secrets")
+    #print("generating user specific secrets")
     main(users, loc)

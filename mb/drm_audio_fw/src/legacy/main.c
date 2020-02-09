@@ -454,6 +454,7 @@ void digital_out() {
 //////////////////////// MAIN ////////////////////////
 
 int main() {
+<<<<<<< HEAD:mb/drm_audio_fw/src/main.c
   u32 status;
 
   init_platform();
