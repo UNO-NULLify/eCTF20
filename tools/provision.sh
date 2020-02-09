@@ -10,7 +10,7 @@
 
 # generate test data
 
-mkdir provision_test
+mkdir -p provision_test/audio
 
 python3 makeUsers.py
 
@@ -53,6 +53,12 @@ if [ ! $? -eq 0 ]; then
 
   echo "Provisioned regions created in ./provision_test/user_secrets.json"
 
+#Compile Song encription
+echo "Compiling encryption scripts"
+gcc -Wall -pedantic -std=c1x -g -o  ./encryptFile encryptFile.c -lsodium
+gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c -lsodium
+#End Compile Song encription
+
 # Generate Test Song
 
 read -p "Generate Test Audio? (y/n) " choice
@@ -61,7 +67,7 @@ case "$choice" in
 
     python3 protectSong --region-list USA Canada \
                         --region-secrets-path ./provision_test/region_secrets.json \
-                        --outfile ./provision_test/test-protect.wav \
+                        --outfile ./provision_test/audio/test-protect.drm \
                         --infile ./provision_test/test.wav \
                         --owner $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}') \
                         --user-secrets-path ./provision_test/user_secrets.json
@@ -80,7 +86,7 @@ case "$choice" in
   *) echo "Using privided audio sample."
     python3 protectSong --region-list USA Canada \
                         --region-secrets-path ./provision_test/region_secrets.json \
-                        --outfile ./provision_test/test-protect-small-step.wav \
+                        --outfile ./provision_test/audio/test-protect-small-step.drm \
                         --infile ../sample-audio/Sound-Bite_One-Small-Step.wav \
                         --owner $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}') \
                         --user-secrets-path ./provision_test/user_secrets.json
@@ -111,6 +117,19 @@ if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "createDevice Failed!"
   exit 1
 fi
+
+#Drew's Changes
+
+#gcc -Wall -pedantic -std=c1x -g -o  ./encryptFile encryptFile.c -lsodium
+#gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c -lsodium
+
+#python3 newProtectSong --region-list USA Canada \
+#                       --region-secrets-path region_secrets.json \
+#                       --outfile test-protect.wav \
+#                       --infile ../sample-audio/Sound-Bite_One-Small-Step.wav \
+#                       --owner user1 --user-secrets-path user_secrets.json
+
+# end Drew's changes
 
 #printf "\n\nRunning buildDevice...\n"  
 #(./buildDevice -p /ectf/ -n test -bf all -secrets_dir ./device)
