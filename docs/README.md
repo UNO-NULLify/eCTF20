@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /uno.png
+heroImage: /nullify_banner.svg
 heroText: Mitre eCTF Documentation
 tagline: NULLify - University of Nebraska at Omaha
 actionText: Get Started →
