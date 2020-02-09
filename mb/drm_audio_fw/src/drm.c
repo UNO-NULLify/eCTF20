@@ -80,16 +80,16 @@ int GetUserTotal() { return d.num_user; }
 void SetState(STATE state) {
   d.state = state;
   switch (state) {
-    case WORKING:
-      setLED(led, YELLOW);
-      break;
-    case PLAYING:
-      setLED(led, GREEN) : break;
-    case PAUSED:
-      setLED(led, BLUE) : break;
-    case STOPPED:
-    default:
-      setLED(led, RED) break;
+  case WORKING:
+    setLED(led, YELLOW);
+    break;
+  case PLAYING:
+    setLED(led, GREEN) : break;
+  case PAUSED:
+    setLED(led, BLUE) : break;
+  case STOPPED:
+  default:
+    setLED(led, RED) break;
   }
 }
 
@@ -298,28 +298,28 @@ int main() {
        * command is set by the miPod player
        */
       switch (command) {
-        case LOGIN:
-          Login();
-          break;
-        case LOGOUT:
-          LogOut();
-          break;
-        case QUERY_SONG:
-          Query();
-          break;
-        case SHARE:
-          Share();
-          break;
-        case PLAY:
-          Play();
-          mb_printf("Done Playing Song\r\n");
-          break;
-        case DIGITAL_OUT:
-          DigitalOut();
-          break;
-        default:
-          mb_printf("Not a command!\r\n");
-          break;
+      case LOGIN:
+        Login();
+        break;
+      case LOGOUT:
+        LogOut();
+        break;
+      case QUERY_SONG:
+        Query();
+        break;
+      case SHARE:
+        Share();
+        break;
+      case PLAY:
+        Play();
+        mb_printf("Done Playing Song\r\n");
+        break;
+      case DIGITAL_OUT:
+        DigitalOut();
+        break;
+      default:
+        mb_printf("Not a command!\r\n");
+        break;
       }
 
       // Not sure why, but MITRE does this

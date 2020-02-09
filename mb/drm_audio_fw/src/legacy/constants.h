@@ -93,12 +93,12 @@ enum states { STOPPED, WORKING, PLAYING, PAUSED };
 
 // struct to interpret shared command channel
 typedef volatile struct __attribute__((__packed__)) {
-  char cmd;                    // from commands enum
-  char drm_state;              // from states enum
-  char login_status;           // 0 = logged off, 1 = logged on
-  char padding;                // not used
-  char username[USERNAME_SZ];  // stores logged in or attempted username
-  char pin[MAX_PIN_SZ];        // stores logged in or attempted pin
+  char cmd;                   // from commands enum
+  char drm_state;             // from states enum
+  char login_status;          // 0 = logged off, 1 = logged on
+  char padding;               // not used
+  char username[USERNAME_SZ]; // stores logged in or attempted username
+  char pin[MAX_PIN_SZ];       // stores logged in or attempted pin
 
   // shared buffer is either a drm song or a query
   union {
@@ -119,11 +119,11 @@ typedef struct {
 
 // store of internal state
 typedef struct {
-  char logged_in;              // whether or not a user is logged on
-  u8 uid;                      // logged on user id
-  char username[USERNAME_SZ];  // logged on username
-  char pin[MAX_PIN_SZ];        // logged on pin
-  song_md song_md;             // current song metadata
+  char logged_in;             // whether or not a user is logged on
+  u8 uid;                     // logged on user id
+  char username[USERNAME_SZ]; // logged on username
+  char pin[MAX_PIN_SZ];       // logged on pin
+  song_md song_md;            // current song metadata
 } internal_state;
 
 #endif /* SRC_CONSTANTS_H_ */
