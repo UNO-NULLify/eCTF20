@@ -31,7 +31,6 @@ module.exports = {
 				children: [
 					'/technical/hardware',
 					'/technical/software',
-					'/technical/compiler-fixes',
 				]
 			},
 			{
@@ -42,6 +41,8 @@ module.exports = {
 				children: [
 					'/internal/initial-plans',
 					'/internal/code-reviews',
+					'/internal/compiler-fixes',
+					'/internal/anti-re',
 					'/internal/attack',
 				]
 			}

@@ -39,8 +39,8 @@
 #define false 0
 
 typedef struct PmodGPIO {
-   u32 GPIO_addr;
-   u32 cpuClockFreqHz;
+  u32 GPIO_addr;
+  u32 cpuClockFreqHz;
 } PmodGPIO;
 
 void GPIO_begin(PmodGPIO *InstancePtr, u32 GPIO_Address, u8 bitmap);

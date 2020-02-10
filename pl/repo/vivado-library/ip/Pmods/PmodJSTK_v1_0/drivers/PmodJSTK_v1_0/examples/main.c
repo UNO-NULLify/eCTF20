@@ -56,69 +56,60 @@ void EnableCaches();
 void DisableCaches();
 
 int main() {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
+  EnableCaches();
 
-   xil_printf("test\r\n");
-   // Initialize the joystick device
-   JSTK_begin(
-      &joystick,
-      XPAR_PMODJSTK_0_AXI_LITE_SPI_BASEADDR,
-      XPAR_PMODJSTK_0_AXI_LITE_GPIO_BASEADDR
-   );
+  xil_printf("test\r\n");
+  // Initialize the joystick device
+  JSTK_begin(&joystick, XPAR_PMODJSTK_0_AXI_LITE_SPI_BASEADDR,
+             XPAR_PMODJSTK_0_AXI_LITE_GPIO_BASEADDR);
 }
 
 void DemoRun() {
-   JSTK_DataPacket rawdata;
-   u8 led;
+  JSTK_DataPacket rawdata;
+  u8 led;
 
-   xil_printf("\r\nJoystick Demo\r\n");
+  xil_printf("\r\nJoystick Demo\r\n");
 
-   while (1) {
-      // Capture button states and positional data
-      rawdata = JSTK_getDataPacket(&joystick);
+  while (1) {
+    // Capture button states and positional data
+    rawdata = JSTK_getDataPacket(&joystick);
 
-      xil_printf(
-         "X:%d\tY:%d%s%s%s\r\n",
-         rawdata.XData,
-         rawdata.YData,
-         (rawdata.Jstk != 0) ? "\tJoystick pressed" : "",
-         (rawdata.Button1 != 0) ? "\tButton 1 pressed" : "",
-         (rawdata.Button2 != 0) ? "\tButton 2 pressed" : ""
-      );
+    xil_printf("X:%d\tY:%d%s%s%s\r\n", rawdata.XData, rawdata.YData,
+               (rawdata.Jstk != 0) ? "\tJoystick pressed" : "",
+               (rawdata.Button1 != 0) ? "\tButton 1 pressed" : "",
+               (rawdata.Button2 != 0) ? "\tButton 2 pressed" : "");
 
-      // Wait for 50ms
-      usleep(50000);
+    // Wait for 50ms
+    usleep(50000);
 
-      // Map LEDs to adjacent buttons
-      led = 0x0;
-      if (rawdata.Button1 != 0) {
-         led |= 0x1;
-      }
-      if (rawdata.Button2 != 0) {
-         led |= 0x2;
-      }
-      JSTK_setLeds(&joystick, led);
-   }
+    // Map LEDs to adjacent buttons
+    led = 0x0;
+    if (rawdata.Button1 != 0) {
+      led |= 0x1;
+    }
+    if (rawdata.Button2 != 0) {
+      led |= 0x2;
+    }
+    JSTK_setLeds(&joystick, led);
+  }
 }
 
-void DemoCleanup() {
-   DisableCaches();
-}
+void DemoCleanup() { DisableCaches(); }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -126,10 +117,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

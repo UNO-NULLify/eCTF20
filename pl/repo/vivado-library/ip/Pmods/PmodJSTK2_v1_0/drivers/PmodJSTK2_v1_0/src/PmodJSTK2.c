@@ -27,20 +27,7 @@
 
 /************************** Function Definitions ***************************/
 
-XSpi_Config JSTK2Config =
-{
-   0,
-   0,
-   1,
-   0,
-   1,
-   8,
-   0,
-   0,
-   0,
-   0,
-   0
-};
+XSpi_Config JSTK2Config = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
 
 /* ------------------------------------------------------------ */
 /*** void JSTK2_begin(PmodJSTK2* InstancePtr, u32 SPI_Address,
@@ -57,12 +44,12 @@ XSpi_Config JSTK2Config =
 **   Description:
 **      Initialize the JSTK2 IP
 */
-void JSTK2_begin(PmodJSTK2* InstancePtr, u32 SPI_Address, u32 GPIO_Address) {
-   JSTK2Config.BaseAddress = SPI_Address;
-   InstancePtr->GpioAddr = GPIO_Address;
-   JSTK2_SPIInit(&InstancePtr->SpiDevice);
-   Xil_Out32(InstancePtr->GpioAddr + 4, 0x0);
-   Xil_Out32(InstancePtr->GpioAddr, 0x1);
+void JSTK2_begin(PmodJSTK2 *InstancePtr, u32 SPI_Address, u32 GPIO_Address) {
+  JSTK2Config.BaseAddress = SPI_Address;
+  InstancePtr->GpioAddr = GPIO_Address;
+  JSTK2_SPIInit(&InstancePtr->SpiDevice);
+  Xil_Out32(InstancePtr->GpioAddr + 4, 0x0);
+  Xil_Out32(InstancePtr->GpioAddr, 0x1);
 }
 
 /* ------------------------------------------------------------ */
@@ -77,9 +64,7 @@ void JSTK2_begin(PmodJSTK2* InstancePtr, u32 SPI_Address, u32 GPIO_Address) {
 **   Description:
 **      Clean up the JSTK2
 */
-void JSTK2_end(PmodJSTK2* InstancePtr) {
-   XSpi_Stop(&InstancePtr->SpiDevice);
-}
+void JSTK2_end(PmodJSTK2 *InstancePtr) { XSpi_Stop(&InstancePtr->SpiDevice); }
 
 /* ------------------------------------------------------------ */
 /*** int JSTK2_SPIInit(XSpi* SpiInstancePtr)
@@ -93,35 +78,35 @@ void JSTK2_end(PmodJSTK2* InstancePtr) {
 **   Description:
 **      Initializes the PmodJSTK2 SPI.
 */
-int JSTK2_SPIInit(XSpi* SpiInstancePtr) {
-   int Status;
+int JSTK2_SPIInit(XSpi *SpiInstancePtr) {
+  int Status;
 
-   Status = XSpi_CfgInitialize(SpiInstancePtr, &JSTK2Config,
-         JSTK2Config.BaseAddress);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status =
+      XSpi_CfgInitialize(SpiInstancePtr, &JSTK2Config, JSTK2Config.BaseAddress);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   Status = XSpi_SetOptions(SpiInstancePtr,
-         (XSP_MASTER_OPTION) | XSP_MANUAL_SSELECT_OPTION);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status = XSpi_SetOptions(SpiInstancePtr,
+                           (XSP_MASTER_OPTION) | XSP_MANUAL_SSELECT_OPTION);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   // Even though we are generating the CS signal through the GPIO controller,
-   // the SPI driver does not work without this statement
-   Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  // Even though we are generating the CS signal through the GPIO controller,
+  // the SPI driver does not work without this statement
+  Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   // Start the SPI driver so that the device is enabled.
-   XSpi_Start(SpiInstancePtr);
+  // Start the SPI driver so that the device is enabled.
+  XSpi_Start(SpiInstancePtr);
 
-   // Disable Global interrupt to use polled mode operation
-   XSpi_IntrGlobalDisable(SpiInstancePtr);
+  // Disable Global interrupt to use polled mode operation
+  XSpi_IntrGlobalDisable(SpiInstancePtr);
 
-   return XST_SUCCESS;
+  return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -139,15 +124,15 @@ int JSTK2_SPIInit(XSpi* SpiInstancePtr) {
 **   Description:
 **      Sets the color of the JSTK2's RGB LED
 */
-void JSTK2_setLedRGB(PmodJSTK2* InstancePtr, u8 red, u8 green, u8 blue) {
-   u8 recv[5];
-   // Load buffer to send led data
-   recv[0] = JSTK2_cmdSetLedRGB;
-   recv[1] = red;
-   recv[2] = green;
-   recv[3] = blue;
-   // Recv[4] is a dummy byte
-   JSTK2_getData(InstancePtr, recv, 5);
+void JSTK2_setLedRGB(PmodJSTK2 *InstancePtr, u8 red, u8 green, u8 blue) {
+  u8 recv[5];
+  // Load buffer to send led data
+  recv[0] = JSTK2_cmdSetLedRGB;
+  recv[1] = red;
+  recv[2] = green;
+  recv[3] = blue;
+  // Recv[4] is a dummy byte
+  JSTK2_getData(InstancePtr, recv, 5);
 }
 
 /* ------------------------------------------------------------ */
@@ -169,11 +154,11 @@ void JSTK2_setLedRGB(PmodJSTK2* InstancePtr, u8 red, u8 green, u8 blue) {
 **      In order to test a button state, the following operation is recommended:
 **         if ((Status & JSTK2_bit<a button bit name>) != 0)
 */
-u8 JSTK2_getBtns(PmodJSTK2* InstancePtr) {
-   u8 recv[5] = {0};
-   JSTK2_getData(InstancePtr, recv, 5);
+u8 JSTK2_getBtns(PmodJSTK2 *InstancePtr) {
+  u8 recv[5] = {0};
+  JSTK2_getData(InstancePtr, recv, 5);
 
-   return (recv[4] & 0x03);
+  return (recv[4] & 0x03);
 }
 
 /* ------------------------------------------------------------ */
@@ -188,13 +173,13 @@ u8 JSTK2_getBtns(PmodJSTK2* InstancePtr) {
 **   Description:
 **      Captures X axis position data from the JSTK2
 */
-u8 JSTK2_getX(PmodJSTK2* InstancePtr) {
-   u8 recv[7] = {0};
+u8 JSTK2_getX(PmodJSTK2 *InstancePtr) {
+  u8 recv[7] = {0};
 
-   recv[0] = JSTK2_cmdGetPosition;
-   JSTK2_getData(InstancePtr, recv, 7);
+  recv[0] = JSTK2_cmdGetPosition;
+  JSTK2_getData(InstancePtr, recv, 7);
 
-   return recv[5];
+  return recv[5];
 }
 
 /* ------------------------------------------------------------ */
@@ -209,13 +194,13 @@ u8 JSTK2_getX(PmodJSTK2* InstancePtr) {
 **   Description:
 **      Captures Y axis position data from the JSTK2
 */
-u8 JSTK2_getY(PmodJSTK2* InstancePtr) {
-   u8 recv[7] = {0};
+u8 JSTK2_getY(PmodJSTK2 *InstancePtr) {
+  u8 recv[7] = {0};
 
-   recv[0] = JSTK2_cmdGetPosition;
-   JSTK2_getData(InstancePtr, recv, 7);
+  recv[0] = JSTK2_cmdGetPosition;
+  JSTK2_getData(InstancePtr, recv, 7);
 
-   return recv[6];
+  return recv[6];
 }
 
 /* ------------------------------------------------------------ */
@@ -230,20 +215,20 @@ u8 JSTK2_getY(PmodJSTK2* InstancePtr) {
 **   Description:
 **      Captures state data from the JSTK2
 */
-JSTK2_DataPacket JSTK2_getDataPacket(PmodJSTK2* InstancePtr) {
-   u8 recv[5] = {0};
-   JSTK2_DataPacket rawdata;
+JSTK2_DataPacket JSTK2_getDataPacket(PmodJSTK2 *InstancePtr) {
+  u8 recv[5] = {0};
+  JSTK2_DataPacket rawdata;
 
-   recv[0] = JSTK2_cmdGetRaw;
+  recv[0] = JSTK2_cmdGetRaw;
 
-   JSTK2_getData(InstancePtr, recv, 5);
+  JSTK2_getData(InstancePtr, recv, 5);
 
-   rawdata.XData = recv[0] | (recv[1] << 8);
-   rawdata.YData = recv[2] | (recv[3] << 8);
-   rawdata.Trigger = (recv[4] & JSTK2_bitTrigger) >> JSTK2_bnTrigger;
-   rawdata.Jstk = (recv[4] & JSTK2_bitJstk) >> JSTK2_bnJstk;
+  rawdata.XData = recv[0] | (recv[1] << 8);
+  rawdata.YData = recv[2] | (recv[3] << 8);
+  rawdata.Trigger = (recv[4] & JSTK2_bitTrigger) >> JSTK2_bnTrigger;
+  rawdata.Jstk = (recv[4] & JSTK2_bitJstk) >> JSTK2_bnJstk;
 
-   return rawdata;
+  return rawdata;
 }
 
 /* ------------------------------------------------------------ */
@@ -259,14 +244,14 @@ JSTK2_DataPacket JSTK2_getDataPacket(PmodJSTK2* InstancePtr) {
 **   Description:
 **      Captures the contents of the JSTK2's position registers
 */
-JSTK2_Position JSTK2_getPosition(PmodJSTK2* InstancePtr) {
-   u8 recv[7] = {0};
-   JSTK2_Position data;
-   recv[0] = JSTK2_cmdGetPosition;
-   JSTK2_getData(InstancePtr, recv, 7);
-   data.XData = recv[5];
-   data.YData = recv[6];
-   return data;
+JSTK2_Position JSTK2_getPosition(PmodJSTK2 *InstancePtr) {
+  u8 recv[7] = {0};
+  JSTK2_Position data;
+  recv[0] = JSTK2_cmdGetPosition;
+  JSTK2_getData(InstancePtr, recv, 7);
+  data.XData = recv[5];
+  data.YData = recv[6];
+  return data;
 }
 
 /* ------------------------------------------------------------ */
@@ -292,13 +277,13 @@ JSTK2_Position JSTK2_getPosition(PmodJSTK2* InstancePtr) {
 **      In order to test a status bit, the following operation is recommended:
 **         if ((Status & JSTK2_bit<a Status bit name>) != 0)
 */
-u8 JSTK2_getStatus(PmodJSTK2* InstancePtr) {
-   u8 recv[6] = {0};
+u8 JSTK2_getStatus(PmodJSTK2 *InstancePtr) {
+  u8 recv[6] = {0};
 
-   recv[0] = JSTK2_cmdGetStatus;
-   JSTK2_getData(InstancePtr, recv, 6);
+  recv[0] = JSTK2_cmdGetStatus;
+  JSTK2_getData(InstancePtr, recv, 6);
 
-   return recv[5];
+  return recv[5];
 }
 
 /* ------------------------------------------------------------ */
@@ -317,17 +302,17 @@ u8 JSTK2_getStatus(PmodJSTK2* InstancePtr) {
 **      returned to go from forward-back mapping to back-forward (255-0 instead
 **      of 0-255)
 */
-void JSTK2_setInversion(PmodJSTK2* InstancePtr, u8 invX, u8 invY) {
-   u8 recv[5] = {0};
+void JSTK2_setInversion(PmodJSTK2 *InstancePtr, u8 invX, u8 invY) {
+  u8 recv[5] = {0};
 
-   recv[0] = JSTK2_cmdSetInversion;
-   if (invX != 0) {
-      recv[0] |= JSTK2_bitInvertX;
-   }
-   if (invY != 0) {
-      recv[0] |= JSTK2_bitInvertY;
-   }
-   JSTK2_getData(InstancePtr, recv, 5);
+  recv[0] = JSTK2_cmdSetInversion;
+  if (invX != 0) {
+    recv[0] |= JSTK2_bitInvertX;
+  }
+  if (invY != 0) {
+    recv[0] |= JSTK2_bitInvertY;
+  }
+  JSTK2_getData(InstancePtr, recv, 5);
 }
 
 /* ------------------------------------------------------------ */
@@ -346,13 +331,13 @@ void JSTK2_setInversion(PmodJSTK2* InstancePtr, u8 invX, u8 invY) {
 **      The user should wait at least 100 us after this command is called before
 **      performing any other SPI transactions
 */
-void JSTK2_startFlashReload(PmodJSTK2* InstancePtr) {
-   u8 recv[5] = {0};
+void JSTK2_startFlashReload(PmodJSTK2 *InstancePtr) {
+  u8 recv[5] = {0};
 
-   recv[0] = JSTK2_cmdRldFromFlash;
-   JSTK2_getData(InstancePtr, recv, 5);
+  recv[0] = JSTK2_cmdRldFromFlash;
+  JSTK2_getData(InstancePtr, recv, 5);
 
-   return;
+  return;
 }
 
 /* ------------------------------------------------------------ */
@@ -371,12 +356,12 @@ void JSTK2_startFlashReload(PmodJSTK2* InstancePtr) {
 **      The user should wait at least 5 ms after this command is called before
 **      performing any other SPI transactions
 */
-void JSTK2_startFlashWrite(PmodJSTK2* InstancePtr) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdWriteFlash;
+void JSTK2_startFlashWrite(PmodJSTK2 *InstancePtr) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdWriteFlash;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
-   return;
+  JSTK2_getData(InstancePtr, buffer, 5);
+  return;
 }
 
 /* ------------------------------------------------------------ */
@@ -394,11 +379,11 @@ void JSTK2_startFlashWrite(PmodJSTK2* InstancePtr) {
 **      begin polling the status register to determine that calibration is
 **      finished.
 */
-void JSTK2_startCalibration(PmodJSTK2* InstancePtr) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdCalibrate;
+void JSTK2_startCalibration(PmodJSTK2 *InstancePtr) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdCalibrate;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
 /* ------------------------------------------------------------ */
@@ -413,79 +398,77 @@ void JSTK2_startCalibration(PmodJSTK2* InstancePtr) {
 **   Description:
 **      Retrieves a calibration parameter from the JSTK2 onboard RAM.
 */
-u16 JSTK2_getCalXMin(PmodJSTK2* InstancePtr) {
-   u8 buffer[7] = {0};
-   buffer[0] = JSTK2_cmdGetCalXMin;
+u16 JSTK2_getCalXMin(PmodJSTK2 *InstancePtr) {
+  u8 buffer[7] = {0};
+  buffer[0] = JSTK2_cmdGetCalXMin;
 
-   JSTK2_getData(InstancePtr, buffer, 7);
+  JSTK2_getData(InstancePtr, buffer, 7);
 
-   return ((u16)((buffer[5] << 8) | buffer[6]));
-
+  return ((u16)((buffer[5] << 8) | buffer[6]));
 }
 
-u16 JSTK2_getCalXMax(PmodJSTK2* InstancePtr) {
-   u8 buffer[7] = {0};
-   buffer[0] = JSTK2_cmdGetCalXMax;
+u16 JSTK2_getCalXMax(PmodJSTK2 *InstancePtr) {
+  u8 buffer[7] = {0};
+  buffer[0] = JSTK2_cmdGetCalXMax;
 
-   JSTK2_getData(InstancePtr, buffer, 7);
+  JSTK2_getData(InstancePtr, buffer, 7);
 
-   return ((u16)((buffer[5] << 8) | buffer[6]));
+  return ((u16)((buffer[5] << 8) | buffer[6]));
 }
 
-u16 JSTK2_getCalYMin(PmodJSTK2* InstancePtr) {
-   u8 buffer[7] = {0};
-   buffer[0] = JSTK2_cmdGetCalYMin;
+u16 JSTK2_getCalYMin(PmodJSTK2 *InstancePtr) {
+  u8 buffer[7] = {0};
+  buffer[0] = JSTK2_cmdGetCalYMin;
 
-   JSTK2_getData(InstancePtr, buffer, 7);
+  JSTK2_getData(InstancePtr, buffer, 7);
 
-   return ((u16)((buffer[5] << 8) | buffer[6]));
+  return ((u16)((buffer[5] << 8) | buffer[6]));
 }
 
-u16 JSTK2_getCalYMax(PmodJSTK2* InstancePtr) {
-   u8 buffer[7] = {0};
-   buffer[0] = JSTK2_cmdGetCalYMax;
+u16 JSTK2_getCalYMax(PmodJSTK2 *InstancePtr) {
+  u8 buffer[7] = {0};
+  buffer[0] = JSTK2_cmdGetCalYMax;
 
-   JSTK2_getData(InstancePtr, buffer, 7);
+  JSTK2_getData(InstancePtr, buffer, 7);
 
-   return ((u16)((buffer[5] << 8) | buffer[6]));
+  return ((u16)((buffer[5] << 8) | buffer[6]));
 }
 
-u16 JSTK2_getCalXCenMin(PmodJSTK2* InstancePtr) {
-   u8 buffer[7] = {0};
-   buffer[0] = JSTK2_cmdGetCalXCenMin;
+u16 JSTK2_getCalXCenMin(PmodJSTK2 *InstancePtr) {
+  u8 buffer[7] = {0};
+  buffer[0] = JSTK2_cmdGetCalXCenMin;
 
-   JSTK2_getData(InstancePtr, buffer, 7);
+  JSTK2_getData(InstancePtr, buffer, 7);
 
-   return ((u16)((buffer[5] << 8) | buffer[6]));
+  return ((u16)((buffer[5] << 8) | buffer[6]));
 }
 
-u16 JSTK2_getCalXCenMax(PmodJSTK2* InstancePtr) {
-   u8 buffer[7] = {0};
-   buffer[0] = JSTK2_cmdGetCalXCenMax;
+u16 JSTK2_getCalXCenMax(PmodJSTK2 *InstancePtr) {
+  u8 buffer[7] = {0};
+  buffer[0] = JSTK2_cmdGetCalXCenMax;
 
-   JSTK2_getData(InstancePtr, buffer, 7);
+  JSTK2_getData(InstancePtr, buffer, 7);
 
-   return ((u16)((buffer[5] << 8) | buffer[6]));
+  return ((u16)((buffer[5] << 8) | buffer[6]));
 }
 
-u16 JSTK2_getCalYCenMin(PmodJSTK2* InstancePtr) {
-   u8 buffer[7] = {0};
-   buffer[0] = JSTK2_cmdGetCalYCenMin;
+u16 JSTK2_getCalYCenMin(PmodJSTK2 *InstancePtr) {
+  u8 buffer[7] = {0};
+  buffer[0] = JSTK2_cmdGetCalYCenMin;
 
-   JSTK2_getData(InstancePtr, buffer, 7);
+  JSTK2_getData(InstancePtr, buffer, 7);
 
-   return ((u16)((buffer[5] << 8) | buffer[6]));
+  return ((u16)((buffer[5] << 8) | buffer[6]));
 }
 
-u16 JSTK2_getCalYCenMax(PmodJSTK2* InstancePtr) {
-   u8 buffer[7] = {0};
-   buffer[0] = JSTK2_cmdGetCalYCenMax;
+u16 JSTK2_getCalYCenMax(PmodJSTK2 *InstancePtr) {
+  u8 buffer[7] = {0};
+  buffer[0] = JSTK2_cmdGetCalYCenMax;
 
-   JSTK2_getData(InstancePtr, buffer, 7);
+  JSTK2_getData(InstancePtr, buffer, 7);
 
-   return ((u16)((buffer[5] << 8) | buffer[6]));
+  return ((u16)((buffer[5] << 8) | buffer[6]));
 }
-
 
 /* ------------------------------------------------------------ */
 /*** void JSTK2_setCal...(PmodJSTK2* InstancePtr, u16 ...Cal)
@@ -500,122 +483,122 @@ u16 JSTK2_getCalYCenMax(PmodJSTK2* InstancePtr) {
 **   Description:
 **      Sets a calibration parameter in the JSTK2 onboard RAM.
 */
-void JSTK2_setCalXMin(PmodJSTK2* InstancePtr, u16 XMinCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalXMin;
-   buffer[1] = XMinCal & 0x00FF;
-   buffer[2] = XMinCal >> 8;
+void JSTK2_setCalXMin(PmodJSTK2 *InstancePtr, u16 XMinCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalXMin;
+  buffer[1] = XMinCal & 0x00FF;
+  buffer[2] = XMinCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalXMax(PmodJSTK2* InstancePtr, u16 XMaxCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalXMax;
-   buffer[1] = XMaxCal & 0x00FF;
-   buffer[2] = XMaxCal >> 8;
+void JSTK2_setCalXMax(PmodJSTK2 *InstancePtr, u16 XMaxCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalXMax;
+  buffer[1] = XMaxCal & 0x00FF;
+  buffer[2] = XMaxCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalYMin(PmodJSTK2* InstancePtr, u16 YMinCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalYMin;
-   buffer[1] = YMinCal & 0x00FF;
-   buffer[2] = YMinCal >> 8;
+void JSTK2_setCalYMin(PmodJSTK2 *InstancePtr, u16 YMinCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalYMin;
+  buffer[1] = YMinCal & 0x00FF;
+  buffer[2] = YMinCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalYMax(PmodJSTK2* InstancePtr, u16 YMaxCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalYMax;
-   buffer[1] = YMaxCal & 0x00FF;
-   buffer[2] = YMaxCal >> 8;
+void JSTK2_setCalYMax(PmodJSTK2 *InstancePtr, u16 YMaxCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalYMax;
+  buffer[1] = YMaxCal & 0x00FF;
+  buffer[2] = YMaxCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalXCenMin(PmodJSTK2* InstancePtr, u16 XCenMinCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalXCenMin;
-   buffer[1] = XCenMinCal & 0x00FF;
-   buffer[2] = XCenMinCal >> 8;
+void JSTK2_setCalXCenMin(PmodJSTK2 *InstancePtr, u16 XCenMinCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalXCenMin;
+  buffer[1] = XCenMinCal & 0x00FF;
+  buffer[2] = XCenMinCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalXCenMax(PmodJSTK2* InstancePtr, u16 XCenMaxCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalXCenMax;
-   buffer[1] = XCenMaxCal & 0x00FF;
-   buffer[2] = XCenMaxCal >> 8;
+void JSTK2_setCalXCenMax(PmodJSTK2 *InstancePtr, u16 XCenMaxCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalXCenMax;
+  buffer[1] = XCenMaxCal & 0x00FF;
+  buffer[2] = XCenMaxCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalYCenMin(PmodJSTK2* InstancePtr, u16 YCenMinCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalYCenMin;
-   buffer[1] = YCenMinCal & 0x00FF;
-   buffer[2] = YCenMinCal >> 8;
+void JSTK2_setCalYCenMin(PmodJSTK2 *InstancePtr, u16 YCenMinCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalYCenMin;
+  buffer[1] = YCenMinCal & 0x00FF;
+  buffer[2] = YCenMinCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalYCenMax(PmodJSTK2* InstancePtr, u16 YCenMaxCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalYCenMax;
-   buffer[1] = YCenMaxCal & 0x00FF;
-   buffer[2] = YCenMaxCal >> 8;
+void JSTK2_setCalYCenMax(PmodJSTK2 *InstancePtr, u16 YCenMaxCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalYCenMax;
+  buffer[1] = YCenMaxCal & 0x00FF;
+  buffer[2] = YCenMaxCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalXMinMax(PmodJSTK2* InstancePtr, u16 XMinCal, u16 XMaxCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalXMinMax;
-   buffer[1] = XMinCal & 0x00FF;
-   buffer[2] = XMinCal >> 8;
-   buffer[3] = XMaxCal & 0x00FF;
-   buffer[4] = XMaxCal >> 8;
+void JSTK2_setCalXMinMax(PmodJSTK2 *InstancePtr, u16 XMinCal, u16 XMaxCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalXMinMax;
+  buffer[1] = XMinCal & 0x00FF;
+  buffer[2] = XMinCal >> 8;
+  buffer[3] = XMaxCal & 0x00FF;
+  buffer[4] = XMaxCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalYMinMax(PmodJSTK2* InstancePtr, u16 YMinCal, u16 YMaxCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalYMinMax;
-   buffer[1] = YMinCal & 0x00FF;
-   buffer[2] = YMinCal >> 8;
-   buffer[3] = YMaxCal & 0x00FF;
-   buffer[4] = YMaxCal >> 8;
+void JSTK2_setCalYMinMax(PmodJSTK2 *InstancePtr, u16 YMinCal, u16 YMaxCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalYMinMax;
+  buffer[1] = YMinCal & 0x00FF;
+  buffer[2] = YMinCal >> 8;
+  buffer[3] = YMaxCal & 0x00FF;
+  buffer[4] = YMaxCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalXCenMinMax(PmodJSTK2* InstancePtr, u16 XCenMinCal,
-      u16 XCenMaxCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalXCenMinMax;
-   buffer[1] = XCenMinCal & 0x00FF;
-   buffer[2] = XCenMinCal >> 8;
-   buffer[3] = XCenMaxCal & 0x00FF;
-   buffer[4] = XCenMaxCal >> 8;
+void JSTK2_setCalXCenMinMax(PmodJSTK2 *InstancePtr, u16 XCenMinCal,
+                            u16 XCenMaxCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalXCenMinMax;
+  buffer[1] = XCenMinCal & 0x00FF;
+  buffer[2] = XCenMinCal >> 8;
+  buffer[3] = XCenMaxCal & 0x00FF;
+  buffer[4] = XCenMaxCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
-void JSTK2_setCalYCenMinMax(PmodJSTK2* InstancePtr, u16 YCenMinCal,
-      u16 YCenMaxCal) {
-   u8 buffer[5] = {0};
-   buffer[0] = JSTK2_cmdSetCalXCenMinMax;
-   buffer[1] = YCenMinCal & 0x00FF;
-   buffer[2] = YCenMinCal >> 8;
-   buffer[3] = YCenMaxCal & 0x00FF;
-   buffer[4] = YCenMaxCal >> 8;
+void JSTK2_setCalYCenMinMax(PmodJSTK2 *InstancePtr, u16 YCenMinCal,
+                            u16 YCenMaxCal) {
+  u8 buffer[5] = {0};
+  buffer[0] = JSTK2_cmdSetCalXCenMinMax;
+  buffer[1] = YCenMinCal & 0x00FF;
+  buffer[2] = YCenMinCal >> 8;
+  buffer[3] = YCenMaxCal & 0x00FF;
+  buffer[4] = YCenMaxCal >> 8;
 
-   JSTK2_getData(InstancePtr, buffer, 5);
+  JSTK2_getData(InstancePtr, buffer, 5);
 }
 
 /* ------------------------------------------------------------ */
@@ -637,23 +620,23 @@ void JSTK2_setCalYCenMinMax(PmodJSTK2* InstancePtr, u16 YCenMinCal,
 **      Holding the chip select low between bytes through the QSPI driver isn't
 **      working so bit-banging that line with an AXI GPIO controller instead
 */
-void JSTK2_getData(PmodJSTK2* InstancePtr, u8* recv, u8 nData) {
-   int i = 0;
+void JSTK2_getData(PmodJSTK2 *InstancePtr, u8 *recv, u8 nData) {
+  int i = 0;
 
-   // Bring chip select low
-   Xil_Out32(InstancePtr->GpioAddr, 0b0);
+  // Bring chip select low
+  Xil_Out32(InstancePtr->GpioAddr, 0b0);
 
-   usleep(5); // 5 us delay from cs->low to first byte
+  usleep(5); // 5 us delay from cs->low to first byte
 
-   for (i = 0; i < nData; i++) {
-      usleep(10); // 10 us delay between bytes
-      XSpi_Transfer(&InstancePtr->SpiDevice, &recv[i], &recv[i], 1);
-   }
+  for (i = 0; i < nData; i++) {
+    usleep(10); // 10 us delay between bytes
+    XSpi_Transfer(&InstancePtr->SpiDevice, &recv[i], &recv[i], 1);
+  }
 
-   usleep(20); // 20 us delay from last packet to cs->high
+  usleep(20); // 20 us delay from last packet to cs->high
 
-   // Bring chip select high
-   Xil_Out32(InstancePtr->GpioAddr, 0b1);
+  // Bring chip select high
+  Xil_Out32(InstancePtr->GpioAddr, 0b1);
 
-   usleep(25);
+  usleep(25);
 }

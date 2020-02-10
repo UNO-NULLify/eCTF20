@@ -1,67 +1,76 @@
 /********************************************************************************/
 /*																				*/
-/*	mtds.cpp	--	Digilent Multi-Touch Display Shield Library					*/
+/*	mtds.cpp	--	Digilent Multi-Touch Display Shield Library
+ */
 /*																				*/
 /********************************************************************************/
-/*	Author: 	Gene Apperson													*/
-/*	Copyright 2015, Digilent, Inc. All rights reserved.							*/
+/*	Author: 	Gene Apperson
+ */
+/*	Copyright 2015, Digilent, Inc. All rights reserved.
+ */
 /********************************************************************************/
-/*  Module Description: 														*/
+/*  Module Description:
+ */
 /*																				*/
-/*																				*/
-/********************************************************************************/
-/*  Revision History:															*/
-/*																				*/
-/*	2015/08/03(GeneApperson): Created											*/
 /*																				*/
 /********************************************************************************/
+/*  Revision History:
+ */
+/*																				*/
+/*	2015/08/03(GeneApperson): Created
+ */
+/*																				*/
+/********************************************************************************/
 
-#define	OPT_BOARD_INTERNAL
-
-/* ------------------------------------------------------------ */
-/*				Include File Definitions						*/
-/* ------------------------------------------------------------ */
-
-#include	<stdlib.h>
-#include	<string.h>
-
-#include	<stdint.h>
-
-#include	"ProtoDefs.h"
-#include	"mtds.h"
-#include	"MtdsCore.h"
-#include	"MtdsHal.h"
+#define OPT_BOARD_INTERNAL
 
 /* ------------------------------------------------------------ */
-/*				Local Type Definitions							*/
+/*				Include File Definitions
+ */
 /* ------------------------------------------------------------ */
 
+#include <stdlib.h>
+#include <string.h>
+
+#include <stdint.h>
+
+#include "MtdsCore.h"
+#include "MtdsHal.h"
+#include "ProtoDefs.h"
+#include "mtds.h"
 
 /* ------------------------------------------------------------ */
-/*				Global Variables								*/
+/*				Local Type Definitions
+ */
 /* ------------------------------------------------------------ */
 
-extern CHDR *	pchdrMtdsCmd;
-extern RHDR *	prhdrMtdsRet;
-extern uint8_t	rgbMtdsRetVal[cbRetValInit];
-
 /* ------------------------------------------------------------ */
-/*				Local Variables									*/
+/*				Global Variables
+ */
 /* ------------------------------------------------------------ */
 
+extern CHDR *pchdrMtdsCmd;
+extern RHDR *prhdrMtdsRet;
+extern uint8_t rgbMtdsRetVal[cbRetValInit];
 
 /* ------------------------------------------------------------ */
-/*				Forward Declarations							*/
+/*				Local Variables
+ */
 /* ------------------------------------------------------------ */
 
+/* ------------------------------------------------------------ */
+/*				Forward Declarations
+ */
+/* ------------------------------------------------------------ */
 
 /* ------------------------------------------------------------ */
-/*				Procedure Definitions							*/
+/*				Procedure Definitions
+ */
 /* ------------------------------------------------------------ */
 
-
 /* ------------------------------------------------------------ */
-/*				MTDS Object Class Implementation				*/
+/*				MTDS Object Class Implementation
+ */
 /* ------------------------------------------------------------ */
 /***	MTDS::FInitSystem()
 **
@@ -80,25 +89,25 @@ extern uint8_t	rgbMtdsRetVal[cbRetValInit];
 
 bool MTDS::FInitDisplay() {
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilInit, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilInit, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
-
+  return true;
 }
 
 /* ------------------------------------------------------------ */
 /***	MTDS::GetVersionInfo(pvfino)
 **
 **	Parameters:
-**		pvinfo		- Pointer to VINFO structure to fill in with version information
+**		pvinfo		- Pointer to VINFO structure to fill in with
+*version information
 **
 **	Return Values:
 **		none
@@ -107,42 +116,42 @@ bool MTDS::FInitDisplay() {
 **		Returns true if successful, false if not
 **
 **	Description:
-**		Return version information about the library, display device firmware and display
-**		device type.
+**		Return version information about the library, display device
+*firmware and display *		device type.
 */
 
-bool MTDS::GetVersionInfo(VINFO * pvinfo) {
-	RET4B *	pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
+bool MTDS::GetVersionInfo(VINFO *pvinfo) {
+  RET4B *pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetFirmwareVersion, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetFirmwareVersion, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* Unpack the message from the return value packet.
-	*/
-	pvinfo->verLibMajor = verMtdsMajor;
-	pvinfo->verLibMinor = verMtdsMinor;
-	pvinfo->verFwMajor = pret->valB1;
-	pvinfo->verFwMinor = pret->valB2;
-	pvinfo->typDisplay = pret->valB3;
-	pvinfo->verDisplay = pret->valB4;
+  /* Unpack the message from the return value packet.
+   */
+  pvinfo->verLibMajor = verMtdsMajor;
+  pvinfo->verLibMinor = verMtdsMinor;
+  pvinfo->verFwMajor = pret->valB1;
+  pvinfo->verFwMinor = pret->valB2;
+  pvinfo->typDisplay = pret->valB3;
+  pvinfo->verDisplay = pret->valB4;
 
-	return true;
-
+  return true;
 }
 
 /* ------------------------------------------------------------ */
 /***	MTDS::GetLastError(pcls, pcmd)
 **
 **	Parameters:
-**		pcls	- pointer to variable to receive command class of last error
-**		pcmd	- pointer to variable to receive command of last error
+**		pcls	- pointer to variable to receive command class of last
+*error *		pcmd	- pointer to variable to receive command of last
+*error
 **
 **	Return Values:
 **		returns error status code of last error
@@ -151,29 +160,29 @@ bool MTDS::GetVersionInfo(VINFO * pvinfo) {
 **		Returns true if successful, false if not
 **
 **	Description:
-**		Return information about the last error that occured in processing
-**		a command.
+**		Return information about the last error that occured in
+*processing *		a command.
 */
 
-uint8_t	MTDS::GetLastError(uint8_t * pcls, uint8_t * pcmd) {
+uint8_t MTDS::GetLastError(uint8_t *pcls, uint8_t *pcmd) {
 
-	if (pcls != 0) {
-		*pcls = clsLastError;
-	}
+  if (pcls != 0) {
+    *pcls = clsLastError;
+  }
 
-	if (pcmd != 0) {
-		*pcmd = cmdLastError;
-	}
+  if (pcmd != 0) {
+    *pcmd = cmdLastError;
+  }
 
-	return staLastError;
-
+  return staLastError;
 }
 
 /* ------------------------------------------------------------ */
 /***	MTDS::SetDisplayEnable(st)
 **
 **	Parameters:
-**		st		- display enable state to set (stDspOn or stDspOff)
+**		st		- display enable state to set (stDspOn or
+*stDspOff)
 **
 **	Return Values:
 **		none
@@ -186,21 +195,22 @@ uint8_t	MTDS::GetLastError(uint8_t * pcls, uint8_t * pcmd) {
 */
 
 bool MTDS::SetDisplayEnable(uint32_t st) {
-	PRM1A	prm;
+  PRM1A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = st;
+  /* Send the command packet.
+   */
+  prm.valA1 = st;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetDspEnable, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetDspEnable, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -220,29 +230,29 @@ bool MTDS::SetDisplayEnable(uint32_t st) {
 */
 
 uint32_t MTDS::GetDisplayEnable() {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetDspEnable, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetDspEnable, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the display enable state.
-	*/
-	return pret->valA1;
-
+  /* Return the display enable state.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
 /***	MTDS::SetDisplayOrientation(dso)
 **
 **	Parameters:
-**		dso		- display orientation to set (dsoPortrait or dsoLandscape)
+**		dso		- display orientation to set (dsoPortrait or
+*dsoLandscape)
 **
 **	Return Values:
 **		none
@@ -255,21 +265,22 @@ uint32_t MTDS::GetDisplayEnable() {
 */
 
 bool MTDS::SetDisplayOrientation(uint32_t dso) {
-	PRM1A	prm;
+  PRM1A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = dso;
+  /* Send the command packet.
+   */
+  prm.valA1 = dso;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetDspOrientation, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetDspOrientation, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -289,22 +300,21 @@ bool MTDS::SetDisplayOrientation(uint32_t dso) {
 */
 
 uint32_t MTDS::GetDisplayOrientation() {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetDspOrientation, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetDspOrientation, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the display enable state.
-	*/
-	return pret->valA1;
-
+  /* Return the display enable state.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
@@ -324,21 +334,22 @@ uint32_t MTDS::GetDisplayOrientation() {
 */
 
 bool MTDS::SetDisplayBacklight(uint32_t val) {
-	PRM1A	prm;
+  PRM1A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = val;
+  /* Send the command packet.
+   */
+  prm.valA1 = val;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetDspBacklight, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetDspBacklight, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -358,22 +369,21 @@ bool MTDS::SetDisplayBacklight(uint32_t val) {
 */
 
 uint32_t MTDS::GetDisplayBacklight() {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetDspBacklight, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetDspBacklight, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the display enable state.
-	*/
-	return pret->valA1;
-
+  /* Return the display enable state.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
@@ -393,24 +403,25 @@ uint32_t MTDS::GetDisplayBacklight() {
 */
 
 uint32_t MTDS::SetBacklightMode(uint32_t val) {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-	PRM1A	prm;
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  PRM1A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = val;
+  /* Send the command packet.
+   */
+  prm.valA1 = val;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetBacklightMode, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetBacklightMode, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the previous backlight mode.
-	*/
-	return pret->valA1;
+  /* Return the previous backlight mode.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
@@ -430,28 +441,30 @@ uint32_t MTDS::SetBacklightMode(uint32_t val) {
 */
 
 bool MTDS::ClearDisplay(uint16_t clr) {
-	PRM1B	prm;
+  PRM1B prm;
 
-	/* Send the command packet.
-	*/
-	prm.valB1 = clr;
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilClearDisplay, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  /* Send the command packet.
+   */
+  prm.valB1 = clr;
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilClearDisplay, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
 /***	MTDS::EnableStatusPin(idPin, fEn)
 **
 **	Parameters:
-**		idPin		- identifier for the status pin to enable/disable
-**		fEn			- enable/disable state to set (0=disable, !0=enable)
+**		idPin		- identifier for the status pin to
+*enable/disable *		fEn			- enable/disable state
+*to set (0=disable, !0=enable)
 **
 **	Return Values:
 **		none
@@ -460,46 +473,50 @@ bool MTDS::ClearDisplay(uint16_t clr) {
 **		Returns true if successful, false if not
 **
 **	Description:
-**		Enable/disable the specified status pin. The status pins are an optional part of
-**		the hardware interface spec and may or may not be supported. An attempt to enable
-**		a non-supported status pin will fail, with an error code of staUtilNotSupported.
-**		When supported, status pin A is set when there are touch messages in the message
-**		queue.
-**		When supported, status pin B is used internally as part of the communications
-**		protocol between the host and the display hardware and its use can reduce some
-**		of the communications overhead.
+**		Enable/disable the specified status pin. The status pins are an
+*optional part of
+**		the hardware interface spec and may or may not be supported. An
+*attempt to enable *		a non-supported status pin will fail, with an
+*error code of staUtilNotSupported.
+**		When supported, status pin A is set when there are touch
+*messages in the message *		queue.
+**		When supported, status pin B is used internally as part of the
+*communications *		protocol between the host and the display
+*hardware and its use can reduce some *		of the communications overhead.
 */
 
 bool MTDS::EnableStatusPin(int idPin, int fEn) {
-	PRM2B	prm;
+  PRM2B prm;
 
-	/* If we are enabling the pin, ensure the pin on the host side is an input.
-	*/
-	if (fEn) {
-		MtdsHalEnableStatusPin(idPin);
-	}
+  /* If we are enabling the pin, ensure the pin on the host side is an input.
+   */
+  if (fEn) {
+    MtdsHalEnableStatusPin(idPin);
+  }
 
-	/* Send the command packet.
-	*/
-	prm.valB1 = idPin;
-	prm.valB2 = fEn;
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilEnableStatusPin, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  /* Send the command packet.
+   */
+  prm.valB1 = idPin;
+  prm.valB2 = fEn;
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilEnableStatusPin, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
 /***	MTDS::SetStatusPin(idPin, st)
 **
 **	Parameters:
-**		idPin		- identifier for the status pin to enable/disable
-**		st			- on/off state to set (0=off, !0=on)
+**		idPin		- identifier for the status pin to
+*enable/disable *		st			- on/off state to set
+*(0=off, !0=on)
 **
 **	Return Values:
 **		none
@@ -511,21 +528,22 @@ bool MTDS::EnableStatusPin(int idPin, int fEn) {
 */
 
 bool MTDS::SetStatusPin(int idPin, int st) {
-	PRM2B	prm;
+  PRM2B prm;
 
-	/* Send the command packet.
-	*/
-	prm.valB1 = idPin;
-	prm.valB2 = st;
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetStatusPin, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  /* Send the command packet.
+   */
+  prm.valB1 = idPin;
+  prm.valB2 = st;
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetStatusPin, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -545,28 +563,29 @@ bool MTDS::SetStatusPin(int idPin, int st) {
 */
 
 bool MTDS::SetTchSensitivity(uint32_t val) {
-	PRM1A	prm;
+  PRM1A prm;
 
-	if ((val < 1) || (val > 7)) {
-		clsLastError = clsCmdUtil;
-		cmdLastError = cmdUtilSetTchSensitivity;
-		staLastError = staUtilBadParameter;
-		return false;
-	}
+  if ((val < 1) || (val > 7)) {
+    clsLastError = clsCmdUtil;
+    cmdLastError = cmdUtilSetTchSensitivity;
+    staLastError = staUtilBadParameter;
+    return false;
+  }
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = val;
+  /* Send the command packet.
+   */
+  prm.valA1 = val;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetTchSensitivity, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetTchSensitivity, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -586,22 +605,21 @@ bool MTDS::SetTchSensitivity(uint32_t val) {
 */
 
 uint32_t MTDS::GetTchSensitivity() {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetTchSensitivity, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetTchSensitivity, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the touch panel sensitivity setting.
-	*/
-	return pret->valA1;
-
+  /* Return the touch panel sensitivity setting.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
@@ -618,27 +636,29 @@ uint32_t MTDS::GetTchSensitivity() {
 **		Returns true if successful, false if not
 **
 **	Description:
-**		Set the threshold delta for touch move events. A finger move less than the
-**		specified delta will not generate a finger move message.
+**		Set the threshold delta for touch move events. A finger move
+*less than the *		specified delta will not generate a finger move
+*message.
 */
 
 bool MTDS::SetTchMoveDelta(int16_t dxco, int16_t dyco) {
-	PRM2B	prm;
+  PRM2B prm;
 
-	/* Send the command packet.
-	*/
-	prm.valB1 = dxco;
-	prm.valB2 = dyco;
+  /* Send the command packet.
+   */
+  prm.valB1 = dxco;
+  prm.valB2 = dyco;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetTchMoveDelta, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetTchMoveDelta, sizeof(prm),
+                   (uint8_t *)&prm, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -649,38 +669,39 @@ bool MTDS::SetTchMoveDelta(int16_t dxco, int16_t dyco) {
 **		pdyco	- pointer to variable to receive touch dyco threshold
 **
 **	Return Values:
-**		Returns the current touch panel finger move threshold delta values
+**		Returns the current touch panel finger move threshold delta
+*values
 **
 **	Errors:
 **		Returns true if successful, false if error.
 **
 **	Description:
-**		Returns the current finger move delta thresholds for the touch panel.
+**		Returns the current finger move delta thresholds for the touch
+*panel.
 */
 
-bool MTDS::GetTchMoveDelta(int16_t * pdxco, int16_t * pdyco) {
-	RET4B *	pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
+bool MTDS::GetTchMoveDelta(int16_t *pdxco, int16_t *pdyco) {
+  RET4B *pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetTchMoveDelta, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetTchMoveDelta, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* Return the touch panel threshold settings.
-	*/
-	if (pdxco != 0) {
-		*pdxco = pret->valB1;
-	}
-	if (pdyco != 0) {
-		*pdyco = pret->valB2;
-	}
-	return true;
-
+  /* Return the touch panel threshold settings.
+   */
+  if (pdxco != 0) {
+    *pdxco = pret->valB1;
+  }
+  if (pdyco != 0) {
+    *pdyco = pret->valB2;
+  }
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -700,22 +721,21 @@ bool MTDS::GetTchMoveDelta(int16_t * pdxco, int16_t * pdyco) {
 */
 
 uint32_t MTDS::GetMsgStatus() {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetMsgStatus, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetMsgStatus, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the event status flags.
-	*/
-	return pret->valA1;
-
+  /* Return the event status flags.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
@@ -736,17 +756,17 @@ uint32_t MTDS::GetMsgStatus() {
 
 bool MTDS::ClearMsgQueue() {
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilClearMsgQueue, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilClearMsgQueue, 0, 0, 0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -766,29 +786,28 @@ bool MTDS::ClearMsgQueue() {
 **		from the queue.
 */
 
-bool MTDS::PeekMsg(MEVT * pevt) {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+bool MTDS::PeekMsg(MEVT *pevt) {
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilPeekMsg, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilPeekMsg, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* Unpack the message from the return value packet.
-	*/
-	pevt->tms = pret->valA1;
-	pevt->hwin = pret->valA2;
-	pevt->msg = (pret->valA3 >> 16) & 0xFFFF;
-	pevt->val1 = pret->valA3 & 0xFFFF;
-	pevt->val2 = pret->valA4;
+  /* Unpack the message from the return value packet.
+   */
+  pevt->tms = pret->valA1;
+  pevt->hwin = pret->valA2;
+  pevt->msg = (pret->valA3 >> 16) & 0xFFFF;
+  pevt->val1 = pret->valA3 & 0xFFFF;
+  pevt->val2 = pret->valA4;
 
-	return true;
-
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -808,29 +827,28 @@ bool MTDS::PeekMsg(MEVT * pevt) {
 **		from the queue.
 */
 
-bool MTDS::GetMsg(MEVT * pevt) {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+bool MTDS::GetMsg(MEVT *pevt) {
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetMsg, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetMsg, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* Unpack the message from the return value packet.
-	*/
-	pevt->tms = pret->valA1;
-	pevt->hwin = pret->valA2;
-	pevt->msg = (pret->valA3 >> 16) & 0xFFFF;
-	pevt->val1 = pret->valA3 & 0xFFFF;
-	pevt->val2 = pret->valA4;
+  /* Unpack the message from the return value packet.
+   */
+  pevt->tms = pret->valA1;
+  pevt->hwin = pret->valA2;
+  pevt->msg = (pret->valA3 >> 16) & 0xFFFF;
+  pevt->val1 = pret->valA3 & 0xFFFF;
+  pevt->val2 = pret->valA4;
 
-	return true;
-
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -849,26 +867,26 @@ bool MTDS::GetMsg(MEVT * pevt) {
 **		Put the specified event at the end of the queue
 */
 
-bool MTDS::PostMsg(MEVT * pevt) {
-	PRM4A		prm;
+bool MTDS::PostMsg(MEVT *pevt) {
+  PRM4A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = pevt->tms;
-	prm.valA2 = pevt->hwin;
-	prm.valA3 = (pevt->msg << 16) + pevt->val1;
-	prm.valA4 = pevt->val2;
+  /* Send the command packet.
+   */
+  prm.valA1 = pevt->tms;
+  prm.valA2 = pevt->hwin;
+  prm.valA3 = (pevt->msg << 16) + pevt->val1;
+  prm.valA4 = pevt->val2;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilPostMsg, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilPostMsg, sizeof(prm), (uint8_t *)&prm, 0,
+                   0);
 
-	/* Check for error and return failure.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
-
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -887,26 +905,26 @@ bool MTDS::PostMsg(MEVT * pevt) {
 **		Put the specified event at the head of the queue
 */
 
-bool MTDS::PushMsg(MEVT * pevt) {
-	PRM4A		prm;
+bool MTDS::PushMsg(MEVT *pevt) {
+  PRM4A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = pevt->tms;
-	prm.valA2 = pevt->hwin;
-	prm.valA3 = (pevt->msg << 16) + pevt->val1;
-	prm.valA4 = pevt->val2;
+  /* Send the command packet.
+   */
+  prm.valA1 = pevt->tms;
+  prm.valA2 = pevt->hwin;
+  prm.valA3 = (pevt->msg << 16) + pevt->val1;
+  prm.valA4 = pevt->val2;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilPushMsg, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilPushMsg, sizeof(prm), (uint8_t *)&prm, 0,
+                   0);
 
-	/* Check for error and return failure.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
-
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -922,27 +940,29 @@ bool MTDS::PushMsg(MEVT * pevt) {
 **		Returns true if successful, false if not
 **
 **	Description:
-**		Get memory heap status information from the shield. The shield will do a consistency
-**		check on the heap and return the heap consistency status in the mrStat field. The
-**		other fields will only be filled in if the heap status is mrMtdsOk.
+**		Get memory heap status information from the shield. The shield
+*will do a consistency
+**		check on the heap and return the heap consistency status in the
+*mrStat field. The *		other fields will only be filled in if the heap
+*status is mrMtdsOk.
 */
 
-bool MTDS::GetMemStatus(MSTAT * pmstat) {
+bool MTDS::GetMemStatus(MSTAT *pmstat) {
 
-	/* Send the command packet.
-	*/
-	mtds.MtdsProcessCmdRd(clsCmdUtil, cmdUtilGetMemStatus, 0, 0, sizeof(MSTAT), (uint8_t *)pmstat);
+  /* Send the command packet.
+   */
+  mtds.MtdsProcessCmdRd(clsCmdUtil, cmdUtilGetMemStatus, 0, 0, sizeof(MSTAT),
+                        (uint8_t *)pmstat);
 
-	/* Check for error and return failure.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* Return success.
-	*/
-	return true;
-
+  /* Return success.
+   */
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -961,22 +981,23 @@ bool MTDS::GetMemStatus(MSTAT * pmstat) {
 **		Set the memory manager search and compaction operating modes.
 */
 
-bool MTDS::SetMemMode(uint32_t	mm) {
-	PRM1A	prm;
+bool MTDS::SetMemMode(uint32_t mm) {
+  PRM1A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = mm;
+  /* Send the command packet.
+   */
+  prm.valA1 = mm;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetMemMode, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetMemMode, sizeof(prm), (uint8_t *)&prm,
+                   0, 0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -992,28 +1013,28 @@ bool MTDS::SetMemMode(uint32_t	mm) {
 **		Returns 0 if there is a heap consistency error
 **
 **	Description:
-**		Get the number of free bytes available in the memory pool. The returned value
-**		is a lower bound on the actual amount of free memory. If the free memory space
+**		Get the number of free bytes available in the memory pool. The
+*returned value *		is a lower bound on the actual amount of free
+*memory. If the free memory space
 **		is fragmented, the returned value will be low.
 */
 
 uint32_t MTDS::GetFreeMem() {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetFreeMem, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetFreeMem, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the free memory size.
-	*/
-	return pret->valA1;
-
+  /* Return the free memory size.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
@@ -1029,31 +1050,32 @@ uint32_t MTDS::GetFreeMem() {
 **		Returns 0 if error
 **
 **	Description:
-**		Allocate a memory object of the requested size from the heap on the shield.
-**		The requested value specifies the initial size. The size can grow if necessary
-**		as writes are done on the memory object.
+**		Allocate a memory object of the requested size from the heap on
+*the shield.
+**		The requested value specifies the initial size. The size can
+*grow if necessary *		as writes are done on the memory object.
 */
 
 HMEM MTDS::AllocMem(uint32_t cbReq) {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-	PRM1A	prm;
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  PRM1A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = cbReq;
+  /* Send the command packet.
+   */
+  prm.valA1 = cbReq;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilAllocMem, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilAllocMem, sizeof(prm), (uint8_t *)&prm, 0,
+                   0);
 
-	/* Check for error and return failure.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error and return failure.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the memory handle.
-	*/
-	return pret->valA1;
-
+  /* Return the memory handle.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
@@ -1073,25 +1095,25 @@ HMEM MTDS::AllocMem(uint32_t cbReq) {
 */
 
 uint32_t MTDS::GetMemSize(HMEM hmem) {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-	PRM1A	prm;
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  PRM1A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = hmem;
+  /* Send the command packet.
+   */
+  prm.valA1 = hmem;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetMemSize, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetMemSize, sizeof(prm), (uint8_t *)&prm,
+                   0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return 0;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return 0;
+  }
 
-	/* Return the free memory size.
-	*/
-	return pret->valA1;
-
+  /* Return the free memory size.
+   */
+  return pret->valA1;
 }
 
 /* ------------------------------------------------------------ */
@@ -1111,21 +1133,22 @@ uint32_t MTDS::GetMemSize(HMEM hmem) {
 */
 
 bool MTDS::FreeMem(HMEM hmem) {
-	PRM1A	prm;
+  PRM1A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = hmem;
+  /* Send the command packet.
+   */
+  prm.valA1 = hmem;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilFreeMem, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilFreeMem, sizeof(prm), (uint8_t *)&prm, 0,
+                   0);
 
-	/* Check for error.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -1133,10 +1156,11 @@ bool MTDS::FreeMem(HMEM hmem) {
 **
 **	Parameters:
 **		hmem		- memory object handle
-**		ibRead		- byte index within the object at which to start reading
-**		cbRead		- number of bytes to read
-**		rgbBuf		- buffer to receive bytes read
-**		pcbRes		- pointer to variable to receive actual number of bytes read
+**		ibRead		- byte index within the object at which to start
+*reading *		cbRead		- number of bytes to read *
+*rgbBuf		- buffer to receive bytes read
+**		pcbRes		- pointer to variable to receive actual number
+*of bytes read
 **
 **	Return Values:
 **		none
@@ -1145,35 +1169,37 @@ bool MTDS::FreeMem(HMEM hmem) {
 **		Returns true if successful, false if not
 **
 **	Description:
-**		Read the specified number of bytes from the specified memory object. The
-**		number of byte read will be less than requested if it would extend past the
-**		end of the memory object.
+**		Read the specified number of bytes from the specified memory
+*object. The
+**		number of byte read will be less than requested if it would
+*extend past the *		end of the memory object.
 */
 
-bool MTDS::ReadMem(HMEM hmem, uint32_t ibRead, uint32_t cbRead, uint8_t * rgbBuf, uint32_t * pcbRes) {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-	PRM3A	prm;
+bool MTDS::ReadMem(HMEM hmem, uint32_t ibRead, uint32_t cbRead, uint8_t *rgbBuf,
+                   uint32_t *pcbRes) {
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  PRM3A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = hmem;
-	prm.valA2 = ibRead;
-	prm.valA3 = cbRead;
+  /* Send the command packet.
+   */
+  prm.valA1 = hmem;
+  prm.valA2 = ibRead;
+  prm.valA3 = cbRead;
 
-	mtds.MtdsProcessCmdRd(clsCmdUtil, cmdUtilReadMem, sizeof(prm), (uint8_t *)&prm, cbRead, rgbBuf);
+  mtds.MtdsProcessCmdRd(clsCmdUtil, cmdUtilReadMem, sizeof(prm),
+                        (uint8_t *)&prm, cbRead, rgbBuf);
 
-	*pcbRes = pret->valA1;
+  *pcbRes = pret->valA1;
 
-	/* Check for error and return failure.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* Return success.
-	*/
-	return true;
-
+  /* Return success.
+   */
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -1181,10 +1207,11 @@ bool MTDS::ReadMem(HMEM hmem, uint32_t ibRead, uint32_t cbRead, uint8_t * rgbBuf
 **
 **	Parameters:
 **		hmem		- memory object handle
-**		ibWrite		- byte index within the object at which to start writing
-**		cbWrite		- number of bytes to write
-**		rgbBuf		- buffer containing bytes to write
-**		pcbRes		- pointer to variable to receive actual number of bytes written
+**		ibWrite		- byte index within the object at which to start
+*writing *		cbWrite		- number of bytes to write *
+*rgbBuf		- buffer containing bytes to write
+**		pcbRes		- pointer to variable to receive actual number
+*of bytes written
 **
 **	Return Values:
 **		none
@@ -1193,36 +1220,39 @@ bool MTDS::ReadMem(HMEM hmem, uint32_t ibRead, uint32_t cbRead, uint8_t * rgbBuf
 **		Returns true if successful, false if not
 **
 **	Description:
-**		Write the specified number of bytes to the specified memory object. The memory
-**		object will be resized as necessary to contain the bytes being written. The
-**		number of byte written will be less than requested if it is not possible to grow
-**		the memory object to contain them.
+**		Write the specified number of bytes to the specified memory
+*object. The memory
+**		object will be resized as necessary to contain the bytes being
+*written. The
+**		number of byte written will be less than requested if it is not
+*possible to grow *		the memory object to contain them.
 */
 
-bool MTDS::WriteMem(HMEM hmem, uint32_t ibWrite, uint32_t cbWrite, uint8_t * rgbBuf, uint32_t * pcbRes) {
-	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-	PRM3A	prm;
+bool MTDS::WriteMem(HMEM hmem, uint32_t ibWrite, uint32_t cbWrite,
+                    uint8_t *rgbBuf, uint32_t *pcbRes) {
+  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+  PRM3A prm;
 
-	/* Send the command packet.
-	*/
-	prm.valA1 = hmem;
-	prm.valA2 = ibWrite;
-	prm.valA3 = cbWrite;
+  /* Send the command packet.
+   */
+  prm.valA1 = hmem;
+  prm.valA2 = ibWrite;
+  prm.valA3 = cbWrite;
 
-	mtds.MtdsProcessCmdWr(clsCmdUtil, cmdUtilWriteMem, sizeof(prm), (uint8_t *)&prm, cbWrite, rgbBuf);
+  mtds.MtdsProcessCmdWr(clsCmdUtil, cmdUtilWriteMem, sizeof(prm),
+                        (uint8_t *)&prm, cbWrite, rgbBuf);
 
-	*pcbRes = pret->valA1;
+  *pcbRes = pret->valA1;
 
-	/* Check for error and return failure.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* Return the file handle.
-	*/
-	return true;
-
+  /* Return the file handle.
+   */
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -1241,28 +1271,28 @@ bool MTDS::WriteMem(HMEM hmem, uint32_t ibWrite, uint32_t cbWrite, uint8_t * rgb
 **		Set the display devices clock to the specified date and time
 */
 
-bool MTDS::SetDateTime(DTM * pdtm) {
-	PRM6B		prm;
+bool MTDS::SetDateTime(DTM *pdtm) {
+  PRM6B prm;
 
-	/* Send the command packet.
-	*/
-	prm.valB1 = pdtm->sec;
-	prm.valB2 = pdtm->min;
-	prm.valB3 = pdtm->hour;
-	prm.valB4 = pdtm->day;
-	prm.valB5 = pdtm->month;
-	prm.valB6 = pdtm->year;
+  /* Send the command packet.
+   */
+  prm.valB1 = pdtm->sec;
+  prm.valB2 = pdtm->min;
+  prm.valB3 = pdtm->hour;
+  prm.valB4 = pdtm->day;
+  prm.valB5 = pdtm->month;
+  prm.valB6 = pdtm->year;
 
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetDateTime, sizeof(prm), (uint8_t *)&prm, 0, 0);
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilSetDateTime, sizeof(prm), (uint8_t *)&prm,
+                   0, 0);
 
-	/* Check for error and return failure.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	return true;
-
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -1281,30 +1311,29 @@ bool MTDS::SetDateTime(DTM * pdtm) {
 **		Get the current date and time from the display device.
 */
 
-bool MTDS::GetDateTime(DTM * pdtm) {
-	RET6B *	pret = (RET6B *)&rgbMtdsRetVal[sizeof(RHDR)];
+bool MTDS::GetDateTime(DTM *pdtm) {
+  RET6B *pret = (RET6B *)&rgbMtdsRetVal[sizeof(RHDR)];
 
-	/* Send the command packet.
-	*/
-	MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetDateTime, 0, 0, 0, 0);
+  /* Send the command packet.
+   */
+  MtdsProcessCmdWr(clsCmdUtil, cmdUtilGetDateTime, 0, 0, 0, 0);
 
-	/* Check for error and return failure if so.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure if so.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* Unpack the message from the return value packet.
-	*/
-	pdtm->sec   = pret->valB1;
-	pdtm->min   = pret->valB2;
-	pdtm->hour  = pret->valB3;
-	pdtm->day   = pret->valB4;
-	pdtm->month = pret->valB5;
-	pdtm->year  = pret->valB6;
+  /* Unpack the message from the return value packet.
+   */
+  pdtm->sec = pret->valB1;
+  pdtm->min = pret->valB2;
+  pdtm->hour = pret->valB3;
+  pdtm->day = pret->valB4;
+  pdtm->month = pret->valB5;
+  pdtm->year = pret->valB6;
 
-	return true;
-
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -1329,45 +1358,44 @@ bool MTDS::GetDateTime(DTM * pdtm) {
 **		update.
 */
 
-bool MTDS::FirmwareUpdate(char * szName) {
-	PRM1B	prm;
-	uint8_t	chn;
+bool MTDS::FirmwareUpdate(char *szName) {
+  PRM1B prm;
+  uint8_t chn;
 
-	/* Error check that the file name length is acceptable.
-	*/
-	if (strlen(szName) > cchUpdName) {
-		clsLastError = clsCmdUtil;
-		cmdLastError = cmdUtilBeginUpdate;
-		staLastError = staUtilBadParameter;
-		return false;
-	}
+  /* Error check that the file name length is acceptable.
+   */
+  if (strlen(szName) > cchUpdName) {
+    clsLastError = clsCmdUtil;
+    cmdLastError = cmdUtilBeginUpdate;
+    staLastError = staUtilBadParameter;
+    return false;
+  }
 
-	/* Send the command packet.
-	*/
-	prm.valB1 = strlen(szName)+1;
+  /* Send the command packet.
+   */
+  prm.valB1 = strlen(szName) + 1;
 
-	mtds.MtdsProcessCmdWr(clsCmdUtil, cmdUtilBeginUpdate, sizeof(prm), (uint8_t *)&prm,
-						prm.valB1, (uint8_t *)szName);
+  mtds.MtdsProcessCmdWr(clsCmdUtil, cmdUtilBeginUpdate, sizeof(prm),
+                        (uint8_t *)&prm, prm.valB1, (uint8_t *)szName);
 
-	/* Check for error and return failure.
-	*/
-	if (prhdrMtdsRet->sta != staCmdSuccess) {
-		return false;
-	}
+  /* Check for error and return failure.
+   */
+  if (prhdrMtdsRet->sta != staCmdSuccess) {
+    return false;
+  }
 
-	/* The device accepted the BeginUpdate command. Now, tell it to launch the updater.
-	*/
-	chn = MtdsBeginUpdate();
-	if (chn != chnStaSuccess) {
-		staLastError = staCmdInternalError;
-		return false;
-	}
+  /* The device accepted the BeginUpdate command. Now, tell it to launch the
+   * updater.
+   */
+  chn = MtdsBeginUpdate();
+  if (chn != chnStaSuccess) {
+    staLastError = staCmdInternalError;
+    return false;
+  }
 
-	/* Return success.
-	*/
-	return true;
-
-
+  /* Return success.
+   */
+  return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -1387,9 +1415,7 @@ bool MTDS::FirmwareUpdate(char * szName) {
 **		back indicates where in the update process it is.
 */
 
-uint8_t MTDS::GetUpdateStatus() {
-	return MtdsQueryUpdate();
-}
+uint8_t MTDS::GetUpdateStatus() { return MtdsQueryUpdate(); }
 
 /* ------------------------------------------------------------ */
 /***	ProcName
@@ -1405,7 +1431,8 @@ uint8_t MTDS::GetUpdateStatus() {
 */
 
 /* ------------------------------------------------------------ */
-/*				XXXX Object Class Implementation				*/
+/*				XXXX Object Class Implementation
+ */
 /* ------------------------------------------------------------ */
 /***	ProcName
 **
@@ -1422,4 +1449,3 @@ uint8_t MTDS::GetUpdateStatus() {
 /* ------------------------------------------------------------ */
 
 /********************************************************************************/
-

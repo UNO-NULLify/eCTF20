@@ -52,59 +52,51 @@ void EnableCaches();
 void DisableCaches();
 
 int main() {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
 
-   return 0;
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
-   xil_printf("Init Started\n\r");
-   HYGRO_begin(
-      &myDevice,
-      XPAR_PMODHYGRO_0_AXI_LITE_IIC_BASEADDR,
+  EnableCaches();
+  xil_printf("Init Started\n\r");
+  HYGRO_begin(
+      &myDevice, XPAR_PMODHYGRO_0_AXI_LITE_IIC_BASEADDR,
       0x40, // Chip address of PmodHYGRO IIC
-      XPAR_PMODHYGRO_0_AXI_LITE_TMR_BASEADDR,
-      XPAR_PMODHYGRO_0_DEVICE_ID,
+      XPAR_PMODHYGRO_0_AXI_LITE_TMR_BASEADDR, XPAR_PMODHYGRO_0_DEVICE_ID,
       TIMER_FREQ_HZ // Clock frequency of AXI bus, used to convert timer data
-   );
-   xil_printf("Init Done\n\r");
+  );
+  xil_printf("Init Done\n\r");
 }
 
-void DemoCleanup() {
-   DisableCaches();
-}
+void DemoCleanup() { DisableCaches(); }
 
 void DemoRun() {
-   float temp_degc, hum_perrh, temp_degf;
-   while (1) {
-      temp_degc = HYGRO_getTemperature(&myDevice);
-      temp_degf = HYGRO_tempC2F(temp_degc);
-      hum_perrh = HYGRO_getHumidity(&myDevice);
-      xil_printf(
-         "Temperature: %d.%02d deg F  Humidity: %d.%02d RH\n\r",
-         (int) temp_degf,
-         ((int) (temp_degf * 100)) % 100,
-         (int) hum_perrh,
-         ((int) (hum_perrh * 100)) % 100
-      );
-      // %f does not work with xil_printf
-      // instead, converting float to a pair of ints to display %.2f.
+  float temp_degc, hum_perrh, temp_degf;
+  while (1) {
+    temp_degc = HYGRO_getTemperature(&myDevice);
+    temp_degf = HYGRO_tempC2F(temp_degc);
+    hum_perrh = HYGRO_getHumidity(&myDevice);
+    xil_printf("Temperature: %d.%02d deg F  Humidity: %d.%02d RH\n\r",
+               (int)temp_degf, ((int)(temp_degf * 100)) % 100, (int)hum_perrh,
+               ((int)(hum_perrh * 100)) % 100);
+    // %f does not work with xil_printf
+    // instead, converting float to a pair of ints to display %.2f.
 
-      // 1 sample per second maximum, as per 9.2.1 in HDC1080 reference manual
-      sleep(1);
-   }
+    // 1 sample per second maximum, as per 9.2.1 in HDC1080 reference manual
+    sleep(1);
+  }
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -112,10 +104,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #endif
 }

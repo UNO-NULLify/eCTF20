@@ -1,34 +1,34 @@
 /******************************************************************************
-*
-* Copyright (C) 2002 - 2015 Xilinx, Inc.  All rights reserved.
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* Use of the Software is limited solely to applications:
-* (a) running on a Xilinx device, or
-* (b) that interact with a Xilinx device through a bus or interconnect.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-* XILINX  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-* WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
-* OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*
-* Except as contained in this notice, the name of the Xilinx shall not be used
-* in advertising or otherwise to promote the sale, use or other dealings in
-* this Software without prior written authorization from Xilinx.
-*
-******************************************************************************/
+ *
+ * Copyright (C) 2002 - 2015 Xilinx, Inc.  All rights reserved.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * Use of the Software is limited solely to applications:
+ * (a) running on a Xilinx device, or
+ * (b) that interact with a Xilinx device through a bus or interconnect.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ * XILINX  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+ * OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ * Except as contained in this notice, the name of the Xilinx shall not be used
+ * in advertising or otherwise to promote the sale, use or other dealings in
+ * this Software without prior written authorization from Xilinx.
+ *
+ ******************************************************************************/
 /*****************************************************************************/
 /**
 *
@@ -137,14 +137,14 @@
 * 2.05a adk  15/05/13 Fixed the CR:693066
 *		      Added the IsStartedTmrCtr0/IsStartedTmrCtr1 members to the
 *		      XTmrCtr instance structure.
-*		      The IsStartedTmrCtrX will be assigned XIL_COMPONENT_IS_STARTED in
-*		      the XTmrCtr_Start function.
-*		      The IsStartedTmrCtrX will be cleared in the XTmrCtr_Stop function.
-*		      There will be no Initialization done in the
-*		      XTmrCtr_Initialize if both the timers have already started and
-*		      the XST_DEVICE_IS_STARTED Status is returned.
-*		      Removed the logic in the XTmrCtr_Initialize function
-*		      which was checking the Register Value to know whether
+*		      The IsStartedTmrCtrX will be assigned
+XIL_COMPONENT_IS_STARTED in *		      the XTmrCtr_Start function.
+*		      The IsStartedTmrCtrX will be cleared in the XTmrCtr_Stop
+function. *		      There will be no Initialization done in the
+*		      XTmrCtr_Initialize if both the timers have already started
+and *		      the XST_DEVICE_IS_STARTED Status is returned. *
+Removed the logic in the XTmrCtr_Initialize function *		      which was
+checking the Register Value to know whether
 *		      a timer has started or not.
 * 3.0   adk  19/12/13 Updated as per the New Tcl API's
 * 4.0   als  09/30/15 Updated initialization API.
@@ -154,8 +154,8 @@
 *
 ******************************************************************************/
 
-#ifndef XTMRCTR_H		/* prevent circular inclusions */
-#define XTMRCTR_H		/* by using protection macros */
+#ifndef XTMRCTR_H /* prevent circular inclusions */
+#define XTMRCTR_H /* by using protection macros */
 
 #ifdef __cplusplus
 extern "C" {
@@ -163,8 +163,8 @@ extern "C" {
 
 /***************************** Include Files *********************************/
 
-#include "xil_types.h"
 #include "xil_assert.h"
+#include "xil_types.h"
 #include "xstatus.h"
 #include "xtmrctr_l.h"
 
@@ -198,13 +198,13 @@ extern "C" {
  * XTC_EXT_COMPARE_OPTION	Enables the external compare output signal.
  * </pre>
  */
-#define XTC_CASCADE_MODE_OPTION		0x00000080UL
-#define XTC_ENABLE_ALL_OPTION		0x00000040UL
-#define XTC_DOWN_COUNT_OPTION		0x00000020UL
-#define XTC_CAPTURE_MODE_OPTION		0x00000010UL
-#define XTC_INT_MODE_OPTION		0x00000008UL
-#define XTC_AUTO_RELOAD_OPTION		0x00000004UL
-#define XTC_EXT_COMPARE_OPTION		0x00000002UL
+#define XTC_CASCADE_MODE_OPTION 0x00000080UL
+#define XTC_ENABLE_ALL_OPTION 0x00000040UL
+#define XTC_DOWN_COUNT_OPTION 0x00000020UL
+#define XTC_CAPTURE_MODE_OPTION 0x00000010UL
+#define XTC_INT_MODE_OPTION 0x00000008UL
+#define XTC_AUTO_RELOAD_OPTION 0x00000004UL
+#define XTC_EXT_COMPARE_OPTION 0x00000002UL
 /*@}*/
 
 /**************************** Type Definitions *******************************/
@@ -213,9 +213,9 @@ extern "C" {
  * This typedef contains configuration information for the device.
  */
 typedef struct {
-	u16 DeviceId;		/**< Unique ID  of device */
-	UINTPTR BaseAddress;	/**< Register base address */
-	u32 SysClockFreqHz;	/**< The AXI bus clock frequency */
+  u16 DeviceId;        /**< Unique ID  of device */
+  UINTPTR BaseAddress; /**< Register base address */
+  u32 SysClockFreqHz;  /**< The AXI bus clock frequency */
 } XTmrCtr_Config;
 
 /**
@@ -230,14 +230,13 @@ typedef struct {
  *		timer/counters. The timer number is a zero based number with a
  *		range of 0 to (XTC_DEVICE_TIMER_COUNT - 1).
  */
-typedef void (*XTmrCtr_Handler) (void *CallBackRef, u8 TmrCtrNumber);
-
+typedef void (*XTmrCtr_Handler)(void *CallBackRef, u8 TmrCtrNumber);
 
 /**
  * Timer/Counter statistics
  */
 typedef struct {
-	u32 Interrupts;	 /**< The number of interrupts that have occurred */
+  u32 Interrupts; /**< The number of interrupts that have occurred */
 } XTmrCtrStats;
 
 /**
@@ -247,54 +246,52 @@ typedef struct {
  * functions.
  */
 typedef struct {
-	XTmrCtr_Config Config;   /**< Core configuration. */
-	XTmrCtrStats Stats;	 /**< Component Statistics */
-	UINTPTR BaseAddress;	 /**< Base address of registers */
-	u32 IsReady;		 /**< Device is initialized and ready */
-	u32 IsStartedTmrCtr0;	 /**< Is Timer Counter 0 started */
-	u32 IsStartedTmrCtr1;	 /**< Is Timer Counter 1 started */
+  XTmrCtr_Config Config; /**< Core configuration. */
+  XTmrCtrStats Stats;    /**< Component Statistics */
+  UINTPTR BaseAddress;   /**< Base address of registers */
+  u32 IsReady;           /**< Device is initialized and ready */
+  u32 IsStartedTmrCtr0;  /**< Is Timer Counter 0 started */
+  u32 IsStartedTmrCtr1;  /**< Is Timer Counter 1 started */
 
-	XTmrCtr_Handler Handler; /**< Callback function */
-	void *CallBackRef;	 /**< Callback reference for handler */
+  XTmrCtr_Handler Handler; /**< Callback function */
+  void *CallBackRef;       /**< Callback reference for handler */
 } XTmrCtr;
 
-
 /***************** Macros (Inline Functions) Definitions *********************/
-
 
 /************************** Function Prototypes ******************************/
 
 /* Required functions, in file xtmrctr.c */
 void XTmrCtr_CfgInitialize(XTmrCtr *InstancePtr, XTmrCtr_Config *ConfigPtr,
-		UINTPTR EffectiveAddr);
+                           UINTPTR EffectiveAddr);
 int XTmrCtr_InitHw(XTmrCtr *InstancePtr);
-int XTmrCtr_Initialize(XTmrCtr * InstancePtr, u16 DeviceId);
-void XTmrCtr_Start(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
-void XTmrCtr_Stop(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
-u32 XTmrCtr_GetValue(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
-void XTmrCtr_SetResetValue(XTmrCtr * InstancePtr, u8 TmrCtrNumber,
-			   u32 ResetValue);
-u32 XTmrCtr_GetCaptureValue(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
-int XTmrCtr_IsExpired(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
-void XTmrCtr_Reset(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
+int XTmrCtr_Initialize(XTmrCtr *InstancePtr, u16 DeviceId);
+void XTmrCtr_Start(XTmrCtr *InstancePtr, u8 TmrCtrNumber);
+void XTmrCtr_Stop(XTmrCtr *InstancePtr, u8 TmrCtrNumber);
+u32 XTmrCtr_GetValue(XTmrCtr *InstancePtr, u8 TmrCtrNumber);
+void XTmrCtr_SetResetValue(XTmrCtr *InstancePtr, u8 TmrCtrNumber,
+                           u32 ResetValue);
+u32 XTmrCtr_GetCaptureValue(XTmrCtr *InstancePtr, u8 TmrCtrNumber);
+int XTmrCtr_IsExpired(XTmrCtr *InstancePtr, u8 TmrCtrNumber);
+void XTmrCtr_Reset(XTmrCtr *InstancePtr, u8 TmrCtrNumber);
 
 /* Lookup configuration in xtmrctr_sinit.c */
 XTmrCtr_Config *XTmrCtr_LookupConfig(u16 DeviceId);
 
 /* Functions for options, in file xtmrctr_options.c */
-void XTmrCtr_SetOptions(XTmrCtr * InstancePtr, u8 TmrCtrNumber, u32 Options);
-u32 XTmrCtr_GetOptions(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
+void XTmrCtr_SetOptions(XTmrCtr *InstancePtr, u8 TmrCtrNumber, u32 Options);
+u32 XTmrCtr_GetOptions(XTmrCtr *InstancePtr, u8 TmrCtrNumber);
 
 /* Functions for statistics, in file xtmrctr_stats.c */
-void XTmrCtr_GetStats(XTmrCtr * InstancePtr, XTmrCtrStats * StatsPtr);
-void XTmrCtr_ClearStats(XTmrCtr * InstancePtr);
+void XTmrCtr_GetStats(XTmrCtr *InstancePtr, XTmrCtrStats *StatsPtr);
+void XTmrCtr_ClearStats(XTmrCtr *InstancePtr);
 
 /* Functions for self-test, in file xtmrctr_selftest.c */
-int XTmrCtr_SelfTest(XTmrCtr * InstancePtr, u8 TmrCtrNumber);
+int XTmrCtr_SelfTest(XTmrCtr *InstancePtr, u8 TmrCtrNumber);
 
 /* Functions for interrupts, in file xtmrctr_intr.c */
-void XTmrCtr_SetHandler(XTmrCtr * InstancePtr, XTmrCtr_Handler FuncPtr,
-			void *CallBackRef);
+void XTmrCtr_SetHandler(XTmrCtr *InstancePtr, XTmrCtr_Handler FuncPtr,
+                        void *CallBackRef);
 void XTmrCtr_InterruptHandler(void *InstancePtr);
 
 #ifdef __cplusplus

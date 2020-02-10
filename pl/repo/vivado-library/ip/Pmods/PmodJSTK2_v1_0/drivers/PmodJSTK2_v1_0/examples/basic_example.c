@@ -52,67 +52,58 @@ void EnableCaches();
 void DisableCaches();
 
 int main() {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
-   return 0;
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
+  EnableCaches();
 
-   // Initialize the joystick device
-   JSTK2_begin(
-      &joystick,
-      XPAR_PMODJSTK2_0_AXI_LITE_SPI_BASEADDR,
-      XPAR_PMODJSTK2_0_AXI_LITE_GPIO_BASEADDR
-   );
+  // Initialize the joystick device
+  JSTK2_begin(&joystick, XPAR_PMODJSTK2_0_AXI_LITE_SPI_BASEADDR,
+              XPAR_PMODJSTK2_0_AXI_LITE_GPIO_BASEADDR);
 
-   // Set inversion register to invert only the Y axis
-   JSTK2_setInversion(&joystick, 0, 1);
+  // Set inversion register to invert only the Y axis
+  JSTK2_setInversion(&joystick, 0, 1);
 }
 
 void DemoRun() {
-   JSTK2_Position position;
-   JSTK2_DataPacket rawdata;
+  JSTK2_Position position;
+  JSTK2_DataPacket rawdata;
 
-   xil_printf("\r\nJoystick Demo\r\n");
+  xil_printf("\r\nJoystick Demo\r\n");
 
-   while (1) {
-      // Get joystick x and y coordinate values
-      position = JSTK2_getPosition(&joystick);
-      // Get button states
-      rawdata = JSTK2_getDataPacket(&joystick);
+  while (1) {
+    // Get joystick x and y coordinate values
+    position = JSTK2_getPosition(&joystick);
+    // Get button states
+    rawdata = JSTK2_getDataPacket(&joystick);
 
-      xil_printf(
-         "X:%d\tY:%d%s%s\r\n",
-         position.XData,
-         position.YData,
-         (rawdata.Jstk != 0) ? "\tJoystick pressed" : "",
-         (rawdata.Trigger != 0) ? "\tTrigger pressed" : ""
-      );
-      usleep(50000);
+    xil_printf("X:%d\tY:%d%s%s\r\n", position.XData, position.YData,
+               (rawdata.Jstk != 0) ? "\tJoystick pressed" : "",
+               (rawdata.Trigger != 0) ? "\tTrigger pressed" : "");
+    usleep(50000);
 
-      // Set led from btns and axis
-      if (rawdata.Jstk != 0 || rawdata.Trigger != 0) {
-         JSTK2_setLedRGB(&joystick, 0, 255, 0);
-      } else {
-         JSTK2_setLedRGB(&joystick, position.XData, 0, position.YData);
-      }
-   }
+    // Set led from btns and axis
+    if (rawdata.Jstk != 0 || rawdata.Trigger != 0) {
+      JSTK2_setLedRGB(&joystick, 0, 255, 0);
+    } else {
+      JSTK2_setLedRGB(&joystick, position.XData, 0, position.YData);
+    }
+  }
 }
 
-void DemoCleanup() {
-   DisableCaches();
-}
+void DemoCleanup() { DisableCaches(); }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -120,10 +111,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

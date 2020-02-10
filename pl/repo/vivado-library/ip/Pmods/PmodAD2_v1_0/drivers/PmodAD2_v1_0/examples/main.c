@@ -29,11 +29,11 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include <stdio.h>
 #include "PmodAD2.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xparameters.h"
+#include <stdio.h>
 
 void DemoInitialize();
 void DemoRun();
@@ -44,62 +44,60 @@ void DisableCaches();
 PmodAD2 myDevice;
 
 int main() {
-   DemoInitialize();
-   DemoRun();
-   DemoCleanup();
+  DemoInitialize();
+  DemoRun();
+  DemoCleanup();
 
-   return 0;
+  return 0;
 }
 
 void DemoInitialize() {
-   EnableCaches();
-   AD2_begin(&myDevice, XPAR_PMODAD2_0_AXI_LITE_IIC_BASEADDR, AD2_IIC_ADDR);
+  EnableCaches();
+  AD2_begin(&myDevice, XPAR_PMODAD2_0_AXI_LITE_IIC_BASEADDR, AD2_IIC_ADDR);
 }
 
 void DemoRun() {
-   u16 conv;
-   u8 channel;
-   double voltage;
+  u16 conv;
+  u8 channel;
+  double voltage;
 
-   xil_printf("Demo Started\n\r");
+  xil_printf("Demo Started\n\r");
 
-   // Turn on all channels
-   AD2_WriteConfig(&myDevice, AD2_DEFAULT_CONFIG);
+  // Turn on all channels
+  AD2_WriteConfig(&myDevice, AD2_DEFAULT_CONFIG);
 
-   xil_printf("AD2 Configured\n\r");
+  xil_printf("AD2 Configured\n\r");
 
-   while (1) {
-      AD2_ReadConv(&myDevice, &conv);
+  while (1) {
+    AD2_ReadConv(&myDevice, &conv);
 
-      // Scale captured data such that 0x000:0xFFF => 0.0:3.3
-      voltage = (double) (conv & AD2_DATA_MASK) * 3.3 / (AD2_DATA_MASK + 1);
+    // Scale captured data such that 0x000:0xFFF => 0.0:3.3
+    voltage = (double)(conv & AD2_DATA_MASK) * 3.3 / (AD2_DATA_MASK + 1);
 
-      // Pull channel read information out of conv
-      channel = (conv & AD2_CHANNEL_MASK) >> AD2_CHANNEL_BIT;
+    // Pull channel read information out of conv
+    channel = (conv & AD2_CHANNEL_MASK) >> AD2_CHANNEL_BIT;
 
-      printf("Pin V%d = %.02f V", channel + 1, voltage);
+    printf("Pin V%d = %.02f V", channel + 1, voltage);
 
-      if (channel == 3) {
-         printf("\r\n");
-      } else {
-         printf("    ");
-      }
+    if (channel == 3) {
+      printf("\r\n");
+    } else {
+      printf("    ");
+    }
 
-      usleep(10000);
-   }
+    usleep(10000);
+  }
 }
 
-void DemoCleanup() {
-   DisableCaches();
-}
+void DemoCleanup() { DisableCaches(); }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheEnable();
+  Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheEnable();
+  Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -107,10 +105,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-   Xil_DCacheDisable();
+  Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-   Xil_ICacheDisable();
+  Xil_ICacheDisable();
 #endif
 #endif
 }

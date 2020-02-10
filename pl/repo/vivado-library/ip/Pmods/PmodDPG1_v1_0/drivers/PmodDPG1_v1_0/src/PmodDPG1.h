@@ -26,36 +26,33 @@
 /************ Include Files ************/
 
 #include "xil_types.h"
-#include "xspi_l.h"
 #include "xspi.h"
+#include "xspi_l.h"
 #include "xstatus.h"
-
 
 /************ Macro Definitions ************/
 
 // Pressure unit codes
-#define DPG1_KPA_PRESSURE_TYPE   0
-#define DPG1_ATM_PRESSURE_TYPE   1
-#define DPG1_PSI_PRESSURE_TYPE   2
+#define DPG1_KPA_PRESSURE_TYPE 0
+#define DPG1_ATM_PRESSURE_TYPE 1
+#define DPG1_PSI_PRESSURE_TYPE 2
 #define DPG1_INH2O_PRESSURE_TYPE 3
 #define DPG1_CMH2O_PRESSURE_TYPE 4
-#define DPG1_MMHG_PRESSURE_TYPE  5
-
+#define DPG1_MMHG_PRESSURE_TYPE 5
 
 /************ Type Definitions ************/
 
 typedef struct PmodDPG1 {
-   XSpi DPG1Spi;
-   u32 data;
+  XSpi DPG1Spi;
+  u32 data;
 } PmodDPG1;
-
 
 /************ Function Prototypes ************/
 
-void   DPG1_begin(PmodDPG1 *InstancePtr, u32 SPI_Address);
-void   DPG1_end(PmodDPG1 *InstancePtr);
-int    DPG1_SPIInit(XSpi *SpiInstancePtr);
-void   DPG1_readData(PmodDPG1 *InstancePtr);
+void DPG1_begin(PmodDPG1 *InstancePtr, u32 SPI_Address);
+void DPG1_end(PmodDPG1 *InstancePtr);
+int DPG1_SPIInit(XSpi *SpiInstancePtr);
+void DPG1_readData(PmodDPG1 *InstancePtr);
 double DPG1_GetPressure(int pType, PmodDPG1 *InstancePtr);
 
 #endif // PMODDPG1_H

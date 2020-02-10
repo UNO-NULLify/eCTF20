@@ -27,20 +27,7 @@
 
 /************************** Function Definitions ***************************/
 
-XSpi_Config JSTKConfig =
-{
-   0,
-   0,
-   1,
-   0,
-   1,
-   8,
-   0,
-   0,
-   0,
-   0,
-   0
-};
+XSpi_Config JSTKConfig = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
 
 /* ------------------------------------------------------------ */
 /*** void JSTK_begin(PmodJSTK* InstancePtr, u32 SPI_Address, u32 GPIO_Address)
@@ -57,13 +44,13 @@ XSpi_Config JSTKConfig =
 **      Initialize the JSTK IP
 */
 void JSTK_begin(PmodJSTK *InstancePtr, u32 SPI_Address, u32 GPIO_Address) {
-   JSTKConfig.BaseAddress = SPI_Address;
-   InstancePtr->GpioAddr = GPIO_Address;
-   InstancePtr->LedState = 0;
-   JSTK_SPIInit(&InstancePtr->SpiDevice);
-   Xil_Out32(InstancePtr->GpioAddr + 4, 0x0);
-   Xil_Out32(InstancePtr->GpioAddr, 0x1);
-   JSTK_getDataPacket(InstancePtr);
+  JSTKConfig.BaseAddress = SPI_Address;
+  InstancePtr->GpioAddr = GPIO_Address;
+  InstancePtr->LedState = 0;
+  JSTK_SPIInit(&InstancePtr->SpiDevice);
+  Xil_Out32(InstancePtr->GpioAddr + 4, 0x0);
+  Xil_Out32(InstancePtr->GpioAddr, 0x1);
+  JSTK_getDataPacket(InstancePtr);
 }
 
 /* ------------------------------------------------------------ */
@@ -78,9 +65,7 @@ void JSTK_begin(PmodJSTK *InstancePtr, u32 SPI_Address, u32 GPIO_Address) {
 **  Description:
 **      Clean up the JSTK
 */
-void JSTK_end(PmodJSTK *InstancePtr) {
-   XSpi_Stop(&InstancePtr->SpiDevice);
-}
+void JSTK_end(PmodJSTK *InstancePtr) { XSpi_Stop(&InstancePtr->SpiDevice); }
 
 /* ------------------------------------------------------------ */
 /*** int JSTK_SPIInit(XSpi *SpiInstancePtr)
@@ -95,34 +80,34 @@ void JSTK_end(PmodJSTK *InstancePtr) {
 **      Initializes the PmodJSTK SPI.
 */
 int JSTK_SPIInit(XSpi *SpiInstancePtr) {
-   int Status;
+  int Status;
 
-   Status = XSpi_CfgInitialize(SpiInstancePtr, &JSTKConfig,
-         JSTKConfig.BaseAddress);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status =
+      XSpi_CfgInitialize(SpiInstancePtr, &JSTKConfig, JSTKConfig.BaseAddress);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   Status = XSpi_SetOptions(SpiInstancePtr,
-         XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  Status = XSpi_SetOptions(SpiInstancePtr,
+                           XSP_MASTER_OPTION | XSP_MANUAL_SSELECT_OPTION);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   // Even though we are generating the CS signal through the GPIO controller,
-   // the SPI driver does not work without this statement
-   Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
-   if (Status != XST_SUCCESS) {
-      return XST_FAILURE;
-   }
+  // Even though we are generating the CS signal through the GPIO controller,
+  // the SPI driver does not work without this statement
+  Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
+  if (Status != XST_SUCCESS) {
+    return XST_FAILURE;
+  }
 
-   // Start the SPI driver so that the device is enabled.
-   XSpi_Start(SpiInstancePtr);
+  // Start the SPI driver so that the device is enabled.
+  XSpi_Start(SpiInstancePtr);
 
-   // Disable Global interrupt to use polled mode operation
-   XSpi_IntrGlobalDisable(SpiInstancePtr);
+  // Disable Global interrupt to use polled mode operation
+  XSpi_IntrGlobalDisable(SpiInstancePtr);
 
-   return XST_SUCCESS;
+  return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -146,9 +131,9 @@ int JSTK_SPIInit(XSpi *SpiInstancePtr) {
 **         if ((Status & JSTK_bit<a button bit name>) != 0)
 */
 void JSTK_setLeds(PmodJSTK *InstancePtr, u8 leds) {
-   InstancePtr->LedState = leds;
+  InstancePtr->LedState = leds;
 
-   JSTK_getDataPacket(InstancePtr);
+  JSTK_getDataPacket(InstancePtr);
 }
 
 /* ------------------------------------------------------------ */
@@ -164,20 +149,20 @@ void JSTK_setLeds(PmodJSTK *InstancePtr, u8 leds) {
 **      Captures state data from the JSTK
 */
 JSTK_DataPacket JSTK_getDataPacket(PmodJSTK *InstancePtr) {
-	u8 recv[5] = {0};
-	JSTK_DataPacket rawdata;
+  u8 recv[5] = {0};
+  JSTK_DataPacket rawdata;
 
-	recv[0] = 0x80 | InstancePtr->LedState;
+  recv[0] = 0x80 | InstancePtr->LedState;
 
-	JSTK_getData(InstancePtr, recv, 5);
+  JSTK_getData(InstancePtr, recv, 5);
 
-	rawdata.XData = recv[0] | (recv[1] << 8);
-	rawdata.YData = recv[2] | (recv[3] << 8);
-	rawdata.Button1 = (recv[4] & JSTK_bitButton1) >> JSTK_bnButton1;
-	rawdata.Button2 = (recv[4] & JSTK_bitButton2) >> JSTK_bnButton2;
-	rawdata.Jstk = (recv[4] & JSTK_bitJstk) >> JSTK_bnJstk;
+  rawdata.XData = recv[0] | (recv[1] << 8);
+  rawdata.YData = recv[2] | (recv[3] << 8);
+  rawdata.Button1 = (recv[4] & JSTK_bitButton1) >> JSTK_bnButton1;
+  rawdata.Button2 = (recv[4] & JSTK_bitButton2) >> JSTK_bnButton2;
+  rawdata.Jstk = (recv[4] & JSTK_bitJstk) >> JSTK_bnJstk;
 
-	return rawdata;
+  return rawdata;
 }
 
 /* ------------------------------------------------------------ */
@@ -200,22 +185,22 @@ JSTK_DataPacket JSTK_getDataPacket(PmodJSTK *InstancePtr) {
 **      working so bit-banging that line with an AXI GPIO controller instead
 */
 void JSTK_getData(PmodJSTK *InstancePtr, u8 *recv, u8 nData) {
-   int i = 0;
+  int i = 0;
 
-   // Bring chip select low
-   Xil_Out32(InstancePtr->GpioAddr, 0x0);
+  // Bring chip select low
+  Xil_Out32(InstancePtr->GpioAddr, 0x0);
 
-   usleep(5); // 5 us delay from cs->low to first byte
+  usleep(5); // 5 us delay from cs->low to first byte
 
-   for (i = 0; i < nData; i++) {
-      usleep(10); // 10 us delay between bytes
-      XSpi_Transfer(&InstancePtr->SpiDevice, &recv[i], &recv[i], 1);
-   }
+  for (i = 0; i < nData; i++) {
+    usleep(10); // 10 us delay between bytes
+    XSpi_Transfer(&InstancePtr->SpiDevice, &recv[i], &recv[i], 1);
+  }
 
-   usleep(20); // 20 us delay from last packet to cs->high
+  usleep(20); // 20 us delay from last packet to cs->high
 
-   // Bring chip select high
-   Xil_Out32(InstancePtr->GpioAddr, 0x1);
+  // Bring chip select high
+  Xil_Out32(InstancePtr->GpioAddr, 0x1);
 
-   usleep(25);
+  usleep(25);
 }
