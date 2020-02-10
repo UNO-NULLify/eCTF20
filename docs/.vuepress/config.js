@@ -42,6 +42,7 @@ module.exports = {
 				children: [
 					'/internal/initial-plans',
 					'/internal/code-reviews',
+					'/internal/anti-re',
 					'/internal/attack',
 				]
 			}
