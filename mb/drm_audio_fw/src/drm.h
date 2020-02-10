@@ -1,7 +1,3 @@
-//
-// Created by artificial on 1/23/20.
-//
-
 #ifndef DRM_AUDIO_FW_DRM_H
 #define DRM_AUDIO_FW_DRM_H
 
@@ -14,9 +10,12 @@
 typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
 typedef struct {
-  char user[MAX_USERNAME_SZ];
-  char hash[MAX_HASH_SZ];
-  int logged_in;
+    char *name;
+    char *hw_secret;
+    char *pin_hash;
+    char *pub_key;
+    char *pvt_key_enc;
+    int logged_in;
 } user_md;
 
 typedef struct {

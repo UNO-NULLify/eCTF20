@@ -1,8 +1,8 @@
-#include "drm.h"
-
 #include <sys/prctl.h>
 #include <sys/ptrace.h>
 
+#include "drm.h"
+#include "secrets.h"
 #include "include/sodium.h"
 #include "sleep.h"
 #include "util.h"
@@ -15,10 +15,10 @@
 
 //////////////////////// GLOBALS ////////////////////////
 // Current user struct
-user_md u;
+user_md UserMD;
 
 // DRM metadata struct
-drm_md d;
+drm_md DeviceMD;
 
 // LED colors and controller
 u32 *led = (u32 *)XPAR_RGB_PWM_0_PWM_AXI_BASEADDR;
@@ -31,7 +31,7 @@ const struct color BLUE = {0x0000, 0x0000, 0x01ff};
 static XAxiDma sAxiDma;
 
 //////////////////////// INITIALIZATION ////////////////////////
-int InitMicroBlaze() {
+int initMicroBlaze() {
   u32 status;
 
   // Initialize MicroBlaze platform
@@ -61,24 +61,15 @@ int InitMicroBlaze() {
   // Start the LED
   enableLED(led);
 
-  SetState(STOPPED);
+  setState(STOPPED);
 }
 
 // TODO: Copy num_users and num_regions into drm_md
 
 //////////////////////// HELPER FUNCTIONS ////////////////////////
-/* Check login status
- * 1 = logged in
- * 0 = logged out
- */
-int GetLogin() { return u.logged_in; }
-
-// Returns number of provisioned users
-int GetUserTotal() { return d.num_user; }
-
 // Set state of drm and LED color
-void SetState(STATE state) {
-  d.state = state;
+void setState(STATE state) {
+  DeviceMD.state = state;
   switch (state) {
   case WORKING:
     setLED(led, YELLOW);
@@ -98,7 +89,7 @@ void SetState(STATE state) {
  * is not zero then a debugger has attached. If a debugger is attached then
  * signal to the parent pid and exit.
  */
-void CheckProc() {
+void checkProc() {
   FILE *proc_status = fopen("/proc/self/status", "r");
   if (proc_status == NULL) {
     return;
@@ -121,20 +112,22 @@ void CheckProc() {
 }
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
-void Login(char[] username, char[] pin) {
+void logOn(char* username, char* pin) {
   // check if logged in
-  if (GetLogin()) {
+  if (UserMD.logged_in) {
     mb_printf("User already logged-in.\r\n");
   } else {
     // search username
-    int i;
-    for (i = 0; i <= GetUserTotal(); i++) {
-      if (sodium_memcmp(creds[i][0], username)) {
+    for (int i = 0; i <= PROVISIONED_USERS; i++) {
+      if (sodium_memcmp(user_data[i].name, username)) {
         // generate and search hash
-        if (crypto_pwhash_str_verify(creds[i][1], pin, strlen(pin))) {
-          u.user = creds[i][0];
-          u.hash = creds[i][1];
-          u.logged_in = 1;
+        if (crypto_pwhash_str_verify(user_data[i].pin_hash, pin, strlen(pin))) {
+          UserMD.name = user_data[i].name;
+          UserMD.pin_hash = user_data[i].pin_hash;
+          UserMD.hw_secret = user_data[i].hw_secret;
+          UserMD.pub_key = user_data[i].pub_key;
+          UserMD.pvt_key_enc = user_data[i].pvt_key_enc;
+          UserMD.logged_in = 1;
         }
         mb_printf("User not found\r\n");
         sodium_memzero(u, sizeof(u));
@@ -145,22 +138,27 @@ void Login(char[] username, char[] pin) {
   }
 }
 
-void LogOut() {
+void logOff() {
   // check if logged in
-  if (GetLogin()) {
+  if (UserMD.logged_in) {
     mb_printf("Logging out...\r\n");
     // zero-out user struct
     sodium_memzero(u, sizeof(u));
     // double check?
-    u.logged_in = 0;
+    UserMD.name = NULL;
+    UserMD.pin_hash = NULL;
+    UserMD.pvt_key_enc = NULL;
+    UserMD.pub_key = NULL;
+    UserMD.hw_secret = NULL;
+    UserMD.logged_in = 0;
   } else {
     mb_printf("Not logged in\r\n");
   }
 }
 
-void Share() {
+void share() {
   // check if logged in
-  if (GetLogin()) {
+  if (UserMD.logged_in) {
     /*
      * TODO:
      * - Check if owner using checkAuthorization()
@@ -175,9 +173,9 @@ void Share() {
   }
 }
 
-void Query() {
+void query() {
   // check if logged in
-  if (GetLogin()) {
+  if (UserMD.logged_in) {
     /*
      * TODO:
      * - Song query stuff
@@ -188,23 +186,9 @@ void Query() {
   }
 }
 
-// calls the function to decrypt the song, gets the header information,
-// checks the owner/shared user information, and returns values
-// RETURN Values: 1 for owner, 2 for shared user, 3 for 30 seconds
-int checkAuthorization() {
-  if (GetLogin()) {
-    // decrypt the song
-    // get/read the header
-    // check if the requester is owner or someone who has had it shared with
-    // them return 1 for owner, 2 for shared, and 3 for 30 seconds
-  } else {
-    mb_printf("Not logged in\r\n");
-  }
-}
-
-void DigitalOut() {
+void digitalOut() {
   // check if logged in
-  if (GetLogin()) {
+  if (UserMD.logged_in) {
     /*
      * TODO:
      * - Check authorization using checkAuthorization()
@@ -215,9 +199,9 @@ void DigitalOut() {
   }
 }
 
-void Play() {
+void play() {
   // check if logged in
-  if (GetLogin()) {
+  if (UserMD.logged_in) {
     /* TODO:
      * - Check authorization using checkAuthorization()
      * - Check if song is playing
@@ -233,31 +217,28 @@ void Play() {
 
 //////////////////////// MAIN FUNCTION ////////////////////////
 int main() {
-  if (InitMicroBlaze() == XST_FAILURE) {
+  if (initMicroBlaze() == XST_FAILURE) {
     return XST_FAILURE;
   }
 
   // Clear command channel
   // memset((void *)c, 0, sizeof(cmd_channel));
 
-  // Prevent core from being dumpable
-  prctl(PR_SET_DUMPABLE, 0);
-
   mb_printf("Audio DRM Module has Booted\n\r");
 
   int fork_pid = fork();
   if (fork_pid == 0) {
-    // set the process as undumpable
+    // Set the process core as undumpable
     prctl(PR_SET_DUMPABLE, 0);
 
-    // trace the parent process
+    // Trace the parent process
     int parent = getppid();
     if (ptrace(PTRACE_ATTACH, parent, NULL, NULL) != 0) {
       kill(parent, SIGKILL);
       exit(EXIT_FAILURE);
     }
 
-    // restart the parent so it can keep processing like normal
+    // Restart the parent so it can keep processing like normal
     int status = 0;
     wait(&status);
     if (ptrace(PTRACE_SETOPTIONS, parent, NULL,
@@ -267,9 +248,9 @@ int main() {
     }
     ptrace(PTRACE_CONT, parent, NULL, NULL);
 
-    // handle any signals that may come in from traces
+    // Handle any signals that may come in from traces
     while (true) {
-      CheckProc();
+      checkProc();
       int pid = waitpid(-1, &status, WNOHANG);
       if (pid == 0) {
         sleep(1);
@@ -277,7 +258,7 @@ int main() {
       }
 
       if (status >> 16 == PTRACE_EVENT_FORK) {
-        // follow the fork
+        // Follow the fork
         long newpid = 0;
         ptrace(PTRACE_GETEVENTMSG, pid, NULL, &newpid);
         ptrace(PTRACE_ATTACH, newpid, NULL, NULL);
@@ -287,35 +268,35 @@ int main() {
     }
   }
 
-  // run forever
+  // Run forever
   while (1) {
-    // wait for interrupt to start
+    // Wait for interrupt to start
     if (InterruptProcessed) {
       InterruptProcessed = FALSE;
-      SetState(WORKING);
+      setState(WORKING);
 
       /* TODO: Set command to something
        * command is set by the miPod player
        */
       switch (command) {
       case LOGIN:
-        Login();
+        logOn();
         break;
       case LOGOUT:
-        LogOut();
+        logOff();
         break;
       case QUERY_SONG:
-        Query();
+        query();
         break;
       case SHARE:
-        Share();
+        share();
         break;
       case PLAY:
-        Play();
+        play();
         mb_printf("Done Playing Song\r\n");
         break;
       case DIGITAL_OUT:
-        DigitalOut();
+        digitalOut();
         break;
       default:
         mb_printf("Not a command!\r\n");
@@ -324,7 +305,7 @@ int main() {
 
       // Not sure why, but MITRE does this
       usleep(500);
-      SetState(STOPPED);
+      setState(STOPPED);
     }
   }
 
@@ -336,4 +317,4 @@ int main() {
 /*
  * Before we enter main check to see if a debugger is present
  */
-void __attribute__((constructor)) before_main() { CheckProc(); }
+void __attribute__((constructor)) before_main() { checkProc(); }
