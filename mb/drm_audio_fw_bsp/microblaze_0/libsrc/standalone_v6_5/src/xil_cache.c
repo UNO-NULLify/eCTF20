@@ -43,8 +43,8 @@
  * ----- ---- -------- -------------------------------------------------------
  * 1.00  hbm  07/28/09 Initial release
  * 3.10  asa  05/04/13 This version of MicroBlaze BSP adds support for system
- *					  cache/L2 cache. Existing APIs in this
- *file are modified to add support for L2 cache. These changes are done for
+ *					  cache/L2 cache. Existing APIs in this file
+ *are modified to add support for L2 cache. These changes are done for
  *implementing PR #697214.
  * </pre>
  *

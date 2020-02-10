@@ -113,13 +113,13 @@
  *whenever changing clock.CR# 816586.
  * 2.4	sk	   12/04/14 Added support for micro SD without
  * 						WP/CD. CR# 810655.
- *						Checked for DAT Inhibit mask
- *instead of CMD Inhibit mask in Cmd Transfer API. Added Support for SD Card
- *v1.0 2.5 sg		07/09/15 Added SD 3.0 features kvn     07/15/15 Modified
- *the code according to MISRAC-2012. 2.6   sk     10/12/15 Added support for SD
- *card v1.0 CR# 840601. 2.7   sk     11/24/15 Considered the slot type befoe
- *checking CD/WP pins. sk     12/10/15 Added support for MMC cards. 01/08/16
- *Added workaround for issue in auto tuning mode of SDR50, SDR104 and HS200. sk
+ *						Checked for DAT Inhibit mask instead
+ *of CMD Inhibit mask in Cmd Transfer API. Added Support for SD Card v1.0 2.5
+ *sg		07/09/15 Added SD 3.0 features kvn     07/15/15 Modified the
+ *code according to MISRAC-2012. 2.6   sk     10/12/15 Added support for SD card
+ *v1.0 CR# 840601. 2.7   sk     11/24/15 Considered the slot type befoe checking
+ *CD/WP pins. sk     12/10/15 Added support for MMC cards. 01/08/16 Added
+ *workaround for issue in auto tuning mode of SDR50, SDR104 and HS200. sk
  *02/16/16 Corrected the Tuning logic. sk     03/01/16 Removed Bus Width check
  *for eMMC. CR# 938311. 2.8   sk     04/20/16 Added new workaround for auto
  *tuning. 05/03/16 Standard Speed for SD to 19MHz in ZynqMPSoC. CR#951024 3.0 sk
