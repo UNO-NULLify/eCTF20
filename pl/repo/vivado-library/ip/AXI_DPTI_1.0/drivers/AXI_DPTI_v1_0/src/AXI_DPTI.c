@@ -13,12 +13,10 @@
  * This program is free software; distributed under the terms of BSD 3-clause
  * license ("Revised BSD License", "New BSD License", or "Modified BSD License")
  *
- * Redistribution and use in source and binary forms, with or without
- modification,
+ * Redistribution and use in source and binary forms, with or without modification,
  * are permitted provided that the following conditions are met:
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- this
+ * 1. Redistributions of source code must retain the above copyright notice, this
  *    list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
@@ -30,8 +28,7 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- LIABLE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
@@ -46,8 +43,7 @@
  * MODIFICATION HISTORY:
  *
  * Ver   Who            Date         Changes
- * ----- -------------- ------------
- -----------------------------------------------
+ * ----- -------------- ------------ -----------------------------------------------
  * 1.00  Sergiu Arpadi  2016-Sep-20  First release
  *
  * </pre>
@@ -59,32 +55,38 @@
 #include "xil_io.h"
 
 /************************** Function Definitions ***************************/
-XStatus DPTI_SimpleTransfer(u32 BaseAddress, u8 Direction, u32 TransferLength) {
-  u32 flag_0, flag_16, StsReg;
+XStatus DPTI_SimpleTransfer (u32 BaseAddress, u8 Direction, u32 TransferLength)
+{
+	u32 flag_0, flag_16, StsReg;
 
-  if (TransferLength < 0 || TransferLength > 8388607)
-    return XST_FAILURE; // length is not a valid number
-  else {
-    StsReg = Xil_In32(BaseAddress + STATUS_REG_OFFSET);
-    flag_0 = (StsReg & 0x01);
-    flag_16 = (StsReg >> 0x10) & 0x01;
+	if (TransferLength <0 || TransferLength > 8388607)
+		return XST_FAILURE; // length is not a valid number
+	else
+	{
+		StsReg = Xil_In32 (BaseAddress + STATUS_REG_OFFSET);
+		flag_0 = (StsReg & 0x01);
+		flag_16 = (StsReg >> 0x10 ) & 0x01;
 
-    while (flag_16 == 0 || flag_0 == 0) {
-      StsReg = Xil_In32(BaseAddress + STATUS_REG_OFFSET);
-      flag_0 = (StsReg & 0x01);
-      flag_16 = (StsReg >> 0x10) & 0x01;
-    }
+		while (flag_16 == 0 || flag_0 == 0)
+			{
+				StsReg = Xil_In32 (BaseAddress + STATUS_REG_OFFSET);
+				flag_0 = (StsReg & 0x01);
+				flag_16 = (StsReg >> 0x10 ) & 0x01;
+			}
 
-    if (flag_16 == 1 && flag_0 == 1) {
-      if (Direction == 1)
-        Xil_Out32(BaseAddress + CONTROL_REG_OFFSET, STREAM_TO_DPTI);
+		if (flag_16 == 1 && flag_0 == 1)
+			{
+				if (Direction == 1)
+						Xil_Out32(BaseAddress + CONTROL_REG_OFFSET, STREAM_TO_DPTI);
 
-      if (Direction == 2)
-        Xil_Out32(BaseAddress + CONTROL_REG_OFFSET, DPTI_TO_STREAM);
+				if (Direction == 2)
+						Xil_Out32(BaseAddress + CONTROL_REG_OFFSET, DPTI_TO_STREAM);
 
-      Xil_Out32(BaseAddress + LENGTH_REG_OFFSET, TransferLength);
-    }
-  }
+				Xil_Out32 (BaseAddress + LENGTH_REG_OFFSET, TransferLength);
+			}
 
-  return XST_SUCCESS;
+	}
+
+	return XST_SUCCESS;
+
 }

@@ -1,34 +1,34 @@
 /******************************************************************************
- *
- * Copyright (C) 2010 - 2015 Xilinx, Inc.  All rights reserved.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * Use of the Software is limited solely to applications:
- * (a) running on a Xilinx device, or
- * (b) that interact with a Xilinx device through a bus or interconnect.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * XILINX  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
- * OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- *
- * Except as contained in this notice, the name of the Xilinx shall not be used
- * in advertising or otherwise to promote the sale, use or other dealings in
- * this Software without prior written authorization from Xilinx.
- *
- ******************************************************************************/
+*
+* Copyright (C) 2010 - 2015 Xilinx, Inc.  All rights reserved.
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+* XILINX  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+* WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+* OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+* Except as contained in this notice, the name of the Xilinx shall not be used
+* in advertising or otherwise to promote the sale, use or other dealings in
+* this Software without prior written authorization from Xilinx.
+*
+******************************************************************************/
 /*****************************************************************************/
 /**
 *
@@ -109,8 +109,8 @@
 * </pre>
 *
 ******************************************************************************/
-#ifndef XGPIOPS_H /* prevent circular inclusions */
-#define XGPIOPS_H /* by using protection macros */
+#ifndef XGPIOPS_H		/* prevent circular inclusions */
+#define XGPIOPS_H		/* by using protection macros */
 
 #ifdef __cplusplus
 extern "C" {
@@ -118,9 +118,9 @@ extern "C" {
 
 /***************************** Include Files *********************************/
 
+#include "xstatus.h"
 #include "xgpiops_hw.h"
 #include "xplatform_info.h"
-#include "xstatus.h"
 
 /************************** Constant Definitions *****************************/
 
@@ -129,47 +129,44 @@ extern "C" {
  * The following constants define the interrupt types that can be set for each
  * GPIO pin.
  */
-#define XGPIOPS_IRQ_TYPE_EDGE_RISING 0x00U  /**< Interrupt on Rising edge */
-#define XGPIOPS_IRQ_TYPE_EDGE_FALLING 0x01U /**< Interrupt Falling edge */
-#define XGPIOPS_IRQ_TYPE_EDGE_BOTH 0x02U    /**< Interrupt on both edges */
-#define XGPIOPS_IRQ_TYPE_LEVEL_HIGH 0x03U   /**< Interrupt on high level */
-#define XGPIOPS_IRQ_TYPE_LEVEL_LOW 0x04U    /**< Interrupt on low level */
+#define XGPIOPS_IRQ_TYPE_EDGE_RISING	0x00U  /**< Interrupt on Rising edge */
+#define XGPIOPS_IRQ_TYPE_EDGE_FALLING	0x01U  /**< Interrupt Falling edge */
+#define XGPIOPS_IRQ_TYPE_EDGE_BOTH	0x02U  /**< Interrupt on both edges */
+#define XGPIOPS_IRQ_TYPE_LEVEL_HIGH	0x03U  /**< Interrupt on high level */
+#define XGPIOPS_IRQ_TYPE_LEVEL_LOW	0x04U  /**< Interrupt on low level */
 /*@}*/
 
-#define XGPIOPS_BANK_MAX_PINS (u32)32 /**< Max pins in a GPIO bank */
-#define XGPIOPS_BANK0 0x00U           /**< GPIO Bank 0 */
-#define XGPIOPS_BANK1 0x01U           /**< GPIO Bank 1 */
-#define XGPIOPS_BANK2 0x02U           /**< GPIO Bank 2 */
-#define XGPIOPS_BANK3 0x03U           /**< GPIO Bank 3 */
+#define XGPIOPS_BANK_MAX_PINS		(u32)32 /**< Max pins in a GPIO bank */
+#define XGPIOPS_BANK0			0x00U  /**< GPIO Bank 0 */
+#define XGPIOPS_BANK1			0x01U  /**< GPIO Bank 1 */
+#define XGPIOPS_BANK2			0x02U  /**< GPIO Bank 2 */
+#define XGPIOPS_BANK3			0x03U  /**< GPIO Bank 3 */
 
 #ifdef XPAR_PSU_GPIO_0_BASEADDR
-#define XGPIOPS_BANK4 0x04U /**< GPIO Bank 4 */
-#define XGPIOPS_BANK5 0x05U /**< GPIO Bank 5 */
+#define XGPIOPS_BANK4			0x04U  /**< GPIO Bank 4 */
+#define XGPIOPS_BANK5			0x05U  /**< GPIO Bank 5 */
 #endif
 
-#define XGPIOPS_MAX_BANKS_ZYNQMP                                               \
-  0x06U                         /**< Max banks in a                            \
-                                 *	Zynq Ultrascale+ MP GPIO device             \
-                                 */
-#define XGPIOPS_MAX_BANKS 0x04U /**< Max banks in a Zynq GPIO device */
+#define XGPIOPS_MAX_BANKS_ZYNQMP		0x06U  /**< Max banks in a
+										*	Zynq Ultrascale+ MP GPIO device
+										*/
+#define XGPIOPS_MAX_BANKS		0x04U  /**< Max banks in a Zynq GPIO device */
 
-#define XGPIOPS_DEVICE_MAX_PIN_NUM_ZYNQMP                                      \
-  (u32)174 /**< Max pins in the                                                \
-            *	Zynq Ultrascale+ MP GPIO device                                  \
-            * 0 - 25,  Bank 0                                                  \
-            * 26 - 51, Bank 1                                                  \
-            *	52 - 77, Bank 2                                                  \
-            *	78 - 109, Bank 3                                                 \
-            *	110 - 141, Bank 4                                                \
-            *	142 - 173, Bank 5                                                \
-            */
-#define XGPIOPS_DEVICE_MAX_PIN_NUM                                             \
-  (u32)118 /**< Max pins in the Zynq GPIO device                               \
-            * 0 - 31,  Bank 0                                                  \
-            * 32 - 53, Bank 1                                                  \
-            *	54 - 85, Bank 2                                                  \
-            *	86 - 117, Bank 3                                                 \
-            */
+#define XGPIOPS_DEVICE_MAX_PIN_NUM_ZYNQMP	(u32)174 /**< Max pins in the
+						  *	Zynq Ultrascale+ MP GPIO device
+					      * 0 - 25,  Bank 0
+					      * 26 - 51, Bank 1
+					      *	52 - 77, Bank 2
+					      *	78 - 109, Bank 3
+					      *	110 - 141, Bank 4
+					      *	142 - 173, Bank 5
+					      */
+#define XGPIOPS_DEVICE_MAX_PIN_NUM	(u32)118 /**< Max pins in the Zynq GPIO device
+					      * 0 - 31,  Bank 0
+					      * 32 - 53, Bank 1
+					      *	54 - 85, Bank 2
+					      *	86 - 117, Bank 3
+					      */
 
 /**************************** Type Definitions *******************************/
 
@@ -190,14 +187,14 @@ extern "C" {
  * @param	Status is the Interrupt status of the GPIO bank.
  *
  *****************************************************************************/
-typedef void (*XGpioPs_Handler)(void *CallBackRef, u32 Bank, u32 Status);
+typedef void (*XGpioPs_Handler) (void *CallBackRef, u32 Bank, u32 Status);
 
 /**
  * This typedef contains configuration information for a device.
  */
 typedef struct {
-  u16 DeviceId; /**< Unique ID of device */
-  u32 BaseAddr; /**< Register base address */
+	u16 DeviceId;		/**< Unique ID of device */
+	u32 BaseAddr;		/**< Register base address */
 } XGpioPs_Config;
 
 /**
@@ -206,13 +203,13 @@ typedef struct {
  * to a variable of this type is then passed to the driver API functions.
  */
 typedef struct {
-  XGpioPs_Config GpioConfig; /**< Device configuration */
-  u32 IsReady;               /**< Device is initialized and ready */
-  XGpioPs_Handler Handler;   /**< Status handlers for all banks */
-  void *CallBackRef;         /**< Callback ref for bank handlers */
-  u32 Platform;              /**< Platform data */
-  u32 MaxPinNum;             /**< Max pins in the GPIO device */
-  u8 MaxBanks;               /**< Max banks in a GPIO device */
+	XGpioPs_Config GpioConfig;	/**< Device configuration */
+	u32 IsReady;			/**< Device is initialized and ready */
+	XGpioPs_Handler Handler;	/**< Status handlers for all banks */
+	void *CallBackRef; 		/**< Callback ref for bank handlers */
+	u32 Platform;			/**< Platform data */
+	u32 MaxPinNum;			/**< Max pins in the GPIO device */
+	u8 MaxBanks;			/**< Max banks in a GPIO device */
 } XGpioPs;
 
 /***************** Macros (Inline Functions) Definitions *********************/
@@ -221,7 +218,7 @@ typedef struct {
 
 /* Functions in xgpiops.c */
 s32 XGpioPs_CfgInitialize(XGpioPs *InstancePtr, XGpioPs_Config *ConfigPtr,
-                          u32 EffectiveAddr);
+			   u32 EffectiveAddr);
 
 /* Bank APIs in xgpiops.c */
 u32 XGpioPs_Read(XGpioPs *InstancePtr, u8 Bank);
@@ -230,7 +227,7 @@ void XGpioPs_SetDirection(XGpioPs *InstancePtr, u8 Bank, u32 Direction);
 u32 XGpioPs_GetDirection(XGpioPs *InstancePtr, u8 Bank);
 void XGpioPs_SetOutputEnable(XGpioPs *InstancePtr, u8 Bank, u32 OpEnable);
 u32 XGpioPs_GetOutputEnable(XGpioPs *InstancePtr, u8 Bank);
-void XGpioPs_GetBankPin(u8 PinNumber, u8 *BankNumber, u8 *PinNumberInBank);
+void XGpioPs_GetBankPin(u8 PinNumber,	u8 *BankNumber, u8 *PinNumberInBank);
 
 /* Pin APIs in xgpiops.c */
 u32 XGpioPs_ReadPin(XGpioPs *InstancePtr, u32 Pin);
@@ -251,11 +248,11 @@ u32 XGpioPs_IntrGetEnabled(XGpioPs *InstancePtr, u8 Bank);
 u32 XGpioPs_IntrGetStatus(XGpioPs *InstancePtr, u8 Bank);
 void XGpioPs_IntrClear(XGpioPs *InstancePtr, u8 Bank, u32 Mask);
 void XGpioPs_SetIntrType(XGpioPs *InstancePtr, u8 Bank, u32 IntrType,
-                         u32 IntrPolarity, u32 IntrOnAny);
+			  u32 IntrPolarity, u32 IntrOnAny);
 void XGpioPs_GetIntrType(XGpioPs *InstancePtr, u8 Bank, u32 *IntrType,
-                         u32 *IntrPolarity, u32 *IntrOnAny);
+			  u32 *IntrPolarity, u32 *IntrOnAny);
 void XGpioPs_SetCallbackHandler(XGpioPs *InstancePtr, void *CallBackRef,
-                                XGpioPs_Handler FuncPointer);
+			     XGpioPs_Handler FuncPointer);
 void XGpioPs_IntrHandler(XGpioPs *InstancePtr);
 
 /* Pin APIs in xgpiops_intr.c */

@@ -33,8 +33,8 @@
 /* ------------------------------------------------------------ */
 
 typedef struct PmodTC1 {
-  XSpi TC1Spi;
-  u32 data;
+   XSpi TC1Spi;
+   u32 data;
 } PmodTC1;
 
 void TC1_begin(PmodTC1 *InstancePtr, u32 SPI_Address);

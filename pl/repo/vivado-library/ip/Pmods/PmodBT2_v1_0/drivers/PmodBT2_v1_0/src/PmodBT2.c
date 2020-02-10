@@ -25,7 +25,13 @@
 
 /************************** Function Definitions *************************/
 
-XUartNs550_Config BT2_Config = {0, 0, 0, 0};
+XUartNs550_Config BT2_Config =
+{
+   0,
+   0,
+   0,
+   0
+};
 
 /* ------------------------------------------------------------ */
 /* BT2_begin(PmodBT2 *InstancePtr, u32 GPIO_Address, u32 UART_Address)
@@ -49,19 +55,19 @@ XUartNs550_Config BT2_Config = {0, 0, 0, 0};
 **
 ******************************************************************/
 void BT2_Begin(PmodBT2 *InstancePtr, u32 GPIO_Address, u32 UART_Address,
-               u32 AXI_ClockFreq, u32 Uart_Baud) {
-  BT2_Config.BaseAddress = UART_Address;
-  BT2_Config.InputClockHz = AXI_ClockFreq;
-  BT2_Config.DefaultBaudRate = Uart_Baud;
-  InstancePtr->GpioBaseAddr = GPIO_Address;
-  InstancePtr->AXI_ClockFreq = AXI_ClockFreq;
+      u32 AXI_ClockFreq, u32 Uart_Baud) {
+   BT2_Config.BaseAddress = UART_Address;
+   BT2_Config.InputClockHz = AXI_ClockFreq;
+   BT2_Config.DefaultBaudRate = Uart_Baud;
+   InstancePtr->GpioBaseAddr = GPIO_Address;
+   InstancePtr->AXI_ClockFreq = AXI_ClockFreq;
 
-  Xil_Out32(InstancePtr->GpioBaseAddr + 4, 0x1);
-  Xil_Out32(InstancePtr->GpioBaseAddr, 0x0); // set CTS to 0
+   Xil_Out32(InstancePtr->GpioBaseAddr + 4, 0x1);
+   Xil_Out32(InstancePtr->GpioBaseAddr, 0x0); // set CTS to 0
 
-  XUartNs550_CfgInitialize(&InstancePtr->Uart, &BT2_Config,
-                           BT2_Config.BaseAddress);
-  XUartNs550_SetOptions(&InstancePtr->Uart, XUN_OPTION_FIFOS_ENABLE);
+   XUartNs550_CfgInitialize(&InstancePtr->Uart, &BT2_Config,
+         BT2_Config.BaseAddress);
+   XUartNs550_SetOptions(&InstancePtr->Uart, XUN_OPTION_FIFOS_ENABLE);
 }
 
 /* ------------------------------------------------------------ */
@@ -83,7 +89,7 @@ void BT2_Begin(PmodBT2 *InstancePtr, u32 GPIO_Address, u32 UART_Address,
 **
 ******************************************************************/
 int BT2_RecvData(PmodBT2 *InstancePtr, u8 *Data, int nData) {
-  return XUartNs550_Recv(&InstancePtr->Uart, Data, nData);
+   return XUartNs550_Recv(&InstancePtr->Uart, Data, nData);
 }
 
 /* ------------------------------------------------------------ */
@@ -105,7 +111,7 @@ int BT2_RecvData(PmodBT2 *InstancePtr, u8 *Data, int nData) {
 **
 ******************************************************************/
 int BT2_SendData(PmodBT2 *InstancePtr, u8 *Data, int nData) {
-  return XUartNs550_Send(&InstancePtr->Uart, Data, nData);
+   return XUartNs550_Send(&InstancePtr->Uart, Data, nData);
 }
 
 /* ------------------------------------------------------------ */
@@ -126,6 +132,6 @@ int BT2_SendData(PmodBT2 *InstancePtr, u8 *Data, int nData) {
 **
 ******************************************************************/
 void BT2_ChangeBaud(PmodBT2 *InstancePtr, int baud) {
-  XUartNs550_SetBaud(InstancePtr->Uart.BaseAddress, InstancePtr->AXI_ClockFreq,
-                     baud);
+   XUartNs550_SetBaud(InstancePtr->Uart.BaseAddress, InstancePtr->AXI_ClockFreq,
+         baud);
 }

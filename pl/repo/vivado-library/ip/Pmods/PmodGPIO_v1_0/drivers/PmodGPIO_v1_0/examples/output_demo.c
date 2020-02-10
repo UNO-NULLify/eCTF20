@@ -41,48 +41,50 @@ void EnableCaches();
 void DisableCaches();
 
 int main() {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
-  return 0;
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
+   return 0;
 }
 
 void DemoInitialize() {
-  EnableCaches();
-  GPIO_begin(&myDevice, XPAR_PMODGPIO_0_AXI_LITE_GPIO_BASEADDR, 0x00);
+   EnableCaches();
+   GPIO_begin(&myDevice, XPAR_PMODGPIO_0_AXI_LITE_GPIO_BASEADDR, 0x00);
 }
 
 void DemoRun() {
-  u8 count = 0;
-  int i = 0;
+   u8 count = 0;
+   int i = 0;
 
-  xil_printf("GPIO Output Demo\n\r");
-  while (1) {
-    GPIO_setPin(&myDevice, count, 1);
-    if (count >= 8) {
-      count = 0;
-      for (i = 0; i < 4; i++) {
-        GPIO_setPins(&myDevice, 0xFF);
-        usleep(300000);
-        GPIO_setPins(&myDevice, 0x00);
-        usleep(300000);
+   xil_printf("GPIO Output Demo\n\r");
+   while (1) {
+      GPIO_setPin(&myDevice, count, 1);
+      if (count >= 8) {
+         count = 0;
+         for (i = 0; i < 4; i++) {
+            GPIO_setPins(&myDevice, 0xFF);
+            usleep(300000);
+            GPIO_setPins(&myDevice, 0x00);
+            usleep(300000);
+         }
+      } else {
+         count++;
       }
-    } else {
-      count++;
-    }
-    usleep(200000);
-  }
+      usleep(200000);
+   }
 }
 
-void DemoCleanup() { DisableCaches(); }
+void DemoCleanup() {
+   DisableCaches();
+}
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -90,10 +92,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

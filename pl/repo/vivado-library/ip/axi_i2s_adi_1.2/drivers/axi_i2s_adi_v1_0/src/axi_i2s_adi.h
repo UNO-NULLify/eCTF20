@@ -2,6 +2,7 @@
 #ifndef AXI_I2S_ADI_H
 #define AXI_I2S_ADI_H
 
+
 /****************** Include Files ********************/
 #include "xil_types.h"
 #include "xstatus.h"
@@ -19,6 +20,7 @@
 #define AXI_I2S_ADI_S00_AXI_SLV_REG10_OFFSET 40
 #define AXI_I2S_ADI_S00_AXI_SLV_REG11_OFFSET 44
 
+
 /**************************** Type Definitions *****************************/
 /**
  *
@@ -34,12 +36,11 @@
  *
  * @note
  * C-style signature:
- * 	void AXI_I2S_ADI_mWriteReg(u32 BaseAddress, unsigned RegOffset, u32
- * Data)
+ * 	void AXI_I2S_ADI_mWriteReg(u32 BaseAddress, unsigned RegOffset, u32 Data)
  *
  */
-#define AXI_I2S_ADI_mWriteReg(BaseAddress, RegOffset, Data)                    \
-  Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
+#define AXI_I2S_ADI_mWriteReg(BaseAddress, RegOffset, Data) \
+  	Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
 
 /**
  *
@@ -58,8 +59,8 @@
  * 	u32 AXI_I2S_ADI_mReadReg(u32 BaseAddress, unsigned RegOffset)
  *
  */
-#define AXI_I2S_ADI_mReadReg(BaseAddress, RegOffset)                           \
-  Xil_In32((BaseAddress) + (RegOffset))
+#define AXI_I2S_ADI_mReadReg(BaseAddress, RegOffset) \
+    Xil_In32((BaseAddress) + (RegOffset))
 
 /************************** Function Prototypes ****************************/
 /**
@@ -70,8 +71,7 @@
  * If the hardware system is not built correctly, this function may never
  * return to the caller.
  *
- * @param   baseaddr_p is the base address of the AXI_I2S_ADI instance to be
- * worked on.
+ * @param   baseaddr_p is the base address of the AXI_I2S_ADI instance to be worked on.
  *
  * @return
  *
@@ -79,10 +79,9 @@
  *    - XST_FAILURE   if any self-test code failed
  *
  * @note    Caching must be turned off for this function to work.
- * @note    Self test may fail if data memory and device are not on the same
- * bus.
+ * @note    Self test may fail if data memory and device are not on the same bus.
  *
  */
-XStatus AXI_I2S_ADI_Reg_SelfTest(void *baseaddr_p);
+XStatus AXI_I2S_ADI_Reg_SelfTest(void * baseaddr_p);
 
 #endif // AXI_I2S_ADI_H

@@ -44,36 +44,38 @@ void DisableCaches();
 PmodALS ALS;
 
 int main(void) {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
-  return 0;
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
+   return 0;
 }
 
 void DemoInitialize() {
-  EnableCaches();
-  ALS_begin(&ALS, XPAR_PMODALS_0_AXI_LITE_SPI_BASEADDR);
+   EnableCaches();
+   ALS_begin(&ALS, XPAR_PMODALS_0_AXI_LITE_SPI_BASEADDR);
 }
 
 void DemoRun() {
-  u8 light = 0;
+   u8 light = 0;
 
-  while (1) {
-    light = ALS_read(&ALS);
-    xil_printf("Light = %d\n\r", light);
-    usleep(100000);
-  }
+   while (1) {
+      light = ALS_read(&ALS);
+      xil_printf("Light = %d\n\r", light);
+      usleep(100000);
+   }
 }
 
-void DemoCleanup() { DisableCaches(); }
+void DemoCleanup() {
+   DisableCaches();
+}
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -81,10 +83,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }
