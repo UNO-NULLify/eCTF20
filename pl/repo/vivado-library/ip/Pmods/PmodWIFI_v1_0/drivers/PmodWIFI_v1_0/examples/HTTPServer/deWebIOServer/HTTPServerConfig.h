@@ -109,8 +109,8 @@ static IPv4 ipMyStatic = {0, 0, 0, 0}; // a place to calculate our static IP
 // to 192.168.1.(localStaticIP) for example if localStaticIP == 190; your final
 // IP address would be 192.168.1.190 assuming the subnet address of 192.168.1.x
 // static byte localStaticIP = 10;   // this will be the gateway IP with the
-// last octet of the IP being 195 static byte localStaticIP = 205;   // this
-// will be the gateway IP with the last octet of the IP being 195 static byte
+// last octet of the IP being 195 static byte localStaticIP = 205;   // this will
+// be the gateway IP with the last octet of the IP being 195 static byte
 // localStaticIP = 201;   // this will be the gateway IP with the last octet of
 // the IP being 195 static byte localStaticIP = 235;   // this will be the
 // gateway IP with the last octet of the IP being 195

@@ -301,33 +301,31 @@ extern "C" {
 */
 /************************ IIC statuses 1076 - 1100 ***************************/
 
-#define XST_IIC_SELFTEST_FAILED 1076       /*!< self test failed            */
-#define XST_IIC_BUS_BUSY 1077              /*!< bus found busy              */
-#define XST_IIC_GENERAL_CALL_ADDRESS 1078  /*!< mastersend attempted with   */
-                                           /* general call address        */
-#define XST_IIC_STAND_REG_RESET_ERROR 1079 /*!< A non parameterizable reg   */
-                                           /* value after reset not valid */
-#define XST_IIC_TX_FIFO_REG_RESET_ERROR                                        \
-  1080 /*!< Tx fifo included in design                                         \
-        */
-       /* value after reset not valid */
-#define XST_IIC_RX_FIFO_REG_RESET_ERROR                                        \
-  1081                                   /*!< Rx fifo included in design       \
-                                          */
-                                         /* value after reset not valid */
-#define XST_IIC_TBA_REG_RESET_ERROR 1082 /*!< 10 bit addr incl in design  */
-                                         /* value after reset not valid */
-#define XST_IIC_CR_READBACK_ERROR 1083   /*!< Read of the control register */
-                                         /* didn't return value written */
-#define XST_IIC_DTR_READBACK_ERROR 1084  /*!< Read of the data Tx reg     */
-                                         /* didn't return value written */
-#define XST_IIC_DRR_READBACK_ERROR 1085  /*!< Read of the data Receive reg */
-                                         /* didn't return value written */
-#define XST_IIC_ADR_READBACK_ERROR 1086  /*!< Read of the data Tx reg     */
-                                         /* didn't return value written */
-#define XST_IIC_TBA_READBACK_ERROR 1087  /*!< Read of the 10 bit addr reg */
-                                         /* didn't return written value */
-#define XST_IIC_NOT_SLAVE 1088           /*!< The device isn't a slave    */
+#define XST_IIC_SELFTEST_FAILED 1076         /*!< self test failed            */
+#define XST_IIC_BUS_BUSY 1077                /*!< bus found busy              */
+#define XST_IIC_GENERAL_CALL_ADDRESS 1078    /*!< mastersend attempted with   */
+                                             /* general call address        */
+#define XST_IIC_STAND_REG_RESET_ERROR 1079   /*!< A non parameterizable reg   */
+                                             /* value after reset not valid */
+#define XST_IIC_TX_FIFO_REG_RESET_ERROR 1080 /*!< Tx fifo included in design   \
+                                              */
+                                             /* value after reset not valid */
+#define XST_IIC_RX_FIFO_REG_RESET_ERROR 1081 /*!< Rx fifo included in design   \
+                                              */
+                                             /* value after reset not valid */
+#define XST_IIC_TBA_REG_RESET_ERROR 1082     /*!< 10 bit addr incl in design  */
+                                             /* value after reset not valid */
+#define XST_IIC_CR_READBACK_ERROR 1083  /*!< Read of the control register */
+                                        /* didn't return value written */
+#define XST_IIC_DTR_READBACK_ERROR 1084 /*!< Read of the data Tx reg     */
+                                        /* didn't return value written */
+#define XST_IIC_DRR_READBACK_ERROR 1085 /*!< Read of the data Receive reg */
+                                        /* didn't return value written */
+#define XST_IIC_ADR_READBACK_ERROR 1086 /*!< Read of the data Tx reg     */
+                                        /* didn't return value written */
+#define XST_IIC_TBA_READBACK_ERROR 1087 /*!< Read of the 10 bit addr reg */
+                                        /* didn't return written value */
+#define XST_IIC_NOT_SLAVE 1088          /*!< The device isn't a slave    */
 /** @} */
 /**
 @name ATMC Status Codes 1101 - 1125
@@ -387,24 +385,22 @@ extern "C" {
 */
 /*********************** SPI statuses 1151 - 1175 ****************************/
 
-#define XST_SPI_MODE_FAULT 1151    /*!< master was selected as slave */
-#define XST_SPI_TRANSFER_DONE 1152 /*!< data transfer is complete */
-#define XST_SPI_TRANSMIT_UNDERRUN                                              \
-  1153                               /*!< slave underruns transmit register    \
-                                      */
-#define XST_SPI_RECEIVE_OVERRUN 1154 /*!< device overruns receive register */
-#define XST_SPI_NO_SLAVE 1155        /*!< no slave has been selected yet */
+#define XST_SPI_MODE_FAULT 1151        /*!< master was selected as slave */
+#define XST_SPI_TRANSFER_DONE 1152     /*!< data transfer is complete */
+#define XST_SPI_TRANSMIT_UNDERRUN 1153 /*!< slave underruns transmit register  \
+                                        */
+#define XST_SPI_RECEIVE_OVERRUN 1154   /*!< device overruns receive register */
+#define XST_SPI_NO_SLAVE 1155          /*!< no slave has been selected yet */
 #define XST_SPI_TOO_MANY_SLAVES                                                \
   1156                          /*!< more than one slave is being              \
                                  * selected */
 #define XST_SPI_NOT_MASTER 1157 /*!< operation is valid only as master */
 #define XST_SPI_SLAVE_ONLY                                                     \
-  1158 /*!< device is configured as slave-only                                 \
-        */
-#define XST_SPI_SLAVE_MODE_FAULT                                               \
-  1159                          /*!< slave was selected while disabled         \
-                                 */
-#define XST_SPI_SLAVE_MODE 1160 /*!< device has been addressed as slave */
+  1158                                /*!< device is configured as slave-only  \
+                                       */
+#define XST_SPI_SLAVE_MODE_FAULT 1159 /*!< slave was selected while disabled   \
+                                       */
+#define XST_SPI_SLAVE_MODE 1160       /*!< device has been addressed as slave */
 #define XST_SPI_RECEIVE_NOT_EMPTY                                              \
   1161 /*!< device received data in slave mode */
 

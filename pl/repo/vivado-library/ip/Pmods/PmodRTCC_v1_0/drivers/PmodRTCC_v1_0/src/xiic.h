@@ -361,8 +361,7 @@ extern "C" {
  */
 #define XII_BUS_NOT_BUSY_EVENT 0x00000001 /**< Bus transitioned to not busy */
 #define XII_ARB_LOST_EVENT 0x00000002     /**< Arbitration was lost */
-#define XII_SLAVE_NO_ACK_EVENT                                                 \
-  0x00000004                              /**< Slave did not ACK (had error)   \
+#define XII_SLAVE_NO_ACK_EVENT 0x00000004 /**< Slave did not ACK (had error)   \
                                            */
 #define XII_MASTER_READ_EVENT 0x00000008  /**< Master reading from slave */
 #define XII_MASTER_WRITE_EVENT 0x00000010 /**< Master writing to slave */

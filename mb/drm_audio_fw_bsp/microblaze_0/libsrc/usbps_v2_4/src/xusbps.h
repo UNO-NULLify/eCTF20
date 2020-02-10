@@ -281,9 +281,8 @@ extern "C" {
  *
  * @{
  */
-#define XUSBPS_DEFAULT_ALT_SETTING                                             \
-  0 /**< The default alternate setting is 0                                    \
-     */
+#define XUSBPS_DEFAULT_ALT_SETTING 0 /**< The default alternate setting is 0   \
+                                      */
 /* @} */
 
 /**

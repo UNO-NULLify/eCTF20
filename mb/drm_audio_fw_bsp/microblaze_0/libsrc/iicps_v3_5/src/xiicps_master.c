@@ -59,9 +59,9 @@
  *sending. Replaced XIICPS_DATA_INTR_DEPTH with XIICPS_FIFO_DEPTH. Repeated
  *start feature removed. 3.0	sk	 12/06/14 Implemented Repeated start
  *feature. 01/31/15 Modified the code according to MISRAC 2012 Compliant.
- *			 02/18/15 Implemented larger data transfer using
- *repeated start in Zynq UltraScale MP. 3.3   kvn 05/05/16 Modified latest code
- *for MISRA-C:2012 Compliance.
+ *			 02/18/15 Implemented larger data transfer using repeated
+ *start in Zynq UltraScale MP. 3.3   kvn 05/05/16 Modified latest code for
+ *MISRA-C:2012 Compliance.
  *
  * </pre>
  *

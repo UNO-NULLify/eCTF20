@@ -747,7 +747,8 @@ uint16_t RawMove(uint16_t rawId, uint16_t srcDest, bool rawIsDestination,
 
   // enable interrupts so we get raw move complete interrupt
   WF_EintEnable();
-  byteCount = WaitForRawMoveComplete(rawId); /* wait for raw move to complete */
+  byteCount =
+      WaitForRawMoveComplete(rawId); /* wait for raw move to complete */
 
   // if interrupts were disabled coming into this function, put back to that
   // state

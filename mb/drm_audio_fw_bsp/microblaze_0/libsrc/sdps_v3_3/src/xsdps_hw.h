@@ -463,15 +463,14 @@ extern "C" {
   0x0000003FU /**< Timeout clock freq                                          \
                   select */
 #define XSDPS_CAP_TOUT_CLK_UNIT_MASK                                           \
-  0x00000080U                                  /**< Timeout clock unit -       \
-                                                   MHz/KHz */
-#define XSDPS_CAP_MAX_BLK_LEN_MASK 0x00030000U /**< Max block length */
-#define XSDPS_CAP_MAX_BLK_LEN_512B_MASK                                        \
-  0x00000000U                                     /**< Max block 512 bytes     \
-                                                   */
-#define XSDPS_CAP_MAX_BL_LN_1024_MASK 0x00010000U /**< Max block 1024 bytes */
-#define XSDPS_CAP_MAX_BL_LN_2048_MASK 0x00020000U /**< Max block 2048 bytes */
-#define XSDPS_CAP_MAX_BL_LN_4096_MASK 0x00030000U /**< Max block 4096 bytes */
+  0x00000080U                                       /**< Timeout clock unit -  \
+                                                        MHz/KHz */
+#define XSDPS_CAP_MAX_BLK_LEN_MASK 0x00030000U      /**< Max block length */
+#define XSDPS_CAP_MAX_BLK_LEN_512B_MASK 0x00000000U /**< Max block 512 bytes   \
+                                                     */
+#define XSDPS_CAP_MAX_BL_LN_1024_MASK 0x00010000U   /**< Max block 1024 bytes */
+#define XSDPS_CAP_MAX_BL_LN_2048_MASK 0x00020000U   /**< Max block 2048 bytes */
+#define XSDPS_CAP_MAX_BL_LN_4096_MASK 0x00030000U   /**< Max block 4096 bytes */
 
 #define XSDPS_CAP_EXT_MEDIA_BUS_MASK 0x00040000U /**< Extended media bus */
 #define XSDPS_CAP_ADMA2_MASK 0x00080000U         /**< ADMA2 support */
@@ -930,13 +929,11 @@ extern "C" {
 #define EXT_CSD_HS_TIMING_HS200 2U /* Card is in HS200 mode */
 
 #define EXT_CSD_RST_N_FUN_BYTE 162U
-#define EXT_CSD_RST_N_FUN_TEMP_DIS                                             \
-  0U                                 /* RST_n signal is temporarily disabled   \
-                                      */
-#define EXT_CSD_RST_N_FUN_PERM_EN 1U /* RST_n signal is permanently enabled */
-#define EXT_CSD_RST_N_FUN_PERM_DIS                                             \
-  2U /* RST_n signal is permanently disabled                                   \
-      */
+#define EXT_CSD_RST_N_FUN_TEMP_DIS 0U /* RST_n signal is temporarily disabled  \
+                                       */
+#define EXT_CSD_RST_N_FUN_PERM_EN 1U  /* RST_n signal is permanently enabled */
+#define EXT_CSD_RST_N_FUN_PERM_DIS 2U /* RST_n signal is permanently disabled  \
+                                       */
 
 #define XSDPS_EXT_CSD_CMD_SET 0U
 #define XSDPS_EXT_CSD_SET_BITS 1U

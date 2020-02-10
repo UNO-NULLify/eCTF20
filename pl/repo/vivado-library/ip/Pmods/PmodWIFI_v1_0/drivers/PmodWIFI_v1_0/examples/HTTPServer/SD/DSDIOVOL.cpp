@@ -67,9 +67,9 @@
  * 2.2   hk   07/28/14 Make changes to enable use of data cache.
  * 3.0	sk	 12/04/14 Added support for micro SD without
  * 					  WP/CD. CR# 810655.
- *					  Make changes for prototypes of
- *disk_read and disk_write according to latest version. 12/15/14 Modified the
- *code according to MISRAC 2012 Compliant. Updated the FatFs to R0.10b Removed
+ *					  Make changes for prototypes of disk_read
+ *and disk_write according to latest version. 12/15/14 Modified the code
+ *according to MISRAC 2012 Compliant. Updated the FatFs to R0.10b Removed
  *alignment for local buffers as CacheInvalidate will take care of it. sg
  *03/03/15 Added card detection check logic 04/28/15 Card detection only in case
  *of card detection signal 3.1   sk   06/04/15 Added support for SD1. 3.2   sk

@@ -688,74 +688,73 @@ bool DEIPcK::udpSetEndPoint(const IPv4 &remoteIP, uint16_t remotePort,
 }
 
 /***	bool TCPSocket::connect(const char *szRemoteHostName, unsigned short
- *remotePort)
- **      bool TCPSocket::connect(const IPv4& remoteIP, unsigned short
- *remotePort)
- **      bool TCPSocket::connect(const IPEndPoint& epRemote)
- **      bool TCPSocket::connect(const IPv4& remoteIP, unsigned short
- *remotePort, DEIPcK::STATUS * pStatus)
- **      bool TCPSocket::connect(const char *szRemoteHostName, unsigned short
- *remotePort, DEIPcK::STATUS * pStatus)
- **      bool TCPSocket::connect(const IPEndPoint& epRemote, DEIPcK::STATUS *
- *pStatus)
- **
- **
- **	Synopsis:
- **      Starts the connection process to connect a TCPSocket to a remote host.
- **      In itself, this does not "finish" the connection, to determine if the
- **      connection has successfully been made, IsConnected should be called.
- **
- **	Parameters:
- **      szRemoteHostName    A pointer to a zero terminated string holding the
- *hostname of the remote endpoint
- **                              to connect to. This will call the underlying
- *DNS service to resolve the hostname
- **                              to an IPv4 address. If no DNS servers were
- *specified or DHCP was not used to
- **                              intialize DEIPcK, then the DNS lookup will
- *fail. The hostname string must be valid
- **                              until IsConnected succeeds, or a hard failure
- *status is returned.
- **                              IsStatusAnError can be used to identify a hard
- *failure status
- **
- **      remotePort          The port on the remote machine you want to connect
- *too.
- **
- **      remoteIP            The IPv4 address of the remote machine you want to
- *connect to. This will
- **                          call the underlying APR service to resolve the IP
- *address to a MAC.
- **
- **      epRemote            A IPEndPoint containing the remote IPv4 address and
- *remote port to connect to. This will
- **                          call the underlying APR service to resolve the IP
- *address to a MAC.
- **
- **      pStatus             A pointer to receive the connect status. This is a
- *status and may not be a failure.
- **                          Use IsStatusAnError to determine if this is a hard
- *failure.
- **
- **
- **	Return Values:
- **      true                This will return true if a socket was allocated for
- *the connection. It does not mean
- **                          the connection was made, call IsConnected to see if
- *the connection process is done.
- **
- **      false               A socket was not defined, false usually indicates a
- *hard failure.
- **
- **	Errors:
- **      None
- **
- **  Notes:
- **
- **      Call IsConnected to determine if the connection has been completed, or
- *was lost.
- **
- */
+*remotePort)
+**      bool TCPSocket::connect(const IPv4& remoteIP, unsigned short remotePort)
+**      bool TCPSocket::connect(const IPEndPoint& epRemote)
+**      bool TCPSocket::connect(const IPv4& remoteIP, unsigned short remotePort,
+*DEIPcK::STATUS * pStatus)
+**      bool TCPSocket::connect(const char *szRemoteHostName, unsigned short
+*remotePort, DEIPcK::STATUS * pStatus)
+**      bool TCPSocket::connect(const IPEndPoint& epRemote, DEIPcK::STATUS *
+*pStatus)
+**
+**
+**	Synopsis:
+**      Starts the connection process to connect a TCPSocket to a remote host.
+**      In itself, this does not "finish" the connection, to determine if the
+**      connection has successfully been made, IsConnected should be called.
+**
+**	Parameters:
+**      szRemoteHostName    A pointer to a zero terminated string holding the
+*hostname of the remote endpoint
+**                              to connect to. This will call the underlying DNS
+*service to resolve the hostname
+**                              to an IPv4 address. If no DNS servers were
+*specified or DHCP was not used to
+**                              intialize DEIPcK, then the DNS lookup will fail.
+*The hostname string must be valid
+**                              until IsConnected succeeds, or a hard failure
+*status is returned.
+**                              IsStatusAnError can be used to identify a hard
+*failure status
+**
+**      remotePort          The port on the remote machine you want to connect
+*too.
+**
+**      remoteIP            The IPv4 address of the remote machine you want to
+*connect to. This will
+**                          call the underlying APR service to resolve the IP
+*address to a MAC.
+**
+**      epRemote            A IPEndPoint containing the remote IPv4 address and
+*remote port to connect to. This will
+**                          call the underlying APR service to resolve the IP
+*address to a MAC.
+**
+**      pStatus             A pointer to receive the connect status. This is a
+*status and may not be a failure.
+**                          Use IsStatusAnError to determine if this is a hard
+*failure.
+**
+**
+**	Return Values:
+**      true                This will return true if a socket was allocated for
+*the connection. It does not mean
+**                          the connection was made, call IsConnected to see if
+*the connection process is done.
+**
+**      false               A socket was not defined, false usually indicates a
+*hard failure.
+**
+**	Errors:
+**      None
+**
+**  Notes:
+**
+**      Call IsConnected to determine if the connection has been completed, or
+*was lost.
+**
+*/
 bool DEIPcK::tcpConnect(const char *szRemoteHostName, uint16_t remotePort,
                         TCPSocket &tcpSocket, uint16_t localPort,
                         IPSTATUS *pStatus) {

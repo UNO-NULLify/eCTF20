@@ -882,14 +882,13 @@ bool MTFS::RenameFile(char *szOld, char *szNew) {
   }
 
   /* Send the command packet to set the old file file name. The command
-   *processing
-   ** model only supports sending one data packet with to pass parameter
-   *information
-   ** with a command, the SetFName command causes the old name to be stored
-   ** temporarily on the display device until the rename command is sent with
-   *the
-   ** new name.
-   */
+  *processing
+  ** model only supports sending one data packet with to pass parameter
+  *information
+  ** with a command, the SetFName command causes the old name to be stored
+  ** temporarily on the display device until the rename command is sent with the
+  ** new name.
+  */
   prm.valB1 = strlen(szOld) + 1;
   mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetFname, sizeof(prm), (uint8_t *)&prm,
                         prm.valB1, (uint8_t *)szOld);
@@ -1127,9 +1126,9 @@ int MTFS::Ferr(HFIL fh) {
    */
   if (prhdrMtdsRet->sta != staCmdSuccess) {
     /* Note: in the case that the command failed, we return -1, which is
-     *different
-     ** than any error code.
-     */
+    *different
+    ** than any error code.
+    */
     return -1;
   }
 

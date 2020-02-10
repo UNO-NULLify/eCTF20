@@ -140,9 +140,8 @@ extern "C" {
 #define XAXIDMA_SGCTL_OFFSET 0x0000002c   /**< SG Control Register */
 
 /** Multi-Channel DMA Descriptor Offsets **/
-#define XAXIDMA_RX_CDESC0_OFFSET 0x00000040 /**< Rx Current Descriptor 0 */
-#define XAXIDMA_RX_CDESC0_MSB_OFFSET                                           \
-  0x00000044                                    /**< Rx Current Descriptor 0   \
+#define XAXIDMA_RX_CDESC0_OFFSET 0x00000040     /**< Rx Current Descriptor 0 */
+#define XAXIDMA_RX_CDESC0_MSB_OFFSET 0x00000044 /**< Rx Current Descriptor 0   \
                                                  */
 #define XAXIDMA_RX_TDESC0_OFFSET 0x00000048     /**< Rx Tail Descriptor 0 */
 #define XAXIDMA_RX_TDESC0_MSB_OFFSET 0x0000004C /**< Rx Tail Descriptor 0 */

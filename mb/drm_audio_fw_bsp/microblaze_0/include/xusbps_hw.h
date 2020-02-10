@@ -116,12 +116,11 @@ extern "C" {
  * Those registers don't have tags.
  * @{
  */
-#define XUSBPS_CMD_OFFSET 0x00000140   /**< Configuration */
-#define XUSBPS_ISR_OFFSET 0x00000144   /**< Interrupt Status */
-#define XUSBPS_IER_OFFSET 0x00000148   /**< Interrupt Enable */
-#define XUSBPS_FRAME_OFFSET 0x0000014C /**< USB Frame Index */
-#define XUSBPS_LISTBASE_OFFSET                                                 \
-  0x00000154                                /**< H: Periodic List Base Address \
+#define XUSBPS_CMD_OFFSET 0x00000140        /**< Configuration */
+#define XUSBPS_ISR_OFFSET 0x00000144        /**< Interrupt Status */
+#define XUSBPS_IER_OFFSET 0x00000148        /**< Interrupt Enable */
+#define XUSBPS_FRAME_OFFSET 0x0000014C      /**< USB Frame Index */
+#define XUSBPS_LISTBASE_OFFSET 0x00000154   /**< H: Periodic List Base Address \
                                              */
 #define XUSBPS_DEVICEADDR_OFFSET 0x00000154 /**< D: Device Address */
 #define XUSBPS_ASYNCLISTADDR_OFFSET 0x00000158 /**< H: Async List Address */
@@ -284,10 +283,9 @@ extern "C" {
 #define XUSBPS_MODE_CM_IDLE_MASK 0x00000000
 #define XUSBPS_MODE_CM_DEVICE_MASK 0x00000002
 #define XUSBPS_MODE_CM_HOST_MASK 0x00000003
-#define XUSBPS_MODE_ES_MASK 0x00000004 /**< USB Endian Select */
-#define XUSBPS_MODE_SLOM_MASK                                                  \
-  0x00000008 /**< USB Setup Lockout Mode Disable                               \
-              */
+#define XUSBPS_MODE_ES_MASK 0x00000004   /**< USB Endian Select */
+#define XUSBPS_MODE_SLOM_MASK 0x00000008 /**< USB Setup Lockout Mode Disable   \
+                                          */
 #define XUSBPS_MODE_SDIS_MASK 0x00000010
 #define XUSBPS_MODE_VALID_MASK 0x0000001F
 
@@ -363,9 +361,8 @@ extern "C" {
 #define XUSBPS_PORTSCR_PTC_MASK 0x000F0000  /**< Port Test Control */
 #define XUSBPS_PORTSCR_WKCN_MASK 0x00100000 /**< Wake on Connect Enable */
 #define XUSBPS_PORTSCR_WKDS_MASK 0x00200000 /**< Wake on Disconnect Enable */
-#define XUSBPS_PORTSCR_WKOC_MASK                                               \
-  0x00400000 /**< Wake on Over-current Enable                                  \
-              */
+#define XUSBPS_PORTSCR_WKOC_MASK 0x00400000 /**< Wake on Over-current Enable   \
+                                             */
 #define XUSBPS_PORTSCR_PHCD_MASK                                               \
   0x00800000 /**< PHY Low Power Suspend -                                      \
               * Clock Disable */
@@ -400,8 +397,7 @@ extern "C" {
   0x00000200 /**< USB A VBus Valid Interrupt Status Flag */
 #define XUSBPS_OTGSC_ASV_MASK                                                  \
   0x00000400 /**< USB A Session Valid Interrupt Status Flag */
-#define XUSBPS_OTGSC_BSV_MASK                                                  \
-  0x00000800                             /**< USB B Session Valid Status Flag  \
+#define XUSBPS_OTGSC_BSV_MASK 0x00000800 /**< USB B Session Valid Status Flag  \
                                           */
 #define XUSBPS_OTGSC_BSE_MASK 0x00001000 /**< USB B Session End Status Flag */
 #define XUSBPS_OTGSC_1MST_MASK                                                 \

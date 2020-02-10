@@ -1,7 +1,6 @@
 /********************************************************************************/
 /*																				*/
-/*	MyDisp.h	--	Simple User Library for Multi-Touch Display
- * Shield
+/*	MyDisp.h	--	Simple User Library for Multi-Touch Display Shield
  */
 /*																				*/
 /********************************************************************************/

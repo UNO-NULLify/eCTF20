@@ -93,11 +93,11 @@
 //#define RTO(srtt) (min(RTOUBOUND, (max(RTOLBOUND, (2 * (srtt))))))
 // RFC 793 3.7; RTO = min[UBOUND, max[LBOUND, (BETA*SRTT)]];
 //#define RTOLBOUND   250                         // RFC 793 3.7 suggests a
-// lower retransmit timeout (RTO) of 1 second but RFC 1122 4.2.3.1. says
-// fraction of secs. #define RTOUBOUND   240000                      // RFC
-// 793 3.7 suggests an upper retransmit timeout (RTO) of 1 min. but RFC
-// 1122 4.2.3.1 says 240sec #define SRTTINIT    3000                        //
-// RFC 1122 4.2.3.1 says 3 seconds for SRTT
+//lower retransmit timeout (RTO) of 1 second but RFC 1122 4.2.3.1. says fraction
+//of secs. #define RTOUBOUND   240000                      // RFC 793 3.7
+//suggests an upper retransmit timeout (RTO) of 1 min. but RFC 1122 4.2.3.1 says
+//240sec #define SRTTINIT    3000                        // RFC 1122 4.2.3.1
+//says 3 seconds for SRTT
 // RFC 973 3.7 says ALPHA .8 - .9
 // we pick .875 which is (1-1/8) (Karn's and Jacobson)
 // the equation is SRTT = (ALPHA * SRTT) + ((1-ALPHA) *RTT)

@@ -255,53 +255,53 @@ UDPSocket *UDPServer::acceptClient(int index) {
 }
 
 /***	bool UDPServer::getAvailableClientsRemoteEndPoint(IPEndPoint *pRemoteEP,
- *int index)
- **      bool UDPServer::getAvailableClientsRemoteEndPoint(IPEndPoint
- **pRemoteEP, MAC * pRemoteMAC, int index)
- **
- **	Synopsis:
- **      Returns endpoint information about a UDPSocket waiting to be accepted.
- **
- **	Parameters:
- **      pRemoteEP  A pointer to an IPEndPoint to receive the remote endpoint
- *information for the client
- **                  waiting to be accepted. This may be NULL if you don't want
- *the info
- **
- **      pRemoteMAC  A pointer to a MAC to receive the remote MAC address of the
- *client waiting to be accepted.
- **                      This will be the MAC address as known by ARP and will
- *only have MAC address of machines
- **                      on your local area network. If the IP is not local, the
- *MAC will most probably be the MAC
- **                      of your router. This may be NULL if you don't want the
- *info
- **
- **     index        This is a zero based index and must be less than what
- *AvailableClients returns. It
- **                      selects the Client within the server list that you want
- *remote endpoint information on.
- **
- **	Return Values:
- **      true    The local endpoint was returned.
- **      false   An error occured, most likely your index was out of range
- **
- **	Errors:
- **      None
- **
- **  Notes:
- **
- **      This allows you to determine if you want to accept this endpoint before
- *removing it from
- **      the server. It allows you to accept other clients first and out of
- *order.
- **
- **      This call should be made immediately after AvailableClients and
- *immediately before
- **      AcceptClient so that the servers pending list does not change due to
- *another connection.
- **
- */
+*int index)
+**      bool UDPServer::getAvailableClientsRemoteEndPoint(IPEndPoint *pRemoteEP,
+*MAC * pRemoteMAC, int index)
+**
+**	Synopsis:
+**      Returns endpoint information about a UDPSocket waiting to be accepted.
+**
+**	Parameters:
+**      pRemoteEP  A pointer to an IPEndPoint to receive the remote endpoint
+*information for the client
+**                  waiting to be accepted. This may be NULL if you don't want
+*the info
+**
+**      pRemoteMAC  A pointer to a MAC to receive the remote MAC address of the
+*client waiting to be accepted.
+**                      This will be the MAC address as known by ARP and will
+*only have MAC address of machines
+**                      on your local area network. If the IP is not local, the
+*MAC will most probably be the MAC
+**                      of your router. This may be NULL if you don't want the
+*info
+**
+**     index        This is a zero based index and must be less than what
+*AvailableClients returns. It
+**                      selects the Client within the server list that you want
+*remote endpoint information on.
+**
+**	Return Values:
+**      true    The local endpoint was returned.
+**      false   An error occured, most likely your index was out of range
+**
+**	Errors:
+**      None
+**
+**  Notes:
+**
+**      This allows you to determine if you want to accept this endpoint before
+*removing it from
+**      the server. It allows you to accept other clients first and out of
+*order.
+**
+**      This call should be made immediately after AvailableClients and
+*immediately before
+**      AcceptClient so that the servers pending list does not change due to
+*another connection.
+**
+*/
 bool UDPServer::getAvailableClientsRemoteEndPoint(IPEndPoint &epRemote,
                                                   int index) {
   FFLL *pffllSocket = NULL;

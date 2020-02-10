@@ -58,9 +58,8 @@
 #define XDBG_DEBUG_TEMAC_ADPT_RX 0x00000800    /* receive debug messages */
 #define XDBG_DEBUG_TEMAC_ADPT_TX 0x00000801    /* transmit debug messages */
 #define XDBG_DEBUG_TEMAC_ADPT_IOCTL 0x00000802 /* ioctl debug messages */
-#define XDBG_DEBUG_TEMAC_ADPT_MISC                                             \
-  0x00000803 /* debug msg for other routines                                   \
-              */
+#define XDBG_DEBUG_TEMAC_ADPT_MISC 0x00000803  /* debug msg for other routines \
+                                                */
 #define XDBG_DEBUG_TEMAC_ADPT_ALL                                              \
   0x0000080F /* all temac adapter debug messages */
 

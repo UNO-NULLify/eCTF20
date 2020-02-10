@@ -128,8 +128,8 @@ static void XIntc_InitializeSlaves(XIntc *InstancePtr);
  *		- XST_DEVICE_NOT_FOUND if device configuration information was
  *		not found for a device with the supplied device ID.
  *
- * @note		In Cascade mode this function calls
- *XIntc_InitializeSlaves to initialiaze Slave Interrupt controllers.
+ * @note		In Cascade mode this function calls XIntc_InitializeSlaves
+ *to initialiaze Slave Interrupt controllers.
  *
  ******************************************************************************/
 int XIntc_Initialize(XIntc *InstancePtr, u16 DeviceId) {

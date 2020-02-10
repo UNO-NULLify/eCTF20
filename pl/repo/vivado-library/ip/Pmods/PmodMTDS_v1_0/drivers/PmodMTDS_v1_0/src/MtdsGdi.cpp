@@ -1766,32 +1766,32 @@ bool MTDS::PolyLineTo(HDS hds, int cpnt, PNT *rgpnt) {
 
 /* ------------------------------------------------------------ */
 /***	MTDS::Arc(hds, xcoLeft, ycoTop, xcoRight, ycoBottom, xcoRad1, ycoRad1,
- *xcoRad2, ycoRad2)
- **
- **	Parameters:
- **		hds			- handle to the DS object
- **		xcoLeft		- left side of bounding rectangle
- **		ycoTop		- top side of bounding rectangle
- **		xcoRight	- right side of bounding rectangle
- **		ycoBottom	- bottom side of bounding rectangle
- **		xcoRad1		- x coordinate of endpoint of first radial line
- **		ycoRad1		- y coordinate of endpoint of first radial line
- **		xcoRad2		- x coordinate of endpoint of second radial line
- **		ycoRad2		- y coordinate of endpoint of second radial line
- **
- **	Return Value:
- **		none
- **
- **	Errors:
- **		Returns true if successful, false if not
- **
- **	Description:
- **		Draws an arc section of an ellipse. The arc drawn from the
- *intersection *		of the ellipse with the radial line defined by
- *xcoRad1, ycoRad1, counterclockwise *		to the point of intersection of
- *the elipse with the radial line defined by *		xcoRad2, ycoRad2.
- **		The current position is not modified.
- */
+*xcoRad2, ycoRad2)
+**
+**	Parameters:
+**		hds			- handle to the DS object
+**		xcoLeft		- left side of bounding rectangle
+**		ycoTop		- top side of bounding rectangle
+**		xcoRight	- right side of bounding rectangle
+**		ycoBottom	- bottom side of bounding rectangle
+**		xcoRad1		- x coordinate of endpoint of first radial line
+**		ycoRad1		- y coordinate of endpoint of first radial line
+**		xcoRad2		- x coordinate of endpoint of second radial line
+**		ycoRad2		- y coordinate of endpoint of second radial line
+**
+**	Return Value:
+**		none
+**
+**	Errors:
+**		Returns true if successful, false if not
+**
+**	Description:
+**		Draws an arc section of an ellipse. The arc drawn from the
+*intersection *		of the ellipse with the radial line defined by xcoRad1,
+*ycoRad1, counterclockwise *		to the point of intersection of the
+*elipse with the radial line defined by *		xcoRad2, ycoRad2.
+**		The current position is not modified.
+*/
 
 bool MTDS::Arc(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
                int16_t ycoBottom, int16_t xcoRad1, int16_t ycoRad1,
@@ -1826,32 +1826,32 @@ bool MTDS::Arc(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
 
 /* ------------------------------------------------------------ */
 /***	MTDS::ArcTo(hds, xcoLeft, ycoTop, xcoRight, ycoBottom, xcoRad1, ycoRad1,
- *xcoRad2, ycoRad2)
- **
- **	Parameters:
- **		hds			- handle to the DS object
- **		xcoLeft		- left side of bounding rectangle
- **		ycoTop		- top side of bounding rectangle
- **		xcoRight	- right side of bounding rectangle
- **		ycoBottom	- bottom side of bounding rectangle
- **		xcoRad1		- x coordinate of endpoint of first radial line
- **		ycoRad1		- y coordinate of endpoint of first radial line
- **		xcoRad2		- x coordinate of endpoint of second radial line
- **		ycoRad2		- y coordinate of endpoint of second radial line
- **
- **	Return Value:
- **		none
- **
- **	Errors:
- **		Returns true if successful, false if not.
- **
- **	Description:
- **		Draws an arc section of an ellipse. The arc is drawn from the
- *intersection *		of the ellipse with the radial line defined by
- *xcoRad1, ycoRad1, counterclockwise *		to the point of intersection of
- *the elipse with the radial line defined by *		xcoRad2, ycoRad2.
- **		The current position is set to the last point drawn on the arc.
- */
+*xcoRad2, ycoRad2)
+**
+**	Parameters:
+**		hds			- handle to the DS object
+**		xcoLeft		- left side of bounding rectangle
+**		ycoTop		- top side of bounding rectangle
+**		xcoRight	- right side of bounding rectangle
+**		ycoBottom	- bottom side of bounding rectangle
+**		xcoRad1		- x coordinate of endpoint of first radial line
+**		ycoRad1		- y coordinate of endpoint of first radial line
+**		xcoRad2		- x coordinate of endpoint of second radial line
+**		ycoRad2		- y coordinate of endpoint of second radial line
+**
+**	Return Value:
+**		none
+**
+**	Errors:
+**		Returns true if successful, false if not.
+**
+**	Description:
+**		Draws an arc section of an ellipse. The arc is drawn from the
+*intersection *		of the ellipse with the radial line defined by xcoRad1,
+*ycoRad1, counterclockwise *		to the point of intersection of the
+*elipse with the radial line defined by *		xcoRad2, ycoRad2.
+**		The current position is set to the last point drawn on the arc.
+*/
 
 bool MTDS::ArcTo(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
                  int16_t ycoBottom, int16_t xcoRad1, int16_t ycoRad1,
@@ -1937,32 +1937,32 @@ bool MTDS::Ellipse(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
 
 /* ------------------------------------------------------------ */
 /***	MTDS::Chord(hds, xcoLeft, ycoTop, xcoRight, ycoBottom, xcoRad1, ycoRad1,
- *xcoRad2, ycoRad2)
- **
- **	Parameters:
- **		hds			- handle to the DS object
- **		xcoLeft		- left side of bounding rectangle
- **		ycoTop		- top side of bounding rectangle
- **		xcoRight	- right side of bounding rectangle
- **		ycoBottom	- bottom side of bounding rectangle
- **		xcoRad1		- x coordinate of endpoint of first radial line
- **		ycoRad1		- y coordinate of endpoint of first radial line
- **		xcoRad2		- x coordinate of endpoint of second radial line
- **		ycoRad2		- y coordinate of endpoint of second radial line
- **
- **	Return Value:
- **		none
- **
- **	Errors:
- **		Returns true if successful, false if not.
- **
- **	Description:
- **		Draws a cord of an ellipse. The arc of the chord is drawn from
- *the *		intersection of the ellipse with the radial line defined by
- *xcoRad1,ycoRad. *		It is drawn from there counterclockwise to the
- *point of intersection of the *		elipse with the radial line defined
- *by xcoRad2, ycoRad2.
- */
+*xcoRad2, ycoRad2)
+**
+**	Parameters:
+**		hds			- handle to the DS object
+**		xcoLeft		- left side of bounding rectangle
+**		ycoTop		- top side of bounding rectangle
+**		xcoRight	- right side of bounding rectangle
+**		ycoBottom	- bottom side of bounding rectangle
+**		xcoRad1		- x coordinate of endpoint of first radial line
+**		ycoRad1		- y coordinate of endpoint of first radial line
+**		xcoRad2		- x coordinate of endpoint of second radial line
+**		ycoRad2		- y coordinate of endpoint of second radial line
+**
+**	Return Value:
+**		none
+**
+**	Errors:
+**		Returns true if successful, false if not.
+**
+**	Description:
+**		Draws a cord of an ellipse. The arc of the chord is drawn from
+*the *		intersection of the ellipse with the radial line defined by
+*xcoRad1,ycoRad. *		It is drawn from there counterclockwise to the
+*point of intersection of the *		elipse with the radial line defined by
+*xcoRad2, ycoRad2.
+*/
 
 bool MTDS::Chord(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
                  int16_t ycoBottom, int16_t xcoRad1, int16_t ycoRad1,
@@ -1997,32 +1997,32 @@ bool MTDS::Chord(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
 
 /* ------------------------------------------------------------ */
 /***	MTDS::Pie(hds, xcoLeft, ycoTop, xcoRight, ycoBottom, xcoRad1, ycoRad1,
- *xcoRad2, ycoRad2)
- **
- **	Parameters:
- **		hds			- handle to the DS object
- **		xcoLeft		- left side of bounding rectangle
- **		ycoTop		- top side of bounding rectangle
- **		xcoRight	- right side of bounding rectangle
- **		ycoBottom	- bottom side of bounding rectangle
- **		xcoRad1		- x coordinate of endpoint of first radial line
- **		ycoRad1		- y coordinate of endpoint of first radial line
- **		xcoRad2		- x coordinate of endpoint of second radial line
- **		ycoRad2		- y coordinate of endpoint of second radial line
- **
- **	Return Value:
- **		none
- **
- **	Errors:
- **		Returns true if successful, false if not.
- **
- **	Description:
- **		Draws a pie section of an ellipse. The arc of the pie is drawn
- *from the *		intersection of the ellipse with the radial line defined
- *by xcoRad1,ycoRad. *		It is drawn from there counterclockwise to the
- *point of intersection of the *		elipse with the radial line defined
- *by xcoRad2, ycoRad2.
- */
+*xcoRad2, ycoRad2)
+**
+**	Parameters:
+**		hds			- handle to the DS object
+**		xcoLeft		- left side of bounding rectangle
+**		ycoTop		- top side of bounding rectangle
+**		xcoRight	- right side of bounding rectangle
+**		ycoBottom	- bottom side of bounding rectangle
+**		xcoRad1		- x coordinate of endpoint of first radial line
+**		ycoRad1		- y coordinate of endpoint of first radial line
+**		xcoRad2		- x coordinate of endpoint of second radial line
+**		ycoRad2		- y coordinate of endpoint of second radial line
+**
+**	Return Value:
+**		none
+**
+**	Errors:
+**		Returns true if successful, false if not.
+**
+**	Description:
+**		Draws a pie section of an ellipse. The arc of the pie is drawn
+*from the *		intersection of the ellipse with the radial line defined
+*by xcoRad1,ycoRad. *		It is drawn from there counterclockwise to the
+*point of intersection of the *		elipse with the radial line defined by
+*xcoRad2, ycoRad2.
+*/
 
 bool MTDS::Pie(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
                int16_t ycoBottom, int16_t xcoRad1, int16_t ycoRad1,
@@ -2057,28 +2057,28 @@ bool MTDS::Pie(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
 
 /* ------------------------------------------------------------ */
 /***	MTDS::Rectangle(hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
- *int16_t ycoBottom)
- **
- **	Parameters:
- **		hds			- handle to the DS object
- **		xcoLeft		- left side of bounding rectangle
- **		ycoTop		- top side of bounding rectangle
- **		xcoRight	- right side of bounding rectangle
- **		ycoBottom	- bottom side of bounding rectangle
- **
- **	Return Value:
- **		none
- **
- **	Errors:
- **		Returns true if successful, false if not.
- **
- **	Description:
- **		Draw a filled rectangle. The perimeter is drawn using the
- *current pen,
- **		foreground color, background color, background drawing mode, and
- *the *		current line drawing raster op. The interior is filled using the
- *current *		brush.
- */
+*int16_t ycoBottom)
+**
+**	Parameters:
+**		hds			- handle to the DS object
+**		xcoLeft		- left side of bounding rectangle
+**		ycoTop		- top side of bounding rectangle
+**		xcoRight	- right side of bounding rectangle
+**		ycoBottom	- bottom side of bounding rectangle
+**
+**	Return Value:
+**		none
+**
+**	Errors:
+**		Returns true if successful, false if not.
+**
+**	Description:
+**		Draw a filled rectangle. The perimeter is drawn using the
+*current pen,
+**		foreground color, background color, background drawing mode, and
+*the *		current line drawing raster op. The interior is filled using the
+*current *		brush.
+*/
 
 bool MTDS::Rectangle(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
                      int16_t ycoBottom) {
@@ -2108,27 +2108,27 @@ bool MTDS::Rectangle(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
 
 /* ------------------------------------------------------------ */
 /***	MTDS::RoundRect(hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
- *int16_t ycoBottom)
- **
- **	Parameters:
- **		hds			- handle to the DS object
- **		xcoLeft		- left side of bounding rectangle
- **		ycoTop		- top side of bounding rectangle
- **		xcoRight	- right side of bounding rectangle
- **		ycoBottom	- bottom side of bounding rectangle
- **		dxcoWidth	- width of the ellipse used to draw the rounded
- *corners *		dycoHeight	- height of the ellipse used to draw the
- *rounded corners
- **
- **	Return Value:
- **		none
- **
- **	Errors:
- **		Returns true if successful, false if not.
- **
- **	Description:
- **		Draw a filled rectangle with rounded corners.
- */
+*int16_t ycoBottom)
+**
+**	Parameters:
+**		hds			- handle to the DS object
+**		xcoLeft		- left side of bounding rectangle
+**		ycoTop		- top side of bounding rectangle
+**		xcoRight	- right side of bounding rectangle
+**		ycoBottom	- bottom side of bounding rectangle
+**		dxcoWidth	- width of the ellipse used to draw the rounded
+*corners *		dycoHeight	- height of the ellipse used to draw the
+*rounded corners
+**
+**	Return Value:
+**		none
+**
+**	Errors:
+**		Returns true if successful, false if not.
+**
+**	Description:
+**		Draw a filled rectangle with rounded corners.
+*/
 
 bool MTDS::RoundRect(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
                      int16_t ycoBottom, int16_t dxcoWidth, int16_t dycoHeight) {
@@ -2161,37 +2161,36 @@ bool MTDS::RoundRect(HDS hds, int16_t xcoLeft, int16_t ycoTop, int16_t xcoRight,
 
 /* ------------------------------------------------------------ */
 /***	MTDS::BitBlt(hdsDst, xcoDst, ycoDst, dxco, dyco, hdsSrc, xcoSrc, ycoSrc,
- *rop)
- **
- **	Parameters:
- **		hdsDst			- handle to the destination drawing
- *state object *		xcoDst, ycoDst	- upper left corner of
- *destination
- *rectangle *		dxco, dyco		- width and height of the
- *rectangle
- **		hdsSrc			- handle to the source drawing state
- *object *		xcoSrc,ycoSrc	- upper left corner of source rectangle
- **		rop				- raster-op to use for the
- *operation
- **
- **	Return Values:
- **		none
- **
- **	Errors:
- **		returns true if successful, false if not
- **
- **	Description:
- **		Combine the rectangle of pixels from the drawing surface bitmap
- *associated *		with hdsSrc with the pixels contained in the bitmap
- *associated with hdsSrc *		using the raster-op specified by rop to
- *combine the pixel values. *		The source rectangle will be clipped to
- *the dimensions of the source bitmap,
- **		the destination rectangle will be clipped to the dimensions of
- *the destination *		bitmap. Only the pixels that intersect these
- *clipped rectangles are modified.
- **		The hdsSrc and hdsDst can specify the same or differnet display
- *state objects.
- */
+*rop)
+**
+**	Parameters:
+**		hdsDst			- handle to the destination drawing
+*state object *		xcoDst, ycoDst	- upper left corner of destination
+*rectangle *		dxco, dyco		- width and height of the
+*rectangle
+**		hdsSrc			- handle to the source drawing state
+*object *		xcoSrc,ycoSrc	- upper left corner of source rectangle
+**		rop				- raster-op to use for the
+*operation
+**
+**	Return Values:
+**		none
+**
+**	Errors:
+**		returns true if successful, false if not
+**
+**	Description:
+**		Combine the rectangle of pixels from the drawing surface bitmap
+*associated *		with hdsSrc with the pixels contained in the bitmap
+*associated with hdsSrc *		using the raster-op specified by rop to
+*combine the pixel values. *		The source rectangle will be clipped to
+*the dimensions of the source bitmap,
+**		the destination rectangle will be clipped to the dimensions of
+*the destination *		bitmap. Only the pixels that intersect these
+*clipped rectangles are modified.
+**		The hdsSrc and hdsDst can specify the same or differnet display
+*state objects.
+*/
 
 bool MTDS::BitBlt(HDS hdsDst, int16_t xcoDst, int16_t ycoDst, int16_t dxco,
                   int16_t dyco, HDS hdsSrc, int16_t xcoSrc, int16_t ycoSrc,
@@ -2271,33 +2270,33 @@ bool MTDS::PatBlt(HDS hds, int16_t xco, int16_t yco, int16_t dxco, int16_t dyco,
 
 /* ------------------------------------------------------------ */
 /***	MTDS::DrawBitmap(hdsDst, xcoDst, ycoDst, dxco, dyco, hdsSrc, xcoSrc,
- *ycoSrc)
- **
- **	Parameters:
- **		hdsDst		- Handle to the DS containing the destination
- *bitmap *		xcoDst		- x position of left side of destination
- *region *		ycoDst		- y position of top side of the
- *destination region *		dxco		- width of the destination
- *region *		dyco		- height of the region
- **		hdsDrc		- Handle to the DS containing source bitmap
- **		xcoSrc		- x position of left side of source region
- **		ycoSrc		- y position of top side of source region
- **
- **	Return Values:
- **		none
- **
- **	Errors:
- **		none
- **
- **	Description:
- **		Copy pixels from the specified rectangle on the source bitmap to
- *the *		specified rectangle on the destination bitmap. This is different
- *than *		BitBlt in that it doesn't use a raster-op to combine source
- *and *		destination pixels. This function also pays attention to the
- *current *		background drawing mode and if bkTransparent is in
- *effect, it does not *		copy pixels from the source bitmap whose color
- *matches the current *		transparency color.
- */
+*ycoSrc)
+**
+**	Parameters:
+**		hdsDst		- Handle to the DS containing the destination
+*bitmap *		xcoDst		- x position of left side of destination
+*region *		ycoDst		- y position of top side of the
+*destination region *		dxco		- width of the destination
+*region *		dyco		- height of the region
+**		hdsDrc		- Handle to the DS containing source bitmap
+**		xcoSrc		- x position of left side of source region
+**		ycoSrc		- y position of top side of source region
+**
+**	Return Values:
+**		none
+**
+**	Errors:
+**		none
+**
+**	Description:
+**		Copy pixels from the specified rectangle on the source bitmap to
+*the *		specified rectangle on the destination bitmap. This is different
+*than *		BitBlt in that it doesn't use a raster-op to combine source and
+**		destination pixels. This function also pays attention to the
+*current *		background drawing mode and if bkTransparent is in
+*effect, it does not *		copy pixels from the source bitmap whose color
+*matches the current *		transparency color.
+*/
 
 bool MTDS::DrawBitmap(HDS hdsDst, int16_t xcoDst, int16_t ycoDst, int16_t dxco,
                       int16_t dyco, HDS hdsSrc, int16_t xcoSrc,

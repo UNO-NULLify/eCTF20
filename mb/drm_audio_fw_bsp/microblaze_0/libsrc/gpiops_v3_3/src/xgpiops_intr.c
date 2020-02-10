@@ -644,9 +644,9 @@ u8 XGpioPs_GetIntrTypePin(XGpioPs *InstancePtr, u32 Pin) {
  *
  * @return	None.
  *
- * @note		The handler is called within interrupt context, so it
- *should do its work quickly and queue potentially time-consuming work to a
- *task-level thread.
+ * @note		The handler is called within interrupt context, so it should
+ *do its work quickly and queue potentially time-consuming work to a task-level
+ *thread.
  *
  ******************************************************************************/
 void XGpioPs_SetCallbackHandler(XGpioPs *InstancePtr, void *CallBackRef,

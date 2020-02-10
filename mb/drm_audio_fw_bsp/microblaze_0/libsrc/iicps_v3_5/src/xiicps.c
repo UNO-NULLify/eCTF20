@@ -53,9 +53,9 @@
  * 3.0	sk		11/03/14 Modified TimeOut Register value to 0xFF
  * 						 in XIicPs_Reset.
  *				12/06/14 Implemented Repeated start feature.
- *				01/31/15 Modified the code according to MISRAC
- *2012 Compliant. 3.3   kvn		05/05/16 Modified latest code for
- *MISRA-C:2012 Compliance.
+ *				01/31/15 Modified the code according to MISRAC 2012
+ *Compliant. 3.3   kvn		05/05/16 Modified latest code for MISRA-C:2012
+ *Compliance.
  *
  * </pre>
  *

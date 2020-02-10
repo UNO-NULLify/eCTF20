@@ -72,8 +72,8 @@ typedef struct MACADDR_T {
 } MACADDR;
 
 //#define MACBROADCAST    ((MACADDR) {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF})    //
-// RFC 894 #define MACNONE         ((MACADDR) {0x00, 0x00, 0x00, 0x00, 0x00,
-// 0x00})    // RFC 894
+//RFC 894 #define MACNONE         ((MACADDR) {0x00, 0x00, 0x00, 0x00, 0x00,
+//0x00})    // RFC 894
 extern const MACADDR MACBROADCAST;
 extern const MACADDR MACNONE;
 
@@ -186,7 +186,7 @@ typedef struct ARPIPv4_T {
   uint16_t hwType; // hardware type, We only support Type 1 (hwtypeEthernet);
                    // RFC 1122
   ETHERTYPE
-  etherType; // protocol type, shared with EtherType, this is ethertypeIPv4
+      etherType; // protocol type, shared with EtherType, this is ethertypeIPv4
   uint8_t cbhType;      // for hardware types of MAC, this is 6
   uint8_t cbpType;      // for protocol IPv4 = 4;
   uint8_t operationPad; // so we don't have to reverse this, this value is
@@ -231,8 +231,8 @@ typedef struct LLADP_T {
   LLARP *arLLArp;
   IPSTACK ipStack; // a presetup stack
   ETHERNETII_FRAME
-  broadcastFrameII; // a presetup broadcast frame, in NETWORK ORDER
-  ARPIPv4 arpIPv4;  // reusable Arp packet
+      broadcastFrameII; // a presetup broadcast frame, in NETWORK ORDER
+  ARPIPv4 arpIPv4;      // reusable Arp packet
 
   struct DHCPMEM_T *pDHCPMem;
   struct DNSMEM_T *pDNSMem;

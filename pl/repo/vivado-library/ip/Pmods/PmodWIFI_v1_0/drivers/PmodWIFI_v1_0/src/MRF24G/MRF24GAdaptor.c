@@ -338,12 +338,11 @@ static bool Connect(SECURITY security, const uint8_t *szSsid, const void *pvPkt,
     case DEWF_SECURITY_WPA_WITH_PASS_PHRASE:
     case DEWF_SECURITY_WPA2_WITH_PASS_PHRASE:
     case DEWF_SECURITY_WPA_AUTO_WITH_PASS_PHRASE:
-      wpa.wpaSecurityType =
-          security; // WF_SECURITY_WPA_WITH_KEY,
-                    // WF_SECURITY_WPA_WITH_PASS_PHRASE,
-                    // WF_SECURITY_WPA2_WITH_KEY,
-                    // WF_SECURITY_WPA2_WITH_PASS_PHRASE,WF_SECURITY_WPA_AUTO_WITH_KEY,
-                    // WF_SECURITY_WPA_AUTO_WITH_PASS_PHRASE
+      wpa.wpaSecurityType = security; // WF_SECURITY_WPA_WITH_KEY,
+                                      // WF_SECURITY_WPA_WITH_PASS_PHRASE,
+                                      // WF_SECURITY_WPA2_WITH_KEY,
+                                      // WF_SECURITY_WPA2_WITH_PASS_PHRASE,WF_SECURITY_WPA_AUTO_WITH_KEY,
+                                      // WF_SECURITY_WPA_AUTO_WITH_PASS_PHRASE
       wpa.keyInfo.keyLength = strlen(
           (const char *)
               pvPkt); // number of bytes in binary key (always 32) or passphrase
@@ -368,12 +367,11 @@ static bool Connect(SECURITY security, const uint8_t *szSsid, const void *pvPkt,
     case DEWF_SECURITY_WPA_WITH_KEY:
     case DEWF_SECURITY_WPA2_WITH_KEY:
     case DEWF_SECURITY_WPA_AUTO_WITH_KEY:
-      wpa.wpaSecurityType =
-          security; // WF_SECURITY_WPA_WITH_KEY,
-                    // WF_SECURITY_WPA_WITH_PASS_PHRASE,
-                    // WF_SECURITY_WPA2_WITH_KEY,
-                    // WF_SECURITY_WPA2_WITH_PASS_PHRASE,WF_SECURITY_WPA_AUTO_WITH_KEY,
-                    // WF_SECURITY_WPA_AUTO_WITH_PASS_PHRASE
+      wpa.wpaSecurityType = security; // WF_SECURITY_WPA_WITH_KEY,
+                                      // WF_SECURITY_WPA_WITH_PASS_PHRASE,
+                                      // WF_SECURITY_WPA2_WITH_KEY,
+                                      // WF_SECURITY_WPA2_WITH_PASS_PHRASE,WF_SECURITY_WPA_AUTO_WITH_KEY,
+                                      // WF_SECURITY_WPA_AUTO_WITH_PASS_PHRASE
       wpa.keyInfo.keyLength = sizeof(
           WPA2KEY); // number of bytes in binary key (always 32) or passphrase
       memcpy(wpa.keyInfo.key, pvPkt,

@@ -374,8 +374,9 @@ void TCPClose(HSOCKET hSocket, IPSTATUS *pStatus) {
 
   case tcpSynReceived:
   case tcpSynReceivedWhileListening:
-    pSocket->sndNXT = pSocket->sndEND; // we may have sent a syn and sndNXT >
-                                       // sndEND fall thru
+    pSocket->sndNXT =
+        pSocket->sndEND; // we may have sent a syn and sndNXT > sndEND
+                         // fall thru
 
   case tcpEstablished:
     pSocket->tcpState = tcpFinWait1;

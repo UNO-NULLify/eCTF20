@@ -60,9 +60,9 @@
  *exists otherwise libxil.a CR#794205 2.2   bss  08/04/14 Updated driver tcl to
  *add protection macros for xparameters.h (CR#802257).
  * 2.3	sk	 12/15/14 Updated mdd file to delete �ffunction-sections &
- *					  -fdata-sections flags from extra
- *compiler flags CR#838648 Changed default os to latest version in mdd file. 2.4
- *nsk 11/05/15 Updated generate and post_generate procs in driver tcl not to
+ *					  -fdata-sections flags from extra compiler
+ *flags CR#838648 Changed default os to latest version in mdd file. 2.4   nsk
+ *11/05/15 Updated generate and post_generate procs in driver tcl not to
  *generate cpu macros, when microblaze is connected as one of the streaming
  *slaves to itself. CR#876604
  *

@@ -27,8 +27,8 @@
  */
 /*	2016-09-27(GeneApperson) Changed conditionals from __SIM__ to MPIDE to
  * make	*/
-/*		it more explicit that it was for generating debugging output
- * when being	*/
+/*		it more explicit that it was for generating debugging output when
+ * being	*/
 /*		built under MPIDE for testing.
  */
 /*  12/20/2017(atangzwj): Replaced delay functions with sleep */
@@ -190,10 +190,10 @@ bool MTDS::begin(int pinSelInit, uint32_t frqSpi) {
   }
 
   /* We need to establish communication with the shield. Depending on how
-   *quickly
-   ** we got called, the shield might still be doing its power on reset
-   *processing.
-   */
+  *quickly
+  ** we got called, the shield might still be doing its power on reset
+  *processing.
+  */
   usleep(1000);
   if (!MtdsSyncChannel()) {
     return false;
@@ -582,11 +582,11 @@ void MTDS::MtdsProcessCmdWr(uint8_t cls, uint8_t cmd, uint16_t cbParam,
 
 lSyncError:
   /* We seem to be in some anomolous state as the display device is not
-   *responding
-   ** as expected, or the display device thinks that the comm channel is out of
-   *sync.
-   ** We need to resynchronize the channel.
-   */
+  *responding
+  ** as expected, or the display device thinks that the comm channel is out of
+  *sync.
+  ** We need to resynchronize the channel.
+  */
   if (MtdsSyncChannel()) {
     /* We have resynchronized the channel. Report that this command
     ** failed.
@@ -769,11 +769,11 @@ void MTDS::MtdsProcessCmdRd(uint8_t cls, uint8_t cmd, uint16_t cbParam,
 
 lSyncError:
   /* We seem to be in some anomolous state as the display device is not
-   *responding
-   ** as expected, or the display device thinks that the comm channel is out of
-   *sync.
-   ** We need to resynchronize the channel.
-   */
+  *responding
+  ** as expected, or the display device thinks that the comm channel is out of
+  *sync.
+  ** We need to resynchronize the channel.
+  */
   if (MtdsSyncChannel()) {
     /* We have resynchronized the channel. Report that this command
     ** failed.
