@@ -2,9 +2,9 @@
 #define crypto_onetimeauth_poly1305_H
 
 #ifdef __cplusplus
-#ifdef __GNUC__
-#pragma GCC diagnostic ignored "-Wlong-long"
-#endif
+# ifdef __GNUC__
+#  pragma GCC diagnostic ignored "-Wlong-long"
+# endif
 extern "C" {
 #endif
 
@@ -17,7 +17,7 @@ extern "C" {
 #include "export.h"
 
 typedef struct CRYPTO_ALIGN(16) crypto_onetimeauth_poly1305_state {
-  unsigned char opaque[256];
+    unsigned char opaque[256];
 } crypto_onetimeauth_poly1305_state;
 
 SODIUM_EXPORT
@@ -32,38 +32,38 @@ SODIUM_EXPORT
 size_t crypto_onetimeauth_poly1305_keybytes(void);
 
 SODIUM_EXPORT
-int crypto_onetimeauth_poly1305(unsigned char *out, const unsigned char *in,
+int crypto_onetimeauth_poly1305(unsigned char *out,
+                                const unsigned char *in,
                                 unsigned long long inlen,
                                 const unsigned char *k)
-    __attribute__((nonnull(1, 4)));
+            __attribute__ ((nonnull(1, 4)));
 
 SODIUM_EXPORT
 int crypto_onetimeauth_poly1305_verify(const unsigned char *h,
                                        const unsigned char *in,
                                        unsigned long long inlen,
                                        const unsigned char *k)
-    __attribute__((warn_unused_result)) __attribute__((nonnull(1, 4)));
+            __attribute__ ((warn_unused_result)) __attribute__ ((nonnull(1, 4)));
 
 SODIUM_EXPORT
 int crypto_onetimeauth_poly1305_init(crypto_onetimeauth_poly1305_state *state,
                                      const unsigned char *key)
-    __attribute__((nonnull));
+            __attribute__ ((nonnull));
 
 SODIUM_EXPORT
 int crypto_onetimeauth_poly1305_update(crypto_onetimeauth_poly1305_state *state,
                                        const unsigned char *in,
                                        unsigned long long inlen)
-    __attribute__((nonnull(1)));
+            __attribute__ ((nonnull(1)));
 
 SODIUM_EXPORT
 int crypto_onetimeauth_poly1305_final(crypto_onetimeauth_poly1305_state *state,
                                       unsigned char *out)
-    __attribute__((nonnull));
+            __attribute__ ((nonnull));
 
 SODIUM_EXPORT
-void crypto_onetimeauth_poly1305_keygen(
-    unsigned char k[crypto_onetimeauth_poly1305_KEYBYTES])
-    __attribute__((nonnull));
+void crypto_onetimeauth_poly1305_keygen(unsigned char k[crypto_onetimeauth_poly1305_KEYBYTES])
+            __attribute__ ((nonnull));
 
 #ifdef __cplusplus
 }
