@@ -17,27 +17,25 @@ enum REGIONS;
 
 // Region data struct
 struct R_Data {
-    char *name;
-    char *pub_key;
-    char *priv_key;
-    char *rand;
+  char *name;
+  char *pub_key;
+  char *priv_key;
+  char *rand;
 };
 
 // Array of region data structs
 struct R_Data region_data[PROVISIONED_REGIONS];
 
-
 // User data struct
 struct U_Data {
-    char *name;
-    char *hw_secret;
-    char *pin_hash;
-    char *pub_key;
-    char *pvt_key_enc;
+  char *name;
+  char *hw_secret;
+  char *pin_hash;
+  char *pub_key;
+  char *pvt_key_enc;
 };
 
 // Array of user data structs
 struct U_Data user_data[PROVISIONED_USERS];
-
 
 #endif // SECRETS_H
