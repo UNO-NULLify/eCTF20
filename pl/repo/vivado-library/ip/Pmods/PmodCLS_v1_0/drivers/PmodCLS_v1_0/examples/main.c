@@ -30,13 +30,13 @@
 /*                                                                            */
 /******************************************************************************/
 
+#include <stdio.h>
 #include "PmodCLS.h"
 #include "sleep.h"
 #include "string.h"
 #include "xil_cache.h"
 #include "xil_printf.h"
 #include "xparameters.h"
-#include <stdio.h>
 
 void DemoInitialize();
 void DemoRun();
@@ -47,58 +47,58 @@ void DisableCaches();
 PmodCLS myDevice;
 
 int main(void) {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
-  return 0;
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
+   return 0;
 }
 
 void DemoInitialize() {
-  EnableCaches();
-  CLS_begin(&myDevice, XPAR_PMODCLS_0_AXI_LITE_SPI_BASEADDR);
+   EnableCaches();
+   CLS_begin(&myDevice, XPAR_PMODCLS_0_AXI_LITE_SPI_BASEADDR);
 }
 
 void DemoRun() {
-  char szInfo1[32];
-  char szInfo2[32];
+   char szInfo1[32];
+   char szInfo2[32];
 
-  CLS_DisplayClear(&myDevice);
-  strcpy(szInfo1, "  PmodCLS Demo");
-  strcpy(szInfo2, "  Hello World!");
-  CLS_WriteStringAtPos(&myDevice, 0, 0, szInfo1);
-  CLS_WriteStringAtPos(&myDevice, 1, 0, szInfo2);
+   CLS_DisplayClear(&myDevice);
+   strcpy(szInfo1, "  PmodCLS Demo");
+   strcpy(szInfo2, "  Hello World!");
+   CLS_WriteStringAtPos(&myDevice, 0, 0, szInfo1);
+   CLS_WriteStringAtPos(&myDevice, 1, 0, szInfo2);
 
-  usleep(500000);
+   usleep(500000);
 
-  while (1) {
-    CLS_DisplayClear(&myDevice);
-    strcpy(szInfo1, "->PmodCLS Demo<- ");
-    CLS_WriteStringAtPos(&myDevice, 0, 0, szInfo1);
-    CLS_WriteStringAtPos(&myDevice, 1, 0, szInfo2);
+   while (1) {
+      CLS_DisplayClear(&myDevice);
+      strcpy(szInfo1, "->PmodCLS Demo<- ");
+      CLS_WriteStringAtPos(&myDevice, 0, 0, szInfo1);
+      CLS_WriteStringAtPos(&myDevice, 1, 0, szInfo2);
 
-    usleep(500000);
+      usleep(500000);
 
-    CLS_DisplayClear(&myDevice);
-    strcpy(szInfo1, "  PmodCLS Demo   ");
-    CLS_WriteStringAtPos(&myDevice, 0, 0, szInfo1);
-    CLS_WriteStringAtPos(&myDevice, 1, 0, szInfo2);
+      CLS_DisplayClear(&myDevice);
+      strcpy(szInfo1, "  PmodCLS Demo   ");
+      CLS_WriteStringAtPos(&myDevice, 0, 0, szInfo1);
+      CLS_WriteStringAtPos(&myDevice, 1, 0, szInfo2);
 
-    usleep(500000);
-  }
+      usleep(500000);
+   }
 }
 
 void DemoCleanup() {
-  CLS_end(&myDevice);
-  DisableCaches();
+   CLS_end(&myDevice);
+   DisableCaches();
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -106,10 +106,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

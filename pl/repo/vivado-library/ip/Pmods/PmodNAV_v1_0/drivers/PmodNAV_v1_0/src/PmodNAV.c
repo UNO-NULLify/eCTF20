@@ -43,17 +43,17 @@
 #include "sleep.h"
 
 XSpi_Config NAVConfig = {
-    0, // u16 DeviceId
-    0, // u32 BaseAddress - load in NAV_begin
-    1, // int HasFifos
-    0, // u32 SlaveOnly - master mode
-    3, // u8  NumSlaveBits - three slave devices
-    8, // u8  DataWidth
-    0, // u8  SpiMode
-    0, // u8  AxiInterface - AXI-Lite
-    0, // u32 AxiFullBaseAddress
-    0, // u8  XipMode
-    0  // u8  Use_Startup
+   0, // u16 DeviceId
+   0, // u32 BaseAddress - load in NAV_begin
+   1, // int HasFifos
+   0, // u32 SlaveOnly - master mode
+   3, // u8  NumSlaveBits - three slave devices
+   8, // u8  DataWidth
+   0, // u8  SpiMode
+   0, // u8  AxiInterface - AXI-Lite
+   0, // u32 AxiFullBaseAddress
+   0, // u8  XipMode
+   0  // u8  Use_Startup
 };
 
 /* ------------------------------------------------------------ */
@@ -72,12 +72,12 @@ XSpi_Config NAVConfig = {
 **      Shuts down the Nav hardware
 */
 void NAV_DevTerm(PmodNAV *InstancePtr) {
-  // Shuts down the accel and gyro instruments
-  NAV_InitAG(InstancePtr, 0, NAV_ACL_GYRO_MODE_INST_AG);
-  // Shuts down the magnetometer instrument
-  NAV_InitMAG(InstancePtr, 0);
-  // Shuts down the altimeter instrument
-  NAV_InitALT(InstancePtr, 0);
+   // Shuts down the accel and gyro instruments
+   NAV_InitAG(InstancePtr, 0, NAV_ACL_GYRO_MODE_INST_AG);
+   // Shuts down the magnetometer instrument
+   NAV_InitMAG(InstancePtr, 0);
+   // Shuts down the altimeter instrument
+   NAV_InitALT(InstancePtr, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -103,29 +103,29 @@ void NAV_DevTerm(PmodNAV *InstancePtr) {
 **      are called.
 */
 void NAV_begin(PmodNAV *InstancePtr, u32 GPIO_Address, u32 SPI_Address) {
-  InstancePtr->GPIO_addr = GPIO_Address;
-  NAVConfig.BaseAddress = SPI_Address;
-  NAVConfig.NumSlaveBits = 3;
+   InstancePtr->GPIO_addr = GPIO_Address;
+   NAVConfig.BaseAddress = SPI_Address;
+   NAVConfig.NumSlaveBits = 3;
 
-  // Set NAV_DRDY_M and NAV_INT pins as inputs
-  // 0b1111 for input 0b0000 for output, 0b0001 for pin1 in pin 2 out etc.
-  Xil_Out32(InstancePtr->GPIO_addr + 4, 0b11);
+   // Set NAV_DRDY_M and NAV_INT pins as inputs
+   // 0b1111 for input 0b0000 for output, 0b0001 for pin1 in pin 2 out etc.
+   Xil_Out32(InstancePtr->GPIO_addr + 4, 0b11);
 
-  // Initialize the SPI device
-  NAV_SPIInit(&InstancePtr->NAVSpi);
+   // Initialize the SPI device
+   NAV_SPIInit(&InstancePtr->NAVSpi);
 
-  // Get initial ranges
-  // The startup range for the accelerometer is +/- 2g, which corresponds to a
-  // LSB value of 0.061mg/LSB
-  InstancePtr->m_GRangeLSB = NAV_GetXLRangeLSB(NAV_ACL_PAR_XL_2G);
+   // Get initial ranges
+   // The startup range for the accelerometer is +/- 2g, which corresponds to a
+   // LSB value of 0.061mg/LSB
+   InstancePtr->m_GRangeLSB = NAV_GetXLRangeLSB(NAV_ACL_PAR_XL_2G);
 
-  // The startup range for the gyro is +/- 245dps, which corresponds to a LSB
-  // value of 8.75mdps/LSB
-  InstancePtr->m_DPSRangeLSB = NAV_GetGRangeLSB(NAV_GYRO_PAR_G_245DPS);
+   // The startup range for the gyro is +/- 245dps, which corresponds to a LSB
+   // value of 8.75mdps/LSB
+   InstancePtr->m_DPSRangeLSB = NAV_GetGRangeLSB(NAV_GYRO_PAR_G_245DPS);
 
-  // The startup range for the magnetometer is +/- 4Gauss, which corresponds to
-  // a LSB value of 0.14mGauss/LSB
-  InstancePtr->m_GaussRangeLSB = NAV_GetMAGRangeLSB(NAV_MAG_PAR_MAG_4GAUSS);
+   // The startup range for the magnetometer is +/- 4Gauss, which corresponds to
+   // a LSB value of 0.14mGauss/LSB
+   InstancePtr->m_GaussRangeLSB = NAV_GetMAGRangeLSB(NAV_MAG_PAR_MAG_4GAUSS);
 }
 
 /* ------------------------------------------------------------ */
@@ -144,31 +144,31 @@ void NAV_begin(PmodNAV *InstancePtr, u32 GPIO_Address, u32 SPI_Address) {
 **      Initializes the PmodNAV SPI.
 */
 int NAV_SPIInit(XSpi *SpiInstancePtr) {
-  int Status;
+   int Status;
 
-  Status =
-      XSpi_CfgInitialize(SpiInstancePtr, &NAVConfig, NAVConfig.BaseAddress);
-  if (Status != XST_SUCCESS)
-    return XST_FAILURE;
+   Status = XSpi_CfgInitialize(SpiInstancePtr, &NAVConfig,
+         NAVConfig.BaseAddress);
+   if (Status != XST_SUCCESS)
+      return XST_FAILURE;
 
-  u32 options =
-      XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_CLK_PHASE_1_OPTION;
-  Status = XSpi_SetOptions(SpiInstancePtr, options);
-  if (Status != XST_SUCCESS)
-    return XST_FAILURE;
+   u32 options = XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION
+         | XSP_CLK_PHASE_1_OPTION;
+   Status = XSpi_SetOptions(SpiInstancePtr, options);
+   if (Status != XST_SUCCESS)
+      return XST_FAILURE;
 
-  // Select no slave
-  Status = XSpi_SetSlaveSelect(SpiInstancePtr, 0b000);
-  if (Status != XST_SUCCESS)
-    return XST_FAILURE;
+   // Select no slave
+   Status = XSpi_SetSlaveSelect(SpiInstancePtr, 0b000);
+   if (Status != XST_SUCCESS)
+      return XST_FAILURE;
 
-  // Start the SPI driver so that the device is enabled.
-  XSpi_Start(SpiInstancePtr);
+   // Start the SPI driver so that the device is enabled.
+   XSpi_Start(SpiInstancePtr);
 
-  // Disable Global interrupt to use polled mode operation
-  XSpi_IntrGlobalDisable(SpiInstancePtr);
+   // Disable Global interrupt to use polled mode operation
+   XSpi_IntrGlobalDisable(SpiInstancePtr);
 
-  return XST_SUCCESS;
+   return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -188,10 +188,10 @@ int NAV_SPIInit(XSpi *SpiInstancePtr) {
 **      resources used by the Nav interface.
 */
 void NAV_end(PmodNAV *InstancePtr) {
-  NAV_DevTerm(InstancePtr);
-  InstancePtr->m_GRangeLSB = 0;
-  InstancePtr->m_DPSRangeLSB = 0;
-  InstancePtr->m_GaussRangeLSB = 0;
+   NAV_DevTerm(InstancePtr);
+   InstancePtr->m_GRangeLSB = 0;
+   InstancePtr->m_DPSRangeLSB = 0;
+   InstancePtr->m_GaussRangeLSB = 0;
 }
 
 /* ------------------------------------------------------------ */
@@ -213,12 +213,12 @@ void NAV_end(PmodNAV *InstancePtr) {
 **      Default operating mode for Accelerometer and Gyroscope is ACL+GYRO.
 */
 void NAV_Init(PmodNAV *InstancePtr) {
-  // Enable only acl work mode or gyro and acl work mode;
-  NAV_InitAG(InstancePtr, 1, NAV_ACL_GYRO_MODE_INST_AG);
-  // Init mag instrument
-  NAV_InitMAG(InstancePtr, 1);
-  // Init alt instrument
-  NAV_InitALT(InstancePtr, 1);
+   // Enable only acl work mode or gyro and acl work mode;
+   NAV_InitAG(InstancePtr, 1, NAV_ACL_GYRO_MODE_INST_AG);
+   // Init mag instrument
+   NAV_InitMAG(InstancePtr, 1);
+   // Init alt instrument
+   NAV_InitALT(InstancePtr, 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -238,15 +238,23 @@ void NAV_Init(PmodNAV *InstancePtr) {
 **      updates the global variables with new data
 */
 void NAV_GetData(PmodNAV *InstancePtr) {
-  NAV_ReadAccelG(InstancePtr, &(InstancePtr->acclData.X),
-                 &(InstancePtr->acclData.Y), &(InstancePtr->acclData.Z));
-  NAV_ReadGyroDps(InstancePtr, &(InstancePtr->gyroData.X),
-                  &(InstancePtr->gyroData.Y), &(InstancePtr->gyroData.Z));
-  NAV_ReadMagGauss(InstancePtr);
-  usleep(10);
-  NAV_ReadPressurehPa(InstancePtr);
-  usleep(10);
-  NAV_ReadTempC(InstancePtr);
+   NAV_ReadAccelG(
+      InstancePtr,
+      &(InstancePtr->acclData.X),
+      &(InstancePtr->acclData.Y),
+      &(InstancePtr->acclData.Z)
+   );
+   NAV_ReadGyroDps(
+      InstancePtr,
+      &(InstancePtr->gyroData.X),
+      &(InstancePtr->gyroData.Y),
+      &(InstancePtr->gyroData.Z)
+   );
+   NAV_ReadMagGauss(InstancePtr);
+   usleep(10);
+   NAV_ReadPressurehPa(InstancePtr);
+   usleep(10);
+   NAV_ReadTempC(InstancePtr);
 }
 
 /* ------------------------------------------------------------ */
@@ -269,23 +277,23 @@ void NAV_GetData(PmodNAV *InstancePtr) {
 **         block data update active.
 */
 void NAV_InitALT(PmodNAV *InstancePtr, bool fInit) {
-  if (fInit) {
-    // Clean start
-    NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1, 0x00);
-    usleep(5000);
-    // Set active the device and ODR to 7Hz
-    NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1, 0xA4);
-    usleep(5000);
-    // Increment address during multiple byte access disabled
-    NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG2, 0x00);
-    usleep(5000);
-    // No modification to interrupt sources
-    NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG4, 0x00);
-    usleep(5000);
-  } else {
-    // Power down the instrument
-    NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1, 0x00);
-  }
+   if (fInit) {
+      // Clean start
+      NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1, 0x00);
+      usleep(5000);
+      // Set active the device and ODR to 7Hz
+      NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1, 0xA4);
+      usleep(5000);
+      // Increment address during multiple byte access disabled
+      NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG2, 0x00);
+      usleep(5000);
+      // No modification to interrupt sources
+      NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG4, 0x00);
+      usleep(5000);
+   } else {
+      // Power down the instrument
+      NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1, 0x00);
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -316,37 +324,37 @@ void NAV_InitALT(PmodNAV *InstancePtr, bool fInit) {
 **
 */
 void NAV_InitAG(PmodNAV *InstancePtr, bool fInit, u8 bModeSel) {
-  if (fInit) {
-    if (bModeSel == NAV_ACL_MODE_INST_A) {
-      // Enable all three axes
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG5_XL, 0x38);
-      // Set 10Hz odr for accelerometer
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL, 0x20);
-    } else if (bModeSel == NAV_ACL_GYRO_MODE_INST_AG) {
-      // Enable all three axes
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG5_XL, 0x38);
-      // Set 10Hz odr for accel when used together with gyro
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL, 0x20);
-      // Set 10Hz rate for Gyro
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_CTRL_REG1_G, 0x20);
-      // Enable the axes outputs for Gyro
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_CTRL_REG4, 0x38);
-    }
-  } else {
-    if (bModeSel == NAV_ACL_MODE_INST_A) {
-      // Power down accel
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG5_XL, 0x00);
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL, 0x00);
-    } else if (bModeSel == NAV_ACL_GYRO_MODE_INST_AG) {
-      // Power down both the accel and gyro instruments
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG5_XL, 0x00);
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL, 0x00);
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG9, 0x00);
+   if (fInit) {
+      if (bModeSel == NAV_ACL_MODE_INST_A) {
+         // Enable all three axes
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG5_XL, 0x38);
+         // Set 10Hz odr for accelerometer
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL, 0x20);
+      } else if (bModeSel == NAV_ACL_GYRO_MODE_INST_AG) {
+         // Enable all three axes
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG5_XL, 0x38);
+         // Set 10Hz odr for accel when used together with gyro
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL, 0x20);
+         // Set 10Hz rate for Gyro
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_CTRL_REG1_G, 0x20);
+         // Enable the axes outputs for Gyro
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_CTRL_REG4, 0x38);
+      }
+   } else {
+      if (bModeSel == NAV_ACL_MODE_INST_A) {
+         // Power down accel
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG5_XL, 0x00);
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL, 0x00);
+      } else if (bModeSel == NAV_ACL_GYRO_MODE_INST_AG) {
+         // Power down both the accel and gyro instruments
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG5_XL, 0x00);
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL, 0x00);
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG9, 0x00);
 
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_CTRL_REG4, 0x00);
-      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_CTRL_REG1_G, 0x00);
-    }
-  }
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_CTRL_REG4, 0x00);
+         NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_CTRL_REG1_G, 0x00);
+      }
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -369,22 +377,22 @@ void NAV_InitAG(PmodNAV *InstancePtr, bool fInit, u8 bModeSel) {
 **         operating mode to continuous in NAV_MAG_CTRL_REG3_M register.
 */
 void NAV_InitMAG(PmodNAV *InstancePtr, bool fInit) {
-  if (fInit) {
-    // Set medium performance mode for x and y and 10Hz ODR for MAG,
-    NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG1_M, 0x30);
-    // Set scale to +-4Gauss
-    NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG2_M, 0);
-    // Disable I2C and enable SPI read and write operations,
-    // Set the operating mode to continuous conversion
-    NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG3_M, 0x00);
-    // Set medium performance mode for z axis
-    NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG4_M, 0x04);
-    // Continuous update of output registers
-    NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG5_M, 0x00);
-  } else {
-    // Power down the instrument
-    NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG3_M, 0x03);
-  }
+   if (fInit) {
+      // Set medium performance mode for x and y and 10Hz ODR for MAG,
+      NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG1_M, 0x30);
+      // Set scale to +-4Gauss
+      NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG2_M, 0);
+      // Disable I2C and enable SPI read and write operations,
+      // Set the operating mode to continuous conversion
+      NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG3_M, 0x00);
+      // Set medium performance mode for z axis
+      NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG4_M, 0x04);
+      // Continuous update of output registers
+      NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG5_M, 0x00);
+   } else {
+      // Power down the instrument
+      NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG3_M, 0x03);
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -404,12 +412,12 @@ void NAV_InitMAG(PmodNAV *InstancePtr, bool fInit) {
 **      DEV_ID structure members
 */
 void NAV_GetDeviceID(PmodNAV *InstancePtr) {
-  NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_WHO_AM_I, 1,
-                   &(InstancePtr->idData.ag));
-  NAV_ReadRegister(InstancePtr, NAV_INST_MAG, NAV_ACL_GYRO_WHO_AM_I, 1,
-                   &(InstancePtr->idData.mag));
-  NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ACL_GYRO_WHO_AM_I, 1,
-                   &(InstancePtr->idData.alt));
+   NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_WHO_AM_I, 1,
+         &(InstancePtr->idData.ag));
+   NAV_ReadRegister(InstancePtr, NAV_INST_MAG, NAV_ACL_GYRO_WHO_AM_I, 1,
+         &(InstancePtr->idData.mag));
+   NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ACL_GYRO_WHO_AM_I, 1,
+         &(InstancePtr->idData.alt));
 }
 
 /*--------------------------------------------------------------*/
@@ -436,19 +444,19 @@ void NAV_GetDeviceID(PmodNAV *InstancePtr) {
 **      Sends one byte to SPI.
 */
 void NAV_WriteSPI(PmodNAV *InstancePtr, u8 bInst, u8 bAddr, u8 bVal) {
-  u8 recv[2];
+   u8 recv[2];
 
-  recv[0] = bAddr | 0x00;
-  recv[1] = bVal;
+   recv[0] = bAddr | 0x00;
+   recv[1] = bVal;
 
-  // Select a slave
-  XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, bInst);
+   // Select a slave
+   XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, bInst);
 
-  // Transfer SPI data
-  XSpi_Transfer(&InstancePtr->NAVSpi, recv, recv, 2);
+   // Transfer SPI data
+   XSpi_Transfer(&InstancePtr->NAVSpi, recv, recv, 2);
 
-  // Set chip select high
-  XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, 0b000);
+   // Set chip select high
+   XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, 0b000);
 }
 
 /* ------------------------------------------------------------ */
@@ -470,20 +478,20 @@ void NAV_WriteSPI(PmodNAV *InstancePtr, u8 bInst, u8 bAddr, u8 bVal) {
 **      Receives one byte to SPI.
 */
 u8 NAV_ReadSPI(PmodNAV *InstancePtr, u8 bInst, u8 bAddr) {
-  u8 recv[2];
+   u8 recv[2];
 
-  recv[0] = bAddr | 0x80;
-  recv[1] = 0;
+   recv[0] = bAddr | 0x80;
+   recv[1] = 0;
 
-  // Select a slave
-  XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, bInst);
+   // Select a slave
+   XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, bInst);
 
-  // Transfer SPI data
-  XSpi_Transfer(&InstancePtr->NAVSpi, recv, recv, 2);
+   // Transfer SPI data
+   XSpi_Transfer(&InstancePtr->NAVSpi, recv, recv, 2);
 
-  XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, 0b000);
+   XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, 0b000);
 
-  return recv[1];
+   return recv[1];
 }
 
 /* ------------------------------------------------------------ */
@@ -509,33 +517,32 @@ u8 NAV_ReadSPI(PmodNAV *InstancePtr, u8 bInst, u8 bAddr) {
 **      consecutive addresses, starting with bAddr.
 */
 void NAV_WriteRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr,
-                       uint8_t bCntBytes, uint8_t *pData) {
-  u8 recv[bCntBytes + 1];
-  int i = 0;
+      uint8_t bCntBytes, uint8_t *pData) {
+   u8 recv[bCntBytes + 1];
+   int i = 0;
 
-  for (i = 0; i < bCntBytes; i++) {
-    recv[i + 1] = pData[i];
-  }
+   for (i = 0; i < bCntBytes; i++) {
+      recv[i + 1] = pData[i];
+   }
 
-  // Add write bit
-  if (bInst == NAV_INST_AG)
-    recv[0] = bAddr | 0x00;
-  else
-    recv[0] = bAddr | 0x40;
+   // Add write bit
+   if (bInst == NAV_INST_AG)
+      recv[0] = bAddr | 0x00;
+   else
+      recv[0] = bAddr | 0x40;
 
-  // Select a slave
-  XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, bInst);
+   // Select a slave
+   XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, bInst);
 
-  // Transfer SPI data
-  XSpi_Transfer(&InstancePtr->NAVSpi, recv, recv, bCntBytes + 1);
+   // Transfer SPI data
+   XSpi_Transfer(&InstancePtr->NAVSpi, recv, recv, bCntBytes + 1);
 
-  // Set chip select high
-  XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, 0b000);
+   // Set chip select high
+   XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, 0b000);
 }
 
 /* ------------------------------------------------------------ */
-/*** void NAV_ReadRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr,
-*uint8_t bCntBytes, uint8_t *pData)
+/*** void NAV_ReadRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr, uint8_t bCntBytes, uint8_t *pData)
 **
 **   Parameters:
 **      InstancePtr - instance of PmodNAV
@@ -556,31 +563,31 @@ void NAV_WriteRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr,
 **      consecutive addresses, starting with bAddr.
 */
 void NAV_ReadRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr,
-                      uint8_t bCntBytes, uint8_t *pData) {
-  u8 recv[bCntBytes + 1];
-  int i = 0;
+      uint8_t bCntBytes, uint8_t *pData) {
+   u8 recv[bCntBytes + 1];
+   int i = 0;
 
-  for (i = 0; i < bCntBytes; i++) {
-    recv[i + 1] = 0;
-  }
+   for (i = 0; i < bCntBytes; i++) {
+      recv[i + 1] = 0;
+   }
 
-  // Add write bit
-  if (bInst == NAV_INST_AG)
-    recv[0] = bAddr | 0x80;
-  else
-    recv[0] = bAddr | 0xC0;
+   // Add write bit
+   if (bInst == NAV_INST_AG)
+      recv[0] = bAddr | 0x80;
+   else
+      recv[0] = bAddr | 0xC0;
 
-  // Select a slave
-  XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, bInst);
+   // Select a slave
+   XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, bInst);
 
-  XSpi_Transfer(&InstancePtr->NAVSpi, recv, recv, bCntBytes + 1);
+   XSpi_Transfer(&InstancePtr->NAVSpi, recv, recv, bCntBytes + 1);
 
-  // Set chip select high
-  XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, 0b000);
+   // Set chip select high
+   XSpi_SetSlaveSelect(&InstancePtr->NAVSpi, 0b000);
 
-  for (i = 0; i < bCntBytes; i++) {
-    pData[i] = recv[i + 1];
-  }
+   for (i = 0; i < bCntBytes; i++) {
+      pData[i] = recv[i + 1];
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -608,17 +615,17 @@ void NAV_ReadRegister(PmodNAV *InstancePtr, uint8_t bInst, uint8_t bAddr,
 **      indicated by startBit.
 */
 void NAV_SetBitsInRegister(PmodNAV *InstancePtr, u8 bInst, u8 bRegAddr,
-                           u8 bMask, u8 bValue, u8 startBit) {
-  u8 bRegValue, shiftedValue;
-  shiftedValue = (bValue << startBit);
-  NAV_ReadRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
-  // Register value: mask out the bits from the mask
-  bRegValue &= ~bMask;
-  // Value: mask out the values outside the mask
-  shiftedValue &= bMask;
-  // Combine the value with the masked register value
-  bRegValue |= (shiftedValue & bMask);
-  NAV_WriteRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
+      u8 bMask, u8 bValue, u8 startBit) {
+   u8 bRegValue, shiftedValue;
+   shiftedValue = (bValue << startBit);
+   NAV_ReadRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
+   // Register value: mask out the bits from the mask
+   bRegValue &= ~bMask;
+   // Value: mask out the values outside the mask
+   shiftedValue &= bMask;
+   // Combine the value with the masked register value
+   bRegValue |= (shiftedValue & bMask);
+   NAV_WriteRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
 }
 
 /* ------------------------------------------------------------ */
@@ -643,13 +650,13 @@ void NAV_SetBitsInRegister(PmodNAV *InstancePtr, u8 bInst, u8 bRegAddr,
 **      noBits parameters) of a register (indicated by bRegisterAddress).
 */
 u8 NAV_GetBitsInRegister(PmodNAV *InstancePtr, u8 bInst, u8 bRegAddr,
-                         u8 startBit, u8 noBits) {
-  u8 bRegValue, bResult, bMask;
-  NAV_ReadRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
-  bMask = ((1 << noBits) - 1) << startBit;
-  bResult = (bRegValue & bMask) >> startBit;
+      u8 startBit, u8 noBits) {
+   u8 bRegValue, bResult, bMask;
+   NAV_ReadRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
+   bMask = ((1 << noBits) - 1) << startBit;
+   bResult = (bRegValue & bMask) >> startBit;
 
-  return bResult;
+   return bResult;
 }
 
 /* ------------------------------------------------------------ */
@@ -674,17 +681,17 @@ u8 NAV_GetBitsInRegister(PmodNAV *InstancePtr, u8 bInst, u8 bRegAddr,
 **      of a register (indicated by bRegAddr) to 1 or 0 (indicated by fValue).
 */
 void NAV_SetRegisterBits(PmodNAV *InstancePtr, u8 bInst, u8 bRegAddr, u8 bMask,
-                         bool fValue) {
-  u8 bRegValue;
-  NAV_ReadRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
-  if (fValue) {
-    // Set 1 value to the values that are 1 in the mask
-    bRegValue |= bMask;
-  } else {
-    // Set 0 value to the values that are 1 in the mask
-    bRegValue &= ~bMask;
-  }
-  NAV_WriteRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
+      bool fValue) {
+   u8 bRegValue;
+   NAV_ReadRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
+   if (fValue) {
+      // Set 1 value to the values that are 1 in the mask
+      bRegValue |= bMask;
+   } else {
+      // Set 0 value to the values that are 1 in the mask
+      bRegValue &= ~bMask;
+   }
+   NAV_WriteRegister(InstancePtr, bInst, bRegAddr, 1, &bRegValue);
 }
 
 /*-------------------------------------------------------------*/
@@ -709,21 +716,21 @@ void NAV_SetRegisterBits(PmodNAV *InstancePtr, u8 bInst, u8 bRegAddr, u8 bMask,
 **      This function captures raw accelerometer data over SPI
 */
 void NAV_ReadAccel(PmodNAV *InstancePtr, s16 *X, s16 *Y, s16 *Z) {
-  u8 iAclX_L, iAclX_H, iAclY_L, iAclY_H, iAclZ_L, iAclZ_H;
-  u8 rgwRegVals[6];
-  // Reads the bytes using the incrementing address functionality of the device
-  NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_ACL_OUT_X_L_XL, 6,
-                   (uint8_t *)rgwRegVals);
-  iAclX_L = rgwRegVals[0];
-  iAclX_H = rgwRegVals[1];
-  iAclY_L = rgwRegVals[2];
-  iAclY_H = rgwRegVals[3];
-  iAclZ_L = rgwRegVals[4];
-  iAclZ_H = rgwRegVals[5];
-  // Combines the read values for each axis to obtain the 16-bit values
-  *X = (s16)(((s16)iAclX_H << 8) | iAclX_L);
-  *Y = (s16)((s16)iAclY_H << 8) | iAclY_L;
-  *Z = (s16)((s16)iAclZ_H << 8) | iAclZ_L;
+   u8 iAclX_L, iAclX_H, iAclY_L, iAclY_H, iAclZ_L, iAclZ_H;
+   u8 rgwRegVals[6];
+   // Reads the bytes using the incrementing address functionality of the device
+   NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_ACL_OUT_X_L_XL, 6,
+         (uint8_t *) rgwRegVals);
+   iAclX_L = rgwRegVals[0];
+   iAclX_H = rgwRegVals[1];
+   iAclY_L = rgwRegVals[2];
+   iAclY_H = rgwRegVals[3];
+   iAclZ_L = rgwRegVals[4];
+   iAclZ_H = rgwRegVals[5];
+   // Combines the read values for each axis to obtain the 16-bit values
+   *X = (s16) (((s16) iAclX_H << 8) | iAclX_L);
+   *Y = (s16) ((s16) iAclY_H << 8) | iAclY_L;
+   *Z = (s16) ((s16) iAclZ_H << 8) | iAclZ_L;
 }
 
 /* ------------------------------------------------------------ */
@@ -751,15 +758,15 @@ void NAV_ReadAccel(PmodNAV *InstancePtr, s16 *X, s16 *Y, s16 *Z) {
 **      expressed in g, considering the currently selected g range.
 */
 void NAV_ReadAccelG(PmodNAV *InstancePtr, float *X, float *Y, float *Z) {
-  int16_t AclX, AclY, AclZ;
-  AclX = 0;
-  AclY = 0;
-  AclZ = 0;
+   int16_t AclX, AclY, AclZ;
+   AclX = 0;
+   AclY = 0;
+   AclZ = 0;
 
-  NAV_ReadAccel(InstancePtr, &AclX, &AclY, &AclZ);
-  *X = NAV_ConvertReadingToValueG(InstancePtr, AclX);
-  *Y = NAV_ConvertReadingToValueG(InstancePtr, AclY);
-  *Z = NAV_ConvertReadingToValueG(InstancePtr, AclZ);
+   NAV_ReadAccel(InstancePtr, &AclX, &AclY, &AclZ);
+   *X = NAV_ConvertReadingToValueG(InstancePtr, AclX);
+   *Y = NAV_ConvertReadingToValueG(InstancePtr, AclY);
+   *Z = NAV_ConvertReadingToValueG(InstancePtr, AclZ);
 }
 
 /* ------------------------------------------------------------ */
@@ -782,9 +789,9 @@ void NAV_ReadAccelG(PmodNAV *InstancePtr, float *X, float *Y, float *Z) {
 **      range.
 */
 float NAV_ConvertReadingToValueG(PmodNAV *InstancePtr, s16 rawVal) {
-  // Convert the accelerometer value to G's.
-  float dResult = ((float)rawVal) * InstancePtr->m_GRangeLSB;
-  return dResult;
+   // Convert the accelerometer value to G's.
+   float dResult = ((float) rawVal) * InstancePtr->m_GRangeLSB;
+   return dResult;
 }
 
 /* ------------------------------------------------------------ */
@@ -810,9 +817,9 @@ float NAV_ConvertReadingToValueG(PmodNAV *InstancePtr, s16 rawVal) {
 **      NAV_ACL_CTRL_REG6_XL register.
 */
 void NAV_SetRangeXL(PmodNAV *InstancePtr, u8 bRangeXL) {
-  InstancePtr->m_GRangeLSB = NAV_GetXLRangeLSB(bRangeXL);
-  NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL,
-                        NAV_ACL_MSK_RANGE_XL, bRangeXL, 3);
+   InstancePtr->m_GRangeLSB = NAV_GetXLRangeLSB(bRangeXL);
+   NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL,
+         NAV_ACL_MSK_RANGE_XL, bRangeXL, 3);
 }
 
 /* ------------------------------------------------------------ */
@@ -828,8 +835,7 @@ void NAV_SetRangeXL(PmodNAV *InstancePtr, u8 bRangeXL) {
 **
 **
 **   Return Value:
-**      float - the corresponding value of one LSB unit according to the range
-*set
+**      float - the corresponding value of one LSB unit according to the range set
 **
 **   Errors:
 **      None
@@ -842,25 +848,25 @@ void NAV_SetRangeXL(PmodNAV *InstancePtr, u8 bRangeXL) {
 **      default value is set.
 */
 float NAV_GetXLRangeLSB(u8 bRangeXL) {
-  float gRangeLSB;
-  switch (bRangeXL) {
-  case NAV_ACL_PAR_XL_2G:
-    gRangeLSB = 0.000061;
-    break;
-  case NAV_ACL_PAR_XL_4G:
-    gRangeLSB = 0.000122;
-    break;
-  case NAV_ACL_PAR_XL_8G:
-    gRangeLSB = 0.000244;
-    break;
-  case NAV_ACL_PAR_XL_16G:
-    gRangeLSB = 0.000732;
-    break;
-  default:
-    gRangeLSB = 0.000061;
-    break;
-  }
-  return gRangeLSB;
+   float gRangeLSB;
+   switch (bRangeXL) {
+   case NAV_ACL_PAR_XL_2G:
+      gRangeLSB = 0.000061;
+      break;
+   case NAV_ACL_PAR_XL_4G:
+      gRangeLSB = 0.000122;
+      break;
+   case NAV_ACL_PAR_XL_8G:
+      gRangeLSB = 0.000244;
+      break;
+   case NAV_ACL_PAR_XL_16G:
+      gRangeLSB = 0.000732;
+      break;
+   default:
+      gRangeLSB = 0.000061;
+      break;
+   }
+   return gRangeLSB;
 }
 
 /* ------------------------------------------------------------ */
@@ -887,27 +893,27 @@ float NAV_GetXLRangeLSB(u8 bRangeXL) {
 **      value for range is set
 */
 u8 NAV_GetRangeXL(PmodNAV *InstancePtr) {
-  u8 readRange, gRange;
-  readRange = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
-                                    NAV_ACL_CTRL_REG6_XL, 3, 2);
-  switch (readRange) {
-  case NAV_ACL_PAR_XL_2G:
-    gRange = 2;
-    break;
-  case NAV_ACL_PAR_XL_4G:
-    gRange = 4;
-    break;
-  case NAV_ACL_PAR_XL_8G:
-    gRange = 8;
-    break;
-  case NAV_ACL_PAR_XL_16G:
-    gRange = 16;
-    break;
-  default:
-    gRange = 2;
-    break;
-  }
-  return gRange;
+   u8 readRange, gRange;
+   readRange = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
+         NAV_ACL_CTRL_REG6_XL, 3, 2);
+   switch (readRange) {
+   case NAV_ACL_PAR_XL_2G:
+      gRange = 2;
+      break;
+   case NAV_ACL_PAR_XL_4G:
+      gRange = 4;
+      break;
+   case NAV_ACL_PAR_XL_8G:
+      gRange = 8;
+      break;
+   case NAV_ACL_PAR_XL_16G:
+      gRange = 16;
+      break;
+   default:
+      gRange = 2;
+      break;
+   }
+   return gRange;
 }
 
 /* ------------------------------------------------------------ */
@@ -928,9 +934,9 @@ u8 NAV_GetRangeXL(PmodNAV *InstancePtr) {
 **      data available bit in it(1 or 0)
 */
 u8 NAV_DataAvailableXL(PmodNAV *InstancePtr) {
-  u8 status;
-  NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_ALIAS_STATUS_REG, 1, &status);
-  return (status & (1 << 0));
+   u8 status;
+   NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_ALIAS_STATUS_REG, 1, &status);
+   return (status & (1 << 0));
 }
 
 /* ------------------------------------------------------------ */
@@ -966,20 +972,20 @@ u8 NAV_DataAvailableXL(PmodNAV *InstancePtr) {
 **      and-ed. Sets the interrupt event to be latched or not.
 */
 void NAV_ConfigIntXL(PmodNAV *InstancePtr, u8 bIntGen, bool aoi, bool latch) {
-  uint8_t temp = bIntGen;
-  // Interrupt events are or-ed or and-ed
-  if (aoi) {
-    temp |= 0x80;
-  }
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_CFG_XL, temp);
-  temp = 0;
+   uint8_t temp = bIntGen;
+   // Interrupt events are or-ed or and-ed
+   if (aoi) {
+      temp |= 0x80;
+   }
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_CFG_XL, temp);
+   temp = 0;
 
-  temp = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_CTRL_REG4);
-  // Latched interrupt enable is set in NAV_ACL_GYRO_CTRL_REG4 register
-  if (latch) {
-    temp |= 0x02;
-  }
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_CTRL_REG4, temp);
+   temp = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_CTRL_REG4);
+   // Latched interrupt enable is set in NAV_ACL_GYRO_CTRL_REG4 register
+   if (latch) {
+      temp |= 0x02;
+   }
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_CTRL_REG4, temp);
 }
 
 /* ------------------------------------------------------------ */
@@ -987,8 +993,7 @@ void NAV_ConfigIntXL(PmodNAV *InstancePtr, u8 bIntGen, bool aoi, bool latch) {
 **
 **   Parameters:
 **      InstancePtr - instance of PmodNAV
-**      bInstMode   - parameter selecting between the two instruments,
-*Accelerometer and Gyroscope:
+**      bInstMode   - parameter selecting between the two instruments, Accelerometer and Gyroscope:
 **                       NAV_ACL_MODE_INST_A         0 - Accelerometer mode
 **                       NAV_ACL_GYRO_MODE_INST_AG   1 - Gyroscope
 **   Return Value:
@@ -1003,32 +1008,31 @@ void NAV_ConfigIntXL(PmodNAV *InstancePtr, u8 bIntGen, bool aoi, bool latch) {
 **      Gyroscope instruments.
 */
 u8 NAV_GetIntSrcXLG(PmodNAV *InstancePtr, u8 bInstMode) {
-  u8 intSrc;
-  if (bInstMode == NAV_ACL_MODE_INST_A) {
-    intSrc = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_SRC_XL);
-    // Check if the IA_XL (interrupt active) bit is set
-    if (intSrc & (1 << 6)) {
-      return intSrc;
-    }
-    intSrc &= 0x3F;
-  }
+   u8 intSrc;
+   if (bInstMode == NAV_ACL_MODE_INST_A) {
+      intSrc = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_SRC_XL);
+      // Check if the IA_XL (interrupt active) bit is set
+      if (intSrc & (1 << 6)) {
+         return intSrc;
+      }
+      intSrc &= 0x3F;
+   }
 
-  else if (bInstMode == NAV_ACL_GYRO_MODE_INST_AG) {
-    intSrc = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_INT_GEN_SRC_G);
-    // Check if the IA_G (interrupt active) bit is set
-    if (intSrc & (1 << 6)) {
-      return intSrc;
-    }
-    intSrc &= 0x3F;
-  }
+   else if (bInstMode == NAV_ACL_GYRO_MODE_INST_AG) {
+      intSrc = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_INT_GEN_SRC_G);
+      // Check if the IA_G (interrupt active) bit is set
+      if (intSrc & (1 << 6)) {
+         return intSrc;
+      }
+      intSrc &= 0x3F;
+   }
 
-  // Get rid of non return warning
-  return -1;
+   // Get rid of non return warning
+   return -1;
 }
 
 /* ------------------------------------------------------------ */
-/*** void NAV_SetIntThresholdXL(PmodNAV *InstancePtr, float thValX, float
-*thValY, float thValZ, u8 intDuration, bool wait)
+/*** void NAV_SetIntThresholdXL(PmodNAV *InstancePtr, float thValX, float thValY, float thValZ, u8 intDuration, bool wait)
 **
 **   Parameters:
 **      InstancePtr            - instance of PmodNAV
@@ -1051,24 +1055,24 @@ u8 NAV_GetIntSrcXLG(PmodNAV *InstancePtr, u8 bInstMode) {
 **      duration before exiting interrupt.
 */
 void NAV_SetIntThresholdXL(PmodNAV *InstancePtr, float thValX, float thValY,
-                           float thValZ, u8 intDuration, bool wait) {
-  u8 bthValX, bthValY, bthValZ;
-  // Converts the float value in g to raw accel data to be written in
-  // INT_GEN_THS_X/Y/Z_XL registers
-  bthValX = (u8)(thValX / (InstancePtr->m_GRangeLSB));
-  bthValY = (u8)(thValY / (InstancePtr->m_GRangeLSB));
-  bthValZ = (u8)(thValZ / (InstancePtr->m_GRangeLSB));
+      float thValZ, u8 intDuration, bool wait) {
+   u8 bthValX, bthValY, bthValZ;
+   // Converts the float value in g to raw accel data to be written in
+   // INT_GEN_THS_X/Y/Z_XL registers
+   bthValX = (u8) (thValX / (InstancePtr->m_GRangeLSB));
+   bthValY = (u8) (thValY / (InstancePtr->m_GRangeLSB));
+   bthValZ = (u8) (thValZ / (InstancePtr->m_GRangeLSB));
 
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_THS_X_XL, bthValX);
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_THS_Y_XL, bthValY);
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_THS_Z_XL, bthValZ);
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_THS_X_XL, bthValX);
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_THS_Y_XL, bthValY);
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_THS_Z_XL, bthValZ);
 
-  // Write duration and wait to NAV_ACL_INT_GEN_DUR_XL register
-  u8 temp;
-  temp = (intDuration & 0x7F);
-  if (wait)
-    temp |= 0x80;
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_DUR_XL, temp);
+   // Write duration and wait to NAV_ACL_INT_GEN_DUR_XL register
+   u8 temp;
+   temp = (intDuration & 0x7F);
+   if (wait)
+      temp |= 0x80;
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_ACL_INT_GEN_DUR_XL, temp);
 }
 
 /*-------------------------------------------------------------*/
@@ -1101,21 +1105,21 @@ void NAV_SetIntThresholdXL(PmodNAV *InstancePtr, float thValX, float thValY,
 **          a 16-bit value
 */
 void NAV_ReadGyro(PmodNAV *InstancePtr, s16 *GX, s16 *GY, s16 *GZ) {
-  u8 iGX_L, iGX_H, iGY_L, iGY_H, iGZ_L, iGZ_H;
-  u8 rgwRegVals[6];
-  // Reads the bytes using the incrementing address functionality of the device.
-  NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_GYRO_OUT_X_L_G, 6,
-                   (u8 *)rgwRegVals);
-  iGX_L = rgwRegVals[0];
-  iGX_H = rgwRegVals[1];
-  iGY_L = rgwRegVals[2];
-  iGY_H = rgwRegVals[3];
-  iGZ_L = rgwRegVals[4];
-  iGZ_H = rgwRegVals[5];
-  // Combines the read values for each axis to obtain the 16-bits values
-  *GX = (s16)((s16)iGX_H << 8) | iGX_L;
-  *GY = (s16)((s16)iGY_H << 8) | iGY_L;
-  *GZ = (s16)((s16)iGZ_H << 8) | iGZ_L;
+   u8 iGX_L, iGX_H, iGY_L, iGY_H, iGZ_L, iGZ_H;
+   u8 rgwRegVals[6];
+   // Reads the bytes using the incrementing address functionality of the device.
+   NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_GYRO_OUT_X_L_G, 6,
+         (u8 *) rgwRegVals);
+   iGX_L = rgwRegVals[0];
+   iGX_H = rgwRegVals[1];
+   iGY_L = rgwRegVals[2];
+   iGY_H = rgwRegVals[3];
+   iGZ_L = rgwRegVals[4];
+   iGZ_H = rgwRegVals[5];
+   // Combines the read values for each axis to obtain the 16-bits values
+   *GX = (s16) ((s16) iGX_H << 8) | iGX_L;
+   *GY = (s16) ((s16) iGY_H << 8) | iGY_L;
+   *GZ = (s16) ((s16) iGZ_H << 8) | iGZ_L;
 }
 
 /* ------------------------------------------------------------ */
@@ -1143,12 +1147,12 @@ void NAV_ReadGyro(PmodNAV *InstancePtr, s16 *GX, s16 *GY, s16 *GZ) {
 **      considering the currently selected dps range.
 */
 void NAV_ReadGyroDps(PmodNAV *InstancePtr, float *X, float *Y, float *Z) {
-  s16 GX, GY, GZ;
+   s16 GX, GY, GZ;
 
-  NAV_ReadGyro(InstancePtr, &GX, &GY, &GZ);
-  *X = NAV_ConvertReadingToValueDPS(InstancePtr, GX);
-  *Y = NAV_ConvertReadingToValueDPS(InstancePtr, GY);
-  *Z = NAV_ConvertReadingToValueDPS(InstancePtr, GZ);
+   NAV_ReadGyro(InstancePtr, &GX, &GY, &GZ);
+   *X = NAV_ConvertReadingToValueDPS(InstancePtr, GX);
+   *Y = NAV_ConvertReadingToValueDPS(InstancePtr, GY);
+   *Z = NAV_ConvertReadingToValueDPS(InstancePtr, GZ);
 }
 
 /* ------------------------------------------------------------ */
@@ -1172,9 +1176,9 @@ void NAV_ReadGyroDps(PmodNAV *InstancePtr, float *X, float *Y, float *Z) {
 **
 */
 float NAV_ConvertReadingToValueDPS(PmodNAV *InstancePtr, s16 rawVal) {
-  // Convert the gyro value to dps.
-  float dResult = ((s16)rawVal) * (InstancePtr->m_DPSRangeLSB);
-  return dResult;
+   // Convert the gyro value to dps.
+   float dResult = ((s16) rawVal) * (InstancePtr->m_DPSRangeLSB);
+   return dResult;
 }
 
 /* ------------------------------------------------------------ */
@@ -1201,22 +1205,22 @@ float NAV_ConvertReadingToValueDPS(PmodNAV *InstancePtr, s16 rawVal) {
 **      the default value is set.
 */
 float NAV_GetGRangeLSB(uint8_t bRangeG) {
-  float gRangeLSB;
-  switch (bRangeG) {
-  case NAV_GYRO_PAR_G_245DPS:
-    gRangeLSB = 0.00875;
-    break;
-  case NAV_GYRO_PAR_G_500DPS:
-    gRangeLSB = 0.0175;
-    break;
-  case NAV_GYRO_PAR_G_2kDPS:
-    gRangeLSB = 0.07;
-    break;
-  default:
-    gRangeLSB = 0.00875;
-    break;
-  }
-  return gRangeLSB;
+   float gRangeLSB;
+   switch (bRangeG) {
+   case NAV_GYRO_PAR_G_245DPS:
+      gRangeLSB = 0.00875;
+      break;
+   case NAV_GYRO_PAR_G_500DPS:
+      gRangeLSB = 0.0175;
+      break;
+   case NAV_GYRO_PAR_G_2kDPS:
+      gRangeLSB = 0.07;
+      break;
+   default:
+      gRangeLSB = 0.00875;
+      break;
+   }
+   return gRangeLSB;
 }
 
 /* ------------------------------------------------------------ */
@@ -1241,9 +1245,9 @@ float NAV_GetGRangeLSB(uint8_t bRangeG) {
 **      NAV_GYRO_CTRL_REG1_G register.
 */
 void NAV_SetRangeG(PmodNAV *InstancePtr, u8 bRangeG) {
-  InstancePtr->m_DPSRangeLSB = NAV_GetGRangeLSB(bRangeG);
-  NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_GYRO_CTRL_REG1_G,
-                        NAV_GYRO_MSK_RANGE_G, bRangeG, 3);
+   InstancePtr->m_DPSRangeLSB = NAV_GetGRangeLSB(bRangeG);
+   NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_GYRO_CTRL_REG1_G,
+         NAV_GYRO_MSK_RANGE_G, bRangeG, 3);
 }
 
 /* ------------------------------------------------------------ */
@@ -1267,24 +1271,24 @@ void NAV_SetRangeG(PmodNAV *InstancePtr, u8 bRangeG) {
 **      valid one, the default value for range is set
 */
 float NAV_GetRangeG(PmodNAV *InstancePtr) {
-  u16 readRange, gRange;
-  readRange = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
-                                    NAV_GYRO_CTRL_REG1_G, 3, 2);
-  switch (readRange) {
-  case NAV_GYRO_PAR_G_245DPS:
-    gRange = 245;
-    break;
-  case NAV_GYRO_PAR_G_500DPS:
-    gRange = 500;
-    break;
-  case NAV_GYRO_PAR_G_2kDPS:
-    gRange = 2000;
-    break;
-  default:
-    gRange = 245;
-    break;
-  }
-  return gRange;
+   u16 readRange, gRange;
+   readRange = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
+         NAV_GYRO_CTRL_REG1_G, 3, 2);
+   switch (readRange) {
+   case NAV_GYRO_PAR_G_245DPS:
+      gRange = 245;
+      break;
+   case NAV_GYRO_PAR_G_500DPS:
+      gRange = 500;
+      break;
+   case NAV_GYRO_PAR_G_2kDPS:
+      gRange = 2000;
+      break;
+   default:
+      gRange = 245;
+      break;
+   }
+   return gRange;
 }
 
 /* ------------------------------------------------------------ */
@@ -1305,9 +1309,9 @@ float NAV_GetRangeG(PmodNAV *InstancePtr) {
 **      data available bit in it
 */
 u8 NAV_DataAvailableG(PmodNAV *InstancePtr) {
-  uint8_t status;
-  NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_ALIAS_STATUS_REG, 1, &status);
-  return ((status & (1 << 1)) >> 1);
+   uint8_t status;
+   NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_ALIAS_STATUS_REG, 1, &status);
+   return ((status & (1 << 1)) >> 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -1343,12 +1347,12 @@ u8 NAV_DataAvailableG(PmodNAV *InstancePtr) {
 **      and-ed. Sets the interrupt event to be latched or not.
 */
 void NAV_ConfigIntG(PmodNAV *InstancePtr, u8 bIntGen, bool aoi, bool latch) {
-  u8 temp = bIntGen;
-  if (aoi)
-    temp |= 0x80;
-  if (latch)
-    temp |= 0x40;
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_INT_GEN_CFG_G, temp);
+   u8 temp = bIntGen;
+   if (aoi)
+      temp |= 0x80;
+   if (latch)
+      temp |= 0x40;
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_INT_GEN_CFG_G, temp);
 }
 
 /* ------------------------------------------------------------ */
@@ -1383,46 +1387,46 @@ void NAV_ConfigIntG(PmodNAV *InstancePtr, u8 bIntGen, bool aoi, bool latch) {
 **      interrupt.
 */
 void NAV_SetIntThresholdG(PmodNAV *InstancePtr, float thVal, u16 axis,
-                          bool drCntMode, u8 intDuration, bool wait) {
-  u8 buffer[2];
-  u16 bthVal;
+      bool drCntMode, u8 intDuration, bool wait) {
+   u8 buffer[2];
+   u16 bthVal;
 
-  // Convert the float value in g to raw accel data to be written in
-  // INT_GEN_THS_XH/XL/YH/YL/ZH/ZL_G registers
-  bthVal = (u16)(thVal / (InstancePtr->m_DPSRangeLSB));
-  // Split bytes
-  buffer[0] = (bthVal & 0x7F00) >> 8;
-  buffer[1] = (bthVal & 0x00FF);
-  switch (axis) {
-  case NAV_IMU_X_AXIS:
-    // Set the first bit, decrement or reset counter mode for interrupt
-    buffer[0] |= drCntMode << 8;
-    NAV_WriteSPI(InstancePtr, NAV_INST_AG,
-                 NAV_GYRO_INT_GEN_THS_XH_G + (axis * 2), buffer[0]);
-    NAV_WriteSPI(InstancePtr, NAV_INST_AG,
-                 NAV_GYRO_INT_GEN_THS_XH_G + 1 + (axis * 2), buffer[1]);
-    break;
-  case NAV_IMU_Y_AXIS:
-    NAV_WriteSPI(InstancePtr, NAV_INST_AG,
-                 NAV_GYRO_INT_GEN_THS_XH_G + (axis * 2), buffer[0]);
-    NAV_WriteSPI(InstancePtr, NAV_INST_AG,
-                 NAV_GYRO_INT_GEN_THS_XH_G + 1 + (axis * 2), buffer[1]);
-    break;
-  case NAV_IMU_Z_AXIS:
-    NAV_WriteSPI(InstancePtr, NAV_INST_AG,
-                 NAV_GYRO_INT_GEN_THS_XH_G + (axis * 2), buffer[0]);
-    NAV_WriteSPI(InstancePtr, NAV_INST_AG,
-                 NAV_GYRO_INT_GEN_THS_XH_G + 1 + (axis * 2), buffer[1]);
-    break;
-  default:
-    break;
-  }
-  // Write duration and wait to NAV_GYRO_INT_GEN_DUR_G
-  u8 temp;
-  temp = (intDuration & 0x7F);
-  if (wait)
-    temp |= 0x80;
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_INT_GEN_DUR_G, temp);
+   // Convert the float value in g to raw accel data to be written in
+   // INT_GEN_THS_XH/XL/YH/YL/ZH/ZL_G registers
+   bthVal = (u16) (thVal / (InstancePtr->m_DPSRangeLSB));
+   // Split bytes
+   buffer[0] = (bthVal & 0x7F00) >> 8;
+   buffer[1] = (bthVal & 0x00FF);
+   switch (axis) {
+   case NAV_IMU_X_AXIS:
+      // Set the first bit, decrement or reset counter mode for interrupt
+      buffer[0] |= drCntMode << 8;
+      NAV_WriteSPI(InstancePtr, NAV_INST_AG,
+            NAV_GYRO_INT_GEN_THS_XH_G + (axis * 2), buffer[0]);
+      NAV_WriteSPI(InstancePtr, NAV_INST_AG,
+            NAV_GYRO_INT_GEN_THS_XH_G + 1 + (axis * 2), buffer[1]);
+      break;
+   case NAV_IMU_Y_AXIS:
+      NAV_WriteSPI(InstancePtr, NAV_INST_AG,
+            NAV_GYRO_INT_GEN_THS_XH_G + (axis * 2), buffer[0]);
+      NAV_WriteSPI(InstancePtr, NAV_INST_AG,
+            NAV_GYRO_INT_GEN_THS_XH_G + 1 + (axis * 2), buffer[1]);
+      break;
+   case NAV_IMU_Z_AXIS:
+      NAV_WriteSPI(InstancePtr, NAV_INST_AG,
+            NAV_GYRO_INT_GEN_THS_XH_G + (axis * 2), buffer[0]);
+      NAV_WriteSPI(InstancePtr, NAV_INST_AG,
+            NAV_GYRO_INT_GEN_THS_XH_G + 1 + (axis * 2), buffer[1]);
+      break;
+   default:
+      break;
+   }
+   // Write duration and wait to NAV_GYRO_INT_GEN_DUR_G
+   u8 temp;
+   temp = (intDuration & 0x7F);
+   if (wait)
+      temp |= 0x80;
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_GYRO_INT_GEN_DUR_G, temp);
 }
 
 /* ------------------------------------------------------------ */
@@ -1477,32 +1481,32 @@ void NAV_SetIntThresholdG(PmodNAV *InstancePtr, float thVal, u16 axis,
 **      pins. Also sets the active type of the interrupt and the output type
 */
 void NAV_ConfigInt(PmodNAV *InstancePtr, u8 bIntPin, u8 bIntGenMask,
-                   u8 bActiveType, u8 bOutputType) {
-  // Set interrupt pin generator
-  if (bIntPin == NAV_INT_PIN_1) {
-    NAV_SetRegisterBits(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_INT1_CTRL,
-                        bIntGenMask, 1);
+      u8 bActiveType, u8 bOutputType) {
+   // Set interrupt pin generator
+   if (bIntPin == NAV_INT_PIN_1) {
+      NAV_SetRegisterBits(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_INT1_CTRL,
+            bIntGenMask, 1);
 
-  } else if (bIntPin == NAV_INT_PIN_2) {
-    NAV_SetRegisterBits(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_INT2_CTRL,
-                        bIntGenMask, 1);
-  }
-  // Configure NAV_IMU_CTRL_REG8
-  uint8_t temp;
-  temp = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG8);
-  // Set interrupt active low or high
-  if (bActiveType == NAV_PAR_INT_ACTIVELOW) {
-    temp |= (1 << 5);
-  } else {
-    temp &= ~(1 << 5);
-  }
-  // Set output type to pushpull or opendrain
-  if (bOutputType == NAV_PAR_INT_PUSHPULL) {
-    temp &= ~(1 << 4);
-  } else {
-    temp |= (1 << 4);
-  }
-  NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG8, temp);
+   } else if (bIntPin == NAV_INT_PIN_2) {
+      NAV_SetRegisterBits(InstancePtr, NAV_INST_AG, NAV_ACL_GYRO_INT2_CTRL,
+            bIntGenMask, 1);
+   }
+   // Configure NAV_IMU_CTRL_REG8
+   uint8_t temp;
+   temp = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG8);
+   // Set interrupt active low or high
+   if (bActiveType == NAV_PAR_INT_ACTIVELOW) {
+      temp |= (1 << 5);
+   } else {
+      temp &= ~(1 << 5);
+   }
+   // Set output type to pushpull or opendrain
+   if (bOutputType == NAV_PAR_INT_PUSHPULL) {
+      temp &= ~(1 << 4);
+   } else {
+      temp |= (1 << 4);
+   }
+   NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG8, temp);
 }
 
 /*-------------------------------------------------------------*/
@@ -1535,27 +1539,27 @@ void NAV_ConfigInt(PmodNAV *InstancePtr, u8 bIntPin, u8 bIntGenMask,
 **         16-bit value
 */
 void NAV_ReadMag(PmodNAV *InstancePtr, s16 *MagX, s16 *MagY, s16 *MagZ) {
-  u8 iMagX_L, iMagX_H, iMagY_L, iMagY_H, iMagZ_L, iMagZ_H;
-  u8 status;
-  u8 rgwRegVals[6];
-  do {
-    NAV_ReadRegister(InstancePtr, NAV_INST_MAG, NAV_MAG_STATUS_REG_M, 1,
-                     &status);
-  } while ((status & 0x08) == 0);
+   u8 iMagX_L, iMagX_H, iMagY_L, iMagY_H, iMagZ_L, iMagZ_H;
+   u8 status;
+   u8 rgwRegVals[6];
+   do {
+      NAV_ReadRegister(InstancePtr, NAV_INST_MAG, NAV_MAG_STATUS_REG_M, 1,
+            &status);
+   } while ((status & 0x08) == 0);
 
-  // Reads the bytes using the incrementing address functionality of the device
-  NAV_ReadRegister(InstancePtr, NAV_INST_MAG, NAV_MAG_OUT_X_L_M, 6,
-                   (u8 *)rgwRegVals);
-  iMagX_L = rgwRegVals[0];
-  iMagX_H = rgwRegVals[1];
-  iMagY_L = rgwRegVals[2];
-  iMagY_H = rgwRegVals[3];
-  iMagZ_L = rgwRegVals[4];
-  iMagZ_H = rgwRegVals[5];
-  // Combines the read values for each axis to obtain the 16-bits values
-  *MagX = ((s16)iMagX_H << 8) | iMagX_L;
-  *MagY = ((s16)iMagY_H << 8) | iMagY_L;
-  *MagZ = ((s16)iMagZ_H << 8) | iMagZ_L;
+   // Reads the bytes using the incrementing address functionality of the device
+   NAV_ReadRegister(InstancePtr, NAV_INST_MAG, NAV_MAG_OUT_X_L_M, 6,
+         (u8 *) rgwRegVals);
+   iMagX_L = rgwRegVals[0];
+   iMagX_H = rgwRegVals[1];
+   iMagY_L = rgwRegVals[2];
+   iMagY_H = rgwRegVals[3];
+   iMagZ_L = rgwRegVals[4];
+   iMagZ_H = rgwRegVals[5];
+   // Combines the read values for each axis to obtain the 16-bits values
+   *MagX = ((s16) iMagX_H << 8) | iMagX_L;
+   *MagY = ((s16) iMagY_H << 8) | iMagY_L;
+   *MagZ = ((s16) iMagZ_H << 8) | iMagZ_L;
 }
 /* ------------------------------------------------------------ */
 /*** void NAV_ReadMagGauss(PmodNAV *InstancePtr)
@@ -1577,11 +1581,11 @@ void NAV_ReadMag(PmodNAV *InstancePtr, s16 *MagX, s16 *MagY, s16 *MagZ) {
 **      gauss, considering the currently selected Gauss range.
 */
 void NAV_ReadMagGauss(PmodNAV *InstancePtr) {
-  s16 MagX, MagY, MagZ;
-  NAV_ReadMag(InstancePtr, &MagX, &MagY, &MagZ);
-  InstancePtr->magData.X = NAV_ConvertReadingToValueGauss(InstancePtr, MagX);
-  InstancePtr->magData.Y = NAV_ConvertReadingToValueGauss(InstancePtr, MagY);
-  InstancePtr->magData.Z = NAV_ConvertReadingToValueGauss(InstancePtr, MagZ);
+   s16 MagX, MagY, MagZ;
+   NAV_ReadMag(InstancePtr, &MagX, &MagY, &MagZ);
+   InstancePtr->magData.X = NAV_ConvertReadingToValueGauss(InstancePtr, MagX);
+   InstancePtr->magData.Y = NAV_ConvertReadingToValueGauss(InstancePtr, MagY);
+   InstancePtr->magData.Z = NAV_ConvertReadingToValueGauss(InstancePtr, MagZ);
 }
 
 /* ------------------------------------------------------------ */
@@ -1604,8 +1608,8 @@ void NAV_ReadMagGauss(PmodNAV *InstancePtr) {
 **      current selected gauss range.
 */
 float NAV_ConvertReadingToValueGauss(PmodNAV *InstancePtr, s16 rawVal) {
-  float dResult = ((float)rawVal) * InstancePtr->m_GaussRangeLSB;
-  return dResult;
+   float dResult = ((float) rawVal) * InstancePtr->m_GaussRangeLSB;
+   return dResult;
 }
 
 /* ------------------------------------------------------------ */
@@ -1631,9 +1635,9 @@ float NAV_ConvertReadingToValueGauss(PmodNAV *InstancePtr, s16 rawVal) {
 **      NAV_MAG_CTRL_REG2_M register.
 */
 void NAV_SetRangeMAG(PmodNAV *InstancePtr, u8 bRangeMAG) {
-  InstancePtr->m_GaussRangeLSB = NAV_GetMAGRangeLSB(bRangeMAG);
-  NAV_SetBitsInRegister(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG2_M,
-                        NAV_MAG_MSK_RANGE_MAG, bRangeMAG, 5);
+   InstancePtr->m_GaussRangeLSB = NAV_GetMAGRangeLSB(bRangeMAG);
+   NAV_SetBitsInRegister(InstancePtr, NAV_INST_MAG, NAV_MAG_CTRL_REG2_M,
+         NAV_MAG_MSK_RANGE_MAG, bRangeMAG, 5);
 }
 
 /* ------------------------------------------------------------ */
@@ -1661,25 +1665,25 @@ void NAV_SetRangeMAG(PmodNAV *InstancePtr, u8 bRangeMAG) {
 **      range, the default value is set.
 */
 float NAV_GetMAGRangeLSB(uint8_t bRangeMAG) {
-  float gRangeLSB;
-  switch (bRangeMAG) {
-  case NAV_MAG_PAR_MAG_4GAUSS:
-    gRangeLSB = 0.00014;
-    break;
-  case NAV_MAG_PAR_MAG_8GAUSS:
-    gRangeLSB = 0.00029;
-    break;
-  case NAV_MAG_PAR_MAG_12GAUSS:
-    gRangeLSB = 0.00043;
-    break;
-  case NAV_MAG_PAR_MAG_16GAUSS:
-    gRangeLSB = 0.00058;
-    break;
-  default:
-    gRangeLSB = 0.00014;
-    break;
-  }
-  return gRangeLSB;
+   float gRangeLSB;
+   switch (bRangeMAG) {
+   case NAV_MAG_PAR_MAG_4GAUSS:
+      gRangeLSB = 0.00014;
+      break;
+   case NAV_MAG_PAR_MAG_8GAUSS:
+      gRangeLSB = 0.00029;
+      break;
+   case NAV_MAG_PAR_MAG_12GAUSS:
+      gRangeLSB = 0.00043;
+      break;
+   case NAV_MAG_PAR_MAG_16GAUSS:
+      gRangeLSB = 0.00058;
+      break;
+   default:
+      gRangeLSB = 0.00014;
+      break;
+   }
+   return gRangeLSB;
 }
 
 /* ------------------------------------------------------------ */
@@ -1705,27 +1709,27 @@ float NAV_GetMAGRangeLSB(uint8_t bRangeMAG) {
 **      outside this range, the default value is set
 */
 u8 NAV_GetRangeMAG(PmodNAV *InstancePtr) {
-  u8 readRange, gRange;
-  readRange = NAV_GetBitsInRegister(InstancePtr, NAV_INST_MAG,
-                                    NAV_MAG_CTRL_REG2_M, 5, 2);
-  switch (readRange) {
-  case NAV_MAG_PAR_MAG_4GAUSS:
-    gRange = 4;
-    break;
-  case NAV_MAG_PAR_MAG_8GAUSS:
-    gRange = 8;
-    break;
-  case NAV_MAG_PAR_MAG_12GAUSS:
-    gRange = 12;
-    break;
-  case NAV_MAG_PAR_MAG_16GAUSS:
-    gRange = 16;
-    break;
-  default:
-    gRange = 4;
-    break;
-  }
-  return gRange;
+   u8 readRange, gRange;
+   readRange = NAV_GetBitsInRegister(InstancePtr, NAV_INST_MAG,
+         NAV_MAG_CTRL_REG2_M, 5, 2);
+   switch (readRange) {
+   case NAV_MAG_PAR_MAG_4GAUSS:
+      gRange = 4;
+      break;
+   case NAV_MAG_PAR_MAG_8GAUSS:
+      gRange = 8;
+      break;
+   case NAV_MAG_PAR_MAG_12GAUSS:
+      gRange = 12;
+      break;
+   case NAV_MAG_PAR_MAG_16GAUSS:
+      gRange = 16;
+      break;
+   default:
+      gRange = 4;
+      break;
+   }
+   return gRange;
 }
 
 /* ------------------------------------------------------------ */
@@ -1752,9 +1756,10 @@ u8 NAV_GetRangeMAG(PmodNAV *InstancePtr) {
 **
 */
 u8 NAV_DataAvailableMAG(PmodNAV *InstancePtr, u8 axis) {
-  u8 status;
-  NAV_ReadRegister(InstancePtr, NAV_INST_MAG, NAV_MAG_STATUS_REG_M, 1, &status);
-  return ((status & (1 << axis)) >> axis);
+   u8 status;
+   NAV_ReadRegister(InstancePtr, NAV_INST_MAG, NAV_MAG_STATUS_REG_M, 1,
+         &status);
+   return ((status & (1 << axis)) >> axis);
 }
 
 /* ------------------------------------------------------------ */
@@ -1785,20 +1790,20 @@ u8 NAV_DataAvailableMAG(PmodNAV *InstancePtr, u8 axis) {
 **
 */
 void NAV_ConfigIntMAG(PmodNAV *InstancePtr, u8 bIntGen, u8 bActiveType,
-                      bool latch) {
-  // Mask out non-generator bits (0-4)
-  u8 config = (bIntGen & 0xE0);
-  // IEA bit is 0 for active-low, 1 for active-high.
-  if (bActiveType == NAV_PAR_INT_ACTIVEHIGH)
-    config |= (1 << 2);
-  // IEL bit is 0 for latched, 1 for not-latched
-  if (!latch)
-    bIntGen |= (1 << 1);
-  // As long as we have at least 1 generator, enable the interrupt
-  if (bIntGen != 0)
-    config |= (1 << 0);
+      bool latch) {
+   // Mask out non-generator bits (0-4)
+   u8 config = (bIntGen & 0xE0);
+   // IEA bit is 0 for active-low, 1 for active-high.
+   if (bActiveType == NAV_PAR_INT_ACTIVEHIGH)
+      config |= (1 << 2);
+   // IEL bit is 0 for latched, 1 for not-latched
+   if (!latch)
+      bIntGen |= (1 << 1);
+   // As long as we have at least 1 generator, enable the interrupt
+   if (bIntGen != 0)
+      config |= (1 << 0);
 
-  NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_INT_CFG_M, config);
+   NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_INT_CFG_M, config);
 }
 
 /* ------------------------------------------------------------ */
@@ -1819,18 +1824,18 @@ void NAV_ConfigIntMAG(PmodNAV *InstancePtr, u8 bIntGen, u8 bActiveType,
 **      instrument
 */
 void NAV_SetIntThresholdM(PmodNAV *InstancePtr, float thVal) {
-  u8 buffer[2];
-  u16 bthVal;
-  // Converts the float value in gauss to raw magnetic field data to be written
-  // in NAV_MAG_INT_THS_L/NAV_MAG_INT_THS_H registers
-  bthVal = (u16)(thVal / (InstancePtr->m_GaussRangeLSB));
-  // Split bytes
-  // Make sure the first bit of the High byte is 0, for correct functionality
-  // of the device
-  buffer[0] = (bthVal & 0x7F00) >> 8;
-  buffer[1] = (bthVal & 0x00FF);
-  NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_INT_THS_H, buffer[0]);
-  NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_INT_THS_L, buffer[1]);
+   u8 buffer[2];
+   u16 bthVal;
+   // Converts the float value in gauss to raw magnetic field data to be written
+   // in NAV_MAG_INT_THS_L/NAV_MAG_INT_THS_H registers
+   bthVal = (u16) (thVal / (InstancePtr->m_GaussRangeLSB));
+   // Split bytes
+   // Make sure the first bit of the High byte is 0, for correct functionality
+   // of the device
+   buffer[0] = (bthVal & 0x7F00) >> 8;
+   buffer[1] = (bthVal & 0x00FF);
+   NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_INT_THS_H, buffer[0]);
+   NAV_WriteSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_INT_THS_L, buffer[1]);
 }
 
 /* ------------------------------------------------------------ */
@@ -1847,20 +1852,19 @@ void NAV_SetIntThresholdM(PmodNAV *InstancePtr, float thVal) {
 **      None
 **
 **   Description:
-**      The function returns the source of interrupt for magnetometer
-*instrument.
+**      The function returns the source of interrupt for magnetometer instrument.
 **
 */
 u8 NAV_GetIntSrcMAG(PmodNAV *InstancePtr) {
-  u8 intSrc;
-  intSrc = NAV_ReadSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_INT_SRC_M);
-  // Check if the INT (interrupt active) bit is set
-  if (intSrc & (1 << 0)) {
-    return (intSrc); // & 0xFE);
-  }
-  intSrc &= 0xFE;
-  // Get rid of end of function warning
-  return intSrc;
+   u8 intSrc;
+   intSrc = NAV_ReadSPI(InstancePtr, NAV_INST_MAG, NAV_MAG_INT_SRC_M);
+   // Check if the INT (interrupt active) bit is set
+   if (intSrc & (1 << 0)) {
+      return (intSrc);   // & 0xFE);
+   }
+   intSrc &= 0xFE;
+   // Get rid of end of function warning
+   return intSrc;
 }
 
 /*-------------------------------------------------------------*/
@@ -1890,16 +1894,16 @@ u8 NAV_GetIntSrcMAG(PmodNAV *InstancePtr) {
 **      value.
 */
 int NAV_ReadPressure(PmodNAV *InstancePtr) {
-  u8 iPress_XL, iPress_L, iPress_H;
-  u8 rgwRegVals[3];
-  int dataPress = 0;
-  NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_PRESS_OUT_XL, 3,
-                   (u8 *)rgwRegVals);
-  iPress_XL = rgwRegVals[0];
-  iPress_L = rgwRegVals[1];
-  iPress_H = rgwRegVals[2];
-  dataPress = (iPress_H << 16) | iPress_L << 8 | iPress_XL;
-  return dataPress;
+   u8 iPress_XL, iPress_L, iPress_H;
+   u8 rgwRegVals[3];
+   int dataPress = 0;
+   NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_PRESS_OUT_XL, 3,
+         (u8 *) rgwRegVals);
+   iPress_XL = rgwRegVals[0];
+   iPress_L = rgwRegVals[1];
+   iPress_H = rgwRegVals[2];
+   dataPress = (iPress_H << 16) | iPress_L << 8 | iPress_XL;
+   return dataPress;
 }
 
 /* ------------------------------------------------------------ */
@@ -1919,13 +1923,13 @@ int NAV_ReadPressure(PmodNAV *InstancePtr) {
 **
 */
 void NAV_ReadPressurehPa(PmodNAV *InstancePtr) {
-  u32 dataRawFull;
-  dataRawFull = NAV_ReadPressure(InstancePtr);
-  // Check if there is a negative value
-  if (dataRawFull & 0x00800000) {
-    dataRawFull |= 0xFF000000;
-  }
-  InstancePtr->hPa = (int)(dataRawFull / 4096);
+   u32 dataRawFull;
+   dataRawFull = NAV_ReadPressure(InstancePtr);
+   // Check if there is a negative value
+   if (dataRawFull & 0x00800000) {
+      dataRawFull |= 0xFF000000;
+   }
+   InstancePtr->hPa = (int) (dataRawFull / 4096);
 }
 
 /* ------------------------------------------------------------ */
@@ -1947,15 +1951,15 @@ void NAV_ReadPressurehPa(PmodNAV *InstancePtr) {
 **      T = 42.5 + TempRaw *1/480, where 480 LSB
 */
 void NAV_ReadTempC(PmodNAV *InstancePtr) {
-  u8 rgwRegVals[2], tempL, tempH;
-  NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_TEMP_OUT_L, 2,
-                   (u8 *)rgwRegVals);
-  tempL = rgwRegVals[0];
-  tempH = rgwRegVals[1];
-  s16 temp = (s16)(tempH << 8 | tempL);
-  // Datasheet formula used for converting to temperature in degrees Celsius
-  // from raw values
-  InstancePtr->tempC = 42.5 + (temp * 0.002083);
+   u8 rgwRegVals[2], tempL, tempH;
+   NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_TEMP_OUT_L, 2,
+         (u8 *) rgwRegVals);
+   tempL = rgwRegVals[0];
+   tempH = rgwRegVals[1];
+   s16 temp = (s16) (tempH << 8 | tempL);
+   // Datasheet formula used for converting to temperature in degrees Celsius
+   // from raw values
+   InstancePtr->tempC = 42.5 + (temp * 0.002083);
 }
 
 /* ------------------------------------------------------------ */
@@ -1976,9 +1980,10 @@ void NAV_ReadTempC(PmodNAV *InstancePtr) {
 **      temperature available bit in it(1 or 0)
 */
 u8 NAV_TempAvailableALT(PmodNAV *InstancePtr) {
-  u8 status;
-  NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALIAS_STATUS_REG, 1, &status);
-  return (status & (1 << 0));
+   u8 status;
+   NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALIAS_STATUS_REG, 1,
+         &status);
+   return (status & (1 << 0));
 }
 
 /* ------------------------------------------------------------ */
@@ -1999,9 +2004,10 @@ u8 NAV_TempAvailableALT(PmodNAV *InstancePtr) {
 **      data available bit in it(1 or 0)
 */
 u8 NAV_DataAvailableALT(PmodNAV *InstancePtr) {
-  u8 status;
-  NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALIAS_STATUS_REG, 1, &status);
-  return ((status & (1 << 1)) >> 1);
+   u8 status;
+   NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALIAS_STATUS_REG, 1,
+         &status);
+   return ((status & (1 << 1)) >> 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -2049,29 +2055,29 @@ u8 NAV_DataAvailableALT(PmodNAV *InstancePtr) {
 **      output type. It enables/disables the interrupt latching.
 */
 void NAV_ConfigIntALT(PmodNAV *InstancePtr, u8 bIntGen, u8 bActiveType,
-                      u8 bOutputType, u8 dataSignalVal, bool intEnable,
-                      bool latch, u8 intLevel) {
-  // Enable interrupts in NAV_ALT_CTRL_REG1 register
-  NAV_SetRegisterBits(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1,
-                      NAV_ALT_MSK_DIFF_EN_ALT, intEnable);
-  // Mask out the reserved bits in NAV_ALT_CTRL_REG3 register
-  uint8_t config = (bIntGen & 0xC3);
-  // INT_H_L bit is 1 for active-low, 0 for active-high.
-  if (bActiveType == NAV_PAR_INT_ACTIVELOW) {
-    config |= (1 << 7);
-  }
-  // PP_OD bit is 1 for open drain, 0 for push pull.
-  if (bOutputType == NAV_PAR_INT_OPENDRAIN) {
-    config |= (1 << 6);
-  }
-  config |= dataSignalVal;
-  NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG3, config);
-  config = bIntGen;
-  NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG4, config);
-  if (!latch)
-    config |= (1 << 2);
-  config |= intLevel;
-  NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_INTERRUPT_CFG, config);
+      u8 bOutputType, u8 dataSignalVal, bool intEnable, bool latch,
+      u8 intLevel) {
+   // Enable interrupts in NAV_ALT_CTRL_REG1 register
+   NAV_SetRegisterBits(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1,
+         NAV_ALT_MSK_DIFF_EN_ALT, intEnable);
+   // Mask out the reserved bits in NAV_ALT_CTRL_REG3 register
+   uint8_t config = (bIntGen & 0xC3);
+   // INT_H_L bit is 1 for active-low, 0 for active-high.
+   if (bActiveType == NAV_PAR_INT_ACTIVELOW) {
+      config |= (1 << 7);
+   }
+   // PP_OD bit is 1 for open drain, 0 for push pull.
+   if (bOutputType == NAV_PAR_INT_OPENDRAIN) {
+      config |= (1 << 6);
+   }
+   config |= dataSignalVal;
+   NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG3, config);
+   config = bIntGen;
+   NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG4, config);
+   if (!latch)
+      config |= (1 << 2);
+   config |= intLevel;
+   NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_INTERRUPT_CFG, config);
 }
 
 /* ------------------------------------------------------------ */
@@ -2091,18 +2097,18 @@ void NAV_ConfigIntALT(PmodNAV *InstancePtr, u8 bIntGen, u8 bActiveType,
 **      The function sets the interrupt threshold for the altimeter instrument
 */
 void NAV_SetIntThresholdALT(PmodNAV *InstancePtr, float thVal) {
-  u8 buffer[2];
-  u16 bthVal;
-  // Converts the float value in gauss to raw magnetic field data to be written
-  // in NAV_MAG_INT_THS_L/NAV_MAG_INT_THS_H registers
-  bthVal = (u16)(thVal * 4096);
-  // Split bytes
-  // Make sure the first bit of the High byte is 0, for correct functionality
-  // of the device
-  buffer[0] = (bthVal & 0xFF00) >> 8;
-  buffer[1] = (bthVal & 0x00FF);
-  NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_THS_P_H, buffer[0]);
-  NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_THS_P_L, buffer[1]);
+   u8 buffer[2];
+   u16 bthVal;
+   // Converts the float value in gauss to raw magnetic field data to be written
+   // in NAV_MAG_INT_THS_L/NAV_MAG_INT_THS_H registers
+   bthVal = (u16) (thVal * 4096);
+   // Split bytes
+   // Make sure the first bit of the High byte is 0, for correct functionality
+   // of the device
+   buffer[0] = (bthVal & 0xFF00) >> 8;
+   buffer[1] = (bthVal & 0x00FF);
+   NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_THS_P_H, buffer[0]);
+   NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_THS_P_L, buffer[1]);
 }
 
 /* ------------------------------------------------------------ */
@@ -2122,14 +2128,14 @@ void NAV_SetIntThresholdALT(PmodNAV *InstancePtr, float thVal) {
 **      NAV_ALT_INT_SOURCE register
 */
 u8 NAV_GetIntSrcALT(PmodNAV *InstancePtr) {
-  u8 intSrc;
-  intSrc = NAV_ReadSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_INT_SOURCE);
+   u8 intSrc;
+   intSrc = NAV_ReadSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_INT_SOURCE);
 
-  // Check if the INT (interrupt active) bit is set
-  if (intSrc & (1 << 2)) {
-    return intSrc;
-  }
-  return 0;
+   // Check if the INT (interrupt active) bit is set
+   if (intSrc & (1 << 2)) {
+      return intSrc;
+   }
+   return 0;
 }
 
 /*-------------------------------------------------------------*/
@@ -2185,30 +2191,30 @@ u8 NAV_GetIntSrcALT(PmodNAV *InstancePtr) {
 **      corresponding register. The argument values are between 0 and 7.
 */
 void NAV_SetODR(PmodNAV *InstancePtr, u8 bInstMode, u8 odrVal) {
-  switch (bInstMode) {
-  case NAV_ACL_MODE_INST_A:
-    // Set ODR for accelerometer instrument when used in single mode
-    NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL,
-                          NAV_ACL_MSK_ODR_XL, odrVal, 5);
-    break;
-  case NAV_ACL_GYRO_MODE_INST_AG:
-    // Set ODR for gyro and accel instruments when used together
-    NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_GYRO_CTRL_REG1_G,
-                          NAV_GYRO_MSK_ODR_G, odrVal, 5);
-    break;
-  case NAV_MAG_MODE_INST_MAG:
-    // Set ODR for magnetometer instrument
-    NAV_SetBitsInRegister(InstancePtr, NAV_INST_MAG, NAV_ACL_CTRL_REG6_XL,
-                          NAV_MAG_MSK_ODR_MAG, odrVal, 3);
-    break;
-  case NAV_ALT_MODE_INST_ALT:
-    // Set ODR for altimeter instrument
-    NAV_SetBitsInRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1,
-                          NAV_ALT_MSK_ODR_ALT, odrVal, 4);
-    break;
-  default:
-    break;
-  }
+   switch (bInstMode) {
+   case NAV_ACL_MODE_INST_A:
+      // Set ODR for accelerometer instrument when used in single mode
+      NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_ACL_CTRL_REG6_XL,
+            NAV_ACL_MSK_ODR_XL, odrVal, 5);
+      break;
+   case NAV_ACL_GYRO_MODE_INST_AG:
+      // Set ODR for gyro and accel instruments when used together
+      NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_GYRO_CTRL_REG1_G,
+            NAV_GYRO_MSK_ODR_G, odrVal, 5);
+      break;
+   case NAV_MAG_MODE_INST_MAG:
+      // Set ODR for magnetometer instrument
+      NAV_SetBitsInRegister(InstancePtr, NAV_INST_MAG, NAV_ACL_CTRL_REG6_XL,
+            NAV_MAG_MSK_ODR_MAG, odrVal, 3);
+      break;
+   case NAV_ALT_MODE_INST_ALT:
+      // Set ODR for altimeter instrument
+      NAV_SetBitsInRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1,
+            NAV_ALT_MSK_ODR_ALT, odrVal, 4);
+      break;
+   default:
+      break;
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -2259,28 +2265,28 @@ void NAV_SetODR(PmodNAV *InstancePtr, u8 bInstMode, u8 odrVal) {
 **      The function sets the ODR value for the selected instrument.
 */
 u8 NAV_GetODRRaw(PmodNAV *InstancePtr, u8 bInstMode) {
-  u8 getODR;
-  switch (bInstMode) {
-  case NAV_ACL_MODE_INST_A:
-    getODR = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
-                                   NAV_ACL_CTRL_REG6_XL, 5, 3);
-    break;
-  case NAV_ACL_GYRO_MODE_INST_AG:
-    getODR = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
-                                   NAV_GYRO_CTRL_REG1_G, 5, 3);
-    break;
-  case NAV_MAG_MODE_INST_MAG:
-    getODR = NAV_GetBitsInRegister(InstancePtr, NAV_INST_MAG,
-                                   NAV_ACL_CTRL_REG6_XL, 3, 3);
-    break;
-  case NAV_ALT_MODE_INST_ALT:
-    getODR = NAV_GetBitsInRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG1,
-                                   4, 3);
-    break;
-  default:
-    break;
-  }
-  return getODR;
+   u8 getODR;
+   switch (bInstMode) {
+   case NAV_ACL_MODE_INST_A:
+      getODR = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
+            NAV_ACL_CTRL_REG6_XL, 5, 3);
+      break;
+   case NAV_ACL_GYRO_MODE_INST_AG:
+      getODR = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
+            NAV_GYRO_CTRL_REG1_G, 5, 3);
+      break;
+   case NAV_MAG_MODE_INST_MAG:
+      getODR = NAV_GetBitsInRegister(InstancePtr, NAV_INST_MAG,
+            NAV_ACL_CTRL_REG6_XL, 3, 3);
+      break;
+   case NAV_ALT_MODE_INST_ALT:
+      getODR = NAV_GetBitsInRegister(InstancePtr, NAV_INST_ALT,
+            NAV_ALT_CTRL_REG1, 4, 3);
+      break;
+   default:
+      break;
+   }
+   return getODR;
 }
 
 /* ------------------------------------------------------------ */
@@ -2304,133 +2310,133 @@ u8 NAV_GetODRRaw(PmodNAV *InstancePtr, u8 bInstMode) {
 **      register
 */
 float NAV_GetODR(PmodNAV *InstancePtr, u8 bInstMode) {
-  u8 odrRead;
-  float odrFinal;
-  if (bInstMode == NAV_ACL_MODE_INST_A) {
-    odrRead = NAV_GetODRRaw(InstancePtr, NAV_ACL_MODE_INST_A);
-    switch (odrRead) {
-    case NAV_ACL_ODR_XL_PWR_DWN:
-      odrFinal = 0;
-      break;
-    case NAV_ACL_ODR_XL_10HZ:
-      odrFinal = 10;
-      break;
-    case NAV_ACL_ODR_XL_50HZ:
-      odrFinal = 50;
-      break;
-    case NAV_ACL_ODR_XL_119HZ:
-      odrFinal = 119;
-      break;
-    case NAV_ACL_ODR_XL_238HZ:
-      odrFinal = 238;
-      break;
-    case NAV_ACL_ODR_XL_476HZ:
-      odrFinal = 476;
-      break;
-    case NAV_ACL_ODR_XL_952HZ:
-      odrFinal = 952;
-      break;
-    case NAV_ACL_ODR_XL_NA:
+   u8 odrRead;
+   float odrFinal;
+   if (bInstMode == NAV_ACL_MODE_INST_A) {
+      odrRead = NAV_GetODRRaw(InstancePtr, NAV_ACL_MODE_INST_A);
+      switch (odrRead) {
+      case NAV_ACL_ODR_XL_PWR_DWN:
+         odrFinal = 0;
+         break;
+      case NAV_ACL_ODR_XL_10HZ:
+         odrFinal = 10;
+         break;
+      case NAV_ACL_ODR_XL_50HZ:
+         odrFinal = 50;
+         break;
+      case NAV_ACL_ODR_XL_119HZ:
+         odrFinal = 119;
+         break;
+      case NAV_ACL_ODR_XL_238HZ:
+         odrFinal = 238;
+         break;
+      case NAV_ACL_ODR_XL_476HZ:
+         odrFinal = 476;
+         break;
+      case NAV_ACL_ODR_XL_952HZ:
+         odrFinal = 952;
+         break;
+      case NAV_ACL_ODR_XL_NA:
+         odrFinal = -1;
+         break;
+      default:
+         odrFinal = 0;
+         break;
+      }
+   }
+   // Get odr for accel+gyro
+   else if (bInstMode == NAV_ACL_GYRO_MODE_INST_AG) {
+      odrRead = NAV_GetODRRaw(InstancePtr, NAV_ACL_GYRO_MODE_INST_AG);
+      switch (odrRead) {
+      case NAV_GYRO_ODR_G_PWR_DWN:
+         odrFinal = 0;
+         break;
+      case NAV_GYRO_ODR_G_14_9HZ:
+         odrFinal = 14.9;
+         break;
+      case NAV_GYRO_ODR_G_59_5HZ:
+         odrFinal = 59.5;
+         break;
+      case NAV_GYRO_ODR_G_119HZ:
+         odrFinal = 119;
+         break;
+      case NAV_GYRO_ODR_G_238HZ:
+         odrFinal = 238;
+         break;
+      case NAV_GYRO_ODR_G_476HZ:
+         odrFinal = 476;
+         break;
+      case NAV_GYRO_ODR_G_952HZ:
+         odrFinal = 952;
+         break;
+      case NAV_GYRO_ODR_G_NA:
+         odrFinal = -1;
+         break;
+      default:
+         odrFinal = 0;
+         break;
+      }
+   }
+   // Get odr for magnetometer
+   else if (bInstMode == NAV_MAG_MODE_INST_MAG) {
+      odrRead = NAV_GetODRRaw(InstancePtr, NAV_MAG_MODE_INST_MAG);
+      switch (odrRead) {
+      case NAV_MAG_ODR_M_0_625HZ:
+         odrFinal = 0.625;
+         break;
+      case NAV_MAG_ODR_M_1_25HZ:
+         odrFinal = 1.25;
+         break;
+      case NAV_MAG_ODR_M_2_5HZ:
+         odrFinal = 2.5;
+         break;
+      case NAV_MAG_ODR_M_5HZ:
+         odrFinal = 5;
+         break;
+      case NAV_MAG_ODR_M_10HZ:
+         odrFinal = 10;
+         break;
+      case NAV_MAG_ODR_M_20HZ:
+         odrFinal = 20;
+         break;
+      case NAV_MAG_ODR_M_40HZ:
+         odrFinal = 40;
+         break;
+      case NAV_MAG_ODR_M_80HZ:
+         odrFinal = 80;
+         break;
+      default:
+         odrFinal = 10;
+         break;
+      }
+   }
+   // Get odr for altimeter
+   else if (bInstMode == NAV_ALT_MODE_INST_ALT) {
+      odrRead = NAV_GetODRRaw(InstancePtr, NAV_ALT_MODE_INST_ALT);
+      switch (odrRead) {
+      case NAV_ALT_ODR_ALT_ONE_SHOT:
+         odrFinal = 0;
+         break;
+      case NAV_ALT_ODR_ALT_1HZ:
+         odrFinal = 1;
+         break;
+      case NAV_ALT_ODR_ALT_7HZ:
+         odrFinal = 7;
+         break;
+      case NAV_ALT_ODR_ALT_12_5HZ:
+         odrFinal = 12.5;
+         break;
+      case NAV_ALT_ODR_ALT_25HZ:
+         odrFinal = 25;
+         break;
+      default:
+         odrFinal = 0;
+         break;
+      }
+   } else {
       odrFinal = -1;
-      break;
-    default:
-      odrFinal = 0;
-      break;
-    }
-  }
-  // Get odr for accel+gyro
-  else if (bInstMode == NAV_ACL_GYRO_MODE_INST_AG) {
-    odrRead = NAV_GetODRRaw(InstancePtr, NAV_ACL_GYRO_MODE_INST_AG);
-    switch (odrRead) {
-    case NAV_GYRO_ODR_G_PWR_DWN:
-      odrFinal = 0;
-      break;
-    case NAV_GYRO_ODR_G_14_9HZ:
-      odrFinal = 14.9;
-      break;
-    case NAV_GYRO_ODR_G_59_5HZ:
-      odrFinal = 59.5;
-      break;
-    case NAV_GYRO_ODR_G_119HZ:
-      odrFinal = 119;
-      break;
-    case NAV_GYRO_ODR_G_238HZ:
-      odrFinal = 238;
-      break;
-    case NAV_GYRO_ODR_G_476HZ:
-      odrFinal = 476;
-      break;
-    case NAV_GYRO_ODR_G_952HZ:
-      odrFinal = 952;
-      break;
-    case NAV_GYRO_ODR_G_NA:
-      odrFinal = -1;
-      break;
-    default:
-      odrFinal = 0;
-      break;
-    }
-  }
-  // Get odr for magnetometer
-  else if (bInstMode == NAV_MAG_MODE_INST_MAG) {
-    odrRead = NAV_GetODRRaw(InstancePtr, NAV_MAG_MODE_INST_MAG);
-    switch (odrRead) {
-    case NAV_MAG_ODR_M_0_625HZ:
-      odrFinal = 0.625;
-      break;
-    case NAV_MAG_ODR_M_1_25HZ:
-      odrFinal = 1.25;
-      break;
-    case NAV_MAG_ODR_M_2_5HZ:
-      odrFinal = 2.5;
-      break;
-    case NAV_MAG_ODR_M_5HZ:
-      odrFinal = 5;
-      break;
-    case NAV_MAG_ODR_M_10HZ:
-      odrFinal = 10;
-      break;
-    case NAV_MAG_ODR_M_20HZ:
-      odrFinal = 20;
-      break;
-    case NAV_MAG_ODR_M_40HZ:
-      odrFinal = 40;
-      break;
-    case NAV_MAG_ODR_M_80HZ:
-      odrFinal = 80;
-      break;
-    default:
-      odrFinal = 10;
-      break;
-    }
-  }
-  // Get odr for altimeter
-  else if (bInstMode == NAV_ALT_MODE_INST_ALT) {
-    odrRead = NAV_GetODRRaw(InstancePtr, NAV_ALT_MODE_INST_ALT);
-    switch (odrRead) {
-    case NAV_ALT_ODR_ALT_ONE_SHOT:
-      odrFinal = 0;
-      break;
-    case NAV_ALT_ODR_ALT_1HZ:
-      odrFinal = 1;
-      break;
-    case NAV_ALT_ODR_ALT_7HZ:
-      odrFinal = 7;
-      break;
-    case NAV_ALT_ODR_ALT_12_5HZ:
-      odrFinal = 12.5;
-      break;
-    case NAV_ALT_ODR_ALT_25HZ:
-      odrFinal = 25;
-      break;
-    default:
-      odrFinal = 0;
-      break;
-    }
-  } else {
-    odrFinal = -1;
-  }
-  return odrFinal;
+   }
+   return odrFinal;
 }
 
 /*-------------------------------------------------------------*/
@@ -2457,27 +2463,27 @@ float NAV_GetODR(PmodNAV *InstancePtr, u8 bInstMode) {
 **      Altimeter instrument
 */
 void NAV_FIFOEnable(PmodNAV *InstancePtr, u8 bInst, bool fEnable) {
-  u8 temp;
-  switch (bInst) {
-  case NAV_INST_AG:
-    NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG9, 1, &temp);
-    if (fEnable)
-      temp |= (1 << 1);
-    else
-      temp &= ~(1 << 1);
-    NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG9, temp);
-    break;
-  case NAV_INST_ALT:
-    NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG2, 1, &temp);
-    if (fEnable)
-      temp |= (1 << 6);
-    else
-      temp &= ~(1 << 6);
-    NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG2, temp);
-    break;
-  default:
-    break;
-  }
+   u8 temp;
+   switch (bInst) {
+   case NAV_INST_AG:
+      NAV_ReadRegister(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG9, 1, &temp);
+      if (fEnable)
+         temp |= (1 << 1);
+      else
+         temp &= ~(1 << 1);
+      NAV_WriteSPI(InstancePtr, NAV_INST_AG, NAV_IMU_CTRL_REG9, temp);
+      break;
+   case NAV_INST_ALT:
+      NAV_ReadRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG2, 1, &temp);
+      if (fEnable)
+         temp |= (1 << 6);
+      else
+         temp &= ~(1 << 6);
+      NAV_WriteSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_CTRL_REG2, temp);
+      break;
+   default:
+      break;
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -2538,23 +2544,23 @@ void NAV_FIFOEnable(PmodNAV *InstancePtr, u8 bInst, bool fEnable) {
 **      The magnetometer instrument does not contain FIFO
 */
 void NAV_SetFIFO(PmodNAV *InstancePtr, u8 bInst, u8 parFIFOMode,
-                 u8 FIFOThreshold) {
-  switch (bInst) {
-  case NAV_INST_AG:
-    NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_IMU_FIFO_CTRL,
-                          NAV_IMU_MSK_FIFO_CTL_MODE, parFIFOMode, 5);
-    NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_IMU_FIFO_CTRL,
-                          NAV_IMU_MSK_FIFO_THS, FIFOThreshold, 0);
-    break;
-  case NAV_INST_ALT:
-    NAV_SetBitsInRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_FIFO_CTRL,
-                          NAV_ALT_MSK_FIFO_CTL_MODE, parFIFOMode, 5);
-    NAV_SetBitsInRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_FIFO_CTRL,
-                          NAV_ALT_MSK_FIFO_THS, FIFOThreshold, 0);
-    break;
-  default:
-    break;
-  }
+      u8 FIFOThreshold) {
+   switch (bInst) {
+   case NAV_INST_AG:
+      NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_IMU_FIFO_CTRL,
+            NAV_IMU_MSK_FIFO_CTL_MODE, parFIFOMode, 5);
+      NAV_SetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_IMU_FIFO_CTRL,
+            NAV_IMU_MSK_FIFO_THS, FIFOThreshold, 0);
+      break;
+   case NAV_INST_ALT:
+      NAV_SetBitsInRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_FIFO_CTRL,
+            NAV_ALT_MSK_FIFO_CTL_MODE, parFIFOMode, 5);
+      NAV_SetBitsInRegister(InstancePtr, NAV_INST_ALT, NAV_ALT_FIFO_CTRL,
+            NAV_ALT_MSK_FIFO_THS, FIFOThreshold, 0);
+      break;
+   default:
+      break;
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -2594,20 +2600,20 @@ void NAV_SetFIFO(PmodNAV *InstancePtr, u8 bInst, u8 parFIFOMode,
 **      accel and gyro and Altimeter instruments and returns their value.
 */
 u8 NAV_GetFIFOMode(PmodNAV *InstancePtr, u8 bInst) {
-  u8 getFIFO;
-  switch (bInst) {
-  case NAV_INST_AG:
-    getFIFO = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG, NAV_IMU_FIFO_CTRL,
-                                    5, 3);
-    break;
-  case NAV_INST_ALT:
-    getFIFO = NAV_GetBitsInRegister(InstancePtr, NAV_INST_ALT,
-                                    NAV_ALT_FIFO_CTRL, 5, 3);
-    break;
-  default:
-    break;
-  }
-  return getFIFO;
+   u8 getFIFO;
+   switch (bInst) {
+   case NAV_INST_AG:
+      getFIFO = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
+            NAV_IMU_FIFO_CTRL, 5, 3);
+      break;
+   case NAV_INST_ALT:
+      getFIFO = NAV_GetBitsInRegister(InstancePtr, NAV_INST_ALT,
+            NAV_ALT_FIFO_CTRL, 5, 3);
+      break;
+   default:
+      break;
+   }
+   return getFIFO;
 }
 
 /* ------------------------------------------------------------ */
@@ -2643,20 +2649,20 @@ u8 NAV_GetFIFOMode(PmodNAV *InstancePtr, u8 bInst) {
 **      The magnetometer instrument does not contain FIFO
 */
 u8 NAV_GetFIFOThs(PmodNAV *InstancePtr, u8 bInst) {
-  u8 bFifoThs;
-  switch (bInst) {
-  case NAV_INST_AG:
-    bFifoThs = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
-                                     NAV_IMU_FIFO_CTRL, 0, 5);
-    break;
-  case NAV_INST_ALT:
-    bFifoThs = NAV_GetBitsInRegister(InstancePtr, NAV_INST_ALT,
-                                     NAV_ALT_FIFO_CTRL, 0, 5);
-    break;
-  default:
-    break;
-  }
-  return bFifoThs;
+   u8 bFifoThs;
+   switch (bInst) {
+   case NAV_INST_AG:
+      bFifoThs = NAV_GetBitsInRegister(InstancePtr, NAV_INST_AG,
+            NAV_IMU_FIFO_CTRL, 0, 5);
+      break;
+   case NAV_INST_ALT:
+      bFifoThs = NAV_GetBitsInRegister(InstancePtr, NAV_INST_ALT,
+            NAV_ALT_FIFO_CTRL, 0, 5);
+      break;
+   default:
+      break;
+   }
+   return bFifoThs;
 }
 
 /* ------------------------------------------------------------ */
@@ -2679,16 +2685,16 @@ u8 NAV_GetFIFOThs(PmodNAV *InstancePtr, u8 bInst) {
 **      returns their value.
 */
 u8 NAV_GetFIFOStatus(PmodNAV *InstancePtr, u8 bInst) {
-  u8 getFIFOSts;
-  switch (bInst) {
-  case NAV_INST_AG:
-    getFIFOSts = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_IMU_FIFO_SRC);
-    break;
-  case NAV_INST_ALT:
-    getFIFOSts = NAV_ReadSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_FIFO_STATUS);
-    break;
-  default:
-    break;
-  }
-  return getFIFOSts;
+   u8 getFIFOSts;
+   switch (bInst) {
+   case NAV_INST_AG:
+      getFIFOSts = NAV_ReadSPI(InstancePtr, NAV_INST_AG, NAV_IMU_FIFO_SRC);
+      break;
+   case NAV_INST_ALT:
+      getFIFOSts = NAV_ReadSPI(InstancePtr, NAV_INST_ALT, NAV_ALT_FIFO_STATUS);
+      break;
+   default:
+      break;
+   }
+   return getFIFOSts;
 }

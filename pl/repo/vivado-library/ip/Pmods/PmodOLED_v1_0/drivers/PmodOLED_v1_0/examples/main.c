@@ -36,12 +36,12 @@
 /*                  Include File Definitions                    */
 /* ------------------------------------------------------------ */
 
+#include <stdio.h>
 #include "PmodOLED.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xil_printf.h"
 #include "xparameters.h"
-#include <stdio.h>
 
 /* ------------------------------------------------------------ */
 /*                  Global Variables                            */
@@ -62,25 +62,25 @@ void DisableCaches();
 // To change between PmodOLED and OnBoardOLED is to change Orientation
 const u8 orientation = 0x0; // Set up for Normal PmodOLED(false) vs normal
                             // Onboard OLED(true)
-const u8 invert = 0x0;      // true = whitebackground/black letters
-                            // false = black background /white letters
+const u8 invert = 0x0; // true = whitebackground/black letters
+                       // false = black background /white letters
 
 /* ------------------------------------------------------------ */
 /*                  Function Definitions                        */
 /* ------------------------------------------------------------ */
 
 int main() {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
 
-  return 0;
+   return 0;
 }
 
 void DemoInitialize() {
-  EnableCaches();
-  OLED_Begin(&myDevice, XPAR_PMODOLED_0_AXI_LITE_GPIO_BASEADDR,
-             XPAR_PMODOLED_0_AXI_LITE_SPI_BASEADDR, orientation, invert);
+   EnableCaches();
+   OLED_Begin(&myDevice, XPAR_PMODOLED_0_AXI_LITE_GPIO_BASEADDR,
+         XPAR_PMODOLED_0_AXI_LITE_SPI_BASEADDR, orientation, invert);
 }
 
 /* ------------------------------------------------------------ */
@@ -103,106 +103,106 @@ void DemoInitialize() {
 **      Requires UART connection to terminal program on PC.
 */
 void DemoRun() {
-  int irow, ib, i;
-  u8 *pat;
-  char c;
+   int irow, ib, i;
+   u8 *pat;
+   char c;
 
-  xil_printf("UART and SPI opened for PmodOLED Demo\n\r");
+   xil_printf("UART and SPI opened for PmodOLED Demo\n\r");
 
-  while (1) {
-    xil_printf("entering loop\r\n");
-    // Choosing Fill pattern 0
-    pat = OLED_GetStdPattern(0);
-    OLED_SetFillPattern(&myDevice, pat);
-    // Turn automatic updating off
-    OLED_SetCharUpdate(&myDevice, 0);
-
-    // Draw a rectangle over writing then slide the rectangle down slowly
-    // displaying all writing
-    for (irow = 0; irow < OledRowMax; irow++) {
-      OLED_ClearBuffer(&myDevice);
-      OLED_SetCursor(&myDevice, 0, 0);
-      OLED_PutString(&myDevice, "PmodOLED");
-      OLED_SetCursor(&myDevice, 0, 1);
-      OLED_PutString(&myDevice, "by Digilent");
-      OLED_SetCursor(&myDevice, 0, 2);
-      OLED_PutString(&myDevice, "Simple Demo");
-
-      OLED_MoveTo(&myDevice, 0, irow);
-      OLED_FillRect(&myDevice, 127, 31);
-      OLED_MoveTo(&myDevice, 0, irow);
-      OLED_LineTo(&myDevice, 127, irow);
-      OLED_Update(&myDevice);
-      usleep(100000);
-    }
-
-    sleep(1);
-    // Blink the display three times.
-    for (i = 0; i < 3; i++) {
-      OLED_DisplayOff(&myDevice);
-      usleep(500000);
-      OLED_DisplayOn(&myDevice);
-      usleep(500000);
-    }
-    sleep(2);
-
-    // Now erase the characters from the display
-    for (irow = OledRowMax - 1; irow >= 0; irow--) {
-      OLED_SetDrawColor(&myDevice, 1);
-      OLED_SetDrawMode(&myDevice, OledModeSet);
-      OLED_MoveTo(&myDevice, 0, irow);
-      OLED_LineTo(&myDevice, 127, irow);
-      OLED_Update(&myDevice);
-      usleep(25000);
-      OLED_SetDrawMode(&myDevice, OledModeXor);
-      OLED_MoveTo(&myDevice, 0, irow);
-      OLED_LineTo(&myDevice, 127, irow);
-      OLED_Update(&myDevice);
-    }
-
-    sleep(1);
-
-    // Draw a rectangle in center of screen
-    // Display the 8 different patterns available
-    OLED_SetDrawMode(&myDevice, OledModeSet);
-
-    for (ib = 1; ib < 8; ib++) {
-      OLED_ClearBuffer(&myDevice);
-      pat = OLED_GetStdPattern(ib);
+   while (1) {
+      xil_printf("entering loop\r\n");
+      // Choosing Fill pattern 0
+      pat = OLED_GetStdPattern(0);
       OLED_SetFillPattern(&myDevice, pat);
-      OLED_MoveTo(&myDevice, 55, 1);
-      OLED_FillRect(&myDevice, 75, 27);
-      OLED_DrawRect(&myDevice, 75, 27);
-      OLED_Update(&myDevice);
+      // Turn automatic updating off
+      OLED_SetCharUpdate(&myDevice, 0);
+
+      // Draw a rectangle over writing then slide the rectangle down slowly
+      // displaying all writing
+      for (irow = 0; irow < OledRowMax; irow++) {
+         OLED_ClearBuffer(&myDevice);
+         OLED_SetCursor(&myDevice, 0, 0);
+         OLED_PutString(&myDevice, "PmodOLED");
+         OLED_SetCursor(&myDevice, 0, 1);
+         OLED_PutString(&myDevice, "by Digilent");
+         OLED_SetCursor(&myDevice, 0, 2);
+         OLED_PutString(&myDevice, "Simple Demo");
+
+         OLED_MoveTo(&myDevice, 0, irow);
+         OLED_FillRect(&myDevice, 127, 31);
+         OLED_MoveTo(&myDevice, 0, irow);
+         OLED_LineTo(&myDevice, 127, irow);
+         OLED_Update(&myDevice);
+         usleep(100000);
+      }
 
       sleep(1);
-    }
+      // Blink the display three times.
+      for (i = 0; i < 3; i++) {
+         OLED_DisplayOff(&myDevice);
+         usleep(500000);
+         OLED_DisplayOn(&myDevice);
+         usleep(500000);
+      }
+      sleep(2);
+
+      // Now erase the characters from the display
+      for (irow = OledRowMax - 1; irow >= 0; irow--) {
+         OLED_SetDrawColor(&myDevice, 1);
+         OLED_SetDrawMode(&myDevice, OledModeSet);
+         OLED_MoveTo(&myDevice, 0, irow);
+         OLED_LineTo(&myDevice, 127, irow);
+         OLED_Update(&myDevice);
+         usleep(25000);
+         OLED_SetDrawMode(&myDevice, OledModeXor);
+         OLED_MoveTo(&myDevice, 0, irow);
+         OLED_LineTo(&myDevice, 127, irow);
+         OLED_Update(&myDevice);
+      }
+
+      sleep(1);
+
+      // Draw a rectangle in center of screen
+      // Display the 8 different patterns available
+      OLED_SetDrawMode(&myDevice, OledModeSet);
+
+      for (ib = 1; ib < 8; ib++) {
+         OLED_ClearBuffer(&myDevice);
+         pat = OLED_GetStdPattern(ib);
+         OLED_SetFillPattern(&myDevice, pat);
+         OLED_MoveTo(&myDevice, 55, 1);
+         OLED_FillRect(&myDevice, 75, 27);
+         OLED_DrawRect(&myDevice, 75, 27);
+         OLED_Update(&myDevice);
+
+         sleep(1);
+      }
 
 #ifdef __MICROBLAZE__
-    c = 'q';
+      c = 'q';
 #else
-    xil_printf("(q)uit or any key to continue:\n\r");
-    c = inbyte();
+      xil_printf("(q)uit or any key to continue:\n\r");
+      c = inbyte();
 #endif
 
-    if (c == 'q' || c == 'Q')
-      break;
-  }
-  xil_printf("Exiting PmodOLED Demo\n\r");
+      if (c == 'q' || c == 'Q')
+         break;
+   }
+   xil_printf("Exiting PmodOLED Demo\n\r");
 }
 
 void DemoCleanup() {
-  OLED_End(&myDevice);
-  DisableCaches();
+   OLED_End(&myDevice);
+   DisableCaches();
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -210,10 +210,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

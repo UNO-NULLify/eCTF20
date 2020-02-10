@@ -36,20 +36,20 @@
 /*                  Bit Mask Definitions                        */
 /* ------------------------------------------------------------ */
 
-#define AD2_CONFIG_CH3 0x80
-#define AD2_CONFIG_CH2 0x40
-#define AD2_CONFIG_CH1 0x20
-#define AD2_CONFIG_CH0 0x10
-#define AD2_CONFIG_REF_SEL 0x08
-#define AD2_CONFIG_FLTR 0x04
+#define AD2_CONFIG_CH3             0x80
+#define AD2_CONFIG_CH2             0x40
+#define AD2_CONFIG_CH1             0x20
+#define AD2_CONFIG_CH0             0x10
+#define AD2_CONFIG_REF_SEL         0x08
+#define AD2_CONFIG_FLTR            0x04
 #define AD2_CONFIG_BIT_TRIAL_DELAY 0x02
-#define AD2_CONFIG_SAMPLE_DELAY 0x01
+#define AD2_CONFIG_SAMPLE_DELAY    0x01
 
-#define AD2_DEFAULT_CONFIG                                                     \
-  (AD2_CONFIG_CH0 | AD2_CONFIG_CH1 | AD2_CONFIG_CH2 | AD2_CONFIG_CH3)
+#define AD2_DEFAULT_CONFIG (AD2_CONFIG_CH0 | AD2_CONFIG_CH1 | AD2_CONFIG_CH2 \
+                                 | AD2_CONFIG_CH3)
 
-#define AD2_DATA_MASK 0xFFF
-#define AD2_CHANNEL_BIT 12
+#define AD2_DATA_MASK    0xFFF
+#define AD2_CHANNEL_BIT  12
 #define AD2_CHANNEL_MASK 0x3000
 
 /* ------------------------------------------------------------ */
@@ -57,8 +57,8 @@
 /* ------------------------------------------------------------ */
 
 typedef struct PmodAD2 {
-  XIic AD2Iic;
-  u8 chipAddr;
+   XIic AD2Iic;
+   u8 chipAddr;
 } PmodAD2;
 
 void AD2_begin(PmodAD2 *InstancePtr, u32 IIC_Address, u8 Chip_Address);

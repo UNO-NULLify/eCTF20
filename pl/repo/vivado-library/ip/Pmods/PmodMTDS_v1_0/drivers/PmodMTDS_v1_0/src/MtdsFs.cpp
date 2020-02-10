@@ -1,75 +1,66 @@
 /********************************************************************************/
 /*																				*/
-/*	MtdsFs.cpp	--	Implementation for MTDS FileSystem Functions
- */
+/*	MtdsFs.cpp	--	Implementation for MTDS FileSystem Functions				*/
 /*																				*/
 /********************************************************************************/
-/*	Author: 	Gene Apperson
- */
-/*	Copyright 2015, Digilent, Inc. All rights reserved.
- */
+/*	Author: 	Gene Apperson													*/
+/*	Copyright 2015, Digilent, Inc. All rights reserved.							*/
 /********************************************************************************/
-/*  Module Description:
- */
+/*  Module Description: 														*/
 /*																				*/
 /*																				*/
 /********************************************************************************/
-/*  Revision History:
- */
+/*  Revision History:															*/
 /*																				*/
-/*	2015/10/07(GeneApperson): Created
- */
+/*	2015/10/07(GeneApperson): Created											*/
 /*																				*/
 /********************************************************************************/
 
-#define OPT_BOARD_INTERNAL
+#define	OPT_BOARD_INTERNAL
 
 /* ------------------------------------------------------------ */
-/*				Include File Definitions
- */
+/*				Include File Definitions						*/
 /* ------------------------------------------------------------ */
 
-#include <stdlib.h>
-#include <string.h>
+#include	<stdlib.h>
+#include	<string.h>
 
-#include <stdint.h>
+#include	<stdint.h>
 
-#include "MtdsCore.h"
-#include "ProtoDefs.h"
-#include "mtds.h"
-
-/* ------------------------------------------------------------ */
-/*				Local Type Definitions
- */
-/* ------------------------------------------------------------ */
+#include	"ProtoDefs.h"
+#include	"mtds.h"
+#include	"MtdsCore.h"
 
 /* ------------------------------------------------------------ */
-/*				Global Variables
- */
+/*				Local Type Definitions							*/
 /* ------------------------------------------------------------ */
 
-extern CHDR *pchdrMtdsCmd;
-extern RHDR *prhdrMtdsRet;
-extern uint8_t rgbMtdsRetVal[cbRetValInit + sizeof(RHDR)];
 
 /* ------------------------------------------------------------ */
-/*				Local Variables
- */
+/*				Global Variables								*/
 /* ------------------------------------------------------------ */
 
-/* ------------------------------------------------------------ */
-/*				Forward Declarations
- */
-/* ------------------------------------------------------------ */
+extern CHDR *	pchdrMtdsCmd;
+extern RHDR *	prhdrMtdsRet;
+extern uint8_t	rgbMtdsRetVal[cbRetValInit+sizeof(RHDR)];
 
 /* ------------------------------------------------------------ */
-/*				Procedure Definitions
- */
+/*				Local Variables									*/
 /* ------------------------------------------------------------ */
 
+
 /* ------------------------------------------------------------ */
-/*				MTFS Object Class Implementation
- */
+/*				Forward Declarations							*/
+/* ------------------------------------------------------------ */
+
+
+/* ------------------------------------------------------------ */
+/*				Procedure Definitions							*/
+/* ------------------------------------------------------------ */
+
+
+/* ------------------------------------------------------------ */
+/*				MTFS Object Class Implementation				*/
 /* ------------------------------------------------------------ */
 /***	MTFS::MountFs(fMount, fDelay)
 **
@@ -84,37 +75,35 @@ extern uint8_t rgbMtdsRetVal[cbRetValInit + sizeof(RHDR)];
 **		Returns true if successful, false if not.
 **
 **	Description:
-**		Mount/unmount a file system. The file system must be mounted
-*before any *		access to the SD card is allowed. The file system is
-*unmounted before the *		SD card can be removed.
+**		Mount/unmount a file system. The file system must be mounted before any
+**		access to the SD card is allowed. The file system is unmounted before the
+**		SD card can be removed.
 */
 
 bool MTFS::MountFs(bool fMount, bool fDelay) {
-  PRM2B prm;
+	PRM2B	prm;
 
-  /* Send the command packet.
-   */
-  prm.valB1 = fMount ? 1 : 0;
-  prm.valB2 = fDelay ? 1 : 0;
+	/* Send the command packet.
+	*/
+	prm.valB1 = fMount ? 1 : 0;
+	prm.valB2 = fDelay ? 1 : 0;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsMount, sizeof(prm), (uint8_t *)&prm, 0,
-                        0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsMount, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
 /***	MTFS::GetFreeSpace(pdwFree)
 **
 **	Parameters:
-**		pdwFree		- pointer to variable to receive free space on
-*disk
+**		pdwFree		- pointer to variable to receive free space on disk
 **
 **	Return Values:
 **		none
@@ -126,26 +115,25 @@ bool MTFS::MountFs(bool fMount, bool fDelay) {
 **		Returns the number of free sectors on the SD card.
 */
 
-bool MTFS::GetFreeSpace(uint32_t *pdwFree) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1B prm;
+bool MTFS::GetFreeSpace(uint32_t * pdwFree) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1B	prm;
 
-  /* Send the command packet.
-   */
-  prm.valB1 = 0;
+	/* Send the command packet.
+	*/
+	prm.valB1 = 0;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsGetFreeSpace, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsGetFreeSpace, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    *pdwFree = 0;
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		*pdwFree = 0;
+		return false;
+	}
 
-  *pdwFree = pret->valA1;
-  return true;
+	*pdwFree = pret->valA1;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -164,31 +152,32 @@ bool MTFS::GetFreeSpace(uint32_t *pdwFree) {
 **		make the specified directory be the current working directory.
 */
 
-bool MTFS::SetCurrentDir(char *szDir) {
-  PRM1B prm;
+bool MTFS::SetCurrentDir(char * szDir) {
+	PRM1B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szDir, clsCmdFs, cmdFsSetCurDir)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szDir, clsCmdFs, cmdFsSetCurDir)) {
+		return false;
+	}
 
-  /* Send the command packet.
-   */
-  prm.valB1 = strlen(szDir) + 1;
+	/* Send the command packet.
+	*/
+	prm.valB1 = strlen(szDir)+1;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetCurDir, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szDir);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetCurDir, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szDir);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -208,31 +197,32 @@ bool MTFS::SetCurrentDir(char *szDir) {
 **		Return the name of the current working directory.
 */
 
-bool MTFS::GetCurrentDir(int cbMax, char *szDir) {
-  PRM1B prm;
+bool MTFS::GetCurrentDir(int cbMax, char * szDir) {
+	PRM1B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szDir, clsCmdFs, cmdFsSetCurDir)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szDir, clsCmdFs, cmdFsSetCurDir)) {
+		return false;
+	}
 
-  /* Send the command packet.
-   */
-  prm.valB1 = strlen(szDir) + 1;
+	/* Send the command packet.
+	*/
+	prm.valB1 = strlen(szDir)+1;
 
-  mtds.MtdsProcessCmdRd(clsCmdFs, cmdFsGetCurDir, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szDir);
+	mtds.MtdsProcessCmdRd(clsCmdFs, cmdFsGetCurDir, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szDir);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -251,7 +241,9 @@ bool MTFS::GetCurrentDir(int cbMax, char *szDir) {
 **		Set the volume label to the specified string.
 */
 
-bool MTFS::SetVolumeLabel(char *szVol) { return false; }
+bool MTFS::SetVolumeLabel(char * szVol) {
+	return false;
+}
 
 /* ------------------------------------------------------------ */
 /***	MTFS::GetVolumeLabel(cbMax, szVol)
@@ -270,7 +262,9 @@ bool MTFS::SetVolumeLabel(char *szVol) { return false; }
 **		Return the the current volume label of the disk.
 */
 
-bool MTFS::GetVolumeLabel(int cbMax, char *szVol) { return false; }
+bool MTFS::GetVolumeLabel(int cbMax, char * szVol) {
+	return false;
+}
 
 /* ------------------------------------------------------------ */
 /***	MTFS::CreateDir(szDir)
@@ -288,31 +282,32 @@ bool MTFS::GetVolumeLabel(int cbMax, char *szVol) { return false; }
 **		Create the specified directory.
 */
 
-bool MTFS::CreateDir(char *szDir) {
-  PRM1B prm;
+bool MTFS::CreateDir(char * szDir) {
+	PRM1B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szDir, clsCmdFs, cmdFsMkdir)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szDir, clsCmdFs, cmdFsMkdir)) {
+		return false;
+	}
 
-  /* Send the command packet.
-   */
-  prm.valB1 = strlen(szDir) + 1;
+	/* Send the command packet.
+	*/
+	prm.valB1 = strlen(szDir)+1;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsMkdir, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szDir);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsMkdir, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szDir);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -331,32 +326,33 @@ bool MTFS::CreateDir(char *szDir) {
 **		Open the specified directory for read.
 */
 
-HDIR MTFS::OpenDir(char *szDir) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1B prm;
+HDIR MTFS::OpenDir(char * szDir) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szDir, clsCmdFs, cmdFsOpenDir)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szDir, clsCmdFs, cmdFsOpenDir)) {
+		return false;
+	}
 
-  /* Send the command packet.
-   */
-  prm.valB1 = strlen(szDir) + 1;
+	/* Send the command packet.
+	*/
+	prm.valB1 = strlen(szDir)+1;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsOpenDir, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szDir);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsOpenDir, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szDir);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return 0;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return 0;
+	}
 
-  /* Return success.
-   */
-  return pret->valA1;
+	/* Return success.
+	*/
+	return pret->valA1;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -376,25 +372,26 @@ HDIR MTFS::OpenDir(char *szDir) {
 **		Read the next directory entry from the specified open directory
 */
 
-bool MTFS::ReadDir(HDIR hdir, FINF *pfinf) {
-  PRM1A prm;
+bool MTFS::ReadDir(HDIR hdir, FINF * pfinf) {
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hdir;
+	/* Send the command packet.
+	*/
+	prm.valA1 = hdir;
 
-  mtds.MtdsProcessCmdRd(clsCmdFs, cmdFsReadDir, sizeof(prm), (uint8_t *)&prm,
-                        sizeof(FINF), (uint8_t *)pfinf);
+	mtds.MtdsProcessCmdRd(clsCmdFs, cmdFsReadDir, sizeof(prm), (uint8_t *)&prm,
+						sizeof(FINF), (uint8_t *)pfinf);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -414,22 +411,21 @@ bool MTFS::ReadDir(HDIR hdir, FINF *pfinf) {
 */
 
 bool MTFS::CloseDir(HDIR hdir) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hdir;
+	/* Send the command packet.
+	*/
+	prm.valA1 = hdir;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsCloseDir, sizeof(prm), (uint8_t *)&prm,
-                        0, 0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsCloseDir, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -447,45 +443,44 @@ bool MTFS::CloseDir(HDIR hdir) {
 **
 **	Description:
 **		Return status information about the specified file.
-**		This function requires both sending a data packet and receiving
-*a data packet. *		There isn't an underlying mechanism to do that.
-*It uses a utility command to
-**		send the file name first, and then follows up with a command to
-*read the FINF *		value.
+**		This function requires both sending a data packet and receiving a data packet.
+**		There isn't an underlying mechanism to do that. It uses a utility command to
+**		send the file name first, and then follows up with a command to read the FINF
+**		value.
 */
 
-bool MTFS::FileStat(char *szFile, FINF *pfinf) {
-  PRM1B prm;
+bool MTFS::FileStat(char * szFile, FINF * pfinf) {
+	PRM1B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsStat)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsStat)) {
+		return false;
+	}
 
-  /* Send the command packet to set the file name.
-   */
-  prm.valB1 = strlen(szFile) + 1;
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetFname, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szFile);
+	/* Send the command packet to set the file name.
+	*/
+	prm.valB1 = strlen(szFile)+1;
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetFname, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szFile);
 
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Now send the command to read the FINF structure for the file.
-   */
-  prm.valB1 = 0; // This is a dummy value that isn't used
-  mtds.MtdsProcessCmdRd(clsCmdFs, cmdFsStat, sizeof(prm), (uint8_t *)&prm,
-                        sizeof(FINF), (uint8_t *)pfinf);
+	/* Now send the command to read the FINF structure for the file.
+	*/
+	prm.valB1 = 0;		//This is a dummy value that isn't used
+	mtds.MtdsProcessCmdRd(clsCmdFs, cmdFsStat, sizeof(prm), (uint8_t *)&prm,
+						sizeof(FINF), (uint8_t *)pfinf);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -505,33 +500,34 @@ bool MTFS::FileStat(char *szFile, FINF *pfinf) {
 **		Open or create the specfied file.
 */
 
-HDIR MTFS::OpenFile(char *szFile, uint8_t md) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM2B prm;
+HDIR MTFS::OpenFile(char * szFile, uint8_t md) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM2B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsOpen)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsOpen)) {
+		return false;
+	}
 
-  /* Send the command packet.
-   */
-  prm.valB1 = strlen(szFile) + 1;
-  prm.valB2 = md;
+	/* Send the command packet.
+	*/
+	prm.valB1 = strlen(szFile)+1;
+	prm.valB2 = md;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsOpen, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szFile);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsOpen, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szFile);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return 0;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return 0;
+	}
 
-  /* Return the file handle.
-   */
-  return pret->valA1;
+	/* Return the file handle.
+	*/
+	return pret->valA1;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -551,22 +547,21 @@ HDIR MTFS::OpenFile(char *szFile, uint8_t md) {
 */
 
 bool MTFS::CloseFile(HFIL fh) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsClose, sizeof(prm), (uint8_t *)&prm, 0,
-                        0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsClose, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -588,30 +583,29 @@ bool MTFS::CloseFile(HFIL fh) {
 **		Read the specified number of bytes from the specified file.
 */
 
-bool MTFS::ReadFile(HFIL fh, uint8_t *rgbBuf, uint32_t cbRead,
-                    uint32_t *pcbRes) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM2A prm;
+bool MTFS::ReadFile(HFIL fh, uint8_t * rgbBuf, uint32_t cbRead, uint32_t * pcbRes) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM2A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
-  prm.valA2 = cbRead;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
+	prm.valA2 = cbRead;
 
-  mtds.MtdsProcessCmdRd(clsCmdFs, cmdFsRead, sizeof(prm), (uint8_t *)&prm,
-                        cbRead, rgbBuf);
+	mtds.MtdsProcessCmdRd(clsCmdFs, cmdFsRead, sizeof(prm), (uint8_t *)&prm, cbRead, rgbBuf);
 
-  *pcbRes = pret->valA1;
+	*pcbRes = pret->valA1;
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -633,30 +627,29 @@ bool MTFS::ReadFile(HFIL fh, uint8_t *rgbBuf, uint32_t cbRead,
 **		Write the specified number of bytes to the specified file.
 */
 
-bool MTFS::WriteFile(HFIL fh, uint8_t *rgbBuf, uint32_t cbWrite,
-                     uint32_t *pcbRes) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM2A prm;
+bool MTFS::WriteFile(HFIL fh, uint8_t * rgbBuf, uint32_t cbWrite, uint32_t * pcbRes) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM2A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
-  prm.valA2 = cbWrite;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
+	prm.valA2 = cbWrite;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsWrite, sizeof(prm), (uint8_t *)&prm,
-                        cbWrite, rgbBuf);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsWrite, sizeof(prm), (uint8_t *)&prm, cbWrite, rgbBuf);
 
-  *pcbRes = pret->valA1;
+	*pcbRes = pret->valA1;
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return the file handle.
-   */
-  return true;
+	/* Return the file handle.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -676,22 +669,21 @@ bool MTFS::WriteFile(HFIL fh, uint8_t *rgbBuf, uint32_t cbWrite,
 */
 
 bool MTFS::SyncFile(HFIL fh) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSync, sizeof(prm), (uint8_t *)&prm, 0,
-                        0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSync, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -711,22 +703,21 @@ bool MTFS::SyncFile(HFIL fh) {
 */
 
 bool MTFS::TruncateFile(HFIL fh) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsTruncate, sizeof(prm), (uint8_t *)&prm,
-                        0, 0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsTruncate, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -747,23 +738,22 @@ bool MTFS::TruncateFile(HFIL fh) {
 */
 
 bool MTFS::SetFilePointer(HFIL fh, uint32_t off) {
-  PRM2A prm;
+	PRM2A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
-  prm.valA2 = off;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
+	prm.valA2 = off;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSeek, sizeof(prm), (uint8_t *)&prm, 0,
-                        0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSeek, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -771,8 +761,7 @@ bool MTFS::SetFilePointer(HFIL fh, uint32_t off) {
 **
 **	Parameters:
 **		fh		- file handle to synchronize
-**		poff	- pointer to variable to receive current position within
-*the file
+**		poff	- pointer to variable to receive current position within the file
 **
 **	Return Values:
 **		none
@@ -784,28 +773,28 @@ bool MTFS::SetFilePointer(HFIL fh, uint32_t off) {
 **		Get the current file read/write pointer position.
 */
 
-bool MTFS::GetFilePointer(HFIL fh, uint32_t *poff) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+bool MTFS::GetFilePointer(HFIL fh, uint32_t * poff) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsTell, sizeof(prm), (uint8_t *)&prm, 0,
-                        0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsTell, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    *poff = 0;
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		*poff = 0;
+		return false;
+	}
 
-  /* Return the file handle.
-   */
-  *poff = pret->valA1;
-  return true;
+	/* Return the file handle.
+	*/
+	*poff = pret->valA1;
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -824,31 +813,32 @@ bool MTFS::GetFilePointer(HFIL fh, uint32_t *poff) {
 **		Delete the specified file or directory.
 */
 
-bool MTFS::DeleteFile(char *szFile) {
-  PRM1B prm;
+bool MTFS::DeleteFile(char * szFile) {
+	PRM1B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsDelete)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsDelete)) {
+		return false;
+	}
 
-  /* Send the command packet.
-   */
-  prm.valB1 = strlen(szFile) + 1;
+	/* Send the command packet.
+	*/
+	prm.valB1 = strlen(szFile)+1;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsDelete, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szFile);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsDelete, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szFile);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -868,48 +858,47 @@ bool MTFS::DeleteFile(char *szFile) {
 **		Rename the specified file or directory.
 */
 
-bool MTFS::RenameFile(char *szOld, char *szNew) {
-  PRM1B prm;
+bool MTFS::RenameFile(char * szOld, char * szNew) {
+	PRM1B	prm;
 
-  /* Error check that the file name lengths are acceptable.
-   */
-  if (!mtds.FCheckName(szOld, clsCmdFs, cmdFsStat)) {
-    return false;
-  }
+	/* Error check that the file name lengths are acceptable.
+	*/
+	if (!mtds.FCheckName(szOld, clsCmdFs, cmdFsStat)) {
+		return false;
+	}
 
-  if (!mtds.FCheckName(szNew, clsCmdFs, cmdFsStat)) {
-    return false;
-  }
+	if (!mtds.FCheckName(szNew, clsCmdFs, cmdFsStat)) {
+		return false;
+	}
 
-  /* Send the command packet to set the old file file name. The command
-  *processing
-  ** model only supports sending one data packet with to pass parameter
-  *information
-  ** with a command, the SetFName command causes the old name to be stored
-  ** temporarily on the display device until the rename command is sent with the
-  ** new name.
-  */
-  prm.valB1 = strlen(szOld) + 1;
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetFname, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szOld);
+	/* Send the command packet to set the old file file name. The command processing
+	** model only supports sending one data packet with to pass parameter information
+	** with a command, the SetFName command causes the old name to be stored
+	** temporarily on the display device until the rename command is sent with the
+	** new name.
+	*/
+	prm.valB1 = strlen(szOld)+1;
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetFname, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szOld);
 
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Now send the command to rename the file along with the new name.
-   */
-  prm.valB1 = strlen(szNew) + 1;
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsRename, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szNew);
+	/* Now send the command to rename the file along with the new name.
+	*/
+	prm.valB1 = strlen(szNew)+1;
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsRename, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szNew);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
 
-  return true;
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
+
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -929,31 +918,31 @@ bool MTFS::RenameFile(char *szOld, char *szNew) {
 **		Set the file attributes to the value specified by *pinf
 */
 
-bool MTFS::SetFileAttrib(char *szFile, uint8_t attrib, uint8_t mask) {
-  PRM3B prm;
+bool MTFS::SetFileAttrib(char * szFile, uint8_t attrib, uint8_t mask) {
+	PRM3B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsStat)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsStat)) {
+		return false;
+	}
 
-  /* Send the command packet.
-   */
-  prm.valB1 = strlen(szFile) + 1;
-  prm.valB2 = attrib;
-  prm.valB3 = mask;
+	/* Send the command packet.
+	*/
+	prm.valB1 = strlen(szFile)+1;
+	prm.valB2 = attrib;
+	prm.valB3 = mask;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetAttrib, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szFile);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetAttrib, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szFile);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -961,8 +950,7 @@ bool MTFS::SetFileAttrib(char *szFile, uint8_t attrib, uint8_t mask) {
 **
 **	Parameters:
 **		szFile		- name of file or directory to set
-**		pfinf		- pointer to file info structure containing file
-*times to set
+**		pfinf		- pointer to file info structure containing file times to set
 **
 **	Return Values:
 **		none
@@ -971,42 +959,41 @@ bool MTFS::SetFileAttrib(char *szFile, uint8_t attrib, uint8_t mask) {
 **		Returns true if successful, false if not
 **
 **	Description:
-**		Set the file modification data nd time to the value specified by
-**pinf
+**		Set the file modification data nd time to the value specified by *pinf
 */
 
-bool MTFS::SetFileTime(char *szFile, FINF *pfinf) {
-  PRM1B prm;
+bool MTFS::SetFileTime(char * szFile, FINF * pfinf) {
+	PRM1B	prm;
 
-  /* Error check that the file name length is acceptable.
-   */
-  if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsStat)) {
-    return false;
-  }
+	/* Error check that the file name length is acceptable.
+	*/
+	if (!mtds.FCheckName(szFile, clsCmdFs, cmdFsStat)) {
+		return false;
+	}
 
-  /* Send the command packet to set the file name.
-   */
-  prm.valB1 = strlen(szFile) + 1;
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetFname, sizeof(prm), (uint8_t *)&prm,
-                        prm.valB1, (uint8_t *)szFile);
+	/* Send the command packet to set the file name.
+	*/
+	prm.valB1 = strlen(szFile)+1;
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetFname, sizeof(prm), (uint8_t *)&prm,
+						prm.valB1, (uint8_t *)szFile);
 
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Now send the command with the FINF structure for time to set.
-   */
-  prm.valB1 = 0; // This is a dummy value that isn't used
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetTime, sizeof(prm), (uint8_t *)&prm,
-                        sizeof(FINF), (uint8_t *)pfinf);
+	/* Now send the command with the FINF structure for time to set.
+	*/
+	prm.valB1 = 0;		//This is a dummy value that isn't used
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSetTime, sizeof(prm), (uint8_t *)&prm,
+						sizeof(FINF), (uint8_t *)pfinf);
 
-  /* Check for error.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  return true;
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -1026,28 +1013,28 @@ bool MTFS::SetFileTime(char *szFile, FINF *pfinf) {
 **		Get the current size of the file.
 */
 
-bool MTFS::GetFileSize(HFIL fh, uint32_t *pcbSize) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+bool MTFS::GetFileSize(HFIL fh, uint32_t * pcbSize) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSize, sizeof(prm), (uint8_t *)&prm, 0,
-                        0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsSize, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    *pcbSize = 0;
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		*pcbSize = 0;
+		return false;
+	}
 
-  /* Return the file handle.
-   */
-  *pcbSize = pret->valA1;
-  return true;
+	/* Return the file handle.
+	*/
+	*pcbSize = pret->valA1;
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -1063,37 +1050,37 @@ bool MTFS::GetFileSize(HFIL fh, uint32_t *pcbSize) {
 **		Returns true if invalid file handle
 **
 **	Description:
-**		This function returns true if the current file pointer is at the
-*end of *		the file. *		Note: This function return true
-*(i.e. end of file) if the file handle is *		invalid. To distinguish
-*actual 'end of file' from 'invalid file handle', *		call
-*MTDS::GetLastError. This will return staCmdSuccess if the file handle
+**		This function returns true if the current file pointer is at the end of
+**		the file.
+**		Note: This function return true (i.e. end of file) if the file handle is
+**		invalid. To distinguish actual 'end of file' from 'invalid file handle',
+**		call MTDS::GetLastError. This will return staCmdSuccess if the file handle
 **		is valid and no error occured.
 */
 
 bool MTFS::Feof(HFIL fh) {
-  RET4B *pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+	RET4B *	pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsFeof, sizeof(prm), (uint8_t *)&prm, 0,
-                        0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsFeof, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    /* Note: in the case that the command failed, we return true so that it
-    ** looks line end of file.
-    */
-    return true;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		/* Note: in the case that the command failed, we return true so that it
+		** looks line end of file.
+		*/
+		return true;
+	}
 
-  /* Return the end of file status.
-   */
-  return pret->valB1 != 0;
+	/* Return the end of file status.
+	*/
+	return pret->valB1 != 0;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -1113,28 +1100,28 @@ bool MTFS::Feof(HFIL fh) {
 */
 
 int MTFS::Ferr(HFIL fh) {
-  RET4B *pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+	RET4B *	pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = fh;
+	/* Send the command packet.
+	*/
+	prm.valA1 = fh;
 
-  mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsErr, sizeof(prm), (uint8_t *)&prm, 0, 0);
+	mtds.MtdsProcessCmdWr(clsCmdFs, cmdFsErr, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    /* Note: in the case that the command failed, we return -1, which is
-    *different
-    ** than any error code.
-    */
-    return -1;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		/* Note: in the case that the command failed, we return -1, which is different
+		** than any error code.
+		*/
+		return -1;
+	}
 
-  /* Return the end of file status.
-   */
-  return pret->valB1;
+	/* Return the end of file status.
+	*/
+	return pret->valB1;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -1153,3 +1140,4 @@ int MTFS::Ferr(HFIL fh) {
 /* ------------------------------------------------------------ */
 
 /********************************************************************************/
+
