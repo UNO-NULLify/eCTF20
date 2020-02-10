@@ -10,6 +10,15 @@
 
 # generate test data
 
+read -p "Clean all working files? (Warning: This will delete all uncommitted changes) (y/n) " choice
+case "$choice" in 
+  y|Y ) printf git reset --hard; git clean -d -fx
+  ;;
+  *) echo "Commit your changes before running this script."
+     exit 1
+  ;;
+esac
+
 mkdir -p provision_test/audio
 
 python3 makeUsers.py
@@ -72,9 +81,6 @@ case "$choice" in
                         --owner $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}') \
                         --user-secrets-path ./provision_test/user_secrets.json
 
-    #awk '{print $1}' | sed 's/:/ /g'
-    # Sound-Bite_One-Small-Step.wav
-
     if [ ! $? -eq 0 ]; then
         printf "\nERROR: %s\n" "protectSong Failed!"
         exit 1
@@ -91,9 +97,6 @@ case "$choice" in
                         --owner $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}') \
                         --user-secrets-path ./provision_test/user_secrets.json
 
-    #awk '{print $1}' | sed 's/:/ /g'
-    # Sound-Bite_One-Small-Step.wav
-
     if [ ! $? -eq 0 ]; then
         printf "\nERROR: %s\n" "protectSong Failed!"
         exit 1
@@ -104,9 +107,7 @@ case "$choice" in
   esac
 # End Generate Test Song
 
-
-    
-
+# Create Device
 python3 createDevice --region-list Canada USA \
                      --region-secrets-path ./provision_test/region_secrets.json \
                      --user-list $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g') \
@@ -118,31 +119,57 @@ if [ ! $? -eq 0 ]; then
   exit 1
 fi
 
-#Drew's Changes
+#Build Device
+printf "\n\nRunning buildDevice...\n"  
+(./buildDevice -p ../ -n test -bf all -secrets_dir device/)
 
-#gcc -Wall -pedantic -std=c1x -g -o  ./encryptFile encryptFile.c -lsodium
-#gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c -lsodium
+if [ ! $? -eq 0 ]; then
+  printf "\nERROR: %s\n" "buildDevice Failed!"
+  exit 1
+fi
 
-#python3 newProtectSong --region-list USA Canada \
-#                       --region-secrets-path region_secrets.json \
-#                       --outfile test-protect.wav \
-#                       --infile ../sample-audio/Sound-Bite_One-Small-Step.wav \
-#                       --owner user1 --user-secrets-path user_secrets.json
+#Package Device
+printf "\n\nRunning packageDevice...\n"
+(time ./packageDevice ../boot-image/template.bif device/miPod.bin ../mb/Cora-Z7-07S/download.bit)
 
-# end Drew's changes
+if [ ! $? -eq 0 ]; then
+  printf "\nERROR: %s\n" "packageDevice Failed!"
+  exit 1
+fi 
 
-#printf "\n\nRunning buildDevice...\n"  
-#(./buildDevice -p /ectf/ -n test -bf all -secrets_dir ./device)
-#
-#if [ ! $? -eq 0 ]; then
-#  printf "\nERROR: %s\n" "buildDevice Failed!"
-#  exit 1
-#fi 
+  printf "\nInsert SD Card. Pass-through to VM."
+  printf "\nPress any key to continue...\n"
+  while [ true ] ; do
+    read -t 3 -n 1
+    if [ $? = 0 ] ; then
+      exit $?;
+    fi
+  done
+  
+  #Deploy Device
+  printf "\n\nRunning deployDevice...\n"  
+    
+  read -p "Are you using a MITRE-provided board? (y/n) " choice
+  case "$choice" in 
+    y|Y )
+           cp ../boot-image/uno_design_phase_BOOT.BIN ../BOOT.BIN
+           ;;
+    n|N ) 
+           cp ../boot-image/purchased_boards_BOOT.BIN ../BOOT.BIN
+           ;;
+  esac
+  
+  ./deployDevice /dev/sdb ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin 
+
+  if [ ! $? -eq 0 ]; then
+    1>&2 printf "\nERROR: %s\n" "deployDevice Failed!"
+    exit 1
+  fi
+  
+  printf "\nFinished building and deploying!"
 
 # Time to Reverse the process
 
-#gcc -Wall -pedantic -std=c1x -g -o  ./device/test test.c -lsodium
-
-#./device/test
+# See make test
 
 exit 0
