@@ -10,12 +10,12 @@
 typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
 typedef struct {
-  char *name;
-  char *hw_secret;
-  char *pin_hash;
-  char *pub_key;
-  char *pvt_key_enc;
-  int logged_in;
+    char *name;
+    char *hw_secret;
+    char *pin_hash;
+    char *pub_key;
+    char *pvt_key_enc;
+    int logged_in;
 } user_md;
 
 typedef struct {
