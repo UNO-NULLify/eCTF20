@@ -3,12 +3,12 @@
 #define SECRETS_H
 
 // Number of provisioned regions
-#define PROVISIONED_REGIONS
+#define PROVISIONED_REGIONS;
 // Number of provisioned users
-#define PROVISIONED_USERS
+#define PROVISIONED_USERS;
 
 // Device-specific secret?
-#define ROOT_VERIFY
+#define ROOT_VERIFY;
 
 // List of provisioned usernames
 enum USERNAMES;

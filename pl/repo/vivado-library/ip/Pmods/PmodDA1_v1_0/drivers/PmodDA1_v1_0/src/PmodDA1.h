@@ -33,13 +33,13 @@
 /*                  Definitions                                 */
 /* ------------------------------------------------------------ */
 
-#define DA1_SPI_NO_BITS 8              // Number of data bits per transaction
-#define DA1_SPI_CTRL_BYTE 0x00         // Select DAC A to be written
-#define DA1_SPI_ERR_SUCCESS 0          // The action completed successfully
-#define DA1_SPI_ERR_VAL_OUT_OF_RANGE 1 // The value is out of range
+#define DA1_SPI_NO_BITS              8    // Number of data bits per transaction
+#define DA1_SPI_CTRL_BYTE            0x00 // Select DAC A to be written
+#define DA1_SPI_ERR_SUCCESS          0    // The action completed successfully
+#define DA1_SPI_ERR_VAL_OUT_OF_RANGE 1    // The value is out of range
 
 typedef struct PmodDA1 {
-  XSpi DA1Spi;
+   XSpi DA1Spi;
 } PmodDA1;
 
 /* ------------------------------------------------------------ */

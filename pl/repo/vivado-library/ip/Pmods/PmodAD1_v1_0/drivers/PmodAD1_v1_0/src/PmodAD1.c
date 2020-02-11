@@ -36,7 +36,7 @@
 **      and this function just prepares the driver for use.
 */
 void AD1_begin(PmodAD1 *InstancePtr, u32 BaseAddress) {
-  InstancePtr->BaseAddress = BaseAddress;
+   InstancePtr->BaseAddress = BaseAddress;
 }
 
 /* ------------------------------------------------------------ */
@@ -56,10 +56,10 @@ void AD1_begin(PmodAD1 *InstancePtr, u32 BaseAddress) {
 **      core.
 */
 void AD1_GetSample(PmodAD1 *InstancePtr, AD1_RawData *RawDataPtr) {
-  u32 data;
-  data = Xil_In32(InstancePtr->BaseAddress);
-  (*RawDataPtr)[0] = data & AD1_DATA_MASK;
-  (*RawDataPtr)[1] = (data >> 16) & AD1_DATA_MASK;
+   u32 data;
+   data = Xil_In32(InstancePtr->BaseAddress);
+   (*RawDataPtr)[0] = data & AD1_DATA_MASK;
+   (*RawDataPtr)[1] = (data >> 16) & AD1_DATA_MASK;
 }
 
 /* ------------------------------------------------------------ */
@@ -80,8 +80,8 @@ void AD1_GetSample(PmodAD1 *InstancePtr, AD1_RawData *RawDataPtr) {
 **      This function converts an AD1 sample to a human readable value.
 */
 void AD1_RawToPhysical(float ReferenceVoltage, AD1_RawData RawData,
-                       AD1_PhysicalData *PhysicalDataPtr) {
-  float conversionFactor = ReferenceVoltage / ((1 << AD1_NUM_BITS) - 1);
-  (*PhysicalDataPtr)[0] = ((float)RawData[0]) * conversionFactor;
-  (*PhysicalDataPtr)[1] = ((float)RawData[1]) * conversionFactor;
+      AD1_PhysicalData *PhysicalDataPtr) {
+   float conversionFactor = ReferenceVoltage / ((1 << AD1_NUM_BITS) - 1);
+   (*PhysicalDataPtr)[0] = ((float) RawData[0]) * conversionFactor;
+   (*PhysicalDataPtr)[1] = ((float) RawData[1]) * conversionFactor;
 }

@@ -33,13 +33,13 @@
 
 /******************* Definitions *********************/
 
-#define ENC_GPIO_PIN_A 0x1
-#define ENC_GPIO_PIN_B 0x2
+#define ENC_GPIO_PIN_A   0x1
+#define ENC_GPIO_PIN_B   0x2
 #define ENC_GPIO_PIN_BTN 0x4
 #define ENC_GPIO_PIN_SWT 0x8
 
 typedef struct PmodENC {
-  u32 GPIO_addr;
+   u32 GPIO_addr;
 } PmodENC;
 
 void ENC_begin(PmodENC *InstancePtr, u32 GPIO_Address);

@@ -32,14 +32,14 @@
 #define AMP2_PWM_PERIOD 4096
 
 typedef struct {
-  XTmrCtr timer;
-  XGpio gpio;
-  u32 PWM_BaseAddress;
+   XTmrCtr timer;
+   XGpio gpio;
+   u32 PWM_BaseAddress;
 } PmodAMP2;
 
 void AMP2_begin(PmodAMP2 *InstancePtr, u32 PwmBaseAddress, u32 GpioBaseAddress,
-                u32 TmrBaseAddress);
-int AMP2_timerSetup(XTmrCtr *TmrInstancePtr, u32 TmrBaseAddress);
+      u32 TmrBaseAddress);
+int  AMP2_timerSetup(XTmrCtr *TmrInstancePtr, u32 TmrBaseAddress);
 void AMP2_gpioSetup(XGpio *GpioInstancePtr, u32 GpioBaseAddress);
 
 void AMP2_stop(PmodAMP2 *InstancePtr);
