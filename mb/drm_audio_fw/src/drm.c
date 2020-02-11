@@ -2,8 +2,8 @@
 #include <sys/ptrace.h>
 
 #include "drm.h"
-#include "secrets.h"
 #include "include/sodium.h"
+#include "secrets.h"
 #include "sleep.h"
 #include "util.h"
 #include "xaxidma.h"
@@ -112,7 +112,7 @@ void checkProc() {
 }
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
-void logOn(char* username, char* pin) {
+void logOn(char *username, char *pin) {
   // check if logged in
   if (UserMD.logged_in) {
     mb_printf("User already logged-in.\r\n");
