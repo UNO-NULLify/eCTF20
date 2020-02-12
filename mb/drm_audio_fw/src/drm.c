@@ -57,7 +57,7 @@ int initMicroBlaze() {
   // Configure the DMA
   status = fnConfigDma(&sAxiDma);
   if (status != XST_SUCCESS) {
-    xil_printf("DMA configuration ERROR\r\n");
+    xil_printf("%s\r\n", "ERROR: DMA configuration failed!");
     return XST_FAILURE;
   }
 
@@ -123,7 +123,8 @@ void checkProc() {
 void logOn(char *username, char *pin) {
   // check if logged in
   if (UserMD.logged_in) {
-    xil_printf("User already logged-in.\r\n");
+    xil_printf("%s\r\n", "ERROR: User already logged-in.");
+    return;
   } else {
     // search username
     for (int i = 0; i < PROVISIONED_USERS; i++) {
@@ -137,7 +138,7 @@ void logOn(char *username, char *pin) {
           UserMD.pvt_key_enc = user_data[i].pvt_key_enc;
           UserMD.logged_in = 1;
         }
-        xil_printf("User not found\r\n");
+        xil_printf("%s\r\n", "ERROR: User not found");
         sodium_memzero(UserMD, sizeof(UserMD));
         // delay failed attempt by 5 seconds
         sleep(LOGIN_DELAY);
@@ -152,12 +153,14 @@ void logOn(char *username, char *pin) {
 void logOff() {
   // check if logged in
   if (UserMD.logged_in) {
-    xil_printf("Logging out...\r\n");
+    xil_printf("%s\r\n", "INFO: Logging out...");
     // zero-out user struct
     sodium_memzero(UserMD, sizeof(UserMD));
   } else {
-    xil_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: Not logged in");
+    return;
   }
+  return;
 }
 
 /**
@@ -172,10 +175,15 @@ void share(char *recipient) {
         for (int i = 0; i < PROVISIONED_USERS; i++) { // loop through every user in database
           if (sodium_memcmp(user_data[i].name, recipient)) { // check recipient exists
             for (int j = 0; j < PROVISIONED_USERS; j++) { // loop through every shared user in song database
-              if (!sodium_memcmp(SongMD.shared[i], recipient)) { // check recipient doesnt already have access
+              if (!sodium_memcmp(SongMD.shared[j], recipient)) { // check recipient doesnt already have access
                 for (int k = 0; k < PROVISIONED_USERS; k++) { // loop through every shared user in song database (again)
-                  if (sodium_memcmp(SongMD.shared[i], NULL)) { // check for an empty spot
-                    strcpy(SongMD.shared[i], recipient); // add recipient to list
+                  if (sodium_memcmp(SongMD.shared[k], NULL)) { // check for an empty spot
+                    strcpy(SongMD.shared[k], recipient); // add recipient to list
+                    /*
+                     * TODO: write shared list somewhere...
+                     * - song metadata?
+                     * - ext file?
+                     */
                     break; // user found, break out of loop
                   } else {
                     xil_printf("%s\r\n", "ERROR: Too many shared users!");
@@ -190,9 +198,6 @@ void share(char *recipient) {
             break; // user found, break out of loop
           }
         }
-        xil_printf("%s\r\n" "ERROR: No such user exists!");
-        sodium_memzero(SongMD, sizeof(SongMD));
-        return;
       } else {
         xil_printf("%s\r\n" "ERROR: Not song owner!");
         sodium_memzero(SongMD, sizeof(SongMD));
@@ -208,6 +213,9 @@ void share(char *recipient) {
     sodium_memzero(SongMD, sizeof(SongMD));
     return;
   }
+  xil_printf("%s\r\n" "ERROR: No such user exists!");
+  sodium_memzero(SongMD, sizeof(SongMD));
+  return;
 }
 
 void query() {
@@ -219,8 +227,10 @@ void query() {
      */
 
   } else {
-    xil_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: Not logged in");
+    return;
   }
+  return;
 }
 
 void digitalOut() {
@@ -232,8 +242,10 @@ void digitalOut() {
      * - Output to digital interface
      */
   } else {
-    xil_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: Not logged in");
+    return;
   }
+  return;
 }
 
 void play() {
@@ -248,7 +260,7 @@ void play() {
      * - Implement restart
      */
   } else {
-    xil_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: Not logged in");
   }
 }
 
@@ -261,7 +273,7 @@ int main() {
   // Clear command channel
   // memset((void *)c, 0, sizeof(cmd_channel));
 
-  xil_printf("Audio DRM Module has Booted\n\r");
+  xil_printf("%s\r\n", "INFO: Audio DRM Module has booted!");
 
   int fork_pid = fork();
   if (fork_pid == 0) {
@@ -330,13 +342,13 @@ int main() {
         break;
       case PLAY:
         play();
-        xil_printf("Done Playing Song\r\n");
+        xil_printf("%s\r\n", "INFO: Done Playing Song");
         break;
       case DIGITAL_OUT:
         digitalOut();
         break;
       default:
-        xil_printf("Not a command!\r\n");
+        xil_printf("%s\r\n", "ERROR: Not a command!");
         break;
       }
 
