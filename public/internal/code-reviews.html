@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Code Reviews | eCTF Documentation</title>
+    <meta name="description" content="NULLify">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.b01e252a.css" as="style"><link rel="preload" href="/assets/js/app.460b592d.js" as="script"><link rel="preload" href="/assets/js/2.cccabd22.js" as="script"><link rel="preload" href="/assets/js/9.1c65a45d.js" as="script"><link rel="prefetch" href="/assets/js/10.7a489bff.js"><link rel="prefetch" href="/assets/js/11.c2b48b7a.js"><link rel="prefetch" href="/assets/js/12.7d49c0c3.js"><link rel="prefetch" href="/assets/js/13.c41ebb83.js"><link rel="prefetch" href="/assets/js/14.061be732.js"><link rel="prefetch" href="/assets/js/15.5700970b.js"><link rel="prefetch" href="/assets/js/16.f0bdaa89.js"><link rel="prefetch" href="/assets/js/17.59941c79.js"><link rel="prefetch" href="/assets/js/18.046e4061.js"><link rel="prefetch" href="/assets/js/19.b6461339.js"><link rel="prefetch" href="/assets/js/3.a99c79da.js"><link rel="prefetch" href="/assets/js/4.785400c9.js"><link rel="prefetch" href="/assets/js/5.fc3963fa.js"><link rel="prefetch" href="/assets/js/6.51f8d839.js"><link rel="prefetch" href="/assets/js/7.e4ecca8e.js"><link rel="prefetch" href="/assets/js/8.1a99a3d0.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b01e252a.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/nullify_lock_no_padding.png" alt="eCTF Documentation" class="logo"> <span class="site-name can-hide">eCTF Documentation</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/user/" class="nav-link">User Guide</a></div><div class="nav-item"><a href="/technical/" class="nav-link">Technical Reference</a></div><div class="nav-item"><a href="/internal/" class="nav-link router-link-active">Internal</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/user/" class="nav-link">User Guide</a></div><div class="nav-item"><a href="/technical/" class="nav-link">Technical Reference</a></div><div class="nav-item"><a href="/internal/" class="nav-link router-link-active">Internal</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">Home</a></li><li><a href="/user/" class="sidebar-link">User Guide</a></li><li><section class="sidebar-group depth-0"><a href="/technical/" class="sidebar-heading clickable"><span>Technical Reference</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/technical/hardware.html" class="sidebar-link">Hardware</a></li><li><a href="/technical/software.html" class="sidebar-link">Software</a></li><li><a href="/technical/compiler-fixes.html" class="sidebar-link">Compiler Upgrades</a></li></ul></section></li><li><section class="sidebar-group depth-0"><a href="/internal/" class="sidebar-heading clickable router-link-active open"><span>Internal Documentation</span> <!----></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/internal/initial-plans.html" class="sidebar-link">Initial Plans</a></li><li><a href="/internal/code-reviews.html" class="active sidebar-link">Code Reviews</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#reference-front-end-code-review-notes" class="sidebar-link">Reference Front-end Code review notes</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mipod-src-main-c" class="sidebar-link">/miPod/src/main.c</a></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mipod-src-mipod-h" class="sidebar-link">/miPod/src/mipod.h</a></li></ul></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#reference-back-end-code-review-notes" class="sidebar-link">Reference Back-end Code review notes</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mb-drm-audio-fw-src-constants-h" class="sidebar-link">/mb/drmaudiofw/src/constants.h</a></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mb-drm-audio-fw-src-main-c" class="sidebar-link">/mb/drmaudiofw/src/main.c</a></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mb-drm-audio-fw-src-platform-h" class="sidebar-link">/mb/drmaudiofw/src/platform.h</a></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mb-drm-audio-fw-src-platform-c" class="sidebar-link">/mb/drmaudiofw/src/platform.c</a></li></ul></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#review-of-our-design" class="sidebar-link">Review of our design</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mb-drm-audio-fw-src-drm-h" class="sidebar-link">/mb/drmaudiofw/src/drm.h</a></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mb-drm-audio-fw-src-drm-c" class="sidebar-link">/mb/drmaudiofw/src/drm.c</a></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mb-drm-audio-fw-src-platform-h-2" class="sidebar-link">/mb/drmaudiofw/src/platform.h</a></li><li class="sidebar-sub-header"><a href="/internal/code-reviews.html#mb-drm-audio-fw-src-platform-c-2" class="sidebar-link">/mb/drmaudiofw/src/platform.c</a></li></ul></li></ul></li><li><a href="/internal/attack.html" class="sidebar-link">Attack</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="code-reviews"><a href="#code-reviews" class="header-anchor">#</a> Code Reviews</h1> <h2 id="reference-front-end-code-review-notes"><a href="#reference-front-end-code-review-notes" class="header-anchor">#</a> Reference Front-end Code review notes</h2> <h3 id="mipod-src-main-c"><a href="#mipod-src-main-c" class="header-anchor">#</a> /miPod/src/main.c</h3> <code>
+	(lines 31 and 32)
+<pre><code>system(&quot;devmem 0x41200000 32 0&quot;);
+
+system(&quot;devmem 0x41200000 32 1&quot;);
+</code></pre></code> <p>Uses system to call devmem -- this binary is located at /sbin/devmem and can be replaced with a malicious binary.</p> <code>
+	(lines 109 and 110)
+<pre><code>strcpy((void*)c-&gt;username, username);
+
+strcpy((void*)c-&gt;pin, pin);
+</code></pre></code> <p>Uses strcopy -- does not perform bounds checking.</p> <code>
+	(line 200)
+<pre><code>strcpy((char *)c-&gt;username, username);
+</code></pre></code> <p>Uses strcopy -- does not perform bounds checking.</p> <code>
+	(line 78)
+<pre><code>fd = open(fname, O_RDONLY);
+</code></pre></code> <p>We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication</p> <code>
+	(line 215)
+<pre><code>fd = open(song_name, O_WRONLY);
+</code></pre></code> <p>We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication</p> <code>
+	(line 322)
+<pre><code>int fd = open(fname, O_WRONLY | O_CREAT | O_TRUNC);
+</code></pre></code> <p>We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication</p> <code>
+	(line 353)
+<pre><code>mem = open(&quot;/dev/uio0&quot;, O_RDWR);
+
+c = mmap(NULL, sizeof(cmd_channel), PROT_READ | PROT_WRITE, MAP_SHARED, mem, 0);
+</code></pre></code> <p>Not vulnerable to environment manipulation, but we can watch it.</p> <code>
+	(line 89)
+<pre><code>read(fd, song_buf, sb.st_size);
+</code></pre></code> <p>Check the size of the buffer vs what is passed.</p> <code>
+	(lines 272, 275, 278)
+<pre><code>usleep(200000); // wait for DRM to print
+
+. . .
+
+usleep(200000); // wait for DRM to print
+
+. . .
+
+usleep(200000); // wait for DRM to print
+</code></pre></code> <p>uses depricated usleep instead of nanosleep() or setitimer().</p> <h3 id="mipod-src-mipod-h"><a href="#mipod-src-mipod-h" class="header-anchor">#</a> /miPod/src/mipod.h</h3> <code>
+	(lines 25, 28, and 29)
+<pre><code>usleep(200000); // wait for DRM to print
+
+. . .
+
+#define print_prompt() printf(USER_PROMPT, &quot;&quot;)
+
+#define print_prompt_msg(...) printf(USER_PROMPT, __VA_ARGS__)
+</code></pre></code> <p>Format string attack is possible on uses of mp_printf(), print_prompt(), and print_prompt_msg() -- not format specified.</p> <h2 id="reference-back-end-code-review-notes"><a href="#reference-back-end-code-review-notes" class="header-anchor">#</a> Reference Back-end Code review notes</h2> <h3 id="mb-drm-audio-fw-src-constants-h"><a href="#mb-drm-audio-fw-src-constants-h" class="header-anchor">#</a> /mb/drm_audio_fw/src/constants.h</h3> <h3 id="mb-drm-audio-fw-src-main-c"><a href="#mb-drm-audio-fw-src-main-c" class="header-anchor">#</a> /mb/drm_audio_fw/src/main.c</h3> <h3 id="mb-drm-audio-fw-src-platform-h"><a href="#mb-drm-audio-fw-src-platform-h" class="header-anchor">#</a> /mb/drm_audio_fw/src/platform.h</h3> <h3 id="mb-drm-audio-fw-src-platform-c"><a href="#mb-drm-audio-fw-src-platform-c" class="header-anchor">#</a> /mb/drm_audio_fw/src/platform.c</h3> <h2 id="review-of-our-design"><a href="#review-of-our-design" class="header-anchor">#</a> Review of our design</h2> <h3 id="mb-drm-audio-fw-src-drm-h"><a href="#mb-drm-audio-fw-src-drm-h" class="header-anchor">#</a> /mb/drm_audio_fw/src/drm.h</h3> <h3 id="mb-drm-audio-fw-src-drm-c"><a href="#mb-drm-audio-fw-src-drm-c" class="header-anchor">#</a> /mb/drm_audio_fw/src/drm.c</h3> <h3 id="mb-drm-audio-fw-src-platform-h-2"><a href="#mb-drm-audio-fw-src-platform-h-2" class="header-anchor">#</a> /mb/drm_audio_fw/src/platform.h</h3> <h3 id="mb-drm-audio-fw-src-platform-c-2"><a href="#mb-drm-audio-fw-src-platform-c-2" class="header-anchor">#</a> /mb/drm_audio_fw/src/platform.c</h3></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2/2/2020, 11:17:58 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/internal/initial-plans.html" class="prev">Initial Plans</a></span> <span class="next"><a href="/internal/attack.html">Attack</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.460b592d.js" defer></script><script src="/assets/js/2.cccabd22.js" defer></script><script src="/assets/js/9.1c65a45d.js" defer></script>
+  </body>
+</html>

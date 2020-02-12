@@ -1,7 +1,16 @@
 module.exports = {
 	title: 'eCTF Documentation',
 	description: 'NULLify',
-	plugins: ['vuepress-plugin-export'],
+	plugins: [
+		'vuepress-plugin-export',
+		'@vuepress/nprogress',
+		'@vuepress/back-to-top',
+		'@vuepress/medium-zoom',
+		'@vuepress/active-header-links', {
+			sidebarLinkSelector: '.sidebar-link',
+			headerAnchorSelector: '.header-anchor'
+		}
+	],
 	themeConfig: {
 		searchPlaceholder: 'Search...',
 		lastUpdated: 'Last Updated',
@@ -11,7 +20,7 @@ module.exports = {
 			{ text: 'Technical Reference', link: '/technical/' },
 			{ text: 'Internal', link: '/internal/' }
 		],
-		logo: '/nullify_lock.png',
+		logo: '/nullify_lock_no_padding.png',
 		sidebar: [
 			'/',
 			{
