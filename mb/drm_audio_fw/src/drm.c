@@ -54,7 +54,7 @@ int initMicroBlaze() {
   // Configure the DMA
   status = fnConfigDma(&sAxiDma);
   if (status != XST_SUCCESS) {
-    mb_printf("DMA configuration ERROR\r\n");
+    xil_printf("DMA configuration ERROR\r\n");
     return XST_FAILURE;
   }
 
@@ -115,7 +115,7 @@ void checkProc() {
 void logOn(char *username, char *pin) {
   // check if logged in
   if (UserMD.logged_in) {
-    mb_printf("User already logged-in.\r\n");
+    xil_printf("User already logged-in.\r\n");
   } else {
     // search username
     for (int i = 0; i <= PROVISIONED_USERS; i++) {
@@ -129,7 +129,7 @@ void logOn(char *username, char *pin) {
           UserMD.pvt_key_enc = user_data[i].pvt_key_enc;
           UserMD.logged_in = 1;
         }
-        mb_printf("User not found\r\n");
+        xil_printf("User not found\r\n");
         sodium_memzero(u, sizeof(u));
         // delay failed attempt by 5 seconds
         sleep(LOGIN_DELAY);
@@ -141,7 +141,7 @@ void logOn(char *username, char *pin) {
 void logOff() {
   // check if logged in
   if (UserMD.logged_in) {
-    mb_printf("Logging out...\r\n");
+    xil_printf("Logging out...\r\n");
     // zero-out user struct
     sodium_memzero(u, sizeof(u));
     // double check?
@@ -152,7 +152,7 @@ void logOff() {
     UserMD.hw_secret = NULL;
     UserMD.logged_in = 0;
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("Not logged in\r\n");
   }
 }
 
@@ -169,7 +169,7 @@ void share() {
      */
 
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("Not logged in\r\n");
   }
 }
 
@@ -182,7 +182,7 @@ void query() {
      */
 
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("Not logged in\r\n");
   }
 }
 
@@ -195,7 +195,7 @@ void digitalOut() {
      * - Output to digital interface
      */
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("Not logged in\r\n");
   }
 }
 
@@ -211,7 +211,7 @@ void play() {
      * - Implement restart
      */
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("Not logged in\r\n");
   }
 }
 
@@ -224,7 +224,7 @@ int main() {
   // Clear command channel
   // memset((void *)c, 0, sizeof(cmd_channel));
 
-  mb_printf("Audio DRM Module has Booted\n\r");
+  xil_printf("Audio DRM Module has Booted\n\r");
 
   int fork_pid = fork();
   if (fork_pid == 0) {
@@ -293,13 +293,13 @@ int main() {
         break;
       case PLAY:
         play();
-        mb_printf("Done Playing Song\r\n");
+        xil_printf("Done Playing Song\r\n");
         break;
       case DIGITAL_OUT:
         digitalOut();
         break;
       default:
-        mb_printf("Not a command!\r\n");
+        xil_printf("Not a command!\r\n");
         break;
       }
 
