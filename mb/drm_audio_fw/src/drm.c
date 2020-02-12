@@ -1,8 +1,12 @@
+#include <stdio.h>
 #include <sys/prctl.h>
 #include <sys/ptrace.h>
+#include <unistd.h>
+#include <wait.h>
 
 #include "drm.h"
 #include "include/sodium.h"
+#include "platform.h"
 #include "secrets.h"
 #include "sleep.h"
 #include "util.h"
@@ -32,6 +36,14 @@ const struct color BLUE = {0x0000, 0x0000, 0x01ff};
 
 // audio DMA access
 static XAxiDma sAxiDma;
+
+//////////////////////// INTERRUPT HANDLING ////////////////////////
+
+// shared variable between main thread and interrupt processing thread
+volatile static int InterruptProcessed = FALSE;
+static XIntc InterruptController;
+
+void myISR(void) { InterruptProcessed = TRUE; }
 
 //////////////////////// INITIALIZATION ////////////////////////
 int initMicroBlaze() {
@@ -78,12 +90,15 @@ void setState(STATE state) {
     setLED(led, YELLOW);
     break;
   case PLAYING:
-    setLED(led, GREEN) : break;
+    setLED(led, GREEN);
+    break;
   case PAUSED:
-    setLED(led, BLUE) : break;
+    setLED(led, BLUE);
+    break;
   case STOPPED:
   default:
-    setLED(led, RED) break;
+    setLED(led, RED);
+    break;
   }
 }
 
@@ -155,12 +170,11 @@ void logOff() {
   if (UserMD.logged_in) {
     xil_printf("%s\r\n", "INFO: Logging out...");
     // zero-out user struct
-    sodium_memzero(UserMD, sizeof(UserMD));
+    sodium_memzero(&UserMD, sizeof(UserMD));
   } else {
     xil_printf("%s\r\n", "ERROR: Not logged in");
     return;
   }
-  return;
 }
 
 /**
@@ -200,22 +214,21 @@ void share(char *recipient) {
         }
       } else {
         xil_printf("%s\r\n" "ERROR: Not song owner!");
-        sodium_memzero(SongMD, sizeof(SongMD));
+        sodium_memzero(&SongMD, sizeof(SongMD));
         return;
       }
     } else {
       xil_printf("%s\r\n", "ERROR: Not logged in!");
-      sodium_memzero(SongMD, sizeof(SongMD));
+      sodium_memzero(&SongMD, sizeof(SongMD));
       return;
     }
   } else {
     xil_printf("%s\r\n", "ERROR: No song loaded!");
-    sodium_memzero(SongMD, sizeof(SongMD));
+    sodium_memzero(&SongMD, sizeof(SongMD));
     return;
   }
   xil_printf("%s\r\n" "ERROR: No such user exists!");
-  sodium_memzero(SongMD, sizeof(SongMD));
-  return;
+  sodium_memzero(&SongMD, sizeof(SongMD));
 }
 
 void query() {
@@ -230,7 +243,6 @@ void query() {
     xil_printf("%s\r\n", "ERROR: Not logged in");
     return;
   }
-  return;
 }
 
 void digitalOut() {
@@ -245,7 +257,6 @@ void digitalOut() {
     xil_printf("%s\r\n", "ERROR: Not logged in");
     return;
   }
-  return;
 }
 
 void play() {
@@ -298,7 +309,7 @@ int main() {
     ptrace(PTRACE_CONT, parent, NULL, NULL);
 
     // Handle any signals that may come in from traces
-    while (true) {
+    while (1) {
       checkProc();
       int pid = waitpid(-1, &status, WNOHANG);
       if (pid == 0) {

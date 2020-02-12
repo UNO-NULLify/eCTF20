@@ -40,4 +40,6 @@ typedef struct {
   STATE state;
 } drm_md;
 
+void setState(STATE state);
+
 #endif // DRM_AUDIO_FW_DRM_H
