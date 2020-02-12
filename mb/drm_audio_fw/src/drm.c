@@ -20,6 +20,9 @@ user_md UserMD;
 // DRM metadata struct
 drm_md DeviceMD;
 
+// Song metadata struct
+song_md SongMD;
+
 // LED colors and controller
 u32 *led = (u32 *)XPAR_RGB_PWM_0_PWM_AXI_BASEADDR;
 const struct color RED = {0x01ff, 0x0000, 0x0000};
@@ -112,6 +115,11 @@ void checkProc() {
 }
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
+/**
+ * @brief Logs in a user with the correct username and pin
+ * @param username - the user's username, (len: 1-15, chars: a-z, A-Z)
+ * @param pin - the user's pin, (len: 8-64, chars: 0-9)
+ */
 void logOn(char *username, char *pin) {
   // check if logged in
   if (UserMD.logged_in) {
@@ -138,6 +146,9 @@ void logOn(char *username, char *pin) {
   }
 }
 
+/**
+ * @brief Logs current user off.
+ */
 void logOff() {
   // check if logged in
   if (UserMD.logged_in) {
@@ -149,20 +160,53 @@ void logOff() {
   }
 }
 
-void share() {
+/**
+ * @brief Allows owner to share access of the song to another user.
+ * @param recipient - the user in which the owner wants to share song access to.
+ */
+void share(char *recipient) {
   // check if logged in
-  if (UserMD.logged_in) {
-    /*
-     * TODO:
-     * - Check if owner using checkAuthorization()
-     * - If the person sharing is not the owner -- don't share
-     * - Check if recipient exists
-     * - Check if recipient already have access to the song -- if so error out
-     * with that info
-     */
-
+  if (SongMD.loaded) { // check song is loaded
+    if (UserMD.logged_in) { // check user is logged in
+      if (sodium_memcmp(SongMD.owner, UserMD.name) { // check user is the song owner
+        for (int i = 0; i < PROVISIONED_USERS; i++) { // loop through every user in database
+          if (sodium_memcmp(user_data[i].name, recipient)) { // check recipient exists
+            for (int j = 0; j < PROVISIONED_USERS; j++) { // loop through every shared user in song database
+              if (!sodium_memcmp(SongMD.shared[i], recipient)) { // check recipient doesnt already have access
+                for (int k = 0; k < PROVISIONED_USERS; k++) { // loop through every shared user in song database (again)
+                  if (sodium_memcmp(SongMD.shared[i], NULL)) { // check for an empty spot
+                    strcpy(SongMD.shared[i], recipient); // add recipient to list
+                    break; // user found, break out of loop
+                  } else {
+                    xil_printf("%s\r\n", "ERROR: Too many shared users!");
+                    sodium_memzero(SongMD, sizeof(SongMD));
+                    return;
+                  }
+                }
+                break; // user found, break out of loop
+                // Why is this unreachable?
+              }
+            }
+            break; // user found, break out of loop
+          }
+        }
+        xil_printf("%s\r\n" "ERROR: No such user exists!");
+        sodium_memzero(SongMD, sizeof(SongMD));
+        return;
+      } else {
+        xil_printf("%s\r\n" "ERROR: Not song owner!");
+        sodium_memzero(SongMD, sizeof(SongMD));
+        return;
+      }
+    } else {
+      xil_printf("%s\r\n", "ERROR: Not logged in!");
+      sodium_memzero(SongMD, sizeof(SongMD));
+      return;
+    }
   } else {
-    xil_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: No song loaded!");
+    sodium_memzero(SongMD, sizeof(SongMD));
+    return;
   }
 }
 

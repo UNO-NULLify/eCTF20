@@ -22,7 +22,7 @@ typedef struct {
   char *pin_hash;
   char *pub_key;
   char *pvt_key_enc;
-  int logged_in;
+  int logged_in; // 1 == logged in, 0 == logged out
 } user_md;
 
 typedef struct {
@@ -31,6 +31,7 @@ typedef struct {
   char song_name[MAX_SONG_NAME]; //null terminated string of size 15 or less
   char region_list[PROVISIONED_REGIONS][MAX_REGION_NAME]; // 32 regions max of size 64 len + null
   char region_secret_list[PROVISIONED_REGIONS][MAX_REGION_SECRET];  // 32 regions max of size 160 + null
+  int loaded; // 1 == loaded, 0 == not loaded
 } song_md;
 
 typedef struct {
