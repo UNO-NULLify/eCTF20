@@ -144,13 +144,6 @@ void logOff() {
     xil_printf("Logging out...\r\n");
     // zero-out user struct
     sodium_memzero(UserMD, sizeof(UserMD));
-    // double check?
-    UserMD.name = NULL;
-    UserMD.pin_hash = NULL;
-    UserMD.pvt_key_enc = NULL;
-    UserMD.pub_key = NULL;
-    UserMD.hw_secret = NULL;
-    UserMD.logged_in = 0;
   } else {
     xil_printf("Not logged in\r\n");
   }
