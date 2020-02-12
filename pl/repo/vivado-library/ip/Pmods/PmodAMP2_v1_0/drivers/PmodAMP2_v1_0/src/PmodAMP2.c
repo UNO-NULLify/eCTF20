@@ -25,9 +25,18 @@
 
 /**************************** Global Variables *****************************/
 
-XTmrCtr_Config tmr_config = {0, 0, 100000000};
+XTmrCtr_Config tmr_config = {
+   0,
+   0,
+   100000000
+};
 
-XGpio_Config gpio_config = {0, 0, 0, 0};
+XGpio_Config gpio_config = {
+   0,
+   0,
+   0,
+   0
+};
 
 /************************** Function Definitions ***************************/
 
@@ -51,16 +60,16 @@ XGpio_Config gpio_config = {0, 0, 0, 0};
 **      Initialize the PmodAMP2.
 */
 void AMP2_begin(PmodAMP2 *InstancePtr, u32 PwmBaseAddress, u32 GpioBaseAddress,
-                u32 TmrBaseAddress) {
-  InstancePtr->PWM_BaseAddress = PwmBaseAddress;
-  AMP2_gpioSetup(&InstancePtr->gpio, GpioBaseAddress);
+      u32 TmrBaseAddress) {
+   InstancePtr->PWM_BaseAddress = PwmBaseAddress;
+   AMP2_gpioSetup(&InstancePtr->gpio, GpioBaseAddress);
 
-  if (XST_SUCCESS != AMP2_timerSetup(&InstancePtr->timer, TmrBaseAddress)) {
-    xil_printf("timer setup failed\n\r");
-  }
+   if (XST_SUCCESS != AMP2_timerSetup(&InstancePtr->timer, TmrBaseAddress)) {
+      xil_printf("timer setup failed\n\r");
+   }
 
-  PWM_Set_Period(InstancePtr->PWM_BaseAddress, AMP2_PWM_PERIOD);
-  PWM_Set_Duty(InstancePtr->PWM_BaseAddress, 0, 0);
+   PWM_Set_Period(InstancePtr->PWM_BaseAddress, AMP2_PWM_PERIOD);
+   PWM_Set_Duty(InstancePtr->PWM_BaseAddress, 0, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -71,8 +80,7 @@ void AMP2_begin(PmodAMP2 *InstancePtr, u32 PwmBaseAddress, u32 GpioBaseAddress,
 **      TmrBaseAddress: The base address of the PmodAMP2 Timer
 **
 **   Return Value:
-**      status: XST_SUCCESS if initialization was successful, failure code
-*otherwise
+**      status: XST_SUCCESS if initialization was successful, failure code otherwise
 **
 **   Errors:
 **      none
@@ -81,20 +89,20 @@ void AMP2_begin(PmodAMP2 *InstancePtr, u32 PwmBaseAddress, u32 GpioBaseAddress,
 **      Initialize the PmodAMP2 Timer IP.
 */
 int AMP2_timerSetup(XTmrCtr *TmrInstancePtr, u32 TmrBaseAddress) {
-  //   int status;
-  //   status = XTmrCtr_Initialize(TmrInstancePtr, TmrDeviceID);
+//   int status;
+//   status = XTmrCtr_Initialize(TmrInstancePtr, TmrDeviceID);
 
-  tmr_config.BaseAddress = TmrBaseAddress;
-  XTmrCtr_CfgInitialize(TmrInstancePtr, &tmr_config, tmr_config.BaseAddress);
+   tmr_config.BaseAddress = TmrBaseAddress;
+   XTmrCtr_CfgInitialize(TmrInstancePtr, &tmr_config, tmr_config.BaseAddress);
 
-  //   if(status != XST_SUCCESS) {
-  //      return XST_FAILURE;
-  //   }
+//   if(status != XST_SUCCESS) {
+//      return XST_FAILURE;
+//   }
 
-  XTmrCtr_SetResetValue(TmrInstancePtr, 0, 0xFFFFFFFF - AMP2_PWM_PERIOD);
-  XTmrCtr_SetOptions(TmrInstancePtr, 0,
-                     XTC_INT_MODE_OPTION | XTC_AUTO_RELOAD_OPTION);
-  return XST_SUCCESS;
+   XTmrCtr_SetResetValue(TmrInstancePtr, 0, 0xFFFFFFFF - AMP2_PWM_PERIOD);
+   XTmrCtr_SetOptions(TmrInstancePtr, 0,
+   XTC_INT_MODE_OPTION | XTC_AUTO_RELOAD_OPTION);
+   return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -114,11 +122,11 @@ int AMP2_timerSetup(XTmrCtr *TmrInstancePtr, u32 TmrBaseAddress) {
 **      Initialize the PmodAMP2 GPIO IP.
 */
 void AMP2_gpioSetup(XGpio *GpioInstancePtr, u32 GpioBaseAddress) {
-  gpio_config.BaseAddress = GpioBaseAddress;
-  XGpio_CfgInitialize(GpioInstancePtr, &gpio_config, gpio_config.BaseAddress);
+   gpio_config.BaseAddress = GpioBaseAddress;
+   XGpio_CfgInitialize(GpioInstancePtr, &gpio_config, gpio_config.BaseAddress);
 
-  XGpio_SetDataDirection(GpioInstancePtr, 1, 0x0);
-  XGpio_DiscreteWrite(GpioInstancePtr, 1, 0x5);
+   XGpio_SetDataDirection(GpioInstancePtr, 1, 0x0);
+   XGpio_DiscreteWrite(GpioInstancePtr, 1, 0x5);
 }
 
 /* ------------------------------------------------------------ */
@@ -137,8 +145,8 @@ void AMP2_gpioSetup(XGpio *GpioInstancePtr, u32 GpioBaseAddress) {
 **      Stops the timer and PWM of the AMP2
 */
 void AMP2_stop(PmodAMP2 *InstancePtr) {
-  XTmrCtr_Stop(&InstancePtr->timer, 0);
-  PWM_Disable(InstancePtr->PWM_BaseAddress);
+   XTmrCtr_Stop(&InstancePtr->timer, 0);
+   PWM_Disable(InstancePtr->PWM_BaseAddress);
 }
 
 /* ------------------------------------------------------------ */
@@ -157,7 +165,7 @@ void AMP2_stop(PmodAMP2 *InstancePtr) {
 **      Starts the timer and PWM of the AMP2
 */
 void AMP2_start(PmodAMP2 *InstancePtr) {
-  XTmrCtr_Reset(&InstancePtr->timer, 0);
-  XTmrCtr_Start(&InstancePtr->timer, 0);
-  PWM_Enable(InstancePtr->PWM_BaseAddress);
+   XTmrCtr_Reset(&InstancePtr->timer, 0);
+   XTmrCtr_Start(&InstancePtr->timer, 0);
+   PWM_Enable(InstancePtr->PWM_BaseAddress);
 }

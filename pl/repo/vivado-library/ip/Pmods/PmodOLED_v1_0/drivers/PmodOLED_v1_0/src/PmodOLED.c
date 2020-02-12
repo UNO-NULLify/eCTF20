@@ -29,7 +29,21 @@
 #include "PmodOLED.h"
 #include "sleep.h"
 
-XSpi_Config OLEDConfig = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
+
+XSpi_Config OLEDConfig =
+{
+   0,
+   0,
+   1,
+   0,
+   1,
+   8,
+   0,
+   0,
+   0,
+   0,
+   0
+};
 
 /************************** Function Definitions ***************************/
 
@@ -51,8 +65,8 @@ XSpi_Config OLEDConfig = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
 **      Initialize the PmodOLED.
 */
 void OLED_Begin(PmodOLED *InstancePtr, u32 GPIO_Address, u32 SPI_Address,
-                u8 orientation, u8 invert) {
-  OLED_Init(InstancePtr, GPIO_Address, SPI_Address, orientation, invert);
+      u8 orientation, u8 invert) {
+   OLED_Init(InstancePtr, GPIO_Address, SPI_Address, orientation, invert);
 }
 /* ------------------------------------------------------------ */
 /*** OLED_End(void)
@@ -70,8 +84,8 @@ void OLED_Begin(PmodOLED *InstancePtr, u32 GPIO_Address, u32 SPI_Address,
 **      Stops the device
 */
 void OLED_End(PmodOLED *InstancePtr) {
-  OLED_Term(InstancePtr);
-  XSpi_Stop(&InstancePtr->OLEDSpi);
+    OLED_Term(InstancePtr);
+    XSpi_Stop(&InstancePtr->OLEDSpi);
 }
 
 /* ------------------------------------------------------------ */
@@ -90,39 +104,38 @@ void OLED_End(PmodOLED *InstancePtr) {
 **      Initializes the PmodOLED SPI.
 */
 int OLED_SPIInit(XSpi *SpiInstancePtr) {
-  int Status;
+   int Status;
 
-  Status =
-      XSpi_CfgInitialize(SpiInstancePtr, &OLEDConfig, OLEDConfig.BaseAddress);
-  if (Status != XST_SUCCESS) {
-    return XST_FAILURE;
-  }
+   Status = XSpi_CfgInitialize(SpiInstancePtr, &OLEDConfig,
+         OLEDConfig.BaseAddress);
+   if (Status != XST_SUCCESS) {
+      return XST_FAILURE;
+   }
 
-  // Change these based on your SPI device
-  u32 options =
-      (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_CLK_PHASE_1_OPTION) |
-      XSP_MANUAL_SSELECT_OPTION;
-  Status = XSpi_SetOptions(SpiInstancePtr, options);
-  if (Status != XST_SUCCESS) {
-    return XST_FAILURE;
-  }
+   // Change these based on your SPI device
+   u32 options = (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION
+         | XSP_CLK_PHASE_1_OPTION) | XSP_MANUAL_SSELECT_OPTION;
+   Status = XSpi_SetOptions(SpiInstancePtr, options);
+   if (Status != XST_SUCCESS) {
+      return XST_FAILURE;
+   }
 
-  Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
-  if (Status != XST_SUCCESS) {
-    return XST_FAILURE;
-  }
+   Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
+   if (Status != XST_SUCCESS) {
+      return XST_FAILURE;
+   }
 
-  /*
-   * Start the SPI driver so that the device is enabled.
-   */
-  XSpi_Start(SpiInstancePtr);
+   /*
+    * Start the SPI driver so that the device is enabled.
+    */
+   XSpi_Start(SpiInstancePtr);
 
-  /*
-   * Disable Global interrupt to use polled mode operation
-   */
-  XSpi_IntrGlobalDisable(SpiInstancePtr);
+   /*
+    * Disable Global interrupt to use polled mode operation
+    */
+   XSpi_IntrGlobalDisable(SpiInstancePtr);
 
-  return XST_SUCCESS;
+   return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -144,9 +157,9 @@ int OLED_SPIInit(XSpi *SpiInstancePtr) {
 **      Reads SPI
 */
 u8 OLED_ReadByte(PmodOLED *InstancePtr) {
-  u8 byte;
-  XSpi_Transfer(&InstancePtr->OLEDSpi, &byte, &byte, 1);
-  return byte;
+   u8 byte;
+   XSpi_Transfer(&InstancePtr->OLEDSpi, &byte, &byte, 1);
+   return byte;
 }
 
 /* ------------------------------------------------------------ */
@@ -166,7 +179,7 @@ u8 OLED_ReadByte(PmodOLED *InstancePtr) {
 **      Writes a single byte over SPI
 */
 void OLED_WriteByte(PmodOLED *InstancePtr, u8 cmd) {
-  XSpi_Transfer(&InstancePtr->OLEDSpi, &cmd, NULL, 1);
+   XSpi_Transfer(&InstancePtr->OLEDSpi, &cmd, NULL, 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -193,15 +206,15 @@ void OLED_WriteByte(PmodOLED *InstancePtr, u8 cmd) {
 **      until all of the data has been sent.
 */
 void OLED_WriteSpi(PmodOLED *InstancePtr, u8 reg, u8 *wData, int nData) {
-  // As requested by documentation, first byte contains:
-  //    bit 7    = 0 because is a write operation
-  //    bit 6    = 1 if more than one bytes is written, 0 if a single byte is
-  //                  written
-  //    bits 5-0 = the address
-  u8 bytearray[nData + 1];
-  bytearray[0] = ((nData > 1) ? 0x40 : 0) | (reg & 0x3F);
-  memcpy(&bytearray[1], wData, nData); // Copy write commands over to bytearray
-  XSpi_Transfer(&InstancePtr->OLEDSpi, bytearray, 0, nData + 1);
+   // As requested by documentation, first byte contains:
+   //    bit 7    = 0 because is a write operation
+   //    bit 6    = 1 if more than one bytes is written, 0 if a single byte is
+   //                  written
+   //    bits 5-0 = the address
+   u8 bytearray[nData + 1];
+   bytearray[0] = ((nData > 1) ? 0x40 : 0) | (reg & 0x3F);
+   memcpy(&bytearray[1], wData, nData); // Copy write commands over to bytearray
+   XSpi_Transfer(&InstancePtr->OLEDSpi, bytearray, 0, nData + 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -228,16 +241,16 @@ void OLED_WriteSpi(PmodOLED *InstancePtr, u8 reg, u8 *wData, int nData) {
 **      rData.
 */
 void OLED_ReadSpi(PmodOLED *InstancePtr, u8 reg, u8 *rData, int nData) {
-  // As requested by documentation, first byte contains:
-  //    bit 7    = 1 because is a read operation
-  //    bit 6    = 1 if more than one bytes is written, 0 if a single byte is
-  //                  written
-  //    bits 5-0 = the address
-  u8 bytearray[nData + 1];
+   // As requested by documentation, first byte contains:
+   //    bit 7    = 1 because is a read operation
+   //    bit 6    = 1 if more than one bytes is written, 0 if a single byte is
+   //                  written
+   //    bits 5-0 = the address
+   u8 bytearray[nData + 1];
 
-  bytearray[0] = ((nData > 1) ? 0xC0 : 0x80) | (reg & 0x3F);
-  XSpi_Transfer(&InstancePtr->OLEDSpi, bytearray, bytearray, nData + 1);
-  memcpy(rData, &bytearray[1], nData);
+   bytearray[0] = ((nData > 1) ? 0xC0 : 0x80) | (reg & 0x3F);
+   XSpi_Transfer(&InstancePtr->OLEDSpi, bytearray, bytearray, nData + 1);
+   memcpy(rData, &bytearray[1], nData);
 }
 
 /* ------------------------------------------------------------ */
@@ -261,13 +274,13 @@ void OLED_ReadSpi(PmodOLED *InstancePtr, u8 reg, u8 *rData, int nData) {
 **      fValue).
 */
 void OLED_SetRegisterBits(PmodOLED *InstancePtr, u8 reg, u8 mask, u8 fValue) {
-  u8 regval;
-  OLED_ReadSpi(InstancePtr, reg, &regval, 1);
-  if (fValue)
-    regval |= mask;
-  else
-    regval &= ~mask;
-  OLED_WriteSpi(InstancePtr, reg, &regval, 1);
+   u8 regval;
+   OLED_ReadSpi(InstancePtr, reg, &regval, 1);
+   if (fValue)
+      regval |= mask;
+   else
+      regval &= ~mask;
+   OLED_WriteSpi(InstancePtr, reg, &regval, 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -289,9 +302,9 @@ void OLED_SetRegisterBits(PmodOLED *InstancePtr, u8 reg, u8 mask, u8 fValue) {
 **      bRegisterAddress), corresponding to the bMask mask.
 */
 u8 OLED_GetRegisterBits(PmodOLED *InstancePtr, u8 bRegisterAddress, u8 bMask) {
-  u8 bRegValue;
-  OLED_ReadSpi(InstancePtr, bRegisterAddress, &bRegValue, 1);
-  return bRegValue & bMask;
+   u8 bRegValue;
+   OLED_ReadSpi(InstancePtr, bRegisterAddress, &bRegValue, 1);
+   return bRegValue & bMask;
 }
 
 /* ------------------------------------------------------------ */
@@ -312,13 +325,13 @@ u8 OLED_GetRegisterBits(PmodOLED *InstancePtr, u8 bRegisterAddress, u8 bMask) {
 **      This function sets the values of the PmodOLED's bottom row pins.
 */
 void OLED_SetGPIOBits(PmodOLED *InstancePtr, u8 bMask, u8 fValue) {
-  u8 regval;
-  regval = Xil_In32(InstancePtr->GPIO_addr);
-  if (fValue)
-    regval |= bMask;
-  else
-    regval &= ~bMask;
-  Xil_Out32(InstancePtr->GPIO_addr, regval);
+   u8 regval;
+   regval = Xil_In32(InstancePtr->GPIO_addr);
+   if (fValue)
+      regval |= bMask;
+   else
+      regval &= ~bMask;
+   Xil_Out32(InstancePtr->GPIO_addr, regval);
 }
 
 /* ------------------------------------------------------------ */
@@ -339,11 +352,11 @@ void OLED_SetGPIOBits(PmodOLED *InstancePtr, u8 bMask, u8 fValue) {
 **      This function sets the direction of the PmodOLED's bottom row pins
 */
 void OLED_SetGPIOTristateBits(PmodOLED *InstancePtr, u8 bMask, u8 fValue) {
-  u8 regval;
-  regval = Xil_In32(InstancePtr->GPIO_addr + 4);
-  if (fValue)
-    regval |= bMask;
-  else
-    regval &= ~bMask;
-  Xil_Out32(InstancePtr->GPIO_addr + 4, regval);
+   u8 regval;
+   regval = Xil_In32(InstancePtr->GPIO_addr + 4);
+   if (fValue)
+      regval |= bMask;
+   else
+      regval &= ~bMask;
+   Xil_Out32(InstancePtr->GPIO_addr + 4, regval);
 }

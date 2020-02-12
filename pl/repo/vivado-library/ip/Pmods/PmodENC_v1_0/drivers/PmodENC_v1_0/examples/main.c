@@ -46,53 +46,55 @@ void DisableCaches();
 PmodENC myDevice;
 
 int main(void) {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
-  return 0;
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
+   return 0;
 }
 
 void DemoInitialize() {
-  EnableCaches();
-  ENC_begin(&myDevice, XPAR_PMODENC_0_AXI_LITE_GPIO_BASEADDR);
+   EnableCaches();
+   ENC_begin(&myDevice, XPAR_PMODENC_0_AXI_LITE_GPIO_BASEADDR);
 }
 
-void DemoCleanup() { DisableCaches(); }
+void DemoCleanup() {
+   DisableCaches();
+}
 
 void DemoRun() {
-  u32 state, laststate; // Comparing current and previous state to detect edges
-  int ticks = 0;        // on GPIO pins
+   u32 state, laststate; // Comparing current and previous state to detect edges
+   int ticks = 0;        // on GPIO pins
 
-  xil_printf("Running PmodENC Demo\n\r");
-  laststate = ENC_getState(&myDevice);
+   xil_printf("Running PmodENC Demo\n\r");
+   laststate = ENC_getState(&myDevice);
 
-  while (1) {
-    state = ENC_getState(&myDevice);
+   while (1) {
+      state = ENC_getState(&myDevice);
 
-    if (ENC_switchOn(state)) // Using switch as an enable for counter
-      ticks += ENC_getRotation(state, laststate);
-    else
-      ticks = 0;
-
-    // Only print on button posedge
-    if (ENC_buttonPressed(state) && !ENC_buttonPressed(laststate)) {
-      if (ENC_switchOn(state))
-        xil_printf("ticks = %d\n\r", ticks);
+      if (ENC_switchOn(state)) // Using switch as an enable for counter
+         ticks += ENC_getRotation(state, laststate);
       else
-        xil_printf("tick counter disabled\r\n");
-    }
-    laststate = state;
-    usleep(1000);
-  }
+         ticks = 0;
+
+      // Only print on button posedge
+      if (ENC_buttonPressed(state) && !ENC_buttonPressed(laststate)) {
+         if (ENC_switchOn(state))
+            xil_printf("ticks = %d\n\r", ticks);
+         else
+            xil_printf("tick counter disabled\r\n");
+      }
+      laststate = state;
+      usleep(1000);
+   }
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -100,10 +102,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

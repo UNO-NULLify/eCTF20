@@ -20,17 +20,20 @@
 #ifndef PWM_ANALYZER_H
 #define PWM_ANALYZER_H
 
+
 /************ Include Files ************/
 
 #include "xil_types.h"
 #include "xstatus.h"
 
+
 /************ Macro Definitions ************/
 
 // Register offsets for PWM_Analyzer's AXI GPIO registers
 #define PWM_ANALYZER_OFF_TIME_OFFSET 0
-#define PWM_ANALYZER_ON_TIME_OFFSET 4
-#define PWM_ANALYZER_PERIOD_OFFSET 8
+#define PWM_ANALYZER_ON_TIME_OFFSET  4
+#define PWM_ANALYZER_PERIOD_OFFSET   8
+
 
 /**************************** Type Definitions *****************************/
 /**
@@ -47,12 +50,11 @@
  *
  * @note
  * C-style signature:
- * 	void PWM_ANALYZER_mWriteReg(u32 BaseAddress, unsigned RegOffset, u32
- * Data)
+ * 	void PWM_ANALYZER_mWriteReg(u32 BaseAddress, unsigned RegOffset, u32 Data)
  *
  */
-#define PWM_ANALYZER_mWriteReg(BaseAddress, RegOffset, Data)                   \
-  Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
+#define PWM_ANALYZER_mWriteReg(BaseAddress, RegOffset, Data) \
+  	Xil_Out32((BaseAddress) + (RegOffset), (u32)(Data))
 
 /**
  *
@@ -71,8 +73,8 @@
  * 	u32 PWM_ANALYZER_mReadReg(u32 BaseAddress, unsigned RegOffset)
  *
  */
-#define PWM_ANALYZER_mReadReg(BaseAddress, RegOffset)                          \
-  Xil_In32((BaseAddress) + (RegOffset))
+#define PWM_ANALYZER_mReadReg(BaseAddress, RegOffset) \
+    Xil_In32((BaseAddress) + (RegOffset))
 
 /************************** Function Prototypes ****************************/
 /**
@@ -83,8 +85,7 @@
  * If the hardware system is not built correctly, this function may never
  * return to the caller.
  *
- * @param   baseaddr_p is the base address of the PWM_ANALYZER instance to be
- * worked on.
+ * @param   baseaddr_p is the base address of the PWM_ANALYZER instance to be worked on.
  *
  * @return
  *
@@ -92,11 +93,11 @@
  *    - XST_FAILURE   if any self-test code failed
  *
  * @note    Caching must be turned off for this function to work.
- * @note    Self test may fail if data memory and device are not on the same
- * bus.
+ * @note    Self test may fail if data memory and device are not on the same bus.
  *
  */
-XStatus PWM_ANALYZER_Reg_SelfTest(void *baseaddr_p);
+XStatus PWM_ANALYZER_Reg_SelfTest(void * baseaddr_p);
+
 
 /************ Function Prototypes ************/
 

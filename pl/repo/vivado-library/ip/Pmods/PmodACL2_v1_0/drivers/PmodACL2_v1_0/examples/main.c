@@ -30,12 +30,12 @@
 /*                                                                            */
 /******************************************************************************/
 
+#include <stdio.h>
 #include "PmodACL2.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xil_printf.h"
 #include "xparameters.h"
-#include <stdio.h>
 
 void DemoInitialize();
 void DemoRun();
@@ -46,64 +46,66 @@ void DisableCaches();
 PmodACL2 myDevice;
 
 int main(void) {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
 
-  return 0;
+   return 0;
 }
 
 void DemoInitialize() {
-  EnableCaches();
+   EnableCaches();
 
-  // Initialize the ACL2 driver device
-  ACL2_begin(&myDevice, XPAR_PMODACL2_0_AXI_LITE_GPIO_BASEADDR,
-             XPAR_PMODACL2_0_AXI_LITE_SPI_BASEADDR);
+   // Initialize the ACL2 driver device
+   ACL2_begin(&myDevice, XPAR_PMODACL2_0_AXI_LITE_GPIO_BASEADDR,
+         XPAR_PMODACL2_0_AXI_LITE_SPI_BASEADDR);
 
-  // Reset the ACL2
-  ACL2_reset(&myDevice);
-  usleep(1000);
+   // Reset the ACL2
+   ACL2_reset(&myDevice);
+   usleep(1000);
 
-  // Set ACL2 configuration data
-  ACL2_configure(&myDevice);
+   // Set ACL2 configuration data
+   ACL2_configure(&myDevice);
 }
 
 void DemoRun() {
-  int status;
-  ACL2_SamplePacket data;
+   int status;
+   ACL2_SamplePacket data;
 
-  xil_printf("Starting ACL2 Demo...\n\r");
+   xil_printf("Starting ACL2 Demo...\n\r");
 
-  while (1) {
-    status = ACL2_getStatus(&myDevice);
+   while (1) {
+      status = ACL2_getStatus(&myDevice);
 
-    // Capture data only when there is data available
-    if ((ACL2_STATUS_DATA_READY_MASK & status) != 0) {
-      data = ACL2_getSample(&myDevice);
+      // Capture data only when there is data available
+      if ((ACL2_STATUS_DATA_READY_MASK & status) != 0) {
+         data = ACL2_getSample(&myDevice);
 
-      // Convert data to units of g before printing
-      printf("X: %.2f \tY: %.2f \tZ: %.2f\r\n",
-             ACL2_DataToG(&myDevice, data.XData),
-             ACL2_DataToG(&myDevice, data.YData),
-             ACL2_DataToG(&myDevice, data.ZData));
-    }
-  }
+         // Convert data to units of g before printing
+         printf(
+            "X: %.2f \tY: %.2f \tZ: %.2f\r\n",
+            ACL2_DataToG(&myDevice, data.XData),
+            ACL2_DataToG(&myDevice, data.YData),
+            ACL2_DataToG(&myDevice, data.ZData)
+         );
+      }
+   }
 
-  ACL2_end(&myDevice);
+   ACL2_end(&myDevice);
 }
 
 void DemoCleanup() {
-  ACL2_end(&myDevice);
-  DisableCaches();
+   ACL2_end(&myDevice);
+   DisableCaches();
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -111,10 +113,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

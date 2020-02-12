@@ -7,71 +7,72 @@
 *******************************************************************************/
 
 /* MRF24WG0M Universal Driver
- *
- * Copyright (c) 2012-2013, Microchip <www.microchip.com>
- * Contact Microchip for the latest version.
- *
- * This program is free software; distributed under the terms of BSD
- * license:
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1.    Redistributions of source code must retain the above copyright notice,
- * this list of conditions and the following disclaimer.
- * 2.    Redistributions in binary form must reproduce the above copyright
- * notice, this list of conditions and the following disclaimer in the
- * documentation and/or other materials provided with the distribution.
- * 3.    Neither the name(s) of the above-listed copyright holder(s) nor the
- * names of its contributors may be used to endorse or promote products derived
- *        from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- */
+*
+* Copyright (c) 2012-2013, Microchip <www.microchip.com>
+* Contact Microchip for the latest version.
+*
+* This program is free software; distributed under the terms of BSD
+* license:
+*
+* Redistribution and use in source and binary forms, with or without modification,
+* are permitted provided that the following conditions are met:
+*
+* 1.    Redistributions of source code must retain the above copyright notice, this
+*        list of conditions and the following disclaimer.
+* 2.    Redistributions in binary form must reproduce the above copyright notice,
+*        this list of conditions and the following disclaimer in the documentation
+*        and/or other materials provided with the distribution.
+* 3.    Neither the name(s) of the above-listed copyright holder(s) nor the names
+*        of its contributors may be used to endorse or promote products derived
+*        from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+* IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+* INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+* BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+* DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+* LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+* OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+* OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
 //==============================================================================
 //                                  INCLUDES
 //==============================================================================
-#include "./ud_inc/internal/wf_global_includes.h"
 #include "./ud_inc/shared/wf_universal_driver.h"
+#include "./ud_inc/internal/wf_global_includes.h"
 
 //==============================================================================
 //                                  DEFINES
 //==============================================================================
-#define REG_ENABLE_LOW_POWER_MASK ((uint16_t)(0x01))
-#define REG_DISABLE_LOW_POWER_MASK ((uint16_t)(0x00))
+#define REG_ENABLE_LOW_POWER_MASK   ((uint16_t)(0x01))
+#define REG_DISABLE_LOW_POWER_MASK  ((uint16_t)(0x00))
 
 //==============================================================================
 //                                  LOCAL DATA TYPES
 //==============================================================================
 /* Enumeration of valid values for WFSetPowerSaveMode() */
-typedef enum {
-  PS_POLL_ENABLED = 0, /* power save mode enabled  */
-  PS_POLL_DISABLED     /* power save mode disabled */
+typedef enum
+{
+    PS_POLL_ENABLED = 0,    /* power save mode enabled  */
+    PS_POLL_DISABLED        /* power save mode disabled */
 } t_WFPsPwrMode;
 
-typedef struct WFPwrModeReq {
-  uint8_t mode;
-  uint8_t wake;
-  uint8_t rcvDtims;
-  uint8_t reserved; /* pad byte */
+typedef struct WFPwrModeReq
+{
+    uint8_t mode;
+    uint8_t wake;
+    uint8_t rcvDtims;
+    uint8_t reserved;            /* pad byte */
 } t_WFPwrModeReq;
 
 //==============================================================================
 //                                  LOCAL GLOBALS
 //==============================================================================
 static uint8_t g_powerSaveState = WF_PS_OFF;
-static bool g_reactivatePsPoll = false;
+static bool    g_reactivatePsPoll = false;
 
 //==============================================================================
 //                                  LOCAL FUNCTION PROTOTYPES
@@ -119,34 +120,39 @@ extern void SetDtimInterval(uint16_t dtimInterval);
   Remarks:
     None.
   *****************************************************************************/
-void WF_PsPollEnable(t_psPollContext *p_context) {
-  t_WFPwrModeReq pwrModeReq;
+void WF_PsPollEnable(t_psPollContext *p_context)
+{
+    t_WFPwrModeReq   pwrModeReq;
 
-  // if not currently connected then return
-  if (UdGetConnectionState() != CS_CONNECTED) {
-    EventEnqueue(WF_EVENT_ERROR, UD_INVALID_PS_POLL_ERROR);
-    return;
-  }
+    // if not currently connected then return
+    if(UdGetConnectionState() != CS_CONNECTED)
+    {
+        EventEnqueue(WF_EVENT_ERROR, UD_INVALID_PS_POLL_ERROR);
+        return;
+    }
 
-  // save the Ps-Poll context
-  UdEnablePsPoll(p_context);
+    // save the Ps-Poll context
+    UdEnablePsPoll(p_context);
 
-  SetListenInterval(p_context->listenInterval);
-  SetDtimInterval(p_context->dtimInterval);
+    SetListenInterval(p_context->listenInterval);
+    SetDtimInterval(p_context->dtimInterval);
 
-  // fill in request structure and send message to MRF24WG
-  pwrModeReq.mode = PS_POLL_ENABLED;
-  pwrModeReq.wake = 0;
-  pwrModeReq.rcvDtims = p_context->useDtim;
-  SendPowerModeMsg(&pwrModeReq);
+    // fill in request structure and send message to MRF24WG
+    pwrModeReq.mode     = PS_POLL_ENABLED;
+    pwrModeReq.wake     = 0;
+    pwrModeReq.rcvDtims = p_context->useDtim;
+    SendPowerModeMsg(&pwrModeReq);
 
-  WFConfigureLowPowerMode(WF_LOW_POWER_MODE_ON);
+    WFConfigureLowPowerMode(WF_LOW_POWER_MODE_ON);
 
-  if (p_context->useDtim) {
-    PowerStateSet(WF_PS_PS_POLL_DTIM_ENABLED);
-  } else {
-    PowerStateSet(WF_PS_PS_POLL_DTIM_DISABLED);
-  }
+    if (p_context->useDtim)
+    {
+        PowerStateSet(WF_PS_PS_POLL_DTIM_ENABLED);
+    }
+    else
+    {
+        PowerStateSet(WF_PS_PS_POLL_DTIM_DISABLED);
+    }
 }
 
 /*******************************************************************************
@@ -171,19 +177,21 @@ void WF_PsPollEnable(t_psPollContext *p_context) {
   Remarks:
     None.
   *****************************************************************************/
-void WF_PsPollDisable(void) {
-  UdDisablePsPoll();
+void WF_PsPollDisable(void)
+{
+    UdDisablePsPoll();
 
-  t_WFPwrModeReq pwrModeReq;
+    t_WFPwrModeReq   pwrModeReq;
 
-  pwrModeReq.mode = PS_POLL_DISABLED;
-  pwrModeReq.wake = 1;
-  pwrModeReq.rcvDtims = 1;
-  SendPowerModeMsg(&pwrModeReq);
+    pwrModeReq.mode     = PS_POLL_DISABLED;
+    pwrModeReq.wake     = 1;
+    pwrModeReq.rcvDtims = 1;
+    SendPowerModeMsg(&pwrModeReq);
 
-  WFConfigureLowPowerMode(WF_LOW_POWER_MODE_OFF);
-  PowerStateSet(WF_PS_OFF);
+    WFConfigureLowPowerMode(WF_LOW_POWER_MODE_OFF);
+    PowerStateSet(WF_PS_OFF);
 }
+
 
 /*******************************************************************************
   Function:
@@ -213,35 +221,36 @@ void WF_PsPollDisable(void) {
   Remarks:
     None.
   *****************************************************************************/
-void WFConfigureLowPowerMode(uint8_t action) {
-  uint16_t lowPowerStatusRegValue;
+void WFConfigureLowPowerMode(uint8_t action)
+{
+    uint16_t lowPowerStatusRegValue;
 
-  //-------------------------------------
-  // if activating PS-Poll mode on MRF24W
-  //-------------------------------------
-  if (action == WF_LOW_POWER_MODE_ON) {
-    //        dbgprintf("Enable PS\n");
-    Write16BitWFRegister(WF_PSPOLL_H_REG, REG_ENABLE_LOW_POWER_MASK);
-  }
-  //---------------------------------------------------------------------------------------------
-  // else deactivating PS-Poll mode on MRF24W (taking it out of low-power mode
-  // and waking it up)
-  //---------------------------------------------------------------------------------------------
-  else // action == WF_LOW_POWER_MODE_OFF
-  {
-    //        dbgprintf("Disable PS\n");
-    Write16BitWFRegister(WF_PSPOLL_H_REG, REG_DISABLE_LOW_POWER_MASK);
+    //-------------------------------------
+    // if activating PS-Poll mode on MRF24W
+    //-------------------------------------
+    if (action == WF_LOW_POWER_MODE_ON)
+    {
+//        dbgprintf("Enable PS\n");
+        Write16BitWFRegister(WF_PSPOLL_H_REG, REG_ENABLE_LOW_POWER_MASK);
+    }
+    //---------------------------------------------------------------------------------------------
+    // else deactivating PS-Poll mode on MRF24W (taking it out of low-power mode and waking it up)
+    //---------------------------------------------------------------------------------------------
+    else // action == WF_LOW_POWER_MODE_OFF
+    {
+//        dbgprintf("Disable PS\n");
+        Write16BitWFRegister(WF_PSPOLL_H_REG, REG_DISABLE_LOW_POWER_MASK);
 
-    /* poll the response bit that indicates when the MRF24W has come out of low
-     * power mode */
-    do {
-      // set the index register to the register we wish to read
-      Write16BitWFRegister(WF_INDEX_ADDR_REG, WF_SCRATCHPAD_1_REG);
+        /* poll the response bit that indicates when the MRF24W has come out of low power mode */
+        do
+        {
+            // set the index register to the register we wish to read
+            Write16BitWFRegister(WF_INDEX_ADDR_REG, WF_SCRATCHPAD_1_REG);
 
-      // read register
-      lowPowerStatusRegValue = Read16BitWFRegister(WF_INDEX_DATA_REG);
-    } while (lowPowerStatusRegValue & REG_ENABLE_LOW_POWER_MASK);
-  }
+            // read register
+            lowPowerStatusRegValue = Read16BitWFRegister(WF_INDEX_DATA_REG);
+        } while (lowPowerStatusRegValue & REG_ENABLE_LOW_POWER_MASK);
+    }
 }
 
 /*******************************************************************************
@@ -265,39 +274,50 @@ void WFConfigureLowPowerMode(uint8_t action) {
     None.
 
   Remarks:
-
+  
 
   *****************************************************************************/
-void WF_Hibernate(void) {
-  WF_GpioSetHibernate(WF_HIGH);
-  PowerStateSet(WF_PS_HIBERNATE);
+void WF_Hibernate(void)
+{
+    WF_GpioSetHibernate(WF_HIGH);
+    PowerStateSet(WF_PS_HIBERNATE);
 }
 
-void WF_TxPowerMaxSet(uint8_t maxTxPower) {
-  (void)(maxTxPower); // prevent unused warning
+
+void WF_TxPowerMaxSet(uint8_t maxTxPower)
+{
+    (void)(maxTxPower);   // prevent unused warning
 #if defined(WF_ERROR_CHECKING)
-  uint32_t errorCode = udSetTxPowerMax(maxTxPower);
-  if (errorCode != UD_SUCCESS) {
-    EventEnqueue(WF_EVENT_ERROR, errorCode);
-    return;
-  }
+    uint32_t errorCode = udSetTxPowerMax(maxTxPower);
+    if (errorCode != UD_SUCCESS)
+    {
+        EventEnqueue(WF_EVENT_ERROR, errorCode);
+        return;
+    }
 #endif
 }
 
-void WF_TxPowerFactoryMaxGet(uint8_t *p_maxPower) {
-  *p_maxPower = GetFactoryMax();
+void WF_TxPowerFactoryMaxGet(uint8_t *p_maxPower)
+{
+    *p_maxPower = GetFactoryMax();
 }
 
-static void SendPowerModeMsg(t_WFPwrModeReq *p_powerMode) {
-  uint8_t hdr[2];
 
-  hdr[0] = WF_MGMT_REQUEST_TYPE;
-  hdr[1] = WF_SET_POWER_MODE_SUBTYPE;
 
-  SendMgmtMsg(hdr, sizeof(hdr), (uint8_t *)p_powerMode, sizeof(t_WFPwrModeReq));
+static void SendPowerModeMsg(t_WFPwrModeReq *p_powerMode)
+{
+    uint8_t hdr[2];
 
-  /* wait for mgmt response, free buffer after it comes in (no data to read) */
-  WaitForMgmtResponse(WF_SET_POWER_MODE_SUBTYPE, FREE_MGMT_BUFFER);
+    hdr[0] = WF_MGMT_REQUEST_TYPE;
+    hdr[1] = WF_SET_POWER_MODE_SUBTYPE;
+
+    SendMgmtMsg(hdr,
+                sizeof(hdr),
+               (uint8_t *)p_powerMode,
+               sizeof(t_WFPwrModeReq));
+
+    /* wait for mgmt response, free buffer after it comes in (no data to read) */
+    WaitForMgmtResponse(WF_SET_POWER_MODE_SUBTYPE, FREE_MGMT_BUFFER);
 }
 
 /*******************************************************************************
@@ -330,26 +350,37 @@ static void SendPowerModeMsg(t_WFPwrModeReq *p_powerMode) {
   Remarks:
     None.
   *****************************************************************************/
-static void PowerStateSet(uint8_t powerSaveState) {
-  g_powerSaveState = powerSaveState;
+static void PowerStateSet(uint8_t powerSaveState)
+{
+    g_powerSaveState = powerSaveState;
 }
 
-INLINE void WF_PowerStateGet(uint8_t *p_powerState) {
-  *p_powerState = g_powerSaveState;
+INLINE void WF_PowerStateGet(uint8_t *p_powerState)
+{
+    *p_powerState = g_powerSaveState;
 }
 
-void EnsureWFisAwake(void) {
-  // if the application has enabled PS mode
-  if ((g_powerSaveState == WF_PS_PS_POLL_DTIM_ENABLED) ||
-      (g_powerSaveState == WF_PS_PS_POLL_DTIM_DISABLED)) {
-    WFConfigureLowPowerMode(WF_LOW_POWER_MODE_OFF); // wake up MRF24WG
-    SetPsPollReactivate(); // set flag to put it back in PS-Poll when
-                           // appropriate
-  }
+void EnsureWFisAwake(void)
+{
+    // if the application has enabled PS mode
+    if ((g_powerSaveState == WF_PS_PS_POLL_DTIM_ENABLED) || (g_powerSaveState == WF_PS_PS_POLL_DTIM_DISABLED))
+    {
+        WFConfigureLowPowerMode(WF_LOW_POWER_MODE_OFF);     // wake up MRF24WG
+        SetPsPollReactivate();                              // set flag to put it back in PS-Poll when appropriate
+    }
 }
 
-static INLINE void SetPsPollReactivate(void) { g_reactivatePsPoll = true; }
+static INLINE void SetPsPollReactivate(void)
+{
+    g_reactivatePsPoll = true;
+}
 
-INLINE bool isPsPollNeedReactivate(void) { return g_reactivatePsPoll; }
+INLINE bool isPsPollNeedReactivate(void)
+{
+    return g_reactivatePsPoll;
+}
 
-INLINE void ClearPsPollReactivate(void) { g_reactivatePsPoll = false; }
+INLINE void ClearPsPollReactivate(void)
+{
+    g_reactivatePsPoll = false;
+}

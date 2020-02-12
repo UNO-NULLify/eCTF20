@@ -19,13 +19,14 @@
  */
 #include "xil_printf.h"
 
-void print(const char8 *ptr) {
+void print(const char8 *ptr)
+{
 #ifdef STDOUT_BASEADDRESS
   while (*ptr != (char8)0) {
-    outbyte(*ptr);
-    ptr++;
+    outbyte (*ptr);
+	ptr++;
   }
 #else
-  (void)ptr;
+(void)ptr;
 #endif
 }
