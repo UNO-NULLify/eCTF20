@@ -3,7 +3,7 @@
  * Audio Digital Rights Management
  */
 
-#include "constants.h"
+#include "constants.h.old"
 #include "platform.h"
 #include "secrets.h"
 #include "sleep.h"

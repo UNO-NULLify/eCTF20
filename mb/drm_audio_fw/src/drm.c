@@ -118,7 +118,7 @@ void logOn(char *username, char *pin) {
     xil_printf("User already logged-in.\r\n");
   } else {
     // search username
-    for (int i = 0; i <= PROVISIONED_USERS; i++) {
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
       if (sodium_memcmp(user_data[i].name, username)) {
         // generate and search hash
         if (crypto_pwhash_str_verify(user_data[i].pin_hash, pin, strlen(pin))) {

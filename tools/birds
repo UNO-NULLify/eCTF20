@@ -111,7 +111,7 @@ build_reference() {
   printf "\nPress any key to continue...\n"
   while [ true ] ; do
     read -t 3 -n 1
-    if [ $? = 0 ] ; then
+    if [ $? != 0 ] ; then
       exit $?;
     fi
   done

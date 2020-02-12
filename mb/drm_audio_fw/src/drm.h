@@ -9,9 +9,10 @@
 #define MAX_USERNAME_NAME 16
 #define MAX_HASH_SZ crypto_pwhash_STRBYTES
 #define MAX_USERS 64
-#define MAX_SONG_NAME
+#define MAX_SONG_NAME 64
 #define MAX_REGION_NAME 64
 #define MAX_REGION_SECRET 160
+#define MAX_SONG_SZ (1<<25)
 
 typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
@@ -30,7 +31,6 @@ typedef struct {
   char song_name[MAX_SONG_NAME]; //null terminated string of size 15 or less
   char region_list[PROVISIONED_REGIONS][MAX_REGION_NAME]; // 32 regions max of size 64 len + null
   char region_secret_list[PROVISIONED_REGIONS][MAX_REGION_SECRET];  // 32 regions max of size 160 + null
-
 } song_md;
 
 typedef struct {
