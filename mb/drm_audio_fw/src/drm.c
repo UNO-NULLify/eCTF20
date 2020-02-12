@@ -183,16 +183,25 @@ void logOff() {
  */
 void share(char *recipient) {
   // check if logged in
-  if (SongMD.loaded) { // check song is loaded
-    if (UserMD.logged_in) { // check user is logged in
+  if (SongMD.loaded) {                               // check song is loaded
+    if (UserMD.logged_in) {                          // check user is logged in
       if (sodium_memcmp(SongMD.owner, UserMD.name) { // check user is the song owner
-        for (int i = 0; i < PROVISIONED_USERS; i++) { // loop through every user in database
-          if (sodium_memcmp(user_data[i].name, recipient)) { // check recipient exists
-            for (int j = 0; j < PROVISIONED_USERS; j++) { // loop through every shared user in song database
-              if (!sodium_memcmp(SongMD.shared[j], recipient)) { // check recipient doesnt already have access
-                for (int k = 0; k < PROVISIONED_USERS; k++) { // loop through every shared user in song database (again)
-                  if (sodium_memcmp(SongMD.shared[k], NULL)) { // check for an empty spot
-                    strcpy(SongMD.shared[k], recipient); // add recipient to list
+        for (int i = 0; i < PROVISIONED_USERS;
+             i++) { // loop through every user in database
+          if (sodium_memcmp(user_data[i].name,
+                            recipient)) { // check recipient exists
+            for (int j = 0; j < PROVISIONED_USERS;
+                 j++) { // loop through every shared user in song database
+              if (!sodium_memcmp(SongMD.shared[j],
+                                 recipient)) { // check recipient doesnt already
+                                               // have access
+                for (int k = 0; k < PROVISIONED_USERS;
+                     k++) { // loop through every shared user in song database
+                            // (again)
+                  if (sodium_memcmp(SongMD.shared[k],
+                                    NULL)) { // check for an empty spot
+                    strcpy(SongMD.shared[k],
+                           recipient); // add recipient to list
                     /*
                      * TODO: write shared list somewhere...
                      * - song metadata?
@@ -213,7 +222,8 @@ void share(char *recipient) {
           }
         }
       } else {
-        xil_printf("%s\r\n" "ERROR: Not song owner!");
+        xil_printf("%s\r\n"
+                   "ERROR: Not song owner!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
       }
@@ -227,7 +237,8 @@ void share(char *recipient) {
     sodium_memzero(&SongMD, sizeof(SongMD));
     return;
   }
-  xil_printf("%s\r\n" "ERROR: No such user exists!");
+  xil_printf("%s\r\n"
+             "ERROR: No such user exists!");
   sodium_memzero(&SongMD, sizeof(SongMD));
 }
 
