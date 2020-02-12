@@ -130,7 +130,7 @@ void logOn(char *username, char *pin) {
           UserMD.logged_in = 1;
         }
         xil_printf("User not found\r\n");
-        sodium_memzero(u, sizeof(u));
+        sodium_memzero(UserMD, sizeof(UserMD));
         // delay failed attempt by 5 seconds
         sleep(LOGIN_DELAY);
       }
@@ -143,7 +143,7 @@ void logOff() {
   if (UserMD.logged_in) {
     xil_printf("Logging out...\r\n");
     // zero-out user struct
-    sodium_memzero(u, sizeof(u));
+    sodium_memzero(UserMD, sizeof(UserMD));
     // double check?
     UserMD.name = NULL;
     UserMD.pin_hash = NULL;
