@@ -6,7 +6,7 @@
 
 #define LOGIN_DELAY 5 // seconds
 
-#define MAX_USERNAME_NAME 16
+#define MAX_USERNAME_SZ 16
 #define MAX_HASH_SZ crypto_pwhash_STRBYTES
 #define MAX_USERS 64
 #define MAX_SONG_NAME 64
@@ -26,7 +26,7 @@ typedef struct {
 } user_md;
 
 typedef struct {
-  char owner[MAX_USERNAME_NAME];
+  char owner[MAX_USERNAME_SZ];
   char shared[PROVISIONED_USERS][MAX_USERNAME_SZ];
   char song_name[MAX_SONG_NAME]; // null terminated string of size 15 or less
   char region_list[PROVISIONED_REGIONS]
@@ -44,5 +44,6 @@ typedef struct {
 } drm_md;
 
 void setState(STATE state);
+void checkProc();
 
 #endif // DRM_AUDIO_FW_DRM_H

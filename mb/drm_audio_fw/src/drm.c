@@ -194,7 +194,7 @@ void share(char *recipient) {
               if (!sodium_memcmp(SongMD.shared[j], recipient, sizeof(SongMD.shared[j]))) { // check recipient doesnt already have access
                   /* TODO: Why is k++ unreachable? */
                 for (int k = 0; k < PROVISIONED_USERS; k++) { // loop through every shared user in song database (again)
-                  if (sodium_memcmp(SongMD.shared[k], NULL)) { // check for an empty spot
+                  if (sodium_memcmp(SongMD.shared[k], NULL, sizeof(SongMD.shared[k]))) { // check for an empty spot
                     strcpy(SongMD.shared[k], recipient); // add recipient to list
                     /*
                      * TODO: write shared list somewhere...
@@ -280,6 +280,8 @@ void play() {
   }
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
 //////////////////////// MAIN FUNCTION ////////////////////////
 int main() {
   if (initMicroBlaze() == XST_FAILURE) {
@@ -323,13 +325,16 @@ int main() {
 
       if (status >> 16 == PTRACE_EVENT_FORK) {
         // Follow the fork
-        long newpid = 0;
-        ptrace(PTRACE_GETEVENTMSG, pid, NULL, &newpid);
-        ptrace(PTRACE_ATTACH, newpid, NULL, NULL);
-        ptrace(PTRACE_CONT, newpid, NULL, NULL);
+        long new_pid = 0;
+        ptrace(PTRACE_GETEVENTMSG, pid, NULL, &new_pid);
+        ptrace(PTRACE_ATTACH, new_pid, NULL, NULL);
+        ptrace(PTRACE_CONT, new_pid, NULL, NULL);
       }
       ptrace(PTRACE_CONT, pid, NULL, NULL);
     }
+  } else if (fork_pid == -1) {
+      xil_printf("%s\r\n", "ERROR: Fork failed!");
+      return -1;
   }
 
   // Run forever
@@ -374,6 +379,7 @@ int main() {
   cleanup_platform();
   return 0;
 }
+#pragma clang diagnostic pop
 
 /*
  * Before we enter main check to see if a debugger is present
