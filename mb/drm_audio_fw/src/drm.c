@@ -76,6 +76,8 @@ int initMicroBlaze() {
     enableLED(led);
 
     setState(STOPPED);
+
+    return status;
 }
 
 //////////////////////// HELPER FUNCTIONS ////////////////////////
@@ -336,19 +338,46 @@ void digitalOut() {
 }
 
 void play() {
-    // check if logged in
-    if (UserMD.logged_in) {
+    int access = 0;
+    /* Check user is logged in */
+    if (!UserMD.logged_in) {
+        access = 0;
+        /* Check user is owner or shared user */
+        if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
+            access = 0;
+            for (int i = 0; i < PROVISIONED_USERS; i++) {
+                if (sodium_memcmp(SongMD.shared[i], UserMD.name, sizeof(SongMD.shared[i]))) {
+                    access = 1;
+                    break;
+                }
+            }
+        } else { access = 1; }
+    }
+
+    /* Check song region matches player */
+    for (int i = 0; i < SongMD.region_num; i++) {
+        for (int j = 0; j < PROVISIONED_REGIONS; j++) {
+            /* TODO: Somebody double-check my logic here */
+            if (sodium_memcmp(SongMD.region_list[i], RegionData[i].name, MAX_REGION_SZ)) {
+                access = 1;
+                break;
+            }
+        }
+    }
+
+    if (access) {
+        /* Play full song */
+    } else {
+        /* Play sample song */
+    }
+
         /* TODO:
-         * - Check authorization using checkAuthorization()
          * - Check if song is playing
          * - Implement pause
          * - Implement resume
          * - Implement stop
          * - Implement restart
          */
-    } else {
-        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
-    }
 }
 
 #pragma clang diagnostic push
@@ -445,7 +474,7 @@ int main() {
             }
 
             // Not sure why, but MITRE does this
-            usleep(500);
+            nsleep(5000); // Was previously 500us, might be too long
             setState(STOPPED);
         }
     }

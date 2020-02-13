@@ -10,7 +10,7 @@
 #define MAX_HASH_SZ crypto_pwhash_STRBYTES
 #define MAX_USERS 64
 #define MAX_SONG_NAME 64
-#define REGION_NAME_SZ 64
+#define MAX_REGION_SZ 64
 #define MAX_REGIONS 64
 #define MAX_REGION_SECRET 160
 #define MAX_SONG_SZ (1 << 25)
@@ -42,10 +42,14 @@ typedef struct {
 } user_md;
 
 typedef struct {
+    char state; // Do we need additional fields?
+} drm_md;
+
+typedef struct {
   char owner[MAX_USERNAME_SZ];
   char shared[PROVISIONED_USERS][MAX_USERNAME_SZ];
   char song_name[MAX_SONG_NAME]; // null terminated string of size 15 or less
-  char region_list[MAX_REGIONS][REGION_NAME_SZ]; // 32 regions max of size 64 len + null
+  char region_list[MAX_REGIONS][MAX_REGION_SZ]; // 32 regions max of size 64 len + null
   char region_secret_list[MAX_REGIONS][MAX_REGION_SECRET]; // 32 regions max of size 160 + null
   int region_num;
   int user_num;
