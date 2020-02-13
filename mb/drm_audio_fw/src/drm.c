@@ -45,7 +45,6 @@ static XIntc InterruptController;
 
 void myISR(void) { InterruptProcessed = TRUE; }
 
-//////////////////////// INITIALIZATION ////////////////////////
 int initMicroBlaze() {
     u32 status;
 
@@ -78,8 +77,6 @@ int initMicroBlaze() {
 
     setState(STOPPED);
 }
-
-// TODO: Copy num_users and num_regions into drm_md
 
 //////////////////////// HELPER FUNCTIONS ////////////////////////
 // Set state of drm and LED color
@@ -127,6 +124,18 @@ void checkProc() {
         }
     }
     fclose(proc_status);
+}
+
+void queryPlayer() {
+
+}
+
+void loadSong() {
+
+}
+
+void decryptSong() {
+
 }
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
@@ -246,18 +255,38 @@ void share(char *recipient) {
      */
 }
 
-void query() {
+/**
+ * @brief List the users and regions that a song has been provisioned for.
+ */
+void querySong() {
     // check if logged in
-    if (UserMD.logged_in) {
-        /*
-         * TODO:
-         * - Song query stuff
-         */
-
-    } else {
+    if (!UserMD.logged_in) {
         xil_printf("%s\r\n", "ERROR: Not logged in");
         return;
     }
+    /* Check song is loaded */
+    if (!SongMD.loaded) {
+        xil_printf("%s\r\n", "ERROR: No song loaded!");
+        sodium_memzero(&SongMD, sizeof(SongMD));
+        return;
+    }
+    /* Print song regions */
+    xil_printf("%s%s", MB_PROMPT, "Regions:");
+    for (int i = 0; i < MAX_REGIONS; i++) {
+        if (SongMD.region_list[i] != NULL) {
+            xil_printf(" %s", SongMD.region_list[i]);
+        }
+    }
+    /* Print song owner */
+    xil_printf("%s%s %s", MB_PROMPT, "Owner:", SongMD.owner);
+    /* Print shared users */
+    xil_printf("%s%s", MB_PROMPT, "Authorized users:");
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
+        if (SongMD.shared[i] != NULL) {
+            xil_printf(" %s", SongMD.shared[i]);
+        }
+    }
+    xil_printf("\r\n");
 }
 
 void digitalOut() {
@@ -363,7 +392,7 @@ int main() {
                     logOff();
                     break;
                 case QUERY_SONG:
-                    query();
+                    querySong();
                     break;
                 case SHARE:
                     share(); // TODO: Add parameters?

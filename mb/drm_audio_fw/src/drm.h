@@ -11,6 +11,7 @@
 #define MAX_USERS 64
 #define MAX_SONG_NAME 64
 #define MAX_REGION_NAME 64
+#define MAX_REGIONS 64
 #define MAX_REGION_SECRET 160
 #define MAX_SONG_SZ (1 << 25)
 
@@ -44,8 +45,8 @@ typedef struct {
   char owner[MAX_USERNAME_SZ];
   char shared[PROVISIONED_USERS][MAX_USERNAME_SZ];
   char song_name[MAX_SONG_NAME]; // null terminated string of size 15 or less
-  char region_list[PROVISIONED_REGIONS][MAX_REGION_NAME]; // 32 regions max of size 64 len + null
-  char region_secret_list[PROVISIONED_REGIONS][MAX_REGION_SECRET]; // 32 regions max of size 160 + null
+  char region_list[MAX_REGIONS][MAX_REGION_NAME]; // 32 regions max of size 64 len + null
+  char region_secret_list[MAX_REGIONS][MAX_REGION_SECRET]; // 32 regions max of size 160 + null
   int loaded; // 1 == loaded, 0 == not loaded
 } song_md;
 
