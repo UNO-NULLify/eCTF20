@@ -1,8 +1,12 @@
+#include <stdio.h>
 #include <sys/prctl.h>
 #include <sys/ptrace.h>
+#include <unistd.h>
+#include <wait.h>
 
 #include "drm.h"
 #include "include/sodium.h"
+#include "platform.h"
 #include "secrets.h"
 #include "sleep.h"
 #include "util.h"
@@ -20,6 +24,9 @@ user_md UserMD;
 // DRM metadata struct
 drm_md DeviceMD;
 
+// Song metadata struct
+song_md SongMD;
+
 // LED colors and controller
 u32 *led = (u32 *)XPAR_RGB_PWM_0_PWM_AXI_BASEADDR;
 const struct color RED = {0x01ff, 0x0000, 0x0000};
@@ -29,6 +36,14 @@ const struct color BLUE = {0x0000, 0x0000, 0x01ff};
 
 // audio DMA access
 static XAxiDma sAxiDma;
+
+//////////////////////// INTERRUPT HANDLING ////////////////////////
+
+// shared variable between main thread and interrupt processing thread
+volatile static int InterruptProcessed = FALSE;
+static XIntc InterruptController;
+
+void myISR(void) { InterruptProcessed = TRUE; }
 
 //////////////////////// INITIALIZATION ////////////////////////
 int initMicroBlaze() {
@@ -54,7 +69,7 @@ int initMicroBlaze() {
   // Configure the DMA
   status = fnConfigDma(&sAxiDma);
   if (status != XST_SUCCESS) {
-    mb_printf("DMA configuration ERROR\r\n");
+    xil_printf("%s\r\n", "ERROR: DMA configuration failed!");
     return XST_FAILURE;
   }
 
@@ -75,12 +90,15 @@ void setState(STATE state) {
     setLED(led, YELLOW);
     break;
   case PLAYING:
-    setLED(led, GREEN) : break;
+    setLED(led, GREEN);
+    break;
   case PAUSED:
-    setLED(led, BLUE) : break;
+    setLED(led, BLUE);
+    break;
   case STOPPED:
   default:
-    setLED(led, RED) break;
+    setLED(led, RED);
+    break;
   }
 }
 
@@ -96,12 +114,12 @@ void checkProc() {
   }
 
   char line[1024] = {};
-  char *fgets(char *s, int size, FILE *stream);
+  char *fgets(char *s, int size, FILE *stream); // TODO: Why are we doing this?
   while (fgets(line, sizeof(line), proc_status) != NULL) {
     const char traceString[] = "TracerPid:";
     char *tracer = strstr(line, traceString);
     if (tracer != NULL) {
-      int pid = atoi(tracer + sizeof(traceString) - 1);
+      int pid = atoi(tracer + sizeof(traceString) - 1); // TODO: Replace w/ strol?
       if (pid != 0) {
         fclose(proc_status);
         exit(EXIT_FAILURE);
@@ -112,14 +130,20 @@ void checkProc() {
 }
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
+/**
+ * @brief Logs in a user with the correct username and pin
+ * @param username - the user's username, (len: 1-15, chars: a-z, A-Z)
+ * @param pin - the user's pin, (len: 8-64, chars: 0-9)
+ */
 void logOn(char *username, char *pin) {
   // check if logged in
   if (UserMD.logged_in) {
-    mb_printf("User already logged-in.\r\n");
+    xil_printf("%s\r\n", "ERROR: User already logged-in.");
+    return;
   } else {
     // search username
-    for (int i = 0; i <= PROVISIONED_USERS; i++) {
-      if (sodium_memcmp(user_data[i].name, username)) {
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
+      if (sodium_memcmp(user_data[i].name, username, sizeof(user_data[i].name))) {
         // generate and search hash
         if (crypto_pwhash_str_verify(user_data[i].pin_hash, pin, strlen(pin))) {
           UserMD.name = user_data[i].name;
@@ -129,8 +153,8 @@ void logOn(char *username, char *pin) {
           UserMD.pvt_key_enc = user_data[i].pvt_key_enc;
           UserMD.logged_in = 1;
         }
-        mb_printf("User not found\r\n");
-        sodium_memzero(u, sizeof(u));
+        xil_printf("%s\r\n", "ERROR: User not found");
+        sodium_memzero(&UserMD, sizeof(UserMD));
         // delay failed attempt by 5 seconds
         sleep(LOGIN_DELAY);
       }
@@ -138,39 +162,78 @@ void logOn(char *username, char *pin) {
   }
 }
 
+/**
+ * @brief Logs current user off.
+ */
 void logOff() {
   // check if logged in
   if (UserMD.logged_in) {
-    mb_printf("Logging out...\r\n");
+    xil_printf("%s\r\n", "INFO: Logging out...");
     // zero-out user struct
-    sodium_memzero(u, sizeof(u));
-    // double check?
-    UserMD.name = NULL;
-    UserMD.pin_hash = NULL;
-    UserMD.pvt_key_enc = NULL;
-    UserMD.pub_key = NULL;
-    UserMD.hw_secret = NULL;
-    UserMD.logged_in = 0;
+    sodium_memzero(&UserMD, sizeof(UserMD));
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: Not logged in");
+    return;
   }
 }
 
-void share() {
+/**
+ * @brief Allows owner to share access of the song to another user.
+ * @param recipient - the user in which the owner wants to share song access to.
+ */
+void share(char *recipient) {
   // check if logged in
-  if (UserMD.logged_in) {
-    /*
-     * TODO:
-     * - Check if owner using checkAuthorization()
-     * - If the person sharing is not the owner -- don't share
-     * - Check if recipient exists
-     * - Check if recipient already have access to the song -- if so error out
-     * with that info
-     */
-
+  if (SongMD.loaded) {                               // check song is loaded
+    if (UserMD.logged_in) {                          // check user is logged in
+      if (sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) { // check user is the song owner
+        for (int i = 0; i < PROVISIONED_USERS;
+             i++) { // loop through every user in database
+          if (sodium_memcmp(user_data[i].name, recipient, sizeof(user_data[i].name))) { // check recipient exists
+            for (int j = 0; j < PROVISIONED_USERS;
+                 j++) { // loop through every shared user in song database
+              if (!sodium_memcmp(SongMD.shared[j], recipient, sizeof(SongMD.shared[j]))) { // check recipient doesnt already have access
+                  /* TODO: Why is k++ unreachable? */
+                for (int k = 0; k < PROVISIONED_USERS; k++) { // loop through every shared user in song database (again)
+                  if (sodium_memcmp(SongMD.shared[k], NULL, sizeof(SongMD.shared[k]))) { // check for an empty spot
+                    strcpy(SongMD.shared[k], recipient); // add recipient to list
+                    /*
+                     * TODO: write shared list somewhere...
+                     * - song metadata?
+                     * - ext file?
+                     */
+                    break; // user found, break out of loop
+                  } else {
+                    xil_printf("%s\r\n", "ERROR: Too many shared users!");
+                    sodium_memzero(&SongMD, sizeof(SongMD));
+                    return;
+                  }
+                }
+                break; // user found, break out of loop
+                // Why is this unreachable?
+              }
+            }
+            break; // user found, break out of loop
+          }
+        }
+      } else {
+        xil_printf("%s\r\n"
+                   "ERROR: Not song owner!");
+        sodium_memzero(&SongMD, sizeof(SongMD));
+        return;
+      }
+    } else {
+      xil_printf("%s\r\n", "ERROR: Not logged in!");
+      sodium_memzero(&SongMD, sizeof(SongMD));
+      return;
+    }
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: No song loaded!");
+    sodium_memzero(&SongMD, sizeof(SongMD));
+    return;
   }
+  xil_printf("%s\r\n"
+             "ERROR: No such user exists!");
+  sodium_memzero(&SongMD, sizeof(SongMD));
 }
 
 void query() {
@@ -182,7 +245,8 @@ void query() {
      */
 
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: Not logged in");
+    return;
   }
 }
 
@@ -195,7 +259,8 @@ void digitalOut() {
      * - Output to digital interface
      */
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: Not logged in");
+    return;
   }
 }
 
@@ -211,10 +276,12 @@ void play() {
      * - Implement restart
      */
   } else {
-    mb_printf("Not logged in\r\n");
+    xil_printf("%s\r\n", "ERROR: Not logged in");
   }
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmissing-noreturn"
 //////////////////////// MAIN FUNCTION ////////////////////////
 int main() {
   if (initMicroBlaze() == XST_FAILURE) {
@@ -224,7 +291,7 @@ int main() {
   // Clear command channel
   // memset((void *)c, 0, sizeof(cmd_channel));
 
-  mb_printf("Audio DRM Module has Booted\n\r");
+  xil_printf("%s\r\n", "INFO: Audio DRM Module has booted!");
 
   int fork_pid = fork();
   if (fork_pid == 0) {
@@ -241,15 +308,14 @@ int main() {
     // Restart the parent so it can keep processing like normal
     int status = 0;
     wait(&status);
-    if (ptrace(PTRACE_SETOPTIONS, parent, NULL,
-               PTRACE_O_TRACEFORK | PTRACE_O_EXITKILL) != 0) {
+    if (ptrace(PTRACE_SETOPTIONS, parent, NULL, PTRACE_O_TRACEFORK | PTRACE_O_EXITKILL) != 0) {
       kill(parent, SIGKILL);
       exit(EXIT_FAILURE);
     }
     ptrace(PTRACE_CONT, parent, NULL, NULL);
 
     // Handle any signals that may come in from traces
-    while (true) {
+    while (1) {
       checkProc();
       int pid = waitpid(-1, &status, WNOHANG);
       if (pid == 0) {
@@ -259,13 +325,16 @@ int main() {
 
       if (status >> 16 == PTRACE_EVENT_FORK) {
         // Follow the fork
-        long newpid = 0;
-        ptrace(PTRACE_GETEVENTMSG, pid, NULL, &newpid);
-        ptrace(PTRACE_ATTACH, newpid, NULL, NULL);
-        ptrace(PTRACE_CONT, newpid, NULL, NULL);
+        long new_pid = 0;
+        ptrace(PTRACE_GETEVENTMSG, pid, NULL, &new_pid);
+        ptrace(PTRACE_ATTACH, new_pid, NULL, NULL);
+        ptrace(PTRACE_CONT, new_pid, NULL, NULL);
       }
       ptrace(PTRACE_CONT, pid, NULL, NULL);
     }
+  } else if (fork_pid == -1) {
+      xil_printf("%s\r\n", "ERROR: Fork failed!");
+      return -1;
   }
 
   // Run forever
@@ -275,12 +344,9 @@ int main() {
       InterruptProcessed = FALSE;
       setState(WORKING);
 
-      /* TODO: Set command to something
-       * command is set by the miPod player
-       */
-      switch (command) {
+      switch (command) { // TODO: Set command to something
       case LOGIN:
-        logOn();
+        logOn(); // TODO: Add parameters?
         break;
       case LOGOUT:
         logOff();
@@ -289,17 +355,17 @@ int main() {
         query();
         break;
       case SHARE:
-        share();
+        share(); // TODO: Add parameters?
         break;
       case PLAY:
         play();
-        mb_printf("Done Playing Song\r\n");
+        xil_printf("%s\r\n", "INFO: Done Playing Song");
         break;
       case DIGITAL_OUT:
         digitalOut();
         break;
       default:
-        mb_printf("Not a command!\r\n");
+        xil_printf("%s\r\n", "ERROR: Not a command!");
         break;
       }
 
@@ -313,6 +379,7 @@ int main() {
   cleanup_platform();
   return 0;
 }
+#pragma clang diagnostic pop
 
 /*
  * Before we enter main check to see if a debugger is present

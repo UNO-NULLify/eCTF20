@@ -3,6 +3,15 @@
 #include <string.h>
 
 #define CHUNK_SIZE 4096
+//test struct
+struct metadata
+{
+            char songName[16]; //null terminated string of size 15 or less
+            char songID[33]; // null terminated string of size 32
+            char regionList[2080]; // 32 regions max of size 64 len + null
+            char regionSecretList[5152];  // 32 regions max of size 160 + null
+};
+
 
 static int
 encrypt(const char *target_file, const char *source_file,
@@ -35,7 +44,32 @@ encrypt(const char *target_file, const char *source_file,
     return 0;
 }
 
+int writeMetadata(const char *target_file, const char *source_file, struct metadata metaIn ){
 
+  FILE *outfile;
+
+  // open file for writing
+  outfile = fopen ("person.dat", "w");
+  if (outfile == NULL)
+  {
+      fprintf(stderr, "\nError opend file\n");
+      exit (1);
+  }
+  fwrite (&metaIn, sizeof(struct metadata), 1, outfile);
+
+  if(fwrite != 0)
+       printf("contents to file written successfully !\n");
+  else
+       printf("error writing file !\n");
+       fclose (outfile);
+
+  printf("writing metadata...\n");
+  return 1;
+
+}
+
+
+// argv 1 is input file, argv 2 is the output file, argv 3 is the
 int main(int argc, char *argv[]){
 
   printf("\nEncrypting %s with the password: %s\n", argv[1],argv[3]);
@@ -57,6 +91,16 @@ int main(int argc, char *argv[]){
       printf("Encryption Failed");
       return 1;
     }
+
+
+    // struct metadata record;
+    // record.id=1;
+    // strcpy(record.name, "Raju");
+    // record.percentage = 86.5;
+
+
+    writeMetadata(argv[2], argv[1], record);
+
 
     return 0;
 }

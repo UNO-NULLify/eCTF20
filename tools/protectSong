@@ -34,7 +34,7 @@ def main():
     users = json.load(open(os.path.abspath(args.user_secrets_path)))
 
     #Unique song ID for the song. In place of song name.
-    songID = utils.random(16).hex()
+    songID = utils.random(16).hex()  #size 32
 
     #Define hashing method
     HASHER = hash.blake2b
@@ -49,6 +49,7 @@ def main():
     for regionIn in args.region_list:
         pvt_key = public.PrivateKey(regions[regionIn]["priv_key"],encoder=encoding.HexEncoder)
         encrypted = SealedBox(pvt_key.public_key).encrypt(regionKey)
+        print(f"region secret {encrypted.hex()}")
         regionSecretList.append([regionIn, encrypted.hex()])
         #print(f"decrypted:{SealedBox(pvt_key).decrypt(encrypted).hex()}") #This is how you decrypt the secret
 
