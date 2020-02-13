@@ -68,7 +68,7 @@ int initMicroBlaze() {
     // Configure the DMA
     status = fnConfigDma(&sAxiDma);
     if (status != XST_SUCCESS) {
-        xil_printf("%s\r\n", "ERROR: DMA configuration failed!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: DMA configuration failed!");
         return XST_FAILURE;
     }
 
@@ -143,7 +143,7 @@ void decryptSong() {
 void logOn(char *username, char *pin) {
     // check if logged in
     if (UserMD.logged_in) {
-        xil_printf("%s\r\n", "ERROR: User already logged-in.");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already logged-in.");
         return;
     } else {
         // search username
@@ -158,7 +158,7 @@ void logOn(char *username, char *pin) {
                     UserMD.pvt_key_enc = UserData[i].pvt_key_enc;
                     UserMD.logged_in = 1;
                 }
-                xil_printf("%s\r\n", "ERROR: User not found");
+                xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
                 sodium_memzero(&UserMD, sizeof(UserMD));
                 // delay failed attempt by 5 seconds
                 sleep(LOGIN_DELAY);
@@ -173,10 +173,10 @@ void logOn(char *username, char *pin) {
 void logOff() {
     // check if logged in
     if (UserMD.logged_in) {
-        xil_printf("%s\r\n", "INFO: Logging out...");
+        xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Logging out...");
         sodium_memzero(&UserMD, sizeof(UserMD));
     } else {
-        xil_printf("%s\r\n", "ERROR: Not logged in");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
         return;
     }
 }
@@ -193,55 +193,55 @@ void share(char *recipient) {
 
     /* Check song is loaded */
     if (!SongMD.loaded) {
-        xil_printf("%s\r\n", "ERROR: No song loaded!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
-
+    
     /* Check user is logged in */
     if (!UserMD.logged_in) {
-        xil_printf("%s\r\n", "ERROR: Not logged in!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
-
+    
     /* Check user is the song owner */
     if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
-        xil_printf("%s\r\n", "ERROR: Not song owner!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not song owner!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
-
+    
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         /* check recipient exists */
         if (sodium_memcmp(UserData[i].name, recipient, sizeof(UserData[i].name))) { check_1 = 1; }
-
+        
         /* Check recipient doesn't already have access */
         if (sodium_memcmp(SongMD.shared[i], recipient, sizeof(SongMD.shared[i]))) { check_2 = 0; }
-
+        
         /* Check for an empty spot */
         if (sodium_memcmp(SongMD.shared[i], NULL, sizeof(SongMD.shared[i]))) { check_3 = 1; index = i; }
     }
-
+    
     /* This odd code prevents ugly nested if-statements and multiple loops*/
     if (!check_1){
-        xil_printf("%s\r\n", "ERROR: User does not exist!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User does not exist!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
     if (check_2){
-        xil_printf("%s\r\n", "ERROR: User already has access!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already has access!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
     if (!check_3) {
-        xil_printf("%s\r\n", "ERROR: Too many shared users!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Too many shared users!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
     if (index < 0) {
-        xil_printf("%s\r\n", "ERROR: Something went terribly wrong.");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Something went terribly wrong.");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
@@ -262,17 +262,17 @@ void share(char *recipient) {
 void querySong() {
     // check if logged in
     if (!UserMD.logged_in) {
-        xil_printf("%s\r\n", "ERROR: Not logged in");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
         return;
     }
-
+    
     /* Check song is loaded */
     if (!SongMD.loaded) {
-        xil_printf("%s\r\n", "ERROR: No song loaded!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
-
+    
     /* Print song regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
     for (int i = 0; i < SongMD.region_num; i++) {
@@ -282,10 +282,10 @@ void querySong() {
             xil_printf(" %s", SongMD.region_list[i]);
         }
     }
-
+    
     /* Print song owner */
     xil_printf("%s%s %s", MB_PROMPT, "Owner:", SongMD.owner);
-
+    
     /* Print shared users */
     xil_printf("%s%s", MB_PROMPT, "Authorized users:");
     for (int i = 0; i < PROVISIONED_USERS; i++) {
@@ -330,7 +330,7 @@ void digitalOut() {
          * - Output to digital interface
          */
     } else {
-        xil_printf("%s\r\n", "ERROR: Not logged in");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
         return;
     }
 }
@@ -347,7 +347,7 @@ void play() {
          * - Implement restart
          */
     } else {
-        xil_printf("%s\r\n", "ERROR: Not logged in");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
     }
 }
 
@@ -363,7 +363,7 @@ int main() {
     // Clear command channel
     // memset((void *)c, 0, sizeof(cmd_channel));
 
-    xil_printf("%s\r\n", "INFO: Audio DRM Module has booted!");
+    xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Audio DRM Module has booted!");
 
     int fork_pid = fork();
     if (fork_pid == 0) {
@@ -405,7 +405,7 @@ int main() {
             ptrace(PTRACE_CONT, pid, NULL, NULL);
         }
     } else if (fork_pid == -1) {
-        xil_printf("%s\r\n", "ERROR: Fork failed!");
+        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Fork failed!");
         return -1;
     }
 
@@ -434,13 +434,13 @@ int main() {
                     break;
                 case PLAY:
                     play();
-                    xil_printf("%s\r\n", "INFO: Done Playing Song");
+                    xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Done Playing Song");
                     break;
                 case DIGITAL_OUT:
                     digitalOut();
                     break;
                 default:
-                    xil_printf("%s\r\n", "ERROR: Not a command!");
+                    xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not a command!");
                     break;
             }
 
