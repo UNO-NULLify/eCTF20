@@ -54,7 +54,7 @@ void myISR(void) { InterruptProcessed = TRUE; }
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
 // returns whether an rid has been provisioned
-int is_provisioned_rid(char rid) {
+int __attribute__ ((section(".chacha20_is_provisioned_rid"))) is_provisioned_rid(char rid) {
   for (int i = 0; i < NUM_PROVISIONED_REGIONS; i++) {
     if (rid == PROVISIONED_RIDS[i]) {
       return TRUE;
@@ -64,7 +64,7 @@ int is_provisioned_rid(char rid) {
 }
 
 // looks up the region name corresponding to the rid
-int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
+int __attribute__ ((section(".chacha20_rid_to_region_name"))) rid_to_region_name(char rid, char **region_name, int provisioned_only) {
   for (int i = 0; i < NUM_REGIONS; i++) {
     if (rid == REGION_IDS[i] &&
         (!provisioned_only || is_provisioned_rid(rid))) {
@@ -79,7 +79,7 @@ int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
 }
 
 // looks up the rid corresponding to the region name
-int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
+int __attribute__ ((section(".chacha20_region_name_to_rid"))) region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
   for (int i = 0; i < NUM_REGIONS; i++) {
     if (!strcmp(region_name, REGION_NAMES[i]) &&
         (!provisioned_only || is_provisioned_rid(REGION_IDS[i]))) {
@@ -94,7 +94,7 @@ int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
 }
 
 // returns whether a uid has been provisioned
-int is_provisioned_uid(char uid) {
+int __attribute__ ((section(".chacha20_is_provisioned_uid")))is_provisioned_uid(char uid) {
   for (int i = 0; i < NUM_PROVISIONED_USERS; i++) {
     if (uid == PROVISIONED_UIDS[i]) {
       return TRUE;
@@ -104,21 +104,20 @@ int is_provisioned_uid(char uid) {
 }
 
 // looks up the username corresponding to the uid
-int uid_to_username(char uid, char **username, int provisioned_only) {
+int __attribute__ ((section(".chacha20_uid_to_username")))uid_to_username(char uid, char **username, int provisioned_only) {
   for (int i = 0; i < NUM_USERS; i++) {
     if (uid == USER_IDS[i] && (!provisioned_only || is_provisioned_uid(uid))) {
       *username = (char *)USERNAMES[i];
       return TRUE;
     }
   }
-
   mb_printf("Could not find uid '%d'\r\n", uid);
   *username = "<unknown user>";
   return FALSE;
 }
 
 // looks up the uid corresponding to the username
-int username_to_uid(char *username, char *uid, int provisioned_only) {
+int __attribute__ ((section(".chacha20_username_to_uid")))username_to_uid(char *username, char *uid, int provisioned_only) {
   for (int i = 0; i < NUM_USERS; i++) {
     if (!strcmp(username, USERNAMES[USER_IDS[i]]) &&
         (!provisioned_only || is_provisioned_uid(USER_IDS[i]))) {
@@ -133,7 +132,7 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
 }
 
 // loads the song metadata in the shared buffer into the local struct
-void load_song_md() {
+void  __attribute__ ((section(".chacha20_load_song_md"))) load_song_md() {
   s.song_md.md_size = c->song.md.md_size;
   s.song_md.owner_id = c->song.md.owner_id;
   s.song_md.num_regions = c->song.md.num_regions;
@@ -144,7 +143,7 @@ void load_song_md() {
 
 // checks if the song loaded into the shared buffer is locked for the current
 // user
-int is_locked() {
+int  __attribute__ ((section(".chacha20_is_locked"))) is_locked() {
   int locked = TRUE;
 
   // check for authorized user
@@ -192,7 +191,7 @@ int is_locked() {
 // copy the local song metadata into buf in the correct format
 // returns the size of the metadata in buf (including the metadata size field)
 // song metadata should be loaded before call
-int gen_song_md(char *buf) {
+int  __attribute__ ((section(".chacha20_gen_song_md"))) gen_song_md(char *buf) {
   buf[0] = ((5 + s.song_md.num_regions + s.song_md.num_users) / 2) *
            2; // account for parity
   buf[1] = s.song_md.owner_id;
@@ -207,7 +206,7 @@ int gen_song_md(char *buf) {
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
 
 // attempt to log in to the credentials in the shared buffer
-void login() {
+void  __attribute__ ((section(".chacha20_login"))) login() {
   if (s.logged_in) {
     mb_printf("Already logged in. Please log out first.\r\n");
     memcpy((void *)c->username, s.username, USERNAME_SZ);
@@ -244,7 +243,7 @@ void login() {
 }
 
 // attempt to log out
-void logout() {
+void  __attribute__ ((section(".chacha20_logout"))) logout() {
   if (c->login_status) {
     mb_printf("Logging out...\r\n");
     s.logged_in = 0;
@@ -258,7 +257,7 @@ void logout() {
 }
 
 // handles a request to query the player's metadata
-void query_player() {
+void  __attribute__ ((section(".chacha20_query_player"))) query_player() {
   c->query.num_regions = NUM_PROVISIONED_REGIONS;
   c->query.num_users = NUM_PROVISIONED_USERS;
 
@@ -276,7 +275,7 @@ void query_player() {
 }
 
 // handles a request to query song metadata
-void query_song() {
+void  __attribute__ ((section(".chacha20_query_song"))) query_song() {
   char *name;
 
   // load song
@@ -307,7 +306,7 @@ void query_song() {
 }
 
 // add a user to the song's list of users
-void share_song() {
+void  __attribute__ ((section(".chacha20_share_song"))) share_song() {
   int new_md_len, shift;
   char new_md[256], uid;
 
@@ -348,7 +347,7 @@ void share_song() {
 }
 
 // plays a song and looks for play-time commands
-void play_song() {
+void  __attribute__ ((section(".chacha20_play_song"))) play_song() {
   u32 counter = 0, rem, cp_num, cp_xfil_cnt, offset, dma_cnt, length,
       *fifo_fill;
 
@@ -433,7 +432,7 @@ void play_song() {
 }
 
 // removes DRM data from song for digital out
-void digital_out() {
+void  __attribute__ ((section(".chacha20_digital_out"))) digital_out() {
   // remove metadata size from file and chunk sizes
   c->song.file_size -= c->song.md.md_size;
   c->song.wav_size -= c->song.md.md_size;
