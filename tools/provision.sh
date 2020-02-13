@@ -12,7 +12,7 @@
 
 read -p "Clean all working files? (Warning: This will delete all uncommitted changes) (y/n) " choice
 case "$choice" in 
-  y|Y ) printf git reset --hard; git clean -d -fx
+  y|Y ) printf cd ../; git reset --hard; git clean -d -fx; cd ./tools; make clean  
   ;;
   *) echo "Commit your changes before running this script."
      exit 1
@@ -141,7 +141,7 @@ fi
   printf "\nPress any key to continue...\n"
   while [ true ] ; do
     read -t 3 -n 1
-    if [ $? = 0 ] ; then
+    if [ $? != 0 ] ; then
       exit $?;
     fi
   done
@@ -162,7 +162,7 @@ fi
   ./deployDevice /dev/sdb ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin 
 
   if [ ! $? -eq 0 ]; then
-    1>&2 printf "\nERROR: %s\n" "deployDevice Failed!"
+    printf "\nERROR: %s\n" "deployDevice Failed!"
     exit 1
   fi
   
