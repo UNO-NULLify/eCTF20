@@ -60,6 +60,7 @@
 #define ITERS_PER_SEC	(XPAR_CPU_CORE_CLOCK_FREQ_HZ / 4)
 #define ITERS_PER_MSEC	(ITERS_PER_SEC / 1000)
 #define ITERS_PER_USEC	(ITERS_PER_MSEC / 1000)
+#define ITERS_PER_NSEC  (ITERS_PER_USEC / 1000)
 
 
 static void sleep_common(u32 n, u32 iters)
@@ -83,6 +84,22 @@ static void sleep_common(u32 n, u32 iters)
 /*****************************************************************************/
 /**
 * @brief    Provides delay for requested duration.
+* @param	useconds- time in nseconds.
+* @return	0
+*
+* @note		Instruction cache should be enabled for this to work.
+*
+******************************************************************************/
+int nsleep(unsigned long useconds)
+{
+    sleep_common((u32)useconds, ITERS_PER_NSEC);
+
+    return 0;
+}
+
+/*****************************************************************************/
+/**
+* @brief    Provides delay for requested duration.
 * @param	useconds- time in useconds.
 * @return	0
 *
@@ -99,7 +116,7 @@ int usleep(unsigned long useconds)
 /*****************************************************************************/
 /**
 * @brief    Provides delay for requested duration.
-* @param	seconds- time in useconds.
+* @param	seconds- time in seconds.
 * @return	0
 *
 * @note		Instruction cache should be enabled for this to work.
