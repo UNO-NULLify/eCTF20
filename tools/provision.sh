@@ -158,8 +158,10 @@ fi
            cp ../boot-image/purchased_boards_BOOT.BIN ../BOOT.BIN
            ;;
   esac
+
+  read -p "What is the name of your ssd card (sdb)? " DEVICE
   
-  ./deployDevice /dev/sdb ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin 
+  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin 
 
   if [ ! $? -eq 0 ]; then
     printf "\nERROR: %s\n" "deployDevice Failed!"
