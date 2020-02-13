@@ -4,6 +4,8 @@
 #include "xaxidma.h"
 #include "xintc.h"
 
+#define MB_PROMPT "\r\nMB> "
+
 // LED colors and controller
 struct color {
   u32 r;
