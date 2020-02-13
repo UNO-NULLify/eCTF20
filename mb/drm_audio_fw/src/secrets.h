@@ -24,7 +24,7 @@ struct R_Data {
 };
 
 // Array of region data structs
-struct R_Data region_data[PROVISIONED_REGIONS];
+struct R_Data RegionData[PROVISIONED_REGIONS];
 
 // User data struct
 struct U_Data {
@@ -36,6 +36,6 @@ struct U_Data {
 };
 
 // Array of user data structs
-struct U_Data user_data[PROVISIONED_USERS];
+struct U_Data UserData[PROVISIONED_USERS];
 
 #endif // SECRETS_H
