@@ -105,13 +105,13 @@ int nsleep(unsigned long useconds)
 *
 * @note		Instruction cache should be enabled for this to work.
 *
-******************************************************************************/
+******************************************************************************
 int usleep(unsigned long useconds)
 {
 	sleep_common((u32)useconds, ITERS_PER_USEC);
 
 	return 0;
-}
+}/
 
 /*****************************************************************************/
 /**
