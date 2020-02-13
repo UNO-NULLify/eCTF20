@@ -114,12 +114,12 @@ void checkProc() {
   }
 
   char line[1024] = {};
-  char *fgets(char *s, int size, FILE *stream);
+  char *fgets(char *s, int size, FILE *stream); // TODO: Why are we doing this?
   while (fgets(line, sizeof(line), proc_status) != NULL) {
     const char traceString[] = "TracerPid:";
     char *tracer = strstr(line, traceString);
     if (tracer != NULL) {
-      int pid = atoi(tracer + sizeof(traceString) - 1);
+      int pid = atoi(tracer + sizeof(traceString) - 1); // TODO: Replace w/ strol?
       if (pid != 0) {
         fclose(proc_status);
         exit(EXIT_FAILURE);
@@ -143,7 +143,7 @@ void logOn(char *username, char *pin) {
   } else {
     // search username
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-      if (sodium_memcmp(user_data[i].name, username)) {
+      if (sodium_memcmp(user_data[i].name, username, sizeof(user_data[i].name))) {
         // generate and search hash
         if (crypto_pwhash_str_verify(user_data[i].pin_hash, pin, strlen(pin))) {
           UserMD.name = user_data[i].name;
@@ -154,7 +154,7 @@ void logOn(char *username, char *pin) {
           UserMD.logged_in = 1;
         }
         xil_printf("%s\r\n", "ERROR: User not found");
-        sodium_memzero(UserMD, sizeof(UserMD));
+        sodium_memzero(&UserMD, sizeof(UserMD));
         // delay failed attempt by 5 seconds
         sleep(LOGIN_DELAY);
       }
@@ -185,23 +185,17 @@ void share(char *recipient) {
   // check if logged in
   if (SongMD.loaded) {                               // check song is loaded
     if (UserMD.logged_in) {                          // check user is logged in
-      if (sodium_memcmp(SongMD.owner, UserMD.name) { // check user is the song owner
+      if (sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) { // check user is the song owner
         for (int i = 0; i < PROVISIONED_USERS;
              i++) { // loop through every user in database
-          if (sodium_memcmp(user_data[i].name,
-                            recipient)) { // check recipient exists
+          if (sodium_memcmp(user_data[i].name, recipient, sizeof(user_data[i].name))) { // check recipient exists
             for (int j = 0; j < PROVISIONED_USERS;
                  j++) { // loop through every shared user in song database
-              if (!sodium_memcmp(SongMD.shared[j],
-                                 recipient)) { // check recipient doesnt already
-                                               // have access
-                for (int k = 0; k < PROVISIONED_USERS;
-                     k++) { // loop through every shared user in song database
-                            // (again)
-                  if (sodium_memcmp(SongMD.shared[k],
-                                    NULL)) { // check for an empty spot
-                    strcpy(SongMD.shared[k],
-                           recipient); // add recipient to list
+              if (!sodium_memcmp(SongMD.shared[j], recipient, sizeof(SongMD.shared[j]))) { // check recipient doesnt already have access
+                  /* TODO: Why is k++ unreachable? */
+                for (int k = 0; k < PROVISIONED_USERS; k++) { // loop through every shared user in song database (again)
+                  if (sodium_memcmp(SongMD.shared[k], NULL)) { // check for an empty spot
+                    strcpy(SongMD.shared[k], recipient); // add recipient to list
                     /*
                      * TODO: write shared list somewhere...
                      * - song metadata?
@@ -210,7 +204,7 @@ void share(char *recipient) {
                     break; // user found, break out of loop
                   } else {
                     xil_printf("%s\r\n", "ERROR: Too many shared users!");
-                    sodium_memzero(SongMD, sizeof(SongMD));
+                    sodium_memzero(&SongMD, sizeof(SongMD));
                     return;
                   }
                 }
@@ -312,8 +306,7 @@ int main() {
     // Restart the parent so it can keep processing like normal
     int status = 0;
     wait(&status);
-    if (ptrace(PTRACE_SETOPTIONS, parent, NULL,
-               PTRACE_O_TRACEFORK | PTRACE_O_EXITKILL) != 0) {
+    if (ptrace(PTRACE_SETOPTIONS, parent, NULL, PTRACE_O_TRACEFORK | PTRACE_O_EXITKILL) != 0) {
       kill(parent, SIGKILL);
       exit(EXIT_FAILURE);
     }
@@ -346,12 +339,9 @@ int main() {
       InterruptProcessed = FALSE;
       setState(WORKING);
 
-      /* TODO: Set command to something
-       * command is set by the miPod player
-       */
-      switch (command) {
+      switch (command) { // TODO: Set command to something
       case LOGIN:
-        logOn();
+        logOn(); // TODO: Add parameters?
         break;
       case LOGOUT:
         logOff();
@@ -360,7 +350,7 @@ int main() {
         query();
         break;
       case SHARE:
-        share();
+        share(); // TODO: Add parameters?
         break;
       case PLAY:
         play();
