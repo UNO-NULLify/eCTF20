@@ -99,7 +99,7 @@ int main(int argc, char *argv[]){
     // record.percentage = 86.5;
 
 
-    writeMetadata(argv[2], argv[1], record);
+    // writeMetadata(argv[2], argv[1], record);
 
 
     return 0;
