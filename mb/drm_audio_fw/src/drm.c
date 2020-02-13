@@ -126,10 +126,6 @@ void checkProc() {
     fclose(proc_status);
 }
 
-void queryPlayer() {
-
-}
-
 void loadSong() {
 
 }
@@ -152,14 +148,14 @@ void logOn(char *username, char *pin) {
     } else {
         // search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
-            if (sodium_memcmp(user_data[i].name, username, sizeof(user_data[i].name))) {
+            if (sodium_memcmp(UserData[i].name, username, sizeof(UserData[i].name))) {
                 // generate and search hash
-                if (crypto_pwhash_str_verify(user_data[i].pin_hash, pin, strlen(pin))) {
-                    UserMD.name = user_data[i].name;
-                    UserMD.pin_hash = user_data[i].pin_hash;
-                    UserMD.hw_secret = user_data[i].hw_secret;
-                    UserMD.pub_key = user_data[i].pub_key;
-                    UserMD.pvt_key_enc = user_data[i].pvt_key_enc;
+                if (crypto_pwhash_str_verify(UserData[i].pin_hash, pin, strlen(pin))) {
+                    UserMD.name = UserData[i].name;
+                    UserMD.pin_hash = UserData[i].pin_hash;
+                    UserMD.hw_secret = UserData[i].hw_secret;
+                    UserMD.pub_key = UserData[i].pub_key;
+                    UserMD.pvt_key_enc = UserData[i].pvt_key_enc;
                     UserMD.logged_in = 1;
                 }
                 xil_printf("%s\r\n", "ERROR: User not found");
@@ -178,7 +174,6 @@ void logOff() {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s\r\n", "INFO: Logging out...");
-        // zero-out user struct
         sodium_memzero(&UserMD, sizeof(UserMD));
     } else {
         xil_printf("%s\r\n", "ERROR: Not logged in");
@@ -202,27 +197,33 @@ void share(char *recipient) {
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
+
     /* Check user is logged in */
     if (!UserMD.logged_in) {
         xil_printf("%s\r\n", "ERROR: Not logged in!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
+
     /* Check user is the song owner */
     if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
         xil_printf("%s\r\n", "ERROR: Not song owner!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
+
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         /* check recipient exists */
-        if (sodium_memcmp(user_data[i].name, recipient, sizeof(user_data[i].name))) { check_1 = 1; }
+        if (sodium_memcmp(UserData[i].name, recipient, sizeof(UserData[i].name))) { check_1 = 1; }
+
         /* Check recipient doesn't already have access */
         if (sodium_memcmp(SongMD.shared[i], recipient, sizeof(SongMD.shared[i]))) { check_2 = 0; }
+
         /* Check for an empty spot */
         if (sodium_memcmp(SongMD.shared[i], NULL, sizeof(SongMD.shared[i]))) { check_3 = 1; index = i; }
     }
+
     /* This odd code prevents ugly nested if-statements and multiple loops*/
     if (!check_1){
         xil_printf("%s\r\n", "ERROR: User does not exist!");
@@ -264,26 +265,57 @@ void querySong() {
         xil_printf("%s\r\n", "ERROR: Not logged in");
         return;
     }
+
     /* Check song is loaded */
     if (!SongMD.loaded) {
         xil_printf("%s\r\n", "ERROR: No song loaded!");
         sodium_memzero(&SongMD, sizeof(SongMD));
         return;
     }
+
     /* Print song regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
-    for (int i = 0; i < MAX_REGIONS; i++) {
+    for (int i = 0; i < SongMD.region_num; i++) {
         if (SongMD.region_list[i] != NULL) {
+            xil_printf(" %s", SongMD.region_list[i]);
+        } else if (SongMD.region_list[i] != NULL && i == SongMD.region_num -1) {
             xil_printf(" %s", SongMD.region_list[i]);
         }
     }
+
     /* Print song owner */
     xil_printf("%s%s %s", MB_PROMPT, "Owner:", SongMD.owner);
+
     /* Print shared users */
     xil_printf("%s%s", MB_PROMPT, "Authorized users:");
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         if (SongMD.shared[i] != NULL) {
+            xil_printf(" %s,", SongMD.shared[i]);
+        } else if (SongMD.shared[i] != NULL && i == PROVISIONED_USERS -1) {
             xil_printf(" %s", SongMD.shared[i]);
+        }
+    }
+    xil_printf("\r\n");
+}
+
+void queryPlayer() {
+    /* Print player regions */
+    xil_printf("%s%s", MB_PROMPT, "Regions:");
+    for (int i = 0; i < PROVISIONED_REGIONS; i++) {
+        if (RegionData[i].name != NULL) {
+            xil_printf(" %s,", RegionData[i].name);
+        } else if (RegionData[i].name != NULL && i == PROVISIONED_REGIONS -1) {
+            xil_printf(" %s", RegionData[i].name);
+        }
+    }
+
+    /* Print device users */
+    xil_printf("%s%s", MB_PROMPT, "Authorized users:");
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
+        if (UserData[i].name != NULL && i < PROVISIONED_USERS -1) {
+            xil_printf(" %s,", UserData[i].name);
+        } else if (UserData[i].name != NULL && i == PROVISIONED_USERS -1) {
+            xil_printf(" %s", UserData[i].name);
         }
     }
     xil_printf("\r\n");
@@ -393,6 +425,9 @@ int main() {
                     break;
                 case QUERY_SONG:
                     querySong();
+                    break;
+                case QUERY_PLAYER:
+                    queryPlayer();
                     break;
                 case SHARE:
                     share(); // TODO: Add parameters?
