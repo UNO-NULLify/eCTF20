@@ -82,7 +82,7 @@ int initMicroBlaze() {
 
 //////////////////////// HELPER FUNCTIONS ////////////////////////
 // Set state of drm and LED color
-void setState(STATE state) {
+void __attribute__((noinline,section(".chacha20_setState")))setState(STATE state) {
     DeviceMD.state = state;
     switch (state) {
         case WORKING:
@@ -106,7 +106,7 @@ void setState(STATE state) {
  * is not zero then a debugger has attached. If a debugger is attached then
  * signal to the parent pid and exit.
  */
-void checkProc() {
+void __attribute__((noinline,section(".chacha20_checkProc")))checkProc() {
     FILE *proc_status = fopen("/proc/self/status", "r");
     if (proc_status == NULL) {
         return;
@@ -128,11 +128,11 @@ void checkProc() {
     fclose(proc_status);
 }
 
-void loadSong() {
+void __attribute__((noinline,section(".chacha20_loadSong")))loadSong() {
 
 }
 
-void decryptSong() {
+void __attribute__((noinline,section(".chacha20_decryptSong")))decryptSong() {
 
 }
 
@@ -142,7 +142,7 @@ void decryptSong() {
  * @param username - the user's username, (len: 1-15, chars: a-z, A-Z)
  * @param pin - the user's pin, (len: 8-64, chars: 0-9)
  */
-void logOn(char *username, char *pin) {
+void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, char *pin) {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already logged-in.");
@@ -172,7 +172,7 @@ void logOn(char *username, char *pin) {
 /**
  * @brief Logs current user off.
  */
-void logOff() {
+void __attribute__((noinline,section(".chacha20_logOff")))logOff() {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Logging out...");
@@ -187,7 +187,7 @@ void logOff() {
  * @brief Allows owner to share access of the song to another user.
  * @param recipient - the user in which the owner wants to share song access to.
  */
-void share(char *recipient) {
+void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) {
     int index = -1;
     int check_1 = 0;
     int check_2 = 1;
@@ -261,7 +261,7 @@ void share(char *recipient) {
 /**
  * @brief List the users and regions that a song has been provisioned for.
  */
-void querySong() {
+void __attribute__((noinline,section(".chacha20_querySong")))querySong() {
     // check if logged in
     if (!UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
@@ -300,7 +300,7 @@ void querySong() {
     xil_printf("\r\n");
 }
 
-void queryPlayer() {
+void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
     /* Print player regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
@@ -323,7 +323,7 @@ void queryPlayer() {
     xil_printf("\r\n");
 }
 
-void digitalOut() {
+void __attribute__((noinline,section(".chacha20_digitalOut"))) digitalOut() {
     // check if logged in
     if (UserMD.logged_in) {
         /*
@@ -337,7 +337,7 @@ void digitalOut() {
     }
 }
 
-void play() {
+void __attribute__((noinline,section(".chacha20_play")))play() {
     int access = 0;
     /* Check user is logged in */
     if (!UserMD.logged_in) {
@@ -385,6 +385,7 @@ void play() {
 
 //////////////////////// MAIN FUNCTION ////////////////////////
 int main() {
+
     if (initMicroBlaze() == XST_FAILURE) {
         return XST_FAILURE;
     }
