@@ -112,7 +112,35 @@ Format string attack is possible on uses of mp_printf(), print_prompt(), and pri
 
 ## Reference Back-end Code review notes
 ### /mb/drm_audio_fw/src/constants.h
+<code>
+    (line 7)
+
+    #define SHARED_DDR_BASE (0x20000000 + 0x1CC00000)
+</code>
+
+By default the DDR address for the IPC is defined as seen above.
+
+<code>
+    (line 31)
+
+    #define MAX_SONG_SZ (1<<25)
+</code>
+
+Why would they not just use the number? Also, by default, this number is incorrect.
+
+
+
 ### /mb/drm_audio_fw/src/main.c
+
+
+<code>
+    (line )
+
+
+</code>
+
+
+
 ### /mb/drm_audio_fw/src/platform.h
 ### /mb/drm_audio_fw/src/platform.c
 
