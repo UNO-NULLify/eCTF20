@@ -126,8 +126,15 @@ By default the DDR address for the IPC is defined as seen above.
     #define MAX_SONG_SZ (1<<25)
 </code>
 
-Why would they not just use the number? Also, by default, this number is incorrect.
+Why would they not just use the number? Also, according to Frank, this number is incorrect by default.
 
+<code>
+    (line 23)
+
+    #define mb_printf(...) xil_printf(MB_PROMPT __VA_ARGS__)
+</code>
+
+All uses of mb_printf (which is used for the system prompt and all print statements) need a formatter in the string that is passed to it. Otherwise they will be vulnerable to a string format attack.
 
 
 ### /mb/drm_audio_fw/src/main.c
