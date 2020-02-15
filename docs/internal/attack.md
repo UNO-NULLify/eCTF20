@@ -2,6 +2,10 @@
 
 ## Attack Surfaces
 
+## Microblaze
+
+Utilize the microblaze debug module to do coredumping and other debugging functionality.
+
 ## Vulnerabilities
 
 ### miPod
