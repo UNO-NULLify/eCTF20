@@ -120,6 +120,7 @@ Format string attack is possible on uses of mp_printf(), print_prompt(), and pri
 
 By default the DDR address for the IPC is defined as seen above.
 
+
 <code>
     (line 31)
 
@@ -127,6 +128,7 @@ By default the DDR address for the IPC is defined as seen above.
 </code>
 
 Why would they not just use the number? Also, according to Frank, this number is incorrect by default.
+
 
 <code>
     (line 23)
@@ -139,17 +141,58 @@ All uses of mb_printf (which is used for the system prompt and all print stateme
 
 ### /mb/drm_audio_fw/src/main.c
 
-
 <code>
-    (line )
+    (lines 34 - 38)
 
-
+    // change states
+    #define change_state(state, color) c->drm_state = state; setLED(led, color);
+    #define set_stopped() change_state(STOPPED, RED)
+    #define set_working() change_state(WORKING, YELLOW)
+    #define set_playing() change_state(PLAYING, GREEN)
+    #define set_paused()  change_state(PAUSED, BLUE)
 </code>
 
+Important note regarding the lights on the Xilinx board and what actions they correspond to.
 
+
+<code>
+    (lines 51 - 52)
+
+    // shared variable between main thread and interrupt processing thread
+    volatile static int InterruptProcessed = FALSE;
+    static XIntc InterruptController;
+</code>
+
+The relevant details about the IPC mechanism.
+
+
+<code>
+    (lines )
+</code>
 
 ### /mb/drm_audio_fw/src/platform.h
 ### /mb/drm_audio_fw/src/platform.c
+### /mb/drm_audio_fw/src/secrets.h
+
+This headerfile is overwritten by the Python buildDevice script.
+
+
+### /mb/drm_audio_fw/src/util.c
+
+This file contains the basic setup for changing the LEDs, setting up the interrupt system, and configuring the I2S controller.
+
+<code>
+    (lines 141 - 146)
+
+    if(XAxiDma_HasSg(AxiDma))
+	{
+		xil_printf(MB_PROMPT "Device configured as SG mode\r\n");
+
+		return XST_FAILURE;
+	}
+</code>
+
+The code handling an issue where the I2S module is in SG mode has a print statement with no format specifier.
 
 ## Review of our design
 ### /mb/drm_audio_fw/src/drm.h
