@@ -12,7 +12,7 @@
 #define MAX_REGION_SZ 64
 #define MAX_REGIONS 32
 #define MAX_REGION_SECRET 160
-#define MAX_SONG_SZ (1 << 25)
+#define MAX_SONG_SZ 134217700 // 128MiB
 
 // shared buffer values
 enum commands {
