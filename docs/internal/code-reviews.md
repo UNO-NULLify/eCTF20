@@ -170,8 +170,7 @@ The relevant details about the IPC mechanism.
     (lines )
 </code>
 
-### /mb/drm_audio_fw/src/platform.h
-### /mb/drm_audio_fw/src/platform.c
+
 ### /mb/drm_audio_fw/src/secrets.h
 
 This headerfile is overwritten by the Python buildDevice script.
@@ -194,8 +193,11 @@ This file contains the basic setup for changing the LEDs, setting up the interru
 
 The code handling an issue where the I2S module is in SG mode has a print statement with no format specifier.
 
+### Everything else
+
+Is simply either a file full of Xilinx provided code or full of function prototypes.
+
+
 ## Review of our design
 ### /mb/drm_audio_fw/src/drm.h
 ### /mb/drm_audio_fw/src/drm.c
-### /mb/drm_audio_fw/src/platform.h
-### /mb/drm_audio_fw/src/platform.c
