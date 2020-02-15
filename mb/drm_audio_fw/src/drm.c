@@ -132,6 +132,35 @@ void __attribute__((noinline,section(".chacha20_decryptSong")))decryptSong() {
 
 }
 
+int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
+    int access = 0;
+    /* Check user is logged in */
+    if (!UserMD.logged_in) {
+        /* Check user is owner or shared user */
+        if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
+            access = 0;
+            for (int i = 0; i < PROVISIONED_USERS; i++) {
+                if (sodium_memcmp(SongMD.shared[i], UserMD.name, sizeof(SongMD.shared[i]))) {
+                    access = 1;
+                    break;
+                }
+            }
+        } else { access = 1; }
+    }
+
+    /* Check song region matches player */
+    for (int i = 0; i < SongMD.region_num; i++) {
+        for (int j = 0; j < PROVISIONED_REGIONS; j++) {
+            /* TODO: Somebody double-check my logic here */
+            if (sodium_memcmp(SongMD.region_list[i], RegionData[i].name, MAX_REGION_SZ)) {
+                access = 1;
+                break;
+            }
+        }
+    }
+    return access;
+}
+
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
 /**
  * @brief Logs in a user with the correct username and pin
@@ -319,61 +348,30 @@ void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
     xil_printf("\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_digitalOut"))) digitalOut() {
-    // check if logged in
-    if (UserMD.logged_in) {
-        /*
-         * TODO:
-         * - Check authorization using checkAuthorization()
-         * - Output to digital interface
-         */
+void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut() {
+    /* Check authorization */
+    if (checkAuth()) {
+        /* Export full song */
     } else {
-        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
-        return;
+        /* Export sample song */
     }
 }
 
 void __attribute__((noinline,section(".chacha20_play")))play() {
-    int access = 0;
-    /* Check user is logged in */
-    if (!UserMD.logged_in) {
-        access = 0;
-        /* Check user is owner or shared user */
-        if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
-            access = 0;
-            for (int i = 0; i < PROVISIONED_USERS; i++) {
-                if (sodium_memcmp(SongMD.shared[i], UserMD.name, sizeof(SongMD.shared[i]))) {
-                    access = 1;
-                    break;
-                }
-            }
-        } else { access = 1; }
-    }
-
-    /* Check song region matches player */
-    for (int i = 0; i < SongMD.region_num; i++) {
-        for (int j = 0; j < PROVISIONED_REGIONS; j++) {
-            /* TODO: Somebody double-check my logic here */
-            if (sodium_memcmp(SongMD.region_list[i], RegionData[i].name, MAX_REGION_SZ)) {
-                access = 1;
-                break;
-            }
-        }
-    }
-
-    if (access) {
+    /* Check authorization */
+    if (checkAuth()) {
         /* Play full song */
     } else {
         /* Play sample song */
     }
 
-        /* TODO:
-         * - Check if song is playing
-         * - Implement pause
-         * - Implement resume
-         * - Implement stop
-         * - Implement restart
-         */
+    /* TODO:
+     * - Check if song is playing
+     * - Implement pause
+     * - Implement resume
+     * - Implement stop
+     * - Implement restart
+     */
 }
 
 #pragma clang diagnostic push
