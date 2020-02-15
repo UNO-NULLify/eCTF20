@@ -113,12 +113,35 @@ Format string attack is possible on uses of mp_printf(), print_prompt(), and pri
 ## Reference Back-end Code review notes
 ### /mb/drm_audio_fw/src/constants.h
 <code>
-    (line 7)
-
+    // shared DDR address
     #define SHARED_DDR_BASE (0x20000000 + 0x1CC00000)
+
+    // memory constants
+    #define CHUNK_SZ 16000
+    #define FIFO_CAP 4096*4
+
+    // number of seconds to record/playback
+    #define PREVIEW_TIME_SEC 30
+
+    // ADC/DAC sampling rate in Hz
+    #define AUDIO_SAMPLING_RATE 48000
+    #define BYTES_PER_SAMP 2
+    #define PREVIEW_SZ (PREVIEW_TIME_SEC * AUDIO_SAMPLING_RATE * BYTES_PER_SAMP)
+
+    // printing utility
+    #define MB_PROMPT "\r\nMB> "
+    #define mb_printf(...) xil_printf(MB_PROMPT __VA_ARGS__)
+
+    // protocol constants
+    #define MAX_REGIONS 64
+    #define REGION_NAME_SZ 64
+    #define MAX_USERS 64
+    #define USERNAME_SZ 64
+    #define MAX_PIN_SZ 64
+    #define MAX_SONG_SZ (1<<25)
 </code>
 
-By default the DDR address for the IPC is defined as seen above.
+Many of the macros used throughout main.c are noted above, including the address of the mmap for IPC, sampling rates, and various values related to owners, songs, and pins.
 
 
 <code>
@@ -156,14 +179,18 @@ Important note regarding the lights on the Xilinx board and what actions they co
 
 
 <code>
-    (lines 51 - 52)
+    (lines 51 - 56)
 
     // shared variable between main thread and interrupt processing thread
     volatile static int InterruptProcessed = FALSE;
     static XIntc InterruptController;
+
+    void myISR(void) {
+    InterruptProcessed = TRUE;
+    } 
 </code>
 
-The relevant details about the IPC mechanism.
+The function myISR registers the interrupt as being processed.
 
 
 <code>
