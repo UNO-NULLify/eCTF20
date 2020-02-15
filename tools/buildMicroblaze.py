@@ -27,7 +27,7 @@ def output_helper(dev_path, device_dir):
 
     # may want to make a copy of the old miPod
     try:
-    """
+        """
         if os.path.exists(mipod):
             print("Saving %s as %s\n" % (mipod, mipod_old))
             os.rename(mipod, mipod_old)
@@ -36,7 +36,7 @@ def output_helper(dev_path, device_dir):
 
         os.rename(mipod_elf, mipod)
         print("Output produced: %s\n" % mipod)
-    """
+        """
 
         copy2(inter_path, mipod)
         print("Copied miPod.elf to \n %s" % (mipod))
