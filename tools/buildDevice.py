@@ -75,7 +75,8 @@ def verify_secrets(secrets_directory):
         sys.exit(1)
 
     else:
-        secrets_dir = secrets_directory + "/" + input_secrets
+        device_dir = secrets_directory
+        secrets = secrets_directory + "/" + input_secrets
 
         if (not os.path.exists(secrets)):
             print("The given filepath {%s} does not contain the expected device files" % secrets_directory)
