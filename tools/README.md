@@ -65,14 +65,14 @@ Args:
 
 ### buildDevice
 Syntax: 
-> ./buildDevice -p <DEV_PATH_ECTF> -n <PROJ_NAME> -bf <BUILD_FLAG> -secrets_dir <DEV_SECRETS_DIR>
+> ./buildDevice -p <DEV_PATH_ECTF> -n <PROJ_NAME> -bf <BUILD_FLAG> -secrets_dir <SECRETS_DIR>
 
 Args:
 - <DEV_PATH_ECTF> : is the path of your main working directory e.g. '/media/sf_ectf/2020-ectf/'
 - <PROJ_NAME> : name of the project to be created and referenced;
               it will be possible to open a `.xpr` (from create_project) in the Vivado gui
 - <BUILD_FLAG> : one of the modes defined above; the default will be to run [all] options
-- <DEV_SECRETS_DIR> : is a path to the "device_secrets.h" (or the equivalent if this is renamed)
+- <SECRETS_DIR> : is a path to the directory containing "device_secrets" and other device files.
 
 Please note:
 * buildDevice (the bash script) passes args directly to the buildDevice.py script. 
@@ -179,7 +179,8 @@ buildDevice relies on the following python and tcl scripts for each of its sub-c
 
 **[cs]**: `cpy_secrets` in buildDevice
 
-Copies the `device_secrets.h` produced from createDevice to `secrets.h`.
+Looks for and copies the `device_secrets.h` located in your secrets/device directory.
+It is initially produced by createDevice, and copied to `secrets.h`.
 
 This is located at: `/mb/drm_audio_fw/src/secrets.h`
 
@@ -216,15 +217,15 @@ set mb_hdf "$worksp/system_wrapper.hdf"
 
 **[cb]**: `combine_bitstream` in combineBitstream.py
 
-Creates the `download.bit` as output 
+Creates the `download.bit` as output in the given secrets/device directory.
 
 The following are used by the process, which will call upon updatemem:
 
 `(lines 17-19, combine_bitstream.tcl)`
 
-set sw_mmi "$worksp/Cora-Z7-07S/system_wrapper.mmi"
+set sw_mmi "$worksp/$proj_name/system_wrapper.mmi"
 
-set sw_bit "$worksp/Cora-Z7-07S/system_wrapper.bit"
+set sw_bit "$worksp/$proj_name/system_wrapper.bit"
 
 set drm_elf "$worksp/drm_audio_fw/Debug/drm_audio_fw.elf"
 

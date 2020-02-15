@@ -1,8 +1,4 @@
 #include <stdio.h>
-#include <sys/prctl.h>
-#include <sys/ptrace.h>
-#include <unistd.h>
-#include <wait.h>
 
 #include "drm.h"
 #include "include/sodium.h"
@@ -134,6 +130,35 @@ void __attribute__((noinline,section(".chacha20_loadSong")))loadSong() {
 
 void __attribute__((noinline,section(".chacha20_decryptSong")))decryptSong() {
 
+}
+
+int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
+    int access = 0;
+    /* Check user is logged in */
+    if (!UserMD.logged_in) {
+        /* Check user is owner or shared user */
+        if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
+            access = 0;
+            for (int i = 0; i < PROVISIONED_USERS; i++) {
+                if (sodium_memcmp(SongMD.shared[i], UserMD.name, sizeof(SongMD.shared[i]))) {
+                    access = 1;
+                    break;
+                }
+            }
+        } else { access = 1; }
+    }
+
+    /* Check song region matches player */
+    for (int i = 0; i < SongMD.region_num; i++) {
+        for (int j = 0; j < PROVISIONED_REGIONS; j++) {
+            /* TODO: Somebody double-check my logic here */
+            if (sodium_memcmp(SongMD.region_list[i], RegionData[i].name, MAX_REGION_SZ)) {
+                access = 1;
+                break;
+            }
+        }
+    }
+    return access;
 }
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
@@ -323,61 +348,30 @@ void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
     xil_printf("\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_digitalOut"))) digitalOut() {
-    // check if logged in
-    if (UserMD.logged_in) {
-        /*
-         * TODO:
-         * - Check authorization using checkAuthorization()
-         * - Output to digital interface
-         */
+void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut() {
+    /* Check authorization */
+    if (checkAuth()) {
+        /* Export full song */
     } else {
-        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
-        return;
+        /* Export sample song */
     }
 }
 
 void __attribute__((noinline,section(".chacha20_play")))play() {
-    int access = 0;
-    /* Check user is logged in */
-    if (!UserMD.logged_in) {
-        access = 0;
-        /* Check user is owner or shared user */
-        if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
-            access = 0;
-            for (int i = 0; i < PROVISIONED_USERS; i++) {
-                if (sodium_memcmp(SongMD.shared[i], UserMD.name, sizeof(SongMD.shared[i]))) {
-                    access = 1;
-                    break;
-                }
-            }
-        } else { access = 1; }
-    }
-
-    /* Check song region matches player */
-    for (int i = 0; i < SongMD.region_num; i++) {
-        for (int j = 0; j < PROVISIONED_REGIONS; j++) {
-            /* TODO: Somebody double-check my logic here */
-            if (sodium_memcmp(SongMD.region_list[i], RegionData[i].name, MAX_REGION_SZ)) {
-                access = 1;
-                break;
-            }
-        }
-    }
-
-    if (access) {
+    /* Check authorization */
+    if (checkAuth()) {
         /* Play full song */
     } else {
         /* Play sample song */
     }
 
-        /* TODO:
-         * - Check if song is playing
-         * - Implement pause
-         * - Implement resume
-         * - Implement stop
-         * - Implement restart
-         */
+    /* TODO:
+     * - Check if song is playing
+     * - Implement pause
+     * - Implement resume
+     * - Implement stop
+     * - Implement restart
+     */
 }
 
 #pragma clang diagnostic push
@@ -395,50 +389,6 @@ int main() {
 
     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Audio DRM Module has booted!");
 
-    int fork_pid = fork();
-    if (fork_pid == 0) {
-        // Set the process core as undumpable
-        prctl(PR_SET_DUMPABLE, 0);
-
-        // Trace the parent process
-        int parent = getppid();
-        if (ptrace(PTRACE_ATTACH, parent, NULL, NULL) != 0) {
-            kill(parent, SIGKILL);
-            exit(EXIT_FAILURE);
-        }
-
-        // Restart the parent so it can keep processing like normal
-        int status = 0;
-        wait(&status);
-        if (ptrace(PTRACE_SETOPTIONS, parent, NULL, PTRACE_O_TRACEFORK | PTRACE_O_EXITKILL) != 0) {
-            kill(parent, SIGKILL);
-            exit(EXIT_FAILURE);
-        }
-        ptrace(PTRACE_CONT, parent, NULL, NULL);
-
-        // Handle any signals that may come in from traces
-        while (1) {
-            checkProc();
-            int pid = waitpid(-1, &status, WNOHANG);
-            if (pid == 0) {
-                sleep(1);
-                continue;
-            }
-
-            if (status >> 16 == PTRACE_EVENT_FORK) {
-                // Follow the fork
-                long new_pid = 0;
-                ptrace(PTRACE_GETEVENTMSG, pid, NULL, &new_pid);
-                ptrace(PTRACE_ATTACH, new_pid, NULL, NULL);
-                ptrace(PTRACE_CONT, new_pid, NULL, NULL);
-            }
-            ptrace(PTRACE_CONT, pid, NULL, NULL);
-        }
-    } else if (fork_pid == -1) {
-        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Fork failed!");
-        return -1;
-    }
-
     // Run forever
     while (1) {
         // Wait for interrupt to start
@@ -446,7 +396,7 @@ int main() {
             InterruptProcessed = FALSE;
             setState(WORKING);
 
-            switch (command) { // TODO: Set command to something
+            /*switch (command) { // TODO: Set command to something
                 case LOGIN:
                     logOn(); // TODO: Add parameters?
                     break;
@@ -472,7 +422,7 @@ int main() {
                 default:
                     xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not a command!");
                     break;
-            }
+            }*/
 
             // Not sure why, but MITRE does this
             nsleep(5000); // Was previously 500us, might be too long
@@ -486,8 +436,3 @@ int main() {
 }
 
 #pragma clang diagnostic pop
-
-/*
- * Before we enter main check to see if a debugger is present
- */
-void __attribute__((constructor)) before_main() { checkProc(); }

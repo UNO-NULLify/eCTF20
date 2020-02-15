@@ -20,11 +20,6 @@ echo "
   Script
 "
 
-if ! grep -q 'hypervisor' /proc/cpuinfo; then
-  1>&2 printf "ERROR: %s\n" "Cannot execute script outside of Vagrant!"
-  exit 1
-fi
-
 if [ ! -d ../.git ]; then
   1>&2 printf "ERROR: %s\n" "You're not in the tools directory!"
   exit 1
@@ -98,7 +93,7 @@ build_reference() {
 #-|-------------- Package Device --------------|-
 
   printf "\n\nRunning packageDevice...\n"
-  (time ./packageDevice ../boot-image/template.bif device1/miPod.bin ../mb/Cora-Z7-07S/download.bit) 2>> ../.logs/"$TIME".log
+  (time ./packageDevice ../boot-image/template.bif device1/miPod.bin device1/download.bit) 2>> ../.logs/"$TIME".log
   
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "packageDevice Failed!"
@@ -128,7 +123,7 @@ build_reference() {
            ;;
   esac
   
-  (time ./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device1/miPod.bin) 2>> ../.logs/"$TIME".log
+  (time ./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ device1/miPod ../boot-image/image.ub --mipod-bin-path device1/miPod.bin) 2>> ../.logs/"$TIME".log
 
   if [ ! $? -eq 0 ]; then
     1>&2 printf "\nERROR: %s\n" "deployDevice Failed!"
