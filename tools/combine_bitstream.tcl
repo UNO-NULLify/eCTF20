@@ -12,12 +12,13 @@ if { $argc != 1 } {
 }
 
 set dev_path [lindex $argv 0]
+set proj_name [lindex $argv 1]
 set worksp "$dev_path/mb"
 
 set sw_mmi "$worksp/Cora-Z7-07S/system_wrapper.mmi"
 set sw_bit "$worksp/Cora-Z7-07S/system_wrapper.bit"
 set drm_elf "$worksp/drm_audio_fw/Debug/drm_audio_fw.elf"
-set output "$worksp/Cora-Z7-07S/download.bit"
+set output "$dev_path/pl/proj/$proj_name/download.bit"
 
 puts "\nCalling updatemem as follows:
 updatemem -force -meminfo \
