@@ -155,7 +155,7 @@ void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, c
                     UserMD.pin_hash = user_data[i].pin_hash;
                     UserMD.hw_secret = user_data[i].hw_secret;
                     UserMD.pub_key = user_data[i].pub_key;
-                    UserMD.pvt_key = user_data[i].pvt_key;
+                    UserMD.pvt_key_enc = user_data[i].pvt_key;
                     UserMD.logged_in = 1;
                 }
                 xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
@@ -325,14 +325,12 @@ void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut(char* s
     /* Check authorization */
     if (checkAuth()) {
         /* Export full song */
-        xil_printf(MB_PROMPT "%sDumping song (%dB)...", MB_PROMPT, c->song.wav_size);
-
-
+        //xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, c->song.wav_size);
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "Only playing 30 seconds");
 
     }
-    mb_printf("Song dump finished\r\n");
+    xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
 
 void __attribute__((noinline,section(".chacha20_play")))play() {
