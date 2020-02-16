@@ -1,8 +1,21 @@
 #include <stdio.h>
 #include <sodium.h>
 #include <string.h>
+#include "constents.h"
 
 #define CHUNK_SIZE 4096
+
+
+struct metadata
+{
+  char owner[MAX_USERNAME_SZ];
+  // char shared[PROVISIONED_USERS][MAX_USERNAME_SZ];
+  char song_name[MAX_SONG_NAME]; // null terminated string of size 15 or less
+  char region_list[MAX_REGIONS][MAX_REGION_SZ]; // 32 regions max of size 64 len + null
+  char region_secret_list[MAX_REGIONS][MAX_REGION_SECRET]; // 32 regions max of size 160 + null
+  // int region_num;
+};
+
 
 
 static int
@@ -47,6 +60,38 @@ ret:
 }
 
 
+struct metadata readMetadata(const char *target_file, const char *source_file){
+
+  struct metadata metaIn;
+  printf("Reading metadata...");
+
+  FILE *infile;
+
+  // open file for writing
+  infile = fopen ("person.dat", "r");
+  if (infile == NULL)
+  {
+      fprintf(stderr, "\nError opend file\n");
+      exit (1); //end the program
+  }
+  fread(&metaIn, sizeof(struct metadata), 1, infile);
+  printf("\nsong_name inside = %s\n", metaIn.song_name);
+  if(fwrite != 0){
+    printf("contents Read successfully!\n");
+  }
+  else
+  {
+       printf("error writing file !\n");
+  }
+
+  fclose(infile);
+
+  printf("reading metadata...\n");
+  return metaIn;
+}
+
+
+
 int main(int argc, char *argv[]){
 
   printf("Decrypting %s with the password: %s", argv[1],argv[3]);
@@ -68,5 +113,10 @@ int main(int argc, char *argv[]){
       printf("Decryption Failed");
       return 1;
     }
+    struct metadata metaIn;
+    metaIn = readMetadata(argv[2], argv[1]); //returns the metadata from a file
+
+    printf("\nsong_name from read in = %s\n", metaIn.song_name);
+
     return 0;
 }

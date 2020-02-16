@@ -1,15 +1,19 @@
 #include <stdio.h>
 #include <sodium.h>
 #include <string.h>
+#include "constents.h"
 
 #define CHUNK_SIZE 4096
+
 //test struct
 struct metadata
 {
-            char songName[16]; //null terminated string of size 15 or less
-            char songID[33]; // null terminated string of size 32
-            char regionList[2080]; // 32 regions max of size 64 len + null
-            char regionSecretList[5152];  // 32 regions max of size 160 + null
+  char owner[MAX_USERNAME_SZ];
+  // char shared[PROVISIONED_USERS][MAX_USERNAME_SZ];
+  char song_name[MAX_SONG_NAME]; // null terminated string of size 15 or less
+  char region_list[MAX_REGIONS][MAX_REGION_SZ]; // 32 regions max of size 64 len + null
+  char region_secret_list[MAX_REGIONS][MAX_REGION_SECRET]; // 32 regions max of size 160 + null
+  // int region_num;
 };
 
 
@@ -44,34 +48,92 @@ encrypt(const char *target_file, const char *source_file,
     return 0;
 }
 
-int writeMetadata(const char *target_file, const char *source_file, struct metadata metaIn ){
 
+//Write file metadata
+//Target file is the file to write to
+// metaIn is the metadata struct in to write to the file
+int writeMetadata(const char *target_file, struct metadata metaIn ){
   FILE *outfile;
-
   // open file for writing
-  outfile = fopen ("person.dat", "w");
+  outfile = fopen (target_file, "w");
   if (outfile == NULL)
   {
       fprintf(stderr, "\nError opend file\n");
       exit (1);
   }
-  fwrite (&metaIn, sizeof(struct metadata), 1, outfile);
+  fwrite(&metaIn, sizeof(struct metadata), 1, outfile);
 
-  if(fwrite != 0)
-       printf("contents to file written successfully !\n");
+  if(fwrite != 0){
+    printf("contents to file written successfully !\n");
+  }
   else
+  {
        printf("error writing file !\n");
-       fclose (outfile);
+  }
 
+  fclose (outfile);
   printf("writing metadata...\n");
   return 1;
-
 }
 
 
-// argv 1 is input file, argv 2 is the output file, argv 3 is the
 int main(int argc, char *argv[]){
 
+//Todo: could be modified
+  int songName;
+  int shortPath;
+  int shortSecret;
+  int fullPath;
+  int secret;
+  int outfile;
+  int regionSecrets;
+  int regions;
+  int songID;
+
+
+  //create struct for the song
+  struct metadata metaOut;
+
+  if(argc < 17)
+  {
+    printf("%s","Failed: Correct format ./encryptFile\n");
+    //TODO: change to include newlines
+    printf("--owner [OWNERNAME]
+--SongName [SONGNAME]
+--30path [path/to/file]
+--30secret SECRET
+--fullpath [path/to/file]
+--secret SECRET
+--outFile [path/out]
+--regionSecrets [regionsec1 regionsec2 regionsec3]
+--regions [region1 region2 region3]
+--songID [songID]%s","");
+    exit(0);
+  }
+
+//TODO: create input from protect song for all its params and put it in the metadata struct
+  for (int i = 0; i < argc; i++)
+  {
+    //printf("%s", argv[i]);
+    if(strcmp(argv[i],"--owner")==0)
+    {
+      strcpy(metaOut.owner, argv[i+1]);
+    }
+    if(strcmp(argv[i], argv[i+1])==0)
+    {
+      printf("The owner is %s\n", argv[i+1]);
+    }
+    if(strcmp(argv[i],"--owner")==0)
+    {
+      printf("The owner is %s\n", argv[i+1]);
+    }
+
+  }
+
+
+
+  printf("\nNumber of args: %d", argc);
+//TODO:: Change to the encryption key from earlier
   printf("\nEncrypting %s with the password: %s\n", argv[1],argv[3]);
 
   unsigned char hash[crypto_generichash_BYTES];
@@ -93,13 +155,16 @@ int main(int argc, char *argv[]){
     }
 
 
-    // struct metadata record;
-    // record.id=1;
-    // strcpy(record.name, "Raju");
-    // record.percentage = 86.5;
+//TODO: move to the previous lines
+    strcpy(metaOut.owner, "Raju");
+    strcpy(metaOut.song_name, "thisisatest");
+    strcpy(metaOut.region_list, "thisisatest");
+    strcpy(metaOut.region_secret_list, "thisisatest");
+    // metaOut.percentage = 86.5;
 
-
-    writeMetadata(argv[2], argv[1], record);
+    printf("\nsong_name = %s\n", metaOut.song_name);
+//TODO: change to the correct argument
+    writeMetadata(argv[2],metaOut);
 
 
     return 0;

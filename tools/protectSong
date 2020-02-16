@@ -63,9 +63,20 @@ def main():
     parent = os.path.abspath(os.path.join(args.outfile, os.pardir))
     out_f_name = args.outfile.split("/")[-1]
     name = out_f_name.split(".")[0] + "_sample." + out_f_name.split(".")[1]
-    call(["./encryptFile", smallFile, os.path.join(parent, name), str(hardwareSecretHash30.hex())])
-    call(["./encryptFile", args.infile, args.outfile, str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())])
-    #call(["./decryptFile", "out", "PlayMe", str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())])
+    ## TODO: Check the 30path and owner path
+    call(["./encryptFile", "--owner", "DrewGriess",
+    "--SongName", "namee",
+    "--30path", smallFile,
+    "--30secret", str(hardwareSecretHash30.hex()),
+    "--fullpath", args.infile,
+    "--secret", str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex()),
+    "--regionSecrets", "tempregionsec",
+    "--regions", "USA",
+    "--songID", songID])
+    #smallFile, os.path.join(parent, name), str(hardwareSecretHash30.hex())])
+    #call(["./encryptFile", args.infile, args.outfile, str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())])
+    #print(f"Decrypting File...")
+    #call(["./decryptFile", args.outfile, "PlayMe", str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())])
 
 if __name__ == '__main__':
     main()
