@@ -39,52 +39,59 @@ void EnableCaches();
 void DisableCaches();
 
 int main() {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
-  return 0;
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
+   return 0;
 }
 
 void DemoInitialize() {
-  EnableCaches();
-  GPIO_begin(&myDevice, XPAR_PMODGPIO_0_AXI_LITE_GPIO_BASEADDR, 0xFF);
+   EnableCaches();
+   GPIO_begin(&myDevice, XPAR_PMODGPIO_0_AXI_LITE_GPIO_BASEADDR, 0xFF);
 }
 
 void DemoRun() {
-  int pin1 = 0;
-  int pin2 = 0;
-  int pin3 = 0;
-  int pin4 = 0;
-  int all_pins = 0;
+   int pin1 = 0;
+   int pin2 = 0;
+   int pin3 = 0;
+   int pin4 = 0;
+   int all_pins = 0;
 
-  xil_printf("GPIO Input Demo\n\r");
+   xil_printf("GPIO Input Demo\n\r");
 
-  while (1) {
-    // Read individually
-    pin1 = GPIO_getPin(&myDevice, 1);
-    pin2 = GPIO_getPin(&myDevice, 2);
-    pin3 = GPIO_getPin(&myDevice, 3);
-    pin4 = GPIO_getPin(&myDevice, 4);
+   while (1) {
+      // Read individually
+      pin1 = GPIO_getPin(&myDevice, 1);
+      pin2 = GPIO_getPin(&myDevice, 2);
+      pin3 = GPIO_getPin(&myDevice, 3);
+      pin4 = GPIO_getPin(&myDevice, 4);
 
-    // Read all together
-    all_pins = GPIO_getPins(&myDevice);
+      // Read all together
+      all_pins = GPIO_getPins(&myDevice);
 
-    // Print individual reads and the total read masked to the first four bits
-    xil_printf(
-        "pin 1: %d   pin 2: %d   pin 3: %d   pin 4: %d   all pins: %x\n\r",
-        pin1, pin2, pin3, pin4, all_pins & 0x0f);
-  }
+      // Print individual reads and the total read masked to the first four bits
+      xil_printf(
+         "pin 1: %d   pin 2: %d   pin 3: %d   pin 4: %d   all pins: %x\n\r",
+         pin1,
+         pin2,
+         pin3,
+         pin4,
+         all_pins & 0x0f
+      );
+   }
 }
 
-void DemoCleanup() { DisableCaches(); }
+void DemoCleanup() {
+   DisableCaches();
+}
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -92,10 +99,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

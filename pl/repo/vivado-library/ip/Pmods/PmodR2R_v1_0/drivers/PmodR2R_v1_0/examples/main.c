@@ -28,8 +28,8 @@
 /*                                                                            */
 /******************************************************************************/
 
-#include "PmodR2R.h"
 #include "math.h"
+#include "PmodR2R.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xil_printf.h"
@@ -44,53 +44,55 @@ void DisableCaches();
 PmodR2R myDevice;
 
 int main(void) {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
-  return 0;
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
+   return 0;
 }
 
 void DemoRun() {
-  const double one_degree_delta = 3.14159 / 180;
-  double i = 0, voltage;
-  u32 data;
-  xil_printf("Demo Initialized, producing 3.3 V sin wave, T = 360ms\n\r");
+   const double one_degree_delta = 3.14159 / 180;
+   double i = 0, voltage;
+   u32 data;
+   xil_printf("Demo Initialized, producing 3.3 V sin wave, T = 360ms\n\r");
 
-  while (1) {
-    voltage = 3.3 * (sin(i) + 1.0) / 2.0;
+   while (1) {
+      voltage = 3.3 * (sin(i) + 1.0) / 2.0;
 
-    if (voltage > 3.3)
-      data = 0xFF;
-    else if (voltage < 0.0)
-      data = 0x00;
-    else
-      data = (int)(255.0 * voltage / 3.3);
+      if (voltage > 3.3)
+         data = 0xFF;
+      else if (voltage < 0.0)
+         data = 0x00;
+      else
+         data = (int) (255.0 * voltage / 3.3);
 
-    // Convert degrees to radians, output 0->3.3V sin wave
-    R2R_write(&myDevice, data);
+      // Convert degrees to radians, output 0->3.3V sin wave
+      R2R_write(&myDevice, data);
 
-    i = i + one_degree_delta;
-    if (i >= 6.28318)
-      i -= 6.28318;
+      i = i + one_degree_delta;
+      if (i >= 6.28318)
+         i -= 6.28318;
 
-    usleep(1000);
-  }
+      usleep(1000);
+   }
 }
 
 void DemoInitialize() {
-  EnableCaches();
-  R2R_begin(&myDevice, XPAR_PMODR2R_0_AXI_LITE_GPIO_BASEADDR);
+   EnableCaches();
+   R2R_begin(&myDevice, XPAR_PMODR2R_0_AXI_LITE_GPIO_BASEADDR);
 }
 
-void DemoCleanup() { DisableCaches(); }
+void DemoCleanup() {
+   DisableCaches();
+}
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -98,10 +100,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

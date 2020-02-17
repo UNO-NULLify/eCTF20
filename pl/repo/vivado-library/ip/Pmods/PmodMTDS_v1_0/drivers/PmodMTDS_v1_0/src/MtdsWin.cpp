@@ -1,79 +1,71 @@
 /********************************************************************************/
 /*																				*/
-/*	MtdsWin.cpp	--	Implementation for MTDS Windowing System Object
- * Class		*/
+/*	MtdsWin.cpp	--	Implementation for MTDS Windowing System Object Class		*/
 /*																				*/
 /********************************************************************************/
-/*	Author: 	Gene Apperson
- */
-/*	Copyright 2015, Digilent Inc. All rights reserved.
- */
+/*	Author: 	Gene Apperson													*/
+/*	Copyright 2015, Digilent Inc. All rights reserved.							*/
 /********************************************************************************/
-/*  Module Description:
- */
+/*  Module Description: 														*/
 /*																				*/
 /*																				*/
 /********************************************************************************/
-/*  Revision History:
- */
+/*  Revision History:															*/
 /*																				*/
-/*	2015-10-13(GeneApperson): created
- */
+/*	2015-10-13(GeneApperson): created											*/
 /*																				*/
 /********************************************************************************/
 
-/* ------------------------------------------------------------ */
-/*				Include File Definitions
- */
-/* ------------------------------------------------------------ */
-
-#include <stdlib.h>
-#include <string.h>
-
-#include <stdint.h>
-
-#include "MtdsCore.h"
-#include "ProtoDefs.h"
-#include "mtds.h"
 
 /* ------------------------------------------------------------ */
-/*				Local Type Definitions
- */
+/*				Include File Definitions						*/
 /* ------------------------------------------------------------ */
 
-/* ------------------------------------------------------------ */
-/*				Global Variables
- */
-/* ------------------------------------------------------------ */
+#include	<stdlib.h>
+#include	<string.h>
 
-extern CHDR *pchdrMtdsCmd;
-extern RHDR *prhdrMtdsRet;
-extern uint8_t rgbMtdsRetVal[cbRetValInit + sizeof(RHDR)];
+#include	<stdint.h>
 
-/* ------------------------------------------------------------ */
-/*				Local Variables
- */
-/* ------------------------------------------------------------ */
+#include	"ProtoDefs.h"
+#include	"mtds.h"
+#include	"MtdsCore.h"
 
 /* ------------------------------------------------------------ */
-/*				Forward Declarations
- */
+/*				Local Type Definitions							*/
 /* ------------------------------------------------------------ */
 
-/* ------------------------------------------------------------ */
-/*				Procedure Definitions
- */
-/* ------------------------------------------------------------ */
 
 /* ------------------------------------------------------------ */
-/*				MTFS Object Class Implementation
- */
+/*				Global Variables								*/
+/* ------------------------------------------------------------ */
+
+extern CHDR *	pchdrMtdsCmd;
+extern RHDR *	prhdrMtdsRet;
+extern uint8_t	rgbMtdsRetVal[cbRetValInit+sizeof(RHDR)];
+
+/* ------------------------------------------------------------ */
+/*				Local Variables									*/
+/* ------------------------------------------------------------ */
+
+
+/* ------------------------------------------------------------ */
+/*				Forward Declarations							*/
+/* ------------------------------------------------------------ */
+
+
+/* ------------------------------------------------------------ */
+/*				Procedure Definitions							*/
+/* ------------------------------------------------------------ */
+
+
+/* ------------------------------------------------------------ */
+/*				MTFS Object Class Implementation				*/
 /* ------------------------------------------------------------ */
 /***	MTWS::CreateWindow(hwinParent, wcls, wstl, xco, yco, dxco, dyco)
 **
 **	Parameters:
-**		hwinParent	- handle to the parent window (or 0 for a top
-*level window) *		wcls		- window class
+**		hwinParent	- handle to the parent window (or 0 for a top level window)
+**		wcls		- window class
 **		wstl		- window style bits
 **		xco, yco	- origin of client area of window
 **		dxco, dyco	- dimensions of client area of window
@@ -85,40 +77,40 @@ extern uint8_t rgbMtdsRetVal[cbRetValInit + sizeof(RHDR)];
 **		Returns 0 if failure.
 **
 **	Description:
-**		Create a window with the specified attributes and return its
-*handle.
+**		Create a window with the specified attributes and return its handle.
 */
 
-HWIN MTWS::CreateWindow(HWIN hwinParent, uint16_t wcls, uint32_t wstl,
-                        int16_t xco, int16_t yco, int16_t dxco, int16_t dyco) {
+HWIN MTWS::CreateWindow(HWIN hwinParent, uint16_t wcls, uint32_t wstl, 
+							int16_t xco, int16_t yco, int16_t dxco, int16_t dyco) {
 
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM4A8B prm;
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM4A8B	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwinParent;
-  prm.valA2 = 0;
-  prm.valA3 = 0;
-  prm.valA4 = wstl;
-  prm.valB1 = wcls;
-  prm.valB2 = xco;
-  prm.valB3 = yco;
-  prm.valB4 = dxco;
-  prm.valB5 = dyco;
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwinParent;
+	prm.valA2 = 0;
+	prm.valA3 = 0;
+	prm.valA4 = wstl;
+	prm.valB1 = wcls;
+	prm.valB2 = xco;
+	prm.valB3 = yco;
+	prm.valB4 = dxco;
+	prm.valB5 = dyco;
 
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinCreateWindow, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinCreateWindow, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return 0;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return 0;
+	}
 
-  /* Return success.
-   */
-  return pret->valA1;
+	/* Return success.
+	*/
+	return pret->valA1;
+
+
 }
 
 /* ------------------------------------------------------------ */
@@ -134,28 +126,27 @@ HWIN MTWS::CreateWindow(HWIN hwinParent, uint16_t wcls, uint32_t wstl,
 **		Returns true if successful, false if error.
 **
 **	Description:
-**		Deactivate the specified window and prepare it for being
-*destroyed.
+**		Deactivate the specified window and prepare it for being destroyed.
 */
 
 bool MTWS::CloseWindow(HWIN hwin) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinCloseWindow, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinCloseWindow, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -175,23 +166,23 @@ bool MTWS::CloseWindow(HWIN hwin) {
 */
 
 bool MTWS::DestroyWindow(HWIN hwin) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinDestroyWindow, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinDestroyWindow, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -199,8 +190,7 @@ bool MTWS::DestroyWindow(HWIN hwin) {
 **
 **	Parameters:
 **		hwin		- handle to the window
-**		fShow		- true to show the window, false to hide the
-*window
+**		fShow		- true to show the window, false to hide the window
 **
 **	Return Values:
 **		none
@@ -213,24 +203,24 @@ bool MTWS::DestroyWindow(HWIN hwin) {
 */
 
 bool MTWS::ShowWindow(HWIN hwin, bool fShow) {
-  PRM1A1B prm;
+	PRM1A1B	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valB1 = fShow ? 1 : 0;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinShowWindow, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valB1 = fShow ? 1 : 0;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinShowWindow, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -251,25 +241,25 @@ bool MTWS::ShowWindow(HWIN hwin, bool fShow) {
 */
 
 bool MTWS::SetPosition(HWIN hwin, int16_t xco, int16_t yco) {
-  PRM1A2B prm;
+	PRM1A2B	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valB1 = xco;
-  prm.valB2 = yco;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetPosition, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valB1 = xco;
+	prm.valB2 = yco;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetPosition, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -290,25 +280,25 @@ bool MTWS::SetPosition(HWIN hwin, int16_t xco, int16_t yco) {
 */
 
 bool MTWS::SetSize(HWIN hwin, int16_t dxco, int16_t dyco) {
-  PRM1A2B prm;
+	PRM1A2B	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valB1 = dxco;
-  prm.valB2 = dyco;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetSize, sizeof(prm), (uint8_t *)&prm,
-                        0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valB1 = dxco;
+	prm.valB2 = dyco;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetSize, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -316,8 +306,7 @@ bool MTWS::SetSize(HWIN hwin, int16_t dxco, int16_t dyco) {
 **
 **	Parameters:
 **		hwin		- handle to the window
-**		wmv			- mask to indicate which portions of the
-*window size and position to change
+**		wmv			- mask to indicate which portions of the window size and position to change
 **
 **	Return Values:
 **		none
@@ -329,30 +318,29 @@ bool MTWS::SetSize(HWIN hwin, int16_t dxco, int16_t dyco) {
 **		Move or resize the specified window
 */
 
-bool MTWS::MoveWindow(HWIN hwin, uint16_t wmv, int16_t xco, int16_t yco,
-                      int16_t dxco, int16_t dyco) {
-  PRM1A5B prm;
+bool MTWS::MoveWindow(HWIN hwin, uint16_t wmv, int16_t xco, int16_t yco, int16_t dxco, int16_t dyco) {
+	PRM1A5B	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valB1 = wmv;
-  prm.valB2 = xco;
-  prm.valB3 = yco;
-  prm.valB4 = dxco;
-  prm.valB5 = dyco;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinMoveWindow, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valB1 = wmv;
+	prm.valB2 = xco;
+	prm.valB3 = yco;
+	prm.valB4 = dxco;
+	prm.valB5 = dyco;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinMoveWindow, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -360,9 +348,8 @@ bool MTWS::MoveWindow(HWIN hwin, uint16_t wmv, int16_t xco, int16_t yco,
 **
 **	Parameters:
 **		hwin		- handle to the window
-**		pxco, pyco	- pointers to variables to receive window
-*position *		pdxco, pdyco - pointer to variables to receive window
-*size
+**		pxco, pyco	- pointers to variables to receive window position
+**		pdxco, pdyco - pointer to variables to receive window size
 **
 **	Return Values:
 **		none
@@ -374,39 +361,38 @@ bool MTWS::MoveWindow(HWIN hwin, uint16_t wmv, int16_t xco, int16_t yco,
 **		Return the current position and size of the window
 */
 
-bool MTWS::GetWindowPos(HWIN hwin, int16_t *pxco, int16_t *pyco, int16_t *pdxco,
-                        int16_t *pdyco) {
-  RET4B *pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+bool MTWS::GetWindowPos(HWIN hwin, int16_t * pxco, int16_t * pyco, int16_t * pdxco, int16_t * pdyco) {
+	RET4B *	pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetWindowPos, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetWindowPos, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  if (pxco != 0) {
-    *pxco = pret->valB1;
-  }
-  if (pyco != 0) {
-    *pyco = pret->valB2;
-  }
-  if (pdxco != 0) {
-    *pdxco = pret->valB3;
-  }
-  if (pdyco != 0) {
-    *pdyco = pret->valB4;
-  }
+	/* Return success.
+	*/
+	if (pxco != 0) {
+		*pxco = pret->valB1;
+	}
+	if (pyco != 0) {
+		*pyco = pret->valB2;
+	}
+	if (pdxco != 0) {
+		*pdxco = pret->valB3;
+	}
+	if (pdyco != 0) {
+		*pdyco = pret->valB4;
+	}
 
-  return true;
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -426,30 +412,30 @@ bool MTWS::GetWindowPos(HWIN hwin, int16_t *pxco, int16_t *pyco, int16_t *pdxco,
 **		Return the bounding rectangle of the window
 */
 
-bool MTWS::GetWindowRect(HWIN hwin, RCT *prct) {
-  RET4B *pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+bool MTWS::GetWindowRect(HWIN hwin, RCT * prct) {
+	RET4B *	pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetWindowRect, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetWindowRect, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  prct->xcoLeft = pret->valB1;
-  prct->ycoTop = pret->valB2;
-  prct->xcoRight = pret->valB3;
-  prct->ycoBottom = pret->valB4;
+	/* Return success.
+	*/
+	prct->xcoLeft = pret->valB1;
+	prct->ycoTop = pret->valB2;
+	prct->xcoRight = pret->valB3;
+	prct->ycoBottom = pret->valB4;
 
-  return true;
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -469,30 +455,30 @@ bool MTWS::GetWindowRect(HWIN hwin, RCT *prct) {
 **		Return the bounding rectangle of the window
 */
 
-bool MTWS::GetClientRect(HWIN hwin, RCT *prct) {
-  RET4B *pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+bool MTWS::GetClientRect(HWIN hwin, RCT * prct) {
+	RET4B *	pret = (RET4B *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetClientRect, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetClientRect, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  prct->xcoLeft = pret->valB1;
-  prct->ycoTop = pret->valB2;
-  prct->xcoRight = pret->valB3;
-  prct->ycoBottom = pret->valB4;
+	/* Return success.
+	*/
+	prct->xcoLeft = pret->valB1;
+	prct->ycoTop = pret->valB2;
+	prct->xcoRight = pret->valB3;
+	prct->ycoBottom = pret->valB4;
 
-  return true;
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -512,24 +498,24 @@ bool MTWS::GetClientRect(HWIN hwin, RCT *prct) {
 */
 
 HDS MTWS::BeginUpdate(HWIN hwin) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinBeginUpdate, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinBeginUpdate, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return 0;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return 0;
+	}
 
-  /* Return success.
-   */
-  return pret->valA1;
+	/* Return success.
+	*/
+	return pret->valA1;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -549,23 +535,23 @@ HDS MTWS::BeginUpdate(HWIN hwin) {
 */
 
 bool MTWS::EndUpdate(HWIN hwin) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinEndUpdate, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinEndUpdate, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -585,23 +571,23 @@ bool MTWS::EndUpdate(HWIN hwin) {
 */
 
 bool MTWS::DrawBorder(HWIN hwin) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinDrawBorder, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinDrawBorder, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -621,24 +607,24 @@ bool MTWS::DrawBorder(HWIN hwin) {
 */
 
 HDS MTWS::BeginNcUpdate(HWIN hwin) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinBeginNcUpdate, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinBeginNcUpdate, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return 0;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return 0;
+	}
 
-  /* Return success.
-   */
-  return pret->valA1;
+	/* Return success.
+	*/
+	return pret->valA1;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -658,23 +644,23 @@ HDS MTWS::BeginNcUpdate(HWIN hwin) {
 */
 
 bool MTWS::EndNcUpdate(HWIN hwin) {
-  PRM1A prm;
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinEndNcUpdate, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinEndNcUpdate, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -695,24 +681,24 @@ bool MTWS::EndNcUpdate(HWIN hwin) {
 */
 
 bool MTWS::SetWindowId(HWIN hwin, uint32_t id) {
-  PRM2A prm;
+	PRM2A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valA2 = id;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetWindowId, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valA2 = id;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetWindowId, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -732,24 +718,24 @@ bool MTWS::SetWindowId(HWIN hwin, uint32_t id) {
 */
 
 uint32_t MTWS::GetWindowId(HWIN hwin) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetWindowId, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetWindowId, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return 0;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return 0;
+	}
 
-  /* Return success.
-   */
-  return pret->valA1;
+	/* Return success.
+	*/
+	return pret->valA1;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -769,26 +755,26 @@ uint32_t MTWS::GetWindowId(HWIN hwin) {
 **		Set the window title to the specified value.
 */
 
-bool MTWS::SetWindowTitle(HWIN hwin, char *szTitle) {
-  PRM1A1B prm;
+bool MTWS::SetWindowTitle(HWIN hwin, char * szTitle) {
+	PRM1A1B prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valB1 = cchTitleMax;
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valB1 = cchTitleMax;
 
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetWindowTitle, sizeof(prm),
-                        (uint8_t *)&prm, cchTitleMax, (uint8_t *)szTitle);
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetWindowTitle, sizeof(prm), (uint8_t *)&prm,
+						cchTitleMax, (uint8_t *)szTitle);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -809,30 +795,31 @@ bool MTWS::SetWindowTitle(HWIN hwin, char *szTitle) {
 **		Get the window title from the specified window.
 */
 
-bool MTWS::GetWindowTitle(HWIN hwin, uint32_t cchMax, char *szTitle) {
-  PRM2A prm;
+bool MTWS::GetWindowTitle(HWIN hwin, uint32_t cchMax, char * szTitle) {
+	PRM2A	prm;
 
-  if (cchMax > cchTitleMax) {
-    cchMax = cchTitleMax;
-  }
+	if (cchMax > cchTitleMax) {
+		cchMax = cchTitleMax;
+	}
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valA2 = cchMax;
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valA2 = cchMax;
 
-  mtds.MtdsProcessCmdRd(clsCmdWin, cmdWinGetWindowTitle, sizeof(prm),
-                        (uint8_t *)&prm, cchMax, (uint8_t *)szTitle);
+	mtds.MtdsProcessCmdRd(clsCmdWin, cmdWinGetWindowTitle, sizeof(prm), (uint8_t *)&prm,
+							cchMax, (uint8_t *)szTitle);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -853,24 +840,24 @@ bool MTWS::GetWindowTitle(HWIN hwin, uint32_t cchMax, char *szTitle) {
 */
 
 bool MTWS::SetWindowValue(HWIN hwin, uint32_t val) {
-  PRM2A prm;
+	PRM2A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valA2 = val;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetWindowValue, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valA2 = val;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetWindowValue, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -878,8 +865,7 @@ bool MTWS::SetWindowValue(HWIN hwin, uint32_t val) {
 **
 **	Parameters:
 **		hwin		- handle to the window
-**		pval		- pointer to the variable to receive the window
-*value
+**		pval		- pointer to the variable to receive the window value
 **
 **	Return Values:
 **		none
@@ -891,26 +877,26 @@ bool MTWS::SetWindowValue(HWIN hwin, uint32_t val) {
 **		Get the window value for the specified window.
 */
 
-bool MTWS::GetWindowValue(HWIN hwin, uint32_t *pval) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM1A prm;
+bool MTWS::GetWindowValue(HWIN hwin, uint32_t * pval) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM1A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetWindowValue, sizeof(prm),
-                        (uint8_t *)&prm, 0, 0);
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinGetWindowValue, sizeof(prm), (uint8_t *)&prm, 0, 0);
 
-  /* Check for error and return failure if so.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure if so.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  *pval = pret->valA1;
-  return true;
+	/* Return success.
+	*/
+	*pval = pret->valA1;
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -931,30 +917,30 @@ bool MTWS::GetWindowValue(HWIN hwin, uint32_t *pval) {
 **		Store the specified string into the specified window.
 */
 
-bool MTWS::SetWindowString(HWIN hwin, uint32_t cch, char *rgch) {
-  PRM2A prm;
+bool MTWS::SetWindowString(HWIN hwin, uint32_t cch, char * rgch) {
+	PRM2A	prm;
 
-  if (cch > cchWindowStringMax) {
-    cch = cchWindowStringMax;
-  }
+	if (cch > cchWindowStringMax) {
+		cch = cchWindowStringMax;
+	}
+		
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valA2 = cch;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valA2 = cch;
+	mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetWindowString, sizeof(prm), (uint8_t *)&prm,
+						cch, (uint8_t *)rgch);
 
-  mtds.MtdsProcessCmdWr(clsCmdWin, cmdWinSetWindowString, sizeof(prm),
-                        (uint8_t *)&prm, cch, (uint8_t *)rgch);
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
-
-  /* Return success.
-   */
-  return true;
+	/* Return success.
+	*/
+	return true;
 }
 
 /* ------------------------------------------------------------ */
@@ -963,9 +949,8 @@ bool MTWS::SetWindowString(HWIN hwin, uint32_t cch, char *rgch) {
 **	Parameters:
 **		hwin		- handle to the window
 **		cchBuf		- maximum number of characters to return
-**		pcchRet		- pointer to variable to receive number of bytes
-*returned *		pcchMax		- pointer to variable to receive total
-*length of the window string
+**		pcchRet		- pointer to variable to receive number of bytes returned
+**		pcchMax		- pointer to variable to receive total length of the window string
 **		rgch		- buffer to receive the window string
 **
 **	Return Values:
@@ -978,35 +963,35 @@ bool MTWS::SetWindowString(HWIN hwin, uint32_t cch, char *rgch) {
 **		Get the window title from the specified window.
 */
 
-bool MTWS::GetWindowString(HWIN hwin, uint32_t cchBuf, uint32_t *pcchRet,
-                           uint32_t *pcchMax, char *rgch) {
-  RET4A *pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
-  PRM2A prm;
+bool MTWS::GetWindowString(HWIN hwin, uint32_t cchBuf, uint32_t * pcchRet, uint32_t * pcchMax, char * rgch) {
+	RET4A *	pret = (RET4A *)&rgbMtdsRetVal[sizeof(RHDR)];
+	PRM2A	prm;
 
-  /* Send the command packet.
-   */
-  prm.valA1 = hwin;
-  prm.valA2 = cchBuf;
+	/* Send the command packet.
+	*/
+	prm.valA1 = hwin;
+	prm.valA2 = cchBuf;
 
-  mtds.MtdsProcessCmdRd(clsCmdWin, cmdWinGetWindowString, sizeof(prm),
-                        (uint8_t *)&prm, cchBuf, (uint8_t *)rgch);
+	mtds.MtdsProcessCmdRd(clsCmdWin, cmdWinGetWindowString, sizeof(prm), (uint8_t *)&prm,
+							cchBuf, (uint8_t *)rgch);
 
-  /* Check for error and return failure.
-   */
-  if (prhdrMtdsRet->sta != staCmdSuccess) {
-    return false;
-  }
+	/* Check for error and return failure.
+	*/
+	if (prhdrMtdsRet->sta != staCmdSuccess) {
+		return false;
+	}
 
-  /* Return success.
-   */
-  if (pcchRet != 0) {
-    *pcchRet = pret->valA1;
-  }
-  if (pcchMax != 0) {
-    *pcchMax = pret->valA2;
-  }
+	/* Return success.
+	*/
+	if (pcchRet != 0) {
+		*pcchRet = pret->valA1;
+	}
+	if (pcchMax != 0) {
+		*pcchMax = pret->valA2;
+	}
 
-  return true;
+	return true;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -1025,3 +1010,4 @@ bool MTWS::GetWindowString(HWIN hwin, uint32_t cchBuf, uint32_t *pcchRet,
 /* ------------------------------------------------------------ */
 
 /********************************************************************************/
+

@@ -45,10 +45,10 @@ void DemoSleep(u32 millis);
 PmodKYPD myDevice;
 
 int main(void) {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
-  return 0;
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
+   return 0;
 }
 
 // keytable is determined as follows (indices shown in Keypad position below)
@@ -59,50 +59,52 @@ int main(void) {
 #define DEFAULT_KEYTABLE "0FED789C456B123A"
 
 void DemoInitialize() {
-  EnableCaches();
-  KYPD_begin(&myDevice, XPAR_PMODKYPD_0_AXI_LITE_GPIO_BASEADDR);
-  KYPD_loadKeyTable(&myDevice, (u8 *)DEFAULT_KEYTABLE);
+   EnableCaches();
+   KYPD_begin(&myDevice, XPAR_PMODKYPD_0_AXI_LITE_GPIO_BASEADDR);
+   KYPD_loadKeyTable(&myDevice, (u8*) DEFAULT_KEYTABLE);
 }
 
 void DemoRun() {
-  u16 keystate;
-  XStatus status, last_status = KYPD_NO_KEY;
-  u8 key, last_key = 'x';
-  // Initial value of last_key cannot be contained in loaded KEYTABLE string
+   u16 keystate;
+   XStatus status, last_status = KYPD_NO_KEY;
+   u8 key, last_key = 'x';
+   // Initial value of last_key cannot be contained in loaded KEYTABLE string
 
-  Xil_Out32(myDevice.GPIO_addr, 0xF);
+   Xil_Out32(myDevice.GPIO_addr, 0xF);
 
-  xil_printf("Pmod KYPD demo started. Press any key on the Keypad.\r\n");
-  while (1) {
-    // Capture state of each key
-    keystate = KYPD_getKeyStates(&myDevice);
+   xil_printf("Pmod KYPD demo started. Press any key on the Keypad.\r\n");
+   while (1) {
+      // Capture state of each key
+      keystate = KYPD_getKeyStates(&myDevice);
 
-    // Determine which single key is pressed, if any
-    status = KYPD_getKeyPressed(&myDevice, keystate, &key);
+      // Determine which single key is pressed, if any
+      status = KYPD_getKeyPressed(&myDevice, keystate, &key);
 
-    // Print key detect if a new key is pressed or if status has changed
-    if (status == KYPD_SINGLE_KEY &&
-        (status != last_status || key != last_key)) {
-      xil_printf("Key Pressed: %c\r\n", (char)key);
-      last_key = key;
-    } else if (status == KYPD_MULTI_KEY && status != last_status)
-      xil_printf("Error: Multiple keys pressed\r\n");
+      // Print key detect if a new key is pressed or if status has changed
+      if (status == KYPD_SINGLE_KEY
+            && (status != last_status || key != last_key)) {
+         xil_printf("Key Pressed: %c\r\n", (char) key);
+         last_key = key;
+      } else if (status == KYPD_MULTI_KEY && status != last_status)
+         xil_printf("Error: Multiple keys pressed\r\n");
 
-    last_status = status;
+      last_status = status;
 
-    usleep(1000);
-  }
+      usleep(1000);
+   }
 }
 
-void DemoCleanup() { DisableCaches(); }
+void DemoCleanup() {
+   DisableCaches();
+}
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -110,10 +112,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

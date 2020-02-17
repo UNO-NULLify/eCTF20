@@ -23,6 +23,7 @@
 #include "PmodMAXSONAR.h"
 #include "xil_io.h"
 
+
 /************ Function Definitions ************/
 
 /*
@@ -40,8 +41,8 @@
  *    Initialize the PmodMAXSONAR IP
  */
 void MAXSONAR_begin(PmodMAXSONAR *InstancePtr, u32 GPIO_Address, u32 clk_freq) {
-  InstancePtr->GPIO_addr = GPIO_Address;
-  InstancePtr->ClockFreq = clk_freq;
+   InstancePtr->GPIO_addr = GPIO_Address;
+   InstancePtr->ClockFreq = clk_freq;
 }
 
 /*
@@ -58,7 +59,7 @@ void MAXSONAR_begin(PmodMAXSONAR *InstancePtr, u32 GPIO_Address, u32 clk_freq) {
  *    integer
  */
 u32 MAXSONAR_getDistance(PmodMAXSONAR *InstancePtr) {
-  u64 clk_edges = (u64)Xil_In32(InstancePtr->GPIO_addr + 4);
-  u32 dist_10x = (u32)(clk_edges * 10000000 / InstancePtr->ClockFreq / 147);
-  return (dist_10x + 5) / 10;
+   u64 clk_edges = (u64) Xil_In32(InstancePtr->GPIO_addr + 4);
+   u32 dist_10x = (u32) (clk_edges * 10000000 / InstancePtr->ClockFreq / 147);
+   return (dist_10x + 5) / 10;
 }

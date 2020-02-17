@@ -24,10 +24,13 @@
 #include "PmodAD5.h"
 #include "sleep.h"
 #include "xil_cache.h"
-#include "xparameters.h"
 #include <stdio.h>
+#include "xparameters.h"
+
 
 /************ Macro Definitions ************/
+
+
 
 /************ Function Prototypes ************/
 
@@ -41,54 +44,59 @@ void EnableCaches();
 
 void DisableCaches();
 
+
 /************ Global Variables ************/
 
 PmodAD5 myDevice;
 
+
 /************ Function Definitions ************/
 
 int main(void) {
-  DemoInitialize();
-  DemoRun();
-  DemoCleanup();
-  return 0;
+   DemoInitialize();
+   DemoRun();
+   DemoCleanup();
+   return 0;
 }
 
 void DemoInitialize() {
-  EnableCaches();
+   EnableCaches();
 
-  AD5_begin(&myDevice, XPAR_PMODAD5_0_AXI_LITE_SPI_BASEADDR);
+   AD5_begin(&myDevice, XPAR_PMODAD5_0_AXI_LITE_SPI_BASEADDR);
+
 }
 
 void DemoRun() {
-  xil_printf("starting...\n\r");
+   xil_printf("starting...\n\r");
 
-  while (1) {
+   while (1) {
 
-    float voltage = 0;
 
-    AD5_readData(&myDevice);
+      float voltage= 0;
 
-    voltage = AD5_DataToVoltage(&myDevice);
+      AD5_readData(&myDevice);
 
-    printf("Voltage is: %lf \n\r", voltage); // format text for display
+      voltage = AD5_DataToVoltage(&myDevice);
 
-    sleep(10);
-  }
+      printf("Voltage is: %lf \n\r", voltage); // format text for display
+
+
+      sleep(10);
+   }
 }
 
 void DemoCleanup() {
-  AD5_end(&myDevice);
-  DisableCaches();
+   AD5_end(&myDevice);
+   DisableCaches();
 }
 
 void EnableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #endif
 }
@@ -96,10 +104,10 @@ void EnableCaches() {
 void DisableCaches() {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #endif
 }

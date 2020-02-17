@@ -12,11 +12,11 @@
  * This program is free software; distributed under the terms of BSD 3-clause
  * license ("Revised BSD License", "New BSD License", or "Modified BSD License")
  *
- * Redistribution and use in source and binary forms, with or without
- *modification, are permitted provided that the following conditions are met:
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
  *
- * 1. Redistributions of source code must retain the above copyright notice,
- *this list of conditions and the following disclaimer.
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer.
  * 2. Redistributions in binary form must reproduce the above copyright notice,
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
@@ -27,18 +27,17 @@
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
- *LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- *CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- *SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- *INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- *CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- *ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- *POSSIBILITY OF SUCH DAMAGE.
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  * @desciption
- * The Xilinx axi_ps2 driver supports the Xilinx PS/2 device which has a
- *Processor Local Bus Interface (PLB).
+ * The Xilinx axi_ps2 driver supports the Xilinx PS/2 device which has a Processor
+ * Local Bus Interface (PLB).
  *
  * <b> Driver Description</b>
  *
@@ -108,9 +107,8 @@
  * MODIFICATION HISTORY:
  *
  * Ver   Who            Date         Changes
- * ----- -------------- ------------
- *----------------------------------------------- 1.00  Sergiu Arpadi
- *2017-May-17  First release
+ * ----- -------------- ------------ -----------------------------------------------
+ * 1.00  Sergiu Arpadi  2017-May-17  First release
  *
  * </pre>
  *
@@ -124,10 +122,10 @@ extern "C" {
 
 /***************************** Include Files ********************************/
 
-#include "axi_ps2_l.h"
-#include "xil_assert.h"
 #include "xil_types.h"
+#include "xil_assert.h"
 #include "xstatus.h"
+#include "axi_ps2_l.h"
 
 /************************** Constant Definitions ****************************/
 //#define 		XPAR_AXI_PS2_0_DEVICE_ID
@@ -138,8 +136,8 @@ extern "C" {
  * This typedef contains configuration information for the device
  */
 typedef struct {
-  u16 DeviceId;    /**< Unique ID of device */
-  u32 BaseAddress; /**< Base address of device */
+	u16 DeviceId;		/**< Unique ID of device */
+	u32 BaseAddress;	/**< Base address of device */
 } axi_ps2_Config;
 
 /**
@@ -147,11 +145,11 @@ typedef struct {
  * when sending and receiving data in the interrupt mode
  */
 typedef struct {
-  u8 *NextBytePtr;    /**< Pointer to the Transmit/Receive Buffer */
-  u32 RequestedBytes; /**< Total Number of Bytes to be
-                              Transmitted/Received */
-  u32 RemainingBytes; /**< Remaining Bytes to be
-                              Transmitted/Received */
+	u8 *NextBytePtr;	/**< Pointer to the Transmit/Receive Buffer */
+	u32 RequestedBytes; 	/**< Total Number of Bytes to be
+					Transmitted/Received */
+	u32 RemainingBytes; 	/**< Remaining Bytes to be
+					Transmitted/Received */
 } axi_ps2_Buffer;
 
 /*****************************************************************************/
@@ -183,192 +181,185 @@ typedef void (*axi_ps2_Handler)(void *CallBackRef, u32 IntrMask, u32 NumBytes);
  */
 typedef struct {
 
-  axi_ps2_Config Ps2Config; /**< Instance of the config structure */
-  u32 IsReady;              /**< Device is initialized and ready */
+	axi_ps2_Config Ps2Config;   /**< Instance of the config structure */
+	u32 IsReady;		 /**< Device is initialized and ready */
 
-  axi_ps2_Buffer SendBuffer;    /**< Buffer for sending data */
-  axi_ps2_Buffer ReceiveBuffer; /**< Buffer for receiving data */
+	axi_ps2_Buffer SendBuffer;   /**< Buffer for sending data */
+	axi_ps2_Buffer ReceiveBuffer;/**< Buffer for receiving data */
 
-  axi_ps2_Handler Handler; /**< Interrupt handler callback */
-  void *CallBackRef;       /**< Callback reference for interrupt handler */
+	axi_ps2_Handler Handler;	 /**< Interrupt handler callback */
+	void *CallBackRef;	/**< Callback reference for interrupt handler */
 } axi_ps2;
 
 /***************** Macros (Inline Functions) Definitions ********************/
 
 /****************************************************************************/
 /**
- * Reset the PS/2 port.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- *
- * @return	None.
- *
- * @note		C-Style signature:
- *		void axi_ps2_Reset(axi_ps2 *InstancePtr);
- *
- ******************************************************************************/
-#define axi_ps2_Reset(InstancePtr)                                             \
-  axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_SRST_OFFSET,  \
-                   axi_ps2_SRST_RESET);
+* Reset the PS/2 port.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+*
+* @return	None.
+*
+* @note		C-Style signature:
+*		void axi_ps2_Reset(axi_ps2 *InstancePtr);
+*
+******************************************************************************/
+#define axi_ps2_Reset(InstancePtr) 					\
+	axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, 		\
+			axi_ps2_SRST_OFFSET, axi_ps2_SRST_RESET);
 
 /****************************************************************************/
 /**
- * Read the PS/2 status register.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- *
- * @return	The value read from the register.
- *
- * @note		C-Style signature:
- *		u32 axi_ps2_GetStatus(axi_ps2 *InstancePtr);
- *
- ******************************************************************************/
-#define axi_ps2_GetStatus(InstancePtr)                                         \
-  axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_STATUS_OFFSET)
+* Read the PS/2 status register.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+*
+* @return	The value read from the register.
+*
+* @note		C-Style signature:
+*		u32 axi_ps2_GetStatus(axi_ps2 *InstancePtr);
+*
+******************************************************************************/
+#define axi_ps2_GetStatus(InstancePtr) \
+	axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_STATUS_OFFSET)
 
 /****************************************************************************/
 /**
- *
- * Enable the global Interrupt in the Global Interrupt Enable Register.
- * Interrupts enabled using axi_ps2_IntrEnable() will not occur until the global
- * interrupt enable bit is set by using this function.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- *
- * @return	None.
- *
- * @note		C-Style signature:
- *		void axi_ps2_IntrGlobalEnable(axi_ps2 *InstancePtr);
- *
- ******************************************************************************/
-#define axi_ps2_IntrGlobalEnable(InstancePtr)                                  \
-  axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_GIER_OFFSET,  \
-                   axi_ps2_GIER_GIE_MASK)
+*
+* Enable the global Interrupt in the Global Interrupt Enable Register.
+* Interrupts enabled using axi_ps2_IntrEnable() will not occur until the global
+* interrupt enable bit is set by using this function.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+*
+* @return	None.
+*
+* @note		C-Style signature:
+*		void axi_ps2_IntrGlobalEnable(axi_ps2 *InstancePtr);
+*
+******************************************************************************/
+#define axi_ps2_IntrGlobalEnable(InstancePtr) 				\
+	axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress,		\
+			axi_ps2_GIER_OFFSET, axi_ps2_GIER_GIE_MASK)
+
 
 /****************************************************************************/
 /**
- *
- * Disable the global Interrupt in the Global Interrupt Enable Register.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- *
- * @return	None.
- *
- * @note		C-Style signature:
- *		void axi_ps2_IntrGlobalDisable(axi_ps2 *InstancePtr);
- *
- ******************************************************************************/
-#define axi_ps2_IntrGlobalDisable(InstancePtr)                                 \
-  axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_GIER_OFFSET,  \
-                   0x0)
+*
+* Disable the global Interrupt in the Global Interrupt Enable Register.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+*
+* @return	None.
+*
+* @note		C-Style signature:
+*		void axi_ps2_IntrGlobalDisable(axi_ps2 *InstancePtr);
+*
+******************************************************************************/
+#define axi_ps2_IntrGlobalDisable(InstancePtr) 				\
+	axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, 		\
+			axi_ps2_GIER_OFFSET, 0x0)
+
 
 /****************************************************************************/
 /**
- *
- * Enable the specified Interrupts in the IP Interrupt Enable Register.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- * @param	EnableMask is the bitmask of the interrupts to be enabled.
- *		Bit positions of 1 will be enabled. Bit positions of 0 will
- *		keep the previous setting. This mask is formed by OR'ing
- *		axi_ps2_IPIXR_* bits defined in axi_ps2_l.h.
- *
- * @return	None.
- *
- * @note		C-Style signature:
- *		void axi_ps2_IntrEnable(axi_ps2 *InstancePtr, u32 EnableMask);
- *
- ******************************************************************************/
-#define axi_ps2_IntrEnable(InstancePtr, EnableMask)                            \
-  axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPIER_OFFSET, \
-                   axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress,       \
-                                   axi_ps2_IPIER_OFFSET) |                     \
-                       (EnableMask & axi_ps2_IPIXR_ALL))
+*
+* Enable the specified Interrupts in the IP Interrupt Enable Register.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+* @param	EnableMask is the bitmask of the interrupts to be enabled.
+*		Bit positions of 1 will be enabled. Bit positions of 0 will
+*		keep the previous setting. This mask is formed by OR'ing
+*		axi_ps2_IPIXR_* bits defined in axi_ps2_l.h.
+*
+* @return	None.
+*
+* @note		C-Style signature:
+*		void axi_ps2_IntrEnable(axi_ps2 *InstancePtr, u32 EnableMask);
+*
+******************************************************************************/
+#define axi_ps2_IntrEnable(InstancePtr, EnableMask) 			       \
+	axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPIER_OFFSET, \
+		axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress, 	       \
+				axi_ps2_IPIER_OFFSET) | (EnableMask & axi_ps2_IPIXR_ALL ))
 
 /****************************************************************************/
 /**
- *
- * Disable the specified Interrupts in the IP Interrupt Enable Register.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- * @param	DisableMask is the bitmask of the interrupts to be disabled.
- *		Bit positions of 1 will be disabled. Bit positions of 0 will
- *		keep the previous setting. This mask is formed by OR'ing
- *		axi_ps2_IPIXR_* bits defined in axi_ps2_l.h.
- *
- * @return	None.
- *
- * @note		C-Style signature:
- *		void axi_ps2_IntrDisable(axi_ps2 *InstancePtr, u32 DisableMask);
- *
- ******************************************************************************/
-#define axi_ps2_IntrDisable(InstancePtr, DisableMask)                          \
-  axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPIER_OFFSET, \
-                   axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress,       \
-                                   axi_ps2_IPIER_OFFSET) &                     \
-                       (~(DisableMask & axi_ps2_IPIXR_ALL)))
+*
+* Disable the specified Interrupts in the IP Interrupt Enable Register.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+* @param	DisableMask is the bitmask of the interrupts to be disabled.
+*		Bit positions of 1 will be disabled. Bit positions of 0 will
+*		keep the previous setting. This mask is formed by OR'ing
+*		axi_ps2_IPIXR_* bits defined in axi_ps2_l.h.
+*
+* @return	None.
+*
+* @note		C-Style signature:
+*		void axi_ps2_IntrDisable(axi_ps2 *InstancePtr, u32 DisableMask);
+*
+******************************************************************************/
+#define axi_ps2_IntrDisable(InstancePtr, DisableMask) 			      \
+	axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPIER_OFFSET,\
+		axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress, 	      \
+				axi_ps2_IPIER_OFFSET) & (~ (DisableMask & axi_ps2_IPIXR_ALL )))
 
 /****************************************************************************/
 /**
- *
- * This function returns the enabled interrupts. Use the axi_ps2_IPIXR_*_MASK
- * constants defined in axi_ps2_l.h to interpret the returned value.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- *
- * @return 	Enabled interrupts in a 32-bit format.
- *
- * @note		C-Style signature:
- *		u32 axi_ps2_IntrGetEnabled(InstancePtr);
- *
- ******************************************************************************/
-#define axi_ps2_IntrGetEnabled(InstancePtr)                                    \
-  (axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPIER_OFFSET))
+*
+* This function returns the enabled interrupts. Use the axi_ps2_IPIXR_*_MASK
+* constants defined in axi_ps2_l.h to interpret the returned value.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+*
+* @return 	Enabled interrupts in a 32-bit format.
+*
+* @note		C-Style signature:
+*		u32 axi_ps2_IntrGetEnabled(InstancePtr);
+*
+******************************************************************************/
+#define axi_ps2_IntrGetEnabled(InstancePtr) 				\
+	(axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPIER_OFFSET))
+
 
 /****************************************************************************/
 /**
- *
- * Read the interrupt status register.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- *
- * @return	The value read from the register.
- *
- * @note		C-Style signature:
- *		u32 axi_ps2_IntrGetStatus(axi_ps2 *InstancePtr);
- *
- ******************************************************************************/
-#define axi_ps2_IntrGetStatus(InstancePtr)                                     \
-  axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPISR_OFFSET)
+*
+* Read the interrupt status register.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+*
+* @return	The value read from the register.
+*
+* @note		C-Style signature:
+*		u32 axi_ps2_IntrGetStatus(axi_ps2 *InstancePtr);
+*
+******************************************************************************/
+#define axi_ps2_IntrGetStatus(InstancePtr) \
+	axi_ps2_ReadReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPISR_OFFSET)
+
 
 /****************************************************************************/
 /**
- *
- * Clear the pending interrupts in the Interrupt Status Register.
- *
- * @param	InstancePtr is a pointer to the axi_ps2 instance to be worked
- *on.
- * @param	ClearMask is the Bitmask for interrupts to be cleared.
- *		A "1" clears the interrupt.
- *
- * @return	None.
- *
- * @note		C-Style signature:
- *		void axi_ps2_IntrClear(axi_ps2 *InstancePtr, u32 ClearMask);
- *
- ******************************************************************************/
-#define axi_ps2_IntrClear(InstancePtr, ClearMask)                              \
-  axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPISR_OFFSET, \
-                   axi_ps2_IntrGetStatus(InstancePtr) |                        \
-                       (ClearMask & axi_ps2_IPIXR_ALL))
+*
+* Clear the pending interrupts in the Interrupt Status Register.
+*
+* @param	InstancePtr is a pointer to the axi_ps2 instance to be worked on.
+* @param	ClearMask is the Bitmask for interrupts to be cleared.
+*		A "1" clears the interrupt.
+*
+* @return	None.
+*
+* @note		C-Style signature:
+*		void axi_ps2_IntrClear(axi_ps2 *InstancePtr, u32 ClearMask);
+*
+******************************************************************************/
+#define axi_ps2_IntrClear(InstancePtr, ClearMask) \
+	axi_ps2_WriteReg((InstancePtr)->Ps2Config.BaseAddress, axi_ps2_IPISR_OFFSET,\
+		axi_ps2_IntrGetStatus(InstancePtr) | (ClearMask & axi_ps2_IPIXR_ALL ))
+
 
 /************************** Function Prototypes *****************************/
 
@@ -381,7 +372,7 @@ axi_ps2_Config *axi_ps2_LookupConfig(u16 DeviceId);
  * Functions is axi_ps2.c
  */
 int axi_ps2_CfgInitialize(axi_ps2 *InstancePtr, axi_ps2_Config *Config,
-                          u32 EffectiveAddr);
+				u32 EffectiveAddr);
 u32 axi_ps2_Send(axi_ps2 *InstancePtr, u8 *BufferPtr, u32 NumBytes);
 u32 axi_ps2_Recv(axi_ps2 *InstancePtr, u8 *BufferPtr, u32 NumBytes);
 
@@ -389,7 +380,7 @@ u32 axi_ps2_Recv(axi_ps2 *InstancePtr, u8 *BufferPtr, u32 NumBytes);
  * Functions in axi_ps2_intr.c
  */
 void axi_ps2_SetHandler(axi_ps2 *InstancePtr, axi_ps2_Handler FuncPtr,
-                        void *CallBackRef);
+				void *CallBackRef);
 void axi_ps2_IntrHandler(axi_ps2 *InstancePtr);
 
 /*
@@ -401,4 +392,5 @@ int axi_ps2_SelfTest(axi_ps2 *InstancePtr);
 }
 #endif
 
-#endif /* end of protection macro */
+#endif			/* end of protection macro */
+

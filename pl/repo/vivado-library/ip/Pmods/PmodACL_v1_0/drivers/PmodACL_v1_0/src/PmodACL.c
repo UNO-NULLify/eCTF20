@@ -20,13 +20,27 @@
 /*                                                                            */
 /******************************************************************************/
 
+
 /***************************** Include Files *******************************/
 
 #include "PmodACL.h"
 
 /************************** Function Definitions ***************************/
 
-XSpi_Config XSpi_ACLConfig = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
+XSpi_Config XSpi_ACLConfig =
+{
+   0,
+   0,
+   1,
+   0,
+   1,
+   8,
+   0,
+   0,
+   0,
+   0,
+   0
+};
 
 /* ------------------------------------------------------------ */
 /*** void ACL_begin(PmodACL *InstancePtr, u32 GPIO_Address, u32 SPI_Address)
@@ -43,10 +57,10 @@ XSpi_Config XSpi_ACLConfig = {0, 0, 1, 0, 1, 8, 0, 0, 0, 0, 0};
 **      Initialize the PmodACL.
 */
 void ACL_begin(PmodACL *InstancePtr, u32 GPIO_Address, u32 SPI_Address) {
-  InstancePtr->GPIO_addr = GPIO_Address;
-  XSpi_ACLConfig.BaseAddress = SPI_Address;
-  Xil_Out32(InstancePtr->GPIO_addr + 4, 0b11);
-  ACL_SPIInit(&InstancePtr->ACLSpi);
+   InstancePtr->GPIO_addr = GPIO_Address;
+   XSpi_ACLConfig.BaseAddress = SPI_Address;
+   Xil_Out32(InstancePtr->GPIO_addr + 4, 0b11);
+   ACL_SPIInit(&InstancePtr->ACLSpi);
 }
 
 /* ------------------------------------------------------------ */
@@ -62,47 +76,47 @@ void ACL_begin(PmodACL *InstancePtr, u32 GPIO_Address, u32 SPI_Address) {
 **      Initializes the PmodACL SPI.
 */
 int ACL_SPIInit(XSpi *SpiInstancePtr) {
-  int Status;
-  XSpi_Config *ConfigPtr; /* Pointer to Configuration data */
+   int Status;
+   XSpi_Config *ConfigPtr; /* Pointer to Configuration data */
 
-  /*
-   * Initialize the SPI driver so that it is  ready to use.
-   */
-  ConfigPtr = &XSpi_ACLConfig;
-  if (ConfigPtr == NULL) {
-    return XST_DEVICE_NOT_FOUND;
-  }
+   /*
+    * Initialize the SPI driver so that it is  ready to use.
+    */
+   ConfigPtr = &XSpi_ACLConfig;
+   if (ConfigPtr == NULL) {
+      return XST_DEVICE_NOT_FOUND;
+   }
 
-  Status =
-      XSpi_CfgInitialize(SpiInstancePtr, ConfigPtr, ConfigPtr->BaseAddress);
-  if (Status != XST_SUCCESS) {
-    return XST_FAILURE;
-  }
+   Status = XSpi_CfgInitialize(SpiInstancePtr, ConfigPtr,
+         ConfigPtr->BaseAddress);
+   if (Status != XST_SUCCESS) {
+      return XST_FAILURE;
+   }
 
-  u32 options =
-      (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION | XSP_CLK_PHASE_1_OPTION) |
-      XSP_MANUAL_SSELECT_OPTION;
-  Status = XSpi_SetOptions(SpiInstancePtr, options); // Manual SS off
-  if (Status != XST_SUCCESS) {
-    return XST_FAILURE;
-  }
+   u32 options = (XSP_MASTER_OPTION | XSP_CLK_ACTIVE_LOW_OPTION
+         | XSP_CLK_PHASE_1_OPTION) | XSP_MANUAL_SSELECT_OPTION;
+   Status = XSpi_SetOptions(SpiInstancePtr, options); // Manual SS off
+   if (Status != XST_SUCCESS) {
+      return XST_FAILURE;
+   }
 
-  Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
-  if (Status != XST_SUCCESS) {
-    return XST_FAILURE;
-  }
+   Status = XSpi_SetSlaveSelect(SpiInstancePtr, 1);
+   if (Status != XST_SUCCESS) {
+      return XST_FAILURE;
+   }
 
-  /*
-   * Start the SPI driver so that the device is enabled.
-   */
-  XSpi_Start(SpiInstancePtr);
+   /*
+    * Start the SPI driver so that the device is enabled.
+    */
+   XSpi_Start(SpiInstancePtr);
 
-  /*
-   * Disable Global interrupt to use polled mode operation
-   */
-  XSpi_IntrGlobalDisable(SpiInstancePtr);
+   /*
+    * Disable Global interrupt to use polled mode operation
+    */
+   XSpi_IntrGlobalDisable(SpiInstancePtr);
 
-  return XST_SUCCESS;
+   return XST_SUCCESS;
+
 }
 
 /* ------------------------------------------------------------ */
@@ -123,18 +137,18 @@ int ACL_SPIInit(XSpi *SpiInstancePtr) {
 **      until all of the data has been sent.
 */
 void ACL_WriteSpi(PmodACL *InstancePtr, u8 reg, u8 *wData, int nData) {
-  // As requested by documentation, first byte contains:
-  //    bit 7 =    0 because is a write operation
-  //    bit 6 =    1 if more than one bytes is written, 0 if a single byte is
-  //               written
-  //    bits 5-0 = the address
-  u8 bytearray[nData + 1];
-  int i;
-  bytearray[0] = ((nData > 1) ? 0x40 : 0) | (reg & 0x3F);
-  for (i = 0; i < nData; i++) {
-    bytearray[i + 1] = wData[i];
-  }
-  XSpi_Transfer(&InstancePtr->ACLSpi, bytearray, 0, nData + 1);
+   // As requested by documentation, first byte contains:
+   //    bit 7 =    0 because is a write operation
+   //    bit 6 =    1 if more than one bytes is written, 0 if a single byte is
+   //               written
+   //    bits 5-0 = the address
+   u8 bytearray[nData + 1];
+   int i;
+   bytearray[0] = ((nData > 1) ? 0x40 : 0) | (reg & 0x3F);
+   for (i = 0; i < nData; i++) {
+      bytearray[i + 1] = wData[i];
+   }
+   XSpi_Transfer(&InstancePtr->ACLSpi, bytearray, 0, nData + 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -155,19 +169,19 @@ void ACL_WriteSpi(PmodACL *InstancePtr, u8 reg, u8 *wData, int nData) {
 **      rData.
 */
 void ACL_ReadSpi(PmodACL *InstancePtr, u8 reg, u8 *rData, int nData) {
-  // As requested by documentation, first byte contains:
-  //    bit 7 =    1 because is a read operation
-  //    bit 6 =    1 if more than one bytes is written, 0 if a single byte is
-  //               written
-  //    bits 5-0 - the address
-  u8 bytearray[nData + 1];
-  int i;
+   // As requested by documentation, first byte contains:
+   //    bit 7 =    1 because is a read operation
+   //    bit 6 =    1 if more than one bytes is written, 0 if a single byte is
+   //               written
+   //    bits 5-0 - the address
+   u8 bytearray[nData + 1];
+   int i;
 
-  bytearray[0] = ((nData > 1) ? 0xC0 : 0x80) | (reg & 0x3F);
-  XSpi_Transfer(&InstancePtr->ACLSpi, bytearray, bytearray, nData + 1);
-  for (i = 0; i < nData; i++) {
-    rData[i] = bytearray[i + 1];
-  }
+   bytearray[0] = ((nData > 1) ? 0xC0 : 0x80) | (reg & 0x3F);
+   XSpi_Transfer(&InstancePtr->ACLSpi, bytearray, bytearray, nData + 1);
+   for (i = 0; i < nData; i++) {
+      rData[i] = bytearray[i + 1];
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -188,13 +202,13 @@ void ACL_ReadSpi(PmodACL *InstancePtr, u8 reg, u8 *rData, int nData) {
 **      fValue).
 */
 void ACL_SetRegisterBits(PmodACL *InstancePtr, u8 reg, u8 mask, u8 fValue) {
-  u8 regval;
-  ACL_ReadSpi(InstancePtr, reg, &regval, 1);
-  if (fValue)
-    regval |= mask;
-  else
-    regval &= ~mask;
-  ACL_WriteSpi(InstancePtr, reg, &regval, 1);
+   u8 regval;
+   ACL_ReadSpi(InstancePtr, reg, &regval, 1);
+   if (fValue)
+      regval |= mask;
+   else
+      regval &= ~mask;
+   ACL_WriteSpi(InstancePtr, reg, &regval, 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -214,9 +228,9 @@ void ACL_SetRegisterBits(PmodACL *InstancePtr, u8 reg, u8 mask, u8 fValue) {
 **      bRegisterAddress), corresponding to the bMask mask.
 */
 u8 ACL_GetRegisterBits(PmodACL *InstancePtr, u8 bRegisterAddress, u8 bMask) {
-  u8 bRegValue;
-  ACL_ReadSpi(InstancePtr, bRegisterAddress, &bRegValue, 1);
-  return bRegValue & bMask;
+   u8 bRegValue;
+   ACL_ReadSpi(InstancePtr, bRegisterAddress, &bRegValue, 1);
+   return bRegValue & bMask;
 }
 
 /* ------------------------------------------------------------ */
@@ -237,13 +251,13 @@ u8 ACL_GetRegisterBits(PmodACL *InstancePtr, u8 bRegisterAddress, u8 bMask) {
 **      range.
 */
 float ConvertReadingToValueG(PmodACL *InstancePtr, int16_t uiReading) {
-  // Convert the accelerometer value to G's.
-  // With 10 (ACL_NO_BITS) bits measuring over a +/- ng range we can find how
-  // to convert by using the equation:
-  //    Gs = Measurement Value * (G-range/(2^10))
-  // m_dGRangeLSB is pre-computed in ACL_SetGRange
-  float dResult = ((float)uiReading) * InstancePtr->m_dGRangeLSB;
-  return dResult;
+   // Convert the accelerometer value to G's.
+   // With 10 (ACL_NO_BITS) bits measuring over a +/- ng range we can find how
+   // to convert by using the equation:
+   //    Gs = Measurement Value * (G-range/(2^10))
+   // m_dGRangeLSB is pre-computed in ACL_SetGRange
+   float dResult = ((float) uiReading) * InstancePtr->m_dGRangeLSB;
+   return dResult;
 }
 
 /* ------------------------------------------------------------ */
@@ -270,24 +284,24 @@ float ConvertReadingToValueG(PmodACL *InstancePtr, int16_t uiReading) {
 **      ACL_PAR_GRANGE_PM8G into 8).
 */
 float ACL_GetGRangeLSB(u8 bGRange) {
-  float dGMaxValue = 0;
-  float dResult;
-  switch (bGRange) {
-  case ACL_PAR_GRANGE_PM2G:
-    dGMaxValue = 2;
-    break;
-  case ACL_PAR_GRANGE_PM4G:
-    dGMaxValue = 4;
-    break;
-  case ACL_PAR_GRANGE_PM8G:
-    dGMaxValue = 8;
-    break;
-  case ACL_PAR_GRANGE_PM16G:
-    dGMaxValue = 16;
-    break;
-  }
-  dResult = 2 * dGMaxValue / (float)(1 << ACL_NO_BITS);
-  return dResult;
+   float dGMaxValue = 0;
+   float dResult;
+   switch (bGRange) {
+   case ACL_PAR_GRANGE_PM2G:
+      dGMaxValue = 2;
+      break;
+   case ACL_PAR_GRANGE_PM4G:
+      dGMaxValue = 4;
+      break;
+   case ACL_PAR_GRANGE_PM8G:
+      dGMaxValue = 8;
+      break;
+   case ACL_PAR_GRANGE_PM16G:
+      dGMaxValue = 16;
+      break;
+   }
+   dResult = 2 * dGMaxValue / (float) (1 << ACL_NO_BITS);
+   return dResult;
 }
 
 /* ------------------------------------------------------------ */
@@ -317,12 +331,12 @@ float ACL_GetGRangeLSB(u8 bGRange) {
 **         expressed in "g", considering the currently selected g range
 */
 void ACL_ReadAccelG(PmodACL *InstancePtr, float *dAclXg, float *dAclYg,
-                    float *dAclZg) {
-  u16 rgwRegVals[3];
-  ACL_ReadSpi(InstancePtr, ACL_REG_DATAX0, (u8 *)rgwRegVals, 6);
-  *dAclXg = ConvertReadingToValueG(InstancePtr, rgwRegVals[0]);
-  *dAclYg = ConvertReadingToValueG(InstancePtr, rgwRegVals[1]);
-  *dAclZg = ConvertReadingToValueG(InstancePtr, rgwRegVals[2]);
+      float *dAclZg) {
+   u16 rgwRegVals[3];
+   ACL_ReadSpi(InstancePtr, ACL_REG_DATAX0, (u8 *) rgwRegVals, 6);
+   *dAclXg = ConvertReadingToValueG(InstancePtr, rgwRegVals[0]);
+   *dAclYg = ConvertReadingToValueG(InstancePtr, rgwRegVals[1]);
+   *dAclZg = ConvertReadingToValueG(InstancePtr, rgwRegVals[2]);
 }
 
 /* ------------------------------------------------------------ */
@@ -350,12 +364,12 @@ void ACL_ReadAccelG(PmodACL *InstancePtr, float *dAclXg, float *dAclYg,
 **         10-bit value
 */
 void ReadAccel(PmodACL *InstancePtr, int16_t *iAclX, int16_t *iAclY,
-               int16_t *iAclZ) {
-  u16 rgwRegVals[3];
-  ACL_ReadSpi(InstancePtr, ACL_REG_DATAX0, (u8 *)rgwRegVals, 6);
-  *iAclX = rgwRegVals[0];
-  *iAclY = rgwRegVals[1];
-  *iAclZ = rgwRegVals[2];
+      int16_t *iAclZ) {
+   u16 rgwRegVals[3];
+   ACL_ReadSpi(InstancePtr, ACL_REG_DATAX0, (u8 *) rgwRegVals, 6);
+   *iAclX = rgwRegVals[0];
+   *iAclY = rgwRegVals[1];
+   *iAclZ = rgwRegVals[2];
 }
 
 /* ------------------------------------------------------------ */
@@ -373,8 +387,8 @@ void ReadAccel(PmodACL *InstancePtr, int16_t *iAclX, int16_t *iAclY,
 **      between measurement and standby mode.
 */
 void ACL_SetMeasure(PmodACL *InstancePtr, u8 fMeasure) {
-  ACL_SetRegisterBits(InstancePtr, ACL_REG_POWER_CTL, ACL_MSK_POWER_CTL_MEASURE,
-                      fMeasure);
+   ACL_SetRegisterBits(InstancePtr, ACL_REG_POWER_CTL,
+         ACL_MSK_POWER_CTL_MEASURE, fMeasure);
 }
 
 /* ------------------------------------------------------------ */
@@ -390,8 +404,8 @@ void ACL_SetMeasure(PmodACL *InstancePtr, u8 fMeasure) {
 **      This function returns the value of MEASURE bit of POWER_CTL register.
 */
 u8 ACL_GetMeasure(PmodACL *InstancePtr) {
-  return (ACL_GetRegisterBits(InstancePtr, ACL_REG_POWER_CTL,
-                              ACL_MSK_POWER_CTL_MEASURE) != 0);
+   return (ACL_GetRegisterBits(InstancePtr, ACL_REG_POWER_CTL,
+         ACL_MSK_POWER_CTL_MEASURE) != 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -419,12 +433,12 @@ u8 ACL_GetMeasure(PmodACL *InstancePtr) {
 **      If value is outside this range no value is set.
 */
 void ACL_SetGRange(PmodACL *InstancePtr, u8 bGRangePar) {
-  InstancePtr->m_dGRangeLSB = ACL_GetGRangeLSB(bGRangePar);
+   InstancePtr->m_dGRangeLSB = ACL_GetGRangeLSB(bGRangePar);
 
-  ACL_SetRegisterBits(InstancePtr, ACL_REG_DATA_FORMAT,
-                      ACL_MSK_DATA_FORMAT_RANGE0, (bGRangePar & 1));
-  ACL_SetRegisterBits(InstancePtr, ACL_REG_DATA_FORMAT,
-                      ACL_MSK_DATA_FORMAT_RANGE1, (bGRangePar & 2) >> 1);
+   ACL_SetRegisterBits(InstancePtr, ACL_REG_DATA_FORMAT,
+         ACL_MSK_DATA_FORMAT_RANGE0, (bGRangePar & 1));
+   ACL_SetRegisterBits(InstancePtr, ACL_REG_DATA_FORMAT,
+         ACL_MSK_DATA_FORMAT_RANGE1, (bGRangePar & 2) >> 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -446,9 +460,8 @@ void ACL_SetGRange(PmodACL *InstancePtr, u8 bGRangePar) {
 **      relies on the data in DATA_FORMAT register.
 */
 u8 ACL_GetGRange(PmodACL *InstancePtr) {
-  return ACL_GetRegisterBits(InstancePtr, ACL_REG_DATA_FORMAT,
-                             ACL_MSK_DATA_FORMAT_RANGE1 |
-                                 ACL_MSK_DATA_FORMAT_RANGE0);
+   return ACL_GetRegisterBits(InstancePtr, ACL_REG_DATA_FORMAT,
+         ACL_MSK_DATA_FORMAT_RANGE1 | ACL_MSK_DATA_FORMAT_RANGE0);
 }
 
 /* ------------------------------------------------------------ */
@@ -478,18 +491,18 @@ u8 ACL_GetGRange(PmodACL *InstancePtr) {
 **      0 - 3 range, the function does nothing.
 */
 void ACL_SetOffsetG(PmodACL *InstancePtr, u8 bAxisParam, float dOffset) {
-  int8_t bOffsetVal = (u8)(dOffset / (float)ACL_CONV_OFFSET_G_LSB);
-  switch (bAxisParam) {
-  case ACL_PAR_AXIS_X:
-    ACL_WriteSpi(InstancePtr, ACL_REG_OFSX, (u8 *)&bOffsetVal, 1);
-    break;
-  case ACL_PAR_AXIS_Y:
-    ACL_WriteSpi(InstancePtr, ACL_REG_OFSY, (u8 *)&bOffsetVal, 1);
-    break;
-  case ACL_PAR_AXIS_Z:
-    ACL_WriteSpi(InstancePtr, ACL_REG_OFSZ, (u8 *)&bOffsetVal, 1);
-    break;
-  }
+   int8_t bOffsetVal = (u8) (dOffset / (float) ACL_CONV_OFFSET_G_LSB);
+   switch (bAxisParam) {
+   case ACL_PAR_AXIS_X:
+      ACL_WriteSpi(InstancePtr, ACL_REG_OFSX, (u8 *) &bOffsetVal, 1);
+      break;
+   case ACL_PAR_AXIS_Y:
+      ACL_WriteSpi(InstancePtr, ACL_REG_OFSY, (u8 *) &bOffsetVal, 1);
+      break;
+   case ACL_PAR_AXIS_Z:
+      ACL_WriteSpi(InstancePtr, ACL_REG_OFSZ, (u8 *) &bOffsetVal, 1);
+      break;
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -512,21 +525,21 @@ void ACL_SetOffsetG(PmodACL *InstancePtr, u8 bAxisParam, float dOffset) {
 **      value expressed in "g", using a scale factor of 15.6 mg/LSB.
 */
 float ACL_GetOffsetG(PmodACL *InstancePtr, u8 bAxisParam) {
-  int8_t bOffsetVal;
-  float dResult;
-  switch (bAxisParam) {
-  case ACL_PAR_AXIS_X:
-    ACL_ReadSpi(InstancePtr, ACL_REG_OFSX, (u8 *)&bOffsetVal, 1);
-    break;
-  case ACL_PAR_AXIS_Y:
-    ACL_ReadSpi(InstancePtr, ACL_REG_OFSY, (u8 *)&bOffsetVal, 1);
-    break;
-  case ACL_PAR_AXIS_Z:
-    ACL_ReadSpi(InstancePtr, ACL_REG_OFSZ, (u8 *)&bOffsetVal, 1);
-    break;
-  }
-  dResult = (float)bOffsetVal * (float)ACL_CONV_OFFSET_G_LSB;
-  return dResult;
+   int8_t bOffsetVal;
+   float dResult;
+   switch (bAxisParam) {
+   case ACL_PAR_AXIS_X:
+      ACL_ReadSpi(InstancePtr, ACL_REG_OFSX, (u8*) &bOffsetVal, 1);
+      break;
+   case ACL_PAR_AXIS_Y:
+      ACL_ReadSpi(InstancePtr, ACL_REG_OFSY, (u8*) &bOffsetVal, 1);
+      break;
+   case ACL_PAR_AXIS_Z:
+      ACL_ReadSpi(InstancePtr, ACL_REG_OFSZ, (u8*) &bOffsetVal, 1);
+      break;
+   }
+   dResult = (float) bOffsetVal * (float) ACL_CONV_OFFSET_G_LSB;
+   return dResult;
 }
 
 /* ------------------------------------------------------------ */
@@ -563,81 +576,81 @@ float ACL_GetOffsetG(PmodACL *InstancePtr, u8 bAxisParam) {
 **      The user should wait
 */
 void ACL_CalibrateOneAxisGravitational(PmodACL *InstancePtr, u8 bAxisInfo) {
-  // Perform calibration
-  float dX, dSumX = 0, dY, dSumY = 0, dZ, dSumZ = 0;
-  // Set the offset registers to 0
-  // Put the device into standby mode to configure it.
-  ACL_SetMeasure(InstancePtr, 0);
-  ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_X, 0);
-  ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_Y, 0);
-  ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_Z, 0);
-  ACL_SetMeasure(InstancePtr, 1);
+   // Perform calibration
+   float dX, dSumX = 0, dY, dSumY = 0, dZ, dSumZ = 0;
+   // Set the offset registers to 0
+   // Put the device into standby mode to configure it.
+   ACL_SetMeasure(InstancePtr, 0);
+   ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_X, 0);
+   ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_Y, 0);
+   ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_Z, 0);
+   ACL_SetMeasure(InstancePtr, 1);
 
-  // Read average acceleration on the three axes
-  int idxAvg;
+   // Read average acceleration on the three axes
+   int idxAvg;
 
-  int nCntMeasurements = 128;
-  // Consume some readings
-  for (idxAvg = 0; idxAvg < nCntMeasurements; idxAvg++) {
-    ACL_ReadAccelG(InstancePtr, &dX, &dY, &dZ);
-  }
+   int nCntMeasurements = 128;
+   // Consume some readings
+   for (idxAvg = 0; idxAvg < nCntMeasurements; idxAvg++) {
+      ACL_ReadAccelG(InstancePtr, &dX, &dY, &dZ);
+   }
 
-  // Compute average values
-  for (idxAvg = 0; idxAvg < nCntMeasurements; idxAvg++) {
-    ACL_ReadAccelG(InstancePtr, &dX, &dY, &dZ);
-    dSumX = dSumX + dX;
-    dSumY = dSumY + dY;
-    dSumZ = dSumZ + dZ;
-  }
+   // Compute average values
+   for (idxAvg = 0; idxAvg < nCntMeasurements; idxAvg++) {
+      ACL_ReadAccelG(InstancePtr, &dX, &dY, &dZ);
+      dSumX = dSumX + dX;
+      dSumY = dSumY + dY;
+      dSumZ = dSumZ + dZ;
+   }
 
-  dX = dSumX / nCntMeasurements;
-  dY = dSumY / nCntMeasurements;
-  dZ = dSumZ / nCntMeasurements;
+   dX = dSumX / nCntMeasurements;
+   dY = dSumY / nCntMeasurements;
+   dZ = dSumZ / nCntMeasurements;
 
-  // Computes the correction that must be put in the offset registers so that
-  // the acceleration readings are:
-  //   1 for the gravitational axis, if positive
-  //  -1 for the gravitational axis, if negative
-  //   0 for the other axes
-  switch (bAxisInfo) {
-  case ACL_PAR_AXIS_XP:
-    dX = 1.0 - dX;
-    dY = 0.0 - dY;
-    dZ = 0.0 - dZ;
-    break;
-  case ACL_PAR_AXIS_XN:
-    dX = -1.0 - dX;
-    dY = 0.0 - dY;
-    dZ = 0.0 - dZ;
-    break;
-  case ACL_PAR_AXIS_YP:
-    dY = 1.0 - dY;
-    dX = 0.0 - dX;
-    dZ = 0.0 - dZ;
-    break;
-  case ACL_PAR_AXIS_YN:
-    dY = -1.0 - dY;
-    dX = 0.0 - dX;
-    dZ = 0.0 - dZ;
-    break;
-  case ACL_PAR_AXIS_ZP:
-    dZ = 1.0 - dZ;
-    dY = 0.0 - dY;
-    dX = 0.0 - dX;
-    break;
-  case ACL_PAR_AXIS_ZN:
-    dZ = -1.0 - dZ;
-    dY = 0.0 - dY;
-    dX = 0.0 - dX;
-    break;
-  }
+   // Computes the correction that must be put in the offset registers so that
+   // the acceleration readings are:
+   //   1 for the gravitational axis, if positive
+   //  -1 for the gravitational axis, if negative
+   //   0 for the other axes
+   switch (bAxisInfo) {
+   case ACL_PAR_AXIS_XP:
+      dX = 1.0 - dX;
+      dY = 0.0 - dY;
+      dZ = 0.0 - dZ;
+      break;
+   case ACL_PAR_AXIS_XN:
+      dX = -1.0 - dX;
+      dY = 0.0 - dY;
+      dZ = 0.0 - dZ;
+      break;
+   case ACL_PAR_AXIS_YP:
+      dY = 1.0 - dY;
+      dX = 0.0 - dX;
+      dZ = 0.0 - dZ;
+      break;
+   case ACL_PAR_AXIS_YN:
+      dY = -1.0 - dY;
+      dX = 0.0 - dX;
+      dZ = 0.0 - dZ;
+      break;
+   case ACL_PAR_AXIS_ZP:
+      dZ = 1.0 - dZ;
+      dY = 0.0 - dY;
+      dX = 0.0 - dX;
+      break;
+   case ACL_PAR_AXIS_ZN:
+      dZ = -1.0 - dZ;
+      dY = 0.0 - dY;
+      dX = 0.0 - dX;
+      break;
+   }
 
-  // Put the device into standby mode to configure it.
-  ACL_SetMeasure(InstancePtr, 0);
+   // Put the device into standby mode to configure it.
+   ACL_SetMeasure(InstancePtr, 0);
 
-  // Set the offset data to registers
-  ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_X, dX);
-  ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_Y, dY);
-  ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_Z, dZ);
-  ACL_SetMeasure(InstancePtr, 1);
+   // Set the offset data to registers
+   ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_X, dX);
+   ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_Y, dY);
+   ACL_SetOffsetG(InstancePtr, ACL_PAR_AXIS_Z, dZ);
+   ACL_SetMeasure(InstancePtr, 1);
 }

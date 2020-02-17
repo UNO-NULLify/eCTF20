@@ -57,12 +57,12 @@
 
 /***************************** Include Files *******************************/
 
-#include "PmodNAV.h"
+#include <stdio.h>
 #include "math.h"
+#include "PmodNAV.h"
 #include "sleep.h"
 #include "xil_cache.h"
 #include "xparameters.h"
-#include <stdio.h>
 
 /*************************** Global Variables ******************************/
 
@@ -92,10 +92,10 @@ void NavDemo_DisableCaches(void);
 /***************************** Function Definitions ************************/
 
 int main(void) {
-  NavDemo_Initialize();
-  NavDemo_Run();
-  NavDemo_Cleanup();
-  return 0;
+   NavDemo_Initialize();
+   NavDemo_Run();
+   NavDemo_Cleanup();
+   return 0;
 }
 
 /*** void NavDemo_Initialize()
@@ -114,13 +114,15 @@ int main(void) {
 **      PmodNAV driver device
 */
 void NavDemo_Initialize(void) {
-  NavDemo_EnableCaches();
-  xil_printf("Pmod Nav Demo Initializing...\n\r");
-  NAV_begin( // intialize the PmodNAV driver device
-      &nav, XPAR_PMODNAV_0_AXI_LITE_GPIO_BASEADDR,
-      XPAR_PMODNAV_0_AXI_LITE_SPI_BASEADDR);
-  xil_printf("Pmod Nav Demo Initialized\n\r");
-  NAV_Init(&nav); // initialize the connection with each spi slave
+    NavDemo_EnableCaches();
+    xil_printf("Pmod Nav Demo Initializing...\n\r");
+    NAV_begin ( // intialize the PmodNAV driver device
+        &nav,
+        XPAR_PMODNAV_0_AXI_LITE_GPIO_BASEADDR,
+        XPAR_PMODNAV_0_AXI_LITE_SPI_BASEADDR
+    );
+    xil_printf("Pmod Nav Demo Initialized\n\r");
+    NAV_Init(&nav); // initialize the connection with each spi slave
 }
 
 /*** void NavDemo_Run(void)
@@ -139,72 +141,93 @@ void NavDemo_Initialize(void) {
 **      part on the PmodNAV and displaying it over a UART connection
 */
 void NavDemo_Run(void) {
-  float Pref, tempF, dps, magXYd, alt;
-  char *compass[8] = {"North", "North-East", "East", "South-East",
-                      "South", "South-West", "West", "North-West"};
-  char *str;
-  // Set the known altitude as reference for future measurements of altitude
-  // Uncomment the below line to improve accuracy of the altimeter device by
-  // specifying the known altitude for your current location
+   float Pref,
+         tempF,
+         dps,
+         magXYd,
+         alt;
+    char *compass[8] = {"North", "North-East", "East", "South-East", "South",
+          "South-West", "West", "North-West"};
+    char *str;
+    // Set the known altitude as reference for future measurements of altitude
+    // Uncomment the below line to improve accuracy of the altimeter device by
+    // specifying the known altitude for your current location
 
-  printf("Pmod Nav Demo Started\n\r");
-  NAV_ReadPressurehPa(&nav);
-  alt = NavDemo_ConvFeetToMeters(2352); // altitude for Pullman, WA in meters
-  Pref = NavDemo_ComputePref(nav.hPa, alt);
-  usleep(100000);
-  while (1) {
-    NAV_GetDeviceID(&nav);
+   printf("Pmod Nav Demo Started\n\r");
+   NAV_ReadPressurehPa(&nav);
+   alt = NavDemo_ConvFeetToMeters(2352); // altitude for Pullman, WA in meters
+   Pref = NavDemo_ComputePref(nav.hPa, alt);
+   usleep(100000);
+   while(1){
+      NAV_GetDeviceID(&nav);
 
-    printf("Device IDs\n\r");
-    printf("A/G ID:%d  MAG ID:%d  ALT ID:%d\n\r\n\r", nav.idData.ag,
-           nav.idData.mag, nav.idData.alt);
+      printf("Device IDs\n\r");
+      printf(
+         "A/G ID:%d  MAG ID:%d  ALT ID:%d\n\r\n\r",
+         nav.idData.ag,
+         nav.idData.mag,
+         nav.idData.alt
+      );
 
-    NAV_GetData(&nav);
+      NAV_GetData(&nav);
 
-    printf("Accelerometer G values    X:%.2f G, Y:%.2f G, Z:%.2f G\n\r",
-           nav.acclData.X, nav.acclData.Y, nav.acclData.Z);
+      printf(
+         "Accelerometer G values    X:%.2f G, Y:%.2f G, Z:%.2f G\n\r",
+         nav.acclData.X,
+         nav.acclData.Y,
+         nav.acclData.Z
+      );
 
-    printf("    %.2f degrees from vertical\n\r",
-           NavDemo_DegreesFromVertical(nav.acclData));
-    // Format and serial print the data read from accelerometer instrument,
-    // stored in acclData variables and expressed in G
+      printf(
+         "    %.2f degrees from vertical\n\r",
+         NavDemo_DegreesFromVertical(nav.acclData)
+      );
+      // Format and serial print the data read from accelerometer instrument,
+      // stored in acclData variables and expressed in G
 
-    printf("Gyro dps values   X:%.2f dps, Y:%.2f dps, Z:%.2f dps\n\r",
-           nav.gyroData.X, nav.gyroData.Y, nav.acclData.Z);
-    dps = NavDemo_ScalarProjection(nav.acclData, nav.gyroData);
-    if (dps < -4) // Remove some noise around 0
-      str = "Clockwise";
-    else if (dps > 4)
-      str = "Counter-Clockwise";
-    else
-      str = "Marginal";
-    printf("    rotating about vertical at %6.2f dps (%s)\n\r", dps, str);
-    // Format and serial print the data read from Gyro instrument, stored in
-    // gyroData variables and expressed in degrees per second
+      printf(
+         "Gyro dps values   X:%.2f dps, Y:%.2f dps, Z:%.2f dps\n\r",
+         nav.gyroData.X,
+         nav.gyroData.Y,
+         nav.acclData.Z
+      );
+      dps = NavDemo_ScalarProjection(nav.acclData, nav.gyroData);
+      if (dps < -4) // Remove some noise around 0
+         str = "Clockwise";
+      else if (dps > 4)
+        str = "Counter-Clockwise";
+      else
+         str = "Marginal";
+      printf("    rotating about vertical at %6.2f dps (%s)\n\r", dps, str);
+      // Format and serial print the data read from Gyro instrument, stored in
+      // gyroData variables and expressed in degrees per second
 
-    printf(
-        "Magnetometer Gauss values   X:%.2f Gauss, Y:%.2f Gauss, Z:%.2f Gauss \
+      printf(
+         "Magnetometer Gauss values   X:%.2f Gauss, Y:%.2f Gauss, Z:%.2f Gauss \
                 \n\r",
-        nav.magData.X, nav.magData.Y, nav.magData.Z);
-    // Format and serial print the data read from magnetometer instrument,
-    // stored in magData variables and expressed in Gauss
+         nav.magData.X,
+         nav.magData.Y,
+         nav.magData.Z
+      );
+      // Format and serial print the data read from magnetometer instrument,
+      // stored in magData variables and expressed in Gauss
 
-    magXYd = NavDemo_AngleInXY(nav.magData);
-    str = compass[(int)((magXYd + 22.5) / 45.0) % 8];
-    // Get appropriate compass string - North is centered on 0 degrees
-    printf("    Heading in Degrees: %.2f   Y Direction: %s\n\r", magXYd, str);
+      magXYd = NavDemo_AngleInXY(nav.magData);
+      str = compass[(int)((magXYd + 22.5) / 45.0) % 8];
+      // Get appropriate compass string - North is centered on 0 degrees
+      printf("    Heading in Degrees: %.2f   Y Direction: %s\n\r", magXYd, str);
 
-    printf("Pressure: %f\n\r", nav.hPa);
-    alt = NavDemo_ConvPresToAltF(Pref, nav.hPa);
-    printf("Altitude: %.1f feet\n\r", alt);
+      printf("Pressure: %f\n\r", nav.hPa);
+      alt = NavDemo_ConvPresToAltF(Pref, nav.hPa);
+      printf("Altitude: %.1f feet\n\r", alt);
 
-    tempF = NavDemo_ConvTempCToTempF(nav.tempC);
-    printf("Temperature: %.2f degrees Celsius\n\r", nav.tempC);
-    printf("             %.2f degrees Fahrenheit\n\r", tempF);
-    xil_printf("\n\r\n\r");
+      tempF = NavDemo_ConvTempCToTempF(nav.tempC);
+      printf("Temperature: %.2f degrees Celsius\n\r", nav.tempC);
+      printf("             %.2f degrees Fahrenheit\n\r", tempF);
+      xil_printf("\n\r\n\r");
 
-    usleep(500000);
-  }
+      usleep(500000);
+    }
 }
 
 /*** void NavDemo_Cleanup(void)
@@ -222,8 +245,8 @@ void NavDemo_Run(void) {
 **      This function closes the PmodNAV device and ends the demo
 */
 void NavDemo_Cleanup(void) {
-  NAV_end(&nav);
-  NavDemo_DisableCaches();
+   NAV_end(&nav);
+   NavDemo_DisableCaches();
 }
 
 /*** float NavDemo_ComputePref(float hPa, float altitudeMeters)
@@ -252,9 +275,9 @@ void NavDemo_Cleanup(void) {
 **      at all times.
 */
 float NavDemo_ComputePref(float hPa, float altitudeMeters) {
-  float altitudeFeet = NavDemo_ConvMetersToFeet(altitudeMeters);
-  float temp = 1 - (altitudeFeet / 145366.45);
-  return hPa / (powf(temp, 1 / 0.190284));
+   float altitudeFeet = NavDemo_ConvMetersToFeet(altitudeMeters);
+   float temp = 1 - (altitudeFeet / 145366.45);
+   return hPa / (powf(temp, 1 / 0.190284));
 }
 
 /*** float NavDemo_ConvPresToAltM(float hPa)
@@ -277,7 +300,7 @@ float NavDemo_ComputePref(float hPa, float altitudeMeters) {
 **      altitude.
 */
 float NavDemo_ConvPresToAltM(float Pref, float hPa) {
-  return NavDemo_ConvPresToAltF(Pref, hPa) * 0.3048;
+   return NavDemo_ConvPresToAltF(Pref, hPa) * 0.3048;
 }
 
 /*** float NavDemo_ConvPresToAltF(float Pref, float hPa)
@@ -300,7 +323,7 @@ float NavDemo_ConvPresToAltM(float Pref, float hPa) {
 **      Altitude_ft = (1-pow(*Pressure_mb/1013.25,0.190284))*145366.45
 */
 float NavDemo_ConvPresToAltF(float Pref, float hPa) {
-  return ((1 - pow(hPa / Pref, 0.190284)) * 145366.45);
+   return ((1 - pow(hPa / Pref, 0.190284)) * 145366.45);
 }
 
 /*** float NavDemo_ConvTempCToTempF(float tempC)
@@ -320,7 +343,9 @@ float NavDemo_ConvPresToAltF(float Pref, float hPa) {
 **      and returns the value of temperature in F
 **
 */
-float NavDemo_ConvTempCToTempF(float tempC) { return 32 + (tempC * 1.8); }
+float NavDemo_ConvTempCToTempF(float tempC) {
+   return 32 + (tempC * 1.8);
+}
 
 /*** float NavDemo_ConvFeetToMeters(float feet)
 **
@@ -335,7 +360,9 @@ float NavDemo_ConvTempCToTempF(float tempC) { return 32 + (tempC * 1.8); }
 **   Description:
 **      This function performs the conversion from units of feet to meters
 */
-float NavDemo_ConvFeetToMeters(float feet) { return feet / 0.3048; }
+float NavDemo_ConvFeetToMeters(float feet) {
+   return feet / 0.3048;
+}
 
 /*** float NavDemo_ConvMetersToFeet(float meters)
 **
@@ -350,7 +377,9 @@ float NavDemo_ConvFeetToMeters(float feet) { return feet / 0.3048; }
 **   Description:
 **      This function performs the conversion from units of meters to feet
 */
-float NavDemo_ConvMetersToFeet(float meters) { return meters * 0.3048; }
+float NavDemo_ConvMetersToFeet(float meters) {
+   return meters * 0.3048;
+}
 
 /*** float NavDemo_AngleInXY(NAV_RectCoord r)
 **
@@ -369,16 +398,16 @@ float NavDemo_ConvMetersToFeet(float meters) { return meters * 0.3048; }
 **      Z-axis from the vector (X=1,0,0)
 */
 float NavDemo_AngleInXY(NAV_RectCoord r) {
-  float d;
-  if (r.X == 0)
-    d = (r.Y < 0) ? 90 : 0;
-  else
-    d = atan2f(r.Y, r.X) * 180 / M_PI;
-  if (d > 360)
-    d -= 360;
-  else if (d < 0)
-    d += 360;
-  return d;
+   float d;
+   if (r.X == 0)
+      d = (r.Y < 0) ? 90 : 0;
+   else
+      d = atan2f(r.Y, r.X) * 180 / M_PI;
+   if (d > 360)
+      d -= 360;
+   else if (d < 0)
+      d += 360;
+   return d;
 }
 
 /*** float NavDemo_DegreesFromVertical(NAV_RectCoord r)
@@ -397,11 +426,11 @@ float NavDemo_AngleInXY(NAV_RectCoord r) {
 **      vector (0,0,Z=1)
 */
 float NavDemo_DegreesFromVertical(NAV_RectCoord r) {
-  // Determine the magnitude of the vector r.
-  float rM = sqrtf(powf(r.X, 2) + powf(r.Y, 2) + powf(r.Z, 2));
-  if (rM == 0)
-    return 0.0;
-  return acosf(r.Z / rM) * (180.0 / M_PI);
+   // Determine the magnitude of the vector r.
+   float rM = sqrtf(powf(r.X, 2) + powf(r.Y, 2) + powf(r.Z, 2));
+   if (rM == 0)
+      return 0.0;
+   return acosf(r.Z / rM) * (180.0 / M_PI);
 }
 
 /*** float NavDemo_ScalarProjection(NAV_RectCoord orient, NAV_RectCoord r)
@@ -422,8 +451,8 @@ float NavDemo_DegreesFromVertical(NAV_RectCoord r) {
 **      determine rotation of the PmodNAV about true vertical.
 */
 float NavDemo_ScalarProjection(NAV_RectCoord orient, NAV_RectCoord r) {
-  float oM = sqrtf(powf(orient.X, 2) + powf(orient.Y, 2) + powf(orient.Z, 2));
-  return (r.X * orient.X + r.Y * orient.Y + r.Z * orient.Z) / oM;
+   float oM = sqrtf(powf(orient.X, 2) + powf(orient.Y, 2) + powf(orient.Z, 2));
+   return (r.X * orient.X + r.Y * orient.Y + r.Z * orient.Z) / oM;
 }
 
 /*** void NavDemo_EnableCaches(void)
@@ -444,10 +473,10 @@ float NavDemo_ScalarProjection(NAV_RectCoord orient, NAV_RectCoord r) {
 void NavDemo_EnableCaches(void) {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheEnable();
+   Xil_ICacheEnable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheEnable();
+   Xil_DCacheEnable();
 #endif
 #endif
 }
@@ -470,10 +499,10 @@ void NavDemo_EnableCaches(void) {
 void NavDemo_DisableCaches(void) {
 #ifdef __MICROBLAZE__
 #ifdef XPAR_MICROBLAZE_USE_ICACHE
-  Xil_ICacheDisable();
+   Xil_ICacheDisable();
 #endif
 #ifdef XPAR_MICROBLAZE_USE_DCACHE
-  Xil_DCacheDisable();
+   Xil_DCacheDisable();
 #endif
 #endif
 }

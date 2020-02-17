@@ -1,13 +1,10 @@
 /************************************************************************/
 /*																		*/
-/*	OLED_Char.c	--	Character Output Routines for OLED Display
- */
+/*	OLED_Char.c	--	Character Output Routines for OLED Display			*/
 /*																		*/
 /************************************************************************/
-/*	Author: 	Gene Apperson
- */
-/*	Copyright 2011, Digilent Inc.
- */
+/*	Author: 	Gene Apperson											*/
+/*	Copyright 2011, Digilent Inc.										*/
 /************************************************************************/
 /*
   This library is free software; you can redistribute it and/or
@@ -25,52 +22,42 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 /************************************************************************/
-/*  Module Description:
- */
+/*  Module Description: 												*/
 /*																		*/
-/*	This module contains the implementations of the 'character mode'
- */
-/*	functions. These functions treat the graphics display as a 4 row
- */
-/*	by 16 column character display.
- */
+/*	This module contains the implementations of the 'character mode'	*/
+/*	functions. These functions treat the graphics display as a 4 row	*/
+/*	by 16 column character display.										*/
 /*																		*/
 /************************************************************************/
-/*  Revision History:
- */
+/*  Revision History:													*/
 /*																		*/
-/*	06/01/2011(GeneA): created
- */
-/*	06/20/2016(ArtVVB): edited for PmodOLED IP
- */
+/*	06/01/2011(GeneA): created											*/
+/*	06/20/2016(ArtVVB): edited for PmodOLED IP							*/
 /*																		*/
 /************************************************************************/
 
+
 /* ------------------------------------------------------------ */
-/*				Include File Definitions
- */
+/*				Include File Definitions						*/
 /* ------------------------------------------------------------ */
 
 #include "PmodOLED.h"
 
 /* ------------------------------------------------------------ */
-/*				Local Variables
- */
+/*				Local Variables									*/
 /* ------------------------------------------------------------ */
 
 extern const uint8_t rgbFillPat[];
 
 /* ------------------------------------------------------------ */
-/*				Forward Declarations
- */
+/*				Forward Declarations							*/
 /* ------------------------------------------------------------ */
 
-void OLED_DrawGlyph(PmodOLED *InstancePtr, char ch);
-void OLED_AdvanceCursor(PmodOLED *InstancePtr);
+void	OLED_DrawGlyph(PmodOLED *InstancePtr, char ch);
+void	OLED_AdvanceCursor(PmodOLED *InstancePtr);
 
 /* ------------------------------------------------------------ */
-/*				Procedure Definitions
- */
+/*				Procedure Definitions							*/
 /* ------------------------------------------------------------ */
 /***	OLED_SetCursor
 **
@@ -92,27 +79,27 @@ void OLED_AdvanceCursor(PmodOLED *InstancePtr);
 **		is clamped to be on the display.
 */
 
-void OLED_SetCursor(PmodOLED *InstancePtr, int xch, int ych) {
-  OLED *OledPtr = &(InstancePtr->OLEDState);
-  /* Clamp the specified location to the display surface
-   */
-  if (xch >= OledPtr->xchOledMax) {
-    xch = OledPtr->xchOledMax - 1;
-  }
+void OLED_SetCursor(PmodOLED *InstancePtr, int xch, int ych)
+{
+	OLED *OledPtr = &(InstancePtr->OLEDState);
+	/* Clamp the specified location to the display surface
+	*/
+	if (xch >= OledPtr->xchOledMax) {
+		xch = OledPtr->xchOledMax-1;
+	}
 
-  if (ych >= OledPtr->ychOledMax) {
-    ych = OledPtr->ychOledMax - 1;
-  }
+	if (ych >= OledPtr->ychOledMax) {
+		ych = OledPtr->ychOledMax-1;
+	}
 
-  /* Save the given character location.
-   */
-  OledPtr->xchOledCur = xch;
-  OledPtr->ychOledCur = ych;
+	/* Save the given character location.
+	*/
+	OledPtr->xchOledCur = xch;
+	OledPtr->ychOledCur = ych;
 
-  /* Convert the character location to a frame buffer address.
-   */
-  OLED_MoveTo(InstancePtr, xch * OledPtr->dxcoOledFontCur,
-              ych * OledPtr->dycoOledFontCur);
+	/* Convert the character location to a frame buffer address.
+	*/
+	OLED_MoveTo(InstancePtr, xch*OledPtr->dxcoOledFontCur, ych*OledPtr->dycoOledFontCur);
 }
 
 /* ------------------------------------------------------------ */
@@ -120,10 +107,8 @@ void OLED_SetCursor(PmodOLED *InstancePtr, int xch, int ych) {
 **
 **	Parameters:
 **		InstancePtr - pointer to SPI handler and OLED data
-**		pxch		- pointer to variable to receive horizontal
-*position
-**		pych		- pointer to variable to receive vertical
-*position
+**		pxch		- pointer to variable to receive horizontal position
+**		pych		- pointer to variable to receive vertical position
 **
 **	Return Value:
 **		none
@@ -135,9 +120,10 @@ void OLED_SetCursor(PmodOLED *InstancePtr, int xch, int ych) {
 **		Fetch the current cursor position
 */
 
-void OLED_GetCursor(PmodOLED *InstancePtr, int *pxch, int *pych) {
-  *pxch = InstancePtr->OLEDState.xchOledCur;
-  *pych = InstancePtr->OLEDState.ychOledCur;
+void OLED_GetCursor(PmodOLED *InstancePtr, int *pxch, int *pych)
+{
+	*pxch = InstancePtr->OLEDState.xchOledCur;
+	*pych = InstancePtr->OLEDState.ychOledCur;
 }
 
 /* ------------------------------------------------------------ */
@@ -161,20 +147,22 @@ void OLED_GetCursor(PmodOLED *InstancePtr, int *pxch, int *pych) {
 **		outside this range, the function returns false.
 */
 
-int OLED_DefUserChar(PmodOLED *InstancePtr, char ch, uint8_t *pbDef) {
-  uint8_t *pb;
-  int ib;
-  OLED *OledPtr = &(InstancePtr->OLEDState);
+int OLED_DefUserChar(PmodOLED *InstancePtr, char ch, uint8_t *pbDef)
+{
+	uint8_t *pb;
+	int		 ib;
+	OLED 	*OledPtr = &(InstancePtr->OLEDState);
 
-  if (ch < chOledUserMax) {
-    pb = OledPtr->pbOledFontUser + ch * cbOledChar;
-    for (ib = 0; ib < cbOledChar; ib++) {
-      *pb++ = *pbDef++;
-    }
-    return 1;
-  } else {
-    return 0;
-  }
+	if (ch < chOledUserMax) {
+		pb = OledPtr->pbOledFontUser + ch * cbOledChar;
+		for (ib = 0; ib < cbOledChar; ib++) {
+			*pb++ = *pbDef++;
+		}
+		return 1;
+	}
+	else {
+		return 0;
+	}
 }
 
 /* ------------------------------------------------------------ */
@@ -197,8 +185,9 @@ int OLED_DefUserChar(PmodOLED *InstancePtr, char ch, uint8_t *pbDef) {
 **		automatic updating on.
 */
 
-void OLED_SetCharUpdate(PmodOLED *InstancePtr, int f) {
-  InstancePtr->OLEDState.fOledCharUpdate = (f != 0) ? 1 : 0;
+void OLED_SetCharUpdate(PmodOLED *InstancePtr, int f)
+{
+	InstancePtr->OLEDState.fOledCharUpdate = (f != 0) ? 1 : 0;
 }
 
 /* ------------------------------------------------------------ */
@@ -217,8 +206,9 @@ void OLED_SetCharUpdate(PmodOLED *InstancePtr, int f) {
 **		Return the current character update mode.
 */
 
-int OLED_GetCharUpdate(PmodOLED *InstancePtr) {
-  return InstancePtr->OLEDState.fOledCharUpdate;
+int OLED_GetCharUpdate(PmodOLED *InstancePtr)
+{
+	return InstancePtr->OLEDState.fOledCharUpdate;
 }
 
 /* ------------------------------------------------------------ */
@@ -239,13 +229,14 @@ int OLED_GetCharUpdate(PmodOLED *InstancePtr) {
 **		cursor position and advance the cursor.
 */
 
-void OLED_PutChar(PmodOLED *InstancePtr, char ch) {
+void OLED_PutChar(PmodOLED *InstancePtr, char ch)
+{
 
-  OLED_DrawGlyph(InstancePtr, ch);
-  OLED_AdvanceCursor(InstancePtr);
-  if (InstancePtr->OLEDState.fOledCharUpdate) {
-    OLED_Update(InstancePtr);
-  }
+	OLED_DrawGlyph(InstancePtr, ch);
+	OLED_AdvanceCursor(InstancePtr);
+	if (InstancePtr->OLEDState.fOledCharUpdate) {
+		OLED_Update(InstancePtr);
+	}
 }
 
 /* ------------------------------------------------------------ */
@@ -266,15 +257,16 @@ void OLED_PutChar(PmodOLED *InstancePtr, char ch) {
 **		display and advance the cursor.
 */
 
-void OLED_PutString(PmodOLED *InstancePtr, char *sz) {
-  while (*sz != '\0') {
-    OLED_DrawGlyph(InstancePtr, *sz);
-    OLED_AdvanceCursor(InstancePtr);
-    sz += 1;
-  }
-  if (InstancePtr->OLEDState.fOledCharUpdate) {
-    OLED_Update(InstancePtr);
-  }
+void OLED_PutString(PmodOLED *InstancePtr, char *sz)
+{
+	while (*sz != '\0') {
+		OLED_DrawGlyph(InstancePtr, *sz);
+		OLED_AdvanceCursor(InstancePtr);
+		sz += 1;
+	}
+	if (InstancePtr->OLEDState.fOledCharUpdate) {
+		OLED_Update(InstancePtr);
+	}
 }
 
 /* ------------------------------------------------------------ */
@@ -293,31 +285,34 @@ void OLED_PutString(PmodOLED *InstancePtr, char *sz) {
 **	Description:
 **		Renders the specified character into the display buffer
 **		at the current character cursor location. This does not
-**		affect the current character cursor location or the
+**		affect the current character cursor location or the 
 **		current drawing position in the display buffer.
 */
 
-void OLED_DrawGlyph(PmodOLED *InstancePtr, char ch) {
-  uint8_t *pbFont;
-  uint8_t *pbBmp;
-  int ib;
-  OLED *OledPtr = &(InstancePtr->OLEDState);
+void OLED_DrawGlyph(PmodOLED *InstancePtr, char ch)
+{
+	uint8_t *pbFont;
+	uint8_t *pbBmp;
+	int		 ib;
+	OLED 	*OledPtr = &(InstancePtr->OLEDState);
 
-  if ((ch & 0x80) != 0) {
-    return;
-  }
+	if ((ch & 0x80) != 0) {
+		return;
+	}
 
-  if (ch < chOledUserMax) {
-    pbFont = OledPtr->pbOledFontUser + ch * cbOledChar;
-  } else if ((ch & 0x80) == 0) {
-    pbFont = OledPtr->pbOledFontCur + (ch - chOledUserMax) * cbOledChar;
-  }
+	if (ch < chOledUserMax) {
+		pbFont = OledPtr->pbOledFontUser + ch*cbOledChar;
+	}
+	else if ((ch & 0x80) == 0) {
+		pbFont = OledPtr->pbOledFontCur + (ch-chOledUserMax) * cbOledChar;
+	}
 
-  pbBmp = OledPtr->pbOledCur;
+	pbBmp = OledPtr->pbOledCur;
 
-  for (ib = 0; ib < OledPtr->dxcoOledFontCur; ib++) {
-    *pbBmp++ = *pbFont++;
-  }
+	for (ib = 0; ib < OledPtr->dxcoOledFontCur; ib++) {
+		*pbBmp++ = *pbFont++;
+	}
+
 }
 
 /* ------------------------------------------------------------ */
@@ -338,19 +333,20 @@ void OLED_DrawGlyph(PmodOLED *InstancePtr, char ch) {
 **		end of the display.
 */
 
-void OLED_AdvanceCursor(PmodOLED *InstancePtr) {
-  OLED *OledPtr = &(InstancePtr->OLEDState);
+void OLED_AdvanceCursor(PmodOLED *InstancePtr)
+{
+	OLED *OledPtr = &(InstancePtr->OLEDState);
 
-  OledPtr->xchOledCur += 1;
-  if (OledPtr->xchOledCur >= OledPtr->xchOledMax) {
-    OledPtr->xchOledCur = 0;
-    OledPtr->ychOledCur += 1;
-  }
-  if (OledPtr->ychOledCur >= OledPtr->ychOledMax) {
-    OledPtr->ychOledCur = 0;
-  }
+	OledPtr->xchOledCur += 1;
+	if (OledPtr->xchOledCur >= OledPtr->xchOledMax) {
+		OledPtr->xchOledCur = 0;
+		OledPtr->ychOledCur += 1;
+	}
+	if (OledPtr->ychOledCur >= OledPtr->ychOledMax) {
+		OledPtr->ychOledCur = 0;
+	}
 
-  OLED_SetCursor(InstancePtr, OledPtr->xchOledCur, OledPtr->ychOledCur);
+	OLED_SetCursor(InstancePtr, OledPtr->xchOledCur, OledPtr->ychOledCur);
 }
 
 /* ------------------------------------------------------------ */
@@ -369,3 +365,4 @@ void OLED_AdvanceCursor(PmodOLED *InstancePtr) {
 /* ------------------------------------------------------------ */
 
 /************************************************************************/
+

@@ -24,11 +24,12 @@
 
 /************************** Configuration Struct ***************************/
 
-XIic_Config CMPS2_Config = {
-    0, // DeviceId - unloaded & unused
-    0, // BaseAddress - unloaded
-    0, // Has10BitAddr - false
-    2  // GpOutWidth - 2
+XIic_Config CMPS2_Config =
+{
+   0, // DeviceId - unloaded & unused
+   0, // BaseAddress - unloaded
+   0, // Has10BitAddr - false
+   2  // GpOutWidth - 2
 };
 
 /************************** Function Definitions ***************************/
@@ -51,11 +52,11 @@ XIic_Config CMPS2_Config = {
 **      Initialize the PmodCMPS2.
 */
 void CMPS2_begin(PmodCMPS2 *InstancePtr, u32 IIC_Address, u8 Chip_Address) {
-  CMPS2_Config.BaseAddress = IIC_Address;
-  InstancePtr->chipAddr = Chip_Address;
-  CMPS2_IICInit(&InstancePtr->CMPS2Iic);
-  XIic_SetAddress(&InstancePtr->CMPS2Iic, XII_ADDR_TO_SEND_TYPE,
-                  InstancePtr->chipAddr);
+   CMPS2_Config.BaseAddress = IIC_Address;
+   InstancePtr->chipAddr = Chip_Address;
+   CMPS2_IICInit(&InstancePtr->CMPS2Iic);
+   XIic_SetAddress(&InstancePtr->CMPS2Iic, XII_ADDR_TO_SEND_TYPE,
+         InstancePtr->chipAddr);
 }
 
 /* ------------------------------------------------------------ */
@@ -74,25 +75,25 @@ void CMPS2_begin(PmodCMPS2 *InstancePtr, u32 IIC_Address, u8 Chip_Address) {
 **      Initializes the PmodCMPS2 IIC.
 */
 int CMPS2_IICInit(XIic *IicInstancePtr) {
-  int Status;
+   int Status;
 
-  Status = XIic_CfgInitialize(IicInstancePtr, &CMPS2_Config,
-                              CMPS2_Config.BaseAddress);
-  if (Status != XST_SUCCESS) {
-    return XST_FAILURE;
-  }
+   Status = XIic_CfgInitialize(IicInstancePtr, &CMPS2_Config,
+         CMPS2_Config.BaseAddress);
+   if (Status != XST_SUCCESS) {
+      return XST_FAILURE;
+   }
 
-  /*
-   * Start the IIC driver so that the device is enabled.
-   */
-  XIic_Start(IicInstancePtr);
+   /*
+    * Start the IIC driver so that the device is enabled.
+    */
+   XIic_Start(IicInstancePtr);
 
-  /*
-   * Disable Global interrupt to use polled mode operation
-   */
-  XIic_IntrGlobalDisable(IicInstancePtr);
+   /*
+    * Disable Global interrupt to use polled mode operation
+    */
+   XIic_IntrGlobalDisable(IicInstancePtr);
 
-  return XST_SUCCESS;
+   return XST_SUCCESS;
 }
 
 /* ------------------------------------------------------------ */
@@ -114,21 +115,21 @@ int CMPS2_IICInit(XIic *IicInstancePtr) {
 **      Reads nData data bytes from register reg
 */
 void CMPS2_ReadIIC(PmodCMPS2 *InstancePtr, u8 reg, u8 *Data, int nData) {
-  int Status;
-  Status = XIic_Start(&InstancePtr->CMPS2Iic);
-  if (Status != XST_SUCCESS) {
-    return;
-  }
-  if (InstancePtr->currentRegister != reg) {
-    XIic_Send(InstancePtr->CMPS2Iic.BaseAddress, InstancePtr->chipAddr, &reg, 1,
-              XII_REPEATED_START_OPTION);
-    InstancePtr->currentRegister = reg;
-  }
+   int Status;
+   Status = XIic_Start(&InstancePtr->CMPS2Iic);
+   if (Status != XST_SUCCESS) {
+      return;
+   }
+   if (InstancePtr->currentRegister != reg) {
+      XIic_Send(InstancePtr->CMPS2Iic.BaseAddress, InstancePtr->chipAddr, &reg,
+            1, XII_REPEATED_START_OPTION);
+      InstancePtr->currentRegister = reg;
+   }
 
-  XIic_Recv(InstancePtr->CMPS2Iic.BaseAddress, InstancePtr->chipAddr, Data,
-            nData, XIIC_STOP);
+   XIic_Recv(InstancePtr->CMPS2Iic.BaseAddress, InstancePtr->chipAddr, Data,
+         nData, XIIC_STOP);
 
-  Status = XIic_Stop(&InstancePtr->CMPS2Iic);
+   Status = XIic_Stop(&InstancePtr->CMPS2Iic);
 }
 
 /* ------------------------------------------------------------ */
@@ -150,30 +151,30 @@ void CMPS2_ReadIIC(PmodCMPS2 *InstancePtr, u8 reg, u8 *Data, int nData) {
 **      Writes nData data bytes to register reg
 */
 void CMPS2_WriteIIC(PmodCMPS2 *InstancePtr, u8 reg, u8 *Data, int nData) {
-  u8 out[nData + 1];
-  int i;
-  int Status;
+   u8 out[nData + 1];
+   int i;
+   int Status;
 
-  out[0] = reg;
-  for (i = 0; i < nData; i++)
-    out[i + 1] = Data[i];
+   out[0] = reg;
+   for (i = 0; i < nData; i++)
+      out[i + 1] = Data[i];
 
-  if (InstancePtr->currentRegister != reg) {
-    InstancePtr->currentRegister = reg;
-  }
+   if (InstancePtr->currentRegister != reg) {
+      InstancePtr->currentRegister = reg;
+   }
 
-  Status = XIic_Start(&InstancePtr->CMPS2Iic);
-  if (Status != XST_SUCCESS) {
-    return;
-  }
+   Status = XIic_Start(&InstancePtr->CMPS2Iic);
+   if (Status != XST_SUCCESS) {
+      return;
+   }
 
-  XIic_Send(InstancePtr->CMPS2Iic.BaseAddress, InstancePtr->chipAddr, out,
-            nData + 1, XIIC_STOP);
+   XIic_Send(InstancePtr->CMPS2Iic.BaseAddress, InstancePtr->chipAddr, out,
+         nData + 1, XIIC_STOP);
 
-  Status = XIic_Stop(&InstancePtr->CMPS2Iic);
-  if (Status != XST_SUCCESS) {
-    return;
-  }
+   Status = XIic_Stop(&InstancePtr->CMPS2Iic);
+   if (Status != XST_SUCCESS) {
+      return;
+   }
 }
 
 /* ------------------------------------------------------------ */
@@ -192,19 +193,19 @@ void CMPS2_WriteIIC(PmodCMPS2 *InstancePtr, u8 reg, u8 *Data, int nData) {
 **      Captures data from the first six registers of the CMPS2
 */
 CMPS2_DataPacket CMPS2_GetData(PmodCMPS2 *InstancePtr) {
-  CMPS2_DataPacket packet;
-  u8 data;
+   CMPS2_DataPacket packet;
+   u8 data;
 
-  data = CMPS2_INTCONREG0_TAKEMEAS_MASK;
-  CMPS2_WriteIIC(InstancePtr, CMPS2_INTCONREG0_REG, &data, 1);
+   data = CMPS2_INTCONREG0_TAKEMEAS_MASK;
+   CMPS2_WriteIIC(InstancePtr, CMPS2_INTCONREG0_REG, &data, 1);
 
-  do {
-    CMPS2_ReadIIC(InstancePtr, CMPS2_STATUS_REG, &data, 1);
-  } while ((data & CMPS2_STATUS_MEASDONE_MASK) == 0);
+   do {
+      CMPS2_ReadIIC(InstancePtr, CMPS2_STATUS_REG, &data, 1);
+   } while ((data & CMPS2_STATUS_MEASDONE_MASK) == 0);
 
-  CMPS2_ReadIIC(InstancePtr, 0x00, (u8 *)(&packet), 6);
+   CMPS2_ReadIIC(InstancePtr, 0x00, (u8*) (&packet), 6);
 
-  return packet;
+   return packet;
 }
 
 /* ------------------------------------------------------------ */
@@ -223,8 +224,8 @@ CMPS2_DataPacket CMPS2_GetData(PmodCMPS2 *InstancePtr) {
 **      Charges the magnetometer sensor
 */
 void CMPS2_SetSensor(PmodCMPS2 *InstancePtr) {
-  u8 data = CMPS2_INTCONREG0_SETSENSOR_MASK;
-  CMPS2_WriteIIC(InstancePtr, CMPS2_INTCONREG0_REG, &data, 1);
+   u8 data = CMPS2_INTCONREG0_SETSENSOR_MASK;
+   CMPS2_WriteIIC(InstancePtr, CMPS2_INTCONREG0_REG, &data, 1);
 }
 
 /* ------------------------------------------------------------ */
@@ -245,6 +246,6 @@ void CMPS2_SetSensor(PmodCMPS2 *InstancePtr) {
 **      MMC3416xPJ data sheet
 */
 void CMPS2_SetOutputResolution(PmodCMPS2 *InstancePtr, u8 res) {
-  u8 data = res & 0x03;
-  CMPS2_WriteIIC(InstancePtr, CMPS2_INTCONREG1_REG, &data, 1);
+   u8 data = res & 0x03;
+   CMPS2_WriteIIC(InstancePtr, CMPS2_INTCONREG1_REG, &data, 1);
 }
