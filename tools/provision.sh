@@ -28,7 +28,7 @@ if [ ! $? -eq 0 ]; then
     exit 1
   fi
 
-  echo "User bank created in test_users.txt" 
+  echo "User bank created in test_users.txt"
 
 python3 makeRegions.py
 
@@ -37,12 +37,12 @@ if [ ! $? -eq 0 ]; then
     exit 1
   fi
 
-  echo "Region bank created in test_regions.txt" 
+  echo "Region bank created in test_regions.txt"
 
 # end generate test data
 
 python3 createRegions --region-list $(cat ./provision_test/test_regions.txt) \
-                      --outfile ./provision_test/region_secrets.json 
+                      --outfile ./provision_test/region_secrets.json
                       # USA Canada Japan
 
 if [ ! $? -eq 0 ]; then
@@ -50,7 +50,7 @@ if [ ! $? -eq 0 ]; then
     exit 1
   fi
 
-  echo "Provisioned regions created in ./provision_test/region_secrets.json" 
+  echo "Provisioned regions created in ./provision_test/region_secrets.json"
 
 python3 createUsers --user-list $(cat ./provision_test/test_users.txt) \
                     --outfile ./provision_test/user_secrets.json
@@ -71,7 +71,7 @@ gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c -lsodium
 # Generate Test Song
 
 read -p "Generate Test Audio? (y/n) " choice
-case "$choice" in 
+case "$choice" in
   y|Y ) python3 makeAudio.py
 
     python3 protectSong --region-list USA Canada \
@@ -87,7 +87,7 @@ case "$choice" in
       fi
   SONG="./provision_test/test.wav"
   echo "Protected song created in $SONG"
-    
+
   ;;
   *) echo "Using privided audio sample."
     python3 protectSong --region-list USA Canada \
@@ -107,12 +107,14 @@ case "$choice" in
   esac
 # End Generate Test Song
 
-# Create Device
+
+
+
 python3 createDevice --region-list Canada USA \
                      --region-secrets-path ./provision_test/region_secrets.json \
                      --user-list $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g') \
                      --user-secrets-path ./provision_test/user_secrets.json \
-                     --device-dir ./device
+                     --device-dir ./device2
 
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "createDevice Failed!"
@@ -163,12 +165,13 @@ fi
   
   ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin 
 
-  if [ ! $? -eq 0 ]; then
-    printf "\nERROR: %s\n" "deployDevice Failed!"
-    exit 1
-  fi
-  
-  printf "\nFinished building and deploying!"
+#printf "\n\nRunning buildDevice...\n"
+#(./buildDevice -p /ectf/ -n test -bf all -secrets_dir ./device)
+#
+#if [ ! $? -eq 0 ]; then
+#  printf "\nERROR: %s\n" "buildDevice Failed!"
+#  exit 1
+#fi
 
 # Time to Reverse the process
 

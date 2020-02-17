@@ -1,6 +1,5 @@
 #include "util.h"
 #include "PWM.h"
-#include "drm.h"
 
 /*
  * This function enables the PWM module and sets its period so it can drive the

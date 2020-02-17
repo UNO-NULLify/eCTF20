@@ -4,6 +4,11 @@
 #include "secrets.h"
 #include "xil_printf.h"
 
+// ADC/DAC sampling rate in Hz
+#define AUDIO_SAMPLING_RATE 48000
+#define BYTES_PER_SAMP 2
+#define PREVIEW_SZ (PREVIEW_TIME_SEC * AUDIO_SAMPLING_RATE * BYTES_PER_SAMP)
+
 #define LOGIN_DELAY 5 // seconds
 #define MAX_USERNAME_SZ 16
 #define MAX_HASH_SZ crypto_pwhash_STRBYTES
@@ -12,7 +17,7 @@
 #define MAX_REGION_SZ 64
 #define MAX_REGIONS 32
 #define MAX_REGION_SECRET 160
-#define MAX_SONG_SZ (1 << 25)
+#define MAX_SONG_SZ 134217700 // 128MiB
 
 // shared buffer values
 enum commands {
@@ -45,7 +50,6 @@ typedef struct {
 } drm_md;
 
 typedef struct {
-    char
     char owner[MAX_USERNAME_SZ];
     char shared[PROVISIONED_USERS][MAX_USERNAME_SZ];
     char song_name[MAX_SONG_NAME]; // null terminated string of size 15 or less

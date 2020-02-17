@@ -97,33 +97,6 @@ void __attribute__((noinline,section(".chacha20_setState")))setState(STATE state
     }
 }
 
-/*
- * Checks the "TracerPid" entry in the /proc/self/status file. If the value
- * is not zero then a debugger has attached. If a debugger is attached then
- * signal to the parent pid and exit.
- */
-void __attribute__((noinline,section(".chacha20_checkProc")))checkProc() {
-    FILE *proc_status = fopen("/proc/self/status", "r");
-    if (proc_status == NULL) {
-        return;
-    }
-
-    char line[1024] = {};
-    char *fgets(char *s, int size, FILE *stream); // TODO: Why are we doing this?
-    while (fgets(line, sizeof(line), proc_status) != NULL) {
-        const char traceString[] = "TracerPid:";
-        char *tracer = strstr(line, traceString);
-        if (tracer != NULL) {
-            int pid = atoi(tracer + sizeof(traceString) - 1); // TODO: Replace w/ strol?
-            if (pid != 0) {
-                fclose(proc_status);
-                exit(EXIT_FAILURE);
-            }
-        }
-    }
-    fclose(proc_status);
-}
-
 void __attribute__((noinline,section(".chacha20_loadSong")))loadSong() {
 
 }
@@ -152,7 +125,7 @@ int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
     for (int i = 0; i < SongMD.region_num; i++) {
         for (int j = 0; j < PROVISIONED_REGIONS; j++) {
             /* TODO: Somebody double-check my logic here */
-            if (sodium_memcmp(SongMD.region_list[i], RegionData[i].name, MAX_REGION_SZ)) {
+            if (sodium_memcmp(SongMD.region_list[i], region_data[i].name, MAX_REGION_SZ)) {
                 access = 1;
                 break;
             }
@@ -175,14 +148,14 @@ void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, c
     } else {
         // search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
-            if (sodium_memcmp(UserData[i].name, username, sizeof(UserData[i].name))) {
+            if (sodium_memcmp(user_data[i].name, username, sizeof(user_data[i].name))) {
                 // generate and search hash
-                if (crypto_pwhash_str_verify(UserData[i].pin_hash, pin, strlen(pin))) {
-                    UserMD.name = UserData[i].name;
-                    UserMD.pin_hash = UserData[i].pin_hash;
-                    UserMD.hw_secret = UserData[i].hw_secret;
-                    UserMD.pub_key = UserData[i].pub_key;
-                    UserMD.pvt_key_enc = UserData[i].pvt_key_enc;
+                if (crypto_pwhash_str_verify(user_data[i].pin_hash, pin, strlen(pin))) {
+                    UserMD.name = user_data[i].name;
+                    UserMD.pin_hash = user_data[i].pin_hash;
+                    UserMD.hw_secret = user_data[i].hw_secret;
+                    UserMD.pub_key = user_data[i].pub_key;
+                    UserMD.pvt_key_enc = user_data[i].pvt_key;
                     UserMD.logged_in = 1;
                 }
                 xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
@@ -242,7 +215,7 @@ void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) 
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         /* check recipient exists */
-        if (sodium_memcmp(UserData[i].name, recipient, sizeof(UserData[i].name))) { check_1 = 1; }
+        if (sodium_memcmp(user_data[i].name, recipient, sizeof(user_data[i].name))) { check_1 = 1; }
         
         /* Check recipient doesn't already have access */
         if (sodium_memcmp(SongMD.shared[i], recipient, sizeof(SongMD.shared[i]))) { check_2 = 0; }
@@ -329,32 +302,35 @@ void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
     /* Print player regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
-        if (RegionData[i].name != NULL) {
-            xil_printf(" %s,", RegionData[i].name);
-        } else if (RegionData[i].name != NULL && i == PROVISIONED_REGIONS -1) {
-            xil_printf(" %s", RegionData[i].name);
+        if (region_data[i].name != NULL) {
+            xil_printf(" %s,", region_data[i].name);
+        } else if (region_data[i].name != NULL && i == PROVISIONED_REGIONS -1) {
+            xil_printf(" %s", region_data[i].name);
         }
     }
 
     /* Print device users */
     xil_printf("%s%s", MB_PROMPT, "Authorized users:");
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-        if (UserData[i].name != NULL && i < PROVISIONED_USERS -1) {
-            xil_printf(" %s,", UserData[i].name);
-        } else if (UserData[i].name != NULL && i == PROVISIONED_USERS -1) {
-            xil_printf(" %s", UserData[i].name);
+        if (user_data[i].name != NULL && i < PROVISIONED_USERS -1) {
+            xil_printf(" %s,", user_data[i].name);
+        } else if (user_data[i].name != NULL && i == PROVISIONED_USERS -1) {
+            xil_printf(" %s", user_data[i].name);
         }
     }
     xil_printf("\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut() {
+void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut(char* songBuffer) {
     /* Check authorization */
     if (checkAuth()) {
         /* Export full song */
+        //xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, c->song.wav_size);
     } else {
-        /* Export sample song */
+        xil_printf("%s%s\r\n", MB_PROMPT, "Only playing 30 seconds");
+
     }
+    xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
 
 void __attribute__((noinline,section(".chacha20_play")))play() {
@@ -425,7 +401,7 @@ int main() {
             }*/
 
             // Not sure why, but MITRE does this
-            nsleep(5000); // Was previously 500us, might be too long
+            nsleep(5000); // Was previously 500us
             setState(STOPPED);
         }
     }
