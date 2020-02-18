@@ -73,9 +73,6 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 
 #define ROOT_VERIFY \"{user_secrets["root_verify"]}\"
 
-enum USERNAMES {{ {", ".join([u for u in user_names])} }};
-enum REGIONS {{ {", ".join([r for r in region_names])} }};
-
 struct R_Data {{
     char *name;
     char *pub_key;
