@@ -114,7 +114,7 @@ python3 createDevice --region-list Canada USA \
                      --region-secrets-path ./provision_test/region_secrets.json \
                      --user-list $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g') \
                      --user-secrets-path ./provision_test/user_secrets.json \
-                     --device-dir ./device2
+                     --device-dir ./device
 
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "createDevice Failed!"
