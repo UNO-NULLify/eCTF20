@@ -194,9 +194,155 @@ The function myISR registers the interrupt as being processed.
 
 
 <code>
-    (lines )
+    (line 164)
+    mb_printf("No user logged in");
 </code>
 
+This printf does not contain a format specifier and the stack may be able to be leaked if attacked using a string format attack.
+
+<code>
+    (lines 195 - 199)
+
+    if (!locked) {
+        mb_printf("Region Match. Full Song can be played. Unlocking...");
+    } else {
+        mb_printf("Invalid region");
+    }
+</code>
+
+More missing format specifiers (there are 2 here).
+
+
+<code>
+    (line 227)
+
+    mb_printf("Already logged in. Please log out first.\r\n");
+</code>
+
+More missing format specifiers.
+
+<code>
+    (line 246 and 255)
+
+    mb_printf("Incorrect pin for user '%s'\r\n", c->username);
+
+    mb_printf("User not found\r\n");
+</code>
+
+The user should not know if the username or pin were incorrect, upon unsuccessful login. This should be removed in our design.
+
+
+<code>
+    (line 265 and 272)
+
+   mb_printf("Logging out...\r\n");
+
+   . . .
+
+    mb_printf("Not logged in\r\n");
+</code>
+
+
+More missing format specifiers.
+
+
+<code>
+    (line 369)
+
+    mb_printf("Reading Audio File...");
+</code>
+
+More missing format specifiers.
+
+
+<code>
+    (line 382)
+
+    mb_printf("Song is unlocked. Playing full song\r\n");
+</code>
+
+More missing formatters.
+
+
+<code>
+    (lines 393 - 415)
+
+    while (InterruptProcessed) {
+            InterruptProcessed = FALSE;
+
+            switch (c->cmd) {
+            case PAUSE:
+                mb_printf("Pausing... \r\n");
+                set_paused();
+                while (!InterruptProcessed) continue; // wait for interrupt
+                break;
+            case PLAY:
+                mb_printf("Resuming... \r\n");
+                set_playing();
+                break;
+            case STOP:
+                mb_printf("Stopping playback...");
+                return;
+            case RESTART:
+                mb_printf("Restarting song... \r\n");
+                rem = length; // reset song counter
+                set_playing();
+            default:
+                break;
+            }
+    }
+</code>
+
+THESE ARE ALL MISSING FORMAT SPECIFIERS.
+
+
+<code>
+    (lines 453 and 454)
+
+    c->song.file_size -= c->song.md.md_size;
+    c->song.wav_size -= c->song.md.md_size;
+</code>
+
+All operations that rely on trusted data need to be performed on the local struct, not the shared one.
+
+
+
+<code>
+    (lines 492 - 497)
+
+    // Congigure the DMA
+    status = fnConfigDma(&sAxiDma);
+    if(status != XST_SUCCESS) {
+    mb_printf("DMA configuration ERROR\r\n");
+    return XST_FAILURE;
+    }
+</code>
+
+This printf does not contain a format specifier and the stack may be able to be leaked if attacked using a string format attack.
+
+
+<code>
+    (line 506)
+
+    mb_printf("Audio DRM Module has Booted\n\r");
+</code>
+
+This printf does not contain a format specifier and the stack may be able to be leaked if attacked using a string format attack.
+
+
+<code>
+    (line 532 - 534)
+
+    case PLAY:
+    play_song();
+    mb_printf("Done Playing Song\r\n");
+</code>
+
+This printf does not contain a format specifier and the stack may be able to be leaked if attacked using a string format attack.
+
+
+
+IMPORTANT NOTE: There are MANY uses of strcmp in the reference code, we NEED to replace these with strncmp and specify an expected size.
 
 ### /mb/drm_audio_fw/src/secrets.h
 
@@ -219,6 +365,7 @@ This file contains the basic setup for changing the LEDs, setting up the interru
 </code>
 
 The code handling an issue where the I2S module is in SG mode has a print statement with no format specifier.
+
 
 ### Everything else
 
