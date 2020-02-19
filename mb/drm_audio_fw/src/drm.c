@@ -23,6 +23,9 @@ drm_md DeviceMD;
 // Song metadata struct
 song_md SongMD;
 
+// Command channel struct
+volatile cmd_channel *CMDChannel = (cmd_channel *)SHARED_DDR_BASE;
+
 // LED colors and controller
 u32 *led = (u32 *) XPAR_RGB_PWM_0_PWM_AXI_BASEADDR;
 const struct color RED = {0x01ff, 0x0000, 0x0000};
@@ -78,7 +81,7 @@ int initMicroBlaze() {
 
 //////////////////////// HELPER FUNCTIONS ////////////////////////
 // Set state of drm and LED color
-void __attribute__((noinline,section(".chacha20_setState")))setState(STATE state) {
+void setState(STATE state) {
     DeviceMD.state = state;
     switch (state) {
         case WORKING:
@@ -97,28 +100,33 @@ void __attribute__((noinline,section(".chacha20_setState")))setState(STATE state
     }
 }
 
-void __attribute__((noinline,section(".chacha20_loadSong")))loadSong() {
+int loadSong() {
 
 }
 
-void __attribute__((noinline,section(".chacha20_decryptSong")))decryptSong() {
+int decryptSong() {
 
 }
 
-int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
-    int access = 0;
+/**
+ * @brief Checks whether the user can access the song.
+ * @return access status
+ */
+int checkAuth() {
+    int user_access = 0;
+    int region_access = 0;
     /* Check user is logged in */
     if (!UserMD.logged_in) {
         /* Check user is owner or shared user */
         if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
-            access = 0;
+            user_access = 0;
             for (int i = 0; i < PROVISIONED_USERS; i++) {
                 if (sodium_memcmp(SongMD.shared[i], UserMD.name, sizeof(SongMD.shared[i]))) {
-                    access = 1;
+                    user_access = 1;
                     break;
                 }
             }
-        } else { access = 1; }
+        } else { user_access = 1; }
     }
 
     /* Check song region matches player */
@@ -126,12 +134,16 @@ int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
         for (int j = 0; j < PROVISIONED_REGIONS; j++) {
             /* TODO: Somebody double-check my logic here */
             if (sodium_memcmp(SongMD.region_list[i], region_data[i].name, MAX_REGION_SZ)) {
-                access = 1;
+                region_access = 1;
                 break;
             }
         }
     }
-    return access;
+
+    if (!user_access) { xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User has no access!"); }
+    if (!region_access) { xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Region locked!"); }
+
+    return (user_access && region_access);
 }
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
@@ -140,7 +152,7 @@ int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
  * @param username - the user's username, (len: 1-15, chars: a-z, A-Z)
  * @param pin - the user's pin, (len: 8-64, chars: 0-9)
  */
-void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, char *pin) {
+void logOn() {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already logged-in.");
@@ -148,9 +160,9 @@ void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, c
     } else {
         // search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
-            if (sodium_memcmp(user_data[i].name, username, sizeof(user_data[i].name))) {
+            if (sodium_memcmp(user_data[i].name, CMDChannel->username, sizeof(user_data[i].name))) {
                 // generate and search hash
-                if (crypto_pwhash_str_verify(user_data[i].pin_hash, pin, strlen(pin))) {
+                if (crypto_pwhash_str_verify(user_data[i].pin_hash, CMDChannel->pin, strlen(CMDChannel->pin))) {
                     UserMD.name = user_data[i].name;
                     UserMD.pin_hash = user_data[i].pin_hash;
                     UserMD.hw_secret = user_data[i].hw_secret;
@@ -160,6 +172,7 @@ void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, c
                 }
                 xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
                 sodium_memzero(&UserMD, sizeof(UserMD));
+                sodium_memzero(&CMDChannel, sizeof(CMDChannel));
                 // delay failed attempt by 5 seconds
                 sleep(LOGIN_DELAY);
             }
@@ -170,11 +183,12 @@ void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, c
 /**
  * @brief Logs current user off.
  */
-void __attribute__((noinline,section(".chacha20_logOff")))logOff() {
+void logOff() {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Logging out...");
         sodium_memzero(&UserMD, sizeof(UserMD));
+        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
         return;
@@ -185,7 +199,7 @@ void __attribute__((noinline,section(".chacha20_logOff")))logOff() {
  * @brief Allows owner to share access of the song to another user.
  * @param recipient - the user in which the owner wants to share song access to.
  */
-void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) {
+void __attribute__((noinline,section(".chacha20_share")))share() {
     int index = -1;
     int check_1 = 0;
     int check_2 = 1;
@@ -195,6 +209,7 @@ void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) 
     if (!SongMD.loaded) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
         sodium_memzero(&SongMD, sizeof(SongMD));
+        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
         return;
     }
     
@@ -202,6 +217,7 @@ void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) 
     if (!UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in!");
         sodium_memzero(&SongMD, sizeof(SongMD));
+        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
         return;
     }
     
@@ -215,10 +231,10 @@ void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) 
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         /* check recipient exists */
-        if (sodium_memcmp(user_data[i].name, recipient, sizeof(user_data[i].name))) { check_1 = 1; }
+        if (sodium_memcmp(user_data[i].name, CMDChannel->username, sizeof(user_data[i].name))) { check_1 = 1; }
         
         /* Check recipient doesn't already have access */
-        if (sodium_memcmp(SongMD.shared[i], recipient, sizeof(SongMD.shared[i]))) { check_2 = 0; }
+        if (sodium_memcmp(SongMD.shared[i], CMDChannel->username, sizeof(SongMD.shared[i]))) { check_2 = 0; }
         
         /* Check for an empty spot */
         if (sodium_memcmp(SongMD.shared[i], NULL, sizeof(SongMD.shared[i]))) { check_3 = 1; index = i; }
@@ -228,16 +244,19 @@ void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) 
     if (!check_1){
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User does not exist!");
         sodium_memzero(&SongMD, sizeof(SongMD));
+        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
         return;
     }
     if (check_2){
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already has access!");
         sodium_memzero(&SongMD, sizeof(SongMD));
+        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
         return;
     }
     if (!check_3) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Too many shared users!");
         sodium_memzero(&SongMD, sizeof(SongMD));
+        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
         return;
     }
     if (index < 0) {
@@ -247,7 +266,9 @@ void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) 
     }
 
     /* Add recipient to list if conditions are met */
-    strcpy(SongMD.shared[index], recipient);
+    strcpy(SongMD.shared[index], CMDChannel->username);
+
+    xil_printf("%s%s%s\r\n", MB_PROMPT, "Song shared with:", CMDChannel->username);
 
     /*
      * TODO: write shared list somewhere...
@@ -259,7 +280,7 @@ void __attribute__((noinline,section(".chacha20_share")))share(char *recipient) 
 /**
  * @brief List the users and regions that a song has been provisioned for.
  */
-void __attribute__((noinline,section(".chacha20_querySong")))querySong() {
+void querySong() {
     // check if logged in
     if (!UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
@@ -270,6 +291,7 @@ void __attribute__((noinline,section(".chacha20_querySong")))querySong() {
     if (!SongMD.loaded) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
         sodium_memzero(&SongMD, sizeof(SongMD));
+        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
         return;
     }
     
@@ -298,7 +320,7 @@ void __attribute__((noinline,section(".chacha20_querySong")))querySong() {
     xil_printf("\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
+void queryPlayer() {
     /* Print player regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
@@ -321,33 +343,103 @@ void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
     xil_printf("\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut(char* songBuffer) {
+void digitalOut() {
     /* Check authorization */
-    if (checkAuth()) {
+    if (checkAuth() ||  PREVIEW_SZ > CMDChannel->song.wav_size) {
         /* Export full song */
-        //xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, c->song.wav_size);
+        CMDChannel->song.file_size -= CMDChannel->song.md.md_size;
+        CMDChannel->song.wav_size -= CMDChannel->song.md.md_size;
+        xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, CMDChannel->song.wav_size);
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "Only playing 30 seconds");
-
+        CMDChannel->song.file_size -= CMDChannel->song.wav_size - PREVIEW_SZ;
+        CMDChannel->song.wav_size = PREVIEW_SZ;
     }
+
+    // move WAV file up in buffer, skipping metadata
+    memmove((void *)&CMDChannel->song.md, (void *)get_drm_song(CMDChannel->song), CMDChannel->song.wav_size);
+
     xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_play")))play() {
+void play() {
+    u32 counter = 0, rem, cp_num, cp_xfil_cnt, offset, dma_cnt, length, *fifo_fill;
+
+    /* Load song */
+    if (loadSong()) {
+        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
+    }
+
     /* Check authorization */
     if (checkAuth()) {
         /* Play full song */
+        length = SongMD.song_length;
     } else {
         /* Play sample song */
+        length = PREVIEW_SZ;
     }
 
-    /* TODO:
-     * - Check if song is playing
-     * - Implement pause
-     * - Implement resume
-     * - Implement stop
-     * - Implement restart
-     */
+    rem = length;
+    fifo_fill = (u32 *)XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR;
+
+    // write entire file to two-block codec fifo
+    // writes to one block while the other is being played
+    setState(PLAYING);
+    while (rem > 0) {
+        // check for interrupt to stop playback
+        while (InterruptProcessed) {
+            InterruptProcessed = FALSE;
+
+            switch (CMDChannel->cmd) {
+                case PAUSE:
+                    xil_printf("%s%s" MB_PROMPT, "Pausing...\r\n");
+                    setState(PAUSED);
+                    while (!InterruptProcessed)
+                        continue; // wait for interrupt
+                    break;
+                case PLAY:
+                    xil_printf("%s%s" MB_PROMPT, "Resuming...\r\n");
+                    setState(PLAYING);
+                    break;
+                case STOP:
+                    xil_printf("%s%s" MB_PROMPT, "Stopping playback...\r\n");
+                    return;
+                case RESTART:
+                    xil_printf("%s%s" MB_PROMPT, "Restarting Song...\r\n");
+                    rem = length; // reset song counter
+                    setState(PLAYING);
+                default:
+                    break;
+            }
+        }
+
+        // calculate write size and offset
+        cp_num = (rem > CHUNK_SZ) ? CHUNK_SZ : rem;
+        offset = (counter++ % 2 == 0) ? 0 : CHUNK_SZ;
+
+        // do first mem cpy here into DMA BRAM
+        Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR + offset),
+                   (void *)(get_drm_song(CMDChannel->song) + length - rem), (u32)(cp_num));
+
+        cp_xfil_cnt = cp_num;
+
+        while (cp_xfil_cnt > 0) {
+
+            // polling while loop to wait for DMA to be ready
+            // DMA must run first for this to yield the proper state
+            // rem != length checks for first run
+            while (XAxiDma_Busy(&sAxiDma, XAXIDMA_DMA_TO_DEVICE) && rem != length &&
+                   *fifo_fill < (FIFO_CAP - 32))
+                ;
+
+            // do DMA
+            dma_cnt = (FIFO_CAP - *fifo_fill > cp_xfil_cnt) ? FIFO_CAP - *fifo_fill
+                                                            : cp_xfil_cnt;
+            fnAudioPlay(sAxiDma, offset, dma_cnt);
+            cp_xfil_cnt -= dma_cnt;
+        }
+        rem -= cp_num;
+    }
 }
 
 #pragma clang diagnostic push
@@ -361,7 +453,7 @@ int main() {
     }
 
     // Clear command channel
-    // memset((void *)c, 0, sizeof(cmd_channel));
+    sodium_memzero((void *)CMDChannel, sizeof(cmd_channel));
 
     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Audio DRM Module has booted!");
 
@@ -372,9 +464,9 @@ int main() {
             InterruptProcessed = FALSE;
             setState(WORKING);
 
-            /*switch (command) { // TODO: Set command to something
+            switch (CMDChannel->cmd) { // TODO: Set command to something
                 case LOGIN:
-                    logOn(); // TODO: Add parameters?
+                    logOn();
                     break;
                 case LOGOUT:
                     logOff();
@@ -386,7 +478,7 @@ int main() {
                     queryPlayer();
                     break;
                 case SHARE:
-                    share(); // TODO: Add parameters?
+                    share();
                     break;
                 case PLAY:
                     play();
@@ -398,7 +490,7 @@ int main() {
                 default:
                     xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not a command!");
                     break;
-            }*/
+            }
 
             // Not sure why, but MITRE does this
             nsleep(5000); // Was previously 500us
