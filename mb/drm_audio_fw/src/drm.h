@@ -19,6 +19,7 @@
 #define LOGIN_DELAY 5 // seconds
 #define MAX_USERNAME_SZ 16
 #define MAX_HASH_SZ crypto_pwhash_STRBYTES
+#define MAX_PIN_SZ 64
 #define MAX_USERS 64
 #define MAX_SONG_NAME 64
 #define MAX_REGION_SZ 64
@@ -78,6 +79,8 @@ typedef struct __attribute__((__packed__)) {
 typedef volatile struct __attribute__((__packed__)) {
     char cmd;                    // from commands enum
     char drm_state;              // from states enum
+    char username[MAX_USERNAME_SZ];  // stores logged in or attempted username
+    char pin[MAX_PIN_SZ];        // stores logged in or attempted pin
     song song;                   // shared buffer is a drm song
 } cmd_channel;
 
