@@ -98,15 +98,15 @@ int main(int argc, char *argv[]){
   {
     printf("%s","Failed: Correct format ./encryptFile\n");
     //TODO: change to include newlines
-    printf("--owner [OWNERNAME]
---SongName [SONGNAME]
---30path [path/to/file]
---30secret SECRET
---fullpath [path/to/file]
---secret SECRET
---outFile [path/out]
---regionSecrets [regionsec1 regionsec2 regionsec3]
---regions [region1 region2 region3]
+    printf("--owner [OWNERNAME] \n\
+--SongName [SONGNAME] \n\
+--30path [path/to/file] \n\
+--30secret SECRET \n\
+--fullpath [path/to/file] \n\
+--secret SECRET \n\
+--outFile [path/out] \n\
+--regionSecrets [regionsec1 regionsec2 regionsec3] \n\
+--regions [region1 region2 region3] \n\
 --songID [songID]%s","");
     exit(0);
   }
