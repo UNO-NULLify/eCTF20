@@ -152,7 +152,7 @@ int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
  * @param username - the user's username, (len: 1-15, chars: a-z, A-Z)
  * @param pin - the user's pin, (len: 8-64, chars: 0-9)
  */
-void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, char *pin) {
+void __attribute__((noinline,section(".chacha20_logOn")))logOn() {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already logged-in.");
@@ -160,7 +160,7 @@ void __attribute__((noinline,section(".chacha20_logOn")))logOn(char *username, c
     } else {
         // search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
-            if (sodium_memcmp(user_data[i].name, username, sizeof(user_data[i].name))) {
+            if (sodium_memcmp(user_data[i].name, CMDChannel->username, sizeof(user_data[i].name))) {
                 // generate and search hash
                 if (crypto_pwhash_str_verify(user_data[i].pin_hash, pin, strlen(pin))) {
                     UserMD.name = user_data[i].name;
@@ -335,13 +335,20 @@ void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
 
 void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut(char* songBuffer) {
     /* Check authorization */
-    if (checkAuth()) {
+    if (checkAuth() ||  PREVIEW_SZ > CMDChannel->song.wav_size) {
         /* Export full song */
-        //xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, c->song.wav_size);
+        CMDChannel->song.file_size -= CMDChannel->song.md.md_size;
+        CMDChannel->song.wav_size -= CMDChannel->song.md.md_size;
+        xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, CMDChannel->song.wav_size);
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "Only playing 30 seconds");
-
+        CMDChannel->song.file_size -= CMDChannel->song.wav_size - PREVIEW_SZ;
+        CMDChannel->song.wav_size = PREVIEW_SZ;
     }
+
+    // move WAV file up in buffer, skipping metadata
+    memmove((void *)&CMDChannel->song.md, (void *)get_drm_song(CMDChannel->song), CMDChannel->song.wav_size);
+
     xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
 
@@ -436,7 +443,7 @@ int main() {
     }
 
     // Clear command channel
-    // memset((void *)c, 0, sizeof(cmd_channel));
+    sodium_memzero((void *)CMDChannel, sizeof(cmd_channel));
 
     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Audio DRM Module has booted!");
 
@@ -447,9 +454,9 @@ int main() {
             InterruptProcessed = FALSE;
             setState(WORKING);
 
-            /*switch (command) { // TODO: Set command to something
+            switch (CMDChannel->cmd) { // TODO: Set command to something
                 case LOGIN:
-                    logOn(); // TODO: Add parameters?
+                    logOn();
                     break;
                 case LOGOUT:
                     logOff();
@@ -461,7 +468,7 @@ int main() {
                     queryPlayer();
                     break;
                 case SHARE:
-                    share(); // TODO: Add parameters?
+                    share();
                     break;
                 case PLAY:
                     play();
@@ -473,7 +480,7 @@ int main() {
                 default:
                     xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not a command!");
                     break;
-            }*/
+            }
 
             // Not sure why, but MITRE does this
             nsleep(5000); // Was previously 500us
