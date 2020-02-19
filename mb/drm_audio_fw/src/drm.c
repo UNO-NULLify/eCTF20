@@ -81,7 +81,7 @@ int initMicroBlaze() {
 
 //////////////////////// HELPER FUNCTIONS ////////////////////////
 // Set state of drm and LED color
-void __attribute__((noinline,section(".chacha20_setState")))setState(STATE state) {
+void setState(STATE state) {
     DeviceMD.state = state;
     switch (state) {
         case WORKING:
@@ -100,11 +100,11 @@ void __attribute__((noinline,section(".chacha20_setState")))setState(STATE state
     }
 }
 
-int __attribute__((noinline,section(".chacha20_loadSong")))loadSong() {
+int loadSong() {
 
 }
 
-int __attribute__((noinline,section(".chacha20_decryptSong")))decryptSong() {
+int decryptSong() {
 
 }
 
@@ -112,7 +112,7 @@ int __attribute__((noinline,section(".chacha20_decryptSong")))decryptSong() {
  * @brief Checks whether the user can access the song.
  * @return access status
  */
-int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
+int checkAuth() {
     int user_access = 0;
     int region_access = 0;
     /* Check user is logged in */
@@ -152,7 +152,7 @@ int __attribute__((noinline,section(".chacha20_checkAuth")))checkAuth() {
  * @param username - the user's username, (len: 1-15, chars: a-z, A-Z)
  * @param pin - the user's pin, (len: 8-64, chars: 0-9)
  */
-void __attribute__((noinline,section(".chacha20_logOn")))logOn() {
+void logOn() {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already logged-in.");
@@ -183,7 +183,7 @@ void __attribute__((noinline,section(".chacha20_logOn")))logOn() {
 /**
  * @brief Logs current user off.
  */
-void __attribute__((noinline,section(".chacha20_logOff")))logOff() {
+void logOff() {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Logging out...");
@@ -280,7 +280,7 @@ void __attribute__((noinline,section(".chacha20_share")))share() {
 /**
  * @brief List the users and regions that a song has been provisioned for.
  */
-void __attribute__((noinline,section(".chacha20_querySong")))querySong() {
+void querySong() {
     // check if logged in
     if (!UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
@@ -320,7 +320,7 @@ void __attribute__((noinline,section(".chacha20_querySong")))querySong() {
     xil_printf("\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
+void queryPlayer() {
     /* Print player regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
@@ -343,7 +343,7 @@ void __attribute__((noinline,section(".chacha20_queryPlayer")))queryPlayer() {
     xil_printf("\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut() {
+void digitalOut() {
     /* Check authorization */
     if (checkAuth() ||  PREVIEW_SZ > CMDChannel->song.wav_size) {
         /* Export full song */
@@ -362,7 +362,7 @@ void __attribute__((noinline,section(".chacha20_digitalOut")))digitalOut() {
     xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
 
-void __attribute__((noinline,section(".chacha20_play")))play() {
+void play() {
     u32 counter = 0, rem, cp_num, cp_xfil_cnt, offset, dma_cnt, length, *fifo_fill;
 
     /* Load song */
