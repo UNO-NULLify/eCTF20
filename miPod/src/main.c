@@ -284,11 +284,14 @@ int play_song(char *song_name) {
             send_command(STOP);
             return -1;
         } else if (!strcmp(cmd, "rw")) {
-            mp_printf("Unsupported feature.\r\n\r\n");
-            print_playback_help();
+            mp_printf("Seeking backwards...\r\n");
+            send_command(SEEKREV);
         } else if (!strcmp(cmd, "ff")) {
-            mp_printf("Unsupported feature.\r\n\r\n");
-            print_playback_help();
+            mp_printf("Seeking forwards...\r\n\r\n");
+            send_command(SEEKFWD);
+        } else if (!strcmp(cmd, "ffff")) {
+            mp_printf("Fastboi mode...\r\n\r\n");
+            send_command(FASTFWD);
         } else if (!strcmp(cmd, "lyrics")) {
             mp_printf("Unsupported feature.\r\n\r\n");
             print_playback_help();
