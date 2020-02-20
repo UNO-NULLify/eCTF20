@@ -1,0 +1,397 @@
+
+****** Vivado v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source ..//pl/proj/create_project.tcl
+# set origin_dir "."
+# if { [info exists ::origin_dir_loc] } {
+#   set origin_dir $::origin_dir_loc
+# }
+# set project_name "test"
+# if { [info exists ::user_project_name] } {
+#   set project_name $::user_project_name
+# }
+# variable script_file
+# set script_file "create_project.tcl"
+# proc help {} {
+#   variable script_file
+#   puts "\nDescription:"
+#   puts "Recreate a Vivado project from this script. The created project will be"
+#   puts "functionally equivalent to the original project for which this script was"
+#   puts "generated. The script contains commands for creating a project, filesets,"
+#   puts "runs, adding/importing sources and setting properties on various objects.\n"
+#   puts "Syntax:"
+#   puts "$script_file"
+#   puts "$script_file -tclargs \[--origin_dir <path>\]"
+#   puts "$script_file -tclargs \[--project_name <name>\]"
+#   puts "$script_file -tclargs \[--help\]\n"
+#   puts "Usage:"
+#   puts "Name                   Description"
+#   puts "-------------------------------------------------------------------------"
+#   puts "\[--origin_dir <path>\]  Determine source file paths wrt this path. Default"
+#   puts "                       origin_dir path value is \".\", otherwise, the value"
+#   puts "                       that was set with the \"-paths_relative_to\" switch"
+#   puts "                       when this script was generated.\n"
+#   puts "\[--project_name <name>\] Create project with the specified name. Default"
+#   puts "                       name is the name of the project from where this"
+#   puts "                       script was generated.\n"
+#   puts "\[--help\]               Print help information for this script"
+#   puts "-------------------------------------------------------------------------\n"
+#   exit 0
+# }
+# if { $::argc > 0 } {
+#   for {set i 0} {$i < [llength $::argc]} {incr i} {
+#     set option [string trim [lindex $::argv $i]]
+#     switch -regexp -- $option {
+#       "--origin_dir"   { incr i; set origin_dir [lindex $::argv $i] }
+#       "--project_name" { incr i; set project_name [lindex $::argv $i] }
+#       "--help"         { help }
+#       default {
+#         if { [regexp {^-} $option] } {
+#           puts "ERROR: Unknown option '$option' specified, please type '$script_file -tclargs --help' for usage info.\n"
+#           return 1
+#         }
+#       }
+#     }
+#   }
+# }
+# create_project ${project_name} ./proj/${project_name} -part xc7z007sclg400-1
+INFO: [Common 17-206] Exiting Vivado at Sun Feb 16 19:26:11 2020...
+
+****** Vivado v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source ..//pl/proj/gen_bitstream.tcl
+# set origin_dir "."
+# set project_bd "$origin_dir/src/bd/system/system.bd"
+# set synth_comp "synth_design Complete!"
+# set impl_run "Running Design Initialization..."
+# set bitstream_comp "write_bitstream Complete!"
+# if { $::argc > 0 } {
+#   for {set i 0} {$i < [llength $::argc]} {incr i} {
+#     set option [string trim [lindex $::argv $i]]
+#     switch -regexp -- $option {
+#       "--project_file" { incr i; set project_file [lindex $::argv $i] }
+#       default {
+#         if { [regexp {^-} $option] } {
+#           puts "ERROR: Unknown option '$option' specified, expecting --project_file arg.\n"
+#           return 1
+#         }
+#       }
+#     }
+#   }
+#   open_project $project_file
+#   open_bd_design $project_bd
+# }
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/ectf/pl/repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2017.4/data/ip'.
+Adding cell -- xilinx.com:ip:axi_dma:7.1 - axi_dma_0
+Adding cell -- xilinx.com:ip:axi_intc:4.1 - axi_intc_0
+Adding cell -- xilinx.com:ip:axis_data_fifo:1.1 - axis_data_fifo_0
+Adding cell -- xilinx.com:ip:blk_mem_gen:8.4 - blk_mem_gen_0
+Adding cell -- xilinx.com:ip:clk_wiz:5.4 - clk_wiz_25M
+Adding cell -- xilinx.com:ip:lmb_bram_if_cntlr:4.0 - data_lmb_bram_if_cntlr_1
+Adding cell -- xilinx.com:ip:lmb_v10:3.0 - data_lmb_v10_1
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - dma_axi_bram_ctrl_1
+Adding cell -- xilinx.com:ip:blk_mem_gen:8.4 - dma_blk_mem_gen_1
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - fifo_count_axi_gpio_0
+Adding cell -- xilinx.com:module_ref:i2s_output:1.0 - i2s_output_1
+Adding cell -- xilinx.com:ip:lmb_bram_if_cntlr:4.0 - ins_lmb_bram_if_cntlr_0
+Adding cell -- xilinx.com:ip:lmb_v10:3.0 - ins_lmb_v10_0
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - int_axi_gpio_0
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - mb_dma_axi_bram_ctrl_0
+Adding cell -- xilinx.com:ip:mdm:3.2 - mdm_0
+Adding cell -- xilinx.com:ip:microblaze:10.0 - microblaze_0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_0
+Adding cell -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding cell -- digilentinc.com:IP:PWM:2.0 - rgb_PWM_0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_0_100M
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - share_axi_bram_ctrl_0
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - share_axi_bram_ctrl_1
+Adding cell -- xilinx.com:ip:blk_mem_gen:8.4 - share_blk_mem_gen_1
+Adding cell -- xilinx.com:ip:xadc_wiz:3.3 - xadc_wiz_0
+Adding cell -- xilinx.com:ip:xlconcat:2.1 - xlconcat_2
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_0
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_1
+Adding cell -- user.org:user:birdwtch_iface:1.0 - birdwtch_iface_0
+WARNING: [BD 41-1731] Type mismatch between connected pins: /int_axi_gpio_0/gpio_io_o(undef) and /axi_intc_0/intr(intr)
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Excluding </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> from </microblaze_0/Data>
+Excluding </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> from </microblaze_0/Instruction>
+Excluding </mdm_0/S_AXI/Reg> from </mdm_0/Data>
+Excluding </processing_system7_0/S_AXI_GP0/GP0_DDR_LOWOCM> from </mdm_0/Data>
+Excluding </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> from </mdm_0/Data>
+Successfully read diagram <system> from BD file <./src/bd/system/system.bd>
+# puts "Launching Synthesis"
+Launching Synthesis
+# save_bd_design
+Wrote  : </ectf/pl/src/bd/system/ui/bd_c954508f.ui> 
+# launch_runs synth_1 -jobs 24
+INFO: [Common 17-206] Exiting Vivado at Sun Feb 16 19:26:23 2020...
+Starting xsdk. This could take few seconds... done
+'test' will not be imported... [ALREADY EXIST]
+'Cora-Z7-07S' will not be imported... [ALREADY EXIST]
+'miPod' will not be imported... [ALREADY EXIST]
+'drm_audio_fw_bsp' will not be imported... [ALREADY EXIST]
+'drm_audio_fw' will not be imported... [ALREADY EXIST]
+'miPod' will not be imported... [ALREADY EXIST]
+Already created the project hw
+Building '/Cora-Z7-07S'
+Building '/drm_audio_fw_bsp'
+19:26:25 **** Clean-only build of project drm_audio_fw_bsp ****
+make -k clean 
+make -C microblaze_0/libsrc/axidma_v9_5/src -s clean 
+make -C microblaze_0/libsrc/bram_v4_2/src -s clean 
+make -C microblaze_0/libsrc/cpu_v2_6/src -s clean 
+make -C microblaze_0/libsrc/emacps_v3_6/src -s clean 
+make -C microblaze_0/libsrc/gpiops_v3_3/src -s clean 
+make -C microblaze_0/libsrc/gpio_v4_3/src -s clean 
+make -C microblaze_0/libsrc/iicps_v3_5/src -s clean 
+make -C microblaze_0/libsrc/intc_v3_7/src -s clean 
+make -C microblaze_0/libsrc/PWM_v1_0/src -s clean 
+make -C microblaze_0/libsrc/sdps_v3_3/src -s clean 
+make -C microblaze_0/libsrc/spips_v3_0/src -s clean 
+make -C microblaze_0/libsrc/standalone_v6_5/src -s clean 
+make -C microblaze_0/libsrc/uartps_v3_5/src -s clean 
+make -C microblaze_0/libsrc/usbps_v2_4/src -s clean 
+rm -f microblaze_0/lib/libxil.a
+
+19:26:25 Build Finished (took 166ms)
+
+Building '/drm_audio_fw'
+Invoking Make Builder...drm_audio_fw
+19:26:26 **** Clean-only build of configuration Debug for project drm_audio_fw ****
+make clean 
+rm -rf ./src/main.o ./src/platform.o ./src/util.o ./src/main.d ./src/platform.d ./src/util.d drm_audio_fw.elf.size  drm_audio_fw.elf
+ 
+
+19:26:26 Build Finished (took 106ms)
+
+Building '/miPod'
+Invoking Make Builder...miPod
+19:26:26 **** Clean-only build of configuration Debug for project miPod ****
+make clean 
+rm -rf ./src/main.o ./src/main.d miPod.elf.size  miPod.elf
+ 
+
+19:26:26 Build Finished (took 107ms)
+
+Building '/test'
+Building '/Cora-Z7-07S'
+Building '/drm_audio_fw_bsp'
+Invoking Make Builder...drm_audio_fw_bsp
+19:26:26 **** Build of project drm_audio_fw_bsp ****
+make -k all 
+Running Make include in microblaze_0/libsrc/axidma_v9_5/src
+make -C microblaze_0/libsrc/axidma_v9_5/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/cpu_v2_6/src
+make -C microblaze_0/libsrc/cpu_v2_6/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/emacps_v3_6/src
+make -C microblaze_0/libsrc/emacps_v3_6/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/gpiops_v3_3/src
+make -C microblaze_0/libsrc/gpiops_v3_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/iicps_v3_5/src
+make -C microblaze_0/libsrc/iicps_v3_5/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/intc_v3_7/src
+make -C microblaze_0/libsrc/intc_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/PWM_v1_0/src
+make -C microblaze_0/libsrc/PWM_v1_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/sdps_v3_3/src
+make -C microblaze_0/libsrc/sdps_v3_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/spips_v3_0/src
+make -C microblaze_0/libsrc/spips_v3_0/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/standalone_v6_5/src
+make -C microblaze_0/libsrc/standalone_v6_5/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/uartps_v3_5/src
+make -C microblaze_0/libsrc/uartps_v3_5/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/usbps_v2_4/src
+make -C microblaze_0/libsrc/usbps_v2_4/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make libs in microblaze_0/libsrc/axidma_v9_5/src
+make -C microblaze_0/libsrc/axidma_v9_5/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling axidma
+mb-ar: creating ../../../lib/libxil.a
+Running Make libs in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling bram
+Running Make libs in microblaze_0/libsrc/cpu_v2_6/src
+make -C microblaze_0/libsrc/cpu_v2_6/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling cpu
+Running Make libs in microblaze_0/libsrc/emacps_v3_6/src
+make -C microblaze_0/libsrc/emacps_v3_6/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling emacps
+Running Make libs in microblaze_0/libsrc/gpiops_v3_3/src
+make -C microblaze_0/libsrc/gpiops_v3_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling gpiops
+Running Make libs in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling gpio
+Running Make libs in microblaze_0/libsrc/iicps_v3_5/src
+make -C microblaze_0/libsrc/iicps_v3_5/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling iicps
+Running Make libs in microblaze_0/libsrc/intc_v3_7/src
+make -C microblaze_0/libsrc/intc_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling intc
+Running Make libs in microblaze_0/libsrc/PWM_v1_0/src
+make -C microblaze_0/libsrc/PWM_v1_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling PWM...
+PWM_selftest.c: In function 'PWM_Reg_SelfTest':
+PWM_selftest.c:52:52: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+    if ( PWM_mReadReg (baseaddr, read_loop_index*4) != (read_loop_index+1)*READ_WRITE_MUL_FACTOR){
+                                                    ^~
+PWM_selftest.c:36:6: warning: unused variable 'Index' [-Wunused-variable]
+  int Index;
+      ^~~~~
+Running Make libs in microblaze_0/libsrc/sdps_v3_3/src
+make -C microblaze_0/libsrc/sdps_v3_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling sdps
+Running Make libs in microblaze_0/libsrc/spips_v3_0/src
+make -C microblaze_0/libsrc/spips_v3_0/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling spips
+Running Make libs in microblaze_0/libsrc/standalone_v6_5/src
+make -C microblaze_0/libsrc/standalone_v6_5/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling standalone
+Running Make libs in microblaze_0/libsrc/uartps_v3_5/src
+make -C microblaze_0/libsrc/uartps_v3_5/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling uartps
+Running Make libs in microblaze_0/libsrc/usbps_v2_4/src
+make -C microblaze_0/libsrc/usbps_v2_4/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS= -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling usbps
+Finished building libraries
+
+19:26:30 Build Finished (took 3s.812ms)
+
+Building '/drm_audio_fw'
+19:26:30 **** Build of configuration Debug for project drm_audio_fw ****
+make all 
+Building file: ../src/main.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -I"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -c -fmessage-length=0 -MT"src/main.o" -I"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+Finished building: ../src/main.c
+ 
+Building file: ../src/platform.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -I"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -c -fmessage-length=0 -MT"src/platform.o" -I"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/util.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -I"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -c -fmessage-length=0 -MT"src/util.o" -I"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/util.d" -MT"src/util.o" -o "src/util.o" "../src/util.c"
+Finished building: ../src/util.c
+ 
+Building target: drm_audio_fw.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -L"/ectf/mb/drm_audio_fw_bsp/microblaze_0/lib" -Wl,-T -Wl,../src/lscript.ld -L"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "drm_audio_fw.elf" ./src/main.o ./src/platform.o ./src/util.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: drm_audio_fw.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size drm_audio_fw.elf  |tee "drm_audio_fw.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  35420	   1464	   4444	  41328	   a170	drm_audio_fw.elf
+Finished building: drm_audio_fw.elf.size
+ 
+
+19:26:30 Build Finished (took 245ms)
+
+Invoking scanner config builder on project 
+Building '/miPod'
+19:26:30 **** Build of configuration Debug for project miPod ****
+make all 
+Building file: ../src/main.c
+Invoking: ARM v7 Linux gcc compiler
+arm-linux-gnueabihf-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+In file included from ../src/main.c:7:0:
+../src/main.c: In function ‘load_file’:
+../src/miPod.h:24:19: warning: format ‘%d’ expects argument of type ‘int’, but argument 2 has type ‘__off_t {aka long int}’ [-Wformat=]
+ #define MP_PROMPT "mP> "
+                   ^
+../src/miPod.h:25:31: note: in expansion of macro ‘MP_PROMPT’
+ #define mp_printf(...) printf(MP_PROMPT __VA_ARGS__)
+                               ^~~~~~~~~
+../src/main.c:92:5: note: in expansion of macro ‘mp_printf’
+     mp_printf("Loaded file into shared buffer (%dB)\r\n", sb.st_size);
+     ^~~~~~~~~
+Finished building: ../src/main.c
+ 
+Building target: miPod.elf
+Invoking: ARM v7 Linux gcc linker
+arm-linux-gnueabihf-gcc  -o "miPod.elf" ./src/main.o   
+Finished building target: miPod.elf
+ 
+Invoking: ARM v7 Linux Print Size
+arm-linux-gnueabihf-size miPod.elf  |tee "miPod.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   7674	    352	     12	   8038	   1f66	miPod.elf
+Finished building: miPod.elf.size
+ 
+
+19:26:30 Build Finished (took 208ms)
+
+Invoking scanner config builder on project 
+Building '/test'
+
+Calling updatemem as follows:
+updatemem -force -meminfo  ..//mb/Cora-Z7-07S/system_wrapper.mmi  -bit  ..//mb/Cora-Z7-07S/system_wrapper.bit  -data ..//mb/drm_audio_fw/Debug/drm_audio_fw.elf  -proc system_i/microblaze_0 -out  ..//mb/Cora-Z7-07S/download.bit
+
+Created download.bit at: ..//mb/Cora-Z7-07S/download.bit
+Beginning build tool processes...
+
+
+Proceeding to Copy Secrets File:
+
+Copied device1//device_secrets.h to
+ ..//mb/drm_audio_fw/src/secrets.h
+Changing dir to:  ..//pl
+
+Proceeding to Create Project {test}:
+
+Running: vivado -mode batch -source ..//pl/proj/create_project.tcl -tclargs --project_name test
+
+
+Proceeding to Generate Bitstream:
+
+Please be warned this will take a while a long time.
+
+
+Running: vivado -mode batch -source ..//pl/proj/gen_bitstream.tcl -tclargs --project_file ..//pl/proj/test/test.xpr
+
+ Beginning Synthesis, Implementation, and Bitstream Generation
+
+ Bitstream generation complete!
+
+
+Proceeding to Build Microblaze:
+
+Saving ..//mb//miPod/Debug/miPod as ..//mb//miPod/Debug/miPod_old
+
+Please delete or save your old miPod copy
+
+Output produced: ..//mb//miPod/Debug/miPod
+
+
+Proceeding to Combine Bitstream:
+

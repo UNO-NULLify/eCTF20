@@ -2,17 +2,17 @@
 #define XPARAMETERS_H   /* by using protection macros */
 
 /* Definitions for bus frequencies */
-#define XPAR_CPU_M_AXI_DP_FREQ_HZ 100000000
-#define XPAR_CPU_M_AXI_IP_FREQ_HZ 100000000
+#define XPAR_CPU_M_AXI_DP_FREQ_HZ 1e+08
+#define XPAR_CPU_M_AXI_IP_FREQ_HZ 1e+08
 /******************************************************************/
 
 /* Canonical definitions for bus frequencies */
-#define XPAR_PROC_BUS_0_FREQ_HZ 100000000
-#define XPAR_PROC_BUS_1_FREQ_HZ 100000000
+#define XPAR_PROC_BUS_0_FREQ_HZ 1e+08
+#define XPAR_PROC_BUS_1_FREQ_HZ 1e+08
 /******************************************************************/
 
-#define XPAR_CPU_CORE_CLOCK_FREQ_HZ 100000000
-#define XPAR_MICROBLAZE_CORE_CLOCK_FREQ_HZ 100000000
+#define XPAR_CPU_CORE_CLOCK_FREQ_HZ 1e+08
+#define XPAR_MICROBLAZE_CORE_CLOCK_FREQ_HZ 1e+08
 
 /******************************************************************/
 
@@ -65,7 +65,7 @@
 #define XPAR_MICROBLAZE_0_FPU_EXCEPTION 0
 #define XPAR_MICROBLAZE_0_FREQ 100000000
 #define XPAR_MICROBLAZE_0_FSL_EXCEPTION 0
-#define XPAR_MICROBLAZE_0_FSL_LINKS 0
+#define XPAR_MICROBLAZE_0_FSL_LINKS 1
 #define XPAR_MICROBLAZE_0_IADDR_SIZE 32
 #define XPAR_MICROBLAZE_0_ICACHE_ALWAYS_USED 0
 #define XPAR_MICROBLAZE_0_ICACHE_BASEADDR 0x00000000
@@ -288,7 +288,7 @@
 #define XPAR_MICROBLAZE_FPU_EXCEPTION 0
 #define XPAR_MICROBLAZE_FREQ 100000000
 #define XPAR_MICROBLAZE_FSL_EXCEPTION 0
-#define XPAR_MICROBLAZE_FSL_LINKS 0
+#define XPAR_MICROBLAZE_FSL_LINKS 1
 #define XPAR_MICROBLAZE_IADDR_SIZE 32
 #define XPAR_MICROBLAZE_ICACHE_ALWAYS_USED 0
 #define XPAR_MICROBLAZE_ICACHE_BASEADDR 0x00000000
@@ -526,6 +526,17 @@
 
 /******************************************************************/
 
+/* Definitions for driver BIRDWTCH_IFACE */
+#define XPAR_BIRDWTCH_IFACE_NUM_INSTANCES 1
+
+/* Definitions for peripheral BIRDWTCH_IFACE_0 */
+#define XPAR_BIRDWTCH_IFACE_0_DEVICE_ID 0
+#define XPAR_BIRDWTCH_IFACE_0_S00_AXI_BASEADDR 0x43C00000
+#define XPAR_BIRDWTCH_IFACE_0_S00_AXI_HIGHADDR 0x43C0FFFF
+
+
+/******************************************************************/
+
 /* Definitions for driver BRAM */
 #define XPAR_XBRAM_NUM_INSTANCES 4U
 
@@ -716,7 +727,7 @@
 #define XPAR_FIFO_COUNT_AXI_GPIO_0_HIGHADDR 0x04B2FFFF
 #define XPAR_FIFO_COUNT_AXI_GPIO_0_DEVICE_ID 0
 #define XPAR_FIFO_COUNT_AXI_GPIO_0_INTERRUPT_PRESENT 0
-#define XPAR_FIFO_COUNT_AXI_GPIO_0_IS_DUAL 0
+#define XPAR_FIFO_COUNT_AXI_GPIO_0_IS_DUAL 1
 
 
 /******************************************************************/
@@ -726,7 +737,7 @@
 #define XPAR_GPIO_0_HIGHADDR 0x04B2FFFF
 #define XPAR_GPIO_0_DEVICE_ID XPAR_FIFO_COUNT_AXI_GPIO_0_DEVICE_ID
 #define XPAR_GPIO_0_INTERRUPT_PRESENT 0
-#define XPAR_GPIO_0_IS_DUAL 0
+#define XPAR_GPIO_0_IS_DUAL 1
 
 
 /******************************************************************/

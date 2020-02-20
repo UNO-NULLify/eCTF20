@@ -8,7 +8,8 @@
 
 // memory constants
 #define CHUNK_SZ 16000
-#define FIFO_CAP 4096*4
+//applies to both fifos?
+#define FIFO_CAP 2048*2
 
 // number of seconds to record/playback
 #define PREVIEW_TIME_SEC 30
@@ -80,7 +81,7 @@ typedef struct __attribute__((__packed__)) {
 
 
 // shared buffer values
-enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, FF, RW };
+enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };
 enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 
