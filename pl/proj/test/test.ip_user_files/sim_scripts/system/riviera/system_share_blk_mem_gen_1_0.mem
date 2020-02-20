@@ -1,0 +1,13 @@
+// Mem file initialization records.
+//
+// SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+// Vivado v2017.4 (64-bit)
+// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+// Created on Sunday February 16, 2020 - 07:01:27 pm, from:
+//
+//     Map file     - /ectf/pl/src/bd/system/system.bmm
+//     Data file(s) - /ectf/pl/src/bd/system/ip/system_microblaze_0_0/data/mb_bootloop_le.elf
+//
+// Address space 'system_i_processing_system7_0.system_i_share_blk_mem_gen_1_8K_3_ADDR_SPACE', bit lane [31:0].
+//
+// Bus width = 32 bits, number of bus blocks = 1.

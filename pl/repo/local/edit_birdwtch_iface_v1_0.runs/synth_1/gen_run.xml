@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7z007sclg400-1" LaunchTime="1580074232">
+  <File Type="VDS-TIMING-PB" Name="birdwtch_iface_v1_0_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="birdwtch_iface_v1_0_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="birdwtch_iface_v1_0.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="birdwtch_iface_v1_0_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="birdwtch_iface_v1_0_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="birdwtch_iface_v1_0_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="birdwtch_iface_v1_0.vds"/>
+  <File Type="REPORTS-TCL" Name="birdwtch_iface_v1_0_reports.tcl"/>
+  <File Type="PA-TCL" Name="birdwtch_iface_v1_0.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0_S00_AXI.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/birdwtch_iface_1.0/component.xml">
+      <FileInfo SFType="IPXACT"/>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="birdwtch_iface_v1_0"/>
+      <Option Name="TopRTLFile" Val="$PPRDIR/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0.vhd"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017">
+      <Desc>Vivado Synthesis Defaults</Desc>
+    </StratHandle>
+    <Step Id="synth_design"/>
+  </Strategy>
+</GenRun>

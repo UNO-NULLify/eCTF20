@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Sun Feb 16 17:36:44 2020
+# Process ID: 56110
+# Current directory: /ectf/pl
+# Command line: vivado -mode batch -source ..//pl/proj/create_project.tcl -tclargs --project_name test
+# Log file: /ectf/pl/vivado.log
+# Journal file: /ectf/pl/vivado.jou
+#-----------------------------------------------------------
+source ..//pl/proj/create_project.tcl

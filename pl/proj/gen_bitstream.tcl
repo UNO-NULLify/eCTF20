@@ -36,7 +36,7 @@ if { $::argc > 0 } {
 # synthesis
 puts "Launching Synthesis"
 save_bd_design
-launch_runs synth_1 -jobs 2
+launch_runs synth_1 -jobs 24
 
 time {
   while { [get_property STATUS [get_runs synth_1]] != $synth_comp } {
@@ -46,7 +46,7 @@ time {
 # implementation
 puts "Launching Implementation"
 save_bd_design
-launch_runs impl_1 -jobs 2
+launch_runs impl_1 -jobs 24
 
 #time {
 #  while { [get_property STATUS [get_runs impl_1]] == $impl_run } {
@@ -58,7 +58,7 @@ wait_on_run impl_1
 
 # generate bitstream
 puts "Launching Write Bitstream"
-launch_runs impl_1 -to_step write_bitstream -jobs 2
+launch_runs impl_1 -to_step write_bitstream -jobs 24
 
 
 time {

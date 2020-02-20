@@ -15,6 +15,9 @@
 #include "xintc.h"
 #include "constants.h"
 #include "sleep.h"
+#include "fsl.h"
+
+#include "math.h"
 
 
 //////////////////////// GLOBALS ////////////////////////
@@ -36,6 +39,8 @@ const struct color BLUE =   {0x0000, 0x0000, 0x01ff};
 #define set_working() change_state(WORKING, YELLOW)
 #define set_playing() change_state(PLAYING, GREEN)
 #define set_paused()  change_state(PAUSED, BLUE)
+
+#define NSEEKSAMPLES (48000 * 5 * 2)		//5 second seek, 48Khz, 2 bytes for ssample
 
 // shared command channel -- read/write for both PS and PL
 volatile cmd_channel *c = (cmd_channel*)SHARED_DDR_BASE;
@@ -364,7 +369,7 @@ void share_song() {
 
 // plays a song and looks for play-time commands
 void play_song() {
-    u32 counter = 0, rem, cp_num, cp_xfil_cnt, offset, dma_cnt, length, *fifo_fill;
+    u32 skipctr = 0, rem, cp_num, cp_xfil_cnt, dma_cnt, length, *fifo_fill_out, *fifo_fill_in, speed;
 
     mb_printf("Reading Audio File...");
     load_song_md();
@@ -383,63 +388,112 @@ void play_song() {
     }
 
     rem = length;
-    fifo_fill = (u32 *)XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR;
 
-    // write entire file to two-block codec fifo
-    // writes to one block while the other is being played
+    //Register mapping info
+    //https://www.xilinx.com/support/documentation/ip_documentation/axi_gpio/v2_0/pg144-axi-gpio.pdf#page=10
+    fifo_fill_in  = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR + 0x8);			//input fifo uses second gpio bank
+    fifo_fill_out = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR);
+
     set_playing();
     while(rem > 0) {
         // check for interrupt to stop playback
         while (InterruptProcessed) {
             InterruptProcessed = FALSE;
 
-            switch (c->cmd) {
-            case PAUSE:
-                mb_printf("Pausing... \r\n");
-                set_paused();
-                while (!InterruptProcessed) continue; // wait for interrupt
-                break;
-            case PLAY:
-                mb_printf("Resuming... \r\n");
-                set_playing();
-                break;
-            case STOP:
-                mb_printf("Stopping playback...");
-                return;
-            case RESTART:
-                mb_printf("Restarting song... \r\n");
-                rem = length; // reset song counter
-                set_playing();
-            default:
-                break;
-            }
-        }
+				switch (c->cmd) {
+				case PAUSE:
+					mb_printf("Pausing... \r\n");
+					set_paused();
+					while (!InterruptProcessed) continue; // wait for interrupt
+					break;
+				case PLAY:
+					speed = 0;
+					mb_printf("Resuming... \r\n");
+					set_playing();
+					break;
+				case STOP:
+					mb_printf("Stopping playback...");
+					return;			//This is NOT a typo!
+				case RESTART:
+					mb_printf("Restarting song... \r\n");
+					rem = length; 	// reset song counter
+					set_playing();
+					break;
+				case FASTFWD:
+					speed = 1; //play 1 out of 4 samples when set
+					break;
+				case SEEKFWD:
+					//Seek forward by up to 5 seconds or until the end of the song
+					rem = (rem > NSEEKSAMPLES) ? (rem - NSEEKSAMPLES) : 0;
+					break;
+				case SEEKREV:
+					//Seek backwards by up to 5 seconds or until the start of the song
+					rem = (length - rem > NSEEKSAMPLES) ? (rem + NSEEKSAMPLES) : length;
+					break;
+				default:
+					break;
+								}
+        	}
 
         // calculate write size and offset
+        //If more than a chunk remains, cp_num = chunk size, otherwise cp_num = rem
         cp_num = (rem > CHUNK_SZ) ? CHUNK_SZ : rem;
-        offset = (counter++ % 2 == 0) ? 0 : CHUNK_SZ;
+
+        //add one chunk of offset ever odd copy
+        //offset no longer needed in this scheme?
+        //offset = (counter++ % 2 == 0) ? 0 : CHUNK_SZ;
 
         // do first mem cpy here into DMA BRAM
-        Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR + offset),
+        Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR),
                    (void *)(get_drm_song(c->song) + length - rem),
                    (u32)(cp_num));
 
         cp_xfil_cnt = cp_num;
 
-        while (cp_xfil_cnt > 0) {
+        while (cp_xfil_cnt > 0)
+        {
 
             // polling while loop to wait for DMA to be ready
             // DMA must run first for this to yield the proper state
             // rem != length checks for first run
+
+        	//wait for copy data to DMA bram
             while (XAxiDma_Busy(&sAxiDma, XAXIDMA_DMA_TO_DEVICE)
-                   && rem != length && *fifo_fill < (FIFO_CAP - 32));
+                   && rem != length && *fifo_fill_in < (FIFO_CAP - 32));
 
             // do DMA
-            dma_cnt = (FIFO_CAP - *fifo_fill > cp_xfil_cnt)
-                      ? FIFO_CAP - *fifo_fill
+            // if the available fifo capacity is more than xfil_cnt, (fully fill the fifo), otherwise fill xfil_cnt bytes
+            dma_cnt = (FIFO_CAP - *fifo_fill_in > cp_xfil_cnt)
+                      ? FIFO_CAP - *fifo_fill_in
                       : cp_xfil_cnt;
-            fnAudioPlay(sAxiDma, offset, dma_cnt);
+            //DMA from bram to first fifo
+            //this will potentially max the fifo, but will copy at least CHUNK_SZ
+            fnAudioPlay(sAxiDma, 0, dma_cnt);
             cp_xfil_cnt -= dma_cnt;
+
+
+        }
+
+        //get and put bytes from first fifo to second fifo
+        //load output fifo at
+        uint32_t sample = 0;
+        while (*fifo_fill_in > 0)
+        {
+        	//Note:	this call is blocking, but the program should never hang here because it is only
+        	//		reached when there is data in the input fifo
+        	//
+        	//This is a 32 bit read and thus contains up to two samples. Low bits will always contain a sample
+        	getfslx(sample, 0,);
+
+        	//Perform decrypt here
+
+        	//Note:	this call is blocking, it might be preferable to replace it with the nonblocking version (see fsl.h)
+        	//		and add a fifo capacity check
+        	//
+        	//This is a 32 bit write, whatever is written here will be automatically split into two 16 byte samples.
+
+        	if (!speed || (skipctr++ %4 == 0) )		//test feature to allow actual fast forwarding instead of skipping
+        		putfslx(sample, 0,);
         }
 
         rem -= cp_num;
@@ -496,6 +550,9 @@ int main() {
         return XST_FAILURE;
     }
 
+    //TODO: replace with XPAR
+	uint32_t* cmdreg = 0x80000000;
+	
     // Start the LED
     enableLED(led);
     set_stopped();
@@ -503,15 +560,17 @@ int main() {
     // clear command channel
     memset((void*)c, 0, sizeof(cmd_channel));
 
-    mb_printf("Audio DRM Module has Booted\n\r");
+    mb_printf("Audio DRM Module has Booted (Modified)\n\r");
 
     // Handle commands forever
+
     while(1) {
         // wait for interrupt to start
         if (InterruptProcessed) {
             InterruptProcessed = FALSE;
             set_working();
 
+			mb_printf("Command reg: %08X\r\n", *cmdreg);
             // c->cmd is set by the miPod player
             switch (c->cmd) {
             case LOGIN:
@@ -540,7 +599,7 @@ int main() {
                 break;
             }
 
-            // reset statuses and sleep to allowe player to recognize WORKING state
+            // reset statuses and sleep to allow player to recognize WORKING state
             strcpy((char *)c->username, s.username);
             c->login_status = s.logged_in;
             usleep(500);
