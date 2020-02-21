@@ -10,12 +10,12 @@
 
 # generate test data
 
-read -p "Clean all working files? (Warning: This will delete all uncommitted changes) (y/n) " choice
+read -p "Clean all working files? Use this to build a project from scratch.(Warning: This will delete all uncommitted changes) (y/n) " choice
 case "$choice" in 
   y|Y ) printf cd ../; git reset --hard; git clean -d -fx; cd ./tools; make clean  
   ;;
   *) echo "Commit your changes before running this script."
-     exit 1
+     #exit 1
   ;;
 esac
 

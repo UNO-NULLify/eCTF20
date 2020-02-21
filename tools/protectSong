@@ -48,7 +48,9 @@ def main():
     #songKey = HASHER(bytes((users["users"][args.owner]["pin_hash"]+users["users"][args.owner]["pin"]+songID),
     #                        encoding="utf-8"), encoder=encoding.HexEncoder)
 
-    songkey = monocypher.blake2b(bytes((users["users"][args.owner]["pin_hash"]+users["users"][args.owner]["pin"]+songID),
+    song_str = users["users"][args.owner]["pin_hash"]+users["users"][args.owner]["pin"]+songID
+
+    songkey = monocypher.blake2b(bytes(song_str),
                             encoding="utf-8"))
     #regionKey = utils.random(32)
     regionKey = os.urandom(32)
