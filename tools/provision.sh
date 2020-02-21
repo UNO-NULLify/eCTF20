@@ -121,6 +121,17 @@ if [ ! $? -eq 0 ]; then
   exit 1
 fi
 
+# Add stop
+
+read -p "Continue to build device? (y/n)" choice
+case "$choice" in 
+  y|Y )   
+  ;;
+  *) echo "Terminating."
+     exit 1
+  ;;
+esac
+
 #Build Device
 printf "\n\nRunning buildDevice...\n"  
 (./buildDevice -p ../ -n test -bf all -secrets_dir device/)
