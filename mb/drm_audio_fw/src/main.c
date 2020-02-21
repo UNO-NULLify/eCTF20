@@ -53,7 +53,7 @@ void myISR(void) { InterruptProcessed = TRUE; }
 
 extern void* rwdata_size;
 void __attribute__((constructor,section(".stub"))) init(){
-    long rodata =0x601400;
+    long rodata =0x9c00;
     char* tmp = (char*)rodata;
     for(unsigned int x = 0; x<(unsigned int)&rwdata_size; x++)
     {
