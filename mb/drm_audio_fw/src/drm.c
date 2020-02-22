@@ -328,9 +328,9 @@ void querySong() {
     /* Print song regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
     for (int i = 0; i < SongMD.region_num; i++) {
-        if (SongMD.region_list[i] != NULL) {
-            xil_printf(" %s", SongMD.region_list[i]);
-        } else if (SongMD.region_list[i] != NULL && i == SongMD.region_num -1) {
+        if (SongMD.region_list[i] != NULL && i != PROVISIONED_REGIONS - 1) {
+            xil_printf(" %s,", SongMD.region_list[i]);
+        } else if (SongMD.region_list[i] != NULL && i == PROVISIONED_REGIONS - 1) {
             xil_printf(" %s", SongMD.region_list[i]);
         }
     }
@@ -341,7 +341,7 @@ void querySong() {
     /* Print shared users */
     xil_printf("%s%s", MB_PROMPT, "Authorized users:");
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-        if (SongMD.shared[i] != NULL) {
+        if (SongMD.shared[i] != NULL && i != PROVISIONED_USERS - 1) {
             xil_printf(" %s,", SongMD.shared[i]);
         } else if (SongMD.shared[i] != NULL && i == PROVISIONED_USERS -1) {
             xil_printf(" %s", SongMD.shared[i]);
@@ -354,7 +354,7 @@ void queryPlayer() {
     /* Print player regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
-        if (region_data[i].name != NULL) {
+        if (region_data[i].name != NULL && i != PROVISIONED_REGIONS - 1) {
             xil_printf(" %s,", region_data[i].name);
         } else if (region_data[i].name != NULL && i == PROVISIONED_REGIONS -1) {
             xil_printf(" %s", region_data[i].name);
@@ -364,7 +364,7 @@ void queryPlayer() {
     /* Print device users */
     xil_printf("%s%s", MB_PROMPT, "Authorized users:");
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-        if (user_data[i].name != NULL && i < PROVISIONED_USERS -1) {
+        if (user_data[i].name != NULL && i != PROVISIONED_USERS - 1) {
             xil_printf(" %s,", user_data[i].name);
         } else if (user_data[i].name != NULL && i == PROVISIONED_USERS -1) {
             xil_printf(" %s", user_data[i].name);
