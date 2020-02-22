@@ -23,6 +23,9 @@ drm_md DeviceMD;
 // Song metadata struct
 song_md SongMD;
 
+/* Command channel struct */
+volatile cmd_channel *CMDChannel = (cmd_channel *)SHARED_DDR_BASE;
+
 // LED colors and controller
 u32 *led = (u32 *) XPAR_RGB_PWM_0_PWM_AXI_BASEADDR;
 const struct color RED = {0x01ff, 0x0000, 0x0000};
@@ -104,9 +107,6 @@ void setState(STATE state) {
  * Store the CMD channel to less volatile structs
  */
 int cacheCMD(int share) {
-    /* Command channel struct */
-    volatile cmd_channel *CMDChannel = (cmd_channel *)SHARED_DDR_BASE;
-
     if (share == 1) {
         /* Store the command */
         DeviceMD.cmd = CMDChannel->cmd;

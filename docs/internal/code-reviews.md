@@ -144,8 +144,10 @@ When reviewing our design we were concerned about the trust in the command regis
 TLDR: The crypto saves us from Race Conditions related to song authorization
 
 
-Another note on the one above, Frank is currently working on adding a function that basically caches the data from the command channel, so we don't trust it. This will offer another layer of protection.
+Another note on the one above, Frank added a function that basically caches the data from the command channel, so we don't trust it. This will offer another layer of protection.
 
+
+For share song, mipod writes the username of the person you are sharing the song with to the username field, so if you copy the fields straight into the cached struct, the logged on user would change and they would be able to play other songs. Frank created a different field called recipient within userMD and adding a parameter to the caching function that tells it to write the recipient to that field.
 
 
 ### /mb/drm_audio_fw/src/platform.h
