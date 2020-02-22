@@ -5,7 +5,11 @@ Use: Once per ecosystem of devices
 """
 import json
 from argparse import ArgumentParser
+# Replace
 from nacl import utils, public, secret
+# End Replace
+import monocypher
+import os
 
 
 def main(region_dict, file_name):
@@ -36,16 +40,18 @@ if __name__ == '__main__':
     regions = {}
     for r in region_list:
         # create a public / private key pair (Curve25519)
-        pvt_key = public.PrivateKey.generate()
+        #pvt_key = public.PrivateKey.generate()
+        pair = monocypher.generate_key_exchange_key_pair()
+        pvt_key = pair[0]
 
         #Encrypt Region key
-        secure_key = utils.random(32)
-        box = secret.SecretBox(secure_key)
-        pvt_key_enc = box.encrypt(bytes(pvt_key))
+        secure_key = monocypher.generate_key(method="chacha20")
+        #box = secret.SecretBox(secure_key)
+        pvt_key_enc = monocypher.lock(secure_key, os.urandom(24), pvt_key)
 
-        regions[r] = {"pub_key": bytes(pvt_key.public_key).hex(),                  # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
-                      "priv_key": bytes(pvt_key).hex(), #NEVER TOUCH DEVICE
-                      "priv_key_enc": pvt_key_enc.hex(),
+        regions[r] = {"pub_key": pair[1].hex(),                  # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
+                      "priv_key": pvt_key.hex(), #NEVER TOUCH DEVICE
+                      "priv_key_enc": pvt_key_enc[1].hex(),
                       "rand_pass": secure_key.hex(),   #Goes on devices that are from this region. Store in secure place.
                       }
     main(regions, outfile)
