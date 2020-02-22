@@ -31,7 +31,6 @@ module.exports = {
 				children: [
 					'/technical/hardware',
 					'/technical/software',
-					'/technical/compiler-fixes',
 				]
 			},
 			{
