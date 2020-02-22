@@ -111,7 +111,6 @@ uses depricated usleep instead of nanosleep() or setitimer().
 Format string attack is possible on uses of mp_printf(), print_prompt(), and print_prompt_msg() -- not format specified.
 
 ## Reference Back-end Code review notes
-### /mb/drm_audio_fw/src/constants.h
 ### /mb/drm_audio_fw/src/main.c
 ### /mb/drm_audio_fw/src/platform.h
 ### /mb/drm_audio_fw/src/platform.c
@@ -119,5 +118,26 @@ Format string attack is possible on uses of mp_printf(), print_prompt(), and pri
 ## Review of our design
 ### /mb/drm_audio_fw/src/drm.h
 ### /mb/drm_audio_fw/src/drm.c
+
+<code>
+    (line 119)
+
+    if (!UserMD.logged_in) {
+        /* Check user is owner or shared user */
+        if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
+            user_access = 0;
+            for (int i = 0; i < PROVISIONED_USERS; i++) {
+                if (sodium_memcmp(SongMD.shared[i], UserMD.name, sizeof(SongMD.shared[i]))) {
+                    user_access = 1;
+                    break;
+                }
+            }
+        } else { user_access = 1; }
+    }
+</code>
+
+Complete: I worked with Frank to resolve this issue, this code checked if a user was not logged in, instead of if they were logged in.
+
+
 ### /mb/drm_audio_fw/src/platform.h
 ### /mb/drm_audio_fw/src/platform.c
