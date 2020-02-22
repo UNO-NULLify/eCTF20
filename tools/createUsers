@@ -6,9 +6,13 @@ Use: Once per user
 
 import json
 from argparse import ArgumentParser
+# Replace
 from nacl import pwhash, secret, utils, encoding, public, hash
 from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
 import nacl.signing
+# End Replace
+import monocypher
+import os
 
 
 #Define hashing method
@@ -19,7 +23,7 @@ def main(user_list, outfile):
     args:
         users_ (string): string of users and pins seperated by colons e.g. user1:123456789
         outfile (string): name of file to write user_secrets to """
-    print("Salt Bytes: {}\nOps Limit: {}\nMem Limit: {}".format(SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE))
+    #print("Salt Bytes: {}\nOps Limit: {}\nMem Limit: {}".format(SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE))
     try:
         secrets = open(outfile, "w")
     except Exception as e:
@@ -29,10 +33,12 @@ def main(user_list, outfile):
         user_dict = {}
         for user in user_list:
             u = user.split(":")
-            salt = utils.random(SALTBYTES) # 16 bytes
+            #salt = utils.random(SALTBYTES) # 16 bytes
+            salt = os.urandom(16)
             # generating an argon2id hash of user pin with custom salt; encoded in base64
             # OPSLIMIT_SENSITIVE MEMLIMIT_SENSITIVE are default settings for kdf function below
-            hashed = pwhash.argon2id.str(bytes(u[1], encoding="utf-8"))
+            #hashed = pwhash.argon2id.str(bytes(u[1], encoding="utf-8"))
+            hashed = monocypher.
             # generate a public / private keypair (Curve25519)
             pvt_key = public.PrivateKey.generate()
 

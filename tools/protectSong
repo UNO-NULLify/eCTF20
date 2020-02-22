@@ -9,10 +9,10 @@ import os
 import wave
 from argparse import ArgumentParser
 #Replace
-from nacl import pwhash, secret, utils, encoding, public, hash
-from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
-import nacl.signing
-from nacl.public import PrivateKey, SealedBox
+#from nacl import pwhash, secret, utils, encoding, public, hash
+#from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
+#import nacl.signing
+#from nacl.public import PrivateKey, SealedBox
 #end replace
 import monocypher
 import os
@@ -48,32 +48,37 @@ def main():
     #songKey = HASHER(bytes((users["users"][args.owner]["pin_hash"]+users["users"][args.owner]["pin"]+songID),
     #                        encoding="utf-8"), encoder=encoding.HexEncoder)
 
-    song_str = users["users"][args.owner]["pin_hash"]+users["users"][args.owner]["pin"]+songID
+    print("{}\n{}\n{}\n".format(users["users"][args.owner]["pin_hash"], users["users"][args.owner]["pin"], songID.hex()))
 
-    songkey = monocypher.blake2b(bytes(song_str),
-                            encoding="utf-8"))
+    song_str = (bytes(users["users"][args.owner]["pin_hash"], encoding="utf-8") + bytes(users["users"][args.owner]["pin"], encoding="utf-8") + songID).hex()
+
+    songkey = monocypher.blake2b(song_str).hex()
     #regionKey = utils.random(32)
-    regionKey = os.urandom(32)
+    regionKey = os.urandom(32).hex()
 
     regionSecretList = []
 
     #TODO
-    for regionIn in args.region_list:
-        pvt_key = public.PrivateKey(regions[regionIn]["priv_key"],encoder=encoding.HexEncoder)
-        encrypted = SealedBox(pvt_key.public_key).encrypt(regionKey)
-        print(f"region secret {encrypted.hex()}")
-        regionSecretList.append([regionIn, encrypted.hex()])
-        #print(f"decrypted:{SealedBox(pvt_key).decrypt(encrypted).hex()}") #This is how you decrypt the secret
+    #for regionIn in args.region_list:
+    #    pvt_key = public.PrivateKey(regions[regionIn]["priv_key"],encoder=encoding.HexEncoder)
+    #    encrypted = SealedBox(pvt_key.public_key).encrypt(regionKey)
+    #    print(f"region secret {encrypted.hex()}")
+    #    regionSecretList.append([regionIn, encrypted.hex()])
+    #    #print(f"decrypted:{SealedBox(pvt_key).decrypt(encrypted).hex()}") #This is how you decrypt the secret
     #TODO
 
     #hardwareSecretHash = HASHER(bytes((users["users"][args.owner]["hw_secret"]+songID),
     #                        encoding="utf-8"), encoder=encoding.HexEncoder)
     #hardwareSecretHash30 = HASHER(bytes((users["users"][args.owner]["hw_secret"]+songID+"30"),
     #                        encoding="utf-8"), encoder=encoding.HexEncoder)
-    hardwareSecretHash = monocypher.blake2b(bytes((users["users"][args.owner]["hw_secret"]+songID),
-                            encoding="utf-8"))
-    hardwareSecretHash30 = monocypher.blake2b(bytes((users["users"][args.owner]["hw_secret"]+songID+"30"),
-                            encoding="utf-8"))
+    hardwareSecretHash = monocypher.blake2b(bytes(users["users"][args.owner]["hw_secret"],
+                         encoding="utf-8") + songID).hex()
+    hardwareSecretHash30 = monocypher.blake2b(bytes(users["users"][args.owner]["hw_secret"],
+                           encoding="utf-8") + songID+bytes("30",
+                           encoding="utf-8")).hex()
+
+    print("{}\n{}\n{}\n{}\n".format(songkey, regionKey, hardwareSecretHash, hardwareSecretHash30))
+
     #print(f"encryption parts: {str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())}")
     #print(f"Creating 30 second chunk:")
     #smallFile = make_sample(args.infile)
