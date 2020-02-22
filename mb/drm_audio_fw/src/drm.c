@@ -235,10 +235,10 @@ void __attribute__((noinline,section(".chacha20_share")))share() {
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         /* check recipient exists */
-        if (crypto_verify64(user_data[i].name, CMDChannel->username)) { check_1 = 1; }
+        if (crypto_verify64(user_data[i].name, UserMD.name)) { check_1 = 1; }
         
         /* Check recipient doesn't already have access */
-        if (crypto_verify64(SongMD.shared[i], CMDChannel->username)) { check_2 = 0; }
+        if (crypto_verify64(SongMD.shared[i], UserMD.name)) { check_2 = 0; }
         
         /* Check for an empty spot */
         if (crypto_verify16(SongMD.shared[i], NULL)) { check_3 = 1; index = i; }

@@ -143,5 +143,10 @@ When reviewing our design we were concerned about the trust in the command regis
 
 TLDR: The crypto saves us from Race Conditions related to song authorization
 
+
+Another note on the one above, Frank is currently working on adding a function that basically caches the data from the command channel, so we don't trust it. This will offer another layer of protection.
+
+
+
 ### /mb/drm_audio_fw/src/platform.h
 ### /mb/drm_audio_fw/src/platform.c
