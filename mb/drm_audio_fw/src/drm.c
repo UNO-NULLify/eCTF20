@@ -23,6 +23,9 @@ drm_md DeviceMD;
 // Song metadata struct
 song_md SongMD;
 
+/* Command channel struct */
+volatile cmd_channel *CMDChannel = (cmd_channel *)SHARED_DDR_BASE;
+
 // LED colors and controller
 u32 *led = (u32 *) XPAR_RGB_PWM_0_PWM_AXI_BASEADDR;
 const struct color RED = {0x01ff, 0x0000, 0x0000};
@@ -104,9 +107,6 @@ void setState(STATE state) {
  * Store the CMD channel to less volatile structs
  */
 int cacheCMD(int share) {
-    /* Command channel struct */
-    volatile cmd_channel *CMDChannel = (cmd_channel *)SHARED_DDR_BASE;
-
     if (share == 1) {
         /* Store the command */
         DeviceMD.cmd = CMDChannel->cmd;
@@ -245,6 +245,7 @@ void share() {
     if (!SongMD.loaded) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
         crypto_wipe(&SongMD, sizeof(SongMD));
+        crypto_wipe(&UserMD.recipient, sizeof(UserMD.recipient));
         return;
     }
     
@@ -252,6 +253,7 @@ void share() {
     if (!UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in!");
         crypto_wipe(&SongMD, sizeof(SongMD));
+        crypto_wipe(&UserMD.recipient, sizeof(UserMD.recipient));
         return;
     }
     
@@ -259,6 +261,7 @@ void share() {
     if (!crypto_verify64(SongMD.owner, UserMD.name)) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not song owner!");
         crypto_wipe(&SongMD, sizeof(SongMD));
+        crypto_wipe(&UserMD.recipient, sizeof(UserMD.recipient));
         return;
     }
     
@@ -278,21 +281,25 @@ void share() {
     if (!check_1){
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User does not exist!");
         crypto_wipe(&SongMD, sizeof(SongMD));
+        crypto_wipe(&UserMD.recipient, sizeof(UserMD.recipient));
         return;
     }
     if (check_2){
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already has access!");
         crypto_wipe(&SongMD, sizeof(SongMD));
+        crypto_wipe(&UserMD.recipient, sizeof(UserMD.recipient));
         return;
     }
     if (!check_3) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Too many shared users!");
         crypto_wipe(&SongMD, sizeof(SongMD));
+        crypto_wipe(&UserMD.recipient, sizeof(UserMD.recipient));
         return;
     }
     if (index < 0) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Something went terribly wrong.");
         crypto_wipe(&SongMD, sizeof(SongMD));
+        crypto_wipe(&UserMD.recipient, sizeof(UserMD.recipient));
         return;
     }
 
