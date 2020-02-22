@@ -18,7 +18,7 @@
 
 #define LOGIN_DELAY 5 // seconds
 #define MAX_USERNAME_SZ 16
-#define MAX_HASH_SZ crypto_pwhash_STRBYTES
+#define MAX_HASH_SZ 32
 #define MAX_PIN_SZ 64
 #define MAX_USERS 64
 #define MAX_SONG_NAME 64
@@ -46,43 +46,21 @@ typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
 typedef struct {
     char *name;
+    char *recipient;
     char *hw_secret;
     char *pin_hash;
     char *pub_key;
     char *pvt_key_enc;
-    int logged_in; // 1 == logged in, 0 == logged out
+    int logged_in; // 1 == logged in, 0 == logged out, ? == no.
 } user_md;
 
 // struct to interpret drm metadata
 typedef struct __attribute__((__packed__)) {
+    char cmd;
     char state;
-    char md_size;
     char num_regions;
     char num_users;
-    char buf[];
 } drm_md;
-
-// struct to interpret shared buffer as a drm song file
-// packing values skip over non-relevant WAV metadata
-typedef struct __attribute__((__packed__)) {
-    char packing1[4];
-    u32 file_size;
-    char packing2[32];
-    u32 wav_size;
-    drm_md md;
-} song;
-
-// accessor for variable-length metadata fields
-#define get_drm_song(d) ((char *)(&d.md) + d.md.md_size)
-
-// struct to interpret shared command channel
-typedef volatile struct __attribute__((__packed__)) {
-    char cmd;                    // from commands enum
-    char drm_state;              // from states enum
-    char username[MAX_USERNAME_SZ];  // stores logged in or attempted username
-    char pin[MAX_PIN_SZ];        // stores logged in or attempted pin
-    song song;                   // shared buffer is a drm song
-} cmd_channel;
 
 typedef struct {
     char owner[MAX_USERNAME_SZ];
@@ -95,6 +73,15 @@ typedef struct {
     u32 song_length;
     u8 md_length;
 } song_md;
+
+// struct to interpret shared command channel
+typedef volatile struct __attribute__((__packed__)) {
+    char cmd;                    // from commands enum
+    char drm_state;              // from states enum
+    char username[MAX_USERNAME_SZ];  // stores logged in or attempted username
+    char pin[MAX_PIN_SZ];        // stores logged in or attempted pin
+    song song;                   // shared buffer is a drm song
+} cmd_channel;
 
 void setState(STATE state);
 
