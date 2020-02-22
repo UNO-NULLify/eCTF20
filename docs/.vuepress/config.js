@@ -15,22 +15,14 @@ module.exports = {
 		sidebar: [
 			'/',
 			{
-				title: 'User Guide',
+				title: 'MITRE Documentation',
 				path: '/user/',
 				sidebarDepth: 2,
 				collapsable: false,
 				children: [
-				 //	'/user/usage',
-				]
-			},
-			{
-				title: 'Technical Reference',
-				path: '/technical/',
-				sidebarDepth: 2,
-				collapsable: false,
-				children: [
-					'/technical/hardware',
-					'/technical/software',
+				 	'/mitre/usage',
+				 	'/mitre/software',
+				 	'/usage/hardware',
 				]
 			},
 			{
