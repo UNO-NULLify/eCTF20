@@ -35,7 +35,7 @@ all: drm_audio_fw.elf secondary-outputs
 drm_audio_fw.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MicroBlaze gcc linker'
-	mb-gcc $(OBJS) $(USER_OBJS) $(LIBS) -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw_bsp/microblaze_0/lib" -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw/src/lib" -lsodium -Wl,-T -Wl,../src/lscript.ld -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "drm_audio_fw.elf"
+	mb-gcc $(OBJS) $(USER_OBJS) $(LIBS) -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw_bsp/microblaze_0/lib" -Wl,-T -Wl,../src/lscript.ld -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -Wl,--relax -Wl,--gc-sections -o "drm_audio_fw.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
