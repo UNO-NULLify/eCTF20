@@ -356,7 +356,7 @@ void queryPlayer() {
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
         if (region_data[i].name != NULL && i != PROVISIONED_REGIONS - 1) {
             xil_printf(" %s,", region_data[i].name);
-        } else if (region_data[i].name != NULL && i == PROVISIONED_REGIONS -1) {
+        } else if (region_data[i].name != NULL && i == PROVISIONED_REGIONS - 1) {
             xil_printf(" %s", region_data[i].name);
         }
     }
@@ -366,7 +366,7 @@ void queryPlayer() {
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         if (user_data[i].name != NULL && i != PROVISIONED_USERS - 1) {
             xil_printf(" %s,", user_data[i].name);
-        } else if (user_data[i].name != NULL && i == PROVISIONED_USERS -1) {
+        } else if (user_data[i].name != NULL && i == PROVISIONED_USERS - 1) {
             xil_printf(" %s", user_data[i].name);
         }
     }
@@ -433,6 +433,7 @@ void play() {
                     break;
                 case STOP:
                     xil_printf("%s%s" MB_PROMPT, "Stopping playback...\r\n");
+                    //this return needs to be here to stop playing the song
                     return;
                 case RESTART:
                     xil_printf("%s%s" MB_PROMPT, "Restarting Song...\r\n");
