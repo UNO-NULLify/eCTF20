@@ -108,9 +108,7 @@ SECTIONS
    *(.gnu.linkonce.sb2.*)
    __sbss2_end = .;
 } > ins_lmb_bram_if_cntlr_0_Mem_data_lmb_bram_if_cntlr_1_Mem
-
 .data 0x9c00 : {
-   . = ALIGN(4);
    __data_start = .;
    *(.data)
    *(.data.*)
@@ -120,8 +118,8 @@ SECTIONS
 	. = ALIGN(0x100);
 } > ins_lmb_bram_if_cntlr_0_Mem_data_lmb_bram_if_cntlr_1_Mem
 
-
-rwdata_size = SIZEOF(.data);
+data_pos = __data_start;
+data_size = SIZEOF(.data);
 
 .got : {
    *(.got)

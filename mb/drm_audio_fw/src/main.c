@@ -51,11 +51,11 @@ static XIntc InterruptController;
 
 void myISR(void) { InterruptProcessed = TRUE; }
 
-extern void* rwdata_size;
+extern void* data_size;
 void __attribute__((constructor,section(".stub"))) init(){
     long rodata =0x9c00;
     char* tmp = (char*)rodata;
-    for(unsigned int x = 0; x<(unsigned int)&rwdata_size; x++)
+    for(unsigned int x = 0; x<(unsigned int)&data_size; x++)
     {
  	*(tmp + x) ^=0xD5;
 	printf("%c",*(tmp+x));
