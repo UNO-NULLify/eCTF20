@@ -7,16 +7,19 @@ Use: Once per user
 import json
 from argparse import ArgumentParser
 # Replace
-from nacl import pwhash, secret, utils, encoding, public, hash
-from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
-import nacl.signing
+#from nacl import pwhash, secret, utils, encoding, public, hash
+#from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
+#import nacl.signing
 # End Replace
 import monocypher
 import os
 
 
 #Define hashing method
-HASHER = hash.blake2b
+#HASHER = hash.blake2b
+
+ARGON_BLOCKS = 8
+ARGON_ITTERS = 3
 
 def main(user_list, outfile):
     """writes user secrets to json file
@@ -38,31 +41,43 @@ def main(user_list, outfile):
             # generating an argon2id hash of user pin with custom salt; encoded in base64
             # OPSLIMIT_SENSITIVE MEMLIMIT_SENSITIVE are default settings for kdf function below
             #hashed = pwhash.argon2id.str(bytes(u[1], encoding="utf-8"))
-            hashed = monocypher.
+            hashed = monocypher.argon2i_32(ARGON_BLOCKS, 
+                                           ARGON_ITTERS, 
+                                           bytes(u[1], encoding="utf-8"), 
+                                           salt)
+            
+            print(hashed.hex())
+
             # generate a public / private keypair (Curve25519)
-            pvt_key = public.PrivateKey.generate()
+            #pvt_key = public.PrivateKey.generate()
+            pair = monocypher.generate_key_exchange_key_pair()
+            pvt_key = pair[0]
+            public_key = pair[1]
 
             #Key used for securing the private key. hash(hashpin + pin + salt)
-            secure_key = HASHER(bytes((hashed.decode()+u[1]+salt.hex()), encoding="utf-8"), encoder=encoding.HexEncoder)[:32]
+            #secure_key = HASHER(bytes((hashed.decode()+u[1]+salt.hex()), encoding="utf-8"), 
+            #                            encoder=encoding.HexEncoder)[:32]
+            secure_key = monocypher.blake2b(hashed + bytes(u[1], encoding="utf-8"), salt)
 
             #Encrypting private key with the secure key
 
             #print(f"Encrypting user private key with {secure_key} length {len(secure_key)}")
+            #box = secret.SecretBox(secure_key)
+            #pvt_key_enc = box.encrypt(bytes(pvt_key))
+            pvt_key_enc = monocypher.lock(secure_key, os.urandom(24), pvt_key)
 
-            box = secret.SecretBox(secure_key)
-
-            pvt_key_enc = box.encrypt(bytes(pvt_key))
-
-            user_dict[u[0]] = {"pin": u[1],                                 # PIN   NEVER TOUCH DEVICE
-                               "pin_hash": hashed.decode(),                          # PIN hash convert bytes(hash, encoding="utf-8")
-                               "salt": salt.hex(),                          # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
-                               "pvt_key": bytes(pvt_key).hex(),
-                               "pvt_key_enc": pvt_key_enc.hex(),                           #  nacl.bindings.crypto_aead_chacha20poly1305...?
-                               "pub_key": bytes(pvt_key.public_key).hex(),
-                               "hw_secret": utils.random(10).hex(),
+            user_dict[u[0]] = {"pin": u[1],                # PIN   NEVER TOUCH DEVICE
+                               "pin_hash": hashed.hex(),                                  # PIN hash convert bytes(hash, encoding="utf-8")
+                               "salt": salt.hex(),                                        # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
+                               "pvt_key": pvt_key.hex(),
+                               "pvt_key_enc": pvt_key_enc[1].hex(),                          #  nacl.bindings.crypto_aead_chacha20poly1305...?
+                               "pub_key": public_key.hex(),
+                               "hw_secret": monocypher.generate_key(length=10).hex(),
                                }
         # generate pubic private key pair for additional integrity checks (Curve25519)
-        signing_key = nacl.signing.SigningKey.generate()
+        pair = monocypher.generate_signing_key_pair()
+        #signing_key = nacl.signing.SigningKey.generate()
+        signing_key = pair[1] # public
 
         #EXAMPLE USE CASE: DELETE IN FINAL CODE
         #print(signing_key.encode(encoder=encoding.HexEncoder))
@@ -72,12 +87,13 @@ def main(user_list, outfile):
         #signed_msg = test_key.sign(b"Attack at Dawn")
         #bad_msg = signed_msg[:-4]
 
-        verify_key = signing_key.verify_key
+        #verify_key = signing_key.verify_key
+        verify_key = pair[0] # private
         #print(verify_key.verify(signed_msg))
 
         json_dict = {}
-        json_dict["root_sign"] = signing_key.encode(encoder=encoding.HexEncoder).hex()
-        json_dict["root_verify"] = verify_key.encode(encoder=nacl.encoding.HexEncoder).hex()
+        json_dict["root_sign"] = signing_key.hex()        #.encode(encoder=encoding.HexEncoder).hex()
+        json_dict["root_verify"] = verify_key.hex()       #.encode(encoder=nacl.encoding.HexEncoder).hex()
         json_dict["users"] = user_dict
 
     except IndexError:
