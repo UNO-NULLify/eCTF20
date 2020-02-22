@@ -116,7 +116,7 @@ int checkAuth() {
     int user_access = 0;
     int region_access = 0;
     /* Check user is logged in */
-    if (!UserMD.logged_in) {
+    if (UserMD.logged_in) {
         /* Check user is owner or shared user */
         if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
             user_access = 0;
