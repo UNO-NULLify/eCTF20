@@ -18,6 +18,7 @@ import monocypher
 import os
 from makeAudio import make_sample
 from subprocess import call
+from pprint import pprint
 
 
 def main():
@@ -48,24 +49,37 @@ def main():
     #songKey = HASHER(bytes((users["users"][args.owner]["pin_hash"]+users["users"][args.owner]["pin"]+songID),
     #                        encoding="utf-8"), encoder=encoding.HexEncoder)
 
-    print("{}\n{}\n{}\n".format(users["users"][args.owner]["pin_hash"], users["users"][args.owner]["pin"], songID.hex()))
+    songKey = monocypher.blake2b(bytes(users["users"][args.owner]["pin_hash"], encoding="utf-8") + \
+                                bytes(users["users"][args.owner]["pin"], encoding="utf-8") + \
+                                songID)
 
-    song_str = (bytes(users["users"][args.owner]["pin_hash"], encoding="utf-8") + bytes(users["users"][args.owner]["pin"], encoding="utf-8") + songID).hex()
+    #print("{}\n{}\n{}\n".format(users["users"][args.owner]["pin_hash"], users["users"][args.owner]["pin"], songID.hex()))
+
+    song_str = (bytes(users["users"][args.owner]["pin_hash"], encoding="utf-8") + \
+                bytes(users["users"][args.owner]["pin"], encoding="utf-8") + \
+                songID).hex()
 
     songkey = monocypher.blake2b(song_str).hex()
     #regionKey = utils.random(32)
-    regionKey = os.urandom(32).hex()
+    regionKey = os.urandom(32)
 
     regionSecretList = []
 
-    #TODO
     #for regionIn in args.region_list:
     #    pvt_key = public.PrivateKey(regions[regionIn]["priv_key"],encoder=encoding.HexEncoder)
     #    encrypted = SealedBox(pvt_key.public_key).encrypt(regionKey)
     #    print(f"region secret {encrypted.hex()}")
     #    regionSecretList.append([regionIn, encrypted.hex()])
     #    #print(f"decrypted:{SealedBox(pvt_key).decrypt(encrypted).hex()}") #This is how you decrypt the secret
-    #TODO
+   
+    for r in args.region_list:
+        pvt_key = regions[r]["priv_key"]
+        pub_key = regions[r]["pub_key"]
+        encrypted = monocypher.lock(bytes(pub_key, encoding="utf-8"), os.urandom(24), regionKey)
+        regionSecretList.append(encrypted[1].hex())
+
+    print("Region Secrets:\n")
+    pprint(regionSecretList)
 
     #hardwareSecretHash = HASHER(bytes((users["users"][args.owner]["hw_secret"]+songID),
     #                        encoding="utf-8"), encoder=encoding.HexEncoder)
@@ -77,14 +91,14 @@ def main():
                            encoding="utf-8") + songID+bytes("30",
                            encoding="utf-8")).hex()
 
-    print("{}\n{}\n{}\n{}\n".format(songkey, regionKey, hardwareSecretHash, hardwareSecretHash30))
+    #print("{}\n{}\n{}\n{}\n".format(songkey, regionKey, hardwareSecretHash, hardwareSecretHash30))
 
-    #print(f"encryption parts: {str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash.hex())}")
-    #print(f"Creating 30 second chunk:")
-    #smallFile = make_sample(args.infile)
-    #parent = os.path.abspath(os.path.join(args.outfile, os.pardir))
-    #out_f_name = args.outfile.split("/")[-1]
-    #name = out_f_name.split(".")[0] + "_sample." + out_f_name.split(".")[1]
+    print(f"encryption parts:\nSong Key: {songKey.hex()}\nRegion Key: {regionKey.hex()}\nHW Secret Hash: {hardwareSecretHash}\nHW 30: {hardwareSecretHash30}")
+    print(f"Creating 30 second chunk:")
+    smallFile = make_sample(args.infile)
+    parent = os.path.abspath(os.path.join(args.outfile, os.pardir))
+    out_f_name = args.outfile.split("/")[-1]
+    name = out_f_name.split(".")[0] + "_sample." + out_f_name.split(".")[1]
     ### TODO: Check the 30path and owner path
     #call(["./encryptFile", "--owner", "DrewGriess",
     #"--SongName", "namee",
