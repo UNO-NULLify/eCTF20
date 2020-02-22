@@ -139,5 +139,14 @@ Format string attack is possible on uses of mp_printf(), print_prompt(), and pri
 Complete: I worked with Frank to resolve this issue, this code checked if a user was not logged in, instead of if they were logged in.
 
 
+When reviewing our design we were concerned about the trust in the command register and the potential ability of an attacker to perform a race condition with the value of a song that the user owns and one that they do not own, however, if this occurs, they will not be able to properly decrypt the song and play it.
+
+TLDR: The crypto saves us from Race Conditions related to song authorization
+
+
+Another note on the one above, Frank is currently working on adding a function that basically caches the data from the command channel, so we don't trust it. This will offer another layer of protection.
+
+
+
 ### /mb/drm_audio_fw/src/platform.h
 ### /mb/drm_audio_fw/src/platform.c
