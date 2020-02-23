@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
 -- Date        : Sun Feb 16 18:34:28 2020
 -- Host        : ssg0 running 64-bit Arch Linux
--- Command     : write_vhdl -force -mode funcsim
---               /ectf/pl/src/bd/system/ip/system_dma_axi_bram_ctrl_1_0/system_dma_axi_bram_ctrl_1_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_dma_axi_bram_ctrl_1_0 -prefix
+--               system_dma_axi_bram_ctrl_1_0_ system_dma_axi_bram_ctrl_1_0_sim_netlist.vhdl
 -- Design      : system_dma_axi_bram_ctrl_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -45,8 +45,6 @@ entity system_dma_axi_bram_ctrl_1_0_sng_port_arb is
     \GEN_WDATA_SM_NO_ECC_SNG_REG_WREADY.wr_data_sng_sm_cs_reg[1]\ : in STD_LOGIC;
     \arb_sm_cs_reg[1]_0\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_dma_axi_bram_ctrl_1_0_sng_port_arb : entity is "sng_port_arb";
 end system_dma_axi_bram_ctrl_1_0_sng_port_arb;
 
 architecture STRUCTURE of system_dma_axi_bram_ctrl_1_0_sng_port_arb is
@@ -429,8 +427,6 @@ entity system_dma_axi_bram_ctrl_1_0_wrap_brst is
     s_axi_aclk : in STD_LOGIC;
     s_axi_awlen : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_dma_axi_bram_ctrl_1_0_wrap_brst : entity is "wrap_brst";
 end system_dma_axi_bram_ctrl_1_0_wrap_brst;
 
 architecture STRUCTURE of system_dma_axi_bram_ctrl_1_0_wrap_brst is
@@ -1614,8 +1610,6 @@ entity system_dma_axi_bram_ctrl_1_0_rd_chnl is
     s_axi_arlen : in STD_LOGIC_VECTOR ( 7 downto 0 );
     bram_rddata_a : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_dma_axi_bram_ctrl_1_0_rd_chnl : entity is "rd_chnl";
 end system_dma_axi_bram_ctrl_1_0_rd_chnl;
 
 architecture STRUCTURE of system_dma_axi_bram_ctrl_1_0_rd_chnl is
@@ -4456,8 +4450,6 @@ entity system_dma_axi_bram_ctrl_1_0_wr_chnl is
     s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
     s_axi_awlen : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_dma_axi_bram_ctrl_1_0_wr_chnl : entity is "wr_chnl";
 end system_dma_axi_bram_ctrl_1_0_wr_chnl;
 
 architecture STRUCTURE of system_dma_axi_bram_ctrl_1_0_wr_chnl is
@@ -5439,8 +5431,6 @@ entity system_dma_axi_bram_ctrl_1_0_full_axi is
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 12 downto 0 );
     s_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_dma_axi_bram_ctrl_1_0_full_axi : entity is "full_axi";
 end system_dma_axi_bram_ctrl_1_0_full_axi;
 
 architecture STRUCTURE of system_dma_axi_bram_ctrl_1_0_full_axi is
@@ -5924,8 +5914,6 @@ entity system_dma_axi_bram_ctrl_1_0_axi_bram_ctrl_top is
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 12 downto 0 );
     s_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_dma_axi_bram_ctrl_1_0_axi_bram_ctrl_top : entity is "axi_bram_ctrl_top";
 end system_dma_axi_bram_ctrl_1_0_axi_bram_ctrl_top;
 
 architecture STRUCTURE of system_dma_axi_bram_ctrl_1_0_axi_bram_ctrl_top is
@@ -6001,8 +5989,6 @@ entity system_dma_axi_bram_ctrl_1_0_axi_bram_ctrl is
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 12 downto 0 );
     s_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_dma_axi_bram_ctrl_1_0_axi_bram_ctrl : entity is "axi_bram_ctrl";
 end system_dma_axi_bram_ctrl_1_0_axi_bram_ctrl;
 
 architecture STRUCTURE of system_dma_axi_bram_ctrl_1_0_axi_bram_ctrl is

@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
 -- Date        : Sun Feb 16 18:34:27 2020
 -- Host        : ssg0 running 64-bit Arch Linux
--- Command     : write_vhdl -force -mode funcsim
---               /ectf/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/system_share_axi_bram_ctrl_1_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_share_axi_bram_ctrl_1_0 -prefix
+--               system_share_axi_bram_ctrl_1_0_ system_share_axi_bram_ctrl_1_0_sim_netlist.vhdl
 -- Design      : system_share_axi_bram_ctrl_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -37,8 +37,6 @@ entity system_share_axi_bram_ctrl_1_0_SRL_FIFO is
     bid_gets_fifo_load_d1 : in STD_LOGIC;
     axi_wr_burst : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_SRL_FIFO : entity is "SRL_FIFO";
 end system_share_axi_bram_ctrl_1_0_SRL_FIFO;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_SRL_FIFO is
@@ -832,8 +830,6 @@ entity system_share_axi_bram_ctrl_1_0_sng_port_arb is
     SR : in STD_LOGIC_VECTOR ( 0 to 0 );
     s_axi_aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_sng_port_arb : entity is "sng_port_arb";
 end system_share_axi_bram_ctrl_1_0_sng_port_arb;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_sng_port_arb is
@@ -1307,8 +1303,6 @@ entity system_share_axi_bram_ctrl_1_0_ua_narrow is
     \GEN_WDATA_SM_NO_ECC_SNG_REG_WREADY.wr_data_sng_sm_cs_reg[0]\ : in STD_LOGIC;
     \GEN_NARROW_CNT.narrow_bram_addr_inc_d1_reg\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_ua_narrow : entity is "ua_narrow";
 end system_share_axi_bram_ctrl_1_0_ua_narrow;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_ua_narrow is
@@ -1495,8 +1489,6 @@ entity system_share_axi_bram_ctrl_1_0_wrap_brst is
     SR : in STD_LOGIC_VECTOR ( 0 to 0 );
     s_axi_aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_wrap_brst : entity is "wrap_brst";
 end system_share_axi_bram_ctrl_1_0_wrap_brst;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_wrap_brst is
@@ -2772,8 +2764,6 @@ entity system_share_axi_bram_ctrl_1_0_rd_chnl is
     \GEN_NARROW_CNT_LD.narrow_burst_cnt_ld_reg_reg[0]_1\ : in STD_LOGIC;
     bram_rddata_a : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_rd_chnl : entity is "rd_chnl";
 end system_share_axi_bram_ctrl_1_0_rd_chnl;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_rd_chnl is
@@ -6549,8 +6539,6 @@ entity system_share_axi_bram_ctrl_1_0_wr_chnl is
     \GEN_NARROW_CNT_LD.narrow_burst_cnt_ld_reg_reg[0]_0\ : in STD_LOGIC;
     s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_wr_chnl : entity is "wr_chnl";
 end system_share_axi_bram_ctrl_1_0_wr_chnl;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_wr_chnl is
@@ -8193,8 +8181,6 @@ entity system_share_axi_bram_ctrl_1_0_full_axi is
     s_axi_arburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_full_axi : entity is "full_axi";
 end system_share_axi_bram_ctrl_1_0_full_axi;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_full_axi is
@@ -8693,8 +8679,6 @@ entity system_share_axi_bram_ctrl_1_0_axi_bram_ctrl_top is
     s_axi_arburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_axi_bram_ctrl_top : entity is "axi_bram_ctrl_top";
 end system_share_axi_bram_ctrl_1_0_axi_bram_ctrl_top;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_axi_bram_ctrl_top is
@@ -8782,8 +8766,6 @@ entity system_share_axi_bram_ctrl_1_0_axi_bram_ctrl is
     s_axi_arburst : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_awburst : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_share_axi_bram_ctrl_1_0_axi_bram_ctrl : entity is "axi_bram_ctrl";
 end system_share_axi_bram_ctrl_1_0_axi_bram_ctrl;
 
 architecture STRUCTURE of system_share_axi_bram_ctrl_1_0_axi_bram_ctrl is

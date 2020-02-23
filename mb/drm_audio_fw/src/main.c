@@ -17,7 +17,6 @@
 #include "sleep.h"
 #include "fsl.h"
 
-#include "math.h"
 
 
 //////////////////////// GLOBALS ////////////////////////
@@ -40,18 +39,16 @@ const struct color BLUE =   {0x0000, 0x0000, 0x01ff};
 #define set_playing() change_state(PLAYING, GREEN)
 #define set_paused()  change_state(PAUSED, BLUE)
 
-#define NSEEKSAMPLES (48000 * 5 * 2)		//5 second seek, 48Khz, 2 bytes for ssample
+#define NSEEKSAMPLES (48000 * 5 * BYTES_PER_SAMP)		//5 second seek, 48Khz, 2 bytes for ssample
 
 // shared command channel -- read/write for both PS and PL
 volatile cmd_channel *c = (cmd_channel*)SHARED_DDR_BASE;
+volatile u32* cmdreg = 0x80000000;		//todo use XPAR definition
 
 // internal state store
 internal_state s;
 
-
 //////////////////////// INTERRUPT HANDLING ////////////////////////
-
-
 // shared variable between main thread and interrupt processing thread
 volatile static int InterruptProcessed = FALSE;
 static XIntc InterruptController;
@@ -59,10 +56,14 @@ static XIntc InterruptController;
 void myISR(void) {
     InterruptProcessed = TRUE;
 }
-
-
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
+u32 read_cr()
+{
+	//read cr bits and adjust to match command enum format
+	return ((*cmdreg) & 0x00FF0000) >> 16;
+	*cmdreg |= 0xFFFFFFFF;
+}
 
 // returns whether an rid has been provisioned
 int is_provisioned_rid(char rid) {
@@ -369,7 +370,13 @@ void share_song() {
 
 // plays a song and looks for play-time commands
 void play_song() {
-    u32 skipctr = 0, rem, cp_num, cp_xfil_cnt, dma_cnt, length, *fifo_fill_out, *fifo_fill_in, speed;
+    u32 rem = 0, cp_num, cp_xfil_cnt, dma_cnt, length;
+
+    //Register mapping info
+    //https://www.xilinx.com/support/documentation/ip_documentation/axi_gpio/v2_0/pg144-axi-gpio.pdf#page=10
+    u32* fifo_fill_in  = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR + 0x8);			//input fifo uses second gpio bank
+    u32* fifo_fill_out = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR);
+
 
     mb_printf("Reading Audio File...");
     load_song_md();
@@ -389,25 +396,22 @@ void play_song() {
 
     rem = length;
 
-    //Register mapping info
-    //https://www.xilinx.com/support/documentation/ip_documentation/axi_gpio/v2_0/pg144-axi-gpio.pdf#page=10
-    fifo_fill_in  = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR + 0x8);			//input fifo uses second gpio bank
-    fifo_fill_out = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR);
-
     set_playing();
     while(rem > 0) {
         // check for interrupt to stop playback
         while (InterruptProcessed) {
-            InterruptProcessed = FALSE;
+        	InterruptProcessed = FALSE;
+        	uint16_t cmd = read_cr();
+        	mb_printf("Command (P): %08X\r\n", cmd);
 
-				switch (c->cmd) {
+
+				switch (cmd) {
 				case PAUSE:
 					mb_printf("Pausing... \r\n");
 					set_paused();
 					while (!InterruptProcessed) continue; // wait for interrupt
 					break;
 				case PLAY:
-					speed = 0;
 					mb_printf("Resuming... \r\n");
 					set_playing();
 					break;
@@ -420,7 +424,6 @@ void play_song() {
 					set_playing();
 					break;
 				case FASTFWD:
-					speed = 1; //play 1 out of 4 samples when set
 					break;
 				case SEEKFWD:
 					//Seek forward by up to 5 seconds or until the end of the song
@@ -492,8 +495,9 @@ void play_song() {
         	//
         	//This is a 32 bit write, whatever is written here will be automatically split into two 16 byte samples.
 
-        	if (!speed || (skipctr++ %4 == 0) )		//test feature to allow actual fast forwarding instead of skipping
-        		putfslx(sample, 0,);
+        	//double up samples for mono audio
+        	putfslx((sample & 0x0000FFFF) | (sample & 0x0000FFFF)<<16, 0,);
+        	putfslx((sample & 0xFFFF0000) | (sample & 0xFFFF0000)>>16, 0,);
         }
 
         rem -= cp_num;
@@ -526,6 +530,7 @@ void digital_out() {
 
 int main() {
     u32 status;
+    *cmdreg |= 0xFFFFFFFF;
 
     init_platform();
     microblaze_register_handler((XInterruptHandler)myISR, (void *)0);
@@ -549,9 +554,6 @@ int main() {
         mb_printf("DMA configuration ERROR\r\n");
         return XST_FAILURE;
     }
-
-    //TODO: replace with XPAR
-	uint32_t* cmdreg = 0x80000000;
 	
     // Start the LED
     enableLED(led);
@@ -567,12 +569,13 @@ int main() {
     while(1) {
         // wait for interrupt to start
         if (InterruptProcessed) {
+        	uint32_t cmd = read_cr();
             InterruptProcessed = FALSE;
+            mb_printf("Command: %08X\r\n", cmd);
+
             set_working();
 
-			mb_printf("Command reg: %08X\r\n", *cmdreg);
-            // c->cmd is set by the miPod player
-            switch (c->cmd) {
+            switch (cmd) {
             case LOGIN:
                 login();
                 break;

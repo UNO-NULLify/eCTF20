@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
 -- Date        : Sun Feb 16 18:34:10 2020
 -- Host        : ssg0 running 64-bit Arch Linux
--- Command     : write_vhdl -force -mode funcsim
---               /ectf/pl/src/bd/system/ip/system_data_lmb_v10_1_0/system_data_lmb_v10_1_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_data_lmb_v10_1_0 -prefix
+--               system_data_lmb_v10_1_0_ system_data_lmb_v10_1_0_sim_netlist.vhdl
 -- Design      : system_data_lmb_v10_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -50,8 +50,6 @@ entity system_data_lmb_v10_1_0_lmb_v10 is
   attribute C_LMB_DWIDTH of system_data_lmb_v10_1_0_lmb_v10 : entity is 32;
   attribute C_LMB_NUM_SLAVES : integer;
   attribute C_LMB_NUM_SLAVES of system_data_lmb_v10_1_0_lmb_v10 : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_data_lmb_v10_1_0_lmb_v10 : entity is "lmb_v10";
 end system_data_lmb_v10_1_0_lmb_v10;
 
 architecture STRUCTURE of system_data_lmb_v10_1_0_lmb_v10 is

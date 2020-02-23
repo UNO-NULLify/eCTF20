@@ -2343,24 +2343,24 @@ void cleanup_platform();
 #define XPARAMETERS_H 
 
 
-#define XPAR_CPU_M_AXI_DP_FREQ_HZ 1e+08
-#define XPAR_CPU_M_AXI_IP_FREQ_HZ 1e+08
+#define XPAR_CPU_M_AXI_DP_FREQ_HZ 100000000
+#define XPAR_CPU_M_AXI_IP_FREQ_HZ 100000000
 
 
 
-#define XPAR_PROC_BUS_0_FREQ_HZ 1e+08
-#define XPAR_PROC_BUS_1_FREQ_HZ 1e+08
+#define XPAR_PROC_BUS_0_FREQ_HZ 100000000
+#define XPAR_PROC_BUS_1_FREQ_HZ 100000000
 
 
-#define XPAR_CPU_CORE_CLOCK_FREQ_HZ 1e+08
-#define XPAR_MICROBLAZE_CORE_CLOCK_FREQ_HZ 1e+08
+#define XPAR_CPU_CORE_CLOCK_FREQ_HZ 100000000
+#define XPAR_MICROBLAZE_CORE_CLOCK_FREQ_HZ 100000000
 
 
 
 
 
 #define XPAR_MICROBLAZE_0_ADDR_SIZE 32
-#define XPAR_MICROBLAZE_0_ADDR_TAG_BITS 17
+#define XPAR_MICROBLAZE_0_ADDR_TAG_BITS 0
 #define XPAR_MICROBLAZE_0_ALLOW_DCACHE_WR 1
 #define XPAR_MICROBLAZE_0_ALLOW_ICACHE_WR 1
 #define XPAR_MICROBLAZE_0_AREA_OPTIMIZED 0
@@ -2372,7 +2372,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_CACHE_BYTE_SIZE 8192
 #define XPAR_MICROBLAZE_0_DADDR_SIZE 32
 #define XPAR_MICROBLAZE_0_DATA_SIZE 32
-#define XPAR_MICROBLAZE_0_DCACHE_ADDR_TAG 17
+#define XPAR_MICROBLAZE_0_DCACHE_ADDR_TAG 0
 #define XPAR_MICROBLAZE_0_DCACHE_ALWAYS_USED 0
 #define XPAR_MICROBLAZE_0_DCACHE_BASEADDR 0x00000000
 #define XPAR_MICROBLAZE_0_DCACHE_BYTE_SIZE 8192
@@ -2385,10 +2385,10 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_DC_AXI_MON 0
 #define XPAR_MICROBLAZE_0_DEBUG_COUNTER_WIDTH 32
 #define XPAR_MICROBLAZE_0_DEBUG_ENABLED 2
-#define XPAR_MICROBLAZE_0_DEBUG_EVENT_COUNTERS 5
+#define XPAR_MICROBLAZE_0_DEBUG_EVENT_COUNTERS 0
 #define XPAR_MICROBLAZE_0_DEBUG_EXTERNAL_TRACE 0
 #define XPAR_MICROBLAZE_0_DEBUG_INTERFACE 0
-#define XPAR_MICROBLAZE_0_DEBUG_LATENCY_COUNTERS 1
+#define XPAR_MICROBLAZE_0_DEBUG_LATENCY_COUNTERS 0
 #define XPAR_MICROBLAZE_0_DEBUG_PROFILE_SIZE 0
 #define XPAR_MICROBLAZE_0_DEBUG_TRACE_ASYNC_RESET 0
 #define XPAR_MICROBLAZE_0_DEBUG_TRACE_SIZE 8192
@@ -2497,9 +2497,9 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_M_AXI_IP_DATA_WIDTH 32
 #define XPAR_MICROBLAZE_0_M_AXI_IP_THREAD_ID_WIDTH 1
 #define XPAR_MICROBLAZE_0_M_AXI_I_BUS_EXCEPTION 0
-#define XPAR_MICROBLAZE_0_NUMBER_OF_PC_BRK 4
-#define XPAR_MICROBLAZE_0_NUMBER_OF_RD_ADDR_BRK 2
-#define XPAR_MICROBLAZE_0_NUMBER_OF_WR_ADDR_BRK 2
+#define XPAR_MICROBLAZE_0_NUMBER_OF_PC_BRK 2
+#define XPAR_MICROBLAZE_0_NUMBER_OF_RD_ADDR_BRK 0
+#define XPAR_MICROBLAZE_0_NUMBER_OF_WR_ADDR_BRK 0
 #define XPAR_MICROBLAZE_0_NUM_SYNC_FF_CLK 2
 #define XPAR_MICROBLAZE_0_NUM_SYNC_FF_CLK_DEBUG 2
 #define XPAR_MICROBLAZE_0_NUM_SYNC_FF_CLK_IRQ 1
@@ -2554,16 +2554,16 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_SCO 0
 #define XPAR_MICROBLAZE_0_TRACE 0
 #define XPAR_MICROBLAZE_0_UNALIGNED_EXCEPTIONS 0
-#define XPAR_MICROBLAZE_0_USE_BARREL 0
+#define XPAR_MICROBLAZE_0_USE_BARREL 1
 #define XPAR_MICROBLAZE_0_USE_BRANCH_TARGET_CACHE 0
 #define XPAR_MICROBLAZE_0_USE_CONFIG_RESET 0
 #define XPAR_MICROBLAZE_0_USE_DCACHE 0
-#define XPAR_MICROBLAZE_0_USE_DIV 0
+#define XPAR_MICROBLAZE_0_USE_DIV 1
 #define XPAR_MICROBLAZE_0_USE_EXTENDED_FSL_INSTR 0
 #define XPAR_MICROBLAZE_0_USE_EXT_BRK 0
 #define XPAR_MICROBLAZE_0_USE_EXT_NM_BRK 0
 #define XPAR_MICROBLAZE_0_USE_FPU 0
-#define XPAR_MICROBLAZE_0_USE_HW_MUL 0
+#define XPAR_MICROBLAZE_0_USE_HW_MUL 1
 #define XPAR_MICROBLAZE_0_USE_ICACHE 0
 #define XPAR_MICROBLAZE_0_USE_INTERRUPT 1
 #define XPAR_MICROBLAZE_0_USE_MMU 0
@@ -2583,7 +2583,7 @@ void cleanup_platform();
 #define XPAR_CPU_ID 0
 #define XPAR_MICROBLAZE_ID 0
 #define XPAR_MICROBLAZE_ADDR_SIZE 32
-#define XPAR_MICROBLAZE_ADDR_TAG_BITS 17
+#define XPAR_MICROBLAZE_ADDR_TAG_BITS 0
 #define XPAR_MICROBLAZE_ALLOW_DCACHE_WR 1
 #define XPAR_MICROBLAZE_ALLOW_ICACHE_WR 1
 #define XPAR_MICROBLAZE_AREA_OPTIMIZED 0
@@ -2595,7 +2595,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_CACHE_BYTE_SIZE 8192
 #define XPAR_MICROBLAZE_DADDR_SIZE 32
 #define XPAR_MICROBLAZE_DATA_SIZE 32
-#define XPAR_MICROBLAZE_DCACHE_ADDR_TAG 17
+#define XPAR_MICROBLAZE_DCACHE_ADDR_TAG 0
 #define XPAR_MICROBLAZE_DCACHE_ALWAYS_USED 0
 #define XPAR_MICROBLAZE_DCACHE_BASEADDR 0x00000000
 #define XPAR_MICROBLAZE_DCACHE_BYTE_SIZE 8192
@@ -2608,10 +2608,10 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_DC_AXI_MON 0
 #define XPAR_MICROBLAZE_DEBUG_COUNTER_WIDTH 32
 #define XPAR_MICROBLAZE_DEBUG_ENABLED 2
-#define XPAR_MICROBLAZE_DEBUG_EVENT_COUNTERS 5
+#define XPAR_MICROBLAZE_DEBUG_EVENT_COUNTERS 0
 #define XPAR_MICROBLAZE_DEBUG_EXTERNAL_TRACE 0
 #define XPAR_MICROBLAZE_DEBUG_INTERFACE 0
-#define XPAR_MICROBLAZE_DEBUG_LATENCY_COUNTERS 1
+#define XPAR_MICROBLAZE_DEBUG_LATENCY_COUNTERS 0
 #define XPAR_MICROBLAZE_DEBUG_PROFILE_SIZE 0
 #define XPAR_MICROBLAZE_DEBUG_TRACE_ASYNC_RESET 0
 #define XPAR_MICROBLAZE_DEBUG_TRACE_SIZE 8192
@@ -2720,9 +2720,9 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_M_AXI_IP_DATA_WIDTH 32
 #define XPAR_MICROBLAZE_M_AXI_IP_THREAD_ID_WIDTH 1
 #define XPAR_MICROBLAZE_M_AXI_I_BUS_EXCEPTION 0
-#define XPAR_MICROBLAZE_NUMBER_OF_PC_BRK 4
-#define XPAR_MICROBLAZE_NUMBER_OF_RD_ADDR_BRK 2
-#define XPAR_MICROBLAZE_NUMBER_OF_WR_ADDR_BRK 2
+#define XPAR_MICROBLAZE_NUMBER_OF_PC_BRK 2
+#define XPAR_MICROBLAZE_NUMBER_OF_RD_ADDR_BRK 0
+#define XPAR_MICROBLAZE_NUMBER_OF_WR_ADDR_BRK 0
 #define XPAR_MICROBLAZE_NUM_SYNC_FF_CLK 2
 #define XPAR_MICROBLAZE_NUM_SYNC_FF_CLK_DEBUG 2
 #define XPAR_MICROBLAZE_NUM_SYNC_FF_CLK_IRQ 1
@@ -2777,16 +2777,16 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_SCO 0
 #define XPAR_MICROBLAZE_TRACE 0
 #define XPAR_MICROBLAZE_UNALIGNED_EXCEPTIONS 0
-#define XPAR_MICROBLAZE_USE_BARREL 0
+#define XPAR_MICROBLAZE_USE_BARREL 1
 #define XPAR_MICROBLAZE_USE_BRANCH_TARGET_CACHE 0
 #define XPAR_MICROBLAZE_USE_CONFIG_RESET 0
 #define XPAR_MICROBLAZE_USE_DCACHE 0
-#define XPAR_MICROBLAZE_USE_DIV 0
+#define XPAR_MICROBLAZE_USE_DIV 1
 #define XPAR_MICROBLAZE_USE_EXTENDED_FSL_INSTR 0
 #define XPAR_MICROBLAZE_USE_EXT_BRK 0
 #define XPAR_MICROBLAZE_USE_EXT_NM_BRK 0
 #define XPAR_MICROBLAZE_USE_FPU 0
-#define XPAR_MICROBLAZE_USE_HW_MUL 0
+#define XPAR_MICROBLAZE_USE_HW_MUL 1
 #define XPAR_MICROBLAZE_USE_ICACHE 0
 #define XPAR_MICROBLAZE_USE_INTERRUPT 1
 #define XPAR_MICROBLAZE_USE_MMU 0
@@ -3019,6 +3019,51 @@ void cleanup_platform();
 
 
 
+#define XPAR_XCLK_WIZ_NUM_INSTANCES 1
+
+
+#define XPAR_CLK_WIZ_25M_DEVICE_ID 0
+#define XPAR_CLK_WIZ_25M_BASEADDR 0x80010000
+#define XPAR_CLK_WIZ_25M_HIGHADDR 0x8001FFFF
+#define XPAR_CLK_WIZ_25M_ENABLE_CLOCK_MONITOR 0
+#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK0 0
+#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK1 0
+#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK2 0
+#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK3 0
+#define XPAR_CLK_WIZ_25M_REF_CLK_FREQ 100.0
+#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ0 100.0
+#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ1 100.0
+#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ2 100.0
+#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ3 100.0
+#define XPAR_CLK_WIZ_25M_PRECISION 1
+#define XPAR_CLK_WIZ_25M_ENABLE_PLL0 0
+#define XPAR_CLK_WIZ_25M_ENABLE_PLL1 0
+
+
+
+
+
+#define XPAR_CLK_WIZ_0_DEVICE_ID XPAR_CLK_WIZ_25M_DEVICE_ID
+#define XPAR_CLK_WIZ_0_BASEADDR 0x80010000
+#define XPAR_CLK_WIZ_0_HIGHADDR 0x8001FFFF
+#define XPAR_CLK_WIZ_0_ENABLE_CLOCK_MONITOR 0
+#define XPAR_CLK_WIZ_0_ENABLE_USER_CLOCK0 0
+#define XPAR_CLK_WIZ_0_ENABLE_USER_CLOCK1 0
+#define XPAR_CLK_WIZ_0_ENABLE_USER_CLOCK2 0
+#define XPAR_CLK_WIZ_0_ENABLE_USER_CLOCK3 0
+#define XPAR_CLK_WIZ_0_REF_CLK_FREQ 100.0
+#define XPAR_CLK_WIZ_0_USER_CLK_FREQ0 100.0
+#define XPAR_CLK_WIZ_0_USER_CLK_FREQ1 100.0
+#define XPAR_CLK_WIZ_0_USER_CLK_FREQ2 100.0
+#define XPAR_CLK_WIZ_0_USER_CLK_FREQ3 100.0
+#define XPAR_CLK_WIZ_0_PRECISION 1
+#define XPAR_CLK_WIZ_0_Enable_PLL0 0
+#define XPAR_CLK_WIZ_0_Enable_PLL1 0
+
+
+
+
+
 #define XPAR_XEMACPS_NUM_INSTANCES 1
 
 
@@ -3056,11 +3101,7 @@ void cleanup_platform();
 
 #define XPAR_PS7_M_AXI_GP0_S_AXI_BASEADDR 0x40000000
 #define XPAR_PS7_M_AXI_GP0_S_AXI_HIGHADDR 0x7FFFFFFF
-
-
-
-
-
+# 771 "/ectf/mb/drm_audio_fw_bsp/microblaze_0/include/xparameters.h"
 #define XPAR_XGPIO_NUM_INSTANCES 1
 
 
@@ -3147,8 +3188,8 @@ void cleanup_platform();
 #define XPAR_INTC_SINGLE_HIGHADDR 0x04B3FFFF
 #define XPAR_INTC_SINGLE_DEVICE_ID XPAR_AXI_INTC_0_DEVICE_ID
 #define XPAR_AXI_INTC_0_TYPE 0U
-#define XPAR_INT_AXI_GPIO_0_GPIO_IO_O_MASK 0X000001U
-#define XPAR_AXI_INTC_0_INT_AXI_GPIO_0_GPIO_IO_O_INTR 0U
+#define XPAR_BIRDWTCH_IFACE_0_INT_MB_MASK 0X000001U
+#define XPAR_AXI_INTC_0_BIRDWTCH_IFACE_0_INT_MB_INTR 0U
 
 
 
@@ -3162,6 +3203,7 @@ void cleanup_platform();
 #define XPAR_INTC_0_NUM_INTR_INPUTS 1U
 #define XPAR_INTC_0_INTC_TYPE 0U
 
+#define XPAR_INTC_0_BIRDWTCH_IFACE_0_VEC_ID XPAR_AXI_INTC_0_BIRDWTCH_IFACE_0_INT_MB_INTR
 
 
 
@@ -6061,7 +6103,10 @@ int XIntc_SimulateIntr(XIntc * InstancePtr, u8 Id);
 
 
 #define AUDIO_SAMPLING_RATE 48000
+
 #define BYTES_PER_SAMP 2
+
+
 #define PREVIEW_SZ (PREVIEW_TIME_SEC * AUDIO_SAMPLING_RATE * BYTES_PER_SAMP)
 
 
@@ -6074,8 +6119,7 @@ int XIntc_SimulateIntr(XIntc * InstancePtr, u8 Id);
 #define MAX_USERS 64
 #define USERNAME_SZ 64
 #define MAX_PIN_SZ 64
-#define MAX_SONG_SZ (1<<25)
-
+#define SONG_PG_SZ (1<<24)
 
 
 struct color {
@@ -6290,488 +6334,12 @@ unsigned sleep(unsigned int seconds);
 #define tputdfslx(var,flags) asm volatile ("t" stringify(flags) "putd\t%0" :: "d" (var))
 # 19 "../src/main.c" 2
 
-# 1 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 1 3
 
 
-#define _MATH_H_ 
 
 
 
-# 1 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/machine/ieeefp.h" 1 3
-# 8 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 2 3
 
-
-
-
-
-
-
-
-# 15 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-union __dmath
-{
-  double d;
-  __ULong i[2];
-};
-
-union __fmath
-{
-  float f;
-  __ULong i[1];
-};
-
-
-union __ldmath
-{
-  long double ld;
-  __ULong i[4];
-};
-
-
-
-#define _M_LN2 0.693147180559945309417
-
-
-
-
-
-#define HUGE_VAL (__builtin_huge_val())
-
-
-
-#define HUGE_VALF (__builtin_huge_valf())
-
-
-
-#define HUGE_VALL (__builtin_huge_vall())
-
-
-
-#define INFINITY (__builtin_inff())
-
-
-
-#define NAN (__builtin_nanf(""))
-# 109 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-extern double atan (double);
-extern double cos (double);
-extern double sin (double);
-extern double tan (double);
-extern double tanh (double);
-extern double frexp (double, int *);
-extern double modf (double, double *);
-extern double ceil (double);
-extern double fabs (double);
-extern double floor (double);
-
-
-
-
-
-
-extern double acos (double);
-extern double asin (double);
-extern double atan2 (double, double);
-extern double cosh (double);
-extern double sinh (double);
-extern double exp (double);
-extern double ldexp (double, int);
-extern double log (double);
-extern double log10 (double);
-extern double pow (double, double);
-extern double sqrt (double);
-extern double fmod (double, double);
-# 149 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-#define FLT_EVAL_METHOD __FLT_EVAL_METHOD__
-#define __TMP_FLT_EVAL_METHOD 
-
-
-
-    typedef float float_t;
-    typedef double double_t;
-# 172 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-#undef FLT_EVAL_METHOD
-
-
-#define FP_NAN 0
-#define FP_INFINITE 1
-#define FP_ZERO 2
-#define FP_SUBNORMAL 3
-#define FP_NORMAL 4
-
-
-#define FP_ILOGB0 (-INT_MAX)
-
-
-#define FP_ILOGBNAN INT_MAX
-
-
-
-#define MATH_ERRNO 1
-
-
-#define MATH_ERREXCEPT 2
-
-
-#define math_errhandling MATH_ERRNO
-
-
-extern int __isinff (float x);
-extern int __isinfd (double x);
-extern int __isnanf (float x);
-extern int __isnand (double x);
-extern int __fpclassifyf (float x);
-extern int __fpclassifyd (double x);
-extern int __signbitf (float x);
-extern int __signbitd (double x);
-# 215 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-#define fpclassify(__x) (__builtin_fpclassify (FP_NAN, FP_INFINITE, FP_NORMAL, FP_SUBNORMAL, FP_ZERO, __x))
-
-
-
-#define isfinite(__x) (__builtin_isfinite (__x))
-
-
-#define isinf(__x) (__builtin_isinf_sign (__x))
-
-
-#define isnan(__x) (__builtin_isnan (__x))
-
-#define isnormal(__x) (__builtin_isnormal (__x))
-# 248 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-#define signbit(__x) ((sizeof(__x) == sizeof(float)) ? __builtin_signbitf(__x) : (sizeof(__x) == sizeof(double)) ? __builtin_signbit (__x) : __builtin_signbitl(__x))
-# 264 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-#define isgreater(__x,__y) (__builtin_isgreater (__x, __y))
-#define isgreaterequal(__x,__y) (__builtin_isgreaterequal (__x, __y))
-#define isless(__x,__y) (__builtin_isless (__x, __y))
-#define islessequal(__x,__y) (__builtin_islessequal (__x, __y))
-#define islessgreater(__x,__y) (__builtin_islessgreater (__x, __y))
-#define isunordered(__x,__y) (__builtin_isunordered (__x, __y))
-# 294 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-extern int finitel (long double);
-
-
-
-extern double infinity (void);
-extern double nan (const char *);
-extern int finite (double);
-extern double copysign (double, double);
-extern double logb (double);
-extern int ilogb (double);
-
-extern double asinh (double);
-extern double cbrt (double);
-extern double nextafter (double, double);
-extern double rint (double);
-extern double scalbn (double, int);
-
-extern double exp2 (double);
-extern double scalbln (double, long int);
-extern double tgamma (double);
-extern double nearbyint (double);
-extern long int lrint (double);
-extern long long int llrint (double);
-extern double round (double);
-extern long int lround (double);
-extern long long int llround (double);
-extern double trunc (double);
-extern double remquo (double, double, int *);
-extern double fdim (double, double);
-extern double fmax (double, double);
-extern double fmin (double, double);
-extern double fma (double, double, double);
-
-
-extern double log1p (double);
-extern double expm1 (double);
-
-
-
-extern double acosh (double);
-extern double atanh (double);
-extern double remainder (double, double);
-extern double gamma (double);
-extern double lgamma (double);
-extern double erf (double);
-extern double erfc (double);
-extern double log2 (double);
-
-#define log2(x) (log (x) / _M_LN2)
-
-
-
-extern double hypot (double, double);
-
-
-
-
-
-
-extern float atanf (float);
-extern float cosf (float);
-extern float sinf (float);
-extern float tanf (float);
-extern float tanhf (float);
-extern float frexpf (float, int *);
-extern float modff (float, float *);
-extern float ceilf (float);
-extern float fabsf (float);
-extern float floorf (float);
-
-
-extern float acosf (float);
-extern float asinf (float);
-extern float atan2f (float, float);
-extern float coshf (float);
-extern float sinhf (float);
-extern float expf (float);
-extern float ldexpf (float, int);
-extern float logf (float);
-extern float log10f (float);
-extern float powf (float, float);
-extern float sqrtf (float);
-extern float fmodf (float, float);
-
-
-
-
-extern float exp2f (float);
-extern float scalblnf (float, long int);
-extern float tgammaf (float);
-extern float nearbyintf (float);
-extern long int lrintf (float);
-extern long long int llrintf (float);
-extern float roundf (float);
-extern long int lroundf (float);
-extern long long int llroundf (float);
-extern float truncf (float);
-extern float remquof (float, float, int *);
-extern float fdimf (float, float);
-extern float fmaxf (float, float);
-extern float fminf (float, float);
-extern float fmaf (float, float, float);
-
-extern float infinityf (void);
-extern float nanf (const char *);
-extern int finitef (float);
-extern float copysignf (float, float);
-extern float logbf (float);
-extern int ilogbf (float);
-
-extern float asinhf (float);
-extern float cbrtf (float);
-extern float nextafterf (float, float);
-extern float rintf (float);
-extern float scalbnf (float, int);
-extern float log1pf (float);
-extern float expm1f (float);
-
-
-extern float acoshf (float);
-extern float atanhf (float);
-extern float remainderf (float, float);
-extern float gammaf (float);
-extern float lgammaf (float);
-extern float erff (float);
-extern float erfcf (float);
-extern float log2f (float);
-extern float hypotf (float, float);
-# 432 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-extern long double atanl (long double);
-extern long double cosl (long double);
-extern long double sinl (long double);
-extern long double tanl (long double);
-extern long double tanhl (long double);
-extern long double frexpl (long double, int *);
-extern long double modfl (long double, long double *);
-extern long double ceill (long double);
-extern long double fabsl (long double);
-extern long double floorl (long double);
-extern long double log1pl (long double);
-extern long double expm1l (long double);
-
-
-
-
-extern long double acosl (long double);
-extern long double asinl (long double);
-extern long double atan2l (long double, long double);
-extern long double coshl (long double);
-extern long double sinhl (long double);
-extern long double expl (long double);
-extern long double ldexpl (long double, int);
-extern long double logl (long double);
-extern long double log10l (long double);
-extern long double powl (long double, long double);
-extern long double sqrtl (long double);
-extern long double fmodl (long double, long double);
-extern long double hypotl (long double, long double);
-
-
-extern long double copysignl (long double, long double);
-extern long double nanl (const char *);
-extern int ilogbl (long double);
-extern long double asinhl (long double);
-extern long double cbrtl (long double);
-extern long double nextafterl (long double, long double);
-extern float nexttowardf (float, long double);
-extern double nexttoward (double, long double);
-extern long double nexttowardl (long double, long double);
-extern long double logbl (long double);
-extern long double log2l (long double);
-extern long double rintl (long double);
-extern long double scalbnl (long double, int);
-extern long double exp2l (long double);
-extern long double scalblnl (long double, long);
-extern long double tgammal (long double);
-extern long double nearbyintl (long double);
-extern long int lrintl (long double);
-extern long long int llrintl (long double);
-extern long double roundl (long double);
-extern long lroundl (long double);
-extern long long int llroundl (long double);
-extern long double truncl (long double);
-extern long double remquol (long double, long double, int *);
-extern long double fdiml (long double, long double);
-extern long double fmaxl (long double, long double);
-extern long double fminl (long double, long double);
-extern long double fmal (long double, long double, long double);
-
-extern long double acoshl (long double);
-extern long double atanhl (long double);
-extern long double remainderl (long double, long double);
-extern long double lgammal (long double);
-extern long double erfl (long double);
-extern long double erfcl (long double);
-# 513 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-extern double drem (double, double);
-extern float dremf (float, float);
-
-
-
-extern double gamma_r (double, int *);
-extern double lgamma_r (double, int *);
-extern float gammaf_r (float, int *);
-extern float lgammaf_r (float, int *);
-
-
-
-extern double y0 (double);
-extern double y1 (double);
-extern double yn (int, double);
-extern double j0 (double);
-extern double j1 (double);
-extern double jn (int, double);
-
-
-
-extern float y0f (float);
-extern float y1f (float);
-extern float ynf (int, float);
-extern float j0f (float);
-extern float j1f (float);
-extern float jnf (int, float);
-# 574 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-#define signgam (*__signgam())
-extern int *__signgam (void);
-
-
-#define __signgam_r(ptr) _REENT_SIGNGAM(ptr)
-# 588 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/math.h" 3
-struct exception
-
-{
-  int type;
-  char *name;
-  double arg1;
-  double arg2;
-  double retval;
-  int err;
-};
-
-
-
-
-extern int matherr (struct exception *e);
-
-
-
-
-#define DOMAIN 1
-#define SING 2
-#define OVERFLOW 3
-#define UNDERFLOW 4
-#define TLOSS 5
-#define PLOSS 6
-
-
-
-
-
-
-
-#define MAXFLOAT 3.40282347e+38F
-
-#define M_E 2.7182818284590452354
-#define M_LOG2E 1.4426950408889634074
-#define M_LOG10E 0.43429448190325182765
-#define M_LN2 _M_LN2
-#define M_LN10 2.30258509299404568402
-#define M_PI 3.14159265358979323846
-#define M_PI_2 1.57079632679489661923
-#define M_PI_4 0.78539816339744830962
-#define M_1_PI 0.31830988618379067154
-#define M_2_PI 0.63661977236758134308
-#define M_2_SQRTPI 1.12837916709551257390
-#define M_SQRT2 1.41421356237309504880
-#define M_SQRT1_2 0.70710678118654752440
-
-
-
-
-
-#define M_TWOPI (M_PI * 2.0)
-#define M_3PI_4 2.3561944901923448370E0
-#define M_SQRTPI 1.77245385090551602792981
-#define M_LN2LO 1.9082149292705877000E-10
-#define M_LN2HI 6.9314718036912381649E-1
-#define M_SQRT3 1.73205080756887719000
-#define M_IVLN10 0.43429448190325182765
-#define M_LOG2_E _M_LN2
-#define M_INVLN2 1.4426950408889633870E0
-
-
-
-enum __fdlibm_version
-{
-  __fdlibm_ieee = -1,
-  __fdlibm_svid,
-  __fdlibm_xopen,
-  __fdlibm_posix
-};
-
-#define _LIB_VERSION_TYPE enum __fdlibm_version
-#define _LIB_VERSION __fdlib_version
-
-extern enum __fdlibm_version __fdlib_version;
-
-#define _IEEE_ __fdlibm_ieee
-#define _SVID_ __fdlibm_svid
-#define _XOPEN_ __fdlibm_xopen
-#define _POSIX_ __fdlibm_posix
-
-
-
-
-# 21 "../src/main.c" 2
-
-
-
-
-
-
-
-# 27 "../src/main.c"
 static XAxiDma sAxiDma;
 
 
@@ -6788,16 +6356,14 @@ const struct color BLUE = {0x0000, 0x0000, 0x01ff};
 #define set_playing() change_state(PLAYING, GREEN)
 #define set_paused() change_state(PAUSED, BLUE)
 
-#define NSEEKSAMPLES (48000 * 5 * 2)
+#define NSEEKSAMPLES (48000 * 5 * BYTES_PER_SAMP)
 
 
 volatile cmd_channel *c = (cmd_channel*)(0x20000000 + 0x1CC00000);
+volatile u32* cmdreg = 0x80000000;
 
 
 internal_state s;
-
-
-
 
 
 
@@ -6809,8 +6375,12 @@ void myISR(void) {
 }
 
 
+u32 read_cr()
+{
 
-
+ return ((*cmdreg) & 0x00FF0000) >> 16;
+ *cmdreg |= 0xFFFFFFFF;
+}
 
 
 int is_provisioned_rid(char rid) {
@@ -7117,7 +6687,13 @@ void share_song() {
 
 
 void play_song() {
-    u32 skipctr = 0, rem, cp_num, cp_xfil_cnt, dma_cnt, length, *fifo_fill_out, *fifo_fill_in, speed;
+    u32 rem = 0, cp_num, cp_xfil_cnt, dma_cnt, length;
+
+
+
+    u32* fifo_fill_in = (u32 *)(0x04B20000 + 0x8);
+    u32* fifo_fill_out = (u32 *)(0x04B20000);
+
 
     xil_printf("\r\nMB> " "Reading Audio File...");
     load_song_md();
@@ -7137,25 +6713,22 @@ void play_song() {
 
     rem = length;
 
-
-
-    fifo_fill_in = (u32 *)(0x04B20000 + 0x8);
-    fifo_fill_out = (u32 *)(0x04B20000);
-
     c->drm_state = PLAYING; setLED(led, GREEN);;
     while(rem > 0) {
 
         while (InterruptProcessed) {
-            InterruptProcessed = 0U;
+         InterruptProcessed = 0U;
+         uint16_t cmd = read_cr();
+         xil_printf("\r\nMB> " "Command (P): %08X\r\n", cmd);
 
-    switch (c->cmd) {
+
+    switch (cmd) {
     case PAUSE:
      xil_printf("\r\nMB> " "Pausing... \r\n");
      c->drm_state = PAUSED; setLED(led, BLUE);;
      while (!InterruptProcessed) continue;
      break;
     case PLAY:
-     speed = 0;
      xil_printf("\r\nMB> " "Resuming... \r\n");
      c->drm_state = PLAYING; setLED(led, GREEN);;
      break;
@@ -7168,7 +6741,6 @@ void play_song() {
      c->drm_state = PLAYING; setLED(led, GREEN);;
      break;
     case FASTFWD:
-     speed = 1;
      break;
     case SEEKFWD:
 
@@ -7232,9 +6804,9 @@ void play_song() {
 
 
          asm volatile ("" "get\t%0,rfsl" "0" : "=d" (sample));
-# 495 "../src/main.c"
-         if (!speed || (skipctr++ %4 == 0) )
-          asm volatile ("" "put\t%0,rfsl" "0" :: "d" (sample));
+# 499 "../src/main.c"
+         asm volatile ("" "put\t%0,rfsl" "0" :: "d" ((sample & 0x0000FFFF) | (sample & 0x0000FFFF)<<16));
+         asm volatile ("" "put\t%0,rfsl" "0" :: "d" ((sample & 0xFFFF0000) | (sample & 0xFFFF0000)>>16));
         }
 
         rem -= cp_num;
@@ -7267,6 +6839,7 @@ void digital_out() {
 
 int main() {
     u32 status;
+    *cmdreg |= 0xFFFFFFFF;
 
     init_platform();
     microblaze_register_handler((XInterruptHandler)myISR, (void *)0);
@@ -7292,9 +6865,6 @@ int main() {
     }
 
 
- uint32_t* cmdreg = 0x80000000;
-
-
     enableLED(led);
     c->drm_state = STOPPED; setLED(led, RED);;
 
@@ -7308,12 +6878,13 @@ int main() {
     while(1) {
 
         if (InterruptProcessed) {
+         uint32_t cmd = read_cr();
             InterruptProcessed = 0U;
+            xil_printf("\r\nMB> " "Command: %08X\r\n", cmd);
+
             c->drm_state = WORKING; setLED(led, YELLOW);;
 
-   xil_printf("\r\nMB> " "Command reg: %08X\r\n", *cmdreg);
-
-            switch (c->cmd) {
+            switch (cmd) {
             case LOGIN:
                 login();
                 break;

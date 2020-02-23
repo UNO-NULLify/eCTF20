@@ -1,7 +1,7 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-// Date        : Sun Feb 16 18:34:11 2020
+// Date        : Sun Feb 16 19:01:58 2020
 // Host        : ssg0 running 64-bit Arch Linux
 // Command     : write_verilog -force -mode funcsim -rename_top system_ins_lmb_bram_if_cntlr_0_0 -prefix
 //               system_ins_lmb_bram_if_cntlr_0_0_ system_data_lmb_bram_if_cntlr_1_0_sim_netlist.v
@@ -184,7 +184,7 @@ module system_ins_lmb_bram_if_cntlr_0_0
        (.G(\<const0> ));
   system_ins_lmb_bram_if_cntlr_0_0_lmb_bram_if_cntlr U0
        (.BRAM_WEN_A(BRAM_WEN_A),
-        .LMB_ABus({LMB_ABus[1],LMB_ABus[2],LMB_ABus[10]}),
+        .LMB_ABus({LMB_ABus[0],LMB_ABus[2],LMB_ABus[10]}),
         .LMB_AddrStrobe(LMB_AddrStrobe),
         .LMB_BE(LMB_BE),
         .LMB_Clk(LMB_Clk),

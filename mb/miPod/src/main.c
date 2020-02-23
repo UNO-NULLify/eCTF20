@@ -5,7 +5,8 @@
 
 
 #include "miPod.h"
-
+#include "../../drm_audio_fw_bsp/microblaze_0/include/xparameters.h"
+#include <stdint.h>
 #include <stdio.h>
 #include <sys/mman.h>
 #include <sys/stat.h>
@@ -18,18 +19,34 @@
 
 
 volatile cmd_channel *c;
+volatile uint32_t cmdreg = 0x43C00000;
 
 
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
 
+int setup_birdwtch()
+{
+	int mem_fd = open("/dev/mem", O_RDWR | O_SYNC);
+	//XPAR_BIRDWTCH_IFACE_0_S00_AXI_BASEADDR
+	cmdreg = (uint32_t*)mmap(NULL, sysconf(_SC_PAGE_SIZE),PROT_READ | PROT_WRITE, MAP_SHARED | MAP_FIXED, mem_fd, XPAR_BIRDWTCH_IFACE_0_S00_AXI_BASEADDR);
+
+    if (cmdreg == MAP_FAILED)
+    {
+        mp_printf("MMAP Failed for Birdwtch Error = %d\r\n", errno);
+        return -1;
+    }
+
+    return 0;
+}
+
 // sends a command to the microblaze using the shared command channel and interrupt
 void send_command(int cmd) {
-    memcpy((void*)&c->cmd, &cmd, 1);
-
-    //trigger gpio interrupt
-    system("devmem 0x41200000 32 0");
-    system("devmem 0x41200000 32 1");
+    //trigger gpio interrupt by writing to command register
+	char devmemcmd[64];
+	sprintf(devmemcmd, "devmem 0x%08x 32 0x%08x",cmdreg, cmd << 16);
+	printf(devmemcmd);
+    system(devmemcmd);
 }
 
 
@@ -86,6 +103,9 @@ size_t load_file(char *fname, char *song_buf) {
         return 0;
     }
 
+    //Check song size, split into 16MB pages
+    int npages = sb.st_size / SONG_PG_SZ;		//not yet impl
+
     read(fd, song_buf, sb.st_size);
     close(fd);
 
@@ -123,7 +143,9 @@ void logout() {
 // DRM will fill shared buffer with query content
 void query_player() {
     // drive DRM
+	mp_printf("About to send query\r\n"); //debug al
     send_command(QUERY_PLAYER);
+    mp_printf("Sent query\r\n");
     while (c->drm_state == STOPPED) continue; // wait for DRM to start working
     while (c->drm_state == WORKING) continue; // wait for DRM to dump file
 

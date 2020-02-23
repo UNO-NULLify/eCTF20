@@ -18,7 +18,7 @@
 #define MAX_USERS 64
 #define USERNAME_SZ 64
 #define MAX_PIN_SZ 64
-#define MAX_SONG_SZ (1<<25)
+#define SONG_PG_SZ (1<<24)
 
 // printing utility
 #define MP_PROMPT "mP> "
@@ -86,8 +86,8 @@ typedef volatile struct __attribute__((__packed__)) {
     union {
         song song;
         query query;
-        char buf[MAX_SONG_SZ]; // sets correct size of cmd_channel for allocation
+        char buf[SONG_PG_SZ * 2]; // sets correct size of cmd_channel for allocation
     };
-} cmd_channel;
+}cmd_channel;
 
 #endif /* SRC_MIPOD_H_ */

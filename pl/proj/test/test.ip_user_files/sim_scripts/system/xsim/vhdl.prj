@@ -1,6 +1,18 @@
 vhdl xil_defaultlib  \
 "../../../bd/system/ip/system_axi_dma_0_0/sim/system_axi_dma_0_0.vhd" \
 "../../../bd/system/ip/system_axi_intc_0_0/sim/system_axi_intc_0_0.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/proc_common_v3_00_a/hdl/src/vhdl/system_clk_wiz_25M_0_conv_funs_pkg.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/proc_common_v3_00_a/hdl/src/vhdl/system_clk_wiz_25M_0_proc_common_pkg.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/proc_common_v3_00_a/hdl/src/vhdl/system_clk_wiz_25M_0_ipif_pkg.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/proc_common_v3_00_a/hdl/src/vhdl/system_clk_wiz_25M_0_family_support.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/proc_common_v3_00_a/hdl/src/vhdl/system_clk_wiz_25M_0_family.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/proc_common_v3_00_a/hdl/src/vhdl/system_clk_wiz_25M_0_soft_reset.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/proc_common_v3_00_a/hdl/src/vhdl/system_clk_wiz_25M_0_pselect_f.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_clk_wiz_25M_0_address_decoder.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_clk_wiz_25M_0_slave_attachment.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/axi_lite_ipif_v1_01_a/hdl/src/vhdl/system_clk_wiz_25M_0_axi_lite_ipif.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/system_clk_wiz_25M_0_clk_wiz_drp.vhd" \
+"../../../bd/system/ip/system_clk_wiz_25M_0/system_clk_wiz_25M_0_axi_clk_config.vhd" \
 "../../../bd/system/ip/system_data_lmb_bram_if_cntlr_1_0/sim/system_data_lmb_bram_if_cntlr_1_0.vhd" \
 "../../../bd/system/ip/system_data_lmb_v10_1_0/sim/system_data_lmb_v10_1_0.vhd" \
 "../../../bd/system/ip/system_dma_axi_bram_ctrl_1_0/sim/system_dma_axi_bram_ctrl_1_0.vhd" \
@@ -8,7 +20,6 @@ vhdl xil_defaultlib  \
 "../../../bd/system/ip/system_i2s_output_1_0/sim/system_i2s_output_1_0.vhd" \
 "../../../bd/system/ip/system_ins_lmb_bram_if_cntlr_0_0/sim/system_ins_lmb_bram_if_cntlr_0_0.vhd" \
 "../../../bd/system/ip/system_ins_lmb_v10_0_0/sim/system_ins_lmb_v10_0_0.vhd" \
-"../../../bd/system/ip/system_int_axi_gpio_0_0/sim/system_int_axi_gpio_0_0.vhd" \
 "../../../bd/system/ip/system_mb_dma_axi_bram_ctrl_0_0/sim/system_mb_dma_axi_bram_ctrl_0_0.vhd" \
 "../../../bd/system/ip/system_mdm_0_0/sim/system_mdm_0_0.vhd" \
 "../../../bd/system/ip/system_microblaze_0_0/sim/system_microblaze_0_0.vhd" \

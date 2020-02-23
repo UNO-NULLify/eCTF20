@@ -16,7 +16,10 @@
 
 // ADC/DAC sampling rate in Hz
 #define AUDIO_SAMPLING_RATE 48000
-#define BYTES_PER_SAMP 2
+
+#define BYTES_PER_SAMP	2
+
+
 #define PREVIEW_SZ (PREVIEW_TIME_SEC * AUDIO_SAMPLING_RATE * BYTES_PER_SAMP)
 
 // printing utility
@@ -29,8 +32,7 @@
 #define MAX_USERS 64
 #define USERNAME_SZ 64
 #define MAX_PIN_SZ 64
-#define MAX_SONG_SZ (1<<25)
-
+#define SONG_PG_SZ (1<<24)		//16MB, half the size alloted for the song buffer
 
 // LED colors and controller
 struct color {
