@@ -113,7 +113,7 @@ int cacheCMD(int share) {
         /* Store the drm state */
         DeviceMD.state = CMDChannel->drm_state;
         /* Store the current username */
-        UserMD.CMDChannel->username;
+        UserMD.name = CMDChannel->username;
         /* Hash the current user pin */
         uint8_t hash[32];
         crypto_argon2i(hash, 32, malloc(8 * 1024), 8, 3, CMDChannel->pin, MAX_PIN_SZ, salt, 16);
@@ -146,16 +146,19 @@ int checkAuth() {
     int region_access = 0;
     /* Check user is logged in */
     if (UserMD.logged_in) {
-        /* Check user is owner or shared user */
-        if (!crypto_verify64(SongMD.owner, UserMD.name)) {
-            user_access = 0;
+        /* Check user is the song owner */
+        if (crypto_verify64(SongMD.owner, UserMD.name) == 0) { 
+            user_access = 1; 
+        }
+        //check if they are a shared owner
+        else {
             for (int i = 0; i < PROVISIONED_USERS; i++) {
-                if (crypto_verify64(SongMD.shared[i], UserMD.name)) {
+                if (crypto_verify64(SongMD.shared[i], UserMD.name) == 0) {
                     user_access = 1;
                     break;
                 }
             }
-        } else { user_access = 1; }
+        }
     }
 
     /* Check song region matches player */
@@ -343,7 +346,7 @@ void querySong() {
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         if (SongMD.shared[i] != NULL && i != PROVISIONED_USERS - 1) {
             xil_printf(" %s,", SongMD.shared[i]);
-        } else if (SongMD.shared[i] != NULL && i == PROVISIONED_USERS -1) {
+        } else if (SongMD.shared[i] != NULL && i == PROVISIONED_USERS - 1) {
             xil_printf(" %s", SongMD.shared[i]);
         }
     }
