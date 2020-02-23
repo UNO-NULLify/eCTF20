@@ -150,8 +150,8 @@ int checkAuth() {
         if (crypto_verify64(SongMD.owner, UserMD.name) == 0) { 
             user_access = 1; 
         }
-        //check if they are a shared owner
         else {
+            //check if they are a shared owner
             for (int i = 0; i < PROVISIONED_USERS; i++) {
                 if (crypto_verify64(SongMD.shared[i], UserMD.name) == 0) {
                     user_access = 1;
@@ -162,7 +162,7 @@ int checkAuth() {
     }
 
     /* Check song region matches player */
-    for (int i = 0; i < SongMD.region_num; i++) {
+    for (int i = 0; i < SongMD.region_num && region_access == 0; i++) {
         for (int j = 0; j < PROVISIONED_REGIONS; j++) {
             if (crypto_verify64(SongMD.region_list[i], region_data[j].name) == 0) {
                 region_access = 1;
@@ -208,7 +208,7 @@ void logOn() {
         }
 
         //if you aren't logged in after checking that stuff print message, clear struct, and sleep
-        if(!UserMD.logged_in) {
+        if (!UserMD.logged_in) {
             xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
             crypto_wipe(&UserMD, sizeof(UserMD));
             // delay failed attempt by 5 seconds
