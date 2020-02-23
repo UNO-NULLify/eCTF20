@@ -146,7 +146,7 @@ int checkAuth() {
     int region_access = 0;
     /* Check user is logged in */
     if (UserMD.logged_in) {
-        /* Check user is the song owner */
+        /* Check if user is the song owner */
         if (crypto_verify64(SongMD.owner, UserMD.name) == 0) { 
             user_access = 1; 
         }
@@ -204,13 +204,15 @@ void logOn() {
             	    UserMD.pvt_key_enc = user_data[i].pvt_key;
             		UserMD.logged_in = 1;
             	}
-                else {
-                    xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
-                    crypto_wipe(&UserMD, sizeof(UserMD));
-                    // delay failed attempt by 5 seconds
-                    sleep(LOGIN_DELAY);
-                }
             }
+        }
+
+        //if you aren't logged in after checking that stuff print message, clear struct, and sleep
+        if(!UserMD.logged_in) {
+            xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
+            crypto_wipe(&UserMD, sizeof(UserMD));
+            // delay failed attempt by 5 seconds
+            sleep(LOGIN_DELAY);
         }
     }
 }
