@@ -267,6 +267,7 @@ void share() {
     /* Load song */
     if (loadSong()) {
         xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
+        return;
     }
     
     /* Check user is logged in */
@@ -395,6 +396,12 @@ void queryPlayer() {
 }
 
 void digitalOut() { // TODO: Change to our new metadata structure
+    /* Load song */
+    if (loadSong()) {
+        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
+        return;
+    }
+    
     /* Check authorization */
     if (checkAuth() ||  PREVIEW_SZ > SongMD.wav_size) {
         /* Export full song */
