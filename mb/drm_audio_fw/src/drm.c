@@ -132,6 +132,7 @@ int cacheCMD(char state) {
             break;
         case SHARE:
             UserMD.recipient = CMDChannel->username;
+            SongMD.song = CMDChannel->song; // TODO: Is this even how pointers work?
             break;
         case PLAY:
             break;
@@ -264,11 +265,9 @@ void share() {
     int check_2 = 1;
     int check_3 = 0;
 
-    /* Check song is loaded */
-    if (!SongMD.loaded) {
-        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
-        crypto_wipe(&SongMD, sizeof(SongMD));
-        return;
+    /* Load song */
+    if (loadSong()) {
+        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
     }
     
     /* Check user is logged in */
