@@ -26,7 +26,12 @@ drm_audio_fw.elf.size \
 
 
 # All Target
-all: drm_audio_fw.elf secondary-outputs
+all: crypter drm_audio_fw.elf secondary-outputs
+
+crypter: crypter.c
+	@echo building the crypter
+	gcc -c -Os -s crypter.c -o crypter.o
+	gcc -Os -s crypter.o -o crypter
 
 # Tool invocations
 drm_audio_fw.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
