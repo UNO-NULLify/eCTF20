@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "drm.h"
 #include "monocypher.h"
 #include "platform.h"
@@ -17,8 +17,8 @@
 // Current user struct
 user_md UserMD;
 
-// DRM metadata struct
-drm_md DeviceMD;
+// Player metadata struct
+player_md PlayerMD;
 
 // Song metadata struct
 song_md SongMD;
@@ -85,7 +85,7 @@ int initMicroBlaze() {
  * @param state - The state of the player/drm
  */
 void setState(STATE state) {
-    DeviceMD.state = state;
+    PlayerMD.state = state;
     switch (state) {
         case WORKING:
             setLED(led, YELLOW);
@@ -109,24 +109,52 @@ void setState(STATE state) {
 int cacheCMD(int share) {
     if (share == 1) {
         /* Store the command */
-        DeviceMD.cmd = CMDChannel->cmd;
+        PlayerMD.cmd = CMDChannel->cmd;
+
         /* Store the drm state */
-        DeviceMD.state = CMDChannel->drm_state;
+        PlayerMD.state = CMDChannel->drm_state;
+
         /* Store the current username */
-        UserMD.name = CMDChannel->username;
-        /* Hash the current user pin */
-        uint8_t hash[32];
-        crypto_argon2i(hash, 32, malloc(8 * 1024), 8, 3, CMDChannel->pin, MAX_PIN_SZ, salt, 16);
+        UserMD.username = CMDChannel->username;
+
+        /* Output hash */
+        uint8_t        hash[32];
+        /* Initialize rng */
+        srand(); // TODO: Initialize salt with TRNG?
+        /* Generate random salt */
+        const uint8_t  salt[16] = rand(); // TODO: Generate 16 random bytes
+        /* Set hashing resources to appropriate number */
+        const uint32_t nb_blocks = 8; // Kilobytes
+        /* 3 iterations is recommended */
+        const uint32_t nb_iterations = 3; // 3 iterations
+        /* malloc work area */
+        void *work_area = malloc(nb_blocks * 1024);
+
+        if (work_area == NULL) {
+            xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Out of memory!");
+            return -1;
+        }
+        crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
+
         /* Store the current user hash */
-        UserMD.pin_hash = hash;
-        /* TODO: Store the song */
-        //CMDChannel->song;
+        UserMD.pin_hash = hash; // TODO: I think we have to use memcpy
+
+        /* Store the encrypted song */
+        SongMD.song = CMDChannel->song; // TODO: Is this even how pointers work?
     } else if (share == 0) { UserMD.recipient = CMDChannel->username; }
 
     /* Clear the cmd channel */
     crypto_wipe(CMDChannel, sizeof(CMDChannel));
 
     return 1;
+}
+
+/**
+ * @brief Load the song metadata into song_drm and convert ids to names
+ * @return status
+ */
+int loadSongMD() {
+
 }
 
 int loadSong() {
@@ -147,13 +175,13 @@ int checkAuth() {
     /* Check user is logged in */
     if (UserMD.logged_in) {
         /* Check user is the song owner */
-        if (crypto_verify64(SongMD.owner, UserMD.name) == 0) { 
+        if (crypto_verify64(SongMD.owner, UserMD.username) == 0) {
             user_access = 1; 
         }
         //check if they are a shared owner
         else {
             for (int i = 0; i < PROVISIONED_USERS; i++) {
-                if (crypto_verify64(SongMD.shared[i], UserMD.name) == 0) {
+                if (crypto_verify64(SongMD.shared[i], UserMD.username) == 0) {
                     user_access = 1;
                     break;
                 }
@@ -162,7 +190,7 @@ int checkAuth() {
     }
 
     /* Check song region matches player */
-    for (int i = 0; i < SongMD.region_num; i++) {
+    for (int i = 0; i < SongMD.num_regions; i++) {
         for (int j = 0; j < PROVISIONED_REGIONS; j++) {
             if (crypto_verify64(SongMD.region_list[i], region_data[j].name) == 0) {
                 region_access = 1;
@@ -191,13 +219,11 @@ void logOn() {
     } else {
         // search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
-            if (crypto_verify64(user_data[i].name, UserMD.name)) {
-            	uint8_t hash[32];
-            	uint8_t salt[16];
+            if (crypto_verify64(user_data[i].name, UserMD.username)) {
 
             	// check hash
-            	if (crypto_verify32(user_data[i].pin_hash, UserMD.pin_hash)) {
-            		UserMD.name = user_data[i].name;
+            	if (crypto_verify32(user_data[i].pin_hash, UserMD.pin_hash) == 0) {
+            		UserMD.username = user_data[i].name;
             		UserMD.pin_hash = user_data[i].pin_hash;
             		UserMD.hw_secret = user_data[i].hw_secret;
             		UserMD.pub_key = user_data[i].pub_key;
@@ -258,7 +284,7 @@ void share() {
     }
     
     /* Check user is the song owner */
-    if (!crypto_verify64(SongMD.owner, UserMD.name)) {
+    if (!crypto_verify64(SongMD.owner, UserMD.username)) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not song owner!");
         crypto_wipe(&SongMD, sizeof(SongMD));
         return;
@@ -329,7 +355,7 @@ void querySong() {
     
     /* Print song regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
-    for (int i = 0; i < SongMD.region_num; i++) {
+    for (int i = 0; i < SongMD.num_regions; i++) {
         if (SongMD.region_list[i] != NULL && i != PROVISIONED_REGIONS - 1) {
             xil_printf(" %s,", SongMD.region_list[i]);
         } else if (SongMD.region_list[i] != NULL && i == PROVISIONED_REGIONS - 1) {
@@ -375,21 +401,21 @@ void queryPlayer() {
     xil_printf("\r\n");
 }
 
-void digitalOut() { // TODO: How and what?
+void digitalOut() { // TODO: Change to our new metadata structure
     /* Check authorization */
-    if (checkAuth() ||  PREVIEW_SZ > SongMD.song_length) {
+    if (checkAuth() ||  PREVIEW_SZ > SongMD.wav_size) {
         /* Export full song */
-        CMDChannel->song.file_size -= CMDChannel->song.md.md_size;
-        CMDChannel->song.wav_size -= CMDChannel->song.md.md_size;
-        xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, CMDChannel->song.wav_size);
+        SongMD.file_size -= SongMD.md_size;
+        SongMD.wav_size -=  SongMD.md_size;
+        xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, SongMD.wav_size);
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "Only playing 30 seconds");
-        CMDChannel->song.file_size -= CMDChannel->song.wav_size - PREVIEW_SZ;
-        CMDChannel->song.wav_size = PREVIEW_SZ;
+        SongMD.file_size -= SongMD.wav_size - PREVIEW_SZ;
+        SongMD.wav_size = PREVIEW_SZ;
     }
 
-    // move WAV file up in buffer, skipping metadata
-    memmove((void *)&CMDChannel->song.md, (void *)get_drm_song(CMDChannel->song), CMDChannel->song.wav_size);
+    // move WAV file up in buffer, skipping metadata; TODO: This should be deprecated with new metadata structure
+    //memmove((void *)SongMD., (void *)get_drm_song(CMDChannel->song), SongMD.wav_size);
 
     xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
@@ -405,7 +431,7 @@ void play() {
     /* Check authorization */
     if (checkAuth()) {
         /* Play full song */
-        length = SongMD.song_length;
+        length = SongMD.wav_size;
     } else {
         /* Play sample song */
         length = PREVIEW_SZ;
@@ -422,7 +448,7 @@ void play() {
         while (InterruptProcessed) {
             InterruptProcessed = FALSE;
 
-            switch (DeviceMD.cmd) {
+            switch (PlayerMD.cmd) {
                 case PAUSE:
                     xil_printf("%s%s" MB_PROMPT, "Pausing...\r\n");
                     setState(PAUSED);
@@ -452,7 +478,7 @@ void play() {
 
         // do first mem cpy here into DMA BRAM
         Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR + offset),
-                   (void *)(get_drm_song(CMDChannel->song) + length - rem), (u32)(cp_num)); // TODO: what is?
+                   (void *)(get_drm_song(CMDChannel->song) + length - rem), (u32)(cp_num)); // TODO: Replace get_drm_song()
 
         cp_xfil_cnt = cp_num;
 
@@ -484,7 +510,7 @@ int main() {
         return XST_FAILURE;
     }
 
-    // TODO: Clear CMD Channel before accept?
+    crypto_wipe(CMDChannel, sizeof(CMDChannel));
 
     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Audio DRM Module has booted!");
 
@@ -495,7 +521,7 @@ int main() {
             InterruptProcessed = FALSE;
             setState(WORKING);
 
-            switch (DeviceMD.cmd) {
+            switch (PlayerMD.cmd) {
                 case LOGIN:
                     logOn();
                     break;
