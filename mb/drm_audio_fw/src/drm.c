@@ -162,7 +162,7 @@ int checkAuth() {
     }
 
     /* Check song region matches player */
-    for (int i = 0; i < SongMD.region_num && region_access == 0; i++) {
+    for (int i = 0; i < SongMD.region_num || region_access == 0; i++) {
         for (int j = 0; j < PROVISIONED_REGIONS; j++) {
             if (crypto_verify64(SongMD.region_list[i], region_data[j].name) == 0) {
                 region_access = 1;
