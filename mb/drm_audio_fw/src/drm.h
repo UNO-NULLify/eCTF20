@@ -57,8 +57,7 @@ typedef struct {
 
 // struct to interpret internal b
 typedef struct {
-    char cmd;
-    char state;
+    char state; // TODO: Why bother with a single variable struct?
 } player_md;
 
 /* TODO:
@@ -82,7 +81,7 @@ typedef struct {
 // struct to interpret shared command channel
 typedef volatile struct __attribute__((__packed__)) {
     char cmd;                    // from commands enum
-    char drm_state;              // from states enum
+    char drm_state;              // from states enum // TODO: At some point we have to write this data back
     char username[MAX_USERNAME_SZ];  // stores logged in or attempted username
     char pin[MAX_PIN_SZ];        // stores logged in or attempted pin
     char *song;                   // shared buffer is a drm song

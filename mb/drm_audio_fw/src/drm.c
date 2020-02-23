@@ -106,42 +106,40 @@ void setState(STATE state) {
 /**
  * Store the CMD channel to less volatile structs
  */
-int cacheCMD(int share) {
-    if (share == 1) {
-        /* Store the command */
-        PlayerMD.cmd = CMDChannel->cmd;
-
-        /* Store the drm state */
-        PlayerMD.state = CMDChannel->drm_state;
-
-        /* Store the current username */
-        UserMD.username = CMDChannel->username;
-
-        /* Output hash */
-        uint8_t        hash[32];
-        /* Initialize rng */
-        srand(); // TODO: Initialize salt with TRNG?
-        /* Generate random salt */
-        const uint8_t  salt[16] = rand(); // TODO: Generate 16 random bytes
-        /* Set hashing resources to appropriate number */
-        const uint32_t nb_blocks = 8; // Kilobytes
-        /* 3 iterations is recommended */
-        const uint32_t nb_iterations = 3; // 3 iterations
-        /* malloc work area */
-        void *work_area = malloc(nb_blocks * 1024);
-
-        if (work_area == NULL) {
-            xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Out of memory!");
-            return -1;
-        }
-        crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
-
-        /* Store the current user hash */
-        UserMD.pin_hash = hash; // TODO: I think we have to use memcpy
-
-        /* Store the encrypted song */
-        SongMD.song = CMDChannel->song; // TODO: Is this even how pointers work?
-    } else if (share == 0) { UserMD.recipient = CMDChannel->username; }
+int cacheCMD(char state) {
+    switch (state) { //TODO: pls someone other than frank add only what's necessary to each case.
+        case LOGIN:
+            if (UserMD.logged_in == 1) { break; }
+            UserMD.username = CMDChannel->username;
+            uint8_t hash[32];
+            srand(); // TODO: Initialize salt with TRNG?
+            const uint8_t  salt[16] = rand(); // TODO: Generate 16 random bytes
+            const uint32_t nb_blocks = 8; // Kilobytes
+            const uint32_t nb_iterations = 3; // 3 iterations
+            void *work_area = malloc(nb_blocks * 1024);
+            if (work_area == NULL) {
+                xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Out of memory!");
+                return -1;
+            }
+            crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
+            break;
+        case LOGOUT:
+            if (UserMD.logged_in == 0) { break; }
+        case QUERY_SONG:
+            SongMD.song = CMDChannel->song; // TODO: Is this even how pointers work?
+            break;
+        case QUERY_PLAYER:
+            break;
+        case SHARE:
+            UserMD.recipient = CMDChannel->username;
+            break;
+        case PLAY:
+            break;
+        case DIGITAL_OUT:
+            break;
+        default:
+            break;
+    }
 
     /* Clear the cmd channel */
     crypto_wipe(CMDChannel, sizeof(CMDChannel));
@@ -217,10 +215,10 @@ void logOn() {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already logged-in.");
         return;
     } else {
-        // search username
+        // Search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
             if (crypto_verify64(user_data[i].name, UserMD.username) == 0) {
-            	// check hash
+            	// Check hash
             	if (crypto_verify32(user_data[i].pin_hash, UserMD.pin_hash) == 0) {
             		UserMD.username = user_data[i].name;
             		UserMD.pin_hash = user_data[i].pin_hash;
@@ -265,12 +263,6 @@ void share() {
     int check_1 = 0;
     int check_2 = 1;
     int check_3 = 0;
-
-    /* Cache CMD channel _differently_ */
-    if (!cacheCMD(1)) {
-        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
-        return;
-    }
 
     /* Check song is loaded */
     if (!SongMD.loaded) {
@@ -451,7 +443,7 @@ void play() {
         while (InterruptProcessed) {
             InterruptProcessed = FALSE;
 
-            switch (PlayerMD.cmd) {
+            switch (CMDChannel->cmd) {
                 case PAUSE:
                     xil_printf("%s%s" MB_PROMPT, "Pausing...\r\n");
                     setState(PAUSED);
@@ -528,31 +520,67 @@ int main() {
             InterruptProcessed = FALSE;
             setState(WORKING);
 
-            switch (PlayerMD.cmd) {
+            switch (CMDChannel->cmd) {
                 case LOGIN:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(LOGIN)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     logOn();
                     break;
                 case LOGOUT:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(LOGOUT)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     logOff();
                     break;
                 case QUERY_SONG:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(QUERY_SONG)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     querySong();
                     break;
                 case QUERY_PLAYER:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(QUERY_PLAYER)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     queryPlayer();
                     break;
                 case SHARE:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(1)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     share();
                     break;
                 case PLAY:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(PLAY)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     play();
                     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Done Playing Song");
                     break;
                 case DIGITAL_OUT:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(DIGITAL_OUT)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     digitalOut();
                     break;
                 default:
                     xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not a command!");
+                    crypto_wipe(&CMDChannel, sizeof(CMDChannel));
                     break;
             }
 
