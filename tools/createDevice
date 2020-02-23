@@ -9,7 +9,7 @@ from argparse import ArgumentParser
 from pprint import pprint
 
 def write_region(region_names, region_secrets):
-    i = 0
+    i = 1
     f_str = f""
     for r in region_names:
         f_str += f'\n{{ {i}, \"{r}\",\"{region_secrets[r]["pub_key"]}\", \"{region_secrets[r]["priv_key_enc"]}\", \"{region_secrets[r]["rand_pass"]}\" }},'
@@ -17,7 +17,7 @@ def write_region(region_names, region_secrets):
     return f_str
 
 def write_users(user_names, user_secrets):
-    i = 0
+    i = 1
     f_str = f"\n"
     for u in user_names:
         f_str += f"{{ {i},\"{u}\", \"{user_secrets['users'][u]['hw_secret']}\", \"{user_secrets['users'][u]['pin_hash']}\", \"{user_secrets['users'][u]['pub_key']}\", \"{user_secrets['users'][u]['pvt_key_enc']}\", \"{user_secrets['users'][u]['salt']}\" }},\n"
@@ -78,7 +78,7 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 #define ROOT_VERIFY \"{user_secrets["root_verify"]}\"
 
 struct R_Data {{
-    u_int8 id;
+    u8 id;
     char *name;
     char *pub_key;
     char *priv_key;
@@ -91,7 +91,7 @@ struct R_Data region_data[{len(region_names)}] = \n{{ { write_region(region_name
 
 
 struct U_Data {{
-    u_int8 id;
+    u8 id;
     char *name;
     char *hw_secret;
     char *pin_hash;
