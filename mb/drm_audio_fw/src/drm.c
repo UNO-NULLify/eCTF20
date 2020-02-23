@@ -107,7 +107,7 @@ void setState(STATE state) {
  * Store the CMD channel to less volatile structs
  */
 int cacheCMD(int share) {
-    if (share == 1) {
+    if (share == 0) {
         /* Store the command */
         PlayerMD.cmd = CMDChannel->cmd;
 
@@ -118,7 +118,7 @@ int cacheCMD(int share) {
         UserMD.username = CMDChannel->username;
 
         /* Output hash */
-        uint8_t        hash[32];
+        uint8_t hash[32];
         /* Initialize rng */
         srand(); // TODO: Initialize salt with TRNG?
         /* Generate random salt */
@@ -141,7 +141,10 @@ int cacheCMD(int share) {
 
         /* Store the encrypted song */
         SongMD.song = CMDChannel->song; // TODO: Is this even how pointers work?
-    } else if (share == 0) { UserMD.recipient = CMDChannel->username; }
+    } else if (share == 1) { 
+        UserMD.recipient = CMDChannel->username;
+        SongMD.song = CMDChannel->song; // TODO: Is this even how pointers work?
+    }
 
     /* Clear the cmd channel */
     crypto_wipe(CMDChannel, sizeof(CMDChannel));
