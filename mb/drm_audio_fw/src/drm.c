@@ -132,7 +132,6 @@ int cacheCMD(char state) {
             break;
         case SHARE:
             UserMD.recipient = CMDChannel->username;
-            SongMD.song = CMDChannel->song; // TODO: Is this even how pointers work?
             break;
         case PLAY:
             break;
