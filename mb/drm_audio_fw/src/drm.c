@@ -191,12 +191,12 @@ void logOn() {
     } else {
         // search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
-            if (crypto_verify64(user_data[i].name, UserMD.name)) {
+            if (crypto_verify64(user_data[i].name, UserMD.name) == 0) {
             	uint8_t hash[32];
             	uint8_t salt[16];
 
             	// check hash
-            	if (crypto_verify32(user_data[i].pin_hash, UserMD.pin_hash)) {
+            	if (crypto_verify32(user_data[i].pin_hash, UserMD.pin_hash) == 0) {
             		UserMD.name = user_data[i].name;
             		UserMD.pin_hash = user_data[i].pin_hash;
             		UserMD.hw_secret = user_data[i].hw_secret;
@@ -204,10 +204,12 @@ void logOn() {
             	    UserMD.pvt_key_enc = user_data[i].pvt_key;
             		UserMD.logged_in = 1;
             	}
-                xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
-                crypto_wipe(&UserMD, sizeof(UserMD));
-                // delay failed attempt by 5 seconds
-                sleep(LOGIN_DELAY);
+                else {
+                    xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
+                    crypto_wipe(&UserMD, sizeof(UserMD));
+                    // delay failed attempt by 5 seconds
+                    sleep(LOGIN_DELAY);
+                }
             }
         }
     }
