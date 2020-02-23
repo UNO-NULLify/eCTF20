@@ -164,8 +164,7 @@ int checkAuth() {
     /* Check song region matches player */
     for (int i = 0; i < SongMD.region_num; i++) {
         for (int j = 0; j < PROVISIONED_REGIONS; j++) {
-            /* TODO: Somebody double-check my logic here */
-            if (crypto_verify64(SongMD.region_list[i], region_data[i].name)) {
+            if (crypto_verify64(SongMD.region_list[i], region_data[j].name) == 0) {
                 region_access = 1;
                 break;
             }
