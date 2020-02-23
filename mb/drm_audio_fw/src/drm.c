@@ -513,7 +513,11 @@ int main() {
         return XST_FAILURE;
     }
 
-    crypto_wipe(CMDChannel, sizeof(CMDChannel));
+    /* Initialize ALL THE STRUCTS! */
+    crypto_wipe(&CMDChannel, sizeof(CMDChannel));
+    crypto_wipe(&PlayerMD, sizeof(PlayerMD));
+    crypto_wipe(&SongMD, sizeof(SongMD));
+    crypto_wipe(&UserMD, sizeof(UserMD));
 
     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Audio DRM Module has booted!");
 
