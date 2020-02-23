@@ -237,63 +237,65 @@ int play_song(char *song_name) {
     return 0;
   }
 
-  // drive the DRM
-  send_command(PLAY);
-  while (c->drm_state == STOPPED)
-    continue; // wait for DRM to start playing
+    // drive the DRM
+    send_command(PLAY);
+    while (c->drm_state == STOPPED) continue; // wait for DRM to start playing
 
-  // play loop
-  while (1) {
-    // get a valid command
-    do {
-      print_prompt_msg(song_name);
-      fgets(usr_cmd, USR_CMD_SZ, stdin);
+    // play loop
+    while(1) {
+        // get a valid command
+        do {
+            print_prompt_msg(song_name);
+            fgets(usr_cmd, USR_CMD_SZ, stdin);
 
-      // exit playback loop if DRM has finished song
-      if (c->drm_state == STOPPED) {
-        mp_printf("Song finished\r\n");
-        return 0;
-      }
-    } while (strlen(usr_cmd) < 2);
+            // exit playback loop if DRM has finished song
+            if (c->drm_state == STOPPED) {
+                mp_printf("Song finished\r\n");
+                return 0;
+            }
+        } while (strlen(usr_cmd) < 2);
 
-    // parse and handle command
-    parse_input(usr_cmd, &cmd, &arg1, &arg2);
-    if (!cmd) {
-      continue;
-    } else if (!strcmp(cmd, "help")) {
-      print_playback_help();
-    } else if (!strcmp(cmd, "resume")) {
-      send_command(PLAY);
-      usleep(200000); // wait for DRM to print
-    } else if (!strcmp(cmd, "pause")) {
-      send_command(PAUSE);
-      usleep(200000); // wait for DRM to print
-    } else if (!strcmp(cmd, "stop")) {
-      send_command(STOP);
-      usleep(200000); // wait for DRM to print
-      break;
-    } else if (!strcmp(cmd, "restart")) {
-      send_command(RESTART);
-    } else if (!strcmp(cmd, "exit")) {
-      mp_printf("Exiting...\r\n");
-      send_command(STOP);
-      return -1;
-    } else if (!strcmp(cmd, "rw")) {
-      mp_printf("Unsupported feature.\r\n\r\n");
-      print_playback_help();
-    } else if (!strcmp(cmd, "ff")) {
-      mp_printf("Unsupported feature.\r\n\r\n");
-      print_playback_help();
-    } else if (!strcmp(cmd, "lyrics")) {
-      mp_printf("Unsupported feature.\r\n\r\n");
-      print_playback_help();
-    } else {
-      mp_printf("Unrecognized command.\r\n\r\n");
-      print_playback_help();
+        // parse and handle command
+        parse_input(usr_cmd, &cmd, &arg1, &arg2);
+        if (!cmd) {
+            continue;
+        } else if (!strcmp(cmd, "help")) {
+            print_playback_help();
+        } else if (!strcmp(cmd, "resume")) {
+            send_command(PLAY);
+            usleep(200000); // wait for DRM to print
+        } else if (!strcmp(cmd, "pause")) {
+            send_command(PAUSE);
+            usleep(200000); // wait for DRM to print
+        } else if (!strcmp(cmd, "stop")) {
+            send_command(STOP);
+            usleep(200000); // wait for DRM to print
+            break;
+        } else if (!strcmp(cmd, "restart")) {
+            send_command(RESTART);
+        } else if (!strcmp(cmd, "exit")) {
+            mp_printf("Exiting...\r\n");
+            send_command(STOP);
+            return -1;
+        } else if (!strcmp(cmd, "rw")) {
+            mp_printf("Seeking backwards...\r\n");
+            send_command(SEEKREV);
+        } else if (!strcmp(cmd, "ff")) {
+            mp_printf("Seeking forwards...\r\n\r\n");
+            send_command(SEEKFWD);
+        } else if (!strcmp(cmd, "ffff")) {
+            mp_printf("Fastboi mode...\r\n\r\n");
+            send_command(FASTFWD);
+        } else if (!strcmp(cmd, "lyrics")) {
+            mp_printf("Unsupported feature.\r\n\r\n");
+            print_playback_help();
+        } else {
+            mp_printf("Unrecognized command.\r\n\r\n");
+            print_playback_help();
+        }
     }
-  }
 
-  return 0;
+    return 0;
 }
 
 // turns DRM song into original WAV for digital output

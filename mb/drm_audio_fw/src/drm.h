@@ -7,7 +7,7 @@
 /* Memory constants */
 #define SHARED_DDR_BASE (0x20000000 + 0x1CC00000) // shared DDR address
 #define CHUNK_SZ 16000
-#define FIFO_CAP 4096 * 4
+#define FIFO_CAP 2048*2 // Applies to both fifos?
 
 /* Timing constants */
 #define PREVIEW_TIME_SEC 30 // Number of seconds to record/playback
@@ -27,23 +27,9 @@
 #define HASH_SZ 32
 #define KEY_SZ // TODO: Verify key size
 
-
-// shared buffer values
-enum commands {
-    QUERY_PLAYER,
-    QUERY_SONG,
-    LOGIN,
-    LOGOUT,
-    SHARE,
-    PLAY,
-    STOP,
-    DIGITAL_OUT,
-    PAUSE,
-    RESTART,
-    FF,
-    RW
-};
-typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
+/* Shared buffer values */
+enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };
+enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 typedef struct {
     u8 username[MAX_USERNAME_SZ]; // TODO: ASCII is 7-8 bits right?
