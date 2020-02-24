@@ -110,7 +110,7 @@ int cacheCMD(char state) {
     switch (state) { //TODO: pls someone other than frank add only what's necessary to each case.
         case LOGIN:
             if (UserMD.logged_in == 1) { break; }
-            memcpy((void*)UserMD.username, (void*)CMDChannel->username, USER_SZ);
+            memcpy(UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             uint8_t hash[32];
             srand(); // TODO: Initialize salt with TRNG?
             const uint8_t  salt[16] = rand(); // TODO: Generate 16 random bytes
@@ -121,17 +121,17 @@ int cacheCMD(char state) {
                 xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Out of memory!");
                 return -1;
             }
-            crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
+            crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, (void *)CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
             break;
         case LOGOUT:
             if (UserMD.logged_in == 0) { break; }
         case QUERY_SONG:
-            SongMD.song = CMDChannel->song; // TODO: Is this even how pointers work?
+            memcpy(SongMD.song, CMDChannel->song, SongMD.file_size); // TODO: Is this even how pointers work?
             break;
         case QUERY_PLAYER:
             break;
         case SHARE:
-            UserMD.recipient = CMDChannel->username;
+            memcpy(UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             break;
         case PLAY:
             break;
@@ -220,11 +220,11 @@ void logOn() {
             if (crypto_verify64(user_data[i].name, UserMD.username) == 0) {
             	// Check hash
             	if (crypto_verify32(user_data[i].pin_hash, UserMD.pin_hash) == 0) {
-            		UserMD.username = user_data[i].name;
-            		UserMD.pin_hash = user_data[i].pin_hash;
-            		UserMD.hw_secret = user_data[i].hw_secret;
-            		UserMD.pub_key = user_data[i].pub_key;
-            	    UserMD.pvt_key_enc = user_data[i].pvt_key;
+            		memcpy(UserMD.username, user_data[i].name, MAX_USERNAME_SZ);
+            		memcpy(UserMD.pin_hash, user_data[i].pin_hash, HASH_SZ);
+            		memcpy(UserMD.hw_secret, user_data[i].hw_secret, KEY_SZ);
+            		memcpy(UserMD.pub_key, user_data[i].pub_key, KEY_SZ);
+            	    memcpy(UserMD.pvt_key_enc, user_data[i].pvt_key, KEY_SZ);
             		UserMD.logged_in = 1;
             	}
             }

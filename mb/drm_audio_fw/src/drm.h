@@ -25,7 +25,7 @@
 #define MAX_REGION_SZ 64
 #define MAX_REGION_SECRET 160
 #define HASH_SZ 32
-#define KEY_SZ // TODO: Verify key size
+#define KEY_SZ 32 // TODO: Verify key size
 
 /* Shared buffer values */
 enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };
