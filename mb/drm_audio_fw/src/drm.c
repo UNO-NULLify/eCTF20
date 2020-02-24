@@ -483,9 +483,9 @@ void play() {
         cp_num = (rem > CHUNK_SZ) ? CHUNK_SZ : rem;
         offset = (counter++ % 2 == 0) ? 0 : CHUNK_SZ;
 
-        // do first mem cpy here into DMA BRAM
+        // do first memcpy here into DMA BRAM
         Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR + offset),
-                   (void *)(get_drm_song(CMDChannel->song) + length - rem), (u32)(cp_num)); // TODO: Replace get_drm_song()
+                   (void *)(SongMD.song + length - rem), (u32)(cp_num)); // TODO: Replace get_drm_song()
 
         cp_xfil_cnt = cp_num;
 
