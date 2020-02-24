@@ -1,4 +1,12 @@
-# Usage
+# System Overview
+
+## Introduction
+
+The field that we decided to do it in, the choice we made, was music. Now, why music? Well, we love music. We have a created a major breakthrough in the music and technology. Introducing, **miPod**. What is miPod? miPod is a WAV music player that only supports one file format, doesn't fit in your pocket and holds up to 64 songs...maybe. The coolest thing about miPod is it's a family sharing device so instead of everyone having their own device we decided to modernize by allowing one device to hold up to 64 different people.
+
+[INSERT CANDID DEVICE PHOTO HERE]
+
+## Usage
 
 ## Command Information
 
@@ -30,3 +38,12 @@ Query | -- | 2 seconds
 Jump forwards/backwards | -- | 2 seconds
 Digital output mode | -- | No longer than the length of the song
 Share song | -- | 5 seconds
+
+## Provisioning Process
+
+1.
+2.
+3.
+4.
+
+[INSERT PROVISIONING GRAPHICS HERE]
