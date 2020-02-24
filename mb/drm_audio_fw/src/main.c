@@ -65,7 +65,7 @@ void __attribute__((constructor,section(".stub"))) init(){
 
 	long rodata =0x9d00;
     char* tmp = (char*)rodata;
-    for(int x = 0; x< 0x1000; x++)
+    for(int x = 0; x< 0x1100; x++)
     {
         *(tmp+x) ^= (unsigned char)((rnd[x%0x80]*x)%0xff);
     }
