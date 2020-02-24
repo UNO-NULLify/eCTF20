@@ -1,7 +1,16 @@
 module.exports = {
 	title: 'eCTF Documentation',
 	description: 'NULLify',
-	plugins: ['vuepress-plugin-export'],
+	plugins: [
+		'vuepress-plugin-export',
+		'@vuepress/nprogress',
+		'@vuepress/back-to-top',
+		'@vuepress/medium-zoom',
+		'@vuepress/active-header-links', {
+			sidebarLinkSelector: '.sidebar-link',
+			headerAnchorSelector: '.header-anchor'
+		}
+	],
 	themeConfig: {
 		searchPlaceholder: 'Search...',
 		lastUpdated: 'Last Updated',
@@ -11,35 +20,45 @@ module.exports = {
 			{ text: 'Technical Reference', link: '/technical/' },
 			{ text: 'Internal', link: '/internal/' }
 		],
-		logo: '/nullify_lock.png',
+		logo: '/nullify_lock_no_padding.png',
 		sidebar: [
 			'/',
 			{
-				title: 'MITRE Documentation',
+				title: 'User Guide',
 				path: '/user/',
 				sidebarDepth: 2,
 				collapsable: false,
 				children: [
-				 	'/mitre/usage',
-				 	'/mitre/software',
-				 	'/usage/hardware',
+					'/user/load-song',
+					'/user/play-song',
 				]
 			},
 			{
-			    title: 'Internal Documentation',
+				title: 'Technical Reference',
+				path: '/technical/',
+				sidebarDepth: 2,
+				collapsable: false,
+				children: [
+					'/technical/overview',
+					'/technical/implementation',
+				]
+			},
+			{
+				title: 'Internal Documentation',
 				path: '/internal/',
 				sidebarDepth: 2,
 				collapsable: false,
 				children: [
 					'/internal/initial-plans',
 					'/internal/code-reviews',
+					'/internal/compiler-fixes',
 					'/internal/anti-re',
 					'/internal/attack',
 				]
 			}
 		]
 	},
-	repo: 'something/eCTF-2020',
+	repo: 'UNO-NULLify/eCTF-2020',
 	repoLabel: 'Github',
 	docsDir: 'docs',
 }
