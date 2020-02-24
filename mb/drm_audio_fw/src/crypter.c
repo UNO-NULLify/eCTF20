@@ -32,7 +32,7 @@ char rnd[0x80]={'\x78','\x78','\x21','\xda','\x88','\x38','\xa9','\x0a','\x3a','
         fprintf(stderr,"'%s' is not a file", argc[1]);
         return -1;
     }
-    if (fseek(pFile,0x9dbc,SEEK_SET) != 0){
+    if (fseek(pFile,0x9d6c,SEEK_SET) != 0){
         perror("unable to open the section for reading");
         return -1;
     }
@@ -42,7 +42,7 @@ char rnd[0x80]={'\x78','\x78','\x21','\xda','\x88','\x38','\xa9','\x0a','\x3a','
         return -1;
     }
 
-    if (fseek(pFile,0x9dbc,SEEK_SET)!=0)
+    if (fseek(pFile,0x9d6c,SEEK_SET)!=0)
     {
         perror("unable to open the section for reading");
         return -1;

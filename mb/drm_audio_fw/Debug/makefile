@@ -32,7 +32,6 @@ crypter: ../src/crypter.c
 	@echo building the crypter
 	gcc -c -Os -s ../src/crypter.c -o crypter.o
 	gcc -Os -s crypter.o -o crypter
-
 # Tool invocations
 drm_audio_fw.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
 	@echo 'Building target: $@'
@@ -41,7 +40,10 @@ drm_audio_fw.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
 	./crypter ./drm_audio_fw.elf
 	@echo 'Finished building target: $@'
 	@echo ' '
-
+	@echo 'Removing Crypter'
+	rm ./crypter
+	rm ./crypter.o
+	
 drm_audio_fw.elf.size: drm_audio_fw.elf
 	@echo 'Invoking: MicroBlaze Print Size'
 	mb-size drm_audio_fw.elf  |tee "drm_audio_fw.elf.size"
