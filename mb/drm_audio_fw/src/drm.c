@@ -106,16 +106,17 @@ void setState(STATE s) {
 /**
  * Store the CMD channel to less volatile structs
  */
-int cacheCMD(char state) {
-    switch (state) { //TODO: pls someone other than frank add only what's necessary to each case.
+int cacheCMD(char s) {
+    switch (s) { //TODO: pls someone other than frank add only what's necessary to each case.
         case LOGIN:
             if (UserMD.logged_in == 1) { break; }
-            memcpy(UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
+            memcpy((void *)UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             uint8_t hash[32];
-            srand(); // TODO: Initialize salt with TRNG?
-            const uint8_t  salt[16] = rand(); // TODO: Generate 16 random bytes
-            const uint32_t nb_blocks = 8; // Kilobytes
-            const uint32_t nb_iterations = 3; // 3 iterations
+            uint8_t salt[16];
+            //srand(); // TODO: Initialize salt with TRNG?
+            //salt[16] = rand(); // TODO: Generate 16 random bytes
+            uint32_t nb_blocks = 8; // Kilobytes
+            uint32_t nb_iterations = 3; // 3 iterations
             void *work_area = malloc(nb_blocks * 1024);
             if (work_area == NULL) {
                 xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Out of memory!");
@@ -126,12 +127,12 @@ int cacheCMD(char state) {
         case LOGOUT:
             if (UserMD.logged_in == 0) { break; }
         case QUERY_SONG:
-            memcpy(SongMD.song, CMDChannel->song, SongMD.file_size); // TODO: Is this even how pointers work?
+            memcpy((void *)SongMD.song, (void *)CMDChannel->song, SongMD.file_size); // TODO: Is this even how pointers work?
             break;
         case QUERY_PLAYER:
             break;
         case SHARE:
-            memcpy(UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
+            memcpy((void *)UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             break;
         case PLAY:
             break;
@@ -142,7 +143,7 @@ int cacheCMD(char state) {
     }
 
     /* Clear the cmd channel */
-    crypto_wipe(CMDChannel, sizeof(CMDChannel));
+    crypto_wipe(&CMDChannel, sizeof(CMDChannel));
 
     return 1;
 }
@@ -152,15 +153,21 @@ int cacheCMD(char state) {
  * @return status
  */
 int loadSongMD() {
+	int status = 0;
 
+	return status;
 }
 
 int loadSong() {
+	int status = 0;
 
+	return status;
 }
 
 int decryptSong() {
+	int status = 0;
 
+	return status;
 }
 
 /**
@@ -173,13 +180,13 @@ int checkAuth() {
     /* Check user is logged in */
     if (UserMD.logged_in) {
         /* Check if user is the song owner */
-        if (crypto_verify64(SongMD.owner, UserMD.username) == 0) {
+        if (crypto_verify64((void *)SongMD.owner,(void *)UserMD.username) == 0) {
             user_access = 1;
         }
         else {
             //check if they are a shared owner
             for (int i = 0; i < PROVISIONED_USERS; i++) {
-                if (crypto_verify64(SongMD.shared[i], UserMD.username) == 0) {
+                if (crypto_verify64((void *)SongMD.shared[i], (void *)UserMD.username) == 0) {
                     user_access = 1;
                     break;
                 }
@@ -188,9 +195,9 @@ int checkAuth() {
     }
 
     /* Check song region matches player */
-    for (int i = 0; i < SongMD.num_regions || region_access == 0; i++) {
+    for (int i = 0; i < SongMD.num_regions; i++) {
         for (int j = 0; j < PROVISIONED_REGIONS; j++) {
-            if (crypto_verify64(SongMD.region_list[i], region_data[j].name) == 0) {
+            if (crypto_verify64((void *)SongMD.region_list[i], (void *)region_data[j].name) == 0) {
                 region_access = 1;
                 break;
             }
@@ -217,9 +224,9 @@ void logOn() {
     } else {
         // Search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
-            if (crypto_verify64(user_data[i].name, UserMD.username) == 0) {
+            if (crypto_verify64((void *)user_data[i].name, (void *)UserMD.username) == 0) {
             	// Check hash
-            	if (crypto_verify32(user_data[i].pin_hash, UserMD.pin_hash) == 0) {
+            	if (crypto_verify32((void *)user_data[i].pin_hash, (void *)UserMD.pin_hash) == 0) {
             		memcpy(UserMD.username, user_data[i].name, MAX_USERNAME_SZ);
             		memcpy(UserMD.pin_hash, user_data[i].pin_hash, HASH_SZ);
             		memcpy(UserMD.hw_secret, user_data[i].hw_secret, KEY_SZ);
@@ -278,7 +285,7 @@ void share() {
     }
     
     /* Check user is the song owner */
-    if (!crypto_verify64(SongMD.owner, UserMD.username)) {
+    if (!crypto_verify64((void *)SongMD.owner, (void *)UserMD.username)) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not song owner!");
         crypto_wipe(&SongMD, sizeof(SongMD));
         return;
@@ -287,13 +294,13 @@ void share() {
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         /* Check recipient exists */
-        if (crypto_verify64(user_data[i].name, UserMD.recipient)) { check_1 = 1; }
+        if (crypto_verify64((void *)user_data[i].name, (void *)UserMD.recipient)) { check_1 = 1; }
         
         /* Check recipient doesn't already have access */
-        if (crypto_verify64(SongMD.shared[i], UserMD.recipient)) { check_2 = 0; }
+        if (crypto_verify64((void *)SongMD.shared[i], (void *)UserMD.recipient)) { check_2 = 0; }
         
         /* Check for an empty spot */
-        if (crypto_verify16(SongMD.shared[i], NULL)) { check_3 = 1; index = i; }
+        if (crypto_verify16((void *)SongMD.shared[i], NULL)) { check_3 = 1; index = i; }
     }
     
     /* This odd code prevents ugly nested if-statements and multiple loops*/
