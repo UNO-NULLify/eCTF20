@@ -32,7 +32,7 @@ enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGI
 typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
 typedef struct {
-    u8 username[MAX_USERNAME_SZ]; // TODO: ASCII is 7-8 bits right?
+    char username[MAX_USERNAME_SZ]; // TODO: ASCII is 7-8 bits right?
     u8 recipient[MAX_USERNAME_SZ];
     u32 hw_secret[KEY_SZ];
     u32 pin_hash[HASH_SZ];
@@ -40,11 +40,6 @@ typedef struct {
     u32 pvt_key_enc[KEY_SZ];
     int logged_in; // 1 == logged in, 0 == logged out, ? == no.
 } user_md;
-
-// struct to interpret internal b
-typedef struct {
-    STATE state; // TODO: Why bother with a single variable struct?
-} player_md;
 
 /* TODO:
  * - Replace char arrays with char pointers?

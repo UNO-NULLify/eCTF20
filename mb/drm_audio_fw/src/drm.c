@@ -17,11 +17,11 @@
 // Current user struct
 user_md UserMD;
 
-// Player metadata struct
-player_md PlayerMD;
-
 // Song metadata struct
 song_md SongMD;
+
+/* Player State */
+STATE state;
 
 /* Command channel struct */
 volatile cmd_channel *CMDChannel = (cmd_channel *)SHARED_DDR_BASE;
@@ -39,13 +39,13 @@ static XAxiDma sAxiDma;
 //////////////////////// INTERRUPT HANDLING ////////////////////////
 
 // shared variable between main thread and interrupt processing thread
-volatile static int InterruptProcessed = FALSE;
+static volatile int InterruptProcessed = FALSE;
 static XIntc InterruptController;
 
 void myISR(void) { InterruptProcessed = TRUE; }
 
 int initMicroBlaze() {
-    u32 status;
+    int status;
 
     // Initialize MicroBlaze platform
     init_platform();
@@ -84,9 +84,9 @@ int initMicroBlaze() {
  * @brief Set state of drm and LED color
  * @param state - The state of the player/drm
  */
-void setState(STATE state) {
-    PlayerMD.state = state;
-    switch (state) {
+void setState(STATE s) {
+    state = s;
+    switch (s) {
         case WORKING:
             setLED(led, YELLOW);
             break;
@@ -110,7 +110,7 @@ int cacheCMD(char state) {
     switch (state) { //TODO: pls someone other than frank add only what's necessary to each case.
         case LOGIN:
             if (UserMD.logged_in == 1) { break; }
-            UserMD.username = CMDChannel->username;
+            memcpy((void*)UserMD.username, (void*)CMDChannel->username, USER_SZ);
             uint8_t hash[32];
             srand(); // TODO: Initialize salt with TRNG?
             const uint8_t  salt[16] = rand(); // TODO: Generate 16 random bytes
@@ -512,7 +512,6 @@ int main() {
 
     /* Initialize ALL THE STRUCTS! */
     crypto_wipe(&CMDChannel, sizeof(CMDChannel));
-    crypto_wipe(&PlayerMD, sizeof(PlayerMD));
     crypto_wipe(&SongMD, sizeof(SongMD));
     crypto_wipe(&UserMD, sizeof(UserMD));
 
