@@ -264,10 +264,9 @@ void share() {
     int check_2 = 1;
     int check_3 = 0;
 
-    /* Check song is loaded */
-    if (!SongMD.loaded) {
-        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
-        crypto_wipe(&SongMD, sizeof(SongMD));
+    /* Load song */
+    if (loadSong()) {
+        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
         return;
     }
     
@@ -397,6 +396,12 @@ void queryPlayer() {
 }
 
 void digitalOut() { // TODO: Change to our new metadata structure
+    /* Load song */
+    if (loadSong()) {
+        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
+        return;
+    }
+    
     /* Check authorization */
     if (checkAuth() ||  PREVIEW_SZ > SongMD.wav_size) {
         /* Export full song */
