@@ -29,7 +29,7 @@
 
 /* Shared buffer values */
 enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };
-enum states   { STOPPED, WORKING, PLAYING, PAUSED };
+typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
 typedef struct {
     u8 username[MAX_USERNAME_SZ]; // TODO: ASCII is 7-8 bits right?
@@ -43,7 +43,7 @@ typedef struct {
 
 // struct to interpret internal b
 typedef struct {
-    char state; // TODO: Why bother with a single variable struct?
+    STATE state; // TODO: Why bother with a single variable struct?
 } player_md;
 
 /* TODO:
