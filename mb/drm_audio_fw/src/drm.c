@@ -107,7 +107,7 @@ void setState(STATE s) {
  * Store the CMD channel to less volatile structs
  */
 int cacheCMD(char s) {
-    switch (s) { //TODO: pls someone other than frank add only what's necessary to each case.
+    switch (s) {
         case LOGIN:
             if (UserMD.logged_in == 1) { break; }
             memcpy((void *)UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
@@ -127,7 +127,7 @@ int cacheCMD(char s) {
         case LOGOUT:
             if (UserMD.logged_in == 0) { break; }
         case QUERY_SONG:
-            memcpy((void *)SongMD.song, (void *)CMDChannel->song, SongMD.file_size); // TODO: Is this even how pointers work?
+            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
             break;
         case QUERY_PLAYER:
             break;
@@ -135,8 +135,10 @@ int cacheCMD(char s) {
             memcpy((void *)UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             break;
         case PLAY:
+            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
             break;
         case DIGITAL_OUT:
+            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
             break;
         default:
             break;
@@ -330,11 +332,8 @@ void share() {
 
     xil_printf("%s%s%s\r\n", MB_PROMPT, "Song shared with:", UserMD.recipient);
 
-    /*
-     * TODO: write shared list somewhere...
-     * - song metadata?
-     * - ext file?
-     */
+    /* TODO: Write new metadata */
+
 }
 
 /**
@@ -402,7 +401,7 @@ void queryPlayer() {
     xil_printf("\r\n");
 }
 
-void digitalOut() { // TODO: Change to our new metadata structure
+void digitalOut() {
     /* Load song */
     if (loadSong()) {
         xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
@@ -412,8 +411,6 @@ void digitalOut() { // TODO: Change to our new metadata structure
     /* Check authorization */
     if (checkAuth() ||  PREVIEW_SZ > SongMD.wav_size) {
         /* Export full song */
-        SongMD.file_size -= SongMD.md_size;
-        SongMD.wav_size -=  SongMD.md_size;
         xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, SongMD.wav_size);
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "Only playing 30 seconds");
@@ -421,8 +418,8 @@ void digitalOut() { // TODO: Change to our new metadata structure
         SongMD.wav_size = PREVIEW_SZ;
     }
 
-    // move WAV file up in buffer, skipping metadata; TODO: This should be deprecated with new metadata structure
-    //memmove((void *)SongMD., (void *)get_drm_song(CMDChannel->song), SongMD.wav_size);
+    // move WAV file up in buffer, skipping metadata;
+    memmove((void *)&CMDChannel->song, (void *)SongMD.wav, SongMD.wav_size);
 
     xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
@@ -485,7 +482,7 @@ void play() {
 
         // do first memcpy here into DMA BRAM
         Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR + offset),
-                   (void *)(SongMD.song + length - rem), (u32)(cp_num)); // TODO: Replace get_drm_song()
+                   (void *)(SongMD.wav + length - rem), (u32)(cp_num));
 
         cp_xfil_cnt = cp_num;
 
@@ -508,8 +505,6 @@ void play() {
     }
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
 
 //////////////////////// MAIN FUNCTION ////////////////////////
 int main() {
@@ -601,9 +596,6 @@ int main() {
         }
     }
 
-    // TODO: Set a way to reach this unreachable code
     cleanup_platform();
     return 0;
 }
-
-#pragma clang diagnostic pop

@@ -56,7 +56,8 @@ typedef struct {
     u32 file_size; // WAV file length (no digital signature or song_md)
     u32 wav_size; // WAV data length
     u32 md_size; // Song metadata length
-    char *song; // The encrypted song
+    char *file; // The full file
+    char *wav; // The encrypted song with no metadata
 } song_md;
 
 // struct to interpret shared command channel
