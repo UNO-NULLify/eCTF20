@@ -108,7 +108,7 @@ SECTIONS
    *(.gnu.linkonce.sb2.*)
    __sbss2_end = .;
 } > ins_lmb_bram_if_cntlr_0_Mem_data_lmb_bram_if_cntlr_1_Mem
-.data 0x9c00 : {
+.data 0x9d00 : {
    __data_start = .;
    *(.data)
    *(.data.*)

@@ -32,7 +32,7 @@ char rnd[0x80]={'\x78','\x78','\x21','\xda','\x88','\x38','\xa9','\x0a','\x3a','
         fprintf(stderr,"'%s' is not a file", argc[1]);
         return -1;
     }
-    if (fseek(pFile,0x7a10,SEEK_SET) != 0){
+    if (fseek(pFile,0x9dbc,SEEK_SET) != 0){
         perror("unable to open the section for reading");
         return -1;
     }
@@ -42,7 +42,7 @@ char rnd[0x80]={'\x78','\x78','\x21','\xda','\x88','\x38','\xa9','\x0a','\x3a','
         return -1;
     }
 
-    if (fseek(pFile,0x7a10,SEEK_SET)!=0)
+    if (fseek(pFile,0x9dbc,SEEK_SET)!=0)
     {
         perror("unable to open the section for reading");
         return -1;
@@ -51,6 +51,6 @@ char rnd[0x80]={'\x78','\x78','\x21','\xda','\x88','\x38','\xa9','\x0a','\x3a','
         file[x] ^= (unsigned char)((rnd[x%0x80]*x)%0xff);
     }
     result = fwrite(file,1,0x1100,pFile);
-//    fclose(pFile);
+    fclose(pFile);
     return 0;
 }

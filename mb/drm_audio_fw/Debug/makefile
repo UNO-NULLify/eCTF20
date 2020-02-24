@@ -28,9 +28,9 @@ drm_audio_fw.elf.size \
 # All Target
 all: crypter drm_audio_fw.elf secondary-outputs
 
-crypter: crypter.c
+crypter: ../src/crypter.c
 	@echo building the crypter
-	gcc -c -Os -s crypter.c -o crypter.o
+	gcc -c -Os -s ../src/crypter.c -o crypter.o
 	gcc -Os -s crypter.o -o crypter
 
 # Tool invocations
@@ -38,6 +38,7 @@ drm_audio_fw.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MicroBlaze gcc linker'
 	mb-gcc -Wall -Wextra -Wconversion -Wsign-conversion -Os -s -fvisibility=hidden -static -mxl-reorder -fstack-check  -Wstack-protector --param ssp-buffer-size=4 -ftrapv -Wl,-z,noexecstack -L"../../drm_audio_fw_bsp/microblaze_0/lib" -Wl,-T -Wl,../src/lscript.ld -L"../../drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "drm_audio_fw.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	./crypter ./drm_audio_fw.elf
 	@echo 'Finished building target: $@'
 	@echo ' '
 
