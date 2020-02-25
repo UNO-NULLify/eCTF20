@@ -144,7 +144,7 @@ When reviewing our design we were concerned about the trust in the command regis
 TLDR: The crypto saves us from Race Conditions related to song authorization
 
 
-Another note on the one above, Frank added a function that basically caches the data from the command channel, so we don't trust it. This will offer another layer of protection.
+Another note on the one above, after some discussion, Frank added a function that basically caches the data from the command channel, so we don't have to trust the channel. This will offer another layer of protection.
 
 
 For share song, mipod writes the username of the person you are sharing the song with to the username field, so if you copy the fields straight into the cached struct, the logged on user would change and they would be able to play other songs. Frank created a different field called recipient within userMD and adding a parameter to the caching function that tells it to write the recipient to that field.
@@ -152,5 +152,17 @@ For share song, mipod writes the username of the person you are sharing the song
 
 The checkAuth() function checks starts by assigning a 0 value to region and song access, so if the conditions fall through, access is denied. It starts by checking if the user is logged in and if that fails, then it checks if they are a user who has had the song shared with them. Then it checks region access and returns the logical "AND" of user and region access.
 
-### /mb/drm_audio_fw/src/platform.h
-### /mb/drm_audio_fw/src/platform.c
+### Security and function Overview
+
+#### cacheCMD
+#### loadSongMD
+#### decryptSong
+#### checkAuth
+#### logOn
+#### logOff
+#### share
+#### querySong
+#### queryPlayer
+#### digitalOut
+#### play
+#### main
