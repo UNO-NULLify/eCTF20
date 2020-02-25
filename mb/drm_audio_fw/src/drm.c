@@ -285,13 +285,13 @@ void share() {
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         /* Check recipient exists */
-        if (crypto_verify64((void *)user_data[i].name, (void *)UserMD.recipient)) { check_1 = 1; }
+        if (!crypto_verify64((void *)user_data[i].name, (void *)UserMD.recipient)) { check_1 = 1; }
         
         /* Check recipient doesn't already have access */
-        if (crypto_verify64((void *)SongMD.shared[i], (void *)UserMD.recipient)) { check_2 = 0; }
+        if (!crypto_verify64((void *)SongMD.shared[i], (void *)UserMD.recipient)) { check_2 = 0; }
         
         /* Check for an empty spot */
-        if (crypto_verify16((void *)SongMD.shared[i], NULL)) { check_3 = 1; index = i; }
+        if (!crypto_verify16((void *)SongMD.shared[i], NULL)) { check_3 = 1; index = i; }
     }
     
     /* This odd code prevents ugly nested if-statements and multiple loops*/
