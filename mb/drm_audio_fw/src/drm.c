@@ -123,6 +123,7 @@ int cacheCMD(char s) {
                 return -1;
             }
             crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, (void *)CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
+            free(work_area);
             break;
         case LOGOUT:
             if (UserMD.logged_in == 0) { break; }
