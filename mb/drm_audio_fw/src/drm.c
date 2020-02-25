@@ -161,12 +161,6 @@ int loadSongMD() {
 	return status;
 }
 
-int loadSong() {
-	int status = 0;
-
-	return status;
-}
-
 int decryptSong() {
 	int status = 0;
 
@@ -273,12 +267,6 @@ void share() {
     int check_1 = 0;
     int check_2 = 1;
     int check_3 = 0;
-
-    /* Load song */
-    if (loadSong()) {
-        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
-        return;
-    }
     
     /* Check user is logged in */
     if (!UserMD.logged_in) {
@@ -402,13 +390,7 @@ void queryPlayer() {
     xil_printf("\r\n");
 }
 
-void digitalOut() {
-    /* Load song */
-    if (loadSong()) {
-        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
-        return;
-    }
-    
+void digitalOut() {    
     /* Check authorization */
     if (checkAuth() ||  PREVIEW_SZ > SongMD.wav_size) {
         /* Export full song */
@@ -427,11 +409,6 @@ void digitalOut() {
 
 void play() {
     u32 counter = 0, rem, cp_num, cp_xfil_cnt, offset, dma_cnt, length, *fifo_fill;
-
-    /* Load song */
-    if (loadSong()) {
-        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
-    }
 
     /* Check authorization */
     if (checkAuth()) {
