@@ -33,6 +33,7 @@ def main(user_list, outfile):
         print("Unable to open secrets file: %s" % (e,))
         return 1
     try:
+        i = 1
         user_dict = {}
         for user in user_list:
             u = user.split(":")
@@ -66,7 +67,8 @@ def main(user_list, outfile):
             #pvt_key_enc = box.encrypt(bytes(pvt_key))
             pvt_key_enc = monocypher.lock(secure_key, os.urandom(24), pvt_key)
 
-            user_dict[u[0]] = {"pin": u[1],                # PIN   NEVER TOUCH DEVICE
+            user_dict[u[0]] = {"id": i,
+                               "pin": u[1],                # PIN   NEVER TOUCH DEVICE
                                "pin_hash": hashed.hex(),                                  # PIN hash convert bytes(hash, encoding="utf-8")
                                "salt": salt.hex(),                                        # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
                                "pvt_key": pvt_key.hex(),
@@ -74,6 +76,7 @@ def main(user_list, outfile):
                                "pub_key": public_key.hex(),
                                "hw_secret": monocypher.generate_key(length=10).hex(),
                                }
+            i = i+1
         # generate pubic private key pair for additional integrity checks (Curve25519)
         pair = monocypher.generate_signing_key_pair()
         #signing_key = nacl.signing.SigningKey.generate()
