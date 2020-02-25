@@ -49,7 +49,7 @@ drm_audio_fw.elf.size: drm_audio_fw.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 	@echo 'Changing architecture to be unknown'
-	printf '\x02'| dd conv=notrunc of=./drm_audio_fw.elf  bs=1 seek=5	
+#	printf '\x02'| dd conv=notrunc of=./drm_audio_fw.elf  bs=1 seek=5	
 
 # Other Targets
 clean:
