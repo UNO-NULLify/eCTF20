@@ -155,6 +155,9 @@ The checkAuth() function checks starts by assigning a 0 value to region and song
 ### Security and function Overview
 
 #### cacheCMD
+
+In this function, we copy the necessary parts of the IPC channel, so that we have a local copy of the data in BRAM that we can trust.
+
 #### loadSongMD
 #### decryptSong
 #### checkAuth

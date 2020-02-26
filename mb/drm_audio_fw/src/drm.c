@@ -131,7 +131,7 @@ int cacheCMD(char s) {
         case QUERY_PLAYER:
             break;
         case SHARE:
-            memcpy((void *)UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
+            memcpy((void *)UserMD.recipient, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             break;
         case PLAY:
             memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
