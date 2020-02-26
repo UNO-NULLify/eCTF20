@@ -1,5 +1,4 @@
 #include <stdio.h>
-//#include <sodium.h>
 #include <string.h>
 #include "constants.h"
 #include <monocypher.h>
