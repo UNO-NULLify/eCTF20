@@ -239,7 +239,7 @@ void logOn() {
 
         //if you aren't logged in after checking that stuff print message, clear struct, and sleep
         if (!UserMD.logged_in) {
-            xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
+            xil_printf("%s%s\r\n", MB_PROMPT, "LOGIN ERROR.");
             crypto_wipe(&UserMD, sizeof(UserMD));
             // delay failed attempt by 5 seconds
             sleep(LOGIN_DELAY);
@@ -279,7 +279,7 @@ void share() {
     }
     
     /* Check user is the song owner */
-    if (!crypto_verify64((void *)SongMD.owner, (void *)UserMD.username)) {
+    if (crypto_verify64((void *)SongMD.owner, (void *)UserMD.username == 0)) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not song owner!");
         crypto_wipe(&SongMD, sizeof(SongMD));
         return;
