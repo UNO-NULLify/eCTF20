@@ -131,6 +131,7 @@ int cacheCMD(char s) {
         case QUERY_PLAYER:
             break;
         case SHARE:
+            //IMPORTANT NOTE: the username field for share is actually the RECIPIENT
             memcpy((void *)UserMD.recipient, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             break;
         case PLAY:
@@ -274,7 +275,7 @@ void share() {
     }
     
     /* Check user is the song owner */
-    if (!crypto_verify64((void *)SongMD.owner, (void *)UserMD.username)) {
+    if (crypto_verify64((void *)SongMD.owner, (void *)UserMD.username == 0)) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not song owner!");
         crypto_wipe(&SongMD, sizeof(SongMD));
         return;
