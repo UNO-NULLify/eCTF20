@@ -105,7 +105,7 @@ def main():
     for r in args.region_list:
         region_ids_tmp.append(regions[r]["id"])
 	
-    call(["./newEncryptSong",
+    call(["./encryptSong",
         str(users["users"][args.owner]["id"]),
         ",".join([str(x) for x in region_ids_tmp]),
         ",".join([str(x) for x in regionSecretList]),

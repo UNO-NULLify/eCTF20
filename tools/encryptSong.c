@@ -1,7 +1,7 @@
 #include <stdio.h>
 //#include <sodium.h>
 #include <string.h>
-#include "constents.h"
+#include "constants.h"
 #include <monocypher.h>
 
 #define CHUNK_SIZE 4096
