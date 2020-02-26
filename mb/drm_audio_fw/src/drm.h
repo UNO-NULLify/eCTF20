@@ -24,8 +24,11 @@
 #define MAX_REGIONS 32
 #define MAX_REGION_SZ 64
 #define MAX_REGION_SECRET 160
+#define MAX_SONG_NAME_SZ 64 // TODO: Verify this size
 #define HASH_SZ 32
+#define BLAKE_SZ 64
 #define KEY_SZ 32 // TODO: Verify key size
+#define SONG_KEY_SZ MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ // TODO: this aint right
 
 /* Shared buffer values */
 enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };
@@ -42,7 +45,9 @@ typedef struct {
 } user_md;
 
 typedef struct {
-    char song_key[KEY_SZ];
+    char song_key[SONG_KEY_SZ];
+    char hardware_secret[KEY_SZ]; // TODO: These sizes aint right
+    char hardware_secret_30[KEY_SZ];
 } crypto;
 
 /* TODO:

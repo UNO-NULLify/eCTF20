@@ -20,6 +20,9 @@ user_md UserMD;
 // Song metadata struct
 song_md SongMD;
 
+/* Crypto Struct*/
+crypto Crypto;
+
 /* Player State */
 STATE state;
 
@@ -123,10 +126,14 @@ int cacheCMD(char s) {
             crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, (void *)CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
             free(work_area);
             memcpy((void *)UserMD.pin_hash, hash, HASH_SZ);
-            // Songkey = blake2b(hashpin + pin + SongName)
-            // hardwareSecret = rand()
-            // HardwareSecretHash = hash(hardwareSecret+SongName)
-            // HardwareSecretHash30 = hash(hardwareSecret+SongName+”string”)
+
+            uint8_t song_key [BLAKE_SZ];
+            uint8_t sk_input[MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ];
+            strcpy(sk_input, hash); // Songkey = blake2b(hashpin + pin + SongName)
+            strcat(sk_input, (void *)CMDChannel->pin);
+            strcat(sk_input, (void *)SongMD.song_name);
+            crypto_blake2b(song_key, sk_input, MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ);
+            memcpy((void *)Crypto.song_key, song_key, BLAKE_SZ);
             break;
         case LOGOUT:
             if (UserMD.logged_in == 0) { break; }
@@ -166,6 +173,17 @@ int loadSongMD() {
 
 int decryptSong() {
 	int status = 0;
+
+    uint8_t hardware_secret_hash[BLAKE_SZ]; // HardwareSecretHash = hash(hardwareSecret+SongName)
+    uint8_t hsh_input[HARDWARE_SECRET_SZ+MAX_SONG_NAME_SZ];
+
+    strcpy(hsh_input, HARDWARE_SECRET); // TODO: Define HARDWARE_SECRET
+    strcat(hsh_input, SongMD.song_name);
+
+    crypto_blake2b(hardware_secret_hash, hsh_input, HARDWARE_SECRET_SZ+MAX_SONG_NAME_SZ);
+    memcpy((void *)Crypto.hardware_secret, hardware_secret_hash, BLAKE_SZ);
+
+    // HardwareSecretHash30 = hash(hardwareSecret+SongName+”string”)
 
 	return status;
 }
