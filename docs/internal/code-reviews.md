@@ -171,6 +171,9 @@ This function will decrypt the song. This is kind of Drew's thing and it hasn't 
 This function checks if the user and player are authorized to play a given song. It specifically checks if the user is an owner of the song, if they have had the song shared with them, and then if the device is provisioned for one of the regions that the song is provisioned for.
 
 #### logOn
+
+Allows the user to login by checking if they are already logged in, checking if the username is provisioned for the board, and then checking the hash of the given pin against the stored hash of the user's pin. If they are already logged in, it will print a message saying so, otherwise there will be no or a generic error.
+
 #### logOff
 #### share
 #### querySong
