@@ -113,8 +113,6 @@ int cacheCMD(char s) {
             memcpy((void *)UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             uint8_t hash[32];
             uint8_t salt[16];
-            //srand(); // TODO: Initialize salt with TRNG?
-            //salt[16] = rand(); // TODO: Generate 16 random bytes
             uint32_t nb_blocks = 8; // Kilobytes
             uint32_t nb_iterations = 3; // 3 iterations
             void *work_area = malloc(nb_blocks * 1024);
@@ -285,13 +283,13 @@ void share() {
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
         /* Check recipient exists */
-        if (!crypto_verify64((void *)user_data[i].name, (void *)UserMD.recipient)) { check_1 = 1; }
+        if (crypto_verify64((void *)user_data[i].name, (void *)UserMD.recipient) == 0) { check_1 = 1; }
         
         /* Check recipient doesn't already have access */
-        if (!crypto_verify64((void *)SongMD.shared[i], (void *)UserMD.recipient)) { check_2 = 0; }
+        if (crypto_verify64((void *)SongMD.shared[i], (void *)UserMD.recipient) == 0) { check_2 = 0; }
         
         /* Check for an empty spot */
-        if (!crypto_verify16((void *)SongMD.shared[i], NULL)) { check_3 = 1; index = i; }
+        if (crypto_verify16((void *)SongMD.shared[i], NULL) == 0) { check_3 = 1; index = i; }
     }
     
     /* This odd code prevents ugly nested if-statements and multiple loops*/
