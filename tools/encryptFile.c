@@ -5,15 +5,14 @@
 
 #define CHUNK_SIZE 4096
 
-//test struct
+
+
 struct metadata
 {
   char owner[MAX_USERNAME_SZ];
-  // char shared[PROVISIONED_USERS][MAX_USERNAME_SZ];
   char song_name[MAX_SONG_NAME]; // null terminated string of size 15 or less
   char region_list[MAX_REGIONS][MAX_REGION_SZ]; // 32 regions max of size 64 len + null
   char region_secret_list[MAX_REGIONS][MAX_REGION_SECRET]; // 32 regions max of size 160 + null
-  // int region_num;
 };
 
 
