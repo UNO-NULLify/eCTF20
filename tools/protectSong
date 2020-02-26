@@ -113,7 +113,7 @@ def main():
         smallFile,
         str(hardwareSecretHash30),
         args.infile,
-        str(songKey.hex())+str(regionKey)+str(hardwareSecretHash),
+        str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash),
         args.outfile
     ])
 
