@@ -1,7 +1,7 @@
 #include <stdio.h>
 //#include <sodium.h>
 #include <string.h>
-#include "constants.h"
+#include "constents.h"
 #include <monocypher.h>
 
 #define CHUNK_SIZE 4096
@@ -11,7 +11,6 @@ struct metadata {
     uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET]; // 64*160-Bytes
     char song_name[MAX_SONG_NAME]; // 64-Bytes
-    long int endFullSong;
     // char shared_ids[64]; // 64-Bytes TODO
 };
 
@@ -159,13 +158,13 @@ int main(int argc, char *argv[]){
 
 
   printf("Arg count: %d", argc);
-  if(argc != 11) {
+  if(argc != 10) {
     printf("Metadata not formatted. Check arguments.\n");
     return 1;
   }
 
 	/////////READ IN INFO/////////
-	printf("\n----- Data Passed In -----\nowner_id: %s\nregion_ids: %s\nregion_secrets: %s\nsong_name: %s\n30path: %s\n30secret: %s\nfullpath: %s\nsecret: %s\noutFile: %s\n RootSigningKey: %s\n--- End Data Passed In ---\n", argv[1], argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], argv[8], argv[9], argv[10]);
+	printf("\n----- Data Passed In -----\nowner_id: %s\nregion_ids: %s\nregion_secrets: %s\nsong_name: %s\n30path: %s\n30secret: %s\nfullpath: %s\nsecret: %s\noutFile: %s\n--- End Data Passed In ---\n", argv[1], argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], argv[8], argv[9]);
 	// owner_id = argv[1];
 	// region_ids = argv[2];
 	// region_secrets = argv[3];
@@ -204,7 +203,6 @@ int main(int argc, char *argv[]){
 		j++;
 	}
 
-
 	// Set Song Name
 	strcpy(meta.song_name, argv[4]);
 
@@ -219,7 +217,7 @@ int main(int argc, char *argv[]){
   encFile = fopen("audio.drm", "wb"); // open the outfile for writing
   if (encFile == NULL)
   {
-      fprintf(stderr, "\nError opening file\n");
+      fprintf(stderr, "\nError opend file\n");
       exit (1);
   }
   /////////WRITE META TO FILE///////// (done )
@@ -239,8 +237,9 @@ int main(int argc, char *argv[]){
   uint8_t hash[32] = {0};
   memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
 
-  //TODO see if its okay that the nonce starts at 0
+
   uint8_t nonce [24] = {0};
+  uint8_t mac [16] = {0};
 
 
     if (encrypt(encFile, argv[7], hash, nonce) != 0)
@@ -251,86 +250,59 @@ int main(int argc, char *argv[]){
 
   /////////WRITE CURRENT LOCATION OF FILE POINTER/////////
 
-  meta.endFullSong = ftell(encFile); // get cur location
-  fseek( encFile, 0, SEEK_SET ); //go to start of file
-  writeMetadata(encFile, meta); // write metatdata with endFullSong included
-  fseek( encFile, meta.endFullSong, SEEK_SET ); // go back to where we were
+
 
   /////////ENCRYPT 30 SECOND SONG TO FILE/////////
 
-  printf("\nEncrypting %s with the password: %s\n", argv[5],argv[6]);
-  uint8_t temphash30[64] = {0};
-  crypto_blake2b(temphash30, (const uint8_t *)argv[6], strlen(argv[6])); //turn long password into useable hash
 
 
-  uint8_t hash30[32] = {0};
-  memcpy (hash30, temphash30, sizeof(hash30)); // need to reduce the size of the hash for use in encryption
 
-  //TODO see if its okay that the nonce starts at 0 or if we need a random start
-  uint8_t nonce30 [24] = {0};
-
-
-    if (encrypt(encFile, argv[5], hash30, nonce30) != 0)
-    {
-      printf("Encryption Failed");
-      return 1;
-    }
-
-  fclose (encFile);
-  encFile = fopen("audio.drm", "rb");
   /////////SIGN SONG/////////
-  uint8_t root_verify[32] = {0};
-  //convert from hex string to uint8_t
-  for(int i = 0; i < 64; i = i + 2)
-  {
-    if(argv[10][i] >= '0' && argv[10][i] <= '9')
-    {
-      root_verify[i/2] = argv[10][i] - '0';
-    }
-    else{
-      root_verify[i/2] = argv[10][i] - 'a' + 10;
-    }
 
-    root_verify[i/2] = root_verify[i/2] << 4;
-
-    if(argv[10][i+1] >= '0' && argv[10][i+1] <= '9')
-    {
-      root_verify[i/2] += argv[10][i+1] - '0';
-    }
-    else{
-      root_verify[i/2] += argv[10][i+1] - 'a' + 10;
-    }
-  }
-
-uint8_t signature[64] = {0};
-unsigned char  buf_in[CHUNK_SIZE] = {0};
-int eof;
-uint8_t sigHash   [ 64];
-crypto_blake2b_ctx ctx;
-crypto_blake2b_init(&ctx);
-//goto start of the file
-fseek( encFile, 0, SEEK_SET );
-do {
-
-    fread(buf_in, 1, sizeof buf_in, encFile);
-    eof = feof(encFile);
-    crypto_blake2b_update(&ctx, buf_in, sizeof buf_in);
-
-} while (! eof);
-crypto_blake2b_final(&ctx, sigHash);
-
-fclose (encFile);
-// encFile = fopen("audio.drm", "wb");
-
-// crypto_sign(uint8_t signature[64], const uint8_t secret_key[32], const uint8_t public_key[32], const uint8_t *message, size_t message_size);
-
-// fwrite(&metaIn, sizeof(struct metadata), 1, encFile);
 
 
   /////////CLOSE FILE///////// (done )
-  // fclose (encFile);
+  fclose (encFile);
 
 
+  // printf("\nEncrypting %s with the password: %s\n", argv[7],argv[8]);
+  //
+  // uint8_t temphash[64] = {0};
+  // uint8_t hash[32] = {0};
+  // uint8_t nonce [24] = {0};
+  // uint8_t mac [16] = {0};
+  //
+  //
+  // printf("\nLength of string in = %ld \n",strlen(argv[3]));
+  //
+  // crypto_blake2b(temphash, (const uint8_t *)argv[3], strlen(argv[3]));
+  // memcpy (hash, temphash, sizeof(hash));
+  // memcpy (nonce, temphash, sizeof(nonce));
+  // memcpy (mac, temphash, sizeof(mac));
+  //
+  //   printf("\nNonce:\n");
+  //   for (int i = 0; i < 24; i++)
+  //   {
+  //       printf("%02x", nonce[i]);
+  //   }
+  //
+  //   if (encrypt(argv[2], argv[1], hash, mac, nonce) != 0)
+  //   {
+  //     printf("Encryption Failed");
+  //     return 1;
+  //   }
+  //
+  //   printf("\nNonce:\n");
+  //   for (int i = 0; i < 24; i++)
+  //   {
+  //       printf("%02x", nonce[i]);
+  //   }
+  //
+  //   if (decrypt("decryptedFile", argv[2], hash, mac, nonce) != 0)
+  //   {
+  //     printf("Decryption Failed");
+  //     return 1;
+  //   }
 
     return 0;
 }

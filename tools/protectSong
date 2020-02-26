@@ -55,11 +55,7 @@ def main():
 
     #print("{}\n{}\n{}\n".format(users["users"][args.owner]["pin_hash"], users["users"][args.owner]["pin"], songName.hex()))
 
-    song_str = (bytes(users["users"][args.owner]["pin_hash"], encoding="utf-8") + \
-                bytes(users["users"][args.owner]["pin"], encoding="utf-8") + \
-                songName).hex()
 
-    songkey = monocypher.blake2b(song_str).hex()
     #regionKey = utils.random(32)
     regionKey = os.urandom(32)
 
@@ -73,9 +69,9 @@ def main():
     #    #print(f"decrypted:{SealedBox(pvt_key).decrypt(encrypted).hex()}") #This is how you decrypt the secret
 
     for r in args.region_list:
-        pvt_key = regions[r]["priv_key"]
-        pub_key = regions[r]["pub_key"]
-        encrypted = monocypher.lock(bytes(pub_key, encoding="utf-8"), os.urandom(24), regionKey)
+        # pvt_key = regions[r]["priv_key"]
+        rand_pass = regions[r]["rand_pass"]
+        encrypted = monocypher.lock(bytes(rand_pass, encoding="utf-8"), b'', regionKey) 
         regionSecretList.append(encrypted[1].hex())
 
     print("Region Secrets:\n")
@@ -85,7 +81,7 @@ def main():
     #                        encoding="utf-8"), encoder=encoding.HexEncoder)
     #hardwareSecretHash30 = HASHER(bytes((users["users"][args.owner]["hw_secret"]+songName+"30"),
     #                        encoding="utf-8"), encoder=encoding.HexEncoder)
-    
+
     hardwareSecretHash = monocypher.blake2b(bytes(users["users"][args.owner]["hw_secret"],
                          encoding="utf-8") + songName).hex()
     hardwareSecretHash30 = monocypher.blake2b(bytes(users["users"][args.owner]["hw_secret"],
@@ -104,7 +100,7 @@ def main():
     region_ids_tmp = []
     for r in args.region_list:
         region_ids_tmp.append(regions[r]["id"])
-	
+
     call(["./encryptSong",
         str(users["users"][args.owner]["id"]),
         ",".join([str(x) for x in region_ids_tmp]),
@@ -114,7 +110,8 @@ def main():
         str(hardwareSecretHash30),
         args.infile,
         str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash),
-        args.outfile
+        args.outfile,
+        users["root_sign"]
     ])
 
 

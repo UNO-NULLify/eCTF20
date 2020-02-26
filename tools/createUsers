@@ -42,11 +42,11 @@ def main(user_list, outfile):
             # generating an argon2id hash of user pin with custom salt; encoded in base64
             # OPSLIMIT_SENSITIVE MEMLIMIT_SENSITIVE are default settings for kdf function below
             #hashed = pwhash.argon2id.str(bytes(u[1], encoding="utf-8"))
-            hashed = monocypher.argon2i_32(ARGON_BLOCKS, 
-                                           ARGON_ITTERS, 
-                                           bytes(u[1], encoding="utf-8"), 
+            hashed = monocypher.argon2i_32(ARGON_BLOCKS,
+                                           ARGON_ITTERS,
+                                           bytes(u[1], encoding="utf-8"),
                                            salt)
-            
+
             print(hashed.hex())
 
             # generate a public / private keypair (Curve25519)
@@ -56,7 +56,7 @@ def main(user_list, outfile):
             public_key = pair[1]
 
             #Key used for securing the private key. hash(hashpin + pin + salt)
-            #secure_key = HASHER(bytes((hashed.decode()+u[1]+salt.hex()), encoding="utf-8"), 
+            #secure_key = HASHER(bytes((hashed.decode()+u[1]+salt.hex()), encoding="utf-8"),
             #                            encoder=encoding.HexEncoder)[:32]
             secure_key = monocypher.blake2b(hashed + bytes(u[1], encoding="utf-8"), salt)
 
@@ -65,7 +65,7 @@ def main(user_list, outfile):
             #print(f"Encrypting user private key with {secure_key} length {len(secure_key)}")
             #box = secret.SecretBox(secure_key)
             #pvt_key_enc = box.encrypt(bytes(pvt_key))
-            pvt_key_enc = monocypher.lock(secure_key, os.urandom(24), pvt_key)
+            pvt_key_enc = monocypher.lock(secure_key, i.to_bytes(24, 'big'), pvt_key)
 
             user_dict[u[0]] = {"id": i,
                                "pin": u[1],                # PIN   NEVER TOUCH DEVICE
