@@ -100,6 +100,24 @@ def main():
     parent = os.path.abspath(os.path.join(args.outfile, os.pardir))
     out_f_name = args.outfile.split("/")[-1]
     name = out_f_name.split(".")[0] + "_sample." + out_f_name.split(".")[1]
+
+    region_ids_tmp = []
+    for r in args.region_list:
+        region_ids_tmp.append(regions[r]["id"])
+	
+    call(["./newEncryptSong",
+        str(users["users"][args.owner]["id"]),
+        ",".join([str(x) for x in region_ids_tmp]),
+        ",".join([str(x) for x in regionSecretList]),
+        args.infile.split("/")[-1],
+        smallFile,
+        str(hardwareSecretHash30),
+        args.infile,
+        str(songKey.hex())+str(regionKey)+str(hardwareSecretHash),
+        args.outfile
+    ])
+
+
     ### TODO: Check the 30path and owner path
     #call(["./encryptFile", "--owner", "DrewGriess",
     #"--SongName", "namee",
