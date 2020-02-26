@@ -122,6 +122,11 @@ int cacheCMD(char s) {
             }
             crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, (void *)CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
             free(work_area);
+            memcpy((void *)UserMD.pin_hash, hash, HASH_SZ);
+            // Songkey = blake2b(hashpin + pin + SongName)
+            // hardwareSecret = rand()
+            // HardwareSecretHash = hash(hardwareSecret+SongName)
+            // HardwareSecretHash30 = hash(hardwareSecret+SongName+”string”)
             break;
         case LOGOUT:
             if (UserMD.logged_in == 0) { break; }
@@ -131,7 +136,7 @@ int cacheCMD(char s) {
         case QUERY_PLAYER:
             break;
         case SHARE:
-            memcpy((void *)UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
+            memcpy((void *)UserMD.recipient, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             break;
         case PLAY:
             memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);

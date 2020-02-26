@@ -41,11 +41,16 @@ typedef struct {
     int logged_in; // 1 == logged in, 0 == logged out, ? == no.
 } user_md;
 
+typedef struct {
+    char song_key[KEY_SZ];
+} crypto;
+
 /* TODO:
  * - Replace char arrays with char pointers?
  * - Should we store IDs or names?
  */
 typedef struct {
+    char song_name[MAX_SONG_NAME_SZ];
     char owner[MAX_USERNAME_SZ]; // Owner's username
     char shared[MAX_USERS][MAX_USERNAME_SZ]; // List of shared usernames
     char region_list[MAX_REGIONS][MAX_REGION_SZ]; // 32 regions max of size 64
