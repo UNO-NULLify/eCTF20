@@ -67,12 +67,13 @@ def main(user_list, outfile):
             #pvt_key_enc = box.encrypt(bytes(pvt_key))
             pvt_key_enc = monocypher.lock(secure_key, i.to_bytes(24, 'big'), pvt_key)
 
+
             user_dict[u[0]] = {"id": i,
                                "pin": u[1],                # PIN   NEVER TOUCH DEVICE
                                "pin_hash": hashed.hex(),                                  # PIN hash convert bytes(hash, encoding="utf-8")
                                "salt": salt.hex(),                                        # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
-                               "pvt_key": pvt_key.hex(),
-                               "pvt_key_enc": pvt_key_enc[1].hex(),                          #  nacl.bindings.crypto_aead_chacha20poly1305...?
+                               "pvt_key": pvt_key.hex(),                  #NEVER TOUCH DEVICE 
+                               "pvt_key_enc": pvt_key_enc[1].hex() + pvt_key_enc[0].hex(),                          #  nacl.bindings.crypto_aead_chacha20poly1305...?
                                "pub_key": public_key.hex(),
                                "hw_secret": monocypher.generate_key(length=10).hex(),
                                }

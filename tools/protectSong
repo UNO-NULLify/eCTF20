@@ -71,8 +71,15 @@ def main():
     for r in args.region_list:
         # pvt_key = regions[r]["priv_key"]
         rand_pass = regions[r]["rand_pass"]
-        encrypted = monocypher.lock(bytes(rand_pass, encoding="utf-8"), b'', regionKey) 
-        regionSecretList.append(encrypted[1].hex())
+        encrypted = monocypher.lock(bytes(rand_pass, encoding="utf-8"), b'', regionKey)
+
+        print(f"RANDOM PASS: {regions[r]['rand_pass']}")
+        print(f"ENCRYPTED: {encrypted[1].hex() + encrypted[0].hex()}")
+        print(f"Region KEY: {regionKey.hex()}")
+        #print(f"DECRYPTED: {monocypher.lock(bytes(rand_pass, encoding="utf-8"), b'', regionKey)}")
+
+
+        regionSecretList.append(encrypted[1].hex() + encrypted[0].hex())
 
     print("Region Secrets:\n")
     pprint(regionSecretList)
