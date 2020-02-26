@@ -118,7 +118,6 @@ def main():
         args.infile,
         str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash),
         args.outfile,
-        users["root_sign"]
     ])
 
 
