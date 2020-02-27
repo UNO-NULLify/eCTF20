@@ -11,8 +11,8 @@
 # generate test data
 
 read -p "Clean all working files? Use this to build a project from scratch.(Warning: This will delete all uncommitted changes) (y/n) " choice
-case "$choice" in 
-  y|Y ) printf cd ../; git reset --hard; git clean -d -fx; cd ./tools; make clean  
+case "$choice" in
+  y|Y ) printf cd ../; git reset --hard; git clean -d -fx; cd ./tools; make clean
   ;;
   *) echo "Commit your changes before running this script."
      #exit 1
@@ -66,7 +66,7 @@ if [ ! $? -eq 0 ]; then
 echo "Compiling encryption scripts"
 # gcc -Wall -pedantic -std=c1x -g -o  ./encryptFile encryptFile.c -lsodium
 gcc -Wall -pedantic -std=c1x -g -o  ./encryptSong encryptSong.c monocypher.c
-gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c -lsodium
+gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c monocypher.c
 #End Compile Song encription
 
 # Generate Test Song
@@ -94,7 +94,7 @@ case "$choice" in
     python3 protectSong --region-list USA Canada \
                         --region-secrets-path ./provision_test/region_secrets.json \
                         --outfile ./provision_test/audio/test-protect-small-step.drm \
-                        --infile ../sample-audio/Sound-Bite_One-Small-Step.wav \
+                        --infile ../sample-audio/hi.wav \
                         --owner $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}') \
                         --user-secrets-path ./provision_test/user_secrets.json
 
@@ -125,8 +125,8 @@ fi
 # Add stop
 
 read -p "Continue to build device? (y/n)" choice
-case "$choice" in 
-  y|Y )   
+case "$choice" in
+  y|Y )
   ;;
   *) echo "Terminating."
      exit 1
@@ -134,7 +134,7 @@ case "$choice" in
 esac
 
 #Build Device
-printf "\n\nRunning buildDevice...\n"  
+printf "\n\nRunning buildDevice...\n"
 (./buildDevice -p ../ -n test -bf all -secrets_dir device/)
 
 if [ ! $? -eq 0 ]; then
@@ -149,7 +149,7 @@ printf "\n\nRunning packageDevice...\n"
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "packageDevice Failed!"
   exit 1
-fi 
+fi
 
   printf "\nInsert SD Card. Pass-through to VM."
   printf "\nPress any key to continue...\n"
@@ -159,23 +159,23 @@ fi
       exit $?;
     fi
   done
-  
+
   #Deploy Device
-  printf "\n\nRunning deployDevice...\n"  
-    
+  printf "\n\nRunning deployDevice...\n"
+
   read -p "Are you using a MITRE-provided board? (y/n) " choice
-  case "$choice" in 
+  case "$choice" in
     y|Y )
            cp ../boot-image/uno_design_phase_BOOT.BIN ../BOOT.BIN
            ;;
-    n|N ) 
+    n|N )
            cp ../boot-image/purchased_boards_BOOT.BIN ../BOOT.BIN
            ;;
   esac
 
   read -p "What is the name of your ssd card (sdb)? " DEVICE
-  
-  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin 
+
+  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
 
 #printf "\n\nRunning buildDevice...\n"
 #(./buildDevice -p /ectf/ -n test -bf all -secrets_dir ./device)

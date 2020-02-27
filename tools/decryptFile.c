@@ -1,122 +1,147 @@
 #include <stdio.h>
-#include <sodium.h>
 #include <string.h>
 #include "constants.h"
-
+#include <monocypher.h>
 #define CHUNK_SIZE 4096
 
 
-struct metadata
-{
-  char owner[MAX_USERNAME_SZ];
-  // char shared[PROVISIONED_USERS][MAX_USERNAME_SZ];
-  char song_name[MAX_SONG_NAME]; // null terminated string of size 15 or less
-  char region_list[MAX_REGIONS][MAX_REGION_SZ]; // 32 regions max of size 64 len + null
-  char region_secret_list[MAX_REGIONS][MAX_REGION_SECRET]; // 32 regions max of size 160 + null
-  // int region_num;
+struct metadata {
+    uint8_t owner_id; // 1-Byte
+    uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
+    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
+    char song_name[MAX_SONG_NAME]; // 64-Bytes
+    long int endFullSong;
+    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
 };
 
-
-
+//works with the full song
 static int
-decrypt(const char *target_file, const char *source_file,
-        const unsigned char key[crypto_secretstream_xchacha20poly1305_KEYBYTES])
+decrypt(const char *target_file, FILE * fp_s,
+        const unsigned char key[32], uint8_t nonce [24], long int endRead )
 {
-    unsigned char  buf_in[CHUNK_SIZE + crypto_secretstream_xchacha20poly1305_ABYTES];
-    unsigned char  buf_out[CHUNK_SIZE];
-    unsigned char  header[crypto_secretstream_xchacha20poly1305_HEADERBYTES];
-    crypto_secretstream_xchacha20poly1305_state st;
-    FILE          *fp_t, *fp_s;
-    unsigned long long out_len;
+    unsigned char  buf_in[CHUNK_SIZE] = {0};
+    unsigned char  buf_out[CHUNK_SIZE] = {0};
+    unsigned char  mac[16] = {0};
+    FILE          *fp_t;
     size_t         rlen;
-    int            eof;
-    int            ret = -1;
-    unsigned char  tag;
+    // int            eof;
 
-    fp_s = fopen(source_file, "rb");
     fp_t = fopen(target_file, "wb");
-    fread(header, 1, sizeof header, fp_s);
-    if (crypto_secretstream_xchacha20poly1305_init_pull(&st, header, key) != 0) {
-        goto ret; /* incomplete header */
-    }
-    do {
-        rlen = fread(buf_in, 1, sizeof buf_in, fp_s);
-        eof = feof(fp_s);
-        if (crypto_secretstream_xchacha20poly1305_pull(&st, buf_out, &out_len, &tag,
-                                                       buf_in, rlen, NULL, 0) != 0) {
-            goto ret; /* corrupted chunk */
-        }
-        if (tag == crypto_secretstream_xchacha20poly1305_TAG_FINAL && ! eof) {
-            goto ret; /* premature end (end of file reached before the end of the stream) */
-        }
-        fwrite(buf_out, 1, (size_t) out_len, fp_t);
-    } while (! eof);
 
-    ret = 0;
-ret:
-    fclose(fp_t);
-    fclose(fp_s);
-    return ret;
+    do {
+
+        fread(mac, 1, 16, fp_s);
+        rlen = fread(buf_in, 1, sizeof buf_in, fp_s);
+        // eof = feof(fp_s);
+
+        if (crypto_unlock( buf_out, key, nonce, mac, buf_in, rlen) != 0)
+        {
+          return 1;
+        }
+        fwrite(buf_out, 1, (size_t) rlen, fp_t);
+
+        //incremet nonce
+        for (int i = 23; i >= 0; i--)
+        {
+          if(i == 0)
+          {
+            if (nonce[i] == 255)
+            {
+              memset(nonce, 0, 24);
+            }
+          }
+          else if (nonce[i] == 255){
+            nonce[i] = 0;
+            nonce[i-1]+= 1;
+          }
+        }
+        nonce[23] ++;
+
+    } while ((endRead - CHUNK_SIZE) >  ftell(fp_s)); //read untill we are one buffer away
+    fread(mac, 1, 16, fp_s);
+    rlen = fread(buf_in, 1, endRead - ftell(fp_s), fp_s);
+    if (crypto_unlock( buf_out, key, nonce, mac, buf_in, rlen) != 0)
+    {
+      return 1;
+    }
+    fwrite(buf_out, 1, (size_t) rlen, fp_t);
+    return 0;
 }
 
 
-struct metadata readMetadata(const char *target_file, const char *source_file){
+void printStruct(struct metadata s) {
+	printf("\n -- Struct Contents -- \n");
 
-  struct metadata metaIn;
-  printf("Reading metadata...");
+	printf("owner_id: %u\n", s.owner_id);
 
-  FILE *infile;
+	printf("region_ids: ");
+	for(int j = 0; j < MAX_REGIONS; j++) {
+		printf("%u, ", s.region_ids[j]);
+	}
+	printf("\n");
 
-  // open file for writing
-  infile = fopen ("person.dat", "r");
-  if (infile == NULL)
-  {
-      fprintf(stderr, "\nError opend file\n");
-      exit (1); //end the program
+	printf("region_secrets: ");
+	for(int j = 0; j < MAX_REGIONS; j++) {
+		for(int k = 0; k < MAX_REGION_SECRET; k++) {
+			printf("%c", s.region_secrets[j][k]);
+		}
+		printf(", ");
+	}
+	printf("\n");
+
+	printf("song_name: %s\n\n", s.song_name);
+}
+
+//Write file metadata
+//Target file is the file to write to
+// metaIn is the metadata struct in to write to the file
+int readMetadata(FILE *infile, struct metadata * metaIn ){
+
+  int yay = fread(metaIn, sizeof(struct metadata), 1, infile);
+
+  if(yay != 0){
+    printf("Metadata read successfully!\n");
   }
-  fread(&metaIn, sizeof(struct metadata), 1, infile);
-  printf("\nsong_name inside = %s\n", metaIn.song_name);
-  if(fwrite != 0){
-    printf("contents Read successfully!\n");
-  }
+  
   else
   {
-       printf("error writing file !\n");
+       printf("error reading file !\n");
   }
-
-  fclose(infile);
-
-  printf("reading metadata...\n");
-  return metaIn;
+  return 1;
 }
 
-
-
 int main(int argc, char *argv[]){
+  struct metadata meta = {0};
 
-  printf("Decrypting %s with the password: %s", argv[1],argv[3]);
-
-  unsigned char hash[crypto_generichash_BYTES];
-
-  printf("Length of string in = %ld \n",strlen(argv[3]));
-  crypto_generichash(hash, sizeof hash,
-                      (const unsigned char *) argv[3], strlen(argv[3]),
-                     NULL, 0);
-
-    if (sodium_init() != 0)
-    {
+  /////////READ IN FILE/////////
+  FILE *encFile;
+  encFile = fopen(argv[1], "rb"); // open the outfile for writing
+  if (encFile == NULL)
+  {
+      fprintf(stderr, "\nError opening file\n");
       return 1;
-    }
+  }
 
-    if (decrypt(argv[2], argv[1], hash) != 0)
-    {
-      printf("Decryption Failed");
-      return 1;
-    }
-    struct metadata metaIn;
-    metaIn = readMetadata(argv[2], argv[1]); //returns the metadata from a file
+  /////////READ META FROM FILE/////////
+  readMetadata(encFile, & meta);
+  // printStruct(meta); #Debug print
 
-    printf("\nsong_name from read in = %s\n", metaIn.song_name);
+  /////////DECRYPT FULL SONG/////////
 
-    return 0;
+  uint8_t temphash[64] = {0};
+  crypto_blake2b(temphash, (const uint8_t *)argv[2], strlen(argv[2])); //turn long password into useable hash
+
+  uint8_t hash[32] = {0};
+  memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
+
+  uint8_t nonce [24] = {0};
+
+  if (decrypt(meta.song_name, encFile, hash, nonce, meta.endFullSong) != 0)
+  {
+    printf("Decryption Failed");
+    return 1;
+  }
+  fclose(encFile);
+
+  return 0;
 }

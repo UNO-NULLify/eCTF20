@@ -63,11 +63,11 @@ int writeMetadata(FILE *outfile, struct metadata metaIn ){
   int yay = fwrite(&metaIn, sizeof(struct metadata), 1, outfile);
 
   if(yay != 0){
-    printf("metadata written successfully !\n");
+    printf("Metadata written successfully!\n");
   }
   else
   {
-       printf("error writing file !\n");
+       printf("Error writing file!\n");
   }
   return 1;
 }
@@ -109,8 +109,6 @@ void printStructSize(struct metadata s) {
 
 int main(int argc, char *argv[]){
 
-
-  printf("Arg count: %d", argc);
   if(argc != 10) {
     printf("Metadata not formatted. Check arguments.\n");
     return 1;
@@ -127,8 +125,6 @@ int main(int argc, char *argv[]){
 	// fullpath = argv[7]
 	// secret = argv[8]
 	// outFile = argv[9]
-  //
-
 	/////////READ IN STRUCT/////////
 
 	struct metadata meta = {0};
@@ -161,14 +157,14 @@ int main(int argc, char *argv[]){
 	strcpy(meta.song_name, argv[4]);
 
 	// Print the structure
-	printStruct(meta);
+	// printStruct(meta);
 
 	// Print the struct size
-	printStructSize(meta);
+	// printStructSize(meta);
 
   /////////CREATE OUT FILE///////// (done )
   FILE *encFile;
-  encFile = fopen("audio.drm", "wb"); // open the outfile for writing
+  encFile = fopen(argv[9], "wb"); // open the outfile for writing
   if (encFile == NULL)
   {
       fprintf(stderr, "\nError opening file\n");
@@ -179,7 +175,7 @@ int main(int argc, char *argv[]){
   writeMetadata(encFile, meta);
 
   /////////ENCRYPT FULLSONG TO FILE /////////
-  printf("\nEncrypting %s with the password: %s\n", argv[7],argv[8]);
+  // printf("\nEncrypting %s with the password: %s\n", argv[7],argv[8]);
   uint8_t temphash[64] = {0};
   crypto_blake2b(temphash, (const uint8_t *)argv[8], strlen(argv[8])); //turn long password into useable hash
 
@@ -203,7 +199,7 @@ int main(int argc, char *argv[]){
 
   /////////ENCRYPT 30 SECOND SONG TO FILE/////////
 
-  printf("\nEncrypting %s with the password: %s\n", argv[5],argv[6]);
+  // printf("\nEncrypting %s with the password: %s\n", argv[5],argv[6]);
   uint8_t temphash30[64] = {0};
   crypto_blake2b(temphash30, (const uint8_t *)argv[6], strlen(argv[6])); //turn long password into useable hash
 
