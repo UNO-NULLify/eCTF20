@@ -16,7 +16,7 @@ module.exports = {
 		lastUpdated: 'Last Updated',
 		nav: [
 			{ text: 'Home', link: '/' },
-			{ text: 'Official Documentation', link: '/technical/' },
+			{ text: 'Official Documentation', link: '/mitre/' },
 			{ text: 'Internal', link: '/internal/' }
 		],
 		logo: '/nullify_lock_no_padding.png',
