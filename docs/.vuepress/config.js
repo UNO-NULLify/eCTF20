@@ -24,23 +24,13 @@ module.exports = {
 		sidebar: [
 			'/',
 			{
-				title: 'User Guide',
-				path: '/user/',
+				title: 'Official Documentation',
+				path: '/mitre/',
 				sidebarDepth: 2,
 				collapsable: false,
 				children: [
-					'/user/load-song',
-					'/user/play-song',
-				]
-			},
-			{
-				title: 'Technical Reference',
-				path: '/technical/',
-				sidebarDepth: 2,
-				collapsable: false,
-				children: [
-					'/technical/overview',
-					'/technical/implementation',
+					'/mitre/overview',
+					'/mitre/implementation',
 				]
 			},
 			{
