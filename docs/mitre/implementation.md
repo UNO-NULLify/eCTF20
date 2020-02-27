@@ -108,6 +108,10 @@ Commands from the miPod application are now issued through a shared register whi
 
 ## Watchdog
 
+The integrity-checking module served to protect against voltage and temperature attacks, but it in no way ensures that the DRM is properly operating in a timely manner. The watchdog timer’s purpose is thus to make sure that the DRM is still responsive within a short window of time. This prevents several attacks which slow or halt the MicroBlaze. 
+Xilinx provides an AXI Timebase Watchdog module, which uses a dual-expiration architecture. This generates an interrupt and a state bit is changed in the status register. If the MicroBlaze fails to clear the state bit before the next timeout, the WDT generates a reset signal. Thus, if the DRM halts or lags beyond a reasonable time threshold, the PL will assume an attack is occurring and reset the MicroBlaze. This solution maps the watchdog timer registers into the address space of the MB and creates an AXI connection between the WDT and the interrupt controller. The DRM code then handles the interrupt by clearing the status bits in the WDT status register.
+
+
 ## Integrity Monitor
 
 ![Integrity Module Implementation](/integrity-mod.png)
