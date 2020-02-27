@@ -58,9 +58,6 @@ Authentication/Confidentiality
 
 ## Crypto System
 
-## Binary Protections
-
-
 ## Compiler Changes
 **Original Flags**
 ~~~ 
@@ -90,10 +87,6 @@ mb-gcc -Wall -O0 -g3 -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessag
 mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conversion -fstack-check -mxl-reorder -Wstack-protector --param ssp-buffer-size=4 -ftrapv -Wl,-z,noexecstack -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessage-length=0 -MT"$@" -I"../../drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 ~~~
 
-## String Obfuscation
-
-## Patch Prevention
-
 ## Data Flow
 
 ![Data Flow](/data-flow.png)
@@ -104,8 +97,22 @@ Our design introduces a new FIFO, hereafter termed the input FIFO, which becomes
 	
 The output FIFO's width has been changed to simplify connectivity, which requires samples to be written twice but enables future implementation of stereo audio capability with changes to software only. Also, the clock generation for the codec's clock domain can now be reconfigured by the microblaze, which would enable playback of audio with different sample rates with changes to software only.
 	
+~~~
+	MSB                                                              LSB
+[   UNUSED    (W)][   COMMAND   (W)][           STATUS          (R)]
+W: write only, reads will return zero 
+R: read only, writes will have no effect
+~~~
+	
 Commands from the miPod application are now issued through a shared register which generates an interrupt on the microblaze when written. The application side of the register cannot modify any commands it has already issued, and a new interrupt shall not be dispatched until it is acknowledged by a special write issued by the microblaze. This command register is also the means by which a hardware watchdog timer is reset.
 
 ## Watchdog
 
 ## Integrity Monitor
+
+![Integrity Module Implementation](/integrity-mod.png)
+
+While less common, it is possible to retrieve or corrupt information by temperature attacks. Extreme cold temperatures can be used to halt a processor during operation, while extreme heat can result in errors and incorrect memory loading. Similarly, it has been demonstrated that tampering with voltages can cause errors to occur while a computer is processing secret information, resulting in a leak of secrets. 
+To protect against these attacks, the FPGA has a built in ADC (XADC) that monitors temperature and voltage sensors. The module contains status registers which can be read either via JTAG or programmable logic. 7 alarm registers are also included as output signals which are active-HIGH. The alarms given, along with their respective status registers are shown in figure 2. Since the XADC also connects to the processing system via AXI, it is also possible to read the status registers from the processing system; however, it is better practice to read the status using the programmable logic. The solution arrived at was to combine the signals into an active-LOW reset signal using a 7-input NOR module whose output is tied to the proc_sys_reset module (See Figure 1). 
+
+![Alarm Registers](/alarm-reg.png)
