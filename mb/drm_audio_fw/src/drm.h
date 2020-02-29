@@ -14,6 +14,7 @@
 #define AUDIO_SAMPLING_RATE 48000 // ADC/DAC sampling rate in Hz
 #define BYTES_PER_SAMP 2
 #define PREVIEW_SZ (PREVIEW_TIME_SEC * AUDIO_SAMPLING_RATE * BYTES_PER_SAMP)
+#define NSEEKSAMPLES (AUDIO_SAMPLING_RATE * 5 * BYTES_PER_SAMP)
 #define LOGIN_DELAY 5 // seconds
 
 /* Size constants */
@@ -29,6 +30,7 @@
 #define BLAKE_SZ 64
 #define KEY_SZ 32 // TODO: Verify key size
 #define SONG_KEY_SZ MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ // TODO: this aint right
+#define SONG_PG_SZ (1<<24)		//16MB, half the size alloted for the song buffer
 
 /* Shared buffer values */
 enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };

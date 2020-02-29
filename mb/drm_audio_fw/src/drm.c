@@ -29,6 +29,9 @@ STATE state;
 /* Command channel struct */
 volatile cmd_channel *CMDChannel = (cmd_channel *)SHARED_DDR_BASE;
 
+/* Command register */
+ volatile u32* cmdreg = 0x80000000;		//todo use XPAR definition
+
 // LED colors and controller
 u32 *led = (u32 *) XPAR_RGB_PWM_0_PWM_AXI_BASEADDR;
 const struct color RED = {0x01ff, 0x0000, 0x0000};
@@ -80,6 +83,13 @@ int initMicroBlaze() {
     setState(STOPPED);
 
     return status;
+}
+
+u32 read_cr()
+{
+	//read cr bits and adjust to match command enum format
+	return ((*cmdreg) & 0x00FF0000) >> 16;
+	*cmdreg |= 0xFFFFFFFF;
 }
 
 //////////////////////// HELPER FUNCTIONS ////////////////////////
@@ -429,7 +439,7 @@ void digitalOut() {
 }
 
 void play() {
-    u32 counter = 0, rem, cp_num, cp_xfil_cnt, offset, dma_cnt, length, *fifo_fill;
+    u32 rem = 0, cp_num, cp_xfil_cnt, dma_cnt, length;
 
     /* Check authorization */
     if (checkAuth()) {
@@ -441,7 +451,10 @@ void play() {
     }
 
     rem = length;
-    fifo_fill = (u32 *)XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR;
+    //Register mapping info
+    //https://www.xilinx.com/support/documentation/ip_documentation/axi_gpio/v2_0/pg144-axi-gpio.pdf#page=10
+    u32* fifo_fill_in  = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR + 0x8);			//input fifo uses second gpio bank
+    u32* fifo_fill_out = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR);
 
     // write entire file to two-block codec fifo
     // writes to one block while the other is being played
@@ -450,8 +463,10 @@ void play() {
         // check for interrupt to stop playback
         while (InterruptProcessed) {
             InterruptProcessed = FALSE;
+            uint16_t cmd = read_cr();
+        	mb_printf("Command (P): %08X\r\n", cmd);
 
-            switch (CMDChannel->cmd) {
+            switch (cmd) {
                 case PAUSE:
                     xil_printf("%s%s" MB_PROMPT, "Pausing...\r\n");
                     setState(PAUSED);
@@ -470,35 +485,72 @@ void play() {
                     xil_printf("%s%s" MB_PROMPT, "Restarting Song...\r\n");
                     rem = length; // reset song counter
                     setState(PLAYING);
-                default:
-                    break;
+                case FASTFWD:
+					break;
+				case SEEKFWD:
+					//Seek forward by up to 5 seconds or until the end of the song
+					rem = (rem > NSEEKSAMPLES) ? (rem - NSEEKSAMPLES) : 0;
+					break;
+				case SEEKREV:
+					//Seek backwards by up to 5 seconds or until the start of the song
+					rem = (length - rem > NSEEKSAMPLES) ? (rem + NSEEKSAMPLES) : length;
+					break;
+				default:
+					break;
             }
         }
 
         // calculate write size and offset
+        //If more than a chunk remains, cp_num = chunk size, otherwise cp_num = rem
         cp_num = (rem > CHUNK_SZ) ? CHUNK_SZ : rem;
-        offset = (counter++ % 2 == 0) ? 0 : CHUNK_SZ;
-
-        // do first memcpy here into DMA BRAM
-        Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR + offset),
-                   (void *)(SongMD.wav + length - rem), (u32)(cp_num));
-
+        //add one chunk of offset ever odd copy
+        //offset no longer needed in this scheme?
+        //offset = (counter++ % 2 == 0) ? 0 : CHUNK_SZ;
+        // do first mem cpy here into DMA BRAM
+        Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR),
+                   (void *)(get_drm_song(c->song) + length - rem),
+                   (u32)(cp_num));
         cp_xfil_cnt = cp_num;
-
-        while (cp_xfil_cnt > 0) {
-
+        while (cp_xfil_cnt > 0)
+        {
             // polling while loop to wait for DMA to be ready
             // DMA must run first for this to yield the proper state
             // rem != length checks for first run
-            while (XAxiDma_Busy(&sAxiDma, XAXIDMA_DMA_TO_DEVICE) && rem != length &&
-                   *fifo_fill < (FIFO_CAP - 32))
-                ;
-
+        	//wait for copy data to DMA bram
+            while (XAxiDma_Busy(&sAxiDma, XAXIDMA_DMA_TO_DEVICE)
+                   && rem != length && *fifo_fill_in < (FIFO_CAP - 32));
             // do DMA
-            dma_cnt = (FIFO_CAP - *fifo_fill > cp_xfil_cnt) ? FIFO_CAP - *fifo_fill
-                                                            : cp_xfil_cnt;
-            fnAudioPlay(sAxiDma, offset, dma_cnt);
+            // if the available fifo capacity is more than xfil_cnt, (fully fill the fifo), otherwise fill xfil_cnt bytes
+            dma_cnt = (FIFO_CAP - *fifo_fill_in > cp_xfil_cnt)
+                      ? FIFO_CAP - *fifo_fill_in
+                      : cp_xfil_cnt;
+            //DMA from bram to first fifo
+            //this will potentially max the fifo, but will copy at least CHUNK_SZ
+            fnAudioPlay(sAxiDma, 0, dma_cnt);
             cp_xfil_cnt -= dma_cnt;
+        }
+        
+        //get and put bytes from first fifo to second fifo
+        //load output fifo at
+        uint32_t sample = 0;
+        while (*fifo_fill_in > 0)
+        {
+        	//Note:	this call is blocking, but the program should never hang here because it is only
+        	//		reached when there is data in the input fifo
+        	//
+        	//This is a 32 bit read and thus contains up to two samples. Low bits will always contain a sample
+        	getfslx(sample, 0,);
+        	//Perform decrypt here
+        	//Note:	this call is blocking, it might be preferable to replace it with the nonblocking version (see fsl.h)
+        	//		and add a fifo capacity check
+        	//
+        	//This is a 32 bit write, whatever is written here will be automatically split into two 16 byte samples.
+
+        	if (!speed || (skipctr++ %4 == 0) )		//test feature to allow actual fast forwarding instead of skipping
+        		putfslx(sample, 0,);
+        	//double up samples for mono audio
+        	putfslx((sample & 0x0000FFFF) | (sample & 0x0000FFFF)<<16, 0,);
+        	putfslx((sample & 0xFFFF0000) | (sample & 0xFFFF0000)>>16, 0,);
         }
         rem -= cp_num;
     }
@@ -507,6 +559,8 @@ void play() {
 
 //////////////////////// MAIN FUNCTION ////////////////////////
 int main() {
+    *cmdreg |= 0xFFFFFFFF;
+
     if (initMicroBlaze() == XST_FAILURE) {
         return XST_FAILURE;
     }
@@ -522,10 +576,12 @@ int main() {
     while (1) {
         // Wait for interrupt to start
         if (InterruptProcessed) {
+            uint32_t cmd = read_cr();
             InterruptProcessed = FALSE;
             setState(WORKING);
+            mb_printf("Command: %08X\r\n", cmd);
 
-            switch (CMDChannel->cmd) {
+            switch (cmd) {
                 case LOGIN:
                     /* Cache CMD channel _differently_ */
                     if (!cacheCMD(LOGIN)) {
