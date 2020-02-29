@@ -1,7 +1,3 @@
-################################################################################
-# Automatically-generated file. Do not edit!
-################################################################################
-
 -include ../makefile.init
 
 RM := rm -rf
@@ -10,8 +6,9 @@ RM := rm -rf
 -include sources.mk
 -include src/subdir.mk
 -include subdir.mk
--include objects.mk
+USER_OBJS :=
 
+LIBS := -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
 ifneq ($(MAKECMDGOALS),clean)
 ifneq ($(strip $(S_UPPER_DEPS)),)
 -include $(S_UPPER_DEPS)
@@ -35,7 +32,7 @@ all: drm_audio_fw.elf secondary-outputs
 drm_audio_fw.elf: $(OBJS) ../src/lscript.ld $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MicroBlaze gcc linker'
-	mb-gcc $(OBJS) $(USER_OBJS) $(LIBS) -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw_bsp/microblaze_0/lib" -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw/src/lib" -lsodium -Wl,-T -Wl,../src/lscript.ld -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "drm_audio_fw.elf"
+	mb-gcc $(OBJS) $(USER_OBJS) $(LIBS) -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw_bsp/microblaze_0/lib" -Wl,-T -Wl,../src/lscript.ld -L"/home/artificial/projects/nullify/eCTF20/mb/drm_audio_fw_bsp/microblaze_0/include" -Wall -Wextra -Wconversion -Wsign-conversion -Os -s -fvisibility=hidden -static -mxl-reorder -fstack-check  -Wstack-protector --param ssp-buffer-size=4 -ftrapv -Wl,-z,noexecstack -mlittle-endian -mcpu=v10.0 -Wl,--relax -Wl,--gc-sections -o "drm_audio_fw.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 

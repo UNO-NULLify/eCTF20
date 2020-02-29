@@ -1,7 +1,7 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include "drm.h"
-#include "include/sodium.h"
+#include "monocypher.h"
 #include "platform.h"
 #include "secrets.h"
 #include "sleep.h"
@@ -17,13 +17,16 @@
 // Current user struct
 user_md UserMD;
 
-// DRM metadata struct
-drm_md DeviceMD;
-
 // Song metadata struct
 song_md SongMD;
 
-// Command channel struct
+/* Crypto Struct*/
+crypto Crypto;
+
+/* Player State */
+STATE state;
+
+/* Command channel struct */
 volatile cmd_channel *CMDChannel = (cmd_channel *)SHARED_DDR_BASE;
 
 // LED colors and controller
@@ -39,13 +42,13 @@ static XAxiDma sAxiDma;
 //////////////////////// INTERRUPT HANDLING ////////////////////////
 
 // shared variable between main thread and interrupt processing thread
-volatile static int InterruptProcessed = FALSE;
+static volatile int InterruptProcessed = FALSE;
 static XIntc InterruptController;
 
 void myISR(void) { InterruptProcessed = TRUE; }
 
 int initMicroBlaze() {
-    u32 status;
+    int status;
 
     // Initialize MicroBlaze platform
     init_platform();
@@ -80,10 +83,13 @@ int initMicroBlaze() {
 }
 
 //////////////////////// HELPER FUNCTIONS ////////////////////////
-// Set state of drm and LED color
-void setState(STATE state) {
-    DeviceMD.state = state;
-    switch (state) {
+/**
+ * @brief Set state of drm and LED color
+ * @param state - The state of the player/drm
+ */
+void setState(STATE s) {
+    state = s;
+    switch (s) {
         case WORKING:
             setLED(led, YELLOW);
             break;
@@ -100,12 +106,86 @@ void setState(STATE state) {
     }
 }
 
-int loadSong() {
+/**
+ * Store the CMD channel to less volatile structs
+ */
+int cacheCMD(char s) {
+    switch (s) {
+        case LOGIN:
+            if (UserMD.logged_in == 1) { break; }
+            memcpy((void *)UserMD.username, (void*)CMDChannel->username, MAX_USERNAME_SZ);
+            uint8_t hash[32];
+            uint8_t salt[16];
+            uint32_t nb_blocks = 8; // Kilobytes
+            uint32_t nb_iterations = 3; // 3 iterations
+            void *work_area = malloc(nb_blocks * 1024);
+            if (work_area == NULL) {
+                xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Out of memory!");
+                return -1;
+            }
+            crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, (void *)CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
+            free(work_area);
+            memcpy((void *)UserMD.pin_hash, hash, HASH_SZ);
 
+            uint8_t song_key [BLAKE_SZ];
+            uint8_t sk_input[MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ];
+            strcpy(sk_input, hash); // Songkey = blake2b(hashpin + pin + SongName)
+            strcat(sk_input, (void *)CMDChannel->pin);
+            strcat(sk_input, (void *)SongMD.song_name);
+            crypto_blake2b(song_key, sk_input, MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ);
+            memcpy((void *)Crypto.song_key, song_key, BLAKE_SZ);
+            break;
+        case LOGOUT:
+            if (UserMD.logged_in == 0) { break; }
+        case QUERY_SONG:
+            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
+            break;
+        case QUERY_PLAYER:
+            break;
+        case SHARE:
+            memcpy((void *)UserMD.recipient, (void*)CMDChannel->username, MAX_USERNAME_SZ);
+            break;
+        case PLAY:
+            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
+            break;
+        case DIGITAL_OUT:
+            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
+            break;
+        default:
+            break;
+    }
+
+    /* Clear the cmd channel */
+    crypto_wipe(&CMDChannel, sizeof(CMDChannel));
+
+    return 1;
+}
+
+/**
+ * @brief Load the song metadata into song_drm and convert ids to names
+ * @return status
+ */
+int loadSongMD() {
+	int status = 0;
+
+	return status;
 }
 
 int decryptSong() {
+	int status = 0;
 
+    uint8_t hardware_secret_hash[BLAKE_SZ]; // HardwareSecretHash = hash(hardwareSecret+SongName)
+    uint8_t hsh_input[HARDWARE_SECRET_SZ+MAX_SONG_NAME_SZ];
+
+    strcpy(hsh_input, HARDWARE_SECRET); // TODO: Define HARDWARE_SECRET
+    strcat(hsh_input, SongMD.song_name);
+
+    crypto_blake2b(hardware_secret_hash, hsh_input, HARDWARE_SECRET_SZ+MAX_SONG_NAME_SZ);
+    memcpy((void *)Crypto.hardware_secret, hardware_secret_hash, BLAKE_SZ);
+
+    // HardwareSecretHash30 = hash(hardwareSecret+SongName+”string”)
+
+	return status;
 }
 
 /**
@@ -116,24 +196,26 @@ int checkAuth() {
     int user_access = 0;
     int region_access = 0;
     /* Check user is logged in */
-    if (!UserMD.logged_in) {
-        /* Check user is owner or shared user */
-        if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
-            user_access = 0;
+    if (UserMD.logged_in) {
+        /* Check if user is the song owner */
+        if (crypto_verify64((void *)SongMD.owner,(void *)UserMD.username) == 0) {
+            user_access = 1;
+        }
+        else {
+            //check if they are a shared owner
             for (int i = 0; i < PROVISIONED_USERS; i++) {
-                if (sodium_memcmp(SongMD.shared[i], UserMD.name, sizeof(SongMD.shared[i]))) {
+                if (crypto_verify64((void *)SongMD.shared[i], (void *)UserMD.username) == 0) {
                     user_access = 1;
                     break;
                 }
             }
-        } else { user_access = 1; }
+        }
     }
 
     /* Check song region matches player */
-    for (int i = 0; i < SongMD.region_num; i++) {
+    for (int i = 0; i < SongMD.num_regions; i++) {
         for (int j = 0; j < PROVISIONED_REGIONS; j++) {
-            /* TODO: Somebody double-check my logic here */
-            if (sodium_memcmp(SongMD.region_list[i], region_data[i].name, MAX_REGION_SZ)) {
+            if (crypto_verify64((void *)SongMD.region_list[i], (void *)region_data[j].name) == 0) {
                 region_access = 1;
                 break;
             }
@@ -158,24 +240,27 @@ void logOn() {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already logged-in.");
         return;
     } else {
-        // search username
+        // Search username
         for (int i = 0; i < PROVISIONED_USERS; i++) {
-            if (sodium_memcmp(user_data[i].name, CMDChannel->username, sizeof(user_data[i].name))) {
-                // generate and search hash
-                if (crypto_pwhash_str_verify(user_data[i].pin_hash, CMDChannel->pin, strlen(CMDChannel->pin))) {
-                    UserMD.name = user_data[i].name;
-                    UserMD.pin_hash = user_data[i].pin_hash;
-                    UserMD.hw_secret = user_data[i].hw_secret;
-                    UserMD.pub_key = user_data[i].pub_key;
-                    UserMD.pvt_key_enc = user_data[i].pvt_key;
-                    UserMD.logged_in = 1;
-                }
-                xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User not found");
-                sodium_memzero(&UserMD, sizeof(UserMD));
-                sodium_memzero(&CMDChannel, sizeof(CMDChannel));
-                // delay failed attempt by 5 seconds
-                sleep(LOGIN_DELAY);
+            if (crypto_verify64((void *)user_data[i].name, (void *)UserMD.username) == 0) {
+            	// Check hash
+            	if (crypto_verify32((void *)user_data[i].pin_hash, (void *)UserMD.pin_hash) == 0) {
+            		memcpy(UserMD.username, user_data[i].name, MAX_USERNAME_SZ);
+            		memcpy(UserMD.pin_hash, user_data[i].pin_hash, HASH_SZ);
+            		memcpy(UserMD.hw_secret, user_data[i].hw_secret, KEY_SZ);
+            		memcpy(UserMD.pub_key, user_data[i].pub_key, KEY_SZ);
+            	    memcpy(UserMD.pvt_key_enc, user_data[i].pvt_key, KEY_SZ);
+            		UserMD.logged_in = 1;
+            	}
             }
+        }
+
+        //if you aren't logged in after checking that stuff print message, clear struct, and sleep
+        if (!UserMD.logged_in) {
+            xil_printf("%s%s\r\n", MB_PROMPT, "LOGIN ERROR.");
+            crypto_wipe(&UserMD, sizeof(UserMD));
+            // delay failed attempt by 5 seconds
+            sleep(LOGIN_DELAY);
         }
     }
 }
@@ -187,8 +272,7 @@ void logOff() {
     // check if logged in
     if (UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Logging out...");
-        sodium_memzero(&UserMD, sizeof(UserMD));
-        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
+        crypto_wipe(&UserMD, sizeof(UserMD));
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
         return;
@@ -199,82 +283,67 @@ void logOff() {
  * @brief Allows owner to share access of the song to another user.
  * @param recipient - the user in which the owner wants to share song access to.
  */
-void __attribute__((noinline,section(".chacha20_share")))share() {
+void share() {
     int index = -1;
     int check_1 = 0;
     int check_2 = 1;
     int check_3 = 0;
-
-    /* Check song is loaded */
-    if (!SongMD.loaded) {
-        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
-        sodium_memzero(&SongMD, sizeof(SongMD));
-        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
-        return;
-    }
     
     /* Check user is logged in */
     if (!UserMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in!");
-        sodium_memzero(&SongMD, sizeof(SongMD));
-        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
+        crypto_wipe(&SongMD, sizeof(SongMD));
         return;
     }
     
     /* Check user is the song owner */
-    if (!sodium_memcmp(SongMD.owner, UserMD.name, sizeof(SongMD.owner))) {
+    if (crypto_verify64((void *)SongMD.owner, (void *)UserMD.username == 0)) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not song owner!");
-        sodium_memzero(&SongMD, sizeof(SongMD));
+        crypto_wipe(&SongMD, sizeof(SongMD));
         return;
     }
     
     /* Loop through every user in database */
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-        /* check recipient exists */
-        if (sodium_memcmp(user_data[i].name, CMDChannel->username, sizeof(user_data[i].name))) { check_1 = 1; }
+        /* Check recipient exists */
+        if (crypto_verify64((void *)user_data[i].name, (void *)UserMD.recipient) == 0) { check_1 = 1; }
         
         /* Check recipient doesn't already have access */
-        if (sodium_memcmp(SongMD.shared[i], CMDChannel->username, sizeof(SongMD.shared[i]))) { check_2 = 0; }
+        if (crypto_verify64((void *)SongMD.shared[i], (void *)UserMD.recipient) == 0) { check_2 = 0; }
         
         /* Check for an empty spot */
-        if (sodium_memcmp(SongMD.shared[i], NULL, sizeof(SongMD.shared[i]))) { check_3 = 1; index = i; }
+        if (crypto_verify16((void *)SongMD.shared[i], NULL) == 0) { check_3 = 1; index = i; }
     }
     
     /* This odd code prevents ugly nested if-statements and multiple loops*/
     if (!check_1){
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User does not exist!");
-        sodium_memzero(&SongMD, sizeof(SongMD));
-        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
+        crypto_wipe(&SongMD, sizeof(SongMD));
         return;
     }
     if (check_2){
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already has access!");
-        sodium_memzero(&SongMD, sizeof(SongMD));
-        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
+        crypto_wipe(&SongMD, sizeof(SongMD));
         return;
     }
     if (!check_3) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Too many shared users!");
-        sodium_memzero(&SongMD, sizeof(SongMD));
-        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
+        crypto_wipe(&SongMD, sizeof(SongMD));
         return;
     }
     if (index < 0) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Something went terribly wrong.");
-        sodium_memzero(&SongMD, sizeof(SongMD));
+        crypto_wipe(&SongMD, sizeof(SongMD));
         return;
     }
 
     /* Add recipient to list if conditions are met */
-    strcpy(SongMD.shared[index], CMDChannel->username);
+    strcpy(SongMD.shared[index], UserMD.recipient);
 
-    xil_printf("%s%s%s\r\n", MB_PROMPT, "Song shared with:", CMDChannel->username);
+    xil_printf("%s%s%s\r\n", MB_PROMPT, "Song shared with:", UserMD.recipient);
 
-    /*
-     * TODO: write shared list somewhere...
-     * - song metadata?
-     * - ext file?
-     */
+    /* TODO: Write new metadata */
+
 }
 
 /**
@@ -290,17 +359,16 @@ void querySong() {
     /* Check song is loaded */
     if (!SongMD.loaded) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
-        sodium_memzero(&SongMD, sizeof(SongMD));
-        sodium_memzero(&CMDChannel, sizeof(CMDChannel));
+        crypto_wipe(&SongMD, sizeof(SongMD));
         return;
     }
     
     /* Print song regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
-    for (int i = 0; i < SongMD.region_num; i++) {
-        if (SongMD.region_list[i] != NULL) {
-            xil_printf(" %s", SongMD.region_list[i]);
-        } else if (SongMD.region_list[i] != NULL && i == SongMD.region_num -1) {
+    for (int i = 0; i < SongMD.num_regions; i++) {
+        if (SongMD.region_list[i] != NULL && i != PROVISIONED_REGIONS - 1) {
+            xil_printf(" %s,", SongMD.region_list[i]);
+        } else if (SongMD.region_list[i] != NULL && i == PROVISIONED_REGIONS - 1) {
             xil_printf(" %s", SongMD.region_list[i]);
         }
     }
@@ -311,9 +379,9 @@ void querySong() {
     /* Print shared users */
     xil_printf("%s%s", MB_PROMPT, "Authorized users:");
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-        if (SongMD.shared[i] != NULL) {
+        if (SongMD.shared[i] != NULL && i != PROVISIONED_USERS - 1) {
             xil_printf(" %s,", SongMD.shared[i]);
-        } else if (SongMD.shared[i] != NULL && i == PROVISIONED_USERS -1) {
+        } else if (SongMD.shared[i] != NULL && i == PROVISIONED_USERS - 1) {
             xil_printf(" %s", SongMD.shared[i]);
         }
     }
@@ -324,9 +392,9 @@ void queryPlayer() {
     /* Print player regions */
     xil_printf("%s%s", MB_PROMPT, "Regions:");
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
-        if (region_data[i].name != NULL) {
+        if (region_data[i].name != NULL && i != PROVISIONED_REGIONS - 1) {
             xil_printf(" %s,", region_data[i].name);
-        } else if (region_data[i].name != NULL && i == PROVISIONED_REGIONS -1) {
+        } else if (region_data[i].name != NULL && i == PROVISIONED_REGIONS - 1) {
             xil_printf(" %s", region_data[i].name);
         }
     }
@@ -334,30 +402,28 @@ void queryPlayer() {
     /* Print device users */
     xil_printf("%s%s", MB_PROMPT, "Authorized users:");
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-        if (user_data[i].name != NULL && i < PROVISIONED_USERS -1) {
+        if (user_data[i].name != NULL && i != PROVISIONED_USERS - 1) {
             xil_printf(" %s,", user_data[i].name);
-        } else if (user_data[i].name != NULL && i == PROVISIONED_USERS -1) {
+        } else if (user_data[i].name != NULL && i == PROVISIONED_USERS - 1) {
             xil_printf(" %s", user_data[i].name);
         }
     }
     xil_printf("\r\n");
 }
 
-void digitalOut() {
+void digitalOut() {    
     /* Check authorization */
-    if (checkAuth() ||  PREVIEW_SZ > CMDChannel->song.wav_size) {
+    if (checkAuth() ||  PREVIEW_SZ > SongMD.wav_size) {
         /* Export full song */
-        CMDChannel->song.file_size -= CMDChannel->song.md.md_size;
-        CMDChannel->song.wav_size -= CMDChannel->song.md.md_size;
-        xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, CMDChannel->song.wav_size);
+        xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, SongMD.wav_size);
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "Only playing 30 seconds");
-        CMDChannel->song.file_size -= CMDChannel->song.wav_size - PREVIEW_SZ;
-        CMDChannel->song.wav_size = PREVIEW_SZ;
+        SongMD.file_size -= SongMD.wav_size - PREVIEW_SZ;
+        SongMD.wav_size = PREVIEW_SZ;
     }
 
-    // move WAV file up in buffer, skipping metadata
-    memmove((void *)&CMDChannel->song.md, (void *)get_drm_song(CMDChannel->song), CMDChannel->song.wav_size);
+    // move WAV file up in buffer, skipping metadata;
+    memmove((void *)&CMDChannel->song, (void *)SongMD.wav, SongMD.wav_size);
 
     xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
@@ -365,15 +431,10 @@ void digitalOut() {
 void play() {
     u32 counter = 0, rem, cp_num, cp_xfil_cnt, offset, dma_cnt, length, *fifo_fill;
 
-    /* Load song */
-    if (loadSong()) {
-        xil_printf("%s%s" MB_PROMPT, "ERROR: Song load failed!\r\n");
-    }
-
     /* Check authorization */
     if (checkAuth()) {
         /* Play full song */
-        length = SongMD.song_length;
+        length = SongMD.wav_size;
     } else {
         /* Play sample song */
         length = PREVIEW_SZ;
@@ -403,6 +464,7 @@ void play() {
                     break;
                 case STOP:
                     xil_printf("%s%s" MB_PROMPT, "Stopping playback...\r\n");
+                    //this return needs to be here to stop playing the song
                     return;
                 case RESTART:
                     xil_printf("%s%s" MB_PROMPT, "Restarting Song...\r\n");
@@ -417,9 +479,9 @@ void play() {
         cp_num = (rem > CHUNK_SZ) ? CHUNK_SZ : rem;
         offset = (counter++ % 2 == 0) ? 0 : CHUNK_SZ;
 
-        // do first mem cpy here into DMA BRAM
+        // do first memcpy here into DMA BRAM
         Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR + offset),
-                   (void *)(get_drm_song(CMDChannel->song) + length - rem), (u32)(cp_num));
+                   (void *)(SongMD.wav + length - rem), (u32)(cp_num));
 
         cp_xfil_cnt = cp_num;
 
@@ -442,18 +504,17 @@ void play() {
     }
 }
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
 
 //////////////////////// MAIN FUNCTION ////////////////////////
 int main() {
-
     if (initMicroBlaze() == XST_FAILURE) {
         return XST_FAILURE;
     }
 
-    // Clear command channel
-    sodium_memzero((void *)CMDChannel, sizeof(cmd_channel));
+    /* Initialize ALL THE STRUCTS! */
+    crypto_wipe(&CMDChannel, sizeof(CMDChannel));
+    crypto_wipe(&SongMD, sizeof(SongMD));
+    crypto_wipe(&UserMD, sizeof(UserMD));
 
     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Audio DRM Module has booted!");
 
@@ -464,31 +525,67 @@ int main() {
             InterruptProcessed = FALSE;
             setState(WORKING);
 
-            switch (CMDChannel->cmd) { // TODO: Set command to something
+            switch (CMDChannel->cmd) {
                 case LOGIN:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(LOGIN)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     logOn();
                     break;
                 case LOGOUT:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(LOGOUT)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     logOff();
                     break;
                 case QUERY_SONG:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(QUERY_SONG)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     querySong();
                     break;
                 case QUERY_PLAYER:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(QUERY_PLAYER)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     queryPlayer();
                     break;
                 case SHARE:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(1)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     share();
                     break;
                 case PLAY:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(PLAY)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     play();
                     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Done Playing Song");
                     break;
                 case DIGITAL_OUT:
+                    /* Cache CMD channel _differently_ */
+                    if (!cacheCMD(DIGITAL_OUT)) {
+                        xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Failed to copy CMD Channel!");
+                        break;
+                    }
                     digitalOut();
                     break;
                 default:
                     xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not a command!");
+                    crypto_wipe(&CMDChannel, sizeof(CMDChannel));
                     break;
             }
 
@@ -498,9 +595,6 @@ int main() {
         }
     }
 
-    // TODO: Set a way to reach this unreachable code
     cleanup_platform();
     return 0;
 }
-
-#pragma clang diagnostic pop
