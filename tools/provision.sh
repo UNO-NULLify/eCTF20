@@ -65,8 +65,8 @@ if [ ! $? -eq 0 ]; then
 #Compile Song encription
 echo "Compiling encryption scripts"
 # gcc -Wall -pedantic -std=c1x -g -o  ./encryptFile encryptFile.c -lsodium
-gcc -Wall -pedantic -std=c1x -g -o  ./encryptSong encryptSong.c monocypher.c
-gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c monocypher.c
+gcc -Wall -pedantic -std=c1x -g -o  ./encryptSong encryptSong.c monocypher.c -I./
+gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c monocypher.c -I./
 #End Compile Song encription
 
 # Generate Test Song
