@@ -1,7 +1,7 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
--- Date        : Sun Feb 16 18:34:11 2020
+-- Date        : Sun Feb 16 19:01:58 2020
 -- Host        : ssg0 running 64-bit Arch Linux
 -- Command     : write_vhdl -force -mode funcsim -rename_top system_ins_lmb_bram_if_cntlr_0_0 -prefix
 --               system_ins_lmb_bram_if_cntlr_0_0_ system_data_lmb_bram_if_cntlr_1_0_sim_netlist.vhdl
@@ -222,7 +222,7 @@ GND: unisim.vcomponents.GND
 U0: entity work.system_ins_lmb_bram_if_cntlr_0_0_lmb_bram_if_cntlr
      port map (
       BRAM_WEN_A(0 to 3) => BRAM_WEN_A(0 to 3),
-      LMB_ABus(2) => \^lmb_abus\(1),
+      LMB_ABus(2) => \^lmb_abus\(0),
       LMB_ABus(1) => \^lmb_abus\(2),
       LMB_ABus(0) => \^lmb_abus\(10),
       LMB_AddrStrobe => \^lmb_addrstrobe\,

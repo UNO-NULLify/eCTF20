@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-// Date        : Sun Feb 16 18:34:12 2020
+// Date        : Sun Feb 16 19:01:58 2020
 // Host        : ssg0 running 64-bit Arch Linux
-// Command     : write_verilog -force -mode funcsim
-//               /ectf/pl/src/bd/system/ip/system_data_lmb_bram_if_cntlr_1_0/system_data_lmb_bram_if_cntlr_1_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top system_data_lmb_bram_if_cntlr_1_0 -prefix
+//               system_data_lmb_bram_if_cntlr_1_0_ system_data_lmb_bram_if_cntlr_1_0_sim_netlist.v
 // Design      : system_data_lmb_bram_if_cntlr_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,85 +12,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "system_data_lmb_bram_if_cntlr_1_0,lmb_bram_if_cntlr,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "lmb_bram_if_cntlr,Vivado 2017.4" *) 
-(* NotValidForBitStream *)
-module system_data_lmb_bram_if_cntlr_1_0
-   (LMB_Clk,
-    LMB_Rst,
-    LMB_ABus,
-    LMB_WriteDBus,
-    LMB_AddrStrobe,
-    LMB_ReadStrobe,
-    LMB_WriteStrobe,
-    LMB_BE,
-    Sl_DBus,
-    Sl_Ready,
-    Sl_Wait,
-    Sl_UE,
-    Sl_CE,
-    BRAM_Rst_A,
-    BRAM_Clk_A,
-    BRAM_Addr_A,
-    BRAM_EN_A,
-    BRAM_WEN_A,
-    BRAM_Dout_A,
-    BRAM_Din_A);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 CLK.LMB_Clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME CLK.LMB_Clk, ASSOCIATED_BUSIF SLMB:SLMB1:SLMB2:SLMB3, ASSOCIATED_RESET LMB_Rst, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0" *) input LMB_Clk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 RST.LMB_Rst RST" *) (* x_interface_parameter = "XIL_INTERFACENAME RST.LMB_Rst, POLARITY ACTIVE_HIGH, TYPE INTERCONNECT" *) input LMB_Rst;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB ABUS" *) (* x_interface_parameter = "XIL_INTERFACENAME SLMB, ADDR_WIDTH 32, DATA_WIDTH 32, READ_WRITE_MODE READ_WRITE" *) input [0:31]LMB_ABus;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB WRITEDBUS" *) input [0:31]LMB_WriteDBus;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB ADDRSTROBE" *) input LMB_AddrStrobe;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB READSTROBE" *) input LMB_ReadStrobe;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB WRITESTROBE" *) input LMB_WriteStrobe;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB BE" *) input [0:3]LMB_BE;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB READDBUS" *) output [0:31]Sl_DBus;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB READY" *) output Sl_Ready;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB WAIT" *) output Sl_Wait;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB UE" *) output Sl_UE;
-  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB CE" *) output Sl_CE;
-  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT RST" *) (* x_interface_parameter = "XIL_INTERFACENAME BRAM_PORT, MEM_SIZE 131072, MASTER_TYPE BRAM_CTRL, MEM_WIDTH 32, MEM_ECC NONE, READ_WRITE_MODE READ_WRITE" *) output BRAM_Rst_A;
-  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT CLK" *) output BRAM_Clk_A;
-  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT ADDR" *) output [0:31]BRAM_Addr_A;
-  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT EN" *) output BRAM_EN_A;
-  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT WE" *) output [0:3]BRAM_WEN_A;
-  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT DIN" *) output [0:31]BRAM_Dout_A;
-  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT DOUT" *) input [0:31]BRAM_Din_A;
-
-  wire \<const0> ;
-  wire [0:31]BRAM_Din_A;
-  wire [0:3]BRAM_WEN_A;
-  wire [0:31]LMB_ABus;
-  wire LMB_AddrStrobe;
-  wire [0:3]LMB_BE;
-  wire LMB_Clk;
-  wire LMB_Rst;
-  wire [0:31]LMB_WriteDBus;
-  wire LMB_WriteStrobe;
-  wire Sl_Ready;
-
-  assign BRAM_Addr_A[0:31] = LMB_ABus;
-  assign BRAM_Clk_A = LMB_Clk;
-  assign BRAM_Dout_A[0:31] = LMB_WriteDBus;
-  assign BRAM_EN_A = LMB_AddrStrobe;
-  assign BRAM_Rst_A = \<const0> ;
-  assign Sl_CE = \<const0> ;
-  assign Sl_DBus[0:31] = BRAM_Din_A;
-  assign Sl_UE = \<const0> ;
-  assign Sl_Wait = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
-  system_data_lmb_bram_if_cntlr_1_0_lmb_bram_if_cntlr U0
-       (.BRAM_WEN_A(BRAM_WEN_A),
-        .LMB_ABus({LMB_ABus[1],LMB_ABus[2],LMB_ABus[10]}),
-        .LMB_AddrStrobe(LMB_AddrStrobe),
-        .LMB_BE(LMB_BE),
-        .LMB_Clk(LMB_Clk),
-        .LMB_Rst(LMB_Rst),
-        .LMB_WriteStrobe(LMB_WriteStrobe),
-        .Sl_Ready(Sl_Ready));
-endmodule
-
-(* ORIG_REF_NAME = "lmb_bram_if_cntlr" *) 
 module system_data_lmb_bram_if_cntlr_1_0_lmb_bram_if_cntlr
    (BRAM_WEN_A,
     Sl_Ready,
@@ -192,6 +113,84 @@ module system_data_lmb_bram_if_cntlr_1_0_lmb_bram_if_cntlr
        (.I0(Sl_Rdy),
         .I1(lmb_as),
         .O(Sl_Ready));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "system_data_lmb_bram_if_cntlr_1_0,lmb_bram_if_cntlr,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "lmb_bram_if_cntlr,Vivado 2017.4" *) 
+(* NotValidForBitStream *)
+module system_data_lmb_bram_if_cntlr_1_0
+   (LMB_Clk,
+    LMB_Rst,
+    LMB_ABus,
+    LMB_WriteDBus,
+    LMB_AddrStrobe,
+    LMB_ReadStrobe,
+    LMB_WriteStrobe,
+    LMB_BE,
+    Sl_DBus,
+    Sl_Ready,
+    Sl_Wait,
+    Sl_UE,
+    Sl_CE,
+    BRAM_Rst_A,
+    BRAM_Clk_A,
+    BRAM_Addr_A,
+    BRAM_EN_A,
+    BRAM_WEN_A,
+    BRAM_Dout_A,
+    BRAM_Din_A);
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 CLK.LMB_Clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME CLK.LMB_Clk, ASSOCIATED_BUSIF SLMB:SLMB1:SLMB2:SLMB3, ASSOCIATED_RESET LMB_Rst, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0" *) input LMB_Clk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 RST.LMB_Rst RST" *) (* x_interface_parameter = "XIL_INTERFACENAME RST.LMB_Rst, POLARITY ACTIVE_HIGH, TYPE INTERCONNECT" *) input LMB_Rst;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB ABUS" *) (* x_interface_parameter = "XIL_INTERFACENAME SLMB, ADDR_WIDTH 32, DATA_WIDTH 32, READ_WRITE_MODE READ_WRITE" *) input [0:31]LMB_ABus;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB WRITEDBUS" *) input [0:31]LMB_WriteDBus;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB ADDRSTROBE" *) input LMB_AddrStrobe;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB READSTROBE" *) input LMB_ReadStrobe;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB WRITESTROBE" *) input LMB_WriteStrobe;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB BE" *) input [0:3]LMB_BE;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB READDBUS" *) output [0:31]Sl_DBus;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB READY" *) output Sl_Ready;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB WAIT" *) output Sl_Wait;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB UE" *) output Sl_UE;
+  (* x_interface_info = "xilinx.com:interface:lmb:1.0 SLMB CE" *) output Sl_CE;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT RST" *) (* x_interface_parameter = "XIL_INTERFACENAME BRAM_PORT, MEM_SIZE 131072, MASTER_TYPE BRAM_CTRL, MEM_WIDTH 32, MEM_ECC NONE, READ_WRITE_MODE READ_WRITE" *) output BRAM_Rst_A;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT CLK" *) output BRAM_Clk_A;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT ADDR" *) output [0:31]BRAM_Addr_A;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT EN" *) output BRAM_EN_A;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT WE" *) output [0:3]BRAM_WEN_A;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT DIN" *) output [0:31]BRAM_Dout_A;
+  (* x_interface_info = "xilinx.com:interface:bram:1.0 BRAM_PORT DOUT" *) input [0:31]BRAM_Din_A;
+
+  wire \<const0> ;
+  wire [0:31]BRAM_Din_A;
+  wire [0:3]BRAM_WEN_A;
+  wire [0:31]LMB_ABus;
+  wire LMB_AddrStrobe;
+  wire [0:3]LMB_BE;
+  wire LMB_Clk;
+  wire LMB_Rst;
+  wire [0:31]LMB_WriteDBus;
+  wire LMB_WriteStrobe;
+  wire Sl_Ready;
+
+  assign BRAM_Addr_A[0:31] = LMB_ABus;
+  assign BRAM_Clk_A = LMB_Clk;
+  assign BRAM_Dout_A[0:31] = LMB_WriteDBus;
+  assign BRAM_EN_A = LMB_AddrStrobe;
+  assign BRAM_Rst_A = \<const0> ;
+  assign Sl_CE = \<const0> ;
+  assign Sl_DBus[0:31] = BRAM_Din_A;
+  assign Sl_UE = \<const0> ;
+  assign Sl_Wait = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  system_data_lmb_bram_if_cntlr_1_0_lmb_bram_if_cntlr U0
+       (.BRAM_WEN_A(BRAM_WEN_A),
+        .LMB_ABus({LMB_ABus[0],LMB_ABus[2],LMB_ABus[10]}),
+        .LMB_AddrStrobe(LMB_AddrStrobe),
+        .LMB_BE(LMB_BE),
+        .LMB_Clk(LMB_Clk),
+        .LMB_Rst(LMB_Rst),
+        .LMB_WriteStrobe(LMB_WriteStrobe),
+        .Sl_Ready(Sl_Ready));
 endmodule
 `ifndef GLBL
 `define GLBL

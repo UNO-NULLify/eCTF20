@@ -1,9 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
--- Date        : Sun Feb 16 18:34:22 2020
+-- Date        : Sun Feb 16 18:34:21 2020
 -- Host        : ssg0 running 64-bit Arch Linux
--- Command     : write_vhdl -force -mode funcsim /ectf/pl/src/bd/system/ip/system_mdm_0_0/system_mdm_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_mdm_0_0 -prefix
+--               system_mdm_0_0_ system_mdm_0_0_sim_netlist.vhdl
 -- Design      : system_mdm_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -33,8 +34,6 @@ entity system_mdm_0_0_MB_BSCANE2 is
     Scan_Reset : in STD_LOGIC;
     Scan_Reset_Sel : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_BSCANE2 : entity is "MB_BSCANE2";
 end system_mdm_0_0_MB_BSCANE2;
 
 architecture STRUCTURE of system_mdm_0_0_MB_BSCANE2 is
@@ -121,8 +120,6 @@ entity system_mdm_0_0_MB_BUFGCTRL is
     S0 : in STD_LOGIC;
     dbgreg_select : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_BUFGCTRL : entity is "MB_BUFGCTRL";
 end system_mdm_0_0_MB_BUFGCTRL;
 
 architecture STRUCTURE of system_mdm_0_0_MB_BUFGCTRL is
@@ -275,8 +272,6 @@ entity system_mdm_0_0_MB_FDC_1 is
     Scan_Reset : in STD_LOGIC;
     Scan_Reset_Sel : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_FDC_1 : entity is "MB_FDC_1";
 end system_mdm_0_0_MB_FDC_1;
 
 architecture STRUCTURE of system_mdm_0_0_MB_FDC_1 is
@@ -946,8 +941,6 @@ entity system_mdm_0_0_MB_FDRE is
     \Has_FIFO.lmb_wr_idle_reg\ : in STD_LOGIC;
     \Using_FPGA.Native_0\ : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_FDRE : entity is "MB_FDRE";
 end system_mdm_0_0_MB_FDRE;
 
 architecture STRUCTURE of system_mdm_0_0_MB_FDRE is
@@ -1006,8 +999,6 @@ entity system_mdm_0_0_MB_FDRE_1 is
     CE : in STD_LOGIC;
     \Use_Dbg_Reg_Access.DbgReg_DRCK_i_reg\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_FDRE_1 : entity is "MB_FDRE_1";
 end system_mdm_0_0_MB_FDRE_1;
 
 architecture STRUCTURE of system_mdm_0_0_MB_FDRE_1 is
@@ -2185,8 +2176,6 @@ entity system_mdm_0_0_MB_FDRSE is
     S_AXI_ACLK : in STD_LOGIC;
     set_Ext_BRK : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_FDRSE : entity is "MB_FDRSE";
 end system_mdm_0_0_MB_FDRSE;
 
 architecture STRUCTURE of system_mdm_0_0_MB_FDRSE is
@@ -2248,8 +2237,6 @@ entity system_mdm_0_0_MB_MUXCY_XORCY is
     lopt_10 : out STD_LOGIC;
     lopt_11 : out STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_MUXCY_XORCY : entity is "MB_MUXCY_XORCY";
 end system_mdm_0_0_MB_MUXCY_XORCY;
 
 architecture STRUCTURE of system_mdm_0_0_MB_MUXCY_XORCY is
@@ -2824,8 +2811,6 @@ entity system_mdm_0_0_MB_SRL16E is
     Q : in STD_LOGIC_VECTOR ( 3 downto 0 );
     \Use_Dbg_Reg_Access.DbgReg_DRCK_i_reg\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_SRL16E : entity is "MB_SRL16E";
 end system_mdm_0_0_MB_SRL16E;
 
 architecture STRUCTURE of system_mdm_0_0_MB_SRL16E is
@@ -4319,8 +4304,6 @@ entity system_mdm_0_0_MB_SRLC32E is
     A : in STD_LOGIC_VECTOR ( 4 downto 0 );
     M_AXI_ACLK : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_SRLC32E : entity is "MB_SRLC32E";
 end system_mdm_0_0_MB_SRLC32E;
 
 architecture STRUCTURE of system_mdm_0_0_MB_SRLC32E is
@@ -7368,8 +7351,6 @@ entity system_mdm_0_0_MB_XORCY is
     LI : in STD_LOGIC;
     LO : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MB_XORCY : entity is "MB_XORCY";
 end system_mdm_0_0_MB_XORCY;
 
 architecture STRUCTURE of system_mdm_0_0_MB_XORCY is
@@ -7481,8 +7462,6 @@ entity system_mdm_0_0_pselect_f is
     ce_expnd_i_7 : out STD_LOGIC;
     \bus2ip_addr_i_reg[4]\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_pselect_f : entity is "pselect_f";
 end system_mdm_0_0_pselect_f;
 
 architecture STRUCTURE of system_mdm_0_0_pselect_f is
@@ -7645,8 +7624,6 @@ entity system_mdm_0_0_SRL_FIFO is
     Bus_RNW_reg : in STD_LOGIC;
     \GEN_BKEND_CE_REGISTERS[0].ce_out_i_reg\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_SRL_FIFO : entity is "SRL_FIFO";
 end system_mdm_0_0_SRL_FIFO;
 
 architecture STRUCTURE of system_mdm_0_0_SRL_FIFO is
@@ -9483,8 +9460,6 @@ entity system_mdm_0_0_address_decoder is
     bus2ip_rnw_i : in STD_LOGIC;
     \bus2ip_addr_i_reg[4]\ : in STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_address_decoder : entity is "address_decoder";
 end system_mdm_0_0_address_decoder;
 
 architecture STRUCTURE of system_mdm_0_0_address_decoder is
@@ -10193,8 +10168,6 @@ entity system_mdm_0_0_JTAG_CONTROL is
     \Use_Dbg_Reg_Access.shift_index_reg[1]_6\ : in STD_LOGIC;
     \Has_FIFO.lmb_wr_idle_reg\ : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_JTAG_CONTROL : entity is "JTAG_CONTROL";
 end system_mdm_0_0_JTAG_CONTROL;
 
 architecture STRUCTURE of system_mdm_0_0_JTAG_CONTROL is
@@ -13962,8 +13935,6 @@ entity system_mdm_0_0_bus_master is
     \Use_Dbg_Mem_Access.rd_wr_size_reg[0]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     LMB_Byte_Enable_31 : in STD_LOGIC_VECTOR ( 0 to 3 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_bus_master : entity is "bus_master";
 end system_mdm_0_0_bus_master;
 
 architecture STRUCTURE of system_mdm_0_0_bus_master is
@@ -16224,8 +16195,6 @@ entity system_mdm_0_0_slave_attachment is
     S_AXI_AWADDR : in STD_LOGIC_VECTOR ( 2 downto 0 );
     D : in STD_LOGIC_VECTOR ( 23 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_slave_attachment : entity is "slave_attachment";
 end system_mdm_0_0_slave_attachment;
 
 architecture STRUCTURE of system_mdm_0_0_slave_attachment is
@@ -16987,8 +16956,6 @@ entity system_mdm_0_0_MDM_Core is
     \Has_FIFO.lmb_wr_idle_reg\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
     bus2ip_rdce : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MDM_Core : entity is "MDM_Core";
 end system_mdm_0_0_MDM_Core;
 
 architecture STRUCTURE of system_mdm_0_0_MDM_Core is
@@ -22378,8 +22345,6 @@ entity system_mdm_0_0_axi_lite_ipif is
     S_AXI_AWADDR : in STD_LOGIC_VECTOR ( 2 downto 0 );
     D : in STD_LOGIC_VECTOR ( 23 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_axi_lite_ipif : entity is "axi_lite_ipif";
 end system_mdm_0_0_axi_lite_ipif;
 
 architecture STRUCTURE of system_mdm_0_0_axi_lite_ipif is
@@ -24030,8 +23995,6 @@ entity system_mdm_0_0_MDM is
   attribute C_USE_CROSS_TRIGGER of system_mdm_0_0_MDM : entity is 0;
   attribute C_USE_UART : integer;
   attribute C_USE_UART of system_mdm_0_0_MDM : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_mdm_0_0_MDM : entity is "MDM";
 end system_mdm_0_0_MDM;
 
 architecture STRUCTURE of system_mdm_0_0_MDM is

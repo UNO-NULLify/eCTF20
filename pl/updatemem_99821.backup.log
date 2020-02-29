@@ -1,0 +1,20 @@
+#-----------------------------------------------------------
+# updatemem v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# 
+# Start of session at: Sun Feb 16 19:40:12 2020
+# Process ID: 99821
+# Current directory: /ectf/pl
+# Command line: updatemem -mode batch -source /opt/Xilinx/SDK/2017.4/scripts/updatemem/main.tcl -notrace -tclargs -meminfo ..//mb/Cora-Z7-07S/system_wrapper.mmi -data ..//mb/drm_audio_fw/Debug/drm_audio_fw.elf -proc system_i/microblaze_0 -bit ..//mb/Cora-Z7-07S/system_wrapper.bit -out ..//mb/Cora-Z7-07S/download.bit -force
+# Log file: /ectf/pl/updatemem.log
+# Journal file: /ectf/pl/updatemem.jou
+#-----------------------------------------------------------
+source /opt/Xilinx/SDK/2017.4/scripts/updatemem/main.tcl -notrace
+ Loading bitfile ..//mb/Cora-Z7-07S/system_wrapper.bit
+Loading data files...
+Updating memory content...
+Creating bitstream...
+Bitstream compression saved 8185088 bits.
+Writing bitstream ..//mb/Cora-Z7-07S/download.bit...
+  update_mem: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 885.445 ; gain = 405.164 ; free physical = 8316 ; free virtual = 12677
+INFO: [Common 17-206] Exiting updatemem at Sun Feb 16 19:40:20 2020...
