@@ -104,24 +104,17 @@ To update the miPod:
 2. Copy the file `miPod/Debug/miPod.elf` to `~/music/miPod` on the board (either over minicom or by USB drive)
 
 To update the DRM:
-1. Save all files to build the project. Ensure in the Console window that the build succeeded.
-2. Press the `Program FPGA` button on the upper bar or `Xilinx > Program FPGA`
-3. Ensure that the the ELF file to initialize in Block RAM for microblaze_0 is the drm_audio_fw.elf.
-   If it is anything else, click the box and then the drop down arrow that appars to the right.
-   The ELF file should appear. If it does not, ensure that the build succeeded.
-4. Choose Program. A dialog box saying "Initializing Bitstream with ELF data" should appear. If it
-   Disappears without an error message, the LED LD0 is red, and "MB> Audio DRM Module has Booted"
-   is printed over UART, it successfully programmed.
-   *NOTE: Occasionally after multiple calls to Program FPGA, the FPGA does not actually program.
-   No error message prints, but the message over UART does not appear. If this happens, continue
-   to the next step*
-5. Using the previous step, you should be able to reprogram the FPGA without rebooting the device.
-   However, these changes will not persist across power cycles. To accomplish this, insert the 
-   micro SD card and select `Xilinx > Create Boot Image` in the SDK. The output path should be set to
-   `<SD boot partition>/miPod.BIN`. If you have an existing BIF file, you can import from that.
-   Otherwise, the following partitions should be added (**NOTE: THE ORDER MATTERS**):
-       1. `boot-image/fsbl.elf` - a dummy bootloader that will never run. The real bootloader is
-          encrypted for your team in `boot-image/BOOT.BIN`, however the Xilinx tools require a bootloader.
-       2. `mb/Cora-Z7-07S/download.bit` - the bitstream loaded with the DRM ELF (created by step 4)
-6. Insert the SD card into the Cora board and the RESET button next to the power jack. When Linux finishes
-   booting, the MicroBlaze should have the updated bitstream.
+0. Plug in Cora-Z7 board.
+1. Make sure the `drm_audio_fw` project compiles correctly.
+2. Go to `Xilinx > Program FPGA`.
+3. Change the `ELF/MEM File to Initialize in Block RAM` of `microblaze_0` to the DRM elf file you want to upload.
+4. Click Program. (This will generate `download.bit` in `Cora-Z7-07S` dir).
+5. Go to `Xilinx > Create Boot Image`.
+6. Click `Import from existing BIF file`.
+7. Set `Import BIF file path` to the `template.bif` file.
+8. Set `Output Path` to `miPod.bin`.
+9. Edit the first `Boot image partition` to the `stock-fsbl.elf`.
+10. Edit the second `Boot image partition` to the newly generated `download.bit`.
+11. Click `Create Image`. (This will generate `miPod.bin`).
+12. Replace the `miPod.bin` on your SD card's `BOOT` partition with your newly generated `miPod.bin`.
+
