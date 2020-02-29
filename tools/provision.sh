@@ -94,7 +94,7 @@ case "$choice" in
     python3 protectSong --region-list USA Canada \
                         --region-secrets-path ./provision_test/region_secrets.json \
                         --outfile ./provision_test/audio/test-protect-small-step.drm \
-                        --infile ../sample-audio/hi.wav \
+                        --infile ../sample-audio/Sound-Bite_One-Small-Step.wav \
                         --owner $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}') \
                         --user-secrets-path ./provision_test/user_secrets.json
 
