@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z007sclg400-1" LaunchTime="1582415428">
+<GenRun Id="synth_1" LaunchPart="xc7z007sclg400-1" LaunchTime="1583165386">
   <File Type="VDS-TIMING-PB" Name="system_wrapper_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="system_wrapper_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="system_wrapper.dcp"/>
@@ -63,15 +63,18 @@
       <Option Id="Directive">0</Option>
     </Step>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="system_data_lmb_bram_if_cntlr_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_share_axi_bram_ctrl_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_share_axi_bram_ctrl_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_smartconnect_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_birdwtch_iface_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_splitchannel_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xbar_1"/>
   <BlockFileSet Type="BlockSrcs" Name="system_clk_wiz_25M_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_axis_data_fifo_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_microblaze_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_fifo_count_axi_gpio_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_ins_lmb_bram_if_cntlr_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_i2s_output_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_splitchannel_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_microblaze_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_axis_data_fifo_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_axi_dma_0_0"/>
 </GenRun>

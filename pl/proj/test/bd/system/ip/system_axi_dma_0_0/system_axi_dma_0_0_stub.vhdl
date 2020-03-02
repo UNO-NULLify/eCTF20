@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
--- Date        : Wed Feb 19 21:39:16 2020
+-- Date        : Sun Mar  1 20:00:19 2020
 -- Host        : ssg0 running 64-bit Arch Linux
--- Command     : write_vhdl -force -mode synth_stub
---               /ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top system_axi_dma_0_0 -prefix
+--               system_axi_dma_0_0_ system_axi_dma_0_0_stub.vhdl
 -- Design      : system_axi_dma_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z007sclg400-1

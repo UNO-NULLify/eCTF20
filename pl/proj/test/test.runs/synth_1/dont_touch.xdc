@@ -33,12 +33,6 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_data_lmb
 # IP: /ectf/pl/proj/test/bd/system/ip/system_data_lmb_v10_1_0/system_data_lmb_v10_1_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_data_lmb_v10_1_0 || ORIG_REF_NAME==system_data_lmb_v10_1_0} -quiet] -quiet
 
-# IP: /ectf/pl/proj/test/bd/system/ip/system_dma_axi_bram_ctrl_1_0/system_dma_axi_bram_ctrl_1_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_dma_axi_bram_ctrl_1_0 || ORIG_REF_NAME==system_dma_axi_bram_ctrl_1_0} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_dma_blk_mem_gen_1_0/system_dma_blk_mem_gen_1_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_dma_blk_mem_gen_1_0 || ORIG_REF_NAME==system_dma_blk_mem_gen_1_0} -quiet] -quiet
-
 # IP: /ectf/pl/proj/test/bd/system/ip/system_fifo_count_axi_gpio_0_0/system_fifo_count_axi_gpio_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_fifo_count_axi_gpio_0_0 || ORIG_REF_NAME==system_fifo_count_axi_gpio_0_0} -quiet] -quiet
 
@@ -53,12 +47,6 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_ins_lmb_
 
 # IP: /ectf/pl/proj/test/bd/system/ip/system_mb_axi_mem_interconnect_0_0/system_mb_axi_mem_interconnect_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_mb_axi_mem_interconnect_0_0 || ORIG_REF_NAME==system_mb_axi_mem_interconnect_0_0} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_mb_dma_axi_bram_ctrl_0_0/system_mb_dma_axi_bram_ctrl_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_mb_dma_axi_bram_ctrl_0_0 || ORIG_REF_NAME==system_mb_dma_axi_bram_ctrl_0_0} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_mdm_0_0/system_mdm_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_mdm_0_0 || ORIG_REF_NAME==system_mdm_0_0} -quiet] -quiet
 
 # IP: /ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_microblaze_0_0 || ORIG_REF_NAME==system_microblaze_0_0} -quiet] -quiet
@@ -90,15 +78,6 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_share_bl
 # IP: /ectf/pl/proj/test/bd/system/ip/system_xadc_wiz_0_0/system_xadc_wiz_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_xadc_wiz_0_0 || ORIG_REF_NAME==system_xadc_wiz_0_0} -quiet] -quiet
 
-# IP: /ectf/pl/proj/test/bd/system/ip/system_xlconcat_2_0/system_xlconcat_2_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_xlconcat_2_0 || ORIG_REF_NAME==system_xlconcat_2_0} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_xlconstant_0_0/system_xlconstant_0_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_xlconstant_0_0 || ORIG_REF_NAME==system_xlconstant_0_0} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_xlconstant_1_0/system_xlconstant_1_0.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_xlconstant_1_0 || ORIG_REF_NAME==system_xlconstant_1_0} -quiet] -quiet
-
 # IP: /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_xbar_1 || ORIG_REF_NAME==system_xbar_1} -quiet] -quiet
 
@@ -108,26 +87,8 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_xbar_0 |
 # IP: /ectf/pl/proj/test/bd/system/ip/system_splitchannel_0_0/system_splitchannel_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_splitchannel_0_0 || ORIG_REF_NAME==system_splitchannel_0_0} -quiet] -quiet
 
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_11/system_auto_pc_11.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_11 || ORIG_REF_NAME==system_auto_pc_11} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_10/system_auto_pc_10.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_10 || ORIG_REF_NAME==system_auto_pc_10} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_9/system_auto_pc_9.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_9 || ORIG_REF_NAME==system_auto_pc_9} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_12/system_auto_pc_12.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_12 || ORIG_REF_NAME==system_auto_pc_12} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_6/system_auto_pc_6.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_6 || ORIG_REF_NAME==system_auto_pc_6} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_5/system_auto_pc_5.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_5 || ORIG_REF_NAME==system_auto_pc_5} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_4/system_auto_pc_4.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_4 || ORIG_REF_NAME==system_auto_pc_4} -quiet] -quiet
+# IP: /ectf/pl/proj/test/bd/system/ip/system_smartconnect_0_0/system_smartconnect_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_smartconnect_0_0 || ORIG_REF_NAME==system_smartconnect_0_0} -quiet] -quiet
 
 # IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_3/system_auto_pc_3.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_3 || ORIG_REF_NAME==system_auto_pc_3} -quiet] -quiet
@@ -135,16 +96,13 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_
 # IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_2/system_auto_pc_2.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_2 || ORIG_REF_NAME==system_auto_pc_2} -quiet] -quiet
 
+# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_4/system_auto_pc_4.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_4 || ORIG_REF_NAME==system_auto_pc_4} -quiet] -quiet
+
 # IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_1/system_auto_pc_1.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_1 || ORIG_REF_NAME==system_auto_pc_1} -quiet] -quiet
 
 # IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_0/system_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_0 || ORIG_REF_NAME==system_auto_pc_0} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_8/system_auto_pc_8.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_8 || ORIG_REF_NAME==system_auto_pc_8} -quiet] -quiet
-
-# IP: /ectf/pl/proj/test/bd/system/ip/system_auto_pc_7/system_auto_pc_7.xci
-set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==system_auto_pc_7 || ORIG_REF_NAME==system_auto_pc_7} -quiet] -quiet
 
 # XDC: /ectf/pl/proj/test/bd/system/system_ooc.xdc

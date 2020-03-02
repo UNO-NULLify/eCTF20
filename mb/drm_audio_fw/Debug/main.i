@@ -215,6 +215,12 @@
 #define _LITTLE_ENDIAN 1
 #define __LITTLE_ENDIAN__ 1
 #define __MICROBLAZEEL__ 1
+#define HAVE_HW_MUL 1
+#define __HAVE_HW_MUL__ 1
+#define HAVE_HW_DIV 1
+#define __HAVE_HW_DIV__ 1
+#define HAVE_HW_BSHIFT 1
+#define __HAVE_HW_BSHIFT__ 1
 # 1 "<command-line>"
 # 1 "../src/main.c"
 
@@ -2368,7 +2374,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_ASYNC_WAKEUP 3
 #define XPAR_MICROBLAZE_0_AVOID_PRIMITIVES 0
 #define XPAR_MICROBLAZE_0_BASE_VECTORS 0x0000000000000000
-#define XPAR_MICROBLAZE_0_BRANCH_TARGET_CACHE_SIZE 0
+#define XPAR_MICROBLAZE_0_BRANCH_TARGET_CACHE_SIZE 4
 #define XPAR_MICROBLAZE_0_CACHE_BYTE_SIZE 8192
 #define XPAR_MICROBLAZE_0_DADDR_SIZE 32
 #define XPAR_MICROBLAZE_0_DATA_SIZE 32
@@ -2384,7 +2390,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_DCACHE_VICTIMS 0
 #define XPAR_MICROBLAZE_0_DC_AXI_MON 0
 #define XPAR_MICROBLAZE_0_DEBUG_COUNTER_WIDTH 32
-#define XPAR_MICROBLAZE_0_DEBUG_ENABLED 2
+#define XPAR_MICROBLAZE_0_DEBUG_ENABLED 0
 #define XPAR_MICROBLAZE_0_DEBUG_EVENT_COUNTERS 0
 #define XPAR_MICROBLAZE_0_DEBUG_EXTERNAL_TRACE 0
 #define XPAR_MICROBLAZE_0_DEBUG_INTERFACE 0
@@ -2555,7 +2561,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_TRACE 0
 #define XPAR_MICROBLAZE_0_UNALIGNED_EXCEPTIONS 0
 #define XPAR_MICROBLAZE_0_USE_BARREL 1
-#define XPAR_MICROBLAZE_0_USE_BRANCH_TARGET_CACHE 0
+#define XPAR_MICROBLAZE_0_USE_BRANCH_TARGET_CACHE 1
 #define XPAR_MICROBLAZE_0_USE_CONFIG_RESET 0
 #define XPAR_MICROBLAZE_0_USE_DCACHE 0
 #define XPAR_MICROBLAZE_0_USE_DIV 1
@@ -2591,7 +2597,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_ASYNC_WAKEUP 3
 #define XPAR_MICROBLAZE_AVOID_PRIMITIVES 0
 #define XPAR_MICROBLAZE_BASE_VECTORS 0x0000000000000000
-#define XPAR_MICROBLAZE_BRANCH_TARGET_CACHE_SIZE 0
+#define XPAR_MICROBLAZE_BRANCH_TARGET_CACHE_SIZE 4
 #define XPAR_MICROBLAZE_CACHE_BYTE_SIZE 8192
 #define XPAR_MICROBLAZE_DADDR_SIZE 32
 #define XPAR_MICROBLAZE_DATA_SIZE 32
@@ -2607,7 +2613,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_DCACHE_VICTIMS 0
 #define XPAR_MICROBLAZE_DC_AXI_MON 0
 #define XPAR_MICROBLAZE_DEBUG_COUNTER_WIDTH 32
-#define XPAR_MICROBLAZE_DEBUG_ENABLED 2
+#define XPAR_MICROBLAZE_DEBUG_ENABLED 0
 #define XPAR_MICROBLAZE_DEBUG_EVENT_COUNTERS 0
 #define XPAR_MICROBLAZE_DEBUG_EXTERNAL_TRACE 0
 #define XPAR_MICROBLAZE_DEBUG_INTERFACE 0
@@ -2778,7 +2784,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_TRACE 0
 #define XPAR_MICROBLAZE_UNALIGNED_EXCEPTIONS 0
 #define XPAR_MICROBLAZE_USE_BARREL 1
-#define XPAR_MICROBLAZE_USE_BRANCH_TARGET_CACHE 0
+#define XPAR_MICROBLAZE_USE_BRANCH_TARGET_CACHE 1
 #define XPAR_MICROBLAZE_USE_CONFIG_RESET 0
 #define XPAR_MICROBLAZE_USE_DCACHE 0
 #define XPAR_MICROBLAZE_USE_DIV 1
@@ -2827,7 +2833,7 @@ void cleanup_platform();
 #define XPAR_AXI_DMA_0_BASEADDR 0x04B10000
 #define XPAR_AXI_DMA_0_HIGHADDR 0x04B1FFFF
 #define XPAR_AXI_DMA_0_SG_INCLUDE_STSCNTRL_STRM 0
-#define XPAR_AXI_DMA_0_INCLUDE_MM2S_DRE 0
+#define XPAR_AXI_DMA_0_INCLUDE_MM2S_DRE 1
 #define XPAR_AXI_DMA_0_INCLUDE_S2MM_DRE 0
 #define XPAR_AXI_DMA_0_INCLUDE_MM2S 1
 #define XPAR_AXI_DMA_0_INCLUDE_S2MM 0
@@ -2837,7 +2843,7 @@ void cleanup_platform();
 #define XPAR_AXI_DMA_0_ENABLE_MULTI_CHANNEL 0
 #define XPAR_AXI_DMA_0_NUM_MM2S_CHANNELS 1
 #define XPAR_AXI_DMA_0_NUM_S2MM_CHANNELS 1
-#define XPAR_AXI_DMA_0_MM2S_BURST_SIZE 16
+#define XPAR_AXI_DMA_0_MM2S_BURST_SIZE 256
 #define XPAR_AXI_DMA_0_S2MM_BURST_SIZE 16
 #define XPAR_AXI_DMA_0_MICRO_DMA 0
 #define XPAR_AXI_DMA_0_ADDR_WIDTH 32
@@ -2850,7 +2856,7 @@ void cleanup_platform();
 #define XPAR_AXIDMA_0_BASEADDR 0x04B10000
 #define XPAR_AXIDMA_0_SG_INCLUDE_STSCNTRL_STRM 0
 #define XPAR_AXIDMA_0_INCLUDE_MM2S 1
-#define XPAR_AXIDMA_0_INCLUDE_MM2S_DRE 0
+#define XPAR_AXIDMA_0_INCLUDE_MM2S_DRE 1
 #define XPAR_AXIDMA_0_M_AXI_MM2S_DATA_WIDTH 32
 #define XPAR_AXIDMA_0_INCLUDE_S2MM 0
 #define XPAR_AXIDMA_0_INCLUDE_S2MM_DRE 0
@@ -2859,7 +2865,7 @@ void cleanup_platform();
 #define XPAR_AXIDMA_0_ENABLE_MULTI_CHANNEL 0
 #define XPAR_AXIDMA_0_NUM_MM2S_CHANNELS 1
 #define XPAR_AXIDMA_0_NUM_S2MM_CHANNELS 1
-#define XPAR_AXIDMA_0_MM2S_BURST_SIZE 16
+#define XPAR_AXIDMA_0_MM2S_BURST_SIZE 256
 #define XPAR_AXIDMA_0_S2MM_BURST_SIZE 16
 #define XPAR_AXIDMA_0_MICRO_DMA 0
 #define XPAR_AXIDMA_0_c_addr_width 32
@@ -2879,7 +2885,7 @@ void cleanup_platform();
 
 
 
-#define XPAR_XBRAM_NUM_INSTANCES 4U
+#define XPAR_XBRAM_NUM_INSTANCES 3U
 
 
 #define XPAR_DATA_LMB_BRAM_IF_CNTLR_1_DEVICE_ID 0U
@@ -2918,25 +2924,7 @@ void cleanup_platform();
 
 
 
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_DEVICE_ID 2U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_DATA_WIDTH 32U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_ECC 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_FAULT_INJECT 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_CE_FAILING_REGISTERS 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_UE_FAILING_REGISTERS 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_ECC_STATUS_REGISTERS 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_CE_COUNTER_WIDTH 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_ECC_ONOFF_REGISTER 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_ECC_ONOFF_RESET_VALUE 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_WRITE_ACCESS 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR 0xC0000000U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_HIGHADDR 0xC0007FFFU
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_CTRL_BASEADDR 0xFFFFFFFFU
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_CTRL_HIGHADDR 0xFFFFFFFFU
-
-
-
-#define XPAR_SHARE_AXI_BRAM_CTRL_0_DEVICE_ID 3U
+#define XPAR_SHARE_AXI_BRAM_CTRL_0_DEVICE_ID 2U
 #define XPAR_SHARE_AXI_BRAM_CTRL_0_DATA_WIDTH 32U
 #define XPAR_SHARE_AXI_BRAM_CTRL_0_ECC 0U
 #define XPAR_SHARE_AXI_BRAM_CTRL_0_FAULT_INJECT 0U
@@ -2986,7 +2974,7 @@ void cleanup_platform();
 #define XPAR_BRAM_1_HIGHADDR 0x0001FFFFU
 
 
-#define XPAR_BRAM_2_DEVICE_ID XPAR_MB_DMA_AXI_BRAM_CTRL_0_DEVICE_ID
+#define XPAR_BRAM_2_DEVICE_ID XPAR_SHARE_AXI_BRAM_CTRL_0_DEVICE_ID
 #define XPAR_BRAM_2_DATA_WIDTH 32U
 #define XPAR_BRAM_2_ECC 0U
 #define XPAR_BRAM_2_FAULT_INJECT 0U
@@ -2997,23 +2985,8 @@ void cleanup_platform();
 #define XPAR_BRAM_2_ECC_ONOFF_REGISTER 0U
 #define XPAR_BRAM_2_ECC_ONOFF_RESET_VALUE 0U
 #define XPAR_BRAM_2_WRITE_ACCESS 0U
-#define XPAR_BRAM_2_BASEADDR 0xC0000000U
-#define XPAR_BRAM_2_HIGHADDR 0xC0007FFFU
-
-
-#define XPAR_BRAM_3_DEVICE_ID XPAR_SHARE_AXI_BRAM_CTRL_0_DEVICE_ID
-#define XPAR_BRAM_3_DATA_WIDTH 32U
-#define XPAR_BRAM_3_ECC 0U
-#define XPAR_BRAM_3_FAULT_INJECT 0U
-#define XPAR_BRAM_3_CE_FAILING_REGISTERS 0U
-#define XPAR_BRAM_3_UE_FAILING_REGISTERS 0U
-#define XPAR_BRAM_3_ECC_STATUS_REGISTERS 0U
-#define XPAR_BRAM_3_CE_COUNTER_WIDTH 0U
-#define XPAR_BRAM_3_ECC_ONOFF_REGISTER 0U
-#define XPAR_BRAM_3_ECC_ONOFF_RESET_VALUE 0U
-#define XPAR_BRAM_3_WRITE_ACCESS 0U
-#define XPAR_BRAM_3_BASEADDR 0x04B00000U
-#define XPAR_BRAM_3_HIGHADDR 0x04B01FFFU
+#define XPAR_BRAM_2_BASEADDR 0x04B00000U
+#define XPAR_BRAM_2_HIGHADDR 0x04B01FFFU
 
 
 
@@ -3022,28 +2995,28 @@ void cleanup_platform();
 #define XPAR_XCLK_WIZ_NUM_INSTANCES 1
 
 
-#define XPAR_CLK_WIZ_25M_DEVICE_ID 0
-#define XPAR_CLK_WIZ_25M_BASEADDR 0x80010000
-#define XPAR_CLK_WIZ_25M_HIGHADDR 0x8001FFFF
-#define XPAR_CLK_WIZ_25M_ENABLE_CLOCK_MONITOR 0
-#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK0 0
-#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK1 0
-#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK2 0
-#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK3 0
-#define XPAR_CLK_WIZ_25M_REF_CLK_FREQ 100.0
-#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ0 100.0
-#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ1 100.0
-#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ2 100.0
-#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ3 100.0
-#define XPAR_CLK_WIZ_25M_PRECISION 1
-#define XPAR_CLK_WIZ_25M_ENABLE_PLL0 0
-#define XPAR_CLK_WIZ_25M_ENABLE_PLL1 0
+#define XPAR_CLK_WIZ_CODEC_DEVICE_ID 0
+#define XPAR_CLK_WIZ_CODEC_BASEADDR 0x80010000
+#define XPAR_CLK_WIZ_CODEC_HIGHADDR 0x8001FFFF
+#define XPAR_CLK_WIZ_CODEC_ENABLE_CLOCK_MONITOR 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_USER_CLOCK0 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_USER_CLOCK1 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_USER_CLOCK2 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_USER_CLOCK3 0
+#define XPAR_CLK_WIZ_CODEC_REF_CLK_FREQ 100.0
+#define XPAR_CLK_WIZ_CODEC_USER_CLK_FREQ0 100.0
+#define XPAR_CLK_WIZ_CODEC_USER_CLK_FREQ1 100.0
+#define XPAR_CLK_WIZ_CODEC_USER_CLK_FREQ2 100.0
+#define XPAR_CLK_WIZ_CODEC_USER_CLK_FREQ3 100.0
+#define XPAR_CLK_WIZ_CODEC_PRECISION 1
+#define XPAR_CLK_WIZ_CODEC_ENABLE_PLL0 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_PLL1 0
 
 
 
 
 
-#define XPAR_CLK_WIZ_0_DEVICE_ID XPAR_CLK_WIZ_25M_DEVICE_ID
+#define XPAR_CLK_WIZ_0_DEVICE_ID XPAR_CLK_WIZ_CODEC_DEVICE_ID
 #define XPAR_CLK_WIZ_0_BASEADDR 0x80010000
 #define XPAR_CLK_WIZ_0_HIGHADDR 0x8001FFFF
 #define XPAR_CLK_WIZ_0_ENABLE_CLOCK_MONITOR 0
@@ -3101,7 +3074,7 @@ void cleanup_platform();
 
 #define XPAR_PS7_M_AXI_GP0_S_AXI_BASEADDR 0x40000000
 #define XPAR_PS7_M_AXI_GP0_S_AXI_HIGHADDR 0x7FFFFFFF
-# 771 "/ectf/mb/drm_audio_fw_bsp/microblaze_0/include/xparameters.h"
+# 738 "/ectf/mb/drm_audio_fw_bsp/microblaze_0/include/xparameters.h"
 #define XPAR_XGPIO_NUM_INSTANCES 1
 
 
@@ -6094,9 +6067,9 @@ int XIntc_SimulateIntr(XIntc * InstancePtr, u8 Id);
 #define SHARED_DDR_BASE (0x20000000 + 0x1CC00000)
 
 
-#define CHUNK_SZ 16000
 
-#define FIFO_CAP 2048*2
+#define FIFO_CAP (2048 - 1)
+
 
 
 #define PREVIEW_TIME_SEC 30
@@ -6378,8 +6351,10 @@ void myISR(void) {
 u32 read_cr()
 {
 
- return ((*cmdreg) & 0x00FF0000) >> 16;
+ u32 cmd = *cmdreg;
+ return (cmd & 0x00FF0000) >> 16;
  *cmdreg |= 0xFFFFFFFF;
+
 }
 
 
@@ -6687,12 +6662,13 @@ void share_song() {
 
 
 void play_song() {
-    u32 rem = 0, cp_num, cp_xfil_cnt, dma_cnt, length;
+    u32 rem = 0;
+    u32 length = 0;
 
 
 
-    u32* fifo_fill_in = (u32 *)(0x04B20000 + 0x8);
-    u32* fifo_fill_out = (u32 *)(0x04B20000);
+    volatile u32* fifo_fill_in = (u32 *)(0x04B20000 + 0x8);
+    volatile u32* fifo_fill_out = (u32 *)(0x04B20000);
 
 
     xil_printf("\r\nMB> " "Reading Audio File...");
@@ -6712,9 +6688,10 @@ void play_song() {
     }
 
     rem = length;
+    u32 remlast = length;
 
     c->drm_state = PLAYING; setLED(led, GREEN);;
-    while(rem > 0) {
+    while(1) {
 
         while (InterruptProcessed) {
          InterruptProcessed = 0U;
@@ -6757,42 +6734,29 @@ void play_song() {
 
 
 
-        cp_num = (rem > 16000) ? 16000 : rem;
+
+
+        u32 chunk = ((2048 - 1) - *fifo_fill_in)*4;
+        u32 dma_to_ipf_count = (chunk < rem) ? chunk : rem;
 
 
 
 
 
-
-        Xil_MemCpy((void *)(0xC0000000U),
-                   (void *)(((char *)(&c->song.md) + c->song.md.md_size) + length - rem),
-                   (u32)(cp_num));
-
-        cp_xfil_cnt = cp_num;
-
-        while (cp_xfil_cnt > 0)
-        {
+        xil_printf("\r\nMB> " "dx: 0x%08x\r\n",((char *)(&c->song.md) + c->song.md.md_size) + length - rem);
 
 
 
 
 
+  if (dma_to_ipf_count > 0)
+   XAxiDma_SimpleTransfer( &sAxiDma,
+        (u32)(((char *)(&c->song.md) + c->song.md.md_size) + length - rem),
+        dma_to_ipf_count,
+        0x00);
 
-            while (XAxiDma_Busy(&sAxiDma, 0x00)
-                   && rem != length && *fifo_fill_in < (2048*2 - 32));
+  while (XAxiDma_Busy(&sAxiDma, 0x00) && rem != length);
 
-
-
-            dma_cnt = (2048*2 - *fifo_fill_in > cp_xfil_cnt)
-                      ? 2048*2 - *fifo_fill_in
-                      : cp_xfil_cnt;
-
-
-            fnAudioPlay(sAxiDma, 0, dma_cnt);
-            cp_xfil_cnt -= dma_cnt;
-
-
-        }
 
 
 
@@ -6804,12 +6768,13 @@ void play_song() {
 
 
          asm volatile ("" "get\t%0,rfsl" "0" : "=d" (sample));
-# 499 "../src/main.c"
+# 490 "../src/main.c"
          asm volatile ("" "put\t%0,rfsl" "0" :: "d" ((sample & 0x0000FFFF) | (sample & 0x0000FFFF)<<16));
          asm volatile ("" "put\t%0,rfsl" "0" :: "d" ((sample & 0xFFFF0000) | (sample & 0xFFFF0000)>>16));
         }
 
-        rem -= cp_num;
+        remlast = rem;
+        rem -= dma_to_ipf_count;
     }
 }
 

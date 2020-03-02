@@ -36,7 +36,10 @@
 								<option id="xilinx.gnu.compiler.dircategory.includes.1152677060" name="Include Paths" superClass="xilinx.gnu.compiler.dircategory.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/drm_audio_fw_bsp/microblaze_0/include}&quot;"/>
 								</option>
-								<option id="xilinx.gnu.compiler.misc.other.1134858620" superClass="xilinx.gnu.compiler.misc.other" value="-c -fmessage-length=0 -MT&quot;$@&quot; -save-temps" valueType="string"/>
+								<option id="xilinx.gnu.compiler.misc.other.1134858620" name="Other flags" superClass="xilinx.gnu.compiler.misc.other" value="-c -fmessage-length=0 -MT&quot;$@&quot; -save-temps" valueType="string"/>
+								<option id="xilinx.gnu.mb.compiler.inferred.usebarrel.2016852001" superClass="xilinx.gnu.mb.compiler.inferred.usebarrel" value="true" valueType="boolean"/>
+								<option id="xilinx.gnu.mb.compiler.inferred.mul.204633103" superClass="xilinx.gnu.mb.compiler.inferred.mul" value="xilinx.gnu.mb.compiler.inferred.mul.32bit" valueType="enumerated"/>
+								<option id="xilinx.gnu.mb.compiler.inferred.usediv.479493247" superClass="xilinx.gnu.mb.compiler.inferred.usediv" value="true" valueType="boolean"/>
 								<inputType id="xilinx.gnu.compiler.input.897023826" name="C source files" superClass="xilinx.gnu.compiler.input"/>
 							</tool>
 							<tool id="xilinx.gnu.mb.cxx.toolchain.compiler.debug.299349464" name="MicroBlaze g++ compiler" superClass="xilinx.gnu.mb.cxx.toolchain.compiler.debug">
@@ -205,4 +208,5 @@
 			<resource resourceType="PROJECT" workspacePath="/drm_audio_fw"/>
 		</configuration>
 	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
 </cproject>

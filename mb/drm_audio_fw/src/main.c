@@ -61,8 +61,10 @@ void myISR(void) {
 u32 read_cr()
 {
 	//read cr bits and adjust to match command enum format
-	return ((*cmdreg) & 0x00FF0000) >> 16;
-	*cmdreg |= 0xFFFFFFFF;
+	u32 cmd = *cmdreg;
+	return (cmd & 0x00FF0000) >> 16;
+	*cmdreg |= 0xFFFFFFFF;		//???
+
 }
 
 // returns whether an rid has been provisioned
@@ -370,12 +372,13 @@ void share_song() {
 
 // plays a song and looks for play-time commands
 void play_song() {
-    u32 rem = 0, cp_num, cp_xfil_cnt, dma_cnt, length;
+    u32 rem = 0;
+    u32 length = 0;
 
     //Register mapping info
     //https://www.xilinx.com/support/documentation/ip_documentation/axi_gpio/v2_0/pg144-axi-gpio.pdf#page=10
-    u32* fifo_fill_in  = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR + 0x8);			//input fifo uses second gpio bank
-    u32* fifo_fill_out = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR);
+    volatile u32* fifo_fill_in  = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR + 0x8);			//input fifo uses second gpio bank
+    volatile u32* fifo_fill_out = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR);
 
 
     mb_printf("Reading Audio File...");
@@ -395,9 +398,10 @@ void play_song() {
     }
 
     rem = length;
+    u32 remlast = length;
 
     set_playing();
-    while(rem > 0) {
+    while(1) {
         // check for interrupt to stop playback
         while (InterruptProcessed) {
         	InterruptProcessed = FALSE;
@@ -438,45 +442,32 @@ void play_song() {
 								}
         	}
 
-        // calculate write size and offset
-        //If more than a chunk remains, cp_num = chunk size, otherwise cp_num = rem
-        cp_num = (rem > CHUNK_SZ) ? CHUNK_SZ : rem;
 
-        //add one chunk of offset ever odd copy
-        //offset no longer needed in this scheme?
-        //offset = (counter++ % 2 == 0) ? 0 : CHUNK_SZ;
+        //Copy song data directly into input fifo:
+        //The DMA stream and FIFO are the same width
+        //Transfer enough to completely fill the input fifo
+        u32	chunk = (FIFO_CAP - *fifo_fill_in)*4; //bytes
+        u32 dma_to_ipf_count = (chunk < rem) ? chunk : rem;
 
-        // do first mem cpy here into DMA BRAM
-        Xil_MemCpy((void *)(XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR),
-                   (void *)(get_drm_song(c->song) + length - rem),
-                   (u32)(cp_num));
+		// polling while loop to wait for DMA to be ready
+		// DMA must run first for this to yield the proper state
+		// rem != length checks for first run
 
-        cp_xfil_cnt = cp_num;
+        mb_printf("dx: 0x%08x\r\n",get_drm_song(c->song) + length - rem);
 
-        while (cp_xfil_cnt > 0)
-        {
+		//TODO: Align DMA to 32 bit word?
 
-            // polling while loop to wait for DMA to be ready
-            // DMA must run first for this to yield the proper state
-            // rem != length checks for first run
+		//DMA to input fifo
+		//this will potentially max the fifo
+		if (dma_to_ipf_count > 0)
+			XAxiDma_SimpleTransfer(	&sAxiDma,
+								(u32)(get_drm_song(c->song) + length - rem),
+								dma_to_ipf_count,
+								XAXIDMA_DMA_TO_DEVICE);
 
-        	//wait for copy data to DMA bram
-            while (XAxiDma_Busy(&sAxiDma, XAXIDMA_DMA_TO_DEVICE)
-                   && rem != length && *fifo_fill_in < (FIFO_CAP - 32));
-
-            // do DMA
-            // if the available fifo capacity is more than xfil_cnt, (fully fill the fifo), otherwise fill xfil_cnt bytes
-            dma_cnt = (FIFO_CAP - *fifo_fill_in > cp_xfil_cnt)
-                      ? FIFO_CAP - *fifo_fill_in
-                      : cp_xfil_cnt;
-            //DMA from bram to first fifo
-            //this will potentially max the fifo, but will copy at least CHUNK_SZ
-            fnAudioPlay(sAxiDma, 0, dma_cnt);
-            cp_xfil_cnt -= dma_cnt;
-
-
-        }
-
+		while (XAxiDma_Busy(&sAxiDma, XAXIDMA_DMA_TO_DEVICE) && rem != length);
+		//there is a POSSIBILITY that execution reaches here before any samples have arrived
+		//thus the strange check above
         //get and put bytes from first fifo to second fifo
         //load output fifo at
         uint32_t sample = 0;
@@ -500,7 +491,8 @@ void play_song() {
         	putfslx((sample & 0xFFFF0000) | (sample & 0xFFFF0000)>>16, 0,);
         }
 
-        rem -= cp_num;
+        remlast = rem;
+        rem -= dma_to_ipf_count;	//dma_to_ipf_count is in fifo entries while rem is in bytes
     }
 }
 

@@ -120,19 +120,6 @@ ENTITY system_microblaze_0_0 IS
     M_AXI_DP_RRESP : IN STD_LOGIC_VECTOR(1 DOWNTO 0);
     M_AXI_DP_RVALID : IN STD_LOGIC;
     M_AXI_DP_RREADY : OUT STD_LOGIC;
-    Dbg_Clk : IN STD_LOGIC;
-    Dbg_TDI : IN STD_LOGIC;
-    Dbg_TDO : OUT STD_LOGIC;
-    Dbg_Reg_En : IN STD_LOGIC_VECTOR(0 TO 7);
-    Dbg_Shift : IN STD_LOGIC;
-    Dbg_Capture : IN STD_LOGIC;
-    Dbg_Update : IN STD_LOGIC;
-    Dbg_Trig_In : OUT STD_LOGIC_VECTOR(0 TO 7);
-    Dbg_Trig_Ack_In : IN STD_LOGIC_VECTOR(0 TO 7);
-    Dbg_Trig_Out : IN STD_LOGIC_VECTOR(0 TO 7);
-    Dbg_Trig_Ack_Out : OUT STD_LOGIC_VECTOR(0 TO 7);
-    Debug_Rst : IN STD_LOGIC;
-    Dbg_Disable : IN STD_LOGIC;
     M0_AXIS_TLAST : OUT STD_LOGIC;
     M0_AXIS_TDATA : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
     M0_AXIS_TVALID : OUT STD_LOGIC;
@@ -770,19 +757,6 @@ ARCHITECTURE system_microblaze_0_0_arch OF system_microblaze_0_0 IS
   ATTRIBUTE X_INTERFACE_INFO OF M0_AXIS_TDATA: SIGNAL IS "xilinx.com:interface:axis:1.0 M0_AXIS TDATA";
   ATTRIBUTE X_INTERFACE_PARAMETER OF M0_AXIS_TLAST: SIGNAL IS "XIL_INTERFACENAME M0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef";
   ATTRIBUTE X_INTERFACE_INFO OF M0_AXIS_TLAST: SIGNAL IS "xilinx.com:interface:axis:1.0 M0_AXIS TLAST";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Disable: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG DISABLE";
-  ATTRIBUTE X_INTERFACE_INFO OF Debug_Rst: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG RST";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Trig_Ack_Out: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG TRIG_ACK_OUT";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Trig_Out: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG TRIG_OUT";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Trig_Ack_In: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG TRIG_ACK_IN";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Trig_In: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG TRIG_IN";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Update: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG UPDATE";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Capture: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG CAPTURE";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Shift: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG SHIFT";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Reg_En: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG REG_EN";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_TDO: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG TDO";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_TDI: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG TDI";
-  ATTRIBUTE X_INTERFACE_INFO OF Dbg_Clk: SIGNAL IS "xilinx.com:interface:mbdebug:3.0 DEBUG CLK";
   ATTRIBUTE X_INTERFACE_INFO OF M_AXI_DP_RREADY: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_DP RREADY";
   ATTRIBUTE X_INTERFACE_INFO OF M_AXI_DP_RVALID: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_DP RVALID";
   ATTRIBUTE X_INTERFACE_INFO OF M_AXI_DP_RRESP: SIGNAL IS "xilinx.com:interface:aximm:1.0 M_AXI_DP RRESP";
@@ -919,8 +893,8 @@ BEGIN
       C_MMU_TLB_ACCESS => 3,
       C_MMU_ZONES => 16,
       C_MMU_PRIVILEGED_INSTR => 0,
-      C_USE_BRANCH_TARGET_CACHE => 0,
-      C_BRANCH_TARGET_CACHE_SIZE => 0,
+      C_USE_BRANCH_TARGET_CACHE => 1,
+      C_BRANCH_TARGET_CACHE_SIZE => 4,
       C_PC_WIDTH => 32,
       C_PVR => 0,
       C_PVR_USER1 => X"00",
@@ -928,7 +902,7 @@ BEGIN
       C_DYNAMIC_BUS_SIZING => 0,
       C_RESET_MSR => X"00000000",
       C_OPCODE_0x0_ILLEGAL => 0,
-      C_DEBUG_ENABLED => 2,
+      C_DEBUG_ENABLED => 0,
       C_DEBUG_INTERFACE => 0,
       C_NUMBER_OF_PC_BRK => 2,
       C_NUMBER_OF_RD_ADDR_BRK => 0,
@@ -1103,21 +1077,18 @@ BEGIN
       M_AXI_DP_RLAST => '0',
       M_AXI_DP_RVALID => M_AXI_DP_RVALID,
       M_AXI_DP_RREADY => M_AXI_DP_RREADY,
-      Dbg_Clk => Dbg_Clk,
-      Dbg_TDI => Dbg_TDI,
-      Dbg_TDO => Dbg_TDO,
-      Dbg_Reg_En => Dbg_Reg_En,
-      Dbg_Shift => Dbg_Shift,
-      Dbg_Capture => Dbg_Capture,
-      Dbg_Update => Dbg_Update,
-      Dbg_Trig_In => Dbg_Trig_In,
-      Dbg_Trig_Ack_In => Dbg_Trig_Ack_In,
-      Dbg_Trig_Out => Dbg_Trig_Out,
-      Dbg_Trig_Ack_Out => Dbg_Trig_Ack_Out,
+      Dbg_Clk => '0',
+      Dbg_TDI => '0',
+      Dbg_Reg_En => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 8)),
+      Dbg_Shift => '0',
+      Dbg_Capture => '0',
+      Dbg_Update => '0',
+      Dbg_Trig_Ack_In => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 8)),
+      Dbg_Trig_Out => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 8)),
       Dbg_Trace_Clk => '0',
       Dbg_Trace_Ready => '0',
-      Debug_Rst => Debug_Rst,
-      Dbg_Disable => Dbg_Disable,
+      Debug_Rst => '0',
+      Dbg_Disable => '0',
       Dbg_AWADDR => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 13)),
       Dbg_AWVALID => '0',
       Dbg_WDATA => STD_LOGIC_VECTOR(TO_UNSIGNED(0, 32)),

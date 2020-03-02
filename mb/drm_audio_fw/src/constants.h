@@ -3,13 +3,13 @@
 
 #include "xil_printf.h"
 
-// shared DDR address
+// shared DDR address, mapped by DTB during boot as /dev/uio0
 #define SHARED_DDR_BASE (0x20000000 + 0x1CC00000)
 
-// memory constants
-#define CHUNK_SZ 16000
-//applies to both fifos?
-#define FIFO_CAP 2048*2
+//applies to both fifos
+//Each fifo is 2K deep
+#define FIFO_CAP (2048 - 1)
+//you know why this is -1, right?
 
 // number of seconds to record/playback
 #define PREVIEW_TIME_SEC 30

@@ -25,21 +25,6 @@ volatile uint32_t cmdreg = 0x43C00000;
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
 
-int setup_birdwtch()
-{
-	int mem_fd = open("/dev/mem", O_RDWR | O_SYNC);
-	//XPAR_BIRDWTCH_IFACE_0_S00_AXI_BASEADDR
-	cmdreg = (uint32_t*)mmap(NULL, sysconf(_SC_PAGE_SIZE),PROT_READ | PROT_WRITE, MAP_SHARED | MAP_FIXED, mem_fd, XPAR_BIRDWTCH_IFACE_0_S00_AXI_BASEADDR);
-
-    if (cmdreg == MAP_FAILED)
-    {
-        mp_printf("MMAP Failed for Birdwtch Error = %d\r\n", errno);
-        return -1;
-    }
-
-    return 0;
-}
-
 // sends a command to the microblaze using the shared command channel and interrupt
 void send_command(int cmd) {
     //trigger gpio interrupt by writing to command register

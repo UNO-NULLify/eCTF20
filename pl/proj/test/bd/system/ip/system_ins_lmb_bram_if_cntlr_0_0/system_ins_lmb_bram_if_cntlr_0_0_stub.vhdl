@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
 -- Date        : Sat Feb 22 17:51:11 2020
 -- Host        : ssg0 running 64-bit Arch Linux
--- Command     : write_vhdl -force -mode synth_stub
---               /ectf/pl/proj/test/bd/system/ip/system_ins_lmb_bram_if_cntlr_0_0/system_ins_lmb_bram_if_cntlr_0_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top system_ins_lmb_bram_if_cntlr_0_0 -prefix
+--               system_ins_lmb_bram_if_cntlr_0_0_ system_ins_lmb_bram_if_cntlr_0_0_stub.vhdl
 -- Design      : system_ins_lmb_bram_if_cntlr_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z007sclg400-1

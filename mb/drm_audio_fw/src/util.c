@@ -99,6 +99,8 @@ int SetUpInterruptSystem(XIntc *XIntcInstancePtr, XInterruptHandler hdlr)
  *
  * @return	none.
  *****************************************************************************/
+
+/** Unused, XPAR constant is missing now
 u32 fnAudioPlay(XAxiDma AxiDma, u32 offset, u32 u32NrSamples)
 {
 	u32 status;
@@ -108,6 +110,7 @@ u32 fnAudioPlay(XAxiDma AxiDma, u32 offset, u32 u32NrSamples)
 	return status;
 
 }
+**/
 
 XStatus fnConfigDma(XAxiDma *AxiDma)
 {
