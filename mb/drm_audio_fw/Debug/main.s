@@ -2178,9 +2178,6 @@ $LC39:
 	.align	2
 $LC40:
 	.ascii "\15\12MB> Restarting song... \15\12\0"
-	.align	2
-$LC41:
-	.ascii "\15\12MB> dx: 0x%08x\15\12\0"
 	.section	.text.play_song,"ax",@progbits
 	.align	2
 	.globl	play_song
@@ -2189,12 +2186,12 @@ $LM216:
 	.ent	play_song
 	.type	play_song, @function
 play_song:
-	.frame	r19,68,r15		# vars= 36, regs= 1, args= 24
+	.frame	r19,64,r15		# vars= 32, regs= 1, args= 24
 	.mask	0x00088000
-	addik	r1,r1,-68
+	addik	r1,r1,-64
 $LCFI48:
 	swi	r15,r1,0
-	swi	r19,r1,64
+	swi	r19,r1,60
 $LCFI49:
 	addk	r19,r1,r0
 $LCFI50:
@@ -2272,9 +2269,6 @@ $LM230:
 	lwi	r3,r19,32
 	swi	r3,r19,28
 $LM231:
-	lwi	r3,r19,32
-	swi	r3,r19,44
-$LM232:
 	lwi	r3,r0,c
 	addik	r4,r0,2	# 0x2
 	sbi	r4,r3,1
@@ -2286,55 +2280,54 @@ $LM232:
 	brlid	r15,setLED
 	nop		# Unfilled delay slot
 
-$L112:
-$LBB16:
-$LM233:
+$LM232:
 	bri	$L88
-$L105:
+$L106:
+$LBB16:
 $LBB17:
-$LM234:
+$LM233:
 	swi	r0,r0,InterruptProcessed
-$LM235:
+$LM234:
 	brlid	r15,read_cr
 	nop		# Unfilled delay slot
 
-	shi	r3,r19,60
-$LM236:
-	lhui	r3,r19,60
+	shi	r3,r19,56
+$LM235:
+	lhui	r3,r19,56
 	addk	r6,r3,r0
 	addik	r5,r0,$LC36
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM237:
-	lhui	r3,r19,60
+$LM236:
+	lhui	r3,r19,56
 	addik	r3,r3,-5
 	addik	r4,r0,7	# 0x7
 	cmpu	r18,r3,r4
 	blti	r18,$L114
 	bslli	r3,r3,2
-	addik	r3,r3,$L91
+	addik	r3,r3,$L92
 	lwi	r3,r3,0
 	bra	r3 
 	.section	.rodata.play_song,"a",@progbits
 	.align	2
-$L91:
-	.gpword	$L90
-	.gpword	$L92
-	.gpword	$L114
+$L92:
+	.gpword	$L91
 	.gpword	$L93
+	.gpword	$L114
 	.gpword	$L94
 	.gpword	$L95
 	.gpword	$L96
-	.gpword	$L88
+	.gpword	$L97
+	.gpword	$L89
 	.section	.text.play_song
-$L93:
-$LM238:
+$L94:
+$LM237:
 	addik	r5,r0,$LC37
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM239:
+$LM238:
 	lwi	r3,r0,c
 	addik	r4,r0,3	# 0x3
 	sbi	r4,r3,1
@@ -2346,24 +2339,24 @@ $LM239:
 	brlid	r15,setLED
 	nop		# Unfilled delay slot
 
+$LM239:
+	bri	$L99
+$L100:
 $LM240:
-	bri	$L98
+	nop
 $L99:
 $LM241:
-	nop
-$L98:
-$LM242:
 	lwi	r3,r0,InterruptProcessed
-	beqi	r3,$L99
+	beqi	r3,$L100
+$LM242:
+	bri	$L89
+$L91:
 $LM243:
-	bri	$L88
-$L90:
-$LM244:
 	addik	r5,r0,$LC38
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM245:
+$LM244:
 	lwi	r3,r0,c
 	addik	r4,r0,2	# 0x2
 	sbi	r4,r3,1
@@ -2375,26 +2368,26 @@ $LM245:
 	brlid	r15,setLED
 	nop		# Unfilled delay slot
 
+$LM245:
+	bri	$L89
+$L93:
 $LM246:
-	bri	$L88
-$L92:
-$LM247:
 	addik	r5,r0,$LC39
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
+$LM247:
+	bri	$L85
+$L95:
 $LM248:
-	bri	$L113
-$L94:
-$LM249:
 	addik	r5,r0,$LC40
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM250:
+$LM249:
 	lwi	r3,r19,32
 	swi	r3,r19,28
-$LM251:
+$LM250:
 	lwi	r3,r0,c
 	addik	r4,r0,2	# 0x2
 	sbi	r4,r3,1
@@ -2406,68 +2399,71 @@ $LM251:
 	brlid	r15,setLED
 	nop		# Unfilled delay slot
 
+$LM251:
+	bri	$L89
+$L96:
 $LM252:
-	bri	$L88
-$L95:
-$LM253:
 	lwi	r4,r19,28
 	addik	r3,r0,480000
 	cmpu	r18,r4,r3
-	bgei	r18,$L101
-$LM254:
+	bgei	r18,$L102
+$LM253:
 	lwi	r3,r19,28
 	addik	r3,r3,-480000
-	bri	$L102
-$L101:
-$LM255:
-	addk	r3,r0,r0
+	bri	$L103
 $L102:
-$LM256:
+$LM254:
+	addk	r3,r0,r0
+$L103:
+$LM255:
 	swi	r3,r19,28
+$LM256:
+	bri	$L89
+$L97:
 $LM257:
-	bri	$L88
-$L96:
-$LM258:
 	lwi	r4,r19,32
 	lwi	r3,r19,28
 	rsubk	r4,r3,r4
 	addik	r3,r0,480000
 	cmpu	r18,r4,r3
-	bgei	r18,$L103
-$LM259:
+	bgei	r18,$L104
+$LM258:
 	lwi	r3,r19,28
 	addik	r3,r3,480000
-	bri	$L104
-$L103:
-$LM260:
-	lwi	r3,r19,32
+	bri	$L105
 $L104:
-$LM261:
+$LM259:
+	lwi	r3,r19,32
+$L105:
+$LM260:
 	swi	r3,r19,28
-$LM262:
-	bri	$L88
+$LM261:
+	bri	$L89
 $L114:
-$LM263:
+$LM262:
 	nop
-$L88:
+$L89:
 $LBE17:
-$LM264:
+$LM263:
 	lwi	r3,r0,InterruptProcessed
-	bnei	r3,$L105
-$LM265:
+	bnei	r3,$L106
+$LM264:
 	lwi	r3,r19,36
 	lwi	r3,r3,0
 	muli	r3,r3,-4
 	addik	r3,r3,8188
-	swi	r3,r19,48
-$LM266:
-	lwi	r4,r19,48
+	swi	r3,r19,44
+$LM265:
+	lwi	r4,r19,44
 	lwi	r3,r19,28
 	cmpu	r18,r3,r4
-	bgei	r18,$L106
+	bgei	r18,$L107
 	addk	r3,r4,r0
-$L106:
-	swi	r3,r19,52
+$L107:
+	swi	r3,r19,48
+$LM266:
+	lwi	r3,r19,48
+	beqi	r3,$L115
 $LM267:
 	lwi	r3,r0,c
 	addik	r4,r3,176
@@ -2480,107 +2476,86 @@ $LM267:
 	lwi	r3,r19,28
 	rsubk	r3,r3,r5
 	addk	r3,r4,r3
-	addk	r6,r3,r0
-	addik	r5,r0,$LC41
-	brlid	r15,xil_printf
-	nop		# Unfilled delay slot
-
 $LM268:
-	lwi	r3,r19,52
-	beqi	r3,$L115
-$LM269:
-	lwi	r3,r0,c
-	addik	r4,r3,176
-	lwi	r3,r0,c
-	lbui	r3,r3,176
-	sext8	r3,r3
-	addk	r5,r3,r0
-	lwi	r3,r19,32
-	addk	r5,r5,r3
-	lwi	r3,r19,28
-	rsubk	r3,r3,r5
-	addk	r3,r4,r3
-$LM270:
 	addk	r8,r0,r0
-	lwi	r7,r19,52
+	lwi	r7,r19,48
 	addk	r6,r3,r0
 	addik	r5,r0,sAxiDma
 	brlid	r15,XAxiDma_SimpleTransfer
 	nop		# Unfilled delay slot
 
 $L115:
-$LM271:
+$LM269:
 	nop
-$L109:
-$LM272:
+$L110:
+$LM270:
 	addk	r6,r0,r0
 	addik	r5,r0,sAxiDma
 	brlid	r15,XAxiDma_Busy
 	nop		# Unfilled delay slot
 
-	beqi	r3,$L108
-$LM273:
+	beqi	r3,$L109
+$LM271:
 	lwi	r4,r19,28
 	lwi	r3,r19,32
 	xor	r3,r4,r3
-	bnei	r3,$L109
-$L108:
+	bnei	r3,$L110
+$L109:
+$LM272:
+	swi	r0,r19,52
+$LM273:
+	bri	$L111
+$L112:
 $LM274:
-	swi	r0,r19,56
-$LM275:
-	bri	$L110
-$L111:
-$LM276:
  #APP
- # 480 "../src/main.c" 1
+ # 478 "../src/main.c" 1
 	get	r3,rfsl0
  # 0 "" 2
  #NO_APP
-	swi	r3,r19,56
-$LM277:
-	lwi	r3,r19,56
+	swi	r3,r19,52
+$LM275:
+	lwi	r3,r19,52
 	andi	r4,r3,65535 #and2
-	lwi	r3,r19,56
+	lwi	r3,r19,52
 	bslli	r3,r3,16
 	or	r3,r4,r3
  #APP
- # 490 "../src/main.c" 1
+ # 488 "../src/main.c" 1
 	put	r3,rfsl0
  # 0 "" 2
-$LM278:
+$LM276:
  #NO_APP
-	lwi	r3,r19,56
+	lwi	r3,r19,52
 	andi	r4,r3,-65536 #and2
-	lwi	r3,r19,56
+	lwi	r3,r19,52
 	bsrli	r3,r3,16
 	or	r3,r4,r3
  #APP
- # 491 "../src/main.c" 1
+ # 489 "../src/main.c" 1
 	put	r3,rfsl0
  # 0 "" 2
  #NO_APP
-$L110:
-$LM279:
+$L111:
+$LM277:
 	lwi	r3,r19,36
 	lwi	r3,r3,0
-	bnei	r3,$L111
-$LM280:
-	lwi	r3,r19,28
-	swi	r3,r19,44
-$LM281:
+	bnei	r3,$L112
+$LM278:
 	lwi	r4,r19,28
-	lwi	r3,r19,52
+	lwi	r3,r19,48
 	rsubk	r3,r3,r4
 	swi	r3,r19,28
+$L88:
 $LBE16:
-$LM282:
-	bri	$L112
-$L113:
-$LM283:
+$LM279:
+	lwi	r3,r19,28
+	bnei	r3,$L89
+$L85:
+$LM280:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
-	lwi	r19,r1,64
-	addik	r1,r1,68
+	lwi	r19,r1,60
+	addik	r1,r1,64
 	rtsd	r15,8 
 	nop		# Unfilled delay slot
 
@@ -2590,19 +2565,19 @@ $Lfe17:
 	.size	play_song,$Lfe17-play_song
 	.rodata
 	.align	2
-$LC42:
+$LC41:
 	.ascii "\15\12MB> Only playing 30 seconds\0"
 	.align	2
-$LC43:
+$LC42:
 	.ascii "\15\12MB> \15\12MB> Dumping song (%dB)...\0"
 	.align	2
-$LC44:
+$LC43:
 	.ascii "\15\12MB> Song dump finished\15\12\0"
 	.section	.text.digital_out,"ax",@progbits
 	.align	2
 	.globl	digital_out
 $LFB30:
-$LM284:
+$LM281:
 	.ent	digital_out
 	.type	digital_out, @function
 digital_out:
@@ -2615,7 +2590,7 @@ $LCFI51:
 $LCFI52:
 	addk	r19,r1,r0
 $LCFI53:
-$LM285:
+$LM282:
 	lwi	r3,r0,c
 	lbui	r3,r3,176
 	sext8	r7,r3
@@ -2668,7 +2643,7 @@ $LM285:
 	addk	r4,r6,r0
 	or	r4,r5,r4
 	sbi	r4,r3,139
-$LM286:
+$LM283:
 	lwi	r3,r0,c
 	lbui	r3,r3,176
 	sext8	r7,r3
@@ -2721,12 +2696,12 @@ $LM286:
 	addk	r4,r6,r0
 	or	r4,r5,r4
 	sbi	r4,r3,175
-$LM287:
+$LM284:
 	brlid	r15,is_locked
 	nop		# Unfilled delay slot
 
 	beqi	r3,$L117
-$LM288:
+$LM285:
 	lwi	r3,r0,c
 	lbui	r4,r3,172
 	andi	r4,r4,0x00ff
@@ -2746,12 +2721,12 @@ $LM288:
 	addik	r3,r0,2880000
 	cmpu	r18,r4,r3
 	bgei	r18,$L117
-$LM289:
-	addik	r5,r0,$LC42
+$LM286:
+	addik	r5,r0,$LC41
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM290:
+$LM287:
 	lwi	r3,r0,c
 	lbui	r4,r3,172
 	andi	r4,r4,0x00ff
@@ -2815,7 +2790,7 @@ $LM290:
 	addk	r4,r6,r0
 	or	r4,r5,r4
 	sbi	r4,r3,139
-$LM291:
+$LM288:
 	lwi	r3,r0,c
 	lbui	r4,r3,172
 	andi	r4,r4,0 #and1
@@ -2832,7 +2807,7 @@ $LM291:
 	andi	r4,r4,0 #and1
 	sbi	r4,r3,175
 $L117:
-$LM292:
+$LM289:
 	lwi	r3,r0,c
 	lbui	r4,r3,172
 	andi	r4,r4,0x00ff
@@ -2849,11 +2824,11 @@ $LM292:
 	bslli	r3,r3,24
 	or	r3,r3,r4
 	addk	r6,r3,r0
-	addik	r5,r0,$LC43
+	addik	r5,r0,$LC42
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM293:
+$LM290:
 	lwi	r3,r0,c
 	addik	r8,r3,176
 	lwi	r3,r0,c
@@ -2882,12 +2857,12 @@ $LM293:
 	brlid	r15,memmove
 	nop		# Unfilled delay slot
 
-$LM294:
-	addik	r5,r0,$LC44
+$LM291:
+	addik	r5,r0,$LC43
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM295:
+$LM292:
 	nop
 	lwi	r15,r1,0
 	addk	r1,r19,r0
@@ -2902,22 +2877,22 @@ $Lfe18:
 	.size	digital_out,$Lfe18-digital_out
 	.rodata
 	.align	2
-$LC45:
+$LC44:
 	.ascii "\15\12MB> DMA configuration ERROR\15\12\0"
 	.align	2
-$LC46:
+$LC45:
 	.ascii "\15\12MB> Audio DRM Module has Booted (Modified)\12\15\0"
 	.align	2
-$LC47:
+$LC46:
 	.ascii "\15\12MB> Command: %08X\15\12\0"
 	.align	2
-$LC48:
+$LC47:
 	.ascii "\15\12MB> Done Playing Song\15\12\0"
 	.section	.text.main,"ax",@progbits
 	.align	2
 	.globl	main
 $LFB31:
-$LM296:
+$LM293:
 	.ent	main
 	.type	main, @function
 main:
@@ -2930,79 +2905,79 @@ $LCFI54:
 $LCFI55:
 	addk	r19,r1,r0
 $LCFI56:
-$LM297:
+$LM294:
 	lwi	r3,r0,cmdreg
 	lwi	r3,r3,0
 	lwi	r3,r0,cmdreg
 	addik	r4,r0,-1	# 0xffffffffffffffff
 	swi	r4,r3,0
-$LM298:
+$LM295:
 	brlid	r15,init_platform
 	nop		# Unfilled delay slot
 
-$LM299:
+$LM296:
 	addk	r6,r0,r0
 	addik	r5,r0,myISR
 	brlid	r15,microblaze_register_handler
 	nop		# Unfilled delay slot
 
-$LM300:
+$LM297:
 	brlid	r15,microblaze_enable_interrupts
 	nop		# Unfilled delay slot
 
-$LM301:
+$LM298:
 	addk	r6,r0,r0
 	addik	r5,r0,InterruptController
 	brlid	r15,XIntc_Initialize
 	nop		# Unfilled delay slot
 
 	swi	r3,r19,28
-$LM302:
+$LM299:
 	lwi	r3,r19,28
 	beqi	r3,$L119
-$LM303:
+$LM300:
 	addik	r3,r0,1	# 0x1
 	bri	$L120
 $L119:
-$LM304:
+$LM301:
 	addik	r6,r0,myISR
 	addik	r5,r0,InterruptController
 	brlid	r15,SetUpInterruptSystem
 	nop		# Unfilled delay slot
 
 	swi	r3,r19,28
-$LM305:
+$LM302:
 	lwi	r3,r19,28
 	beqi	r3,$L121
-$LM306:
+$LM303:
 	addik	r3,r0,1	# 0x1
 	bri	$L120
 $L121:
-$LM307:
+$LM304:
 	addik	r5,r0,sAxiDma
 	brlid	r15,fnConfigDma
 	nop		# Unfilled delay slot
 
 	swi	r3,r19,28
-$LM308:
+$LM305:
 	lwi	r3,r19,28
 	beqi	r3,$L122
-$LM309:
-	addik	r5,r0,$LC45
+$LM306:
+	addik	r5,r0,$LC44
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM310:
+$LM307:
 	addik	r3,r0,1	# 0x1
 	bri	$L120
 $L122:
-$LM311:
+$LM308:
 	lwi	r3,r0,led
 	addk	r5,r3,r0
 	brlid	r15,enableLED
 	nop		# Unfilled delay slot
 
-$LM312:
+$LM309:
 	lwi	r3,r0,c
 	sbi	r0,r3,1
 	lwi	r3,r0,led
@@ -3013,7 +2988,7 @@ $LM312:
 	brlid	r15,setLED
 	nop		# Unfilled delay slot
 
-$LM313:
+$LM310:
 	lwi	r3,r0,c
 	addik	r7,r0,8396	# 0x20cc
 	addk	r6,r0,r0
@@ -3021,30 +2996,30 @@ $LM313:
 	brlid	r15,memset
 	nop		# Unfilled delay slot
 
-$LM314:
-	addik	r5,r0,$LC46
+$LM311:
+	addik	r5,r0,$LC45
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
 $L134:
-$LM315:
+$LM312:
 	lwi	r3,r0,InterruptProcessed
 	beqi	r3,$L134
 $LBB18:
-$LM316:
+$LM313:
 	brlid	r15,read_cr
 	nop		# Unfilled delay slot
 
 	swi	r3,r19,32
-$LM317:
+$LM314:
 	swi	r0,r0,InterruptProcessed
-$LM318:
+$LM315:
 	lwi	r6,r19,32
-	addik	r5,r0,$LC47
+	addik	r5,r0,$LC46
 	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
-$LM319:
+$LM316:
 	lwi	r3,r0,c
 	addik	r4,r0,1	# 0x1
 	sbi	r4,r3,1
@@ -3056,7 +3031,7 @@ $LM319:
 	brlid	r15,setLED
 	nop		# Unfilled delay slot
 
-$LM320:
+$LM317:
 	lwi	r4,r19,32
 	addik	r3,r0,7	# 0x7
 	cmpu	r18,r4,r3
@@ -3079,64 +3054,64 @@ $L126:
 	.gpword	$L132
 	.section	.text.main
 $L128:
-$LM321:
+$LM318:
 	brlid	r15,login
 	nop		# Unfilled delay slot
 
-$LM322:
+$LM319:
 	bri	$L133
 $L129:
-$LM323:
+$LM320:
 	brlid	r15,logout
 	nop		# Unfilled delay slot
 
-$LM324:
+$LM321:
 	bri	$L133
 $L125:
-$LM325:
+$LM322:
 	brlid	r15,query_player
 	nop		# Unfilled delay slot
 
-$LM326:
+$LM323:
 	bri	$L133
 $L127:
-$LM327:
+$LM324:
 	brlid	r15,query_song
 	nop		# Unfilled delay slot
 
-$LM328:
+$LM325:
 	bri	$L133
 $L130:
-$LM329:
+$LM326:
 	brlid	r15,share_song
+	nop		# Unfilled delay slot
+
+$LM327:
+	bri	$L133
+$L131:
+$LM328:
+	brlid	r15,play_song
+	nop		# Unfilled delay slot
+
+$LM329:
+	addik	r5,r0,$LC47
+	brlid	r15,xil_printf
 	nop		# Unfilled delay slot
 
 $LM330:
 	bri	$L133
-$L131:
-$LM331:
-	brlid	r15,play_song
-	nop		# Unfilled delay slot
-
-$LM332:
-	addik	r5,r0,$LC48
-	brlid	r15,xil_printf
-	nop		# Unfilled delay slot
-
-$LM333:
-	bri	$L133
 $L132:
-$LM334:
+$LM331:
 	brlid	r15,digital_out
 	nop		# Unfilled delay slot
 
-$LM335:
+$LM332:
 	bri	$L133
 $L135:
-$LM336:
+$LM333:
 	nop
 $L133:
-$LM337:
+$LM334:
 	lwi	r3,r0,c
 	addik	r3,r3,4
 	addik	r6,r0,s+2
@@ -3144,17 +3119,17 @@ $LM337:
 	brlid	r15,strcpy
 	nop		# Unfilled delay slot
 
-$LM338:
+$LM335:
 	lwi	r3,r0,c
 	lbui	r4,r0,s
 	sext8	r4,r4
 	sbi	r4,r3,2
-$LM339:
+$LM336:
 	addik	r5,r0,500	# 0x1f4
 	brlid	r15,usleep
 	nop		# Unfilled delay slot
 
-$LM340:
+$LM337:
 	lwi	r3,r0,c
 	sbi	r0,r3,1
 	lwi	r3,r0,led
@@ -3166,10 +3141,10 @@ $LM340:
 	nop		# Unfilled delay slot
 
 $LBE18:
-$LM341:
+$LM338:
 	bri	$L134
 $L120:
-$LM342:
+$LM339:
 	lwi	r15,r1,0
 	addk	r1,r19,r0
 	lwi	r19,r1,36
@@ -3549,11 +3524,11 @@ $LASFDE32:
 	.byte	0x4
 	.4byte	$LCFI48-$LFB29
 	.byte	0xe
-	.uleb128 0x44
+	.uleb128 0x40
 	.byte	0x4
 	.4byte	$LCFI49-$LCFI48
 	.byte	0x8f
-	.uleb128 0x11
+	.uleb128 0x10
 	.byte	0x93
 	.uleb128 0x1
 	.byte	0x4
@@ -3610,15 +3585,15 @@ $LEFDE36:
 $Letext0:
 	.section	.debug_info,"",@progbits
 $Ldebug_info0:
-	.4byte	0x16ce
+	.4byte	0x16bf
 	.2byte	0x4
 	.4byte	$Ldebug_abbrev0
 	.byte	0x4
 	.uleb128 0x1
-	.4byte	$LASF2424
+	.4byte	$LASF2423
 	.byte	0xc
+	.4byte	$LASF2424
 	.4byte	$LASF2425
-	.4byte	$LASF2426
 	.4byte	$Ldebug_ranges0+0
 	.4byte	0
 	.4byte	$Ldebug_line0
@@ -5792,9 +5767,9 @@ $Ldebug_info0:
 	.byte	0x3
 	.4byte	InterruptController
 	.uleb128 0x2c
-	.4byte	$LASF2410
+	.4byte	$LASF2409
 	.byte	0x1
-	.2byte	0x20b
+	.2byte	0x208
 	.4byte	0x8d
 	.4byte	$LFB31
 	.4byte	$LFE31-$LFB31
@@ -5804,7 +5779,7 @@ $Ldebug_info0:
 	.uleb128 0x2d
 	.4byte	$LASF2391
 	.byte	0x1
-	.2byte	0x20c
+	.2byte	0x209
 	.4byte	0x91f
 	.uleb128 0x2
 	.byte	0x91
@@ -5815,7 +5790,7 @@ $Ldebug_info0:
 	.uleb128 0x2f
 	.ascii "cmd\0"
 	.byte	0x1
-	.2byte	0x234
+	.2byte	0x231
 	.4byte	0x8ef
 	.uleb128 0x2
 	.byte	0x91
@@ -5823,22 +5798,22 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x30
-	.4byte	$LASF2407
+	.4byte	$LASF2406
 	.byte	0x1
-	.2byte	0x1f5
+	.2byte	0x1f2
 	.4byte	$LFB30
 	.4byte	$LFE30-$LFB30
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x31
-	.4byte	$LASF2399
+	.4byte	$LASF2398
 	.byte	0x1
 	.2byte	0x176
 	.4byte	$LFB29
 	.4byte	$LFE29-$LFB29
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x12c2
+	.4byte	0x12b3
 	.uleb128 0x2f
 	.ascii "rem\0"
 	.byte	0x1
@@ -5846,7 +5821,7 @@ $Ldebug_info0:
 	.4byte	0x91f
 	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -40
+	.sleb128 -36
 	.uleb128 0x2d
 	.4byte	$LASF2392
 	.byte	0x1
@@ -5854,7 +5829,7 @@ $Ldebug_info0:
 	.4byte	0x91f
 	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -36
+	.sleb128 -32
 	.uleb128 0x2d
 	.4byte	$LASF2393
 	.byte	0x1
@@ -5862,7 +5837,7 @@ $Ldebug_info0:
 	.4byte	0x1184
 	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -32
+	.sleb128 -28
 	.uleb128 0x2d
 	.4byte	$LASF2394
 	.byte	0x1
@@ -5870,18 +5845,18 @@ $Ldebug_info0:
 	.4byte	0x1184
 	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -28
-	.uleb128 0x2d
-	.4byte	$LASF2395
-	.byte	0x1
-	.2byte	0x191
-	.4byte	0x91f
-	.uleb128 0x2
-	.byte	0x91
 	.sleb128 -24
 	.uleb128 0x2e
 	.4byte	$LBB16
 	.4byte	$LBE16-$LBB16
+	.uleb128 0x2d
+	.4byte	$LASF2395
+	.byte	0x1
+	.2byte	0x1c0
+	.4byte	0x91f
+	.uleb128 0x2
+	.byte	0x91
+	.sleb128 -20
 	.uleb128 0x2d
 	.4byte	$LASF2396
 	.byte	0x1
@@ -5889,19 +5864,11 @@ $Ldebug_info0:
 	.4byte	0x91f
 	.uleb128 0x2
 	.byte	0x91
-	.sleb128 -20
+	.sleb128 -16
 	.uleb128 0x2d
 	.4byte	$LASF2397
 	.byte	0x1
-	.2byte	0x1c2
-	.4byte	0x91f
-	.uleb128 0x2
-	.byte	0x91
-	.sleb128 -16
-	.uleb128 0x2d
-	.4byte	$LASF2398
-	.byte	0x1
-	.2byte	0x1d9
+	.2byte	0x1d7
 	.4byte	0x8ef
 	.uleb128 0x2
 	.byte	0x91
@@ -5912,7 +5879,7 @@ $Ldebug_info0:
 	.uleb128 0x2f
 	.ascii "cmd\0"
 	.byte	0x1
-	.2byte	0x198
+	.2byte	0x197
 	.4byte	0x8d9
 	.uleb128 0x2
 	.byte	0x91
@@ -5921,16 +5888,16 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x31
-	.4byte	$LASF2400
+	.4byte	$LASF2399
 	.byte	0x1
 	.2byte	0x14e
 	.4byte	$LFB28
 	.4byte	$LFE28-$LFB28
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1318
+	.4byte	0x1309
 	.uleb128 0x2d
-	.4byte	$LASF2401
+	.4byte	$LASF2400
 	.byte	0x1
 	.2byte	0x14f
 	.4byte	0x8d
@@ -5938,7 +5905,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 -272
 	.uleb128 0x2d
-	.4byte	$LASF2402
+	.4byte	$LASF2401
 	.byte	0x1
 	.2byte	0x14f
 	.4byte	0x8d
@@ -5946,10 +5913,10 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 -268
 	.uleb128 0x2d
-	.4byte	$LASF2403
+	.4byte	$LASF2402
 	.byte	0x1
 	.2byte	0x150
-	.4byte	0x1318
+	.4byte	0x1309
 	.uleb128 0x3
 	.byte	0x91
 	.sleb128 -264
@@ -5964,22 +5931,22 @@ $Ldebug_info0:
 	.byte	0
 	.uleb128 0x9
 	.4byte	0x624
-	.4byte	0x1328
+	.4byte	0x1319
 	.uleb128 0xa
 	.4byte	0x10e
 	.byte	0xff
 	.byte	0
 	.uleb128 0x31
-	.4byte	$LASF2404
+	.4byte	$LASF2403
 	.byte	0x1
 	.2byte	0x12f
 	.4byte	$LFB27
 	.4byte	$LFE27-$LFB27
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1380
+	.4byte	0x1371
 	.uleb128 0x2d
-	.4byte	$LASF2405
+	.4byte	$LASF2404
 	.byte	0x1
 	.2byte	0x130
 	.4byte	0x61e
@@ -5989,7 +5956,7 @@ $Ldebug_info0:
 	.uleb128 0x32
 	.4byte	$LBB14
 	.4byte	$LBE14-$LBB14
-	.4byte	0x1368
+	.4byte	0x1359
 	.uleb128 0x2f
 	.ascii "i\0"
 	.byte	0x1
@@ -6013,18 +5980,18 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x31
-	.4byte	$LASF2406
+	.4byte	$LASF2405
 	.byte	0x1
 	.2byte	0x11e
 	.4byte	$LFB26
 	.4byte	$LFE26-$LFB26
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x13c9
+	.4byte	0x13ba
 	.uleb128 0x32
 	.4byte	$LBB12
 	.4byte	$LBE12-$LBB12
-	.4byte	0x13b1
+	.4byte	0x13a2
 	.uleb128 0x2f
 	.ascii "i\0"
 	.byte	0x1
@@ -6048,7 +6015,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x30
-	.4byte	$LASF2408
+	.4byte	$LASF2407
 	.byte	0x1
 	.2byte	0x10f
 	.4byte	$LFB25
@@ -6056,14 +6023,14 @@ $Ldebug_info0:
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x33
-	.4byte	$LASF2409
+	.4byte	$LASF2408
 	.byte	0x1
 	.byte	0xe9
 	.4byte	$LFB24
 	.4byte	$LFE24-$LFB24
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1407
+	.4byte	0x13f8
 	.uleb128 0x2e
 	.4byte	$LBB11
 	.4byte	$LBE11-$LBB11
@@ -6078,7 +6045,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x35
-	.4byte	$LASF2414
+	.4byte	$LASF2413
 	.byte	0x1
 	.byte	0xd8
 	.4byte	0x8d
@@ -6086,7 +6053,7 @@ $Ldebug_info0:
 	.4byte	$LFE23-$LFB23
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x142f
+	.4byte	0x1420
 	.uleb128 0x36
 	.ascii "buf\0"
 	.byte	0x1
@@ -6097,7 +6064,7 @@ $Ldebug_info0:
 	.sleb128 4
 	.byte	0
 	.uleb128 0x37
-	.4byte	$LASF2411
+	.4byte	$LASF2410
 	.byte	0x1
 	.byte	0xa7
 	.4byte	0x8d
@@ -6105,9 +6072,9 @@ $Ldebug_info0:
 	.4byte	$LFE22-$LFB22
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x149d
+	.4byte	0x148e
 	.uleb128 0x2a
-	.4byte	$LASF2412
+	.4byte	$LASF2411
 	.byte	0x1
 	.byte	0xa8
 	.4byte	0x8d
@@ -6117,7 +6084,7 @@ $Ldebug_info0:
 	.uleb128 0x32
 	.4byte	$LBB8
 	.4byte	$LBE8-$LBB8
-	.4byte	0x1470
+	.4byte	0x1461
 	.uleb128 0x34
 	.ascii "i\0"
 	.byte	0x1
@@ -6153,7 +6120,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x38
-	.4byte	$LASF2413
+	.4byte	$LASF2412
 	.byte	0x1
 	.byte	0x9c
 	.4byte	$LFB21
@@ -6161,7 +6128,7 @@ $Ldebug_info0:
 	.uleb128 0x1
 	.byte	0x9c
 	.uleb128 0x35
-	.4byte	$LASF2415
+	.4byte	$LASF2414
 	.byte	0x1
 	.byte	0x8c
 	.4byte	0x8d
@@ -6169,7 +6136,7 @@ $Ldebug_info0:
 	.4byte	$LFE20-$LFB20
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1508
+	.4byte	0x14f9
 	.uleb128 0x39
 	.4byte	$LASF2370
 	.byte	0x1
@@ -6187,7 +6154,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x39
-	.4byte	$LASF2416
+	.4byte	$LASF2415
 	.byte	0x1
 	.byte	0x8c
 	.4byte	0x8d
@@ -6208,7 +6175,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x35
-	.4byte	$LASF2417
+	.4byte	$LASF2416
 	.byte	0x1
 	.byte	0x7c
 	.4byte	0x8d
@@ -6216,7 +6183,7 @@ $Ldebug_info0:
 	.4byte	$LFE19-$LFB19
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1562
+	.4byte	0x1553
 	.uleb128 0x36
 	.ascii "uid\0"
 	.byte	0x1
@@ -6229,12 +6196,12 @@ $Ldebug_info0:
 	.4byte	$LASF2370
 	.byte	0x1
 	.byte	0x7c
-	.4byte	0x1562
+	.4byte	0x1553
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x39
-	.4byte	$LASF2416
+	.4byte	$LASF2415
 	.byte	0x1
 	.byte	0x7c
 	.4byte	0x8d
@@ -6258,7 +6225,7 @@ $Ldebug_info0:
 	.byte	0x4
 	.4byte	0x61e
 	.uleb128 0x3a
-	.4byte	$LASF2418
+	.4byte	$LASF2417
 	.byte	0x1
 	.byte	0x71
 	.4byte	0x8d
@@ -6266,7 +6233,7 @@ $Ldebug_info0:
 	.4byte	$LFE18-$LFB18
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x15a6
+	.4byte	0x1597
 	.uleb128 0x36
 	.ascii "uid\0"
 	.byte	0x1
@@ -6289,7 +6256,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x35
-	.4byte	$LASF2419
+	.4byte	$LASF2418
 	.byte	0x1
 	.byte	0x61
 	.4byte	0x8d
@@ -6297,9 +6264,9 @@ $Ldebug_info0:
 	.4byte	$LFE17-$LFB17
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1600
+	.4byte	0x15f1
 	.uleb128 0x39
-	.4byte	$LASF2420
+	.4byte	$LASF2419
 	.byte	0x1
 	.byte	0x61
 	.4byte	0x61e
@@ -6315,7 +6282,7 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x39
-	.4byte	$LASF2416
+	.4byte	$LASF2415
 	.byte	0x1
 	.byte	0x61
 	.4byte	0x8d
@@ -6336,7 +6303,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x35
-	.4byte	$LASF2421
+	.4byte	$LASF2420
 	.byte	0x1
 	.byte	0x51
 	.4byte	0x8d
@@ -6344,7 +6311,7 @@ $Ldebug_info0:
 	.4byte	$LFE16-$LFB16
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x165a
+	.4byte	0x164b
 	.uleb128 0x36
 	.ascii "rid\0"
 	.byte	0x1
@@ -6354,15 +6321,15 @@ $Ldebug_info0:
 	.byte	0x91
 	.sleb128 4
 	.uleb128 0x39
-	.4byte	$LASF2420
+	.4byte	$LASF2419
 	.byte	0x1
 	.byte	0x51
-	.4byte	0x1562
+	.4byte	0x1553
 	.uleb128 0x2
 	.byte	0x91
 	.sleb128 8
 	.uleb128 0x39
-	.4byte	$LASF2416
+	.4byte	$LASF2415
 	.byte	0x1
 	.byte	0x51
 	.4byte	0x8d
@@ -6383,7 +6350,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x3a
-	.4byte	$LASF2422
+	.4byte	$LASF2421
 	.byte	0x1
 	.byte	0x47
 	.4byte	0x8d
@@ -6391,7 +6358,7 @@ $Ldebug_info0:
 	.4byte	$LFE15-$LFB15
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x1698
+	.4byte	0x1689
 	.uleb128 0x36
 	.ascii "rid\0"
 	.byte	0x1
@@ -6414,7 +6381,7 @@ $Ldebug_info0:
 	.byte	0
 	.byte	0
 	.uleb128 0x3b
-	.4byte	$LASF2423
+	.4byte	$LASF2422
 	.byte	0x1
 	.byte	0x3d
 	.4byte	0x91f
@@ -6422,7 +6389,7 @@ $Ldebug_info0:
 	.4byte	$LFE14-$LFB14
 	.uleb128 0x1
 	.byte	0x9c
-	.4byte	0x16c0
+	.4byte	0x16b1
 	.uleb128 0x34
 	.ascii "cmd\0"
 	.byte	0x1
@@ -6433,7 +6400,7 @@ $Ldebug_info0:
 	.sleb128 -8
 	.byte	0
 	.uleb128 0x3c
-	.4byte	$LASF2427
+	.4byte	$LASF2426
 	.byte	0x1
 	.byte	0x38
 	.4byte	$LFB13
@@ -16378,12 +16345,12 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM231
-	.byte	0x18
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM232
-	.byte	0x19
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16403,17 +16370,17 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM236
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM237
 	.byte	0x1a
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM238
+	.4byte	$LM237
 	.byte	0x19
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM238
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16423,11 +16390,6 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM240
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM241
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16437,7 +16399,7 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM242
+	.4byte	$LM241
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16446,7 +16408,7 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM243
+	.4byte	$LM242
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16456,8 +16418,13 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM244
+	.4byte	$LM243
 	.byte	0x19
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM244
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16467,22 +16434,22 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM246
-	.byte	0x18
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM247
-	.byte	0x19
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM248
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM249
+	.4byte	$LM248
 	.byte	0x19
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM249
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16497,12 +16464,17 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM252
-	.byte	0x18
+	.byte	0x1c
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM253
-	.byte	0x1c
+	.byte	0
+	.uleb128 0x2
+	.byte	0x4
+	.uleb128 0x1
+	.byte	0x6
+	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16510,8 +16482,7 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
-	.uleb128 0x1
-	.byte	0x6
+	.uleb128 0x2
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
@@ -16520,27 +16491,18 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
-	.uleb128 0x2
-	.byte	0x1
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM256
-	.byte	0
-	.uleb128 0x2
-	.byte	0x4
 	.uleb128 0x4
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM257
+	.4byte	$LM256
 	.byte	0x6
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM258
+	.4byte	$LM257
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16549,12 +16511,21 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM259
+	.4byte	$LM258
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
 	.uleb128 0x1
 	.byte	0x6
+	.byte	0x1
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM259
+	.byte	0
+	.uleb128 0x2
+	.byte	0x4
+	.uleb128 0x2
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
@@ -16563,27 +16534,18 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
-	.uleb128 0x2
-	.byte	0x1
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM261
-	.byte	0
-	.uleb128 0x2
-	.byte	0x4
 	.uleb128 0x4
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM262
+	.4byte	$LM261
 	.byte	0x6
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM263
+	.4byte	$LM262
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16592,49 +16554,44 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM264
+	.4byte	$LM263
 	.byte	0x3
 	.sleb128 -35
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM265
+	.4byte	$LM264
 	.byte	0x42
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM266
+	.4byte	$LM265
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
+	.4byte	$LM266
+	.byte	0x22
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
 	.4byte	$LM267
-	.byte	0x1d
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM268
-	.byte	0x1d
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM269
 	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM270
+	.4byte	$LM268
 	.byte	0x16
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM271
+	.4byte	$LM269
 	.byte	0x1c
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM272
+	.4byte	$LM270
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16644,7 +16601,7 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM273
+	.4byte	$LM271
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16653,7 +16610,7 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM274
+	.4byte	$LM272
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16663,52 +16620,47 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM275
+	.4byte	$LM273
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM276
+	.4byte	$LM274
 	.byte	0x1d
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM277
+	.4byte	$LM275
 	.byte	0x21
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM278
+	.4byte	$LM276
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM279
+	.4byte	$LM277
 	.byte	0x3
 	.sleb128 -17
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM280
+	.4byte	$LM278
 	.byte	0x2b
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM281
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM282
+	.4byte	$LM279
 	.byte	0x3
-	.sleb128 -91
+	.sleb128 -89
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM283
-	.byte	0x74
+	.4byte	$LM280
+	.byte	0x72
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16719,29 +16671,29 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM284
+	.4byte	$LM281
 	.byte	0x3
-	.sleb128 500
+	.sleb128 497
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM285
+	.4byte	$LM282
 	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM286
+	.4byte	$LM283
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM287
+	.4byte	$LM284
 	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM288
+	.4byte	$LM285
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16751,7 +16703,7 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM289
+	.4byte	$LM286
 	.byte	0
 	.uleb128 0x2
 	.byte	0x4
@@ -16761,32 +16713,32 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
+	.4byte	$LM287
+	.byte	0x18
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM288
+	.byte	0x18
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM289
+	.byte	0x1b
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
 	.4byte	$LM290
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM291
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM292
-	.byte	0x1b
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM293
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM294
 	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM295
+	.4byte	$LM292
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
@@ -16798,20 +16750,35 @@ $LELTP0:
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM296
+	.4byte	$LM293
 	.byte	0x3
-	.sleb128 522
+	.sleb128 519
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM297
+	.4byte	$LM294
 	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM298
+	.4byte	$LM295
 	.byte	0x19
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM296
+	.byte	0x18
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM297
+	.byte	0x18
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM298
+	.byte	0x1a
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16826,7 +16793,7 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM301
-	.byte	0x1a
+	.byte	0x1b
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16856,12 +16823,12 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM307
-	.byte	0x1b
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM308
-	.byte	0x18
+	.byte	0x1b
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16871,52 +16838,52 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM310
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM311
-	.byte	0x1b
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM312
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM313
 	.byte	0x1a
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM314
+	.4byte	$LM311
 	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM315
+	.4byte	$LM312
 	.byte	0x1d
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM316
+	.4byte	$LM313
 	.byte	0x18
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM314
+	.byte	0x18
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM315
+	.byte	0x18
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM316
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM317
-	.byte	0x18
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM318
-	.byte	0x18
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM319
-	.byte	0x19
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16926,47 +16893,47 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM321
-	.byte	0x19
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM322
-	.byte	0x18
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM323
-	.byte	0x19
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM324
-	.byte	0x18
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM325
-	.byte	0x19
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM326
-	.byte	0x18
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM327
-	.byte	0x19
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM328
 	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM329
+	.4byte	$LM328
 	.byte	0x19
+	.byte	0
+	.uleb128 0x5
+	.byte	0x2
+	.4byte	$LM329
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -16986,12 +16953,12 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM333
-	.byte	0x18
+	.byte	0x19
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM334
-	.byte	0x19
+	.byte	0x1b
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
@@ -17001,38 +16968,23 @@ $LELTP0:
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM336
-	.byte	0x19
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM337
-	.byte	0x1b
+	.byte	0x18
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
 	.4byte	$LM338
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM339
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM340
-	.byte	0x18
-	.byte	0
-	.uleb128 0x5
-	.byte	0x2
-	.4byte	$LM341
 	.byte	0x3
 	.sleb128 -38
 	.byte	0x1
 	.byte	0
 	.uleb128 0x5
 	.byte	0x2
-	.4byte	$LM342
+	.4byte	$LM339
 	.byte	0x43
 	.byte	0
 	.uleb128 0x5
@@ -17865,7 +17817,7 @@ $LASF337:
 	.ascii "__long_double_t long double\0"
 $LASF1775:
 	.ascii "mfbtr() ({ u32 _rval; __asm__ __volatile__ ( \"mfs\\t%0,rbtr\\n\" : \"=d\"(_rval) ); _rval; })\0"
-$LASF2396:
+$LASF2395:
 	.ascii "chunk\0"
 $LASF1747:
 	.ascii "putfsl(val,id) asm volatile (\"put\\t%0,rfsl\" stringify(id) :: \"d\" (val))\0"
@@ -18499,7 +18451,7 @@ $LASF73:
 	.ascii "__LONG_MAX__ 0x7fffffffL\0"
 $LASF1301:
 	.ascii "XPAR_XEMACPS_0_ENET_SLCR_100Mbps_DIV0 8\0"
-$LASF2425:
+$LASF2424:
 	.ascii "../src/main.c\0"
 $LASF997:
 	.ascii "XPAR_MICROBLAZE_M12_AXIS_PROTOCOL GENERIC\0"
@@ -18631,7 +18583,7 @@ $LASF1838:
 	.ascii "XAXIDMA_CR_OFFSET 0x00000000\0"
 $LASF1478:
 	.ascii "INT_FAST8_MAX (__INT_FAST8_MAX__)\0"
-$LASF2402:
+$LASF2401:
 	.ascii "shift\0"
 $LASF977:
 	.ascii "XPAR_MICROBLAZE_M2_AXIS_PROTOCOL GENERIC\0"
@@ -18649,7 +18601,7 @@ $LASF313:
 	.ascii "_SIZE_T \0"
 $LASF1446:
 	.ascii "__int_fast8_t_defined 1\0"
-$LASF2397:
+$LASF2396:
 	.ascii "dma_to_ipf_count\0"
 $LASF1485:
 	.ascii "UINT_FAST32_MAX (__UINT_FAST32_MAX__)\0"
@@ -18735,8 +18687,8 @@ $LASF1807:
 	.ascii "sbr(address,data) ({ __asm__ __volatile__ ( \"sbr\\t%0,%1,r0\\n\" :: \"d\" (data), \"d\" (address) ); })\0"
 $LASF2158:
 	.ascii "__count\0"
-$LASF985:
-	.ascii "XPAR_MICROBLAZE_M6_AXIS_PROTOCOL GENERIC\0"
+$LASF776:
+	.ascii "XPAR_MICROBLAZE_0_M12_AXIS_DATA_WIDTH 32\0"
 $LASF2262:
 	.ascii "uint8_t\0"
 $LASF855:
@@ -18777,6 +18729,8 @@ $LASF897:
 	.ascii "XPAR_MICROBLAZE_0_G_TEMPLATE_LIST 0\0"
 $LASF917:
 	.ascii "XPAR_MICROBLAZE_DCACHE_BYTE_SIZE 8192\0"
+$LASF417:
+	.ascii "__strong_reference(sym,aliassym) extern __typeof (sym) aliassym __attribute__ ((__alias__ (#sym)))\0"
 $LASF423:
 	.ascii "__SCCSID(s) struct __hack\0"
 $LASF2297:
@@ -18785,7 +18739,7 @@ $LASF1449:
 	.ascii "__int_fast64_t_defined 1\0"
 $LASF1168:
 	.ascii "XPAR_DATA_LMB_BRAM_IF_CNTLR_1_ECC 0U\0"
-$LASF2413:
+$LASF2412:
 	.ascii "load_song_md\0"
 $LASF561:
 	.ascii "_SYS_TYPES_H \0"
@@ -18867,7 +18821,7 @@ $LASF1848:
 	.ascii "XAXIDMA_BUFFLEN_OFFSET 0x00000028\0"
 $LASF318:
 	.ascii "_SIZE_T_ \0"
-$LASF2423:
+$LASF2422:
 	.ascii "read_cr\0"
 $LASF890:
 	.ascii "XPAR_MICROBLAZE_0_USE_NON_SECURE 0\0"
@@ -18937,7 +18891,7 @@ $LASF1511:
 	.ascii "_GCC_WRAP_STDINT_H \0"
 $LASF1072:
 	.ascii "XPAR_MICROBLAZE_S5_AXIS_PROTOCOL GENERIC\0"
-$LASF2403:
+$LASF2402:
 	.ascii "new_md\0"
 $LASF1421:
 	.ascii "signed +0\0"
@@ -18979,7 +18933,7 @@ $LASF628:
 	.ascii "__SOPT 0x0400\0"
 $LASF984:
 	.ascii "XPAR_MICROBLAZE_M6_AXIS_DATA_WIDTH 32\0"
-$LASF2421:
+$LASF2420:
 	.ascii "rid_to_region_name\0"
 $LASF2196:
 	.ascii "_errno\0"
@@ -19069,7 +19023,7 @@ $LASF701:
 	.ascii "XPAR_MICROBLAZE_0_DCACHE_LINE_LEN 4\0"
 $LASF525:
 	.ascii "_REENT_INIT_MP(var) do { struct _reent *_r = (var); _r->_mp->_result_k = 0; _r->_mp->_result = _r->_mp->_p5s = _NULL; _r->_mp->_freelist = _NULL; } while (0)\0"
-$LASF2422:
+$LASF2421:
 	.ascii "is_provisioned_rid\0"
 $LASF1625:
 	.ascii "XST_IIC_TX_FIFO_REG_RESET_ERROR 1080\0"
@@ -19157,7 +19111,7 @@ $LASF399:
 	.ascii "__returns_twice __attribute__((__returns_twice__))\0"
 $LASF216:
 	.ascii "HAVE_HW_DIV 1\0"
-$LASF2399:
+$LASF2398:
 	.ascii "play_song\0"
 $LASF121:
 	.ascii "__GCC_IEC_559 0\0"
@@ -19199,7 +19153,7 @@ $LASF566:
 	.ascii "__int64_t_defined 1\0"
 $LASF273:
 	.ascii "_END_STD_C \0"
-$LASF2412:
+$LASF2411:
 	.ascii "locked\0"
 $LASF501:
 	.ascii "_NULL 0\0"
@@ -19239,8 +19193,6 @@ $LASF2104:
 	.ascii "SLEEP_H \0"
 $LASF831:
 	.ascii "XPAR_MICROBLAZE_0_PVR 0\0"
-$LASF2395:
-	.ascii "remlast\0"
 $LASF1363:
 	.ascii "XPAR_PS7_SD_0_DEVICE_ID 0\0"
 $LASF508:
@@ -19337,7 +19289,7 @@ $LASF1457:
 	.ascii "INT_LEAST8_MAX (__INT_LEAST8_MAX__)\0"
 $LASF1277:
 	.ascii "XPAR_CLK_WIZ_0_USER_CLK_FREQ1 100.0\0"
-$LASF2401:
+$LASF2400:
 	.ascii "new_md_len\0"
 $LASF1242:
 	.ascii "XPAR_BRAM_2_UE_FAILING_REGISTERS 0U\0"
@@ -19365,8 +19317,8 @@ $LASF123:
 	.ascii "__FLT_EVAL_METHOD__ 0\0"
 $LASF1538:
 	.ascii "XIL_ASSERT_H \0"
-$LASF417:
-	.ascii "__strong_reference(sym,aliassym) extern __typeof (sym) aliassym __attribute__ ((__alias__ (#sym)))\0"
+$LASF1205:
+	.ascii "XPAR_SHARE_AXI_BRAM_CTRL_0_ECC_ONOFF_RESET_VALUE 0U\0"
 $LASF1702:
 	.ascii "_CTYPE_H_ \0"
 $LASF78:
@@ -19467,7 +19419,7 @@ $LASF798:
 	.ascii "XPAR_MICROBLAZE_0_M_AXI_DC_USER_VALUE 31\0"
 $LASF1445:
 	.ascii "__int_least64_t_defined 1\0"
-$LASF2405:
+$LASF2404:
 	.ascii "name\0"
 $LASF589:
 	.ascii "_SYS_TYPES_FD_SET \0"
@@ -19701,8 +19653,6 @@ $LASF1717:
 	.ascii "isdigit(__c) (__ctype_lookup(__c)&_N)\0"
 $LASF1840:
 	.ascii "XAXIDMA_CDESC_OFFSET 0x00000008\0"
-$LASF1431:
-	.ascii "__INT16 \"h\"\0"
 $LASF24:
 	.ascii "__CHAR_BIT__ 8\0"
 $LASF1765:
@@ -19733,7 +19683,7 @@ $LASF419:
 	.ascii "__warn_references(sym,msg) __asm__(\".stabs \\\"\" msg \"\\\",30,0,0,0\"); __asm__(\".stabs \\\"_\" #sym \"\\\",1,0,0,0\")\0"
 $LASF347:
 	.ascii "__has_builtin(x) 0\0"
-$LASF2420:
+$LASF2419:
 	.ascii "region_name\0"
 $LASF560:
 	.ascii "_GLOBAL_ATEXIT (_GLOBAL_REENT->_atexit)\0"
@@ -20043,11 +19993,11 @@ $LASF920:
 	.ascii "XPAR_MICROBLAZE_DCACHE_HIGHADDR 0x3FFFFFFF\0"
 $LASF1165:
 	.ascii "XPAR_XBRAM_NUM_INSTANCES 3U\0"
-$LASF2408:
+$LASF2407:
 	.ascii "logout\0"
 $LASF2328:
 	.ascii "IsReady\0"
-$LASF2417:
+$LASF2416:
 	.ascii "uid_to_username\0"
 $LASF443:
 	.ascii "__guarded_by(x) __lock_annotate(guarded_by(x))\0"
@@ -20173,7 +20123,7 @@ $LASF1651:
 	.ascii "XST_SPI_RECEIVE_OVERRUN 1154\0"
 $LASF982:
 	.ascii "XPAR_MICROBLAZE_M5_AXIS_DATA_WIDTH 32\0"
-$LASF2415:
+$LASF2414:
 	.ascii "username_to_uid\0"
 $LASF2266:
 	.ascii "uintptr_t\0"
@@ -20197,7 +20147,7 @@ $LASF316:
 	.ascii "_T_SIZE \0"
 $LASF1264:
 	.ascii "XPAR_CLK_WIZ_CODEC_PRECISION 1\0"
-$LASF2426:
+$LASF2425:
 	.ascii "/ectf/mb/drm_audio_fw/Debug\0"
 $LASF958:
 	.ascii "XPAR_MICROBLAZE_IC_AXI_MON 0\0"
@@ -20281,8 +20231,6 @@ $LASF1969:
 	.ascii "XCACHE_DISABLE_DCACHE() \0"
 $LASF1759:
 	.ascii "fsl_iserror(error) asm volatile (\"mfs\\t%0,rmsr\\n\\t\" \"andi\\t%0,%0,0x10\" : \"=d\" (error))\0"
-$LASF622:
-	.ascii "__SRW 0x0010\0"
 $LASF715:
 	.ascii "XPAR_MICROBLAZE_0_DP_AXI_MON 0\0"
 $LASF1758:
@@ -20417,7 +20365,7 @@ $LASF1464:
 	.ascii "UINT_LEAST16_MAX (__UINT_LEAST16_MAX__)\0"
 $LASF2245:
 	.ascii "_misc_reent\0"
-$LASF2406:
+$LASF2405:
 	.ascii "query_player\0"
 $LASF1330:
 	.ascii "XPAR_XIICPS_0_DEVICE_ID XPAR_PS7_I2C_0_DEVICE_ID\0"
@@ -20445,7 +20393,7 @@ $LASF1437:
 	.ascii "__FAST64 \"ll\"\0"
 $LASF543:
 	.ascii "_REENT_STRTOK_LAST(ptr) ((ptr)->_misc->_strtok_last)\0"
-$LASF2414:
+$LASF2413:
 	.ascii "gen_song_md\0"
 $LASF1336:
 	.ascii "XPAR_XINTC_HAS_SIE 1\0"
@@ -20483,7 +20431,7 @@ $LASF1646:
 	.ascii "XST_FLASH_BLOCKING_CALL_ERROR 1137L\0"
 $LASF107:
 	.ascii "__UINT_LEAST32_MAX__ 0xffffffffUL\0"
-$LASF2418:
+$LASF2417:
 	.ascii "is_provisioned_uid\0"
 $LASF1936:
 	.ascii "Xil_L2CacheInvalidate() microblaze_invalidate_cache_ext()\0"
@@ -20511,6 +20459,8 @@ $LASF2251:
 	.ascii "_getdate_err\0"
 $LASF2347:
 	.ascii "song\0"
+$LASF985:
+	.ascii "XPAR_MICROBLAZE_M6_AXIS_PROTOCOL GENERIC\0"
 $LASF300:
 	.ascii "_MACHINE__DEFAULT_TYPES_H \0"
 $LASF1136:
@@ -20591,7 +20541,7 @@ $LASF690:
 	.ascii "XPAR_MICROBLAZE_0_BRANCH_TARGET_CACHE_SIZE 4\0"
 $LASF269:
 	.ascii "_READ_WRITE_RETURN_TYPE int\0"
-$LASF2407:
+$LASF2406:
 	.ascii "digital_out\0"
 $LASF1662:
 	.ascii "XST_OPBARB_NOT_SUSPENDED 1177\0"
@@ -20669,8 +20619,8 @@ $LASF904:
 	.ascii "XPAR_MICROBLAZE_ALLOW_ICACHE_WR 1\0"
 $LASF1221:
 	.ascii "XPAR_BRAM_0_WRITE_ACCESS 2U\0"
-$LASF1205:
-	.ascii "XPAR_SHARE_AXI_BRAM_CTRL_0_ECC_ONOFF_RESET_VALUE 0U\0"
+$LASF1431:
+	.ascii "__INT16 \"h\"\0"
 $LASF1823:
 	.ascii "Xil_In32LE Xil_In32\0"
 $LASF1553:
@@ -20787,7 +20737,7 @@ $LASF1569:
 	.ascii "XST_IS_STARTED 23L\0"
 $LASF960:
 	.ascii "XPAR_MICROBLAZE_IMPRECISE_EXCEPTIONS 0\0"
-$LASF2404:
+$LASF2403:
 	.ascii "query_song\0"
 $LASF2364:
 	.ascii "WORKING\0"
@@ -20845,7 +20795,7 @@ $LASF1393:
 	.ascii "XPAR_PS7_UART_0_BASEADDR 0xE0000000\0"
 $LASF359:
 	.ascii "__GNUCLIKE_BUILTIN_VAALIST 1\0"
-$LASF2411:
+$LASF2410:
 	.ascii "is_locked\0"
 $LASF1978:
 	.ascii "XAxiDma_BdWrite64(BaseAddress,Offset,Data) (*(u64 *)((UINTPTR)(void *)(BaseAddress) + (u32)(Offset))) = (u64)(Data)\0"
@@ -20871,7 +20821,7 @@ $LASF1718:
 	.ascii "isxdigit(__c) (__ctype_lookup(__c)&(_X|_N))\0"
 $LASF544:
 	.ascii "_REENT_MBLEN_STATE(ptr) ((ptr)->_misc->_mblen_state)\0"
-$LASF2419:
+$LASF2418:
 	.ascii "region_name_to_rid\0"
 $LASF604:
 	.ascii "_BSDTYPES_DEFINED \0"
@@ -20891,7 +20841,7 @@ $LASF601:
 	.ascii "__u_short_defined \0"
 $LASF2240:
 	.ascii "_mprec\0"
-$LASF2427:
+$LASF2426:
 	.ascii "myISR\0"
 $LASF1751:
 	.ascii "cputfsl(val,id) asm volatile (\"cput\\t%0,rfsl\" stringify(id) :: \"d\" (val))\0"
@@ -21011,9 +20961,9 @@ $LASF175:
 	.ascii "__DEC64_MANT_DIG__ 16\0"
 $LASF1320:
 	.ascii "XPAR_PS7_GPIO_0_BASEADDR 0xE000A000\0"
-$LASF2400:
+$LASF2399:
 	.ascii "share_song\0"
-$LASF2416:
+$LASF2415:
 	.ascii "provisioned_only\0"
 $LASF1214:
 	.ascii "XPAR_BRAM_0_FAULT_INJECT 0U\0"
@@ -21135,7 +21085,7 @@ $LASF2226:
 	.ascii "_blksize\0"
 $LASF891:
 	.ascii "XPAR_MICROBLAZE_0_USE_PCMP_INSTR 0\0"
-$LASF2398:
+$LASF2397:
 	.ascii "sample\0"
 $LASF2350:
 	.ascii "LOGIN\0"
@@ -21373,7 +21323,7 @@ $LASF228:
 	.ascii "_WANT_IO_C99_FORMATS 1\0"
 $LASF1302:
 	.ascii "XPAR_XEMACPS_0_ENET_SLCR_100Mbps_DIV1 5\0"
-$LASF2424:
+$LASF2423:
 	.ascii "GNU C11 6.2.0 -mlittle-endian -mxl-barrel-shift -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -g3 -O0 -fmessage-length=0 -ffunction-sections -fdata-sections\0"
 $LASF526:
 	.ascii "_REENT_CHECK_MP(var) _REENT_CHECK(var, _mp, struct _mprec *, sizeof *((var)->_mp), _REENT_INIT_MP(var))\0"
@@ -21569,7 +21519,7 @@ $LASF947:
 	.ascii "XPAR_MICROBLAZE_FSL_EXCEPTION 0\0"
 $LASF1976:
 	.ascii "XAxiDma_BdRead(BaseAddress,Offset) (*(u32 *)(((void *)(UINTPTR)(BaseAddress)) + (u32)(Offset)))\0"
-$LASF2409:
+$LASF2408:
 	.ascii "login\0"
 $LASF1090:
 	.ascii "XPAR_MICROBLAZE_S14_AXIS_PROTOCOL GENERIC\0"
@@ -21667,7 +21617,7 @@ $LASF20:
 	.ascii "__SIZEOF_FLOAT__ 4\0"
 $LASF1820:
 	.ascii "DATA_SYNC mbar(1)\0"
-$LASF2410:
+$LASF2409:
 	.ascii "main\0"
 $LASF187:
 	.ascii "__DEC128_EPSILON__ 1E-33DL\0"
@@ -21739,8 +21689,8 @@ $LASF1185:
 	.ascii "XPAR_INS_LMB_BRAM_IF_CNTLR_0_CE_FAILING_REGISTERS 0U\0"
 $LASF641:
 	.ascii "FILENAME_MAX 1024\0"
-$LASF776:
-	.ascii "XPAR_MICROBLAZE_0_M12_AXIS_DATA_WIDTH 32\0"
+$LASF622:
+	.ascii "__SRW 0x0010\0"
 $LASF1798:
 	.ascii "lhur(address) ({ u32 _rval; __asm__ __volatile__ ( \"lhur\\t%0,%1,r0\\n\" : \"=d\"(_rval) : \"d\" (address) ); _rval; })\0"
 $LASF527:

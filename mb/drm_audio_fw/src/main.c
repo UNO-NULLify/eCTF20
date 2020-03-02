@@ -398,10 +398,9 @@ void play_song() {
     }
 
     rem = length;
-    u32 remlast = length;
 
     set_playing();
-    while(1) {
+    while(rem > 0) {
         // check for interrupt to stop playback
         while (InterruptProcessed) {
         	InterruptProcessed = FALSE;
@@ -453,9 +452,8 @@ void play_song() {
 		// DMA must run first for this to yield the proper state
 		// rem != length checks for first run
 
-        mb_printf("dx: 0x%08x\r\n",get_drm_song(c->song) + length - rem);
+        //mb_printf("dx: 0x%08x\r\n",get_drm_song(c->song) + length - rem);
 
-		//TODO: Align DMA to 32 bit word?
 
 		//DMA to input fifo
 		//this will potentially max the fifo
@@ -491,7 +489,6 @@ void play_song() {
         	putfslx((sample & 0xFFFF0000) | (sample & 0xFFFF0000)>>16, 0,);
         }
 
-        remlast = rem;
         rem -= dma_to_ipf_count;	//dma_to_ipf_count is in fifo entries while rem is in bytes
     }
 }

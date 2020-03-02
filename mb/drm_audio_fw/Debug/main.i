@@ -6688,10 +6688,9 @@ void play_song() {
     }
 
     rem = length;
-    u32 remlast = length;
 
     c->drm_state = PLAYING; setLED(led, GREEN);;
-    while(1) {
+    while(rem > 0) {
 
         while (InterruptProcessed) {
          InterruptProcessed = 0U;
@@ -6738,17 +6737,7 @@ void play_song() {
 
         u32 chunk = ((2048 - 1) - *fifo_fill_in)*4;
         u32 dma_to_ipf_count = (chunk < rem) ? chunk : rem;
-
-
-
-
-
-        xil_printf("\r\nMB> " "dx: 0x%08x\r\n",((char *)(&c->song.md) + c->song.md.md_size) + length - rem);
-
-
-
-
-
+# 460 "../src/main.c"
   if (dma_to_ipf_count > 0)
    XAxiDma_SimpleTransfer( &sAxiDma,
         (u32)(((char *)(&c->song.md) + c->song.md.md_size) + length - rem),
@@ -6768,12 +6757,11 @@ void play_song() {
 
 
          asm volatile ("" "get\t%0,rfsl" "0" : "=d" (sample));
-# 490 "../src/main.c"
+# 488 "../src/main.c"
          asm volatile ("" "put\t%0,rfsl" "0" :: "d" ((sample & 0x0000FFFF) | (sample & 0x0000FFFF)<<16));
          asm volatile ("" "put\t%0,rfsl" "0" :: "d" ((sample & 0xFFFF0000) | (sample & 0xFFFF0000)>>16));
         }
 
-        remlast = rem;
         rem -= dma_to_ipf_count;
     }
 }
