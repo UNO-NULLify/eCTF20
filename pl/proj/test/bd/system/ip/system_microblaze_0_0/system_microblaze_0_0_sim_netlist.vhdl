@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
--- Date        : Sun Mar  1 21:33:47 2020
--- Host        : ssg0 running 64-bit Arch Linux
+-- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+-- Date        : Wed Mar  4 13:14:06 2020
+-- Host        : Lenovo-PC running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
---               /ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_sim_netlist.vhdl
+--               C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_sim_netlist.vhdl
 -- Design      : system_microblaze_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -8846,7 +8846,7 @@ entity system_microblaze_0_0_MB_FDR_126 is
   port (
     \ex_instr_reg[17]\ : out STD_LOGIC;
     ex_is_multi_or_load_instr_reg : out STD_LOGIC;
-    \Use_BTC_2.bt_addr_count_reg[6]\ : out STD_LOGIC;
+    \Use_BTC_2.bt_addr_count_reg[0]\ : out STD_LOGIC;
     ex_is_multi_or_load_instr0 : out STD_LOGIC;
     ex_is_multi_instr20 : out STD_LOGIC;
     EX_Bit_Extract0 : out STD_LOGIC;
@@ -8907,7 +8907,7 @@ EX_Bit_Extract_i_1: unisim.vcomponents.LUT5
       I2 => \Using_FPGA.Native_5\,
       I3 => \Using_FPGA.Native_6\,
       I4 => \Using_FPGA.Native_7\,
-      O => \Use_BTC_2.bt_addr_count_reg[6]\
+      O => \Use_BTC_2.bt_addr_count_reg[0]\
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
@@ -9028,7 +9028,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity system_microblaze_0_0_MB_FDR_130 is
   port (
     \ex_instr_reg[19]\ : out STD_LOGIC;
-    \Use_BTC_2.bt_addr_count_reg[6]\ : out STD_LOGIC;
+    \Use_BTC_2.bt_addr_count_reg[0]\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     of_instr_ii_23 : in STD_LOGIC;
     Clk : in STD_LOGIC;
@@ -9061,7 +9061,7 @@ begin
       I3 => \Using_FPGA.Native_2\,
       I4 => \Using_FPGA.Native_3\,
       I5 => \Using_FPGA.Native_4\,
-      O => \Use_BTC_2.bt_addr_count_reg[6]\
+      O => \Use_BTC_2.bt_addr_count_reg[0]\
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
@@ -9163,12 +9163,12 @@ architecture STRUCTURE of system_microblaze_0_0_MB_FDR_132 is
   signal \^use_btc_2.bt_ex_imm_cond_branch_reg\ : STD_LOGIC;
   signal \^ex_opcode_reg[1]\ : STD_LOGIC;
   signal \^ex_start_div_i_reg_0\ : STD_LOGIC;
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_ex_imm_cond_branch_i_2\ : label is "soft_lutpair40";
   attribute XILINX_LEGACY_PRIM : string;
   attribute XILINX_LEGACY_PRIM of \Using_FPGA.Native\ : label is "FDR";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__98\ : label is "soft_lutpair40";
   attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__99\ : label is "soft_lutpair40";
   attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__42\ : label is "soft_lutpair39";
   attribute SOFT_HLUTNM of ex_mbar_decode_cmb_inferred_i_2 : label is "soft_lutpair39";
@@ -9833,7 +9833,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity system_microblaze_0_0_MB_FDR_140 is
   port (
     \ex_instr_reg[23]\ : out STD_LOGIC;
-    \Use_BTC_2.bt_addr_count_reg[6]\ : out STD_LOGIC;
+    \Use_BTC_2.bt_addr_count_reg[0]\ : out STD_LOGIC;
     EX_SWAP_Instr_reg : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     of_instr_ii_19 : in STD_LOGIC;
@@ -9877,7 +9877,7 @@ EX_SWAP_Instr_i_1: unisim.vcomponents.LUT4
       I1 => \Using_FPGA.Native_0\,
       I2 => \Using_FPGA.Native_1\,
       I3 => \Using_FPGA.Native_2\,
-      O => \Use_BTC_2.bt_addr_count_reg[6]\
+      O => \Use_BTC_2.bt_addr_count_reg[0]\
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
@@ -10080,7 +10080,7 @@ use UNISIM.VCOMPONENTS.ALL;
 entity system_microblaze_0_0_MB_FDR_152 is
   port (
     \ex_instr_reg[29]\ : out STD_LOGIC;
-    \Use_BTC_2.bt_addr_count_reg[6]\ : out STD_LOGIC;
+    \Use_BTC_2.bt_addr_count_reg[0]\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     of_instr_ii_13 : in STD_LOGIC;
     Clk : in STD_LOGIC;
@@ -10109,7 +10109,7 @@ begin
       I1 => \Using_FPGA.Native_0\,
       I2 => \Using_FPGA.Native_1\,
       I3 => \Using_FPGA.Native_2\,
-      O => \Use_BTC_2.bt_addr_count_reg[6]\
+      O => \Use_BTC_2.bt_addr_count_reg[0]\
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
@@ -11094,7 +11094,7 @@ entity system_microblaze_0_0_MB_FDR_176 is
     \ex_opcode_reg[3]\ : out STD_LOGIC;
     ex_enable_sext_shift_i_reg : out STD_LOGIC;
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
-    \Use_BTC_2.bt_addr_count_reg[6]\ : out STD_LOGIC;
+    \Use_BTC_2.bt_addr_count_reg[0]\ : out STD_LOGIC;
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     EX_CMP_Op117_out : out STD_LOGIC;
     EX_Unsigned_Op116_out : out STD_LOGIC;
@@ -11131,7 +11131,7 @@ end system_microblaze_0_0_MB_FDR_176;
 
 architecture STRUCTURE of system_microblaze_0_0_MB_FDR_176 is
   signal EX_CMP_Op_i_2_n_0 : STD_LOGIC;
-  signal \^use_btc_2.bt_addr_count_reg[6]\ : STD_LOGIC;
+  signal \^use_btc_2.bt_addr_count_reg[0]\ : STD_LOGIC;
   signal \^ex_enable_sext_shift_i_reg\ : STD_LOGIC;
   signal \^ex_opcode_reg[3]\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
@@ -11144,7 +11144,7 @@ architecture STRUCTURE of system_microblaze_0_0_MB_FDR_176 is
   attribute SOFT_HLUTNM of ex_enable_sext_shift_i_i_1 : label is "soft_lutpair44";
   attribute SOFT_HLUTNM of ex_load_alu_carry_i_1 : label is "soft_lutpair43";
 begin
-  \Use_BTC_2.bt_addr_count_reg[6]\ <= \^use_btc_2.bt_addr_count_reg[6]\;
+  \Use_BTC_2.bt_addr_count_reg[0]\ <= \^use_btc_2.bt_addr_count_reg[0]\;
   ex_enable_sext_shift_i_reg <= \^ex_enable_sext_shift_i_reg\;
   \ex_opcode_reg[3]\ <= \^ex_opcode_reg[3]\;
 \EX_ALU_Op[0]_i_1\: unisim.vcomponents.LUT6
@@ -11226,7 +11226,7 @@ EX_Use_Carry_i_1: unisim.vcomponents.LUT4
     )
         port map (
       I0 => sync_reset,
-      I1 => \^use_btc_2.bt_addr_count_reg[6]\,
+      I1 => \^use_btc_2.bt_addr_count_reg[0]\,
       O => SR(0)
     );
 \Use_BTC_2.bt_addr_count[0]_i_4\: unisim.vcomponents.LUT6
@@ -11240,7 +11240,7 @@ EX_Use_Carry_i_1: unisim.vcomponents.LUT4
       I3 => \Using_FPGA.Native_4\,
       I4 => \Using_FPGA.Native_5\,
       I5 => \Using_FPGA.Native_6\,
-      O => \^use_btc_2.bt_addr_count_reg[6]\
+      O => \^use_btc_2.bt_addr_count_reg[0]\
     );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
@@ -11523,9 +11523,9 @@ architecture STRUCTURE of system_microblaze_0_0_MB_FDR_184 is
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of ex_op1_cmp_eq_n_i_1 : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of ex_op1_cmp_eq_n_i_1 : label is "soft_lutpair46";
   attribute SOFT_HLUTNM of force1_i_1 : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of use_Reg_Neg_DI_i_1 : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of use_Reg_Neg_DI_i_1 : label is "soft_lutpair45";
   attribute SOFT_HLUTNM of use_Reg_Neg_S_i_1 : label is "soft_lutpair45";
 begin
   \ex_opcode_reg[4]\ <= \^ex_opcode_reg[4]\;
@@ -11723,12 +11723,12 @@ architecture STRUCTURE of system_microblaze_0_0_MB_FDR_186 is
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__90\ : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__90\ : label is "soft_lutpair48";
   attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__91\ : label is "soft_lutpair49";
   attribute SOFT_HLUTNM of \Using_Mul_Instr.ex_not_mul_op_i_i_1\ : label is "soft_lutpair47";
   attribute SOFT_HLUTNM of ex_is_bs_instr_I_i_1 : label is "soft_lutpair48";
   attribute SOFT_HLUTNM of ex_is_div_instr_I_i_2 : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of ex_is_multi_or_load_instr_i_3 : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of ex_is_multi_or_load_instr_i_3 : label is "soft_lutpair49";
 begin
   \ex_opcode_reg[5]\ <= \^ex_opcode_reg[5]\;
 \EX_Sext_Op[0]_i_1\: unisim.vcomponents.LUT6
@@ -12238,10 +12238,10 @@ entity system_microblaze_0_0_MB_FDR_196 is
     \Use_BTC_2.bt_write_q_reg\ : out STD_LOGIC;
     ex_atomic_Instruction_Pair0 : out STD_LOGIC;
     \Use_BTC_2.bt_if_pc_incr_wait_reg\ : out STD_LOGIC;
-    \Use_BTC_2.bt_addr_count_reg[6]\ : out STD_LOGIC;
+    \Use_BTC_2.bt_addr_count_reg[0]\ : out STD_LOGIC;
     of_pipe_ctrl_reg0 : out STD_LOGIC;
     \imm_reg_reg[15]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    ex_valid_reg : out STD_LOGIC;
+    ex_valid_jump_reg : out STD_LOGIC;
     ex_jump_q_reg : out STD_LOGIC;
     \Using_FPGA.Native_0\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
@@ -12258,7 +12258,7 @@ entity system_microblaze_0_0_MB_FDR_196 is
     EX_Is_Div_Instr : in STD_LOGIC;
     MEM_Is_Div_Instr : in STD_LOGIC;
     \Using_FPGA.Native_6\ : in STD_LOGIC;
-    ex_valid_reg_0 : in STD_LOGIC;
+    ex_valid_reg : in STD_LOGIC;
     ex_jump : in STD_LOGIC;
     ex_jump_nodelay_reg : in STD_LOGIC;
     mem_valid_reg : in STD_LOGIC;
@@ -12293,7 +12293,7 @@ begin
       I1 => \Using_FPGA.Native_5\(1),
       I2 => \Using_FPGA.Native_5\(2),
       I3 => \Using_FPGA.Native_5\(0),
-      O => \Use_BTC_2.bt_addr_count_reg[6]\
+      O => \Use_BTC_2.bt_addr_count_reg[0]\
     );
 \Use_BTC_2.bt_if_pc_incr_wait_i_8\: unisim.vcomponents.LUT2
     generic map(
@@ -12379,12 +12379,12 @@ ex_valid_keep_i_3: unisim.vcomponents.LUT6
     )
         port map (
       I0 => \^ex_atomic_instruction_pair_reg\,
-      I1 => ex_valid_reg_0,
+      I1 => ex_valid_reg,
       I2 => ex_jump,
       I3 => ex_jump_nodelay_reg,
       I4 => mem_valid_reg,
       I5 => mem_exception_from_ex,
-      O => ex_valid_reg
+      O => ex_valid_jump_reg
     );
 \imm_reg[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
@@ -13041,19 +13041,78 @@ use UNISIM.VCOMPONENTS.ALL;
 entity system_microblaze_0_0_MB_FDR_215 is
   port (
     of_pc : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \Use_BTC_2.bt_saved_pc_valid_reg\ : out STD_LOGIC;
+    D : out STD_LOGIC_VECTOR ( 29 downto 0 );
+    \Use_BTC_2.bt_if_pc_incr_wait_reg\ : out STD_LOGIC;
+    \Use_BTC_2.bt_ex_mispredict_handled_reg\ : out STD_LOGIC;
+    of_branch_with_delayslot131_out : out STD_LOGIC;
+    of_read_imm_reg_ii0 : out STD_LOGIC;
+    I5 : out STD_LOGIC;
+    of_next_ex_valid : out STD_LOGIC;
+    \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\ : out STD_LOGIC;
     I098_out : out STD_LOGIC;
     S : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \if_pc_reg[31]\ : out STD_LOGIC;
+    \Use_BTC_2.bt_ex_mispredict_pc_hold_reg\ : out STD_LOGIC;
+    if_missed_fetch_reg : out STD_LOGIC;
+    ex_valid_reg : out STD_LOGIC;
+    ex_valid_jump_reg : out STD_LOGIC;
     \EX_Op1_reg[18]\ : out STD_LOGIC;
     sync_reset : in STD_LOGIC;
     of_pc_ii_13 : in STD_LOGIC;
     Clk : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Use_BTC_2.bt_saved_pc_valid_reg_0\ : in STD_LOGIC;
+    \Use_BTC_2.bt_if_pc_incr_wait_reg_0\ : in STD_LOGIC;
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\ : in STD_LOGIC;
     \Using_FPGA.Native_0\ : in STD_LOGIC;
-    if_missed_fetch_reg : in STD_LOGIC;
+    \Use_Async_Reset.sync_reset_reg\ : in STD_LOGIC;
+    \EX_Op2_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
+    ex_jump : in STD_LOGIC;
+    bt_jump : in STD_LOGIC;
+    \if_pc_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
+    Q : in STD_LOGIC_VECTOR ( 29 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\ : in STD_LOGIC;
+    \Use_BTC_2.bt_saved_pc_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\ : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\ : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\ : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28]\ : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    bt_if_pc_incr_wait : in STD_LOGIC;
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]_0\ : in STD_LOGIC;
+    if_pc_incr_carry3 : in STD_LOGIC;
+    bt_ex_mispredict_handled : in STD_LOGIC;
+    \Using_FPGA.Native_1\ : in STD_LOGIC;
+    ex_branch_with_delayslot_reg : in STD_LOGIC_VECTOR ( 0 to 0 );
+    ex_valid_reg_0 : in STD_LOGIC;
+    \Use_BTC_2.bt_ex_jump_held_reg\ : in STD_LOGIC;
+    \Use_BTC_2.bt_ex_mispredict_handled_reg_0\ : in STD_LOGIC;
+    of_Take_Interrupt_hold_reg : in STD_LOGIC;
+    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\ : in STD_LOGIC;
+    \Use_BTC_2.bt_saved_pc_valid_reg_1\ : in STD_LOGIC;
+    \Using_FPGA.Native_2\ : in STD_LOGIC;
+    \Using_FPGA.Native_3\ : in STD_LOGIC;
+    \Using_FPGA.Native_4\ : in STD_LOGIC;
+    bt_ex_mispredict_addr_hold : in STD_LOGIC;
+    \Using_FPGA.Native_5\ : in STD_LOGIC;
+    CO : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Use_BTC_2.bt_ex_return_reg\ : in STD_LOGIC;
+    \Use_BTC_2.ex_prediction_bits_reg[3]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    of_valid : in STD_LOGIC;
+    ex_Take_Intr_or_Exc_keep : in STD_LOGIC;
+    \if_pc_reg[18]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \Using_FPGA.Native_6\ : in STD_LOGIC;
+    if_missed_fetch_reg_0 : in STD_LOGIC;
     IReady : in STD_LOGIC;
     mem_access_completed_reg : in STD_LOGIC;
-    \Use_BTC_2.bt_delayslot_target_reg[18]\ : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    \Using_FPGA.Native_1\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Using_FPGA.Native_7\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    bt_ex_mispredict_pc_hold : in STD_LOGIC;
+    iside_data_strobe_combined_sel : in STD_LOGIC;
+    \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg\ : in STD_LOGIC;
+    ex_valid : in STD_LOGIC;
+    wb_exception_i_reg : in STD_LOGIC;
+    of_pause_reg : in STD_LOGIC;
+    \out\ : in STD_LOGIC;
     of_op1_sel_spr_pc : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -13061,13 +13120,913 @@ entity system_microblaze_0_0_MB_FDR_215 is
 end system_microblaze_0_0_MB_FDR_215;
 
 architecture STRUCTURE of system_microblaze_0_0_MB_FDR_215 is
+  signal \^i5\ : STD_LOGIC;
+  signal \Instr_Addr[0]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[0]_INST_0_i_2_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[10]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[11]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[12]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[13]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[14]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[15]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[16]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[17]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[18]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[19]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[1]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[20]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[21]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[22]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[23]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[24]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[25]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[26]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[27]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[28]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[29]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[2]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[3]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[4]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[5]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[6]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[7]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[8]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Instr_Addr[9]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0\ : STD_LOGIC;
+  signal \Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0\ : STD_LOGIC;
+  signal \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0\ : STD_LOGIC;
+  signal \Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0\ : STD_LOGIC;
+  signal \^of_next_ex_valid\ : STD_LOGIC;
   signal \^of_pc\ : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal of_read_imm_reg_ii1 : STD_LOGIC;
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_ex_mispredict_handled_i_2\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_ex_mispredict_pc_hold_i_2\ : label is "soft_lutpair21";
   attribute XILINX_LEGACY_PRIM : string;
   attribute XILINX_LEGACY_PRIM of \Using_FPGA.Native\ : label is "FDR";
   attribute box_type : string;
   attribute box_type of \Using_FPGA.Native\ : label is "PRIMITIVE";
 begin
+  I5 <= \^i5\;
+  of_next_ex_valid <= \^of_next_ex_valid\;
   of_pc(0) <= \^of_pc\(0);
+\Instr_Addr[0]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(29),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[0]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(29),
+      O => D(29)
+    );
+\Instr_Addr[0]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(29),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28]\(3),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(29),
+      O => \Instr_Addr[0]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[0]_INST_0_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"AAAAAAAAEAAAAAAA"
+    )
+        port map (
+      I0 => bt_ex_mispredict_addr_hold,
+      I1 => \Use_BTC_2.ex_prediction_bits_reg[3]\(0),
+      I2 => \Use_BTC_2.bt_ex_return_reg\,
+      I3 => CO(0),
+      I4 => of_valid,
+      I5 => ex_Take_Intr_or_Exc_keep,
+      O => \Instr_Addr[0]_INST_0_i_2_n_0\
+    );
+\Instr_Addr[10]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(19),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[10]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(19),
+      O => D(19)
+    );
+\Instr_Addr[10]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(19),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(1),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(19),
+      O => \Instr_Addr[10]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[11]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(18),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[11]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(18),
+      O => D(18)
+    );
+\Instr_Addr[11]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(18),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(0),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(18),
+      O => \Instr_Addr[11]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[12]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(17),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[12]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(17),
+      O => D(17)
+    );
+\Instr_Addr[12]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(17),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(7),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(17),
+      O => \Instr_Addr[12]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[13]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(16),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[13]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(16),
+      O => D(16)
+    );
+\Instr_Addr[13]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(16),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(6),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(16),
+      O => \Instr_Addr[13]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[14]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(15),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[14]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(15),
+      O => D(15)
+    );
+\Instr_Addr[14]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(15),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(5),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(15),
+      O => \Instr_Addr[14]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[15]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(14),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[15]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(14),
+      O => D(14)
+    );
+\Instr_Addr[15]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(14),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(4),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(14),
+      O => \Instr_Addr[15]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[16]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(13),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[16]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(13),
+      O => D(13)
+    );
+\Instr_Addr[16]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(13),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(3),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(13),
+      O => \Instr_Addr[16]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[17]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(12),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[17]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(12),
+      O => D(12)
+    );
+\Instr_Addr[17]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(12),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(2),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(12),
+      O => \Instr_Addr[17]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[18]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(11),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[18]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(11),
+      O => D(11)
+    );
+\Instr_Addr[18]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(11),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(1),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(11),
+      O => \Instr_Addr[18]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[19]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(10),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[19]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(10),
+      O => D(10)
+    );
+\Instr_Addr[19]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(10),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(0),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(10),
+      O => \Instr_Addr[19]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[1]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(28),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[1]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(28),
+      O => D(28)
+    );
+\Instr_Addr[1]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(28),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28]\(2),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(28),
+      O => \Instr_Addr[1]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[20]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(9),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[20]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(9),
+      O => D(9)
+    );
+\Instr_Addr[20]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(9),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(7),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(9),
+      O => \Instr_Addr[20]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[21]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(8),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[21]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(8),
+      O => D(8)
+    );
+\Instr_Addr[21]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(8),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(6),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(8),
+      O => \Instr_Addr[21]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[22]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(7),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[22]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(7),
+      O => D(7)
+    );
+\Instr_Addr[22]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(7),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(5),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(7),
+      O => \Instr_Addr[22]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[23]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(6),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[23]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(6),
+      O => D(6)
+    );
+\Instr_Addr[23]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(6),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(4),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(6),
+      O => \Instr_Addr[23]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[24]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(5),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[24]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(5),
+      O => D(5)
+    );
+\Instr_Addr[24]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(5),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(3),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(5),
+      O => \Instr_Addr[24]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[25]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(4),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[25]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(4),
+      O => D(4)
+    );
+\Instr_Addr[25]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(4),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(2),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(4),
+      O => \Instr_Addr[25]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[26]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(3),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[26]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(3),
+      O => D(3)
+    );
+\Instr_Addr[26]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(3),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(1),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(3),
+      O => \Instr_Addr[26]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[27]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(2),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[27]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(2),
+      O => D(2)
+    );
+\Instr_Addr[27]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(2),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(0),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(2),
+      O => \Instr_Addr[27]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[28]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(1),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[28]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(1),
+      O => D(1)
+    );
+\Instr_Addr[28]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(1),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56]\(1),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(1),
+      O => \Instr_Addr[28]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[29]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(0),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[29]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(0),
+      O => D(0)
+    );
+\Instr_Addr[29]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(0),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56]\(0),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(0),
+      O => \Instr_Addr[29]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[2]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(27),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[2]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(27),
+      O => D(27)
+    );
+\Instr_Addr[2]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(27),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28]\(1),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(27),
+      O => \Instr_Addr[2]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[3]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(26),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[3]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(26),
+      O => D(26)
+    );
+\Instr_Addr[3]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(26),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28]\(0),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(26),
+      O => \Instr_Addr[3]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[4]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(25),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[4]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(25),
+      O => D(25)
+    );
+\Instr_Addr[4]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(25),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(7),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(25),
+      O => \Instr_Addr[4]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[5]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(24),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[5]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(24),
+      O => D(24)
+    );
+\Instr_Addr[5]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(24),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(6),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(24),
+      O => \Instr_Addr[5]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[6]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(23),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[6]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(23),
+      O => D(23)
+    );
+\Instr_Addr[6]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(23),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(5),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(23),
+      O => \Instr_Addr[6]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[7]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(22),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[7]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(22),
+      O => D(22)
+    );
+\Instr_Addr[7]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(22),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(4),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(22),
+      O => \Instr_Addr[7]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[8]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(21),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[8]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(21),
+      O => D(21)
+    );
+\Instr_Addr[8]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(21),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(3),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(21),
+      O => \Instr_Addr[8]_INST_0_i_1_n_0\
+    );
+\Instr_Addr[9]_INST_0\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => \EX_Op2_reg[0]\(20),
+      I1 => ex_jump,
+      I2 => \Instr_Addr[9]_INST_0_i_1_n_0\,
+      I3 => bt_jump,
+      I4 => \if_pc_reg[0]\(20),
+      O => D(20)
+    );
+\Instr_Addr[9]_INST_0_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"B8BBB888"
+    )
+        port map (
+      I0 => Q(20),
+      I1 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(2),
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(20),
+      O => \Instr_Addr[9]_INST_0_i_1_n_0\
+    );
+\Use_BTC_2.bt_ex_mispredict_addr_hold_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000011110100"
+    )
+        port map (
+      I0 => sync_reset,
+      I1 => ex_jump,
+      I2 => bt_ex_mispredict_handled,
+      I3 => \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0\,
+      I4 => bt_ex_mispredict_addr_hold,
+      I5 => \Using_FPGA.Native_1\,
+      O => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\
+    );
+\Use_BTC_2.bt_ex_mispredict_addr_hold_i_2\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"40000000"
+    )
+        port map (
+      I0 => ex_Take_Intr_or_Exc_keep,
+      I1 => of_valid,
+      I2 => CO(0),
+      I3 => \Use_BTC_2.bt_ex_return_reg\,
+      I4 => \Use_BTC_2.ex_prediction_bits_reg[3]\(0),
+      O => \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0\
+    );
+\Use_BTC_2.bt_ex_mispredict_handled_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"000000000000AAFE"
+    )
+        port map (
+      I0 => bt_ex_mispredict_handled,
+      I1 => \Using_FPGA.Native_1\,
+      I2 => ex_jump,
+      I3 => \Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0\,
+      I4 => ex_branch_with_delayslot_reg(0),
+      I5 => sync_reset,
+      O => \Use_BTC_2.bt_ex_mispredict_handled_reg\
+    );
+\Use_BTC_2.bt_ex_mispredict_handled_i_2\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0007"
+    )
+        port map (
+      I0 => ex_valid_reg_0,
+      I1 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
+      I2 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
+      O => \Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0\
+    );
+\Use_BTC_2.bt_ex_mispredict_pc_hold_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"1F0F"
+    )
+        port map (
+      I0 => \Using_FPGA.Native_1\,
+      I1 => ex_jump,
+      I2 => of_read_imm_reg_ii1,
+      I3 => bt_ex_mispredict_pc_hold,
+      O => \Use_BTC_2.bt_ex_mispredict_pc_hold_reg\
+    );
+\Use_BTC_2.bt_ex_mispredict_pc_hold_i_2\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"AAABABAB"
+    )
+        port map (
+      I0 => bt_ex_mispredict_handled,
+      I1 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
+      I2 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I3 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
+      I4 => ex_valid_reg_0,
+      O => of_read_imm_reg_ii1
+    );
+\Use_BTC_2.bt_if_pc_incr_wait_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000010101110"
+    )
+        port map (
+      I0 => \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0\,
+      I1 => \Use_Async_Reset.sync_reset_reg\,
+      I2 => bt_if_pc_incr_wait,
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
+      I4 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]_0\,
+      I5 => if_pc_incr_carry3,
+      O => \Use_BTC_2.bt_if_pc_incr_wait_reg\
+    );
+\Use_BTC_2.bt_if_pc_incr_wait_i_2\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0004C8CC00040004"
+    )
+        port map (
+      I0 => \Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0\,
+      I1 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
+      I2 => ex_valid_reg_0,
+      I3 => \Use_BTC_2.bt_ex_jump_held_reg\,
+      I4 => \Using_FPGA.Native_0\,
+      I5 => \Use_BTC_2.bt_ex_mispredict_handled_reg_0\,
+      O => \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0\
+    );
+\Use_BTC_2.bt_if_pc_incr_wait_i_5\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFFEAAAAAAA"
+    )
+        port map (
+      I0 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
+      I1 => \Using_FPGA.Native_5\,
+      I2 => CO(0),
+      I3 => \Use_BTC_2.bt_ex_return_reg\,
+      I4 => \Use_BTC_2.ex_prediction_bits_reg[3]\(0),
+      I5 => bt_ex_mispredict_addr_hold,
+      O => \Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0\
+    );
+\Use_BTC_2.bt_saved_pc_valid_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"00000000CCCECFCE"
+    )
+        port map (
+      I0 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
+      I1 => \Use_BTC_2.bt_if_pc_incr_wait_reg_0\,
+      I2 => \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0\,
+      I3 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\,
+      I4 => \Using_FPGA.Native_0\,
+      I5 => \Use_Async_Reset.sync_reset_reg\,
+      O => \Use_BTC_2.bt_saved_pc_valid_reg\
+    );
 \Using_FPGA.Native\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
@@ -13079,14 +14038,39 @@ begin
       Q => \^of_pc\(0),
       R => sync_reset
     );
+\Using_FPGA.Native_i_1__107\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"AAABABAB"
+    )
+        port map (
+      I0 => bt_ex_mispredict_handled,
+      I1 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
+      I2 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I3 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
+      I4 => ex_valid_reg_0,
+      O => \if_pc_reg[31]\
+    );
+\Using_FPGA.Native_i_1__5\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"AAAAAAAAFFFFFFEA"
+    )
+        port map (
+      I0 => ex_jump,
+      I1 => ex_valid_reg_0,
+      I2 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
+      I3 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I4 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
+      I5 => bt_ex_mispredict_handled,
+      O => \^i5\
+    );
 \Using_FPGA.Native_i_1__74\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FBFBFBFF08080800"
     )
         port map (
-      I0 => Q(0),
-      I1 => \Using_FPGA.Native_0\,
-      I2 => if_missed_fetch_reg,
+      I0 => \if_pc_reg[18]\(0),
+      I1 => \Using_FPGA.Native_6\,
+      I2 => if_missed_fetch_reg_0,
       I3 => IReady,
       I4 => mem_access_completed_reg,
       I5 => \^of_pc\(0),
@@ -13107,12 +14091,90 @@ bt_use_delayslot_target4_carry_i_1: unisim.vcomponents.LUT6
     )
         port map (
       I0 => \^of_pc\(0),
-      I1 => \Use_BTC_2.bt_delayslot_target_reg[18]\(2),
-      I2 => \Using_FPGA.Native_1\(0),
-      I3 => \Use_BTC_2.bt_delayslot_target_reg[18]\(0),
-      I4 => \Use_BTC_2.bt_delayslot_target_reg[18]\(1),
-      I5 => \Using_FPGA.Native_1\(1),
+      I1 => Q(11),
+      I2 => \Using_FPGA.Native_7\(0),
+      I3 => Q(9),
+      I4 => Q(10),
+      I5 => \Using_FPGA.Native_7\(1),
       O => S(0)
+    );
+ex_branch_with_delayslot_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"00000000888A8888"
+    )
+        port map (
+      I0 => of_Take_Interrupt_hold_reg,
+      I1 => bt_ex_mispredict_handled,
+      I2 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
+      I3 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I4 => \Use_BTC_2.bt_saved_pc_valid_reg_1\,
+      I5 => \Using_FPGA.Native_2\,
+      O => of_branch_with_delayslot131_out
+    );
+ex_valid_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"000C000C0000000A"
+    )
+        port map (
+      I0 => ex_valid,
+      I1 => \^of_next_ex_valid\,
+      I2 => sync_reset,
+      I3 => wb_exception_i_reg,
+      I4 => ex_branch_with_delayslot_reg(0),
+      I5 => of_pause_reg,
+      O => ex_valid_reg
+    );
+ex_valid_jump_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"000C000C0000000A"
+    )
+        port map (
+      I0 => \out\,
+      I1 => \^of_next_ex_valid\,
+      I2 => sync_reset,
+      I3 => wb_exception_i_reg,
+      I4 => ex_branch_with_delayslot_reg(0),
+      I5 => of_pause_reg,
+      O => ex_valid_jump_reg
+    );
+ex_valid_keep_i_2: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"00000000FFFF0007"
+    )
+        port map (
+      I0 => ex_valid_reg_0,
+      I1 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
+      I2 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
+      I4 => bt_ex_mispredict_handled,
+      I5 => \Using_FPGA.Native_4\,
+      O => \^of_next_ex_valid\
+    );
+if_missed_fetch_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"000000000000002E"
+    )
+        port map (
+      I0 => \^i5\,
+      I1 => if_missed_fetch_reg_0,
+      I2 => iside_data_strobe_combined_sel,
+      I3 => \Using_FPGA.Native_1\,
+      I4 => \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg\,
+      I5 => sync_reset,
+      O => if_missed_fetch_reg
+    );
+of_read_imm_reg_ii_i_2: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"00000000888A8888"
+    )
+        port map (
+      I0 => of_Take_Interrupt_hold_reg,
+      I1 => bt_ex_mispredict_handled,
+      I2 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
+      I3 => \Instr_Addr[0]_INST_0_i_2_n_0\,
+      I4 => \Use_BTC_2.bt_saved_pc_valid_reg_1\,
+      I5 => \Using_FPGA.Native_3\,
+      O => of_read_imm_reg_ii0
     );
 end STRUCTURE;
 library IEEE;
@@ -23191,57 +24253,43 @@ use UNISIM.VCOMPONENTS.ALL;
 entity system_microblaze_0_0_MB_MUXCY_301 is
   port (
     \if_pc_reg[31]\ : out STD_LOGIC;
-    \Use_BTC_2.bt_saved_pc_valid_reg\ : out STD_LOGIC;
     I1_1 : out STD_LOGIC;
     \in\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     I0 : out STD_LOGIC;
     \Use_BTC_2.bt_if_pc_incr_wait_reg\ : out STD_LOGIC;
+    \Use_BTC_2.bt_saved_pc_valid_reg\ : out STD_LOGIC;
     \Use_BTC_2.bt_if_pc_incr_wait_reg_0\ : out STD_LOGIC;
-    ex_branch_with_delayslot_reg : out STD_LOGIC;
+    \Use_BTC_2.bt_if_pc_incr_wait_reg_1\ : out STD_LOGIC;
     D : out STD_LOGIC_VECTOR ( 0 to 0 );
     \Use_BTC_2.jump_done_reg\ : out STD_LOGIC;
     \Instr_Addr[30]\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Use_BTC_2.bt_ex_mispredict_handled_reg\ : in STD_LOGIC;
     carry2 : in STD_LOGIC;
-    \Use_BTC_2.bt_saved_pc_valid_reg_0\ : in STD_LOGIC;
-    \Use_BTC_2.bt_if_pc_incr_wait_reg_1\ : in STD_LOGIC;
     \Using_FPGA.Native_0\ : in STD_LOGIC;
-    \Use_Async_Reset.sync_reset_reg\ : in STD_LOGIC;
-    \Using_FPGA.Native_1\ : in STD_LOGIC;
     \out\ : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \Using_FPGA.Native_2\ : in STD_LOGIC;
+    \Using_FPGA.Native_1\ : in STD_LOGIC;
     if_missed_fetch_reg : in STD_LOGIC;
     IReady : in STD_LOGIC;
     mem_access_completed_reg : in STD_LOGIC;
-    \Using_FPGA.Native_3\ : in STD_LOGIC;
+    \Using_FPGA.Native_2\ : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     if_pc_write_q : in STD_LOGIC;
     we_hold : in STD_LOGIC;
     bt_valid_bit : in STD_LOGIC;
-    bt_if_pc_incr_wait : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\ : in STD_LOGIC;
-    if_pc_incr_carry3 : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\ : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_jump_held_reg\ : in STD_LOGIC;
     \Use_BTC_2.ex_jump_wanted_delayslot_reg\ : in STD_LOGIC;
     ex_valid : in STD_LOGIC;
     bt_ex_imm_cond_branch : in STD_LOGIC;
     \Use_BTC_2.ex_prediction_bits_reg[3]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \Using_FPGA.Native_4\ : in STD_LOGIC;
+    if_pc_incr_carry3 : in STD_LOGIC;
+    \Using_FPGA.Native_3\ : in STD_LOGIC;
     ex_jump : in STD_LOGIC;
-    bt_ex_mispredict_addr_hold : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_return_reg\ : in STD_LOGIC;
-    CO : in STD_LOGIC_VECTOR ( 0 to 0 );
-    of_valid : in STD_LOGIC;
-    ex_Take_Intr_or_Exc_keep : in STD_LOGIC;
     bt_ex_mispredict_handled : in STD_LOGIC;
     ex_jump_hold_0 : in STD_LOGIC;
     \EX_Op2_reg[30]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \if_pc_reg[30]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1\ : in STD_LOGIC;
     lopt : in STD_LOGIC;
-    lopt_1 : out STD_LOGIC;
-    lopt_2 : out STD_LOGIC
+    lopt_1 : out STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of system_microblaze_0_0_MB_MUXCY_301 : entity is "MB_MUXCY";
@@ -23249,45 +24297,22 @@ end system_microblaze_0_0_MB_MUXCY_301;
 
 architecture STRUCTURE of system_microblaze_0_0_MB_MUXCY_301 is
   signal \<const1>\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_if_pc_incr_wait_i_4_n_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_if_pc_incr_wait_i_7_n_0\ : STD_LOGIC;
-  signal \^use_btc_2.bt_if_pc_incr_wait_reg_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_saved_pc_valid_i_3_n_0\ : STD_LOGIC;
-  signal \Using_FPGA.Native_i_1__107_n_0\ : STD_LOGIC;
-  signal \^ex_branch_with_delayslot_reg\ : STD_LOGIC;
   signal \^if_pc_reg[31]\ : STD_LOGIC;
   signal \^in\ : STD_LOGIC_VECTOR ( 0 to 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Instr_Addr[30]_INST_0\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \Instr_Addr[31]_INST_0\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \Use_BTC_2.bt_if_pc_incr_wait_i_4\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \Use_BTC_2.bt_if_pc_incr_wait_i_7\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \Use_BTC_2.bt_saved_pc_valid_i_3\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \Use_BTC_2.if_prediction_bits_keep[3]_i_1\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \Use_BTC_2.jump_done_i_1\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \Use_BTC_2.prediction_buffer_reg[3][3]_srl4_i_2\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \Instr_Addr[30]_INST_0\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \Instr_Addr[31]_INST_0\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_if_pc_incr_wait_i_4\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_if_pc_incr_wait_i_7\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_saved_pc_valid_i_3\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \Use_BTC_2.if_prediction_bits_keep[3]_i_1\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \Use_BTC_2.jump_done_i_1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \Use_BTC_2.prediction_buffer_reg[3][3]_srl4_i_2\ : label is "soft_lutpair24";
 begin
-  \Use_BTC_2.bt_if_pc_incr_wait_reg_0\ <= \^use_btc_2.bt_if_pc_incr_wait_reg_0\;
   \^if_pc_reg[31]\ <= lopt;
-  ex_branch_with_delayslot_reg <= \^ex_branch_with_delayslot_reg\;
   \if_pc_reg[31]\ <= \^if_pc_reg[31]\;
   \in\(0) <= \^in\(0);
   lopt_1 <= \<const1>\;
-  lopt_2 <= \Using_FPGA.Native_i_1__107_n_0\;
-\Instr_Addr[0]_INST_0_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"AAAAAAAAEAAAAAAA"
-    )
-        port map (
-      I0 => bt_ex_mispredict_addr_hold,
-      I1 => \Use_BTC_2.ex_prediction_bits_reg[3]\(0),
-      I2 => \Use_BTC_2.bt_ex_return_reg\,
-      I3 => CO(0),
-      I4 => of_valid,
-      I5 => ex_Take_Intr_or_Exc_keep,
-      O => \^ex_branch_with_delayslot_reg\
-    );
 \Instr_Addr[30]_INST_0\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"88B8"
@@ -23310,32 +24335,6 @@ begin
       I3 => \^if_pc_reg[31]\,
       O => \Instr_Addr[30]\(0)
     );
-\Use_BTC_2.bt_if_pc_incr_wait_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000010101110"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0\,
-      I1 => \Use_Async_Reset.sync_reset_reg\,
-      I2 => bt_if_pc_incr_wait,
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_if_pc_incr_wait_i_4_n_0\,
-      I5 => if_pc_incr_carry3,
-      O => \Use_BTC_2.bt_if_pc_incr_wait_reg\
-    );
-\Use_BTC_2.bt_if_pc_incr_wait_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0004C8CC00040004"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
-      I1 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
-      I2 => \^use_btc_2.bt_if_pc_incr_wait_reg_0\,
-      I3 => \Use_BTC_2.bt_ex_jump_held_reg\,
-      I4 => \Using_FPGA.Native_0\,
-      I5 => \Use_BTC_2.bt_if_pc_incr_wait_i_7_n_0\,
-      O => \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0\
-    );
 \Use_BTC_2.bt_if_pc_incr_wait_i_4\: unisim.vcomponents.LUT2
     generic map(
       INIT => X"7"
@@ -23343,7 +24342,7 @@ begin
         port map (
       I0 => \^if_pc_reg[31]\,
       I1 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\(0),
-      O => \Use_BTC_2.bt_if_pc_incr_wait_i_4_n_0\
+      O => \Use_BTC_2.bt_if_pc_incr_wait_reg_0\
     );
 \Use_BTC_2.bt_if_pc_incr_wait_i_7\: unisim.vcomponents.LUT2
     generic map(
@@ -23352,20 +24351,7 @@ begin
         port map (
       I0 => \^if_pc_reg[31]\,
       I1 => bt_ex_mispredict_handled,
-      O => \Use_BTC_2.bt_if_pc_incr_wait_i_7_n_0\
-    );
-\Use_BTC_2.bt_saved_pc_valid_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00000000CCCECFCE"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
-      I1 => \Use_BTC_2.bt_if_pc_incr_wait_reg_1\,
-      I2 => \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0\,
-      I3 => \Use_BTC_2.bt_saved_pc_valid_i_3_n_0\,
-      I4 => \Using_FPGA.Native_0\,
-      I5 => \Use_Async_Reset.sync_reset_reg\,
-      O => \Use_BTC_2.bt_saved_pc_valid_reg\
+      O => \Use_BTC_2.bt_if_pc_incr_wait_reg_1\
     );
 \Use_BTC_2.bt_saved_pc_valid_i_3\: unisim.vcomponents.LUT5
     generic map(
@@ -23375,9 +24361,9 @@ begin
       I0 => \^if_pc_reg[31]\,
       I1 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\(0),
       I2 => if_pc_incr_carry3,
-      I3 => \Using_FPGA.Native_4\,
+      I3 => \Using_FPGA.Native_3\,
       I4 => ex_jump,
-      O => \Use_BTC_2.bt_saved_pc_valid_i_3_n_0\
+      O => \Use_BTC_2.bt_saved_pc_valid_reg\
     );
 \Use_BTC_2.if_prediction_bits_keep[3]_i_1\: unisim.vcomponents.LUT3
     generic map(
@@ -23417,24 +24403,12 @@ begin
     )
         port map (
       I0 => \^in\(0),
-      I1 => \Using_FPGA.Native_2\,
+      I1 => \Using_FPGA.Native_1\,
       I2 => if_missed_fetch_reg,
       I3 => IReady,
       I4 => mem_access_completed_reg,
-      I5 => \Using_FPGA.Native_3\,
+      I5 => \Using_FPGA.Native_2\,
       O => I0
-    );
-\Using_FPGA.Native_i_1__107\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"AAABABAB"
-    )
-        port map (
-      I0 => bt_ex_mispredict_handled,
-      I1 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1\,
-      I2 => \^ex_branch_with_delayslot_reg\,
-      I3 => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
-      I4 => \^use_btc_2.bt_if_pc_incr_wait_reg_0\,
-      O => \Using_FPGA.Native_i_1__107_n_0\
     );
 \Using_FPGA.Native_i_2__0\: unisim.vcomponents.LUT3
     generic map(
@@ -23442,7 +24416,7 @@ begin
     )
         port map (
       I0 => \^in\(0),
-      I1 => \Using_FPGA.Native_1\,
+      I1 => \Using_FPGA.Native_0\,
       I2 => \out\(0),
       O => I1_1
     );
@@ -23455,7 +24429,7 @@ begin
       I1 => ex_valid,
       I2 => bt_ex_imm_cond_branch,
       I3 => \Use_BTC_2.ex_prediction_bits_reg[3]\(0),
-      O => \^use_btc_2.bt_if_pc_incr_wait_reg_0\
+      O => \Use_BTC_2.bt_if_pc_incr_wait_reg\
     );
 VCC: unisim.vcomponents.VCC
      port map (
@@ -24903,7 +25877,7 @@ entity system_microblaze_0_0_MB_MUXCY_89 is
     ex_Take_Intr_or_Exc_reg : out STD_LOGIC;
     \Use_BTC_2.bt_saved_pc_valid_reg\ : out STD_LOGIC;
     mem_jump_taken_reg : out STD_LOGIC;
-    \Use_BTC_2.bt_saved_pc_valid_reg_0\ : out STD_LOGIC;
+    \Use_BTC_2.bt_if_pc_incr_wait_reg\ : out STD_LOGIC;
     ex_jump_q_reg_0 : out STD_LOGIC;
     jump_carry5 : in STD_LOGIC;
     of_Take_Interrupt_hold_reg : in STD_LOGIC;
@@ -24964,7 +25938,7 @@ begin
         port map (
       I0 => sync_reset,
       I1 => \^ex_jump_q_reg\,
-      O => \Use_BTC_2.bt_saved_pc_valid_reg_0\
+      O => \Use_BTC_2.bt_if_pc_incr_wait_reg\
     );
 \Using_FPGA.Native_CARRY4\: unisim.vcomponents.CARRY4
      port map (
@@ -40278,7 +41252,6 @@ entity system_microblaze_0_0_RAM_Module is
     \Use_BTC_2.if_prediction_bits_keep_reg[2]\ : out STD_LOGIC_VECTOR ( 24 downto 0 );
     bt_valid_bit : out STD_LOGIC;
     \Use_BTC_2.bt_write_q_reg_0\ : out STD_LOGIC;
-    D : out STD_LOGIC_VECTOR ( 29 downto 0 );
     \Use_BTC_2.bt_saved_pc_reg[29]\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     I013_out : out STD_LOGIC;
     I09_out : out STD_LOGIC;
@@ -40286,6 +41259,11 @@ entity system_microblaze_0_0_RAM_Module is
     \in\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
     I17_out : out STD_LOGIC;
     \if_pc_reg[31]\ : out STD_LOGIC;
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\ : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\ : out STD_LOGIC_VECTOR ( 7 downto 0 );
     bt_write_q : in STD_LOGIC;
     \Use_BTC_2.bt_clear_wait_reg\ : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -40304,26 +41282,22 @@ entity system_microblaze_0_0_RAM_Module is
     \Use_BTC_2.bt_write_delayslot_reg\ : in STD_LOGIC;
     ex_branch_with_delayslot : in STD_LOGIC;
     ex_bt_branch : in STD_LOGIC;
-    \EX_Op2_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
-    bt_jump : in STD_LOGIC;
-    \if_pc_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
-    \Use_BTC_2.bt_delayslot_target_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
-    \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\ : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\ : in STD_LOGIC;
-    \Use_BTC_2.bt_saved_pc_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
     \Use_BTC_2.ex_jump_wanted_keep_reg\ : in STD_LOGIC;
     ex_jump_wanted : in STD_LOGIC;
     ex_jump_wanted_delayslot : in STD_LOGIC;
     bt_if_pc_incr_wait : in STD_LOGIC;
     if_pc_incr_carry3 : in STD_LOGIC;
+    bt_jump : in STD_LOGIC;
     if_pc_write_q : in STD_LOGIC;
     \Use_BTC_2.if_prediction_bits_keep_reg[0]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \Using_FPGA.Native_0\ : in STD_LOGIC;
     IReady_1 : in STD_LOGIC;
-    \Using_FPGA.Native_1\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \Using_FPGA.Native_2\ : in STD_LOGIC;
+    D : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Using_FPGA.Native_1\ : in STD_LOGIC;
     \out\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Use_BTC_2.bt_delayslot_target_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
     bt_in_delayslot : in STD_LOGIC;
+    \EX_Op2_reg[0]\ : in STD_LOGIC_VECTOR ( 29 downto 0 );
     jump_done : in STD_LOGIC;
     Clk : in STD_LOGIC;
     ADDRB : in STD_LOGIC_VECTOR ( 0 to 5 );
@@ -40335,36 +41309,6 @@ end system_microblaze_0_0_RAM_Module;
 
 architecture STRUCTURE of system_microblaze_0_0_RAM_Module is
   signal \^e\ : STD_LOGIC_VECTOR ( 0 to 0 );
-  signal \Instr_Addr[0]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[10]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[11]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[12]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[13]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[14]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[15]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[16]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[17]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[18]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[19]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[1]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[20]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[21]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[22]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[23]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[24]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[25]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[26]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[27]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[28]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[29]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[2]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[3]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[4]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[5]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[6]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[7]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[8]_INST_0_i_1_n_0\ : STD_LOGIC;
-  signal \Instr_Addr[9]_INST_0_i_1_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[0].Block_DistRAM.RAM_reg_0_63_0_0_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[0].Block_DistRAM.RAM_reg_0_63_1_1_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[0].Block_DistRAM.RAM_reg_0_63_2_2_n_0\ : STD_LOGIC;
@@ -40402,7 +41346,6 @@ architecture STRUCTURE of system_microblaze_0_0_RAM_Module is
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_5_5_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_6_6_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_7_7_n_0\ : STD_LOGIC;
-  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.RAM_reg_0_63_0_0_i_1_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.RAM_reg_0_63_0_0_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.RAM_reg_0_63_1_1_i_1_n_0\ : STD_LOGIC;
@@ -40419,7 +41362,6 @@ architecture STRUCTURE of system_microblaze_0_0_RAM_Module is
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.RAM_reg_0_63_6_6_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.RAM_reg_0_63_7_7_i_1_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.RAM_reg_0_63_7_7_n_0\ : STD_LOGIC;
-  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.RAM_reg_0_63_0_0_i_1_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.RAM_reg_0_63_0_0_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.RAM_reg_0_63_1_1_i_1_n_0\ : STD_LOGIC;
@@ -40436,7 +41378,6 @@ architecture STRUCTURE of system_microblaze_0_0_RAM_Module is
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.RAM_reg_0_63_6_6_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.RAM_reg_0_63_7_7_i_1_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.RAM_reg_0_63_7_7_n_0\ : STD_LOGIC;
-  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.RAM_reg_0_63_0_0_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.RAM_reg_0_63_1_1_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.RAM_reg_0_63_2_2_n_0\ : STD_LOGIC;
@@ -40445,10 +41386,8 @@ architecture STRUCTURE of system_microblaze_0_0_RAM_Module is
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.RAM_reg_0_63_5_5_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.RAM_reg_0_63_6_6_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.RAM_reg_0_63_7_7_n_0\ : STD_LOGIC;
-  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.RAM_reg_0_63_6_6_i_1_n_0\ : STD_LOGIC;
   signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.RAM_reg_0_63_7_7_i_1_n_0\ : STD_LOGIC;
-  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 7 downto 6 );
   signal \Use_BTC_2.bt_write_q_i_3_n_0\ : STD_LOGIC;
   signal \^use_btc_2.bt_write_q_reg\ : STD_LOGIC;
   signal \^use_btc_2.bt_write_q_reg_0\ : STD_LOGIC;
@@ -40460,10 +41399,10 @@ architecture STRUCTURE of system_microblaze_0_0_RAM_Module is
   signal p_1_in : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal p_2_out : STD_LOGIC_VECTOR ( 7 downto 6 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_0_0_i_10\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_0_0_i_9\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \Use_BTC_2.prediction_buffer_reg[3][0]_srl4_i_1\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \Use_BTC_2.prediction_buffer_reg[3][1]_srl4_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_0_0_i_10\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_0_0_i_9\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \Use_BTC_2.prediction_buffer_reg[3][0]_srl4_i_1\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \Use_BTC_2.prediction_buffer_reg[3][1]_srl4_i_1\ : label is "soft_lutpair23";
 begin
   E(0) <= \^e\(0);
   \Use_BTC_2.bt_write_q_reg\ <= \^use_btc_2.bt_write_q_reg\;
@@ -40471,726 +41410,6 @@ begin
   \Use_BTC_2.if_prediction_bits_keep_reg[2]\(24 downto 0) <= \^use_btc_2.if_prediction_bits_keep_reg[2]\(24 downto 0);
   \Use_BTC_2.we_hold_reg\ <= \^use_btc_2.we_hold_reg\;
   bt_valid_bit <= \^bt_valid_bit\;
-\Instr_Addr[0]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(29),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[0]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(29),
-      O => D(29)
-    );
-\Instr_Addr[0]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(29),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\(3),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(29),
-      O => \Instr_Addr[0]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[10]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(19),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[10]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(19),
-      O => D(19)
-    );
-\Instr_Addr[10]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(19),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(1),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(19),
-      O => \Instr_Addr[10]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[11]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(18),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[11]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(18),
-      O => D(18)
-    );
-\Instr_Addr[11]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(18),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(0),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(18),
-      O => \Instr_Addr[11]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[12]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(17),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[12]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(17),
-      O => D(17)
-    );
-\Instr_Addr[12]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(17),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(7),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(17),
-      O => \Instr_Addr[12]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[13]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(16),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[13]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(16),
-      O => D(16)
-    );
-\Instr_Addr[13]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(16),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(6),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(16),
-      O => \Instr_Addr[13]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[14]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(15),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[14]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(15),
-      O => D(15)
-    );
-\Instr_Addr[14]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(15),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(5),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(15),
-      O => \Instr_Addr[14]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[15]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(14),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[15]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(14),
-      O => D(14)
-    );
-\Instr_Addr[15]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(14),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(4),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(14),
-      O => \Instr_Addr[15]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[16]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(13),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[16]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(13),
-      O => D(13)
-    );
-\Instr_Addr[16]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(13),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(3),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(13),
-      O => \Instr_Addr[16]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[17]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(12),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[17]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(12),
-      O => D(12)
-    );
-\Instr_Addr[17]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(12),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(2),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(12),
-      O => \Instr_Addr[17]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[18]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(11),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[18]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(11),
-      O => D(11)
-    );
-\Instr_Addr[18]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(11),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(1),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(11),
-      O => \Instr_Addr[18]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[19]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(10),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[19]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(10),
-      O => D(10)
-    );
-\Instr_Addr[19]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(10),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(0),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(10),
-      O => \Instr_Addr[19]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[1]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(28),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[1]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(28),
-      O => D(28)
-    );
-\Instr_Addr[1]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(28),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\(2),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(28),
-      O => \Instr_Addr[1]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[20]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(9),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[20]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(9),
-      O => D(9)
-    );
-\Instr_Addr[20]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(9),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(7),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(9),
-      O => \Instr_Addr[20]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[21]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(8),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[21]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(8),
-      O => D(8)
-    );
-\Instr_Addr[21]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(8),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(6),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(8),
-      O => \Instr_Addr[21]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[22]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(7),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[22]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(7),
-      O => D(7)
-    );
-\Instr_Addr[22]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(7),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(5),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(7),
-      O => \Instr_Addr[22]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[23]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(6),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[23]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(6),
-      O => D(6)
-    );
-\Instr_Addr[23]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(6),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(4),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(6),
-      O => \Instr_Addr[23]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[24]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(5),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[24]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(5),
-      O => D(5)
-    );
-\Instr_Addr[24]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(5),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(3),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(5),
-      O => \Instr_Addr[24]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[25]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(4),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[25]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(4),
-      O => D(4)
-    );
-\Instr_Addr[25]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(4),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(2),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(4),
-      O => \Instr_Addr[25]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[26]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(3),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[26]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(3),
-      O => D(3)
-    );
-\Instr_Addr[26]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(3),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(1),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(3),
-      O => \Instr_Addr[26]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[27]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(2),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[27]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(2),
-      O => D(2)
-    );
-\Instr_Addr[27]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(2),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(0),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(2),
-      O => \Instr_Addr[27]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[28]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(1),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[28]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(1),
-      O => D(1)
-    );
-\Instr_Addr[28]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(1),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(7),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(1),
-      O => \Instr_Addr[28]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[29]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(0),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[29]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(0),
-      O => D(0)
-    );
-\Instr_Addr[29]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(0),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(6),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(0),
-      O => \Instr_Addr[29]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[2]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(27),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[2]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(27),
-      O => D(27)
-    );
-\Instr_Addr[2]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(27),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\(1),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(27),
-      O => \Instr_Addr[2]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[3]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(26),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[3]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(26),
-      O => D(26)
-    );
-\Instr_Addr[3]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(26),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\(0),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(26),
-      O => \Instr_Addr[3]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[4]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(25),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[4]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(25),
-      O => D(25)
-    );
-\Instr_Addr[4]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(25),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(7),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(25),
-      O => \Instr_Addr[4]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[5]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(24),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[5]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(24),
-      O => D(24)
-    );
-\Instr_Addr[5]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(24),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(6),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(24),
-      O => \Instr_Addr[5]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[6]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(23),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[6]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(23),
-      O => D(23)
-    );
-\Instr_Addr[6]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(23),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(5),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(23),
-      O => \Instr_Addr[6]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[7]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(22),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[7]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(22),
-      O => D(22)
-    );
-\Instr_Addr[7]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(22),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(4),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(22),
-      O => \Instr_Addr[7]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[8]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(21),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[8]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(21),
-      O => D(21)
-    );
-\Instr_Addr[8]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(21),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(3),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(21),
-      O => \Instr_Addr[8]_INST_0_i_1_n_0\
-    );
-\Instr_Addr[9]_INST_0\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \EX_Op2_reg[0]\(20),
-      I1 => ex_jump,
-      I2 => \Instr_Addr[9]_INST_0_i_1_n_0\,
-      I3 => bt_jump,
-      I4 => \if_pc_reg[0]\(20),
-      O => D(20)
-    );
-\Instr_Addr[9]_INST_0_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"B8BBB888"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_delayslot_target_reg[0]\(20),
-      I1 => \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\,
-      I2 => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(2),
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      I4 => \Use_BTC_2.bt_saved_pc_reg[0]\(20),
-      O => \Instr_Addr[9]_INST_0_i_1_n_0\
-    );
 \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[0].Block_DistRAM.RAM_reg_0_63_0_0\: unisim.vcomponents.RAM64X1S
     generic map(
       INIT => X"0000000000000000"
@@ -43134,7 +43353,7 @@ begin
       C => Clk,
       CE => \^e\(0),
       D => p_2_out(7),
-      Q => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(7),
+      Q => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(1),
       R => '0'
     );
 \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[57]\: unisim.vcomponents.FDRE
@@ -43145,7 +43364,7 @@ begin
       C => Clk,
       CE => \^e\(0),
       D => p_2_out(6),
-      Q => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(6),
+      Q => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(0),
       R => '0'
     );
 \Use_BTC_2.bt_saved_pc[0]_i_1\: unisim.vcomponents.LUT6
@@ -43239,7 +43458,7 @@ begin
       I2 => \Use_BTC_2.if_prediction_bits_keep_reg[0]\(1),
       I3 => \Using_FPGA.Native_0\,
       I4 => IReady_1,
-      I5 => \Using_FPGA.Native_1\(1),
+      I5 => D(1),
       O => I013_out
     );
 \Using_FPGA.Native_i_1__89\: unisim.vcomponents.LUT6
@@ -43252,7 +43471,7 @@ begin
       I2 => \Use_BTC_2.if_prediction_bits_keep_reg[0]\(0),
       I3 => \Using_FPGA.Native_0\,
       I4 => IReady_1,
-      I5 => \Using_FPGA.Native_1\(0),
+      I5 => D(0),
       O => I09_out
     );
 \Using_FPGA.Native_i_2__4\: unisim.vcomponents.LUT5
@@ -43263,7 +43482,7 @@ begin
       I0 => dob(26),
       I1 => if_pc_write_q,
       I2 => \Use_BTC_2.if_prediction_bits_keep_reg[0]\(1),
-      I3 => \Using_FPGA.Native_2\,
+      I3 => \Using_FPGA.Native_1\,
       I4 => \out\(1),
       O => I111_out
     );
@@ -43275,7 +43494,7 @@ begin
       I0 => dob(27),
       I1 => if_pc_write_q,
       I2 => \Use_BTC_2.if_prediction_bits_keep_reg[0]\(0),
-      I3 => \Using_FPGA.Native_2\,
+      I3 => \Using_FPGA.Native_1\,
       I4 => \out\(0),
       O => I17_out
     );
@@ -51705,44 +51924,44 @@ architecture STRUCTURE of system_microblaze_0_0_Operand_Select_gti is
   signal ex_branch_cmp_op1 : STD_LOGIC_VECTOR ( 30 to 31 );
   signal \^mem_byte_selects_reg[0]\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Byte_Enable[0]_INST_0_i_1\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[11]_i_2\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[13]_i_2\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \Byte_Enable[0]_INST_0_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[11]_i_2\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[13]_i_2\ : label is "soft_lutpair12";
   attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[14]_i_4\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[14]_i_6\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[15]_i_2\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[14]_i_6\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[15]_i_2\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[16]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[17]_i_3\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[17]_i_4\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[18]_i_3\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[19]_i_3\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[19]_i_4\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[1]_i_3\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[1]_i_6\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[21]_i_3\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[21]_i_4\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[22]_i_3\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[23]_i_3\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[23]_i_4\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[24]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[25]_i_3\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[27]_i_3\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[29]_i_3\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[2]_i_2\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[2]_i_5\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[17]_i_3\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[17]_i_4\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[18]_i_3\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[19]_i_3\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[19]_i_4\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[1]_i_3\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[1]_i_6\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[21]_i_3\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[21]_i_4\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[22]_i_3\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[23]_i_3\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[23]_i_4\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[24]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[25]_i_3\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[27]_i_3\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[29]_i_3\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[2]_i_2\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[2]_i_5\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[2]_i_6\ : label is "soft_lutpair19";
   attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[2]_i_7\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[31]_i_3\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[3]_i_3\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[3]_i_6\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[5]_i_3\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[5]_i_6\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[6]_i_2\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[7]_i_3\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[7]_i_6\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[8]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[9]_i_2\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \mem_byte_selects[1]_i_1\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[31]_i_3\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[3]_i_3\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[3]_i_6\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[5]_i_3\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[5]_i_6\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[6]_i_2\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[7]_i_3\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[7]_i_6\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[8]_i_1\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \Use_HW_BS.Using_BitField.mem_mask0[9]_i_2\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \mem_byte_selects[1]_i_1\ : label is "soft_lutpair1";
 begin
   Q(31 downto 0) <= \^q\(31 downto 0);
   \Using_FPGA.DSP48E1_I1\(31 downto 0) <= \^using_fpga.dsp48e1_i1\(31 downto 0);
@@ -55678,7 +55897,7 @@ entity system_microblaze_0_0_PreFetch_Buffer_gti is
     \Using_FPGA.Native_3\ : out STD_LOGIC;
     if_pre_buffer_addr : out STD_LOGIC_VECTOR ( 0 to 0 );
     \Using_FPGA.Native_4\ : out STD_LOGIC;
-    ex_valid_reg : out STD_LOGIC;
+    ex_valid_jump_reg : out STD_LOGIC;
     \Using_Mul_Instr.ex_not_mul_op_i_reg\ : out STD_LOGIC;
     \Using_FPGA.Native_5\ : out STD_LOGIC;
     ex_jump_q_reg : out STD_LOGIC;
@@ -55743,7 +55962,7 @@ entity system_microblaze_0_0_PreFetch_Buffer_gti is
     if_missed_fetch_reg : in STD_LOGIC;
     IReady : in STD_LOGIC;
     mem_access_completed_reg : in STD_LOGIC;
-    ex_valid_reg_0 : in STD_LOGIC;
+    ex_valid_reg : in STD_LOGIC;
     mem_valid_reg : in STD_LOGIC;
     mem_exception_from_ex : in STD_LOGIC;
     ex_jump_q : in STD_LOGIC;
@@ -55758,7 +55977,7 @@ entity system_microblaze_0_0_PreFetch_Buffer_gti is
     of_read_mem_write_op3_conflict_part2 : in STD_LOGIC;
     of_read_mem_write_op3_conflict_part1 : in STD_LOGIC;
     ex_mbar_is_sleep : in STD_LOGIC;
-    ex_valid_reg_1 : in STD_LOGIC;
+    ex_valid_reg_0 : in STD_LOGIC;
     \ex_gpr_write_addr_reg[0]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \ex_gpr_write_addr_reg[4]\ : in STD_LOGIC;
     I0 : in STD_LOGIC;
@@ -56451,7 +56670,7 @@ begin
       Clk => Clk,
       EX_Bit_Extract0 => EX_Bit_Extract0,
       FSL_Put_Blocking => FSL_Put_Blocking,
-      \Use_BTC_2.bt_addr_count_reg[6]\ => \Instruction_Prefetch_Mux[17].Gen_Instr_DFF_n_2\,
+      \Use_BTC_2.bt_addr_count_reg[0]\ => \Instruction_Prefetch_Mux[17].Gen_Instr_DFF_n_2\,
       \Using_FPGA.Native_0\ => \^ex_enable_sext_shift_i0\,
       \Using_FPGA.Native_1\ => \^of_instr\(3),
       \Using_FPGA.Native_10\ => \^of_instr\(4),
@@ -56504,7 +56723,7 @@ begin
 \Instruction_Prefetch_Mux[19].Gen_Instr_DFF\: entity work.system_microblaze_0_0_MB_FDR_130
      port map (
       Clk => Clk,
-      \Use_BTC_2.bt_addr_count_reg[6]\ => \Instruction_Prefetch_Mux[19].Gen_Instr_DFF_n_1\,
+      \Use_BTC_2.bt_addr_count_reg[0]\ => \Instruction_Prefetch_Mux[19].Gen_Instr_DFF_n_1\,
       \Using_FPGA.Native_0\ => \^ex_instr_reg[8]\(13),
       \Using_FPGA.Native_1\ => \^ex_instr_reg[8]\(9),
       \Using_FPGA.Native_2\ => \^ex_instr_reg[8]\(20),
@@ -56660,7 +56879,7 @@ begin
      port map (
       Clk => Clk,
       EX_SWAP_Instr_reg => EX_SWAP_Instr_reg,
-      \Use_BTC_2.bt_addr_count_reg[6]\ => \Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_1\,
+      \Use_BTC_2.bt_addr_count_reg[0]\ => \Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_1\,
       \Using_FPGA.Native_0\ => \^ex_instr_reg[8]\(15),
       \Using_FPGA.Native_1\ => \^ex_instr_reg[8]\(7),
       \Using_FPGA.Native_2\ => \^ex_instr_reg[8]\(0),
@@ -56755,7 +56974,7 @@ begin
 \Instruction_Prefetch_Mux[29].Gen_Instr_DFF\: entity work.system_microblaze_0_0_MB_FDR_152
      port map (
       Clk => Clk,
-      \Use_BTC_2.bt_addr_count_reg[6]\ => \Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_1\,
+      \Use_BTC_2.bt_addr_count_reg[0]\ => \Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_1\,
       \Using_FPGA.Native_0\ => \^ex_instr_reg[8]\(21),
       \Using_FPGA.Native_1\ => \^ex_instr_reg[8]\(6),
       \Using_FPGA.Native_2\ => \^ex_instr_reg[8]\(4),
@@ -56885,7 +57104,7 @@ begin
       \Using_FPGA.Native_2\ => \Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_3\,
       \Using_FPGA.Native_3\ => \^of_predecode\(8),
       \ex_gpr_write_addr_reg[0]\(1 downto 0) => \ex_gpr_write_addr_reg[0]\(1 downto 0),
-      ex_valid_reg => ex_valid_reg_1,
+      ex_valid_reg => ex_valid_reg_0,
       of_instr_ii_9 => of_instr_ii_9,
       of_op1_sel(0) => of_op1_sel(1),
       sync_reset => sync_reset,
@@ -57005,7 +57224,7 @@ begin
       \Using_FPGA.Native_9\ => \Using_FPGA.Native_9\,
       \ex_gpr_write_addr_reg[0]\(1 downto 0) => \ex_gpr_write_addr_reg[0]\(1 downto 0),
       ex_sel_alu_i_reg(8 downto 0) => ex_sel_alu_i_reg_0(8 downto 0),
-      ex_valid_reg => ex_valid_reg_1,
+      ex_valid_reg => ex_valid_reg_0,
       \mem_gpr_write_addr_reg[0]\(1 downto 0) => \mem_gpr_write_addr_reg[0]\(4 downto 3),
       \mem_gpr_write_addr_reg[4]\ => \Instruction_Prefetch_Mux[42].Gen_Instr_DFF_n_1\,
       mem_valid_reg => mem_valid_reg_0,
@@ -57044,7 +57263,7 @@ begin
       EX_Unsigned_Op116_out => EX_Unsigned_Op116_out,
       EX_Use_Carry115_out => EX_Use_Carry115_out,
       SR(0) => SR(0),
-      \Use_BTC_2.bt_addr_count_reg[6]\ => \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_3\,
+      \Use_BTC_2.bt_addr_count_reg[0]\ => \Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_3\,
       \Using_FPGA.Native_0\ => \Using_FPGA.Native_2\,
       \Using_FPGA.Native_1\ => \^of_instr\(0),
       \Using_FPGA.Native_10\ => \^ex_instr_reg[8]\(0),
@@ -57408,7 +57627,7 @@ OF_Valid_DFF: entity work.system_microblaze_0_0_MB_FDR_196
       Clk => Clk,
       EX_Is_Div_Instr => EX_Is_Div_Instr,
       MEM_Is_Div_Instr => MEM_Is_Div_Instr,
-      \Use_BTC_2.bt_addr_count_reg[6]\ => OF_Valid_DFF_n_4,
+      \Use_BTC_2.bt_addr_count_reg[0]\ => OF_Valid_DFF_n_4,
       \Use_BTC_2.bt_if_pc_incr_wait_reg\ => \Use_BTC_2.bt_if_pc_incr_wait_reg\,
       \Use_BTC_2.bt_write_q_reg\ => \Use_BTC_2.bt_write_q_reg\,
       \Use_BTC_2.ex_prediction_bits_reg[0]\ => \Use_BTC_2.ex_prediction_bits_reg[0]\,
@@ -57432,8 +57651,8 @@ OF_Valid_DFF: entity work.system_microblaze_0_0_MB_FDR_196
       ex_jump_q => ex_jump_q,
       ex_jump_q_reg => ex_jump_q_reg,
       ex_jump_wanted => ex_jump_wanted,
+      ex_valid_jump_reg => ex_valid_jump_reg,
       ex_valid_reg => ex_valid_reg,
-      ex_valid_reg_0 => ex_valid_reg_0,
       \imm_reg_reg[15]\(0) => \imm_reg_reg[15]\(0),
       mem_exception_from_ex => mem_exception_from_ex,
       mem_valid_reg => mem_valid_reg,
@@ -59925,57 +60144,43 @@ use UNISIM.VCOMPONENTS.ALL;
 entity system_microblaze_0_0_carry_or_271 is
   port (
     bt_jump : out STD_LOGIC;
-    \Use_BTC_2.bt_saved_pc_valid_reg\ : out STD_LOGIC;
     I1_1 : out STD_LOGIC;
     \in\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     I0 : out STD_LOGIC;
     \Use_BTC_2.bt_if_pc_incr_wait_reg\ : out STD_LOGIC;
+    \Use_BTC_2.bt_saved_pc_valid_reg\ : out STD_LOGIC;
     \Use_BTC_2.bt_if_pc_incr_wait_reg_0\ : out STD_LOGIC;
-    ex_branch_with_delayslot_reg : out STD_LOGIC;
+    \Use_BTC_2.bt_if_pc_incr_wait_reg_1\ : out STD_LOGIC;
     D : out STD_LOGIC_VECTOR ( 0 to 0 );
     \Use_BTC_2.jump_done_reg\ : out STD_LOGIC;
     \Instr_Addr[30]\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    \Use_BTC_2.bt_ex_mispredict_handled_reg\ : in STD_LOGIC;
     carry2 : in STD_LOGIC;
-    \Use_BTC_2.bt_saved_pc_valid_reg_0\ : in STD_LOGIC;
-    \Use_BTC_2.bt_if_pc_incr_wait_reg_1\ : in STD_LOGIC;
     \Using_FPGA.Native\ : in STD_LOGIC;
-    \Use_Async_Reset.sync_reset_reg\ : in STD_LOGIC;
-    \Using_FPGA.Native_0\ : in STD_LOGIC;
     \out\ : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \Using_FPGA.Native_1\ : in STD_LOGIC;
+    \Using_FPGA.Native_0\ : in STD_LOGIC;
     if_missed_fetch_reg : in STD_LOGIC;
     IReady : in STD_LOGIC;
     mem_access_completed_reg : in STD_LOGIC;
-    \Using_FPGA.Native_2\ : in STD_LOGIC;
+    \Using_FPGA.Native_1\ : in STD_LOGIC;
     Q : in STD_LOGIC_VECTOR ( 0 to 0 );
     if_pc_write_q : in STD_LOGIC;
     we_hold : in STD_LOGIC;
     bt_valid_bit : in STD_LOGIC;
-    bt_if_pc_incr_wait : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\ : in STD_LOGIC;
-    if_pc_incr_carry3 : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\ : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_jump_held_reg\ : in STD_LOGIC;
     \Use_BTC_2.ex_jump_wanted_delayslot_reg\ : in STD_LOGIC;
     ex_valid : in STD_LOGIC;
     bt_ex_imm_cond_branch : in STD_LOGIC;
     \Use_BTC_2.ex_prediction_bits_reg[3]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
     \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \Using_FPGA.Native_3\ : in STD_LOGIC;
+    if_pc_incr_carry3 : in STD_LOGIC;
+    \Using_FPGA.Native_2\ : in STD_LOGIC;
     ex_jump : in STD_LOGIC;
-    bt_ex_mispredict_addr_hold : in STD_LOGIC;
-    \Use_BTC_2.bt_ex_return_reg\ : in STD_LOGIC;
-    CO : in STD_LOGIC_VECTOR ( 0 to 0 );
-    of_valid : in STD_LOGIC;
-    ex_Take_Intr_or_Exc_keep : in STD_LOGIC;
     bt_ex_mispredict_handled : in STD_LOGIC;
     ex_jump_hold_0 : in STD_LOGIC;
     \EX_Op2_reg[30]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \if_pc_reg[30]\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1\ : in STD_LOGIC;
     lopt : in STD_LOGIC;
-    lopt_1 : out STD_LOGIC;
-    lopt_2 : out STD_LOGIC
+    lopt_1 : out STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of system_microblaze_0_0_carry_or_271 : entity is "carry_or";
@@ -59985,7 +60190,6 @@ architecture STRUCTURE of system_microblaze_0_0_carry_or_271 is
 begin
 MUXCY_I: entity work.system_microblaze_0_0_MB_MUXCY_301
      port map (
-      CO(0) => CO(0),
       D(0) => D(0),
       \EX_Op2_reg[30]\(1 downto 0) => \EX_Op2_reg[30]\(1 downto 0),
       I0 => I0,
@@ -59994,17 +60198,11 @@ MUXCY_I: entity work.system_microblaze_0_0_MB_MUXCY_301
       \Instr_Addr[30]\(1 downto 0) => \Instr_Addr[30]\(1 downto 0),
       \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\(0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\(0),
       Q(0) => Q(0),
-      \Use_Async_Reset.sync_reset_reg\ => \Use_Async_Reset.sync_reset_reg\,
-      \Use_BTC_2.bt_ex_jump_held_reg\ => \Use_BTC_2.bt_ex_jump_held_reg\,
-      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\ => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\,
-      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\ => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\,
-      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1\ => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1\,
-      \Use_BTC_2.bt_ex_return_reg\ => \Use_BTC_2.bt_ex_return_reg\,
+      \Use_BTC_2.bt_ex_mispredict_handled_reg\ => \Use_BTC_2.bt_ex_mispredict_handled_reg\,
       \Use_BTC_2.bt_if_pc_incr_wait_reg\ => \Use_BTC_2.bt_if_pc_incr_wait_reg\,
       \Use_BTC_2.bt_if_pc_incr_wait_reg_0\ => \Use_BTC_2.bt_if_pc_incr_wait_reg_0\,
       \Use_BTC_2.bt_if_pc_incr_wait_reg_1\ => \Use_BTC_2.bt_if_pc_incr_wait_reg_1\,
       \Use_BTC_2.bt_saved_pc_valid_reg\ => \Use_BTC_2.bt_saved_pc_valid_reg\,
-      \Use_BTC_2.bt_saved_pc_valid_reg_0\ => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
       \Use_BTC_2.ex_jump_wanted_delayslot_reg\ => \Use_BTC_2.ex_jump_wanted_delayslot_reg\,
       \Use_BTC_2.ex_prediction_bits_reg[3]\(0) => \Use_BTC_2.ex_prediction_bits_reg[3]\(0),
       \Use_BTC_2.jump_done_reg\ => \Use_BTC_2.jump_done_reg\,
@@ -60012,15 +60210,10 @@ MUXCY_I: entity work.system_microblaze_0_0_MB_MUXCY_301
       \Using_FPGA.Native_1\ => \Using_FPGA.Native_0\,
       \Using_FPGA.Native_2\ => \Using_FPGA.Native_1\,
       \Using_FPGA.Native_3\ => \Using_FPGA.Native_2\,
-      \Using_FPGA.Native_4\ => \Using_FPGA.Native_3\,
       bt_ex_imm_cond_branch => bt_ex_imm_cond_branch,
-      bt_ex_mispredict_addr_hold => bt_ex_mispredict_addr_hold,
       bt_ex_mispredict_handled => bt_ex_mispredict_handled,
-      bt_if_pc_incr_wait => bt_if_pc_incr_wait,
       bt_valid_bit => bt_valid_bit,
       carry2 => carry2,
-      ex_Take_Intr_or_Exc_keep => ex_Take_Intr_or_Exc_keep,
-      ex_branch_with_delayslot_reg => ex_branch_with_delayslot_reg,
       ex_jump => ex_jump,
       ex_jump_hold_0 => ex_jump_hold_0,
       ex_valid => ex_valid,
@@ -60032,9 +60225,7 @@ MUXCY_I: entity work.system_microblaze_0_0_MB_MUXCY_301
       \in\(0) => \in\(0),
       lopt => lopt,
       lopt_1 => lopt_1,
-      lopt_2 => lopt_2,
       mem_access_completed_reg => mem_access_completed_reg,
-      of_valid => of_valid,
       \out\(0) => \out\(0),
       we_hold => we_hold
     );
@@ -62060,7 +62251,7 @@ entity system_microblaze_0_0_jump_logic is
     ex_Take_Intr_or_Exc_reg : out STD_LOGIC;
     \Use_BTC_2.bt_saved_pc_valid_reg\ : out STD_LOGIC;
     mem_jump_taken_reg : out STD_LOGIC;
-    \Use_BTC_2.bt_saved_pc_valid_reg_0\ : out STD_LOGIC;
+    \Use_BTC_2.bt_if_pc_incr_wait_reg\ : out STD_LOGIC;
     \Use_BTC_2.ex_jump_wanted_keep_reg\ : out STD_LOGIC;
     EX_Op1_Zero : in STD_LOGIC;
     ex_branch_with_delayslot_reg : in STD_LOGIC;
@@ -62195,8 +62386,8 @@ MUXCY_JUMP_CARRY5: entity work.system_microblaze_0_0_MB_MUXCY_88
 MUXCY_JUMP_CARRY6: entity work.system_microblaze_0_0_MB_MUXCY_89
      port map (
       D(0) => D(0),
+      \Use_BTC_2.bt_if_pc_incr_wait_reg\ => \Use_BTC_2.bt_if_pc_incr_wait_reg\,
       \Use_BTC_2.bt_saved_pc_valid_reg\ => \Use_BTC_2.bt_saved_pc_valid_reg\,
-      \Use_BTC_2.bt_saved_pc_valid_reg_0\ => \Use_BTC_2.bt_saved_pc_valid_reg_0\,
       \Using_FPGA.Native_0\ => \Using_FPGA.Native_1\,
       ex_Take_Intr_or_Exc_reg => ex_Take_Intr_or_Exc_reg,
       ex_Take_Intr_or_Exc_reg_0 => ex_Take_Intr_or_Exc_reg_0,
@@ -63751,18 +63942,28 @@ architecture STRUCTURE of system_microblaze_0_0_PC_Module_gti is
   signal I13_out : STD_LOGIC;
   signal I17_out : STD_LOGIC;
   signal I1_1 : STD_LOGIC;
-  signal \^i5\ : STD_LOGIC;
   signal \Instr_Addr[0]_INST_0_i_3_n_0\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[11].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[12].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[17].Gen_Instr_DFF_n_2\ : STD_LOGIC;
-  signal \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_2\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_1\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_32\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_33\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_38\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_40\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_41\ : STD_LOGIC;
+  signal \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_42\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[26].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[2].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[4].Gen_Instr_DFF_n_2\ : STD_LOGIC;
   signal \Instruction_Prefetch_Mux[8].Gen_Instr_DFF_n_2\ : STD_LOGIC;
+  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 3 downto 0 );
+  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\ : STD_LOGIC_VECTOR ( 7 downto 6 );
   signal \PC_Buffer_reg[3][31]_srl4_n_0\ : STD_LOGIC;
   signal Q7_out : STD_LOGIC;
   signal Q8_out : STD_LOGIC;
@@ -63800,13 +64001,13 @@ architecture STRUCTURE of system_microblaze_0_0_PC_Module_gti is
   signal \Use_BTC_2.BTC_RAM_Module_n_2\ : STD_LOGIC;
   signal \Use_BTC_2.BTC_RAM_Module_n_3\ : STD_LOGIC;
   signal \Use_BTC_2.BTC_RAM_Module_n_31\ : STD_LOGIC;
-  signal \Use_BTC_2.BTC_RAM_Module_n_62\ : STD_LOGIC;
-  signal \Use_BTC_2.BTC_RAM_Module_n_66\ : STD_LOGIC;
-  signal \Use_BTC_2.BTC_RAM_Module_n_67\ : STD_LOGIC;
-  signal \Use_BTC_2.BTC_RAM_Module_n_69\ : STD_LOGIC;
+  signal \Use_BTC_2.BTC_RAM_Module_n_32\ : STD_LOGIC;
+  signal \Use_BTC_2.BTC_RAM_Module_n_36\ : STD_LOGIC;
+  signal \Use_BTC_2.BTC_RAM_Module_n_37\ : STD_LOGIC;
+  signal \Use_BTC_2.BTC_RAM_Module_n_39\ : STD_LOGIC;
   signal \Use_BTC_2.Using_FPGA.bt_ex_pc_comparator_n_4\ : STD_LOGIC;
   signal \Use_BTC_2.Using_FPGA.bt_hit_carry_and_n_1\ : STD_LOGIC;
-  signal \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_1\ : STD_LOGIC;
+  signal \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4\ : STD_LOGIC;
   signal \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5\ : STD_LOGIC;
   signal \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\ : STD_LOGIC;
   signal \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\ : STD_LOGIC;
@@ -63822,18 +64023,12 @@ architecture STRUCTURE of system_microblaze_0_0_PC_Module_gti is
   signal \Use_BTC_2.bt_delayslot_written_i_1_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_ex_jump_held_i_1_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_ex_jump_held_reg_n_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_ex_mispredict_addr_hold_i_1_n_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_ex_mispredict_handled_i_1_n_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_ex_mispredict_pc_hold_i_1_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_ex_mispredict_taken_hold_i_1_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_ex_mispredict_taken_hold_i_2_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_ex_return_reg_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_ex_return_set_i_1_n_0\ : STD_LOGIC;
   signal \^use_btc_2.bt_ex_return_set_reg_0\ : STD_LOGIC;
-  signal \Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_if_pc_incr_wait_i_6_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_if_pc_write_wait_i_1_n_0\ : STD_LOGIC;
   signal \Use_BTC_2.bt_saved_pc_valid_hold_i_1_n_0\ : STD_LOGIC;
@@ -64006,11 +64201,9 @@ architecture STRUCTURE of system_microblaze_0_0_PC_Module_gti is
   signal lopt_78 : STD_LOGIC;
   signal lopt_79 : STD_LOGIC;
   signal lopt_8 : STD_LOGIC;
-  signal lopt_80 : STD_LOGIC;
   signal lopt_9 : STD_LOGIC;
   signal new_if_prediction_bits0 : STD_LOGIC;
   signal new_pc_incr : STD_LOGIC_VECTOR ( 0 to 31 );
-  signal \^of_next_ex_valid\ : STD_LOGIC;
   signal of_pc : STD_LOGIC_VECTOR ( 0 to 31 );
   signal of_pc_ii_0 : STD_LOGIC;
   signal of_pc_ii_1 : STD_LOGIC;
@@ -64048,7 +64241,6 @@ architecture STRUCTURE of system_microblaze_0_0_PC_Module_gti is
   signal of_prediction_bits_i_1 : STD_LOGIC;
   signal of_prediction_bits_i_2 : STD_LOGIC;
   signal of_prediction_bits_i_3 : STD_LOGIC;
-  signal of_read_imm_reg_ii1 : STD_LOGIC;
   signal p_0_in107_in : STD_LOGIC;
   signal p_1_in131_in : STD_LOGIC;
   signal p_1_in138_in : STD_LOGIC;
@@ -64098,8 +64290,6 @@ architecture STRUCTURE of system_microblaze_0_0_PC_Module_gti is
   signal \NLW_bt_use_delayslot_target4_carry__0_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_bt_use_delayslot_target4_carry__1_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
   signal \NLW_bt_use_delayslot_target4_carry__1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Instr_Addr[0]_INST_0_i_3\ : label is "soft_lutpair28";
   attribute srl_bus_name : string;
   attribute srl_bus_name of \PC_Buffer_reg[3][0]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/PC_Buffer_reg[3] ";
   attribute srl_name : string;
@@ -64166,18 +64356,18 @@ architecture STRUCTURE of system_microblaze_0_0_PC_Module_gti is
   attribute srl_name of \PC_Buffer_reg[3][8]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/PC_Buffer_reg[3][8]_srl4 ";
   attribute srl_bus_name of \PC_Buffer_reg[3][9]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/PC_Buffer_reg[3] ";
   attribute srl_name of \PC_Buffer_reg[3][9]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/PC_Buffer_reg[3][9]_srl4 ";
+  attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of \Use_BTC_2.bt_addr_count[2]_i_1\ : label is "soft_lutpair30";
   attribute SOFT_HLUTNM of \Use_BTC_2.bt_addr_count[3]_i_1\ : label is "soft_lutpair30";
   attribute SOFT_HLUTNM of \Use_BTC_2.bt_addr_count[4]_i_1\ : label is "soft_lutpair35";
   attribute SOFT_HLUTNM of \Use_BTC_2.bt_addr_count[5]_i_1\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \Use_BTC_2.bt_ex_jump_held_i_1\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \Use_BTC_2.bt_ex_mispredict_pc_hold_i_1\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \Use_BTC_2.bt_ex_mispredict_pc_hold_i_2\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_ex_jump_held_i_1\ : label is "soft_lutpair31";
   attribute SOFT_HLUTNM of \Use_BTC_2.bt_ex_return_i_1\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \Use_BTC_2.bt_if_pc_incr_wait_i_6\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_if_pc_incr_wait_i_6\ : label is "soft_lutpair31";
   attribute SOFT_HLUTNM of \Use_BTC_2.bt_in_delayslot_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \Use_BTC_2.bt_saved_pc_valid_hold_i_1\ : label is "soft_lutpair33";
   attribute SOFT_HLUTNM of \Use_BTC_2.bt_write_delayslot_i_1\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \Use_BTC_2.ex_jump_hold_i_1\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \Use_BTC_2.ex_jump_hold_i_1\ : label is "soft_lutpair33";
   attribute srl_bus_name of \Use_BTC_2.prediction_buffer_reg[3][0]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3] ";
   attribute srl_name of \Use_BTC_2.prediction_buffer_reg[3][0]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3][0]_srl4 ";
   attribute srl_bus_name of \Use_BTC_2.prediction_buffer_reg[3][1]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3] ";
@@ -64187,33 +64377,31 @@ architecture STRUCTURE of system_microblaze_0_0_PC_Module_gti is
   attribute srl_bus_name of \Use_BTC_2.prediction_buffer_reg[3][3]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3] ";
   attribute srl_name of \Use_BTC_2.prediction_buffer_reg[3][3]_srl4\ : label is "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3][3]_srl4 ";
   attribute SOFT_HLUTNM of Write_Strobe_INST_0_i_1 : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of ex_delayslot_Instr_i_1 : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of ex_delayslot_Instr_i_1 : label is "soft_lutpair28";
   attribute SOFT_HLUTNM of ex_jump_hold_i_1 : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of keep_jump_taken_with_ds_i_1 : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of keep_jump_taken_with_ds_i_1 : label is "soft_lutpair28";
   attribute SOFT_HLUTNM of mem_jump_taken_i_1 : label is "soft_lutpair32";
 begin
   D(31 downto 0) <= \^d\(31 downto 0);
-  I5 <= \^i5\;
   \Use_BTC_2.bt_ex_return_set_reg_0\ <= \^use_btc_2.bt_ex_return_set_reg_0\;
   \Use_BTC_2.ex_jump_wanted_delayslot_reg_0\ <= \^use_btc_2.ex_jump_wanted_delayslot_reg_0\;
   \Use_BTC_2.ex_prediction_bits_reg[3]_0\ <= \^use_btc_2.ex_prediction_bits_reg[3]_0\;
   bt_clear_wait <= \^bt_clear_wait\;
-  lopt_1 <= lopt_15;
-  lopt_14 <= lopt;
-  lopt_16 <= lopt_3;
-  lopt_18 <= lopt_6;
-  lopt_19 <= lopt_7;
+  lopt_1 <= lopt_14;
+  lopt_13 <= lopt;
+  lopt_15 <= lopt_3;
+  lopt_17 <= lopt_6;
+  lopt_18 <= lopt_7;
   lopt_2 <= S;
-  lopt_4 <= lopt_17;
+  lopt_4 <= lopt_16;
   lopt_5 <= S136_in;
-  of_next_ex_valid <= \^of_next_ex_valid\;
   reset_bool_for_rst <= sync_reset;
 \Instr_Addr[0]_INST_0_i_3\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"FF1F"
     )
         port map (
-      I0 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\,
+      I0 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4\,
       I1 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
       I2 => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
       I3 => bt_ex_mispredict_handled,
@@ -64456,24 +64644,168 @@ begin
     );
 \Instruction_Prefetch_Mux[18].Gen_Instr_DFF\: entity work.system_microblaze_0_0_MB_FDR_215
      port map (
+      CO(0) => bt_use_delayslot_target4,
       Clk => Clk,
+      D(29 downto 0) => \^d\(31 downto 2),
       \EX_Op1_reg[18]\ => \EX_Op1_reg[18]\,
+      \EX_Op2_reg[0]\(29 downto 0) => \EX_Op2_reg[0]\(31 downto 2),
       I098_out => I098_out,
+      I5 => I5,
       IReady => IReady,
-      Q(0) => S188_in,
-      S(0) => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_2\,
-      \Use_BTC_2.bt_delayslot_target_reg[18]\(2) => bt_delayslot_target(18),
-      \Use_BTC_2.bt_delayslot_target_reg[18]\(1) => bt_delayslot_target(19),
-      \Use_BTC_2.bt_delayslot_target_reg[18]\(0) => bt_delayslot_target(20),
-      \Using_FPGA.Native_0\ => \Using_FPGA.Native_7\,
-      \Using_FPGA.Native_1\(1) => of_pc(19),
-      \Using_FPGA.Native_1\(0) => of_pc(20),
-      if_missed_fetch_reg => if_missed_fetch_reg_0,
+      \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg\ => \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg\,
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5\,
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]_0\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\,
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28]\(3 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\(3 downto 0),
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32]\(7 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(7 downto 0),
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40]\(7 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(7 downto 0),
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48]\(7 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(7 downto 0),
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56]\(1 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(7 downto 6),
+      Q(29) => bt_delayslot_target(0),
+      Q(28) => bt_delayslot_target(1),
+      Q(27) => bt_delayslot_target(2),
+      Q(26) => bt_delayslot_target(3),
+      Q(25) => bt_delayslot_target(4),
+      Q(24) => bt_delayslot_target(5),
+      Q(23) => bt_delayslot_target(6),
+      Q(22) => bt_delayslot_target(7),
+      Q(21) => bt_delayslot_target(8),
+      Q(20) => bt_delayslot_target(9),
+      Q(19) => bt_delayslot_target(10),
+      Q(18) => bt_delayslot_target(11),
+      Q(17) => bt_delayslot_target(12),
+      Q(16) => bt_delayslot_target(13),
+      Q(15) => bt_delayslot_target(14),
+      Q(14) => bt_delayslot_target(15),
+      Q(13) => bt_delayslot_target(16),
+      Q(12) => bt_delayslot_target(17),
+      Q(11) => bt_delayslot_target(18),
+      Q(10) => bt_delayslot_target(19),
+      Q(9) => bt_delayslot_target(20),
+      Q(8) => bt_delayslot_target(21),
+      Q(7) => bt_delayslot_target(22),
+      Q(6) => bt_delayslot_target(23),
+      Q(5) => bt_delayslot_target(24),
+      Q(4) => bt_delayslot_target(25),
+      Q(3) => bt_delayslot_target(26),
+      Q(2) => bt_delayslot_target(27),
+      Q(1) => bt_delayslot_target(28),
+      Q(0) => bt_delayslot_target(29),
+      S(0) => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_40\,
+      \Use_Async_Reset.sync_reset_reg\ => \Use_Async_Reset.sync_reset_reg\,
+      \Use_BTC_2.bt_ex_jump_held_reg\ => \Use_BTC_2.bt_if_pc_incr_wait_i_6_n_0\,
+      \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\ => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_38\,
+      \Use_BTC_2.bt_ex_mispredict_handled_reg\ => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_33\,
+      \Use_BTC_2.bt_ex_mispredict_handled_reg_0\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
+      \Use_BTC_2.bt_ex_mispredict_pc_hold_reg\ => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_42\,
+      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\ => \Instr_Addr[0]_INST_0_i_3_n_0\,
+      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\ => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
+      \Use_BTC_2.bt_ex_return_reg\ => \Use_BTC_2.bt_ex_return_reg_n_0\,
+      \Use_BTC_2.bt_if_pc_incr_wait_reg\ => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_32\,
+      \Use_BTC_2.bt_if_pc_incr_wait_reg_0\ => \Use_BTC_2.bt_saved_pc_valid_i_2_n_0\,
+      \Use_BTC_2.bt_saved_pc_reg[0]\(29) => bt_saved_pc(0),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(28) => bt_saved_pc(1),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(27) => bt_saved_pc(2),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(26) => bt_saved_pc(3),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(25) => bt_saved_pc(4),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(24) => bt_saved_pc(5),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(23) => bt_saved_pc(6),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(22) => bt_saved_pc(7),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(21) => bt_saved_pc(8),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(20) => bt_saved_pc(9),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(19) => bt_saved_pc(10),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(18) => bt_saved_pc(11),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(17) => bt_saved_pc(12),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(16) => bt_saved_pc(13),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(15) => bt_saved_pc(14),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(14) => bt_saved_pc(15),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(13) => bt_saved_pc(16),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(12) => bt_saved_pc(17),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(11) => bt_saved_pc(18),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(10) => bt_saved_pc(19),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(9) => bt_saved_pc(20),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(8) => bt_saved_pc(21),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(7) => bt_saved_pc(22),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(6) => bt_saved_pc(23),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(5) => bt_saved_pc(24),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(4) => bt_saved_pc(25),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(3) => bt_saved_pc(26),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(2) => bt_saved_pc(27),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(1) => bt_saved_pc(28),
+      \Use_BTC_2.bt_saved_pc_reg[0]\(0) => bt_saved_pc(29),
+      \Use_BTC_2.bt_saved_pc_valid_reg\ => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_1\,
+      \Use_BTC_2.bt_saved_pc_valid_reg_0\ => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
+      \Use_BTC_2.bt_saved_pc_valid_reg_1\ => ex_branch_with_delayslot_i_3_n_0,
+      \Use_BTC_2.ex_prediction_bits_reg[3]\(0) => \Use_BTC_2.ex_prediction_bits_reg_n_0_[3]\,
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_3\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_4\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_8\,
+      \Using_FPGA.Native_3\ => \Using_FPGA.Native_9\,
+      \Using_FPGA.Native_4\ => \Using_FPGA.Native_10\,
+      \Using_FPGA.Native_5\ => \Using_FPGA.Native_11\,
+      \Using_FPGA.Native_6\ => \Using_FPGA.Native_7\,
+      \Using_FPGA.Native_7\(1) => of_pc(19),
+      \Using_FPGA.Native_7\(0) => of_pc(20),
+      bt_ex_mispredict_addr_hold => bt_ex_mispredict_addr_hold,
+      bt_ex_mispredict_handled => bt_ex_mispredict_handled,
+      bt_ex_mispredict_pc_hold => bt_ex_mispredict_pc_hold,
+      bt_if_pc_incr_wait => bt_if_pc_incr_wait,
+      bt_jump => bt_jump,
+      ex_Take_Intr_or_Exc_keep => ex_Take_Intr_or_Exc_keep,
+      ex_branch_with_delayslot_reg(0) => ex_branch_with_delayslot_reg(0),
+      ex_jump => ex_jump,
+      ex_valid => ex_valid,
+      ex_valid_jump_reg => ex_valid_jump_reg,
+      ex_valid_reg => ex_valid_reg,
+      ex_valid_reg_0 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4\,
+      if_missed_fetch_reg => if_missed_fetch_reg,
+      if_missed_fetch_reg_0 => if_missed_fetch_reg_0,
+      if_pc_incr_carry3 => if_pc_incr_carry3,
+      \if_pc_reg[0]\(29) => new_pc_incr(0),
+      \if_pc_reg[0]\(28) => new_pc_incr(1),
+      \if_pc_reg[0]\(27) => new_pc_incr(2),
+      \if_pc_reg[0]\(26) => new_pc_incr(3),
+      \if_pc_reg[0]\(25) => new_pc_incr(4),
+      \if_pc_reg[0]\(24) => new_pc_incr(5),
+      \if_pc_reg[0]\(23) => new_pc_incr(6),
+      \if_pc_reg[0]\(22) => new_pc_incr(7),
+      \if_pc_reg[0]\(21) => new_pc_incr(8),
+      \if_pc_reg[0]\(20) => new_pc_incr(9),
+      \if_pc_reg[0]\(19) => new_pc_incr(10),
+      \if_pc_reg[0]\(18) => new_pc_incr(11),
+      \if_pc_reg[0]\(17) => new_pc_incr(12),
+      \if_pc_reg[0]\(16) => new_pc_incr(13),
+      \if_pc_reg[0]\(15) => new_pc_incr(14),
+      \if_pc_reg[0]\(14) => new_pc_incr(15),
+      \if_pc_reg[0]\(13) => new_pc_incr(16),
+      \if_pc_reg[0]\(12) => new_pc_incr(17),
+      \if_pc_reg[0]\(11) => new_pc_incr(18),
+      \if_pc_reg[0]\(10) => new_pc_incr(19),
+      \if_pc_reg[0]\(9) => new_pc_incr(20),
+      \if_pc_reg[0]\(8) => new_pc_incr(21),
+      \if_pc_reg[0]\(7) => new_pc_incr(22),
+      \if_pc_reg[0]\(6) => new_pc_incr(23),
+      \if_pc_reg[0]\(5) => new_pc_incr(24),
+      \if_pc_reg[0]\(4) => new_pc_incr(25),
+      \if_pc_reg[0]\(3) => new_pc_incr(26),
+      \if_pc_reg[0]\(2) => new_pc_incr(27),
+      \if_pc_reg[0]\(1) => new_pc_incr(28),
+      \if_pc_reg[0]\(0) => new_pc_incr(29),
+      \if_pc_reg[18]\(0) => S188_in,
+      \if_pc_reg[31]\ => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_41\,
+      iside_data_strobe_combined_sel => iside_data_strobe_combined_sel,
       mem_access_completed_reg => mem_access_completed_reg,
+      of_Take_Interrupt_hold_reg => of_Take_Interrupt_hold_reg,
+      of_branch_with_delayslot131_out => of_branch_with_delayslot131_out,
+      of_next_ex_valid => of_next_ex_valid,
       of_op1_sel_spr_pc => of_op1_sel_spr_pc,
+      of_pause_reg => of_pause_reg,
       of_pc(0) => of_pc(18),
       of_pc_ii_13 => of_pc_ii_13,
-      sync_reset => reset_bool_for_rst
+      of_read_imm_reg_ii0 => of_read_imm_reg_ii0,
+      of_valid => of_valid,
+      \out\ => \out\,
+      sync_reset => reset_bool_for_rst,
+      wb_exception_i_reg => wb_exception_i_reg
     );
 \Instruction_Prefetch_Mux[18].PC_Mux_MUXF7\: entity work.system_microblaze_0_0_MB_MUXF7_216
      port map (
@@ -65506,7 +65838,8 @@ begin
       A105_out => A105_out,
       ADDRB(0 to 5) => ADDRB(0 to 5),
       Clk => Clk,
-      D(29 downto 0) => \^d\(31 downto 2),
+      D(1) => Q8_out,
+      D(0) => Q7_out,
       E(0) => \Use_BTC_2.BTC_RAM_Module_n_3\,
       \EX_Op2_reg[0]\(29 downto 0) => \EX_Op2_reg[0]\(31 downto 2),
       I013_out => I013_out,
@@ -65514,7 +65847,12 @@ begin
       I111_out => I111_out,
       I17_out => I17_out,
       IReady_1 => IReady_1,
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\(3 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg\(3 downto 0),
       \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[24]_0\ => \Use_BTC_2.BTC_RAM_Module_n_0\,
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(7 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg\(7 downto 0),
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(7 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg\(7 downto 0),
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(7 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg\(7 downto 0),
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(1 downto 0) => \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg\(7 downto 6),
       Q(0) => p_0_in107_in,
       \Use_BTC_2.bt_clear_wait_reg\ => \^bt_clear_wait\,
       \Use_BTC_2.bt_clear_wait_reg_0\ => \Use_BTC_2.Using_FPGA.bt_hit_carry_and_n_1\,
@@ -65548,39 +65886,7 @@ begin
       \Use_BTC_2.bt_delayslot_target_reg[0]\(2) => bt_delayslot_target(27),
       \Use_BTC_2.bt_delayslot_target_reg[0]\(1) => bt_delayslot_target(28),
       \Use_BTC_2.bt_delayslot_target_reg[0]\(0) => bt_delayslot_target(29),
-      \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
-      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\ => \Instr_Addr[0]_INST_0_i_3_n_0\,
-      \Use_BTC_2.bt_saved_pc_reg[0]\(29) => bt_saved_pc(0),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(28) => bt_saved_pc(1),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(27) => bt_saved_pc(2),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(26) => bt_saved_pc(3),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(25) => bt_saved_pc(4),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(24) => bt_saved_pc(5),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(23) => bt_saved_pc(6),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(22) => bt_saved_pc(7),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(21) => bt_saved_pc(8),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(20) => bt_saved_pc(9),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(19) => bt_saved_pc(10),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(18) => bt_saved_pc(11),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(17) => bt_saved_pc(12),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(16) => bt_saved_pc(13),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(15) => bt_saved_pc(14),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(14) => bt_saved_pc(15),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(13) => bt_saved_pc(16),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(12) => bt_saved_pc(17),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(11) => bt_saved_pc(18),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(10) => bt_saved_pc(19),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(9) => bt_saved_pc(20),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(8) => bt_saved_pc(21),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(7) => bt_saved_pc(22),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(6) => bt_saved_pc(23),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(5) => bt_saved_pc(24),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(4) => bt_saved_pc(25),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(3) => bt_saved_pc(26),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(2) => bt_saved_pc(27),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(1) => bt_saved_pc(28),
-      \Use_BTC_2.bt_saved_pc_reg[0]\(0) => bt_saved_pc(29),
-      \Use_BTC_2.bt_saved_pc_reg[29]\(0) => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      \Use_BTC_2.bt_saved_pc_reg[29]\(0) => \Use_BTC_2.BTC_RAM_Module_n_32\,
       \Use_BTC_2.bt_saved_pc_valid_reg\ => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
       \Use_BTC_2.bt_write_delayslot_reg\ => \Use_BTC_2.bt_write_delayslot_reg_n_0\,
       \Use_BTC_2.bt_write_q_reg\ => \Use_BTC_2.bt_write_q_reg_0\,
@@ -65619,9 +65925,7 @@ begin
       \Use_BTC_2.we_hold_reg\ => \Use_BTC_2.BTC_RAM_Module_n_2\,
       \Using_FPGA.Native\ => \Using_FPGA.Native_4\,
       \Using_FPGA.Native_0\ => \Using_FPGA.Native_7\,
-      \Using_FPGA.Native_1\(1) => Q8_out,
-      \Using_FPGA.Native_1\(0) => Q7_out,
-      \Using_FPGA.Native_2\ => \Using_FPGA.Native_5\,
+      \Using_FPGA.Native_1\ => \Using_FPGA.Native_5\,
       bt_clear_hold => bt_clear_hold,
       bt_ex_imm_cond_branch => bt_ex_imm_cond_branch,
       bt_ex_mispredict_pc_hold => bt_ex_mispredict_pc_hold,
@@ -65664,40 +65968,10 @@ begin
       \ex_pc_i_reg[0]\(0) => \ex_pc_i_reg_n_0_[23]\,
       ex_valid => ex_valid,
       if_pc_incr_carry3 => if_pc_incr_carry3,
-      \if_pc_reg[0]\(29) => new_pc_incr(0),
-      \if_pc_reg[0]\(28) => new_pc_incr(1),
-      \if_pc_reg[0]\(27) => new_pc_incr(2),
-      \if_pc_reg[0]\(26) => new_pc_incr(3),
-      \if_pc_reg[0]\(25) => new_pc_incr(4),
-      \if_pc_reg[0]\(24) => new_pc_incr(5),
-      \if_pc_reg[0]\(23) => new_pc_incr(6),
-      \if_pc_reg[0]\(22) => new_pc_incr(7),
-      \if_pc_reg[0]\(21) => new_pc_incr(8),
-      \if_pc_reg[0]\(20) => new_pc_incr(9),
-      \if_pc_reg[0]\(19) => new_pc_incr(10),
-      \if_pc_reg[0]\(18) => new_pc_incr(11),
-      \if_pc_reg[0]\(17) => new_pc_incr(12),
-      \if_pc_reg[0]\(16) => new_pc_incr(13),
-      \if_pc_reg[0]\(15) => new_pc_incr(14),
-      \if_pc_reg[0]\(14) => new_pc_incr(15),
-      \if_pc_reg[0]\(13) => new_pc_incr(16),
-      \if_pc_reg[0]\(12) => new_pc_incr(17),
-      \if_pc_reg[0]\(11) => new_pc_incr(18),
-      \if_pc_reg[0]\(10) => new_pc_incr(19),
-      \if_pc_reg[0]\(9) => new_pc_incr(20),
-      \if_pc_reg[0]\(8) => new_pc_incr(21),
-      \if_pc_reg[0]\(7) => new_pc_incr(22),
-      \if_pc_reg[0]\(6) => new_pc_incr(23),
-      \if_pc_reg[0]\(5) => new_pc_incr(24),
-      \if_pc_reg[0]\(4) => new_pc_incr(25),
-      \if_pc_reg[0]\(3) => new_pc_incr(26),
-      \if_pc_reg[0]\(2) => new_pc_incr(27),
-      \if_pc_reg[0]\(1) => new_pc_incr(28),
-      \if_pc_reg[0]\(0) => new_pc_incr(29),
-      \if_pc_reg[31]\ => \Use_BTC_2.BTC_RAM_Module_n_69\,
+      \if_pc_reg[31]\ => \Use_BTC_2.BTC_RAM_Module_n_39\,
       if_pc_write_q => if_pc_write_q,
-      \in\(1) => \Use_BTC_2.BTC_RAM_Module_n_66\,
-      \in\(0) => \Use_BTC_2.BTC_RAM_Module_n_67\,
+      \in\(1) => \Use_BTC_2.BTC_RAM_Module_n_36\,
+      \in\(0) => \Use_BTC_2.BTC_RAM_Module_n_37\,
       jump_done => jump_done,
       \out\(1) => p_3_in37_in,
       \out\(0) => p_3_in31_in
@@ -65840,10 +66114,10 @@ begin
       lopt => \^lopt\,
       lopt_1 => \^lopt_1\,
       lopt_10 => lopt_10,
-      lopt_11 => \Use_BTC_2.BTC_RAM_Module_n_69\,
+      lopt_11 => \Use_BTC_2.BTC_RAM_Module_n_39\,
       lopt_12 => lopt_11,
       lopt_13 => lopt_12,
-      lopt_14 => lopt_13,
+      lopt_14 => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_41\,
       lopt_2 => \^lopt_2\,
       lopt_3 => \^lopt_3\,
       lopt_4 => \^lopt_4\,
@@ -65876,14 +66150,13 @@ begin
 \Use_BTC_2.Using_FPGA.bt_jump_carry_and\: entity work.system_microblaze_0_0_carry_and_270
      port map (
       Carry_OUT => bt_hit_nopar,
-      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[26]\ => \Use_BTC_2.BTC_RAM_Module_n_69\,
+      \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[26]\ => \Use_BTC_2.BTC_RAM_Module_n_39\,
       carry2 => carry2,
       lopt => lopt_9,
       lopt_1 => lopt_10
     );
 \Use_BTC_2.Using_FPGA.bt_jump_carry_or\: entity work.system_microblaze_0_0_carry_or_271
      port map (
-      CO(0) => bt_use_delayslot_target4,
       D(0) => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_8\,
       \EX_Op2_reg[30]\(1 downto 0) => \EX_Op2_reg[0]\(1 downto 0),
       I0 => I0,
@@ -65892,34 +66165,23 @@ begin
       \Instr_Addr[30]\(1 downto 0) => \^d\(1 downto 0),
       \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]\(0) => dob(25),
       Q(0) => if_prediction_bits_keep(3),
-      \Use_Async_Reset.sync_reset_reg\ => \Use_Async_Reset.sync_reset_reg\,
-      \Use_BTC_2.bt_ex_jump_held_reg\ => \Use_BTC_2.bt_if_pc_incr_wait_i_6_n_0\,
-      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg\ => \Instr_Addr[0]_INST_0_i_3_n_0\,
-      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0\ => \Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0\,
-      \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1\ => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      \Use_BTC_2.bt_ex_return_reg\ => \Use_BTC_2.bt_ex_return_reg_n_0\,
-      \Use_BTC_2.bt_if_pc_incr_wait_reg\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5\,
+      \Use_BTC_2.bt_ex_mispredict_handled_reg\ => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_41\,
+      \Use_BTC_2.bt_if_pc_incr_wait_reg\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4\,
       \Use_BTC_2.bt_if_pc_incr_wait_reg_0\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\,
-      \Use_BTC_2.bt_if_pc_incr_wait_reg_1\ => \Use_BTC_2.bt_saved_pc_valid_i_2_n_0\,
-      \Use_BTC_2.bt_saved_pc_valid_reg\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_1\,
-      \Use_BTC_2.bt_saved_pc_valid_reg_0\ => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
+      \Use_BTC_2.bt_if_pc_incr_wait_reg_1\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
+      \Use_BTC_2.bt_saved_pc_valid_reg\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5\,
       \Use_BTC_2.ex_jump_wanted_delayslot_reg\ => \Use_BTC_2.BTC_RAM_Module_n_31\,
       \Use_BTC_2.ex_prediction_bits_reg[3]\(0) => \Use_BTC_2.ex_prediction_bits_reg_n_0_[3]\,
       \Use_BTC_2.jump_done_reg\ => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_9\,
-      \Using_FPGA.Native\ => \Using_FPGA.Native_3\,
-      \Using_FPGA.Native_0\ => \Using_FPGA.Native_5\,
-      \Using_FPGA.Native_1\ => \Using_FPGA.Native_7\,
-      \Using_FPGA.Native_2\ => \^use_btc_2.ex_prediction_bits_reg[3]_0\,
-      \Using_FPGA.Native_3\ => \Using_FPGA.Native_4\,
+      \Using_FPGA.Native\ => \Using_FPGA.Native_5\,
+      \Using_FPGA.Native_0\ => \Using_FPGA.Native_7\,
+      \Using_FPGA.Native_1\ => \^use_btc_2.ex_prediction_bits_reg[3]_0\,
+      \Using_FPGA.Native_2\ => \Using_FPGA.Native_4\,
       bt_ex_imm_cond_branch => bt_ex_imm_cond_branch,
-      bt_ex_mispredict_addr_hold => bt_ex_mispredict_addr_hold,
       bt_ex_mispredict_handled => bt_ex_mispredict_handled,
-      bt_if_pc_incr_wait => bt_if_pc_incr_wait,
       bt_jump => bt_jump,
       bt_valid_bit => bt_valid_bit,
       carry2 => carry2,
-      ex_Take_Intr_or_Exc_keep => ex_Take_Intr_or_Exc_keep,
-      ex_branch_with_delayslot_reg => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
       ex_jump => ex_jump,
       ex_jump_hold_0 => ex_jump_hold_0,
       ex_valid => ex_valid,
@@ -65931,9 +66193,7 @@ begin
       \in\(0) => new_if_prediction_bits0,
       lopt => lopt_11,
       lopt_1 => lopt_12,
-      lopt_2 => lopt_13,
       mem_access_completed_reg => mem_access_completed_reg,
-      of_valid => of_valid,
       \out\(0) => \Use_BTC_2.prediction_buffer_reg[3][3]_srl4_n_0\,
       we_hold => we_hold
     );
@@ -66614,99 +66874,27 @@ begin
       Q => \Use_BTC_2.bt_ex_jump_held_reg_n_0\,
       R => '0'
     );
-\Use_BTC_2.bt_ex_mispredict_addr_hold_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000011110100"
-    )
-        port map (
-      I0 => reset_bool_for_rst,
-      I1 => ex_jump,
-      I2 => bt_ex_mispredict_handled,
-      I3 => \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0\,
-      I4 => bt_ex_mispredict_addr_hold,
-      I5 => \Using_FPGA.Native_4\,
-      O => \Use_BTC_2.bt_ex_mispredict_addr_hold_i_1_n_0\
-    );
-\Use_BTC_2.bt_ex_mispredict_addr_hold_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"40000000"
-    )
-        port map (
-      I0 => ex_Take_Intr_or_Exc_keep,
-      I1 => of_valid,
-      I2 => bt_use_delayslot_target4,
-      I3 => \Use_BTC_2.bt_ex_return_reg_n_0\,
-      I4 => \Use_BTC_2.ex_prediction_bits_reg_n_0_[3]\,
-      O => \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0\
-    );
 \Use_BTC_2.bt_ex_mispredict_addr_hold_reg\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
       CE => '1',
-      D => \Use_BTC_2.bt_ex_mispredict_addr_hold_i_1_n_0\,
+      D => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_38\,
       Q => bt_ex_mispredict_addr_hold,
       R => '0'
-    );
-\Use_BTC_2.bt_ex_mispredict_handled_i_1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"000000000000AAFE"
-    )
-        port map (
-      I0 => bt_ex_mispredict_handled,
-      I1 => \Using_FPGA.Native_4\,
-      I2 => ex_jump,
-      I3 => \Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0\,
-      I4 => ex_branch_with_delayslot_reg(0),
-      I5 => reset_bool_for_rst,
-      O => \Use_BTC_2.bt_ex_mispredict_handled_i_1_n_0\
-    );
-\Use_BTC_2.bt_ex_mispredict_handled_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"0007"
-    )
-        port map (
-      I0 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\,
-      I1 => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
-      I2 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      O => \Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0\
     );
 \Use_BTC_2.bt_ex_mispredict_handled_reg\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
       CE => '1',
-      D => \Use_BTC_2.bt_ex_mispredict_handled_i_1_n_0\,
+      D => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_33\,
       Q => bt_ex_mispredict_handled,
       R => '0'
-    );
-\Use_BTC_2.bt_ex_mispredict_pc_hold_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"1F0F"
-    )
-        port map (
-      I0 => \Using_FPGA.Native_4\,
-      I1 => ex_jump,
-      I2 => of_read_imm_reg_ii1,
-      I3 => bt_ex_mispredict_pc_hold,
-      O => \Use_BTC_2.bt_ex_mispredict_pc_hold_i_1_n_0\
-    );
-\Use_BTC_2.bt_ex_mispredict_pc_hold_i_2\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"AAABABAB"
-    )
-        port map (
-      I0 => bt_ex_mispredict_handled,
-      I1 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      I2 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
-      I3 => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
-      I4 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\,
-      O => of_read_imm_reg_ii1
     );
 \Use_BTC_2.bt_ex_mispredict_pc_hold_reg\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
       CE => '1',
-      D => \Use_BTC_2.bt_ex_mispredict_pc_hold_i_1_n_0\,
+      D => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_42\,
       Q => bt_ex_mispredict_pc_hold,
       R => reset_bool_for_rst
     );
@@ -66784,19 +66972,6 @@ begin
       Q => bt_ex_return_set,
       R => '0'
     );
-\Use_BTC_2.bt_if_pc_incr_wait_i_5\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFFFEAAAAAAA"
-    )
-        port map (
-      I0 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      I1 => \Using_FPGA.Native_11\,
-      I2 => bt_use_delayslot_target4,
-      I3 => \Use_BTC_2.bt_ex_return_reg_n_0\,
-      I4 => \Use_BTC_2.ex_prediction_bits_reg_n_0_[3]\,
-      I5 => bt_ex_mispredict_addr_hold,
-      O => \Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0\
-    );
 \Use_BTC_2.bt_if_pc_incr_wait_i_6\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"BF"
@@ -66811,7 +66986,7 @@ begin
      port map (
       C => Clk,
       CE => '1',
-      D => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5\,
+      D => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_32\,
       Q => bt_if_pc_incr_wait,
       R => '0'
     );
@@ -66856,7 +67031,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(0),
       Q => bt_saved_pc(0),
       R => reset_bool_for_rst
@@ -66864,7 +67039,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[10]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(10),
       Q => bt_saved_pc(10),
       R => reset_bool_for_rst
@@ -66872,7 +67047,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[11]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(11),
       Q => bt_saved_pc(11),
       R => reset_bool_for_rst
@@ -66880,7 +67055,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[12]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(12),
       Q => bt_saved_pc(12),
       R => reset_bool_for_rst
@@ -66888,7 +67063,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[13]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(13),
       Q => bt_saved_pc(13),
       R => reset_bool_for_rst
@@ -66896,7 +67071,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[14]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(14),
       Q => bt_saved_pc(14),
       R => reset_bool_for_rst
@@ -66904,7 +67079,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[15]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(15),
       Q => bt_saved_pc(15),
       R => reset_bool_for_rst
@@ -66912,7 +67087,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[16]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(16),
       Q => bt_saved_pc(16),
       R => reset_bool_for_rst
@@ -66920,7 +67095,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[17]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(17),
       Q => bt_saved_pc(17),
       R => reset_bool_for_rst
@@ -66928,7 +67103,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[18]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(18),
       Q => bt_saved_pc(18),
       R => reset_bool_for_rst
@@ -66936,7 +67111,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[19]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(19),
       Q => bt_saved_pc(19),
       R => reset_bool_for_rst
@@ -66944,7 +67119,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(1),
       Q => bt_saved_pc(1),
       R => reset_bool_for_rst
@@ -66952,7 +67127,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[20]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(20),
       Q => bt_saved_pc(20),
       R => reset_bool_for_rst
@@ -66960,7 +67135,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[21]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(21),
       Q => bt_saved_pc(21),
       R => reset_bool_for_rst
@@ -66968,7 +67143,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[22]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(22),
       Q => bt_saved_pc(22),
       R => reset_bool_for_rst
@@ -66976,7 +67151,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[23]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(23),
       Q => bt_saved_pc(23),
       R => reset_bool_for_rst
@@ -66984,7 +67159,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[24]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(24),
       Q => bt_saved_pc(24),
       R => reset_bool_for_rst
@@ -66992,7 +67167,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[25]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(25),
       Q => bt_saved_pc(25),
       R => reset_bool_for_rst
@@ -67000,7 +67175,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[26]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(26),
       Q => bt_saved_pc(26),
       R => reset_bool_for_rst
@@ -67008,7 +67183,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[27]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(27),
       Q => bt_saved_pc(27),
       R => reset_bool_for_rst
@@ -67016,7 +67191,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[28]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(28),
       Q => bt_saved_pc(28),
       R => reset_bool_for_rst
@@ -67024,7 +67199,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[29]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(29),
       Q => bt_saved_pc(29),
       R => reset_bool_for_rst
@@ -67032,7 +67207,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(2),
       Q => bt_saved_pc(2),
       R => reset_bool_for_rst
@@ -67040,7 +67215,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(3),
       Q => bt_saved_pc(3),
       R => reset_bool_for_rst
@@ -67048,7 +67223,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[4]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(4),
       Q => bt_saved_pc(4),
       R => reset_bool_for_rst
@@ -67056,7 +67231,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(5),
       Q => bt_saved_pc(5),
       R => reset_bool_for_rst
@@ -67064,7 +67239,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[6]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(6),
       Q => bt_saved_pc(6),
       R => reset_bool_for_rst
@@ -67072,7 +67247,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[7]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(7),
       Q => bt_saved_pc(7),
       R => reset_bool_for_rst
@@ -67080,7 +67255,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(8),
       Q => bt_saved_pc(8),
       R => reset_bool_for_rst
@@ -67088,7 +67263,7 @@ begin
 \Use_BTC_2.bt_saved_pc_reg[9]\: unisim.vcomponents.FDRE
      port map (
       C => Clk,
-      CE => \Use_BTC_2.BTC_RAM_Module_n_62\,
+      CE => \Use_BTC_2.BTC_RAM_Module_n_32\,
       D => new_pc_incr(9),
       Q => bt_saved_pc(9),
       R => reset_bool_for_rst
@@ -67128,7 +67303,7 @@ begin
      port map (
       C => Clk,
       CE => '1',
-      D => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_1\,
+      D => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_1\,
       Q => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
       R => '0'
     );
@@ -67271,7 +67446,7 @@ begin
      port map (
       C => Clk,
       CE => '1',
-      D => \Use_BTC_2.BTC_RAM_Module_n_66\,
+      D => \Use_BTC_2.BTC_RAM_Module_n_36\,
       Q => if_prediction_bits_keep(0),
       R => reset_bool_for_rst
     );
@@ -67279,7 +67454,7 @@ begin
      port map (
       C => Clk,
       CE => '1',
-      D => \Use_BTC_2.BTC_RAM_Module_n_67\,
+      D => \Use_BTC_2.BTC_RAM_Module_n_37\,
       Q => if_prediction_bits_keep(1),
       R => reset_bool_for_rst
     );
@@ -67318,7 +67493,7 @@ begin
       A3 => '0',
       CE => IReady_1,
       CLK => Clk,
-      D => \Use_BTC_2.BTC_RAM_Module_n_66\,
+      D => \Use_BTC_2.BTC_RAM_Module_n_36\,
       Q => p_3_in37_in
     );
 \Use_BTC_2.prediction_buffer_reg[3][1]_srl4\: unisim.vcomponents.SRL16E
@@ -67332,7 +67507,7 @@ begin
       A3 => '0',
       CE => IReady_1,
       CLK => Clk,
-      D => \Use_BTC_2.BTC_RAM_Module_n_67\,
+      D => \Use_BTC_2.BTC_RAM_Module_n_37\,
       Q => p_3_in31_in
     );
 \Use_BTC_2.prediction_buffer_reg[3][2]_srl4\: unisim.vcomponents.SRL16E
@@ -67386,7 +67561,7 @@ begin
       D(0) => new_pc_incr(0),
       LO => if_pc_carry(29),
       Q(0) => S278_in,
-      lopt => lopt_80
+      lopt => lopt_79
     );
 \Using_FPGA.Incr_PC[10].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_272
      port map (
@@ -67394,9 +67569,9 @@ begin
       O => new_pc_incr(10),
       Q(0) => S228_in,
       \if_pc_reg[11]\ => if_pc_carry(19),
-      lopt => lopt_56,
-      lopt_1 => lopt_57,
-      lopt_2 => lopt_62
+      lopt => lopt_55,
+      lopt_1 => lopt_56,
+      lopt_2 => lopt_61
     );
 \Using_FPGA.Incr_PC[11].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_273
      port map (
@@ -67404,18 +67579,18 @@ begin
       O => new_pc_incr(11),
       Q(0) => S223_in,
       \if_pc_reg[12]\ => if_pc_carry(18),
-      lopt => lopt_56,
-      lopt_1 => lopt_57,
-      lopt_10 => lopt_63,
-      lopt_11 => lopt_64,
+      lopt => lopt_55,
+      lopt_1 => lopt_56,
+      lopt_10 => lopt_62,
+      lopt_11 => lopt_63,
       lopt_2 => S228_in,
-      lopt_3 => lopt_58,
-      lopt_4 => lopt_59,
+      lopt_3 => lopt_57,
+      lopt_4 => lopt_58,
       lopt_5 => S233_in,
-      lopt_6 => lopt_60,
-      lopt_7 => lopt_61,
+      lopt_6 => lopt_59,
+      lopt_7 => lopt_60,
       lopt_8 => S238_in,
-      lopt_9 => lopt_62
+      lopt_9 => lopt_61
     );
 \Using_FPGA.Incr_PC[12].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_274
      port map (
@@ -67423,9 +67598,9 @@ begin
       O => new_pc_incr(12),
       Q(0) => S218_in,
       \if_pc_reg[13]\ => if_pc_carry(17),
-      lopt => lopt_51,
-      lopt_1 => lopt_52,
-      lopt_2 => lopt_55
+      lopt => lopt_50,
+      lopt_1 => lopt_51,
+      lopt_2 => lopt_54
     );
 \Using_FPGA.Incr_PC[13].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_275
      port map (
@@ -67433,9 +67608,9 @@ begin
       O => new_pc_incr(13),
       Q(0) => S213_in,
       \if_pc_reg[14]\ => if_pc_carry(16),
-      lopt => lopt_49,
-      lopt_1 => lopt_50,
-      lopt_2 => lopt_54
+      lopt => lopt_48,
+      lopt_1 => lopt_49,
+      lopt_2 => lopt_53
     );
 \Using_FPGA.Incr_PC[14].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_276
      port map (
@@ -67443,9 +67618,9 @@ begin
       O => new_pc_incr(14),
       Q(0) => S208_in,
       \if_pc_reg[15]\ => if_pc_carry(15),
-      lopt => lopt_47,
-      lopt_1 => lopt_48,
-      lopt_2 => lopt_53
+      lopt => lopt_46,
+      lopt_1 => lopt_47,
+      lopt_2 => lopt_52
     );
 \Using_FPGA.Incr_PC[15].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_277
      port map (
@@ -67453,18 +67628,18 @@ begin
       O => new_pc_incr(15),
       Q(0) => S203_in,
       \if_pc_reg[16]\ => if_pc_carry(14),
-      lopt => lopt_47,
-      lopt_1 => lopt_48,
-      lopt_10 => lopt_54,
-      lopt_11 => lopt_55,
+      lopt => lopt_46,
+      lopt_1 => lopt_47,
+      lopt_10 => lopt_53,
+      lopt_11 => lopt_54,
       lopt_2 => S208_in,
-      lopt_3 => lopt_49,
-      lopt_4 => lopt_50,
+      lopt_3 => lopt_48,
+      lopt_4 => lopt_49,
       lopt_5 => S213_in,
-      lopt_6 => lopt_51,
-      lopt_7 => lopt_52,
+      lopt_6 => lopt_50,
+      lopt_7 => lopt_51,
       lopt_8 => S218_in,
-      lopt_9 => lopt_53
+      lopt_9 => lopt_52
     );
 \Using_FPGA.Incr_PC[16].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_278
      port map (
@@ -67472,9 +67647,9 @@ begin
       O => new_pc_incr(16),
       Q(0) => S198_in,
       \if_pc_reg[17]\ => if_pc_carry(13),
-      lopt => lopt_42,
-      lopt_1 => lopt_43,
-      lopt_2 => lopt_46
+      lopt => lopt_41,
+      lopt_1 => lopt_42,
+      lopt_2 => lopt_45
     );
 \Using_FPGA.Incr_PC[17].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_279
      port map (
@@ -67482,9 +67657,9 @@ begin
       O => new_pc_incr(17),
       Q(0) => S193_in,
       \if_pc_reg[18]\ => if_pc_carry(12),
-      lopt => lopt_40,
-      lopt_1 => lopt_41,
-      lopt_2 => lopt_45
+      lopt => lopt_39,
+      lopt_1 => lopt_40,
+      lopt_2 => lopt_44
     );
 \Using_FPGA.Incr_PC[18].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_280
      port map (
@@ -67492,9 +67667,9 @@ begin
       O => new_pc_incr(18),
       Q(0) => S188_in,
       \if_pc_reg[19]\ => if_pc_carry(11),
-      lopt => lopt_38,
-      lopt_1 => lopt_39,
-      lopt_2 => lopt_44
+      lopt => lopt_37,
+      lopt_1 => lopt_38,
+      lopt_2 => lopt_43
     );
 \Using_FPGA.Incr_PC[19].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_281
      port map (
@@ -67502,18 +67677,18 @@ begin
       O => new_pc_incr(19),
       Q(0) => S183_in,
       \if_pc_reg[20]\ => if_pc_carry(10),
-      lopt => lopt_38,
-      lopt_1 => lopt_39,
-      lopt_10 => lopt_45,
-      lopt_11 => lopt_46,
+      lopt => lopt_37,
+      lopt_1 => lopt_38,
+      lopt_10 => lopt_44,
+      lopt_11 => lopt_45,
       lopt_2 => S188_in,
-      lopt_3 => lopt_40,
-      lopt_4 => lopt_41,
+      lopt_3 => lopt_39,
+      lopt_4 => lopt_40,
       lopt_5 => S193_in,
-      lopt_6 => lopt_42,
-      lopt_7 => lopt_43,
+      lopt_6 => lopt_41,
+      lopt_7 => lopt_42,
       lopt_8 => S198_in,
-      lopt_9 => lopt_44
+      lopt_9 => lopt_43
     );
 \Using_FPGA.Incr_PC[1].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_282
      port map (
@@ -67521,9 +67696,9 @@ begin
       O => new_pc_incr(1),
       Q(0) => S273_in,
       \if_pc_reg[2]\ => if_pc_carry(28),
-      lopt => lopt_76,
-      lopt_1 => lopt_77,
-      lopt_2 => lopt_79
+      lopt => lopt_75,
+      lopt_1 => lopt_76,
+      lopt_2 => lopt_78
     );
 \Using_FPGA.Incr_PC[20].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_283
      port map (
@@ -67531,9 +67706,9 @@ begin
       O => new_pc_incr(20),
       Q(0) => S178_in,
       \if_pc_reg[21]\ => if_pc_carry(9),
-      lopt => lopt_33,
-      lopt_1 => lopt_34,
-      lopt_2 => lopt_37
+      lopt => lopt_32,
+      lopt_1 => lopt_33,
+      lopt_2 => lopt_36
     );
 \Using_FPGA.Incr_PC[21].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_284
      port map (
@@ -67541,9 +67716,9 @@ begin
       O => new_pc_incr(21),
       Q(0) => S173_in,
       \if_pc_reg[22]\ => if_pc_carry(8),
-      lopt => lopt_31,
-      lopt_1 => lopt_32,
-      lopt_2 => lopt_36
+      lopt => lopt_30,
+      lopt_1 => lopt_31,
+      lopt_2 => lopt_35
     );
 \Using_FPGA.Incr_PC[22].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_285
      port map (
@@ -67551,9 +67726,9 @@ begin
       O => new_pc_incr(22),
       Q(0) => S168_in,
       \if_pc_reg[23]\ => if_pc_carry(7),
-      lopt => lopt_29,
-      lopt_1 => lopt_30,
-      lopt_2 => lopt_35
+      lopt => lopt_28,
+      lopt_1 => lopt_29,
+      lopt_2 => lopt_34
     );
 \Using_FPGA.Incr_PC[23].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_286
      port map (
@@ -67561,18 +67736,18 @@ begin
       O => new_pc_incr(23),
       Q(0) => S163_in,
       \if_pc_reg[24]\ => if_pc_carry(6),
-      lopt => lopt_29,
-      lopt_1 => lopt_30,
-      lopt_10 => lopt_36,
-      lopt_11 => lopt_37,
+      lopt => lopt_28,
+      lopt_1 => lopt_29,
+      lopt_10 => lopt_35,
+      lopt_11 => lopt_36,
       lopt_2 => S168_in,
-      lopt_3 => lopt_31,
-      lopt_4 => lopt_32,
+      lopt_3 => lopt_30,
+      lopt_4 => lopt_31,
       lopt_5 => S173_in,
-      lopt_6 => lopt_33,
-      lopt_7 => lopt_34,
+      lopt_6 => lopt_32,
+      lopt_7 => lopt_33,
       lopt_8 => S178_in,
-      lopt_9 => lopt_35
+      lopt_9 => lopt_34
     );
 \Using_FPGA.Incr_PC[24].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_287
      port map (
@@ -67586,9 +67761,9 @@ begin
       bt_valid_bit => bt_valid_bit,
       \if_pc_reg[24]\(0) => S158_in,
       \if_pc_reg[25]\ => if_pc_carry(5),
-      lopt => lopt_24,
-      lopt_1 => lopt_25,
-      lopt_2 => lopt_28
+      lopt => lopt_23,
+      lopt_1 => lopt_24,
+      lopt_2 => lopt_27
     );
 \Using_FPGA.Incr_PC[25].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_288
      port map (
@@ -67602,9 +67777,9 @@ begin
       bt_valid_bit => bt_valid_bit,
       \if_pc_reg[25]\(0) => S153_in,
       \if_pc_reg[26]\ => if_pc_carry(4),
-      lopt => lopt_22,
-      lopt_1 => lopt_23,
-      lopt_2 => lopt_27
+      lopt => lopt_21,
+      lopt_1 => lopt_22,
+      lopt_2 => lopt_26
     );
 \Using_FPGA.Incr_PC[26].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_289
      port map (
@@ -67618,9 +67793,9 @@ begin
       bt_valid_bit => bt_valid_bit,
       \if_pc_reg[26]\(0) => S148_in,
       \if_pc_reg[27]\ => if_pc_carry(3),
-      lopt => lopt_20,
-      lopt_1 => lopt_21,
-      lopt_2 => lopt_26
+      lopt => lopt_19,
+      lopt_1 => lopt_20,
+      lopt_2 => lopt_25
     );
 \Using_FPGA.Incr_PC[27].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_290
      port map (
@@ -67634,18 +67809,18 @@ begin
       bt_valid_bit => bt_valid_bit,
       \if_pc_reg[27]\(0) => S143_in,
       \if_pc_reg[28]\ => if_pc_carry(2),
-      lopt => lopt_20,
-      lopt_1 => lopt_21,
-      lopt_10 => lopt_27,
-      lopt_11 => lopt_28,
+      lopt => lopt_19,
+      lopt_1 => lopt_20,
+      lopt_10 => lopt_26,
+      lopt_11 => lopt_27,
       lopt_2 => S148_in,
-      lopt_3 => lopt_22,
-      lopt_4 => lopt_23,
+      lopt_3 => lopt_21,
+      lopt_4 => lopt_22,
       lopt_5 => S153_in,
-      lopt_6 => lopt_24,
-      lopt_7 => lopt_25,
+      lopt_6 => lopt_23,
+      lopt_7 => lopt_24,
       lopt_8 => S158_in,
-      lopt_9 => lopt_26
+      lopt_9 => lopt_25
     );
 \Using_FPGA.Incr_PC[28].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_291
      port map (
@@ -67659,9 +67834,9 @@ begin
       bt_valid_bit => bt_valid_bit,
       \if_pc_reg[28]\(0) => S136_in,
       \if_pc_reg[29]\ => if_pc_carry(1),
-      lopt => lopt_16,
-      lopt_1 => lopt_17,
-      lopt_2 => lopt_19
+      lopt => lopt_15,
+      lopt_1 => lopt_16,
+      lopt_2 => lopt_18
     );
 \Using_FPGA.Incr_PC[29].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_292
      port map (
@@ -67675,9 +67850,9 @@ begin
       bt_valid_bit => bt_valid_bit,
       if_pc_incr_carry3 => if_pc_incr_carry3,
       \if_pc_reg[29]\(0) => S,
-      lopt => lopt_14,
-      lopt_1 => lopt_15,
-      lopt_2 => lopt_18
+      lopt => lopt_13,
+      lopt_1 => lopt_14,
+      lopt_2 => lopt_17
     );
 \Using_FPGA.Incr_PC[2].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_293
      port map (
@@ -67685,9 +67860,9 @@ begin
       O => new_pc_incr(2),
       Q(0) => S268_in,
       \if_pc_reg[3]\ => if_pc_carry(27),
-      lopt => lopt_74,
-      lopt_1 => lopt_75,
-      lopt_2 => lopt_78
+      lopt => lopt_73,
+      lopt_1 => lopt_74,
+      lopt_2 => lopt_77
     );
 \Using_FPGA.Incr_PC[3].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_294
      port map (
@@ -67695,15 +67870,15 @@ begin
       O => new_pc_incr(3),
       Q(0) => S263_in,
       \if_pc_reg[4]\ => if_pc_carry(26),
-      lopt => lopt_74,
-      lopt_1 => lopt_75,
+      lopt => lopt_73,
+      lopt_1 => lopt_74,
       lopt_2 => S268_in,
-      lopt_3 => lopt_76,
-      lopt_4 => lopt_77,
+      lopt_3 => lopt_75,
+      lopt_4 => lopt_76,
       lopt_5 => S273_in,
-      lopt_6 => lopt_78,
-      lopt_7 => lopt_79,
-      lopt_8 => lopt_80,
+      lopt_6 => lopt_77,
+      lopt_7 => lopt_78,
+      lopt_8 => lopt_79,
       lopt_9 => S278_in
     );
 \Using_FPGA.Incr_PC[4].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_295
@@ -67712,9 +67887,9 @@ begin
       O => new_pc_incr(4),
       Q(0) => S258_in,
       \if_pc_reg[5]\ => if_pc_carry(25),
-      lopt => lopt_69,
-      lopt_1 => lopt_70,
-      lopt_2 => lopt_73
+      lopt => lopt_68,
+      lopt_1 => lopt_69,
+      lopt_2 => lopt_72
     );
 \Using_FPGA.Incr_PC[5].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_296
      port map (
@@ -67722,9 +67897,9 @@ begin
       O => new_pc_incr(5),
       Q(0) => S253_in,
       \if_pc_reg[6]\ => if_pc_carry(24),
-      lopt => lopt_67,
-      lopt_1 => lopt_68,
-      lopt_2 => lopt_72
+      lopt => lopt_66,
+      lopt_1 => lopt_67,
+      lopt_2 => lopt_71
     );
 \Using_FPGA.Incr_PC[6].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_297
      port map (
@@ -67732,9 +67907,9 @@ begin
       O => new_pc_incr(6),
       Q(0) => S248_in,
       \if_pc_reg[7]\ => if_pc_carry(23),
-      lopt => lopt_65,
-      lopt_1 => lopt_66,
-      lopt_2 => lopt_71
+      lopt => lopt_64,
+      lopt_1 => lopt_65,
+      lopt_2 => lopt_70
     );
 \Using_FPGA.Incr_PC[7].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_298
      port map (
@@ -67742,18 +67917,18 @@ begin
       O => new_pc_incr(7),
       Q(0) => S243_in,
       \if_pc_reg[8]\ => if_pc_carry(22),
-      lopt => lopt_65,
-      lopt_1 => lopt_66,
-      lopt_10 => lopt_72,
-      lopt_11 => lopt_73,
+      lopt => lopt_64,
+      lopt_1 => lopt_65,
+      lopt_10 => lopt_71,
+      lopt_11 => lopt_72,
       lopt_2 => S248_in,
-      lopt_3 => lopt_67,
-      lopt_4 => lopt_68,
+      lopt_3 => lopt_66,
+      lopt_4 => lopt_67,
       lopt_5 => S253_in,
-      lopt_6 => lopt_69,
-      lopt_7 => lopt_70,
+      lopt_6 => lopt_68,
+      lopt_7 => lopt_69,
       lopt_8 => S258_in,
-      lopt_9 => lopt_71
+      lopt_9 => lopt_70
     );
 \Using_FPGA.Incr_PC[8].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_299
      port map (
@@ -67761,9 +67936,9 @@ begin
       O => new_pc_incr(8),
       Q(0) => S238_in,
       \if_pc_reg[9]\ => if_pc_carry(21),
-      lopt => lopt_60,
-      lopt_1 => lopt_61,
-      lopt_2 => lopt_64
+      lopt => lopt_59,
+      lopt_1 => lopt_60,
+      lopt_2 => lopt_63
     );
 \Using_FPGA.Incr_PC[9].MUXCY_XOR_I\: entity work.system_microblaze_0_0_MB_MUXCY_XORCY_300
      port map (
@@ -67771,22 +67946,9 @@ begin
       LO => if_pc_carry(21),
       O => new_pc_incr(9),
       Q(0) => S233_in,
-      lopt => lopt_58,
-      lopt_1 => lopt_59,
-      lopt_2 => lopt_63
-    );
-\Using_FPGA.Native_i_1__5\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"AAAAAAAAFFFFFFEA"
-    )
-        port map (
-      I0 => ex_jump,
-      I1 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\,
-      I2 => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
-      I3 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
-      I4 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      I5 => bt_ex_mispredict_handled,
-      O => \^i5\
+      lopt => lopt_57,
+      lopt_1 => lopt_58,
+      lopt_2 => lopt_62
     );
 Write_Strobe_INST_0_i_1: unisim.vcomponents.LUT2
     generic map(
@@ -67807,7 +67969,7 @@ bt_use_delayslot_target4_carry: unisim.vcomponents.CARRY4
       CYINIT => '0',
       DI(3 downto 0) => B"1111",
       O(3 downto 0) => NLW_bt_use_delayslot_target4_carry_O_UNCONNECTED(3 downto 0),
-      S(3) => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_2\,
+      S(3) => \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_40\,
       S(2) => \Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_2\,
       S(1) => \Instruction_Prefetch_Mux[26].Gen_Instr_DFF_n_2\,
       S(0) => \Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_2\
@@ -67839,19 +68001,6 @@ bt_use_delayslot_target4_carry: unisim.vcomponents.CARRY4
       S(3 downto 2) => B"00",
       S(1) => \Instruction_Prefetch_Mux[2].Gen_Instr_DFF_n_2\,
       S(0) => \Instruction_Prefetch_Mux[4].Gen_Instr_DFF_n_2\
-    );
-ex_branch_with_delayslot_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00000000888A8888"
-    )
-        port map (
-      I0 => of_Take_Interrupt_hold_reg,
-      I1 => bt_ex_mispredict_handled,
-      I2 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      I3 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
-      I4 => ex_branch_with_delayslot_i_3_n_0,
-      I5 => \Using_FPGA.Native_8\,
-      O => of_branch_with_delayslot131_out
     );
 ex_branch_with_delayslot_i_3: unisim.vcomponents.LUT5
     generic map(
@@ -67894,7 +68043,7 @@ ex_jump_hold_i_2: unisim.vcomponents.LUT5
       I0 => \Use_BTC_2.ex_prediction_bits_reg_n_0_[3]\,
       I1 => bt_in_delayslot,
       I2 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      I3 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\,
+      I3 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4\,
       I4 => \Use_BTC_2.ex_imm_cond_branch_reg_0\,
       O => ex_delayslot_Instr2
     );
@@ -68153,58 +68302,6 @@ ex_jump_hold_i_2: unisim.vcomponents.LUT5
       D => of_pc(9),
       Q => \ex_pc_i_reg_n_0_[9]\,
       R => reset_bool_for_rst
-    );
-ex_valid_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"000C000C0000000A"
-    )
-        port map (
-      I0 => ex_valid,
-      I1 => \^of_next_ex_valid\,
-      I2 => reset_bool_for_rst,
-      I3 => wb_exception_i_reg,
-      I4 => ex_branch_with_delayslot_reg(0),
-      I5 => of_pause_reg,
-      O => ex_valid_reg
-    );
-ex_valid_jump_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"000C000C0000000A"
-    )
-        port map (
-      I0 => \out\,
-      I1 => \^of_next_ex_valid\,
-      I2 => reset_bool_for_rst,
-      I3 => wb_exception_i_reg,
-      I4 => ex_branch_with_delayslot_reg(0),
-      I5 => of_pause_reg,
-      O => ex_valid_jump_reg
-    );
-ex_valid_keep_i_2: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00000000FFFF0007"
-    )
-        port map (
-      I0 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6\,
-      I1 => \Use_BTC_2.bt_saved_pc_valid_reg_n_0\,
-      I2 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
-      I3 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      I4 => bt_ex_mispredict_handled,
-      I5 => \Using_FPGA.Native_10\,
-      O => \^of_next_ex_valid\
-    );
-if_missed_fetch_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"000000000000002E"
-    )
-        port map (
-      I0 => \^i5\,
-      I1 => if_missed_fetch_reg_0,
-      I2 => iside_data_strobe_combined_sel,
-      I3 => \Using_FPGA.Native_4\,
-      I4 => \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg\,
-      I5 => reset_bool_for_rst,
-      O => if_missed_fetch_reg
     );
 \if_pc_reg[0]\: unisim.vcomponents.FDSE
      port map (
@@ -68738,19 +68835,6 @@ mem_jump_taken_i_1: unisim.vcomponents.LUT2
       D => \ex_pc_i_reg_n_0_[9]\,
       Q => \Using_FPGA.Native_0\(22),
       R => reset_bool_for_rst
-    );
-of_read_imm_reg_ii_i_2: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"00000000888A8888"
-    )
-        port map (
-      I0 => of_Take_Interrupt_hold_reg,
-      I1 => bt_ex_mispredict_handled,
-      I2 => \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0\,
-      I3 => \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7\,
-      I4 => ex_branch_with_delayslot_i_3_n_0,
-      I5 => \Using_FPGA.Native_9\,
-      O => of_read_imm_reg_ii0
     );
 end STRUCTURE;
 library IEEE;
@@ -71745,78 +71829,78 @@ architecture STRUCTURE of system_microblaze_0_0_Decode_gti is
   signal wb_gpr_write_i0 : STD_LOGIC;
   signal wb_reset : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FPGA_Shift.cnt_shifts[31]_i_1\ : label is "soft_lutpair60";
-  attribute SOFT_HLUTNM of \Gen_M_Channel_Handling[0].M_AXIS_TLAST[0]_i_2\ : label is "soft_lutpair82";
-  attribute SOFT_HLUTNM of IFetch_INST_0_i_2 : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of Pause_Ack_i_1 : label is "soft_lutpair88";
-  attribute SOFT_HLUTNM of S0_AXIS_TREADY_INST_0 : label is "soft_lutpair69";
-  attribute SOFT_HLUTNM of S0_AXIS_TREADY_INST_0_i_1 : label is "soft_lutpair74";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_left_shift_i_1\ : label is "soft_lutpair65";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_10\ : label is "soft_lutpair63";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_2\ : label is "soft_lutpair89";
+  attribute SOFT_HLUTNM of \FPGA_Shift.cnt_shifts[31]_i_1\ : label is "soft_lutpair64";
+  attribute SOFT_HLUTNM of \Gen_M_Channel_Handling[0].M_AXIS_TLAST[0]_i_2\ : label is "soft_lutpair85";
+  attribute SOFT_HLUTNM of IFetch_INST_0_i_2 : label is "soft_lutpair62";
+  attribute SOFT_HLUTNM of Pause_Ack_i_1 : label is "soft_lutpair84";
+  attribute SOFT_HLUTNM of S0_AXIS_TREADY_INST_0 : label is "soft_lutpair66";
+  attribute SOFT_HLUTNM of S0_AXIS_TREADY_INST_0_i_1 : label is "soft_lutpair60";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_left_shift_i_1\ : label is "soft_lutpair73";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_10\ : label is "soft_lutpair68";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_2\ : label is "soft_lutpair92";
   attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_5\ : label is "soft_lutpair80";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_6\ : label is "soft_lutpair73";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_7\ : label is "soft_lutpair70";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_8\ : label is "soft_lutpair71";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_9\ : label is "soft_lutpair66";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[14]_i_3\ : label is "soft_lutpair72";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[15]_i_3\ : label is "soft_lutpair75";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[16]_i_3\ : label is "soft_lutpair78";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_6\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_7\ : label is "soft_lutpair78";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_8\ : label is "soft_lutpair76";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[0]_i_9\ : label is "soft_lutpair71";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[14]_i_3\ : label is "soft_lutpair79";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[15]_i_3\ : label is "soft_lutpair67";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[16]_i_3\ : label is "soft_lutpair74";
   attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[17]_i_3\ : label is "soft_lutpair80";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[18]_i_3\ : label is "soft_lutpair77";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[19]_i_2\ : label is "soft_lutpair92";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[19]_i_3\ : label is "soft_lutpair73";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_3\ : label is "soft_lutpair90";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_4\ : label is "soft_lutpair90";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_6\ : label is "soft_lutpair67";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_7\ : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[20]_i_3\ : label is "soft_lutpair71";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[21]_i_2\ : label is "soft_lutpair92";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[21]_i_3\ : label is "soft_lutpair67";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[22]_i_3\ : label is "soft_lutpair66";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[27]_i_2\ : label is "soft_lutpair63";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[28]_i_1\ : label is "soft_lutpair91";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[29]_i_1\ : label is "soft_lutpair91";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[2]_i_3\ : label is "soft_lutpair89";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[30]_i_2\ : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[3]_i_3\ : label is "soft_lutpair77";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[4]_i_3\ : label is "soft_lutpair70";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[5]_i_3\ : label is "soft_lutpair78";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[6]_i_3\ : label is "soft_lutpair75";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[7]_i_3\ : label is "soft_lutpair72";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[8]_i_3\ : label is "soft_lutpair79";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[9]_i_3\ : label is "soft_lutpair79";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_void_bit_i_1\ : label is "soft_lutpair86";
-  attribute SOFT_HLUTNM of \Use_HW_BS.mem_void_bit_i_2\ : label is "soft_lutpair65";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_11\ : label is "soft_lutpair81";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_13\ : label is "soft_lutpair93";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_14\ : label is "soft_lutpair85";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__135\ : label is "soft_lutpair68";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__204\ : label is "soft_lutpair87";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__176\ : label is "soft_lutpair69";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__2\ : label is "soft_lutpair60";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__39\ : label is "soft_lutpair68";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_3\ : label is "soft_lutpair84";
-  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_3__30\ : label is "soft_lutpair62";
-  attribute SOFT_HLUTNM of \Using_LWX_SWX_instr.ex_reservation_i_4\ : label is "soft_lutpair81";
-  attribute SOFT_HLUTNM of \Using_LWX_SWX_instr.ex_reservation_i_5\ : label is "soft_lutpair84";
-  attribute SOFT_HLUTNM of ex_Take_Intr_or_Exc_keep_i_1 : label is "soft_lutpair83";
-  attribute SOFT_HLUTNM of ex_branch_with_delayslot_i_2 : label is "soft_lutpair83";
-  attribute SOFT_HLUTNM of ex_hibernate_i_i_2 : label is "soft_lutpair85";
-  attribute SOFT_HLUTNM of ex_mbar_sleep_i_2 : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of ex_mbar_sleep_i_3 : label is "soft_lutpair76";
-  attribute SOFT_HLUTNM of ex_mbar_stall_no_sleep_1_i_1 : label is "soft_lutpair88";
-  attribute SOFT_HLUTNM of ex_sleep_i_i_1 : label is "soft_lutpair76";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[18]_i_3\ : label is "soft_lutpair75";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[19]_i_2\ : label is "soft_lutpair93";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[19]_i_3\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_3\ : label is "soft_lutpair91";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_4\ : label is "soft_lutpair91";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_5\ : label is "soft_lutpair73";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_6\ : label is "soft_lutpair72";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[1]_i_7\ : label is "soft_lutpair70";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[20]_i_3\ : label is "soft_lutpair76";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[21]_i_2\ : label is "soft_lutpair93";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[21]_i_3\ : label is "soft_lutpair72";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[22]_i_3\ : label is "soft_lutpair71";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[27]_i_2\ : label is "soft_lutpair68";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[28]_i_1\ : label is "soft_lutpair90";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[29]_i_1\ : label is "soft_lutpair90";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[2]_i_3\ : label is "soft_lutpair92";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[30]_i_2\ : label is "soft_lutpair70";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[3]_i_3\ : label is "soft_lutpair75";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[4]_i_3\ : label is "soft_lutpair78";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[5]_i_3\ : label is "soft_lutpair74";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[6]_i_3\ : label is "soft_lutpair67";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[7]_i_3\ : label is "soft_lutpair79";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[8]_i_3\ : label is "soft_lutpair81";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_mux3[9]_i_3\ : label is "soft_lutpair81";
+  attribute SOFT_HLUTNM of \Use_HW_BS.mem_void_bit_i_1\ : label is "soft_lutpair89";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_11\ : label is "soft_lutpair86";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_14\ : label is "soft_lutpair87";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__135\ : label is "soft_lutpair65";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_1__204\ : label is "soft_lutpair88";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__176\ : label is "soft_lutpair61";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__2\ : label is "soft_lutpair64";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_2__39\ : label is "soft_lutpair65";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_3\ : label is "soft_lutpair85";
+  attribute SOFT_HLUTNM of \Using_FPGA.Native_i_3__29\ : label is "soft_lutpair69";
+  attribute SOFT_HLUTNM of \Using_LWX_SWX_instr.ex_reservation_i_4\ : label is "soft_lutpair86";
+  attribute SOFT_HLUTNM of \Using_LWX_SWX_instr.ex_reservation_i_5\ : label is "soft_lutpair83";
+  attribute SOFT_HLUTNM of ex_Take_Intr_or_Exc_keep_i_1 : label is "soft_lutpair82";
+  attribute SOFT_HLUTNM of ex_branch_with_delayslot_i_2 : label is "soft_lutpair82";
+  attribute SOFT_HLUTNM of ex_hibernate_i_i_2 : label is "soft_lutpair87";
+  attribute SOFT_HLUTNM of ex_mbar_sleep_i_2 : label is "soft_lutpair62";
+  attribute SOFT_HLUTNM of ex_mbar_sleep_i_3 : label is "soft_lutpair63";
+  attribute SOFT_HLUTNM of ex_mbar_stall_no_sleep_1_i_1 : label is "soft_lutpair84";
+  attribute SOFT_HLUTNM of ex_sleep_i_i_1 : label is "soft_lutpair63";
   attribute KEEP : string;
   attribute KEEP of ex_valid_jump_reg : label is "yes";
   attribute equivalent_register_removal : string;
   attribute equivalent_register_removal of ex_valid_jump_reg : label is "no";
-  attribute SOFT_HLUTNM of fsl_carry_hold_value_cmb_inferred_i_2 : label is "soft_lutpair82";
-  attribute SOFT_HLUTNM of mask_reset_inferred_i_1 : label is "soft_lutpair86";
-  attribute SOFT_HLUTNM of of_set_MSR_IE_hold_i_2 : label is "soft_lutpair74";
-  attribute SOFT_HLUTNM of sign_16_23_inferred_i_1 : label is "soft_lutpair62";
-  attribute SOFT_HLUTNM of \wb_MSR_i[30]_i_1\ : label is "soft_lutpair87";
-  attribute SOFT_HLUTNM of wb_exception_i_i_1 : label is "soft_lutpair93";
+  attribute SOFT_HLUTNM of fsl_carry_hold_value_cmb_inferred_i_2 : label is "soft_lutpair83";
+  attribute SOFT_HLUTNM of mask_reset_inferred_i_1 : label is "soft_lutpair89";
+  attribute SOFT_HLUTNM of mem_Write_DCache_i_1 : label is "soft_lutpair61";
+  attribute SOFT_HLUTNM of of_set_MSR_IE_hold_i_2 : label is "soft_lutpair60";
+  attribute SOFT_HLUTNM of sign_16_23_inferred_i_1 : label is "soft_lutpair69";
+  attribute SOFT_HLUTNM of \wb_MSR_i[30]_i_1\ : label is "soft_lutpair88";
+  attribute SOFT_HLUTNM of wb_exception_i_i_1 : label is "soft_lutpair66";
 begin
   D(146 downto 0) <= \^d\(146 downto 0);
   E(0) <= \^e\(0);
@@ -72686,9 +72770,9 @@ PreFetch_Buffer_I1: entity work.system_microblaze_0_0_PreFetch_Buffer_gti
       ex_set_bip => ex_set_bip,
       ex_start_div_i_reg => PreFetch_Buffer_I1_n_87,
       ex_valid => ex_valid,
-      ex_valid_reg => PreFetch_Buffer_I1_n_131,
-      ex_valid_reg_0 => \Using_FPGA.Gen_Bits[30].MEM_EX_Result_Inst_n_0\,
-      ex_valid_reg_1 => \Using_FPGA.Native_i_14_n_0\,
+      ex_valid_jump_reg => PreFetch_Buffer_I1_n_131,
+      ex_valid_reg => \Using_FPGA.Gen_Bits[30].MEM_EX_Result_Inst_n_0\,
+      ex_valid_reg_0 => \Using_FPGA.Native_i_14_n_0\,
       force12_out => force12_out,
       force2_reg => PreFetch_Buffer_I1_n_49,
       force_Val10_out => force_Val10_out,
@@ -76246,8 +76330,8 @@ jump_logic_I1: entity work.system_microblaze_0_0_jump_logic
       \EX_Branch_CMP_Op1_reg[0]\(0) => \EX_Branch_CMP_Op1_reg[0]\(0),
       EX_Op1_CMP_Equal => EX_Op1_CMP_Equal,
       EX_Op1_Zero => EX_Op1_Zero,
+      \Use_BTC_2.bt_if_pc_incr_wait_reg\ => jump_logic_I1_n_8,
       \Use_BTC_2.bt_saved_pc_valid_reg\ => jump_logic_I1_n_6,
-      \Use_BTC_2.bt_saved_pc_valid_reg_0\ => jump_logic_I1_n_8,
       \Use_BTC_2.ex_jump_wanted_keep_reg\ => jump_logic_I1_n_9,
       \Use_BTC_2.ex_jump_wanted_keep_reg_0\ => PC_Module_I_n_2,
       \Using_FPGA.Native\ => PreFetch_Buffer_I1_n_100,
@@ -110557,7 +110641,7 @@ architecture STRUCTURE of system_microblaze_0_0 is
   attribute x_interface_info : string;
   attribute x_interface_info of Clk : signal is "xilinx.com:signal:clock:1.0 CLK.CLK CLK";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of Clk : signal is "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF M0_AXIS:S0_AXIS:M1_AXIS:S1_AXIS:M2_AXIS:S2_AXIS:M3_AXIS:S3_AXIS:M4_AXIS:S4_AXIS:M5_AXIS:S5_AXIS:M6_AXIS:S6_AXIS:M7_AXIS:S7_AXIS:M8_AXIS:S8_AXIS:M9_AXIS:S9_AXIS:M10_AXIS:S10_AXIS:M11_AXIS:S11_AXIS:M12_AXIS:S12_AXIS:M13_AXIS:S13_AXIS:M14_AXIS:S14_AXIS:M15_AXIS:S15_AXIS:DLMB:ILMB:M_AXI_DP:M_AXI_IP:M_AXI_DC:M_AXI_IC:M_ACE_DC:M_ACE_IC:MON_DLMB:MON_ILMB:MON_AXI_DP:MON_AXI_IP:MON_AXI_DC:MON_AXI_IC:MON_ACE_DC:MON_ACE_IC, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0";
+  attribute x_interface_parameter of Clk : signal is "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF M0_AXIS:S0_AXIS:M1_AXIS:S1_AXIS:M2_AXIS:S2_AXIS:M3_AXIS:S3_AXIS:M4_AXIS:S4_AXIS:M5_AXIS:S5_AXIS:M6_AXIS:S6_AXIS:M7_AXIS:S7_AXIS:M8_AXIS:S8_AXIS:M9_AXIS:S9_AXIS:M10_AXIS:S10_AXIS:M11_AXIS:S11_AXIS:M12_AXIS:S12_AXIS:M13_AXIS:S13_AXIS:M14_AXIS:S14_AXIS:M15_AXIS:S15_AXIS:DLMB:ILMB:M_AXI_DP:M_AXI_IP:M_AXI_DC:M_AXI_IC:M_ACE_DC:M_ACE_IC:MON_DLMB:MON_ILMB:MON_AXI_DP:MON_AXI_IP:MON_AXI_DC:MON_AXI_IC:MON_ACE_DC:MON_ACE_IC, ASSOCIATED_RESET Reset, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0";
   attribute x_interface_info of DCE : signal is "xilinx.com:interface:lmb:1.0 DLMB CE";
   attribute x_interface_info of DReady : signal is "xilinx.com:interface:lmb:1.0 DLMB READY";
   attribute x_interface_info of DUE : signal is "xilinx.com:interface:lmb:1.0 DLMB UE";
@@ -110572,7 +110656,7 @@ architecture STRUCTURE of system_microblaze_0_0 is
   attribute x_interface_info of Interrupt : signal is "xilinx.com:interface:mbinterrupt:1.0 INTERRUPT INTERRUPT";
   attribute x_interface_parameter of Interrupt : signal is "XIL_INTERFACENAME INTERRUPT, SENSITIVITY EDGE_RISING, LOW_LATENCY 0";
   attribute x_interface_info of M0_AXIS_TLAST : signal is "xilinx.com:interface:axis:1.0 M0_AXIS TLAST";
-  attribute x_interface_parameter of M0_AXIS_TLAST : signal is "XIL_INTERFACENAME M0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef";
+  attribute x_interface_parameter of M0_AXIS_TLAST : signal is "XIL_INTERFACENAME M0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef";
   attribute x_interface_info of M0_AXIS_TREADY : signal is "xilinx.com:interface:axis:1.0 M0_AXIS TREADY";
   attribute x_interface_info of M0_AXIS_TVALID : signal is "xilinx.com:interface:axis:1.0 M0_AXIS TVALID";
   attribute x_interface_info of M_AXI_DP_ARREADY : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARREADY";
@@ -110599,7 +110683,7 @@ architecture STRUCTURE of system_microblaze_0_0 is
   attribute x_interface_info of Reset : signal is "xilinx.com:signal:reset:1.0 RST.RESET RST";
   attribute x_interface_parameter of Reset : signal is "XIL_INTERFACENAME RST.RESET, POLARITY ACTIVE_HIGH, TYPE PROCESSOR";
   attribute x_interface_info of S0_AXIS_TLAST : signal is "xilinx.com:interface:axis:1.0 S0_AXIS TLAST";
-  attribute x_interface_parameter of S0_AXIS_TLAST : signal is "XIL_INTERFACENAME S0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef";
+  attribute x_interface_parameter of S0_AXIS_TLAST : signal is "XIL_INTERFACENAME S0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef";
   attribute x_interface_info of S0_AXIS_TREADY : signal is "xilinx.com:interface:axis:1.0 S0_AXIS TREADY";
   attribute x_interface_info of S0_AXIS_TVALID : signal is "xilinx.com:interface:axis:1.0 S0_AXIS TVALID";
   attribute x_interface_info of Write_Strobe : signal is "xilinx.com:interface:lmb:1.0 DLMB WRITESTROBE";
@@ -110617,7 +110701,7 @@ architecture STRUCTURE of system_microblaze_0_0 is
   attribute x_interface_info of M_AXI_DP_ARADDR : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARADDR";
   attribute x_interface_info of M_AXI_DP_ARPROT : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP ARPROT";
   attribute x_interface_info of M_AXI_DP_AWADDR : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWADDR";
-  attribute x_interface_parameter of M_AXI_DP_AWADDR : signal is "XIL_INTERFACENAME M_AXI_DP, ID_WIDTH 0, READ_WRITE_MODE READ_WRITE, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, DATA_WIDTH 32, ADDR_WIDTH 32, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, MAX_BURST_LENGTH 1, PROTOCOL AXI4LITE, FREQ_HZ 100000000, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
+  attribute x_interface_parameter of M_AXI_DP_AWADDR : signal is "XIL_INTERFACENAME M_AXI_DP, ID_WIDTH 0, READ_WRITE_MODE READ_WRITE, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, DATA_WIDTH 32, ADDR_WIDTH 32, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, MAX_BURST_LENGTH 1, PROTOCOL AXI4LITE, FREQ_HZ 1e+08, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
   attribute x_interface_info of M_AXI_DP_AWPROT : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP AWPROT";
   attribute x_interface_info of M_AXI_DP_BRESP : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP BRESP";
   attribute x_interface_info of M_AXI_DP_RDATA : signal is "xilinx.com:interface:aximm:1.0 M_AXI_DP RDATA";
@@ -110627,7 +110711,7 @@ architecture STRUCTURE of system_microblaze_0_0 is
   attribute x_interface_info of M_AXI_IP_ARADDR : signal is "xilinx.com:interface:aximm:1.0 M_AXI_IP ARADDR";
   attribute x_interface_info of M_AXI_IP_ARPROT : signal is "xilinx.com:interface:aximm:1.0 M_AXI_IP ARPROT";
   attribute x_interface_info of M_AXI_IP_AWADDR : signal is "xilinx.com:interface:aximm:1.0 M_AXI_IP AWADDR";
-  attribute x_interface_parameter of M_AXI_IP_AWADDR : signal is "XIL_INTERFACENAME M_AXI_IP, ID_WIDTH 0, READ_WRITE_MODE READ_ONLY, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, DATA_WIDTH 32, ADDR_WIDTH 32, PROTOCOL AXI4LITE, NUM_READ_OUTSTANDING 1, NUM_READ_THREADS 1, MAX_BURST_LENGTH 1, HAS_WSTRB 0, HAS_BRESP 0, FREQ_HZ 100000000, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 1, NUM_WRITE_OUTSTANDING 1, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
+  attribute x_interface_parameter of M_AXI_IP_AWADDR : signal is "XIL_INTERFACENAME M_AXI_IP, ID_WIDTH 0, READ_WRITE_MODE READ_ONLY, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, DATA_WIDTH 32, ADDR_WIDTH 32, PROTOCOL AXI4LITE, NUM_READ_OUTSTANDING 1, NUM_READ_THREADS 1, MAX_BURST_LENGTH 1, HAS_WSTRB 0, HAS_BRESP 0, FREQ_HZ 1e+08, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 1, NUM_WRITE_OUTSTANDING 1, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
   attribute x_interface_info of M_AXI_IP_AWPROT : signal is "xilinx.com:interface:aximm:1.0 M_AXI_IP AWPROT";
   attribute x_interface_info of M_AXI_IP_BRESP : signal is "xilinx.com:interface:aximm:1.0 M_AXI_IP BRESP";
   attribute x_interface_info of M_AXI_IP_RDATA : signal is "xilinx.com:interface:aximm:1.0 M_AXI_IP RDATA";

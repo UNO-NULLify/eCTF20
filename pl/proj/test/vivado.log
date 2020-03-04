@@ -1,0 +1,229 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Wed Mar  4 12:56:33 2020
+# Process ID: 8276
+# Current directory: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent21516 C:\Users\Benjamin\Downloads\eCTF20-datapath-changes-edit\eCTF20-datapath-changes\pl\proj\test\test.xpr
+# Log file: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/vivado.log
+# Journal file: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test'
+INFO: [Project 1-313] Project file moved from '/ectf/pl/proj/test' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2017.4/data/ip'.
+WARNING: [IP_Flow 19-3664] IP 'system_microblaze_0_0' generated file not found 'c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/data/mb_bootloop_le.elf'. Please regenerate to continue.
+open_project: Time (s): cpu = 00:00:38 ; elapsed = 00:00:25 . Memory (MB): peak = 896.039 ; gain = 192.605
+open_bd_design {C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/system.bd}
+Adding cell -- xilinx.com:ip:axi_dma:7.1 - axi_dma_0
+Adding cell -- xilinx.com:ip:axi_intc:4.1 - axi_intc_0
+Adding cell -- xilinx.com:ip:axis_data_fifo:1.1 - axis_output_fifo
+Adding cell -- xilinx.com:ip:axis_data_fifo:1.1 - axis_input_fifo
+Adding cell -- xilinx.com:ip:blk_mem_gen:8.4 - blk_mem_gen_0
+Adding cell -- xilinx.com:ip:clk_wiz:5.4 - clk_wiz_codec
+Adding cell -- xilinx.com:ip:lmb_bram_if_cntlr:4.0 - data_lmb_bram_if_cntlr_1
+Adding cell -- xilinx.com:ip:lmb_v10:3.0 - data_lmb_v10_1
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - fifo_count_axi_gpio_0
+Adding cell -- xilinx.com:module_ref:i2s_output:1.0 - i2s_output_1
+Adding cell -- xilinx.com:ip:lmb_bram_if_cntlr:4.0 - ins_lmb_bram_if_cntlr_0
+Adding cell -- xilinx.com:ip:lmb_v10:3.0 - ins_lmb_v10_0
+Adding cell -- xilinx.com:ip:microblaze:10.0 - microblaze_0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_codec_clk
+Adding cell -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding cell -- digilentinc.com:IP:PWM:2.0 - rgb_PWM_0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - proc_sys_reset_main_clk
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - share_axi_bram_ctrl_0
+Adding cell -- xilinx.com:ip:axi_bram_ctrl:4.0 - share_axi_bram_ctrl_1
+Adding cell -- xilinx.com:ip:blk_mem_gen:8.4 - share_blk_mem_gen_1
+Adding cell -- xilinx.com:ip:xadc_wiz:3.3 - xadc_wiz_0
+Adding cell -- xilinx.com:module_ref:splitchannel:1.0 - splitchannel_0
+Adding cell -- user.org:user:birdwtch_iface:1.0 - birdwtch_iface_0
+Adding cell -- xilinx.com:ip:smartconnect:1.0 - smartconnect_0
+WARNING: [BD 41-1731] Type mismatch between connected pins: /birdwtch_iface_0/int_mb(undef) and /axi_intc_0/intr(intr)
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Excluding </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> from </microblaze_0/Data>
+Excluding </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> from </microblaze_0/Instruction>
+Successfully read diagram <system> from BD file <C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/system.bd>
+open_bd_design: Time (s): cpu = 00:00:18 ; elapsed = 00:00:15 . Memory (MB): peak = 994.156 ; gain = 70.590
+update_compile_order -fileset sources_1
+startgroup
+set_property -dict [list CONFIG.NUM_MI {9}] [get_bd_cells mb_axi_mem_interconnect_0]
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_timebase_wdt:3.0 axi_timebase_wdt_0
+endgroup
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/freeze] [get_bd_pins axi_timebase_wdt_0/s_axi_aclk]
+undo
+INFO: [Common 17-17] undo 'connect_bd_net [get_bd_pins axi_timebase_wdt_0/freeze] [get_bd_pins axi_timebase_wdt_0/s_axi_aclk]'
+connect_bd_intf_net [get_bd_intf_pins axi_timebase_wdt_0/S_AXI] -boundary_type upper [get_bd_intf_pins mb_axi_mem_interconnect_0/M08_AXI]
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/s_axi_aresetn] [get_bd_pins proc_sys_reset_main_clk/peripheral_aresetn]
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0]
+set_property location {1 227 482} [get_bd_cells axi_timebase_wdt_0]
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/wdt_reset] [get_bd_pins proc_sys_reset_main_clk/aux_reset_in]
+WARNING: [IP_Flow 19-474] Invalid Parameter 'Component_Name'
+assign_bd_address [get_bd_addr_segs {axi_timebase_wdt_0/S_AXI/Reg }]
+</axi_timebase_wdt_0/S_AXI/Reg> is being mapped into </microblaze_0/Data> at <0x04B40000 [ 64K ]>
+</axi_timebase_wdt_0/S_AXI/Reg> is being mapped into </microblaze_0/Instruction> at <0x04B40000 [ 64K ]>
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0
+endgroup
+connect_bd_net [get_bd_pins xlconcat_0/In0] [get_bd_pins birdwtch_iface_0/int_mb]
+disconnect_bd_net /birdwtch_iface_0_int_mb [get_bd_pins axi_intc_0/intr]
+startgroup
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/wdt_interrupt] [get_bd_pins xlconcat_0/In1]
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/wdt_interrupt] [get_bd_pins axi_intc_0/intr]
+endgroup
+disconnect_bd_net /axi_timebase_wdt_0_wdt_interrupt [get_bd_pins axi_intc_0/intr]
+startgroup
+connect_bd_net [get_bd_pins xlconcat_0/dout] [get_bd_pins axi_intc_0/intr]
+endgroup
+WARNING: [IP_Flow 19-474] Invalid Parameter 'Component_Name'
+regenerate_bd_layout
+validate_bd_design
+ERROR: [BD 41-758] The following clock pins are not connected to a valid clock source: 
+/mb_axi_mem_interconnect_0/M08_ACLK
+
+ERROR: [Common 17-39] 'validate_bd_design' failed due to earlier errors.
+connect_bd_net [get_bd_pins mb_axi_mem_interconnect_0/M08_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0]
+connect_bd_net [get_bd_pins mb_axi_mem_interconnect_0/M08_ARESETN] [get_bd_pins proc_sys_reset_main_clk/peripheral_aresetn]
+validate_bd_design
+WARNING: [BD 41-1781] Updates have been made to one or more nets/interface connections marked for debug.
+Debug nets, which are already connected to System ILA IP core in the block-design, will be automatically available for debug in Hardware Manager.
+For unconnected Debug nets, please open synthesized design and use 'Set Up Debug' wizard to insert, modify or delete Debug Cores. Failure to do so could result in critical warnings and errors in the implementation flow.
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+WARNING: [IP_Flow 19-4684] Expected long value for param clock.FREQ_HZ but, float/scientific notation value 1e+08 is provided. The value is converted to long type(100000000)
+WARNING: [#UNDEF] When using EMIO pins for SPI_0 tie SSIN High in the PL bitstream
+INFO: [Device 21-403] Loading part xc7z007sclg400-1
+CRITICAL WARNING: [BD 41-1629] </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> is excluded from all addressable master spaces.
+WARNING: [xilinx.com:ip:axi_intc:4.1-6] /axi_intc_0: Property SENSITIVITY = "NULL" for interrupt input 0 not recognized - using default interrupt type Rising Edge. Please change this manually if necessary.
+WARNING: [xilinx.com:ip:axi_intc:4.1-6] /axi_intc_0: Property SENSITIVITY = "NULL" for interrupt input 0 not recognized - using default interrupt type Rising Edge. Please change this manually if necessary.
+WARNING: [BD 41-927] Following properties on pin /i2s_output_1/clk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=/clk_wiz_codec_clk_out1 
+WARNING: [BD 41-927] Following properties on pin /xadc_wiz_0/s_axi_aclk have been updated from connected ip. They may not be synchronized with cell properties. You can set property on pin directly to confirm the value and resolve the warning.
+	CLK_DOMAIN=system_processing_system7_0_0_FCLK_CLK0 
+validate_bd_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1379.160 ; gain = 275.203
+reset_run system_microblaze_0_0_synth_1
+reset_run system_processing_system7_0_0_synth_1
+reset_run system_xbar_1_synth_1
+reset_run system_share_axi_bram_ctrl_0_0_synth_1
+reset_run system_share_axi_bram_ctrl_1_0_synth_1
+reset_run system_xbar_0_synth_1
+reset_run synth_1
+save_bd_design
+Wrote  : <C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/system.bd> 
+Wrote  : <C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ui/bd_c954508f.ui> 
+launch_runs impl_1 -jobs 4
+INFO: [BD 41-1662] The design 'system.bd' is already validated. Therefore parameter propagation will not be re-run.
+CRITICAL WARNING: [BD 41-1629] </processing_system7_0/S_AXI_GP0/GP0_M_AXI_GP0> is excluded from all addressable master spaces.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/share_blk_mem_gen_1/addra'(32) to net 'axi_bram_ctrl_0_BRAM_PORTA1_ADDR'(13) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/share_blk_mem_gen_1/addrb'(32) to net 'axi_bram_ctrl_1_BRAM_PORTA1_ADDR'(13) - Only lower order bits will be connected.
+VHDL Output written to : C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/synth/system.vhd
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/share_blk_mem_gen_1/addra'(32) to net 'axi_bram_ctrl_0_BRAM_PORTA1_ADDR'(13) - Only lower order bits will be connected.
+WARNING: [BD 41-235] Width mismatch when connecting pin: '/share_blk_mem_gen_1/addrb'(32) to net 'axi_bram_ctrl_1_BRAM_PORTA1_ADDR'(13) - Only lower order bits will be connected.
+VHDL Output written to : C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/sim/system.vhd
+VHDL Output written to : C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/hdl/system_wrapper.vhd
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_dma_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_intc_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axis_output_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axis_input_fifo .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block birdwtch_iface_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block blk_mem_gen_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block clk_wiz_codec .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK.LMB_Clk)' for system_data_lmb_bram_if_cntlr_1_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block data_lmb_bram_if_cntlr_1 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK.LMB_Clk)' for system_data_lmb_v10_1_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block data_lmb_v10_1 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block fifo_count_axi_gpio_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block i2s_output_1 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK.LMB_Clk)' for system_ins_lmb_bram_if_cntlr_0_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ins_lmb_bram_if_cntlr_0 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK.LMB_Clk)' for system_ins_lmb_v10_0_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ins_lmb_v10_0 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK.CLK)' for system_microblaze_0_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block microblaze_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_codec_clk .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block processing_system7_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block rgb_PWM_0 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(clock)' for system_rst_ps7_0_100M_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block proc_sys_reset_main_clk .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLKIF)' for system_share_axi_bram_ctrl_0_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block share_axi_bram_ctrl_0 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLKIF)' for system_share_axi_bram_ctrl_1_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block share_axi_bram_ctrl_1 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block share_blk_mem_gen_1 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xadc_wiz_0 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLKIF)' for system_xbar_1.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/xbar .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLKIF)' for system_xbar_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block mb_axi_mem_interconnect_0/xbar .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block splitchannel_0 .
+Exporting to file c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_smartconnect_0_0/bd_0/hw_handoff/system_smartconnect_0_0.hwh
+Generated Block Design Tcl file c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_smartconnect_0_0/bd_0/hw_handoff/system_smartconnect_0_0_bd.tcl
+Generated Hardware Definition File c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_smartconnect_0_0/bd_0/synth/system_smartconnect_0_0.hwdef
+INFO: [BD 41-1029] Generation completed for the IP Integrator block smartconnect_0 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(S_AXI_ACLK)' for system_axi_timebase_wdt_0_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block axi_timebase_wdt_0 .
+INFO: [BD 41-1029] Generation completed for the IP Integrator block xlconcat_0 .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK)' for system_auto_pc_3.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/m02_couplers/auto_pc .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK)' for system_auto_pc_2.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/m00_couplers/auto_pc .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK)' for system_auto_pc_4.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block ps7_0_axi_periph/s00_couplers/auto_pc .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK)' for system_auto_pc_1.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block mb_axi_mem_interconnect_0/m05_couplers/auto_pc .
+WARNING: [IP_Flow 19-3452] Invalid long/float value '1e+08' specified for parameter 'FREQ_HZ(CLK)' for system_auto_pc_0.
+INFO: [BD 41-1029] Generation completed for the IP Integrator block mb_axi_mem_interconnect_0/m00_couplers/auto_pc .
+Exporting to file C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/hw_handoff/system.hwh
+Generated Block Design Tcl file C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/hw_handoff/system_bd.tcl
+Generated Hardware Definition File C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/synth/system.hwdef
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_data_lmb_bram_if_cntlr_1_0, cache-ID = 13830b6b922cfb15.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_data_lmb_v10_1_0, cache-ID = 87e949b79d1eb310.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_ins_lmb_bram_if_cntlr_0_0, cache-ID = 13830b6b922cfb15.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_ins_lmb_v10_0_0, cache-ID = 87e949b79d1eb310.
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_auto_pc_4, cache-ID = e6f5785edd2f5139.
+[Wed Mar  4 13:10:43 2020] Launched system_microblaze_0_0_synth_1, system_processing_system7_0_0_synth_1, system_xbar_1_synth_1, system_share_axi_bram_ctrl_0_0_synth_1, system_share_axi_bram_ctrl_1_0_synth_1, system_xbar_0_synth_1, system_auto_pc_3_synth_1, system_axi_timebase_wdt_0_0_synth_1, system_xlconcat_0_0_synth_1, system_auto_pc_2_synth_1, system_axi_intc_0_0_synth_1, system_rst_ps7_0_100M_0_synth_1, system_auto_pc_1_synth_1, system_auto_pc_0_synth_1, synth_1...
+Run output will be captured here:
+system_microblaze_0_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/runme.log
+system_processing_system7_0_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_processing_system7_0_0_synth_1/runme.log
+system_xbar_1_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_xbar_1_synth_1/runme.log
+system_share_axi_bram_ctrl_0_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_share_axi_bram_ctrl_0_0_synth_1/runme.log
+system_share_axi_bram_ctrl_1_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/runme.log
+system_xbar_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_xbar_0_synth_1/runme.log
+system_auto_pc_3_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_auto_pc_3_synth_1/runme.log
+system_axi_timebase_wdt_0_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_axi_timebase_wdt_0_0_synth_1/runme.log
+system_xlconcat_0_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_xlconcat_0_0_synth_1/runme.log
+system_auto_pc_2_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_auto_pc_2_synth_1/runme.log
+system_axi_intc_0_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_axi_intc_0_0_synth_1/runme.log
+system_rst_ps7_0_100M_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_rst_ps7_0_100M_0_synth_1/runme.log
+system_auto_pc_1_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_auto_pc_1_synth_1/runme.log
+system_auto_pc_0_synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_auto_pc_0_synth_1/runme.log
+synth_1: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/synth_1/runme.log
+[Wed Mar  4 13:10:44 2020] Launched impl_1...
+Run output will be captured here: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/impl_1/runme.log
+launch_runs: Time (s): cpu = 00:01:11 ; elapsed = 00:01:36 . Memory (MB): peak = 1557.859 ; gain = 143.977
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Wed Mar  4 13:23:46 2020] Launched impl_1...
+Run output will be captured here: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/impl_1/runme.log
+open_run impl_1
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+INFO: [Netlist 29-17] Analyzing 743 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2017.4
+open_run: Time (s): cpu = 00:00:13 ; elapsed = 00:00:13 . Memory (MB): peak = 1827.559 ; gain = 115.078
+INFO: [Common 17-344] 'open_run' was cancelled
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Mar  4 13:38:01 2020...

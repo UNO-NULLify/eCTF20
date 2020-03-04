@@ -1,13 +1,13 @@
 #-----------------------------------------------------------
 # Vivado v2017.4 (64-bit)
-# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Mon Mar  2 08:35:31 2020
-# Process ID: 156270
-# Current directory: /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1
-# Command line: vivado -log system_xbar_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_xbar_1.tcl
-# Log file: /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.vds
-# Journal file: /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/vivado.jou
+# Start of session at: Wed Mar  4 13:10:46 2020
+# Process ID: 21240
+# Current directory: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_xbar_1_synth_1
+# Command line: vivado.exe -log system_xbar_1.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_xbar_1.tcl
+# Log file: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.vds
+# Journal file: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_xbar_1_synth_1\vivado.jou
 #-----------------------------------------------------------
 source system_xbar_1.tcl -notrace
 Command: synth_design -top system_xbar_1 -part xc7z007sclg400-1 -mode out_of_context
@@ -15,12 +15,12 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 156479 
+INFO: Helper process launched with PID 20856 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 1245.586 ; gain = 85.000 ; free physical = 3418 ; free virtual = 11468
+Starting RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 385.355 ; gain = 107.277
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_xbar_1' [/ectf/pl/proj/test/bd/system/ip/system_xbar_1/synth/system_xbar_1.v:59]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4882]
+INFO: [Synth 8-638] synthesizing module 'system_xbar_1' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_xbar_1/synth/system_xbar_1.v:59]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4882]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_NUM_SLAVE_SLOTS bound to: 1 - type: integer 
 	Parameter C_NUM_MASTER_SLOTS bound to: 3 - type: integer 
@@ -69,7 +69,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' [/ec
 	Parameter P_LEN bound to: 8 - type: integer 
 	Parameter P_LOCK bound to: 1 - type: integer 
 	Parameter P_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_crossbar' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2239]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_crossbar' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2239]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_NUM_SLAVE_SLOTS bound to: 1 - type: integer 
 	Parameter C_NUM_MASTER_SLOTS bound to: 3 - type: integer 
@@ -137,7 +137,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_crossbar' [/ectf/p
 	Parameter P_M_AXI_READ_ISSUING bound to: 128'b00000000000000000000000000000001000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000000010 
 	Parameter P_M_AXI_WRITE_ISSUING bound to: 128'b00000000000000000000000000000001000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000000010 
 	Parameter P_DECERR bound to: 2'b11 
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_si_transactor' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3798]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_si_transactor' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3798]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_SI bound to: 0 - type: integer 
 	Parameter C_DIR bound to: 1 - type: integer 
@@ -175,7 +175,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_si_transactor' [/e
 	Parameter P_NUM_ID_VAL bound to: 4096 - type: integer 
 	Parameter P_NUM_THREADS bound to: 8 - type: integer 
 	Parameter P_M_SECURE_MASK bound to: 3'b000 
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:794]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:794]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_NUM_TARGETS bound to: 3 - type: integer 
 	Parameter C_NUM_TARGETS_LOG bound to: 2 - type: integer 
@@ -189,35 +189,35 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' [/ec
 	Parameter C_TARGET_QUAL bound to: 4'b0111 
 	Parameter C_RESOLUTION bound to: 2 - type: integer 
 	Parameter C_COMPARATOR_THRESHOLD bound to: 6 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b010000111100000100000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_carry_and' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:62]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_carry_and' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:62]
 	Parameter C_FAMILY bound to: rtl - type: string 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_carry_and' (1#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:62]
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_carry_and' (1#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:62]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' (2#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b010000000000000000000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' (2#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b010000111100000000000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' (3#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:794]
-INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo' [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' (2#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' (3#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:794]
+INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_FIFO_WIDTH bound to: 8 - type: integer 
 	Parameter C_MAX_CTRL_FANOUT bound to: 33 - type: integer 
@@ -229,44 +229,44 @@ INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo' [/
 	Parameter P_ALMOSTFULL_TEMP bound to: 5'b11110 
 	Parameter P_ALMOSTFULL bound to: 4'b1110 
 	Parameter P_NUM_REPS bound to: 1 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl' [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
+INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_A_WIDTH bound to: 4 - type: integer 
 	Parameter P_SRLASIZE bound to: 5 - type: integer 
 	Parameter P_SRLDEPTH bound to: 32 - type: integer 
 	Parameter P_NUMSRLS bound to: 1 - type: integer 
 	Parameter P_SHIFT_DEPTH bound to: 16 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'SRLC32E' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50855]
+INFO: [Synth 8-638] synthesizing module 'SRLC32E' [C:/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50855]
 	Parameter INIT bound to: 32'b00000000000000000000000000000000 
 	Parameter IS_CLK_INVERTED bound to: 1'b0 
-INFO: [Synth 8-256] done synthesizing module 'SRLC32E' (4#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50855]
-INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl' (5#1) [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
-WARNING: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:750]
-WARNING: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:789]
-INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo' (6#1) [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_arbiter_resp' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:1025]
+INFO: [Synth 8-256] done synthesizing module 'SRLC32E' (4#1) [C:/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50855]
+INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl' (5#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
+WARNING: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:750]
+WARNING: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:789]
+INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo' (6#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_arbiter_resp' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:1025]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_NUM_S bound to: 4 - type: integer 
 	Parameter C_NUM_S_LOG bound to: 2 - type: integer 
 	Parameter C_GRANT_ENC bound to: 1 - type: integer 
 	Parameter C_GRANT_HOT bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_arbiter_resp' (7#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:1025]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_arbiter_resp' (7#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:1025]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_RATIO bound to: 4 - type: integer 
 	Parameter C_SEL_WIDTH bound to: 2 - type: integer 
 	Parameter C_DATA_WIDTH bound to: 48 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' (8#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_si_transactor' (9#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3798]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_si_transactor__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3798]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' (8#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_si_transactor' (9#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3798]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_si_transactor__parameterized0' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3798]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_SI bound to: 0 - type: integer 
 	Parameter C_DIR bound to: 0 - type: integer 
@@ -304,32 +304,32 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_si_transactor__par
 	Parameter P_NUM_ID_VAL bound to: 4096 - type: integer 
 	Parameter P_NUM_THREADS bound to: 8 - type: integer 
 	Parameter P_M_SECURE_MASK bound to: 3'b000 
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_RATIO bound to: 4 - type: integer 
 	Parameter C_SEL_WIDTH bound to: 2 - type: integer 
 	Parameter C_DATA_WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' (9#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_si_transactor__parameterized0' (9#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3798]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_splitter' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' (9#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.debug_r_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4344]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_si_transactor__parameterized0' (9#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3798]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_splitter' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
 	Parameter C_NUM_M bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_splitter' (10#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_wdata_router' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4734]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_splitter' (10#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_wdata_router' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4734]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_WMESG_WIDTH bound to: 38 - type: integer 
 	Parameter C_NUM_MASTER_SLOTS bound to: 4 - type: integer 
 	Parameter C_SELECT_WIDTH bound to: 3 - type: integer 
 	Parameter C_FIFO_DEPTH_LOG bound to: 3 - type: integer 
 	Parameter P_FIFO_DEPTH_LOG bound to: 3 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_reg_srl_fifo' [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:889]
+INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_reg_srl_fifo' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:889]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_FIFO_WIDTH bound to: 3 - type: integer 
 	Parameter C_MAX_CTRL_FANOUT bound to: 33 - type: integer 
@@ -344,18 +344,18 @@ INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_reg_srl_fifo
 	Parameter ZERO bound to: 2'b10 
 	Parameter ONE bound to: 2'b11 
 	Parameter TWO bound to: 2'b01 
-INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
+INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl__parameterized0' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_A_WIDTH bound to: 3 - type: integer 
 	Parameter P_SRLASIZE bound to: 5 - type: integer 
 	Parameter P_SRLDEPTH bound to: 32 - type: integer 
 	Parameter P_NUMSRLS bound to: 1 - type: integer 
 	Parameter P_SHIFT_DEPTH bound to: 8 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl__parameterized0' (10#1) [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
-INFO: [Synth 8-155] case statement is not full and has no default [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:986]
-INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_reg_srl_fifo' (11#1) [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:889]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_wdata_router' (12#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4734]
-INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
+INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl__parameterized0' (10#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:986]
+INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_reg_srl_fifo' (11#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:889]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_wdata_router' (12#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4734]
+INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized0' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_FIFO_WIDTH bound to: 8 - type: integer 
 	Parameter C_MAX_CTRL_FANOUT bound to: 33 - type: integer 
@@ -367,26 +367,26 @@ INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__pa
 	Parameter P_ALMOSTFULL_TEMP bound to: 3'b110 
 	Parameter P_ALMOSTFULL bound to: 2'b10 
 	Parameter P_NUM_REPS bound to: 1 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
+INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl__parameterized1' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_A_WIDTH bound to: 2 - type: integer 
 	Parameter P_SRLASIZE bound to: 5 - type: integer 
 	Parameter P_SRLDEPTH bound to: 32 - type: integer 
 	Parameter P_NUMSRLS bound to: 1 - type: integer 
 	Parameter P_SHIFT_DEPTH bound to: 4 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl__parameterized1' (12#1) [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
-WARNING: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:750]
-WARNING: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:789]
-INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized0' (12#1) [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_wdata_mux' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
+INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_ndeep_srl__parameterized1' (12#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:1135]
+WARNING: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:750]
+WARNING: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:789]
+INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized0' (12#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_wdata_mux' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_WMESG_WIDTH bound to: 38 - type: integer 
 	Parameter C_NUM_SLAVE_SLOTS bound to: 1 - type: integer 
 	Parameter C_SELECT_WIDTH bound to: 1 - type: integer 
 	Parameter C_FIFO_DEPTH_LOG bound to: 1 - type: integer 
 	Parameter P_FIFO_DEPTH_LOG bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_wdata_mux' (13#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice' [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_wdata_mux' (13#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 12 - type: integer 
@@ -497,27 +497,27 @@ INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register
 	Parameter G_AXI_RUSER_INDEX bound to: 47 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 47 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_DATA_WIDTH bound to: 42 - type: integer 
 	Parameter C_REG_CONFIG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' (14#1) [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' (14#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized0' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_DATA_WIDTH bound to: 37 - type: integer 
 	Parameter C_REG_CONFIG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized0' (14#1) [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized0' (14#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized1' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_DATA_WIDTH bound to: 14 - type: integer 
 	Parameter C_REG_CONFIG bound to: 7 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized1' (14#1) [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized2' [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized1' (14#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized2' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_DATA_WIDTH bound to: 47 - type: integer 
 	Parameter C_REG_CONFIG bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized2' (14#1) [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [/ectf/pl/proj/test/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized2' (14#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
 	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 12 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 1 - type: integer 
@@ -609,8 +609,8 @@ INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [
 	Parameter G_AXI_RUSER_INDEX bound to: 47 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 47 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (15#1) [/ectf/pl/proj/test/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [/ectf/pl/proj/test/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (15#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
 	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 12 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 1 - type: integer 
@@ -702,10 +702,10 @@ INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [
 	Parameter G_AXI_RUSER_INDEX bound to: 47 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 47 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (16#1) [/ectf/pl/proj/test/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice' (17#1) [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
-WARNING: [Synth 8-350] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3121]
-INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (16#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice' (17#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
+WARNING: [Synth 8-350] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3121]
+INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized1' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_FIFO_WIDTH bound to: 8 - type: integer 
 	Parameter C_MAX_CTRL_FANOUT bound to: 33 - type: integer 
@@ -717,20 +717,20 @@ INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__pa
 	Parameter P_ALMOSTFULL_TEMP bound to: 4'b1110 
 	Parameter P_ALMOSTFULL bound to: 3'b110 
 	Parameter P_NUM_REPS bound to: 1 - type: integer 
-WARNING: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:750]
-WARNING: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:789]
-INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized1' (17#1) [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_wdata_mux__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
+WARNING: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:750]
+WARNING: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:789]
+INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized1' (17#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_wdata_mux__parameterized0' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_WMESG_WIDTH bound to: 38 - type: integer 
 	Parameter C_NUM_SLAVE_SLOTS bound to: 1 - type: integer 
 	Parameter C_SELECT_WIDTH bound to: 1 - type: integer 
 	Parameter C_FIFO_DEPTH_LOG bound to: 3 - type: integer 
 	Parameter P_FIFO_DEPTH_LOG bound to: 3 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_wdata_mux__parameterized0' (17#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
-WARNING: [Synth 8-350] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3121]
-WARNING: [Synth 8-350] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3121]
-INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized2' [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_wdata_mux__parameterized0' (17#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
+WARNING: [Synth 8-350] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3121]
+WARNING: [Synth 8-350] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3121]
+INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized2' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_FIFO_WIDTH bound to: 8 - type: integer 
 	Parameter C_MAX_CTRL_FANOUT bound to: 33 - type: integer 
@@ -742,19 +742,19 @@ INFO: [Synth 8-638] synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__pa
 	Parameter P_ALMOSTFULL_TEMP bound to: 3'b110 
 	Parameter P_ALMOSTFULL bound to: 2'b10 
 	Parameter P_NUM_REPS bound to: 1 - type: integer 
-WARNING: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:750]
-WARNING: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:789]
-INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized2' (17#1) [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_wdata_mux__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
+WARNING: [Synth 8-6014] Unused sequential element areset_d1_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:750]
+WARNING: [Synth 8-6014] Unused sequential element S_READY_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:789]
+INFO: [Synth 8-256] done synthesizing module 'axi_data_fifo_v2_1_14_axic_srl_fifo__parameterized2' (17#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:698]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_wdata_mux__parameterized1' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_WMESG_WIDTH bound to: 38 - type: integer 
 	Parameter C_NUM_SLAVE_SLOTS bound to: 1 - type: integer 
 	Parameter C_SELECT_WIDTH bound to: 1 - type: integer 
 	Parameter C_FIFO_DEPTH_LOG bound to: 0 - type: integer 
 	Parameter P_FIFO_DEPTH_LOG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_wdata_mux__parameterized1' (17#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
-WARNING: [Synth 8-350] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3121]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_wdata_mux__parameterized1' (17#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4559]
+WARNING: [Synth 8-350] instance 'reg_slice_mi' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3121]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
 	Parameter C_AXI_ID_WIDTH bound to: 12 - type: integer 
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_AXI_BUSER_WIDTH bound to: 1 - type: integer 
@@ -769,9 +769,9 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' [/ec
 	Parameter P_AXI4 bound to: 0 - type: integer 
 	Parameter P_AXI3 bound to: 1 - type: integer 
 	Parameter P_AXILITE bound to: 2 - type: integer 
-INFO: [Synth 8-155] case statement is not full and has no default [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3631]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' (18#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:423]
+INFO: [Synth 8-155] case statement is not full and has no default [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3631]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' (18#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:423]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_NUM_S bound to: 1 - type: integer 
 	Parameter C_NUM_S_LOG bound to: 1 - type: integer 
@@ -779,14 +779,14 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter' [/ec
 	Parameter C_MESG_WIDTH bound to: 75 - type: integer 
 	Parameter C_ARB_PRIORITY bound to: 0 - type: integer 
 	Parameter P_PRIO_MASK bound to: 1'b0 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter' (19#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:423]
-WARNING: [Synth 8-6014] Unused sequential element gen_master_slots[0].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2996]
-WARNING: [Synth 8-6014] Unused sequential element gen_master_slots[1].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2996]
-WARNING: [Synth 8-6014] Unused sequential element gen_master_slots[2].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2996]
-WARNING: [Synth 8-6014] Unused sequential element gen_master_slots[3].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2996]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_crossbar' (20#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2239]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' (21#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4882]
-INFO: [Synth 8-256] done synthesizing module 'system_xbar_1' (22#1) [/ectf/pl/proj/test/bd/system/ip/system_xbar_1/synth/system_xbar_1.v:59]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter' (19#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:423]
+WARNING: [Synth 8-6014] Unused sequential element gen_master_slots[0].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2996]
+WARNING: [Synth 8-6014] Unused sequential element gen_master_slots[1].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2996]
+WARNING: [Synth 8-6014] Unused sequential element gen_master_slots[2].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2996]
+WARNING: [Synth 8-6014] Unused sequential element gen_master_slots[3].gen_mi_write.gen_debug_w.debug_w_beat_cnt_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2996]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_crossbar' (20#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2239]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' (21#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4882]
+INFO: [Synth 8-256] done synthesizing module 'system_xbar_1' (22#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_xbar_1/synth/system_xbar_1.v:59]
 WARNING: [Synth 8-3331] design axi_infrastructure_v1_1_0_vector2axi has unconnected port m_axi_buser[0]
 WARNING: [Synth 8-3331] design axi_infrastructure_v1_1_0_vector2axi has unconnected port m_axi_ruser[0]
 WARNING: [Synth 8-3331] design axi_infrastructure_v1_1_0_axi2vector has unconnected port s_axi_awuser[0]
@@ -861,7 +861,7 @@ WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port m_axi_ruser[1]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port m_axi_ruser[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:20 . Memory (MB): peak = 1381.117 ; gain = 220.531 ; free physical = 2850 ; free virtual = 10906
+Finished RTL Elaboration : Time (s): cpu = 00:00:31 ; elapsed = 00:00:33 . Memory (MB): peak = 547.430 ; gain = 269.352
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -871,83 +871,78 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:20 . Memory (MB): peak = 1381.117 ; gain = 220.531 ; free physical = 2827 ; free virtual = 10883
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 547.430 ; gain = 269.352
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z007sclg400-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_ooc.xdc] for cell 'inst'
-Parsing XDC File [/ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.16 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1668.148 ; gain = 0.000 ; free physical = 2115 ; free virtual = 10169
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.267 . Memory (MB): peak = 787.234 ; gain = 1.289
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:40 . Memory (MB): peak = 1668.148 ; gain = 507.562 ; free physical = 2840 ; free virtual = 10896
+Finished Constraint Validation : Time (s): cpu = 00:00:57 ; elapsed = 00:01:00 . Memory (MB): peak = 787.234 ; gain = 509.156
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:40 . Memory (MB): peak = 1668.148 ; gain = 507.562 ; free physical = 2840 ; free virtual = 10896
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:57 ; elapsed = 00:01:01 . Memory (MB): peak = 787.234 ; gain = 509.156
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:40 . Memory (MB): peak = 1668.148 ; gain = 507.562 ; free physical = 2844 ; free virtual = 10899
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:57 ; elapsed = 00:01:01 . Memory (MB): peak = 787.234 ; gain = 509.156
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-4471] merging register 'gen_axi.s_axi_rvalid_i_reg' into 'gen_axi.read_cs_reg[0:0]' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3667]
-WARNING: [Synth 8-6014] Unused sequential element gen_axi.s_axi_rvalid_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3667]
+INFO: [Synth 8-4471] merging register 'gen_axi.s_axi_rvalid_i_reg' into 'gen_axi.read_cs_reg[0:0]' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3667]
+WARNING: [Synth 8-6014] Unused sequential element gen_axi.s_axi_rvalid_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3667]
 INFO: [Synth 8-5546] ROM "gen_axi.read_cs" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "gen_axi.s_axi_rlast_i" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "gen_axi.s_axi_rlast_i" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-6014] Unused sequential element gen_axi.read_cnt_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3670]
+WARNING: [Synth 8-6014] Unused sequential element gen_axi.read_cnt_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3670]
 INFO: [Synth 8-5544] ROM "f_mux_return3" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return3" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:759]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4294]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.accept_cnt_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4284]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/9909/hdl/axi_data_fifo_v2_1_vl_rfs.v:759]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4294]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.accept_cnt_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4284]
 INFO: [Synth 8-5544] ROM "f_mux_return3" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return3" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4294]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.accept_cnt_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4284]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4294]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4327]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.accept_cnt_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4284]
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'axi_data_fifo_v2_1_14_axic_reg_srl_fifo'
 INFO: [Synth 8-5544] ROM "state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3091]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3091]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3086]
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3086]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2802]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2697]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3091]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3091]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3086]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3086]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2802]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2697]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -958,7 +953,7 @@ WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_t
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'one-hot' in module 'axi_data_fifo_v2_1_14_axic_reg_srl_fifo'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:41 . Memory (MB): peak = 1668.148 ; gain = 507.562 ; free physical = 2811 ; free virtual = 10867
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:00 ; elapsed = 00:01:04 . Memory (MB): peak = 787.234 ; gain = 509.156
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1186,17 +1181,17 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2802]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2697]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2802]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2697]
 INFO: [Synth 8-5546] ROM "gen_axi.s_axi_rlast_i" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "gen_axi.read_cs" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-6014] Unused sequential element gen_axi.read_cnt_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3670]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.accept_cnt_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4284]
-WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.accept_cnt_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4284]
-WARNING: [Synth 8-6014] Unused sequential element addr_arbiter_aw/gen_no_arbiter.m_grant_enc_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:696]
-WARNING: [Synth 8-6014] Unused sequential element addr_arbiter_ar/gen_no_arbiter.m_grant_enc_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:696]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2802]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2697]
+WARNING: [Synth 8-6014] Unused sequential element gen_axi.read_cnt_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3670]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.accept_cnt_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4284]
+WARNING: [Synth 8-6014] Unused sequential element gen_multi_thread.accept_cnt_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4284]
+WARNING: [Synth 8-6014] Unused sequential element addr_arbiter_aw/gen_no_arbiter.m_grant_enc_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:696]
+WARNING: [Synth 8-6014] Unused sequential element addr_arbiter_ar/gen_no_arbiter.m_grant_enc_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:696]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2802]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2697]
 WARNING: [Synth 8-3331] design axi_register_slice_v2_1_15_axi_register_slice has unconnected port aclk2x
 WARNING: [Synth 8-3331] design axi_register_slice_v2_1_15_axi_register_slice has unconnected port s_axi_awuser[0]
 WARNING: [Synth 8-3331] design axi_register_slice_v2_1_15_axi_register_slice has unconnected port s_axi_wid[11]
@@ -1239,187 +1234,187 @@ INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_master_sl
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[35]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[32]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[32]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[33]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[33]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[34]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[34] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[34] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[43]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[42]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[40]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[42]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[41]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[42]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[42] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[42] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[59]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[58]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[56]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[58]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[57]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[58]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[58] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[58] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[51]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[48]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[48]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[49]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[49]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[50]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[50] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[50] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[3]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[0]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[0]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[1]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[2]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[2] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[11]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[10]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[8]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[10]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[9]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[10]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[10] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[19]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[16]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[16]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[17]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[17]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[18]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[18] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[27]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[26]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[24]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[26]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[25]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[26]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[26] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[26] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_master_slots[0].reg_slice_mi/b.b_pipe/aresetn_d_reg[1]' (FDR) to 'inst/gen_samd.crossbar_samd/gen_master_slots[1].reg_slice_mi/b.b_pipe/aresetn_d_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_master_slots[1].reg_slice_mi/b.b_pipe/aresetn_d_reg[1]' (FDR) to 'inst/gen_samd.crossbar_samd/gen_master_slots[3].reg_slice_mi/b.b_pipe/aresetn_d_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_master_slots[3].reg_slice_mi/b.b_pipe/aresetn_d_reg[1]' (FDR) to 'inst/gen_samd.crossbar_samd/gen_master_slots[2].reg_slice_mi/b.b_pipe/aresetn_d_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[35]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[32]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[32]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[33]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[33]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[34]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[34] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[34] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[43]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[42]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[40]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[42]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[41]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[42]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[42] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[42] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[59]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[58]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[56]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[58]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[57]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[58]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[58] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[58] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[51]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[48]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[48]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[49]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[49]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[50]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[50] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[50] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[3]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[0]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[0]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[1]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[2]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[2] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[11]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[10]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[8]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[10]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[9]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[10]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[10] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[19]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[16]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[16]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[17]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[17]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[18]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[18] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[27]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[26]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[24]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[26]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[25]' (FDRE) to 'inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[26]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[26] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_write.si_transactor_aw/gen_multi_thread.active_region_reg[26] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[56]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[60]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[60]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[61]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[74]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[61]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[61]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[62]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[62]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[63]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/addr_arbiter_ar/gen_no_arbiter.m_mesg_i_reg[63] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[56]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[60]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[60]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[61]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[74]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[61]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[61]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[62]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[62]' (FDRE) to 'inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[63]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[63] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_samd.crossbar_samd/addr_arbiter_aw/gen_no_arbiter.m_mesg_i_reg[63] )
 INFO: [Synth 8-3886] merging instance 'inst/gen_samd.crossbar_samd/gen_master_slots[3].reg_slice_mi/b.b_pipe/m_payload_i_reg[0]' (FDE) to 'inst/gen_samd.crossbar_samd/gen_master_slots[3].reg_slice_mi/b.b_pipe/m_payload_i_reg[1]'
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (inst/\gen_samd.crossbar_samd/gen_master_slots[3].reg_slice_mi/b.b_pipe/m_payload_i_reg[1] )
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[63]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[62]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[61]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[60]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[58]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[55]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[54]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[53]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[52]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[50]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[47]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[46]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[45]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[44]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[42]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[39]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[38]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[37]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[36]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[34]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[31]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[30]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[29]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[28]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[26]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[23]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[22]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[21]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[20]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[18]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[15]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[14]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[13]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[12]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[10]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[7]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[6]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[5]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[4]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[2]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[63]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[62]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[61]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[60]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[59]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[58]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[55]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[54]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[53]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[52]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[51]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[50]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[47]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[46]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[45]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[44]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[43]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[42]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[39]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[38]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[37]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[36]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[35]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[34]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[31]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[30]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[29]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[28]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[27]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[26]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[23]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[22]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[21]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[20]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[19]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[18]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[15]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[14]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[13]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[12]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[11]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[10]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[7]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[6]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[5]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[4]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[3]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[2]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[63]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[62]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[61]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[60]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[55]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[54]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[53]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[52]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[47]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[46]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[45]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[44]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\inst/gen_samd.crossbar_samd/gen_master_slots[3].reg_slice_mi/b.b_pipe/m_payload_i_reg[1] )
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[63]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[62]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[61]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[60]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[58]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[55]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[54]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[53]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[52]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[50]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[47]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[46]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[45]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[44]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[42]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[39]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[38]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[37]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[36]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[34]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[31]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[30]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[29]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[28]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[26]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[23]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[22]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[21]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[20]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[18]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[15]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[14]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[13]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[12]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[10]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[7]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[6]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[5]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[4]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_region_reg[2]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[63]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[62]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[61]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[60]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[59]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[58]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[55]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[54]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[53]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[52]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[51]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[50]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[47]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[46]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[45]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[44]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[43]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[42]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[39]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[38]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[37]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[36]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[35]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[34]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[31]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[30]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[29]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[28]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[27]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[26]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[23]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[22]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[21]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[20]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[19]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[18]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[15]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[14]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[13]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[12]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[11]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[10]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[7]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[6]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[5]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[4]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[3]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_target_reg[2]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[63]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[62]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[61]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[60]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[55]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[54]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[53]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[52]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[47]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[46]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[45]) is unused and will be removed from module system_xbar_1.
+INFO: [Synth 8-3332] Sequential element (inst/gen_samd.crossbar_samd/gen_slave_slots[0].gen_si_read.si_transactor_ar/gen_multi_thread.active_cnt_reg[44]) is unused and will be removed from module system_xbar_1.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1668.148 ; gain = 507.562 ; free physical = 2250 ; free virtual = 10306
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:15 ; elapsed = 00:01:18 . Memory (MB): peak = 787.234 ; gain = 509.156
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1431,13 +1426,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:51 . Memory (MB): peak = 1668.148 ; gain = 507.562 ; free physical = 3885 ; free virtual = 11945
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:34 ; elapsed = 00:01:37 . Memory (MB): peak = 794.254 ; gain = 516.176
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:35 ; elapsed = 00:00:53 . Memory (MB): peak = 1686.477 ; gain = 525.891 ; free physical = 3750 ; free virtual = 11810
+Finished Timing Optimization : Time (s): cpu = 00:01:34 ; elapsed = 00:01:38 . Memory (MB): peak = 795.844 ; gain = 517.766
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1449,7 +1444,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.484 ; gain = 533.898 ; free physical = 3720 ; free virtual = 11779
+Finished Technology Mapping : Time (s): cpu = 00:01:35 ; elapsed = 00:01:39 . Memory (MB): peak = 834.859 ; gain = 556.781
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1473,7 +1468,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.484 ; gain = 533.898 ; free physical = 3706 ; free virtual = 11765
+Finished IO Insertion : Time (s): cpu = 00:01:37 ; elapsed = 00:01:41 . Memory (MB): peak = 834.859 ; gain = 556.781
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1486,7 +1481,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.484 ; gain = 533.898 ; free physical = 3705 ; free virtual = 11765
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:37 ; elapsed = 00:01:41 . Memory (MB): peak = 834.859 ; gain = 556.781
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1498,25 +1493,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.484 ; gain = 533.898 ; free physical = 3703 ; free virtual = 11763
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 834.859 ; gain = 556.781
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.484 ; gain = 533.898 ; free physical = 3703 ; free virtual = 11763
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 834.859 ; gain = 556.781
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.484 ; gain = 533.898 ; free physical = 3703 ; free virtual = 11762
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 834.859 ; gain = 556.781
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.484 ; gain = 533.898 ; free physical = 3703 ; free virtual = 11762
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 834.859 ; gain = 556.781
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1550,40 +1545,40 @@ Report Instance Areas:
 +------+---------------------------------------------------------+------------------------------------------------------------------+------+
 |1     |top                                                      |                                                                  |  1752|
 |2     |  inst                                                   |axi_crossbar_v2_1_16_axi_crossbar                                 |  1752|
-|3     |    \gen_samd.crossbar_samd                              |axi_crossbar_v2_1_16_crossbar                                     |  1752|
+|3     |    \gen_samd.crossbar_samd                              |axi_crossbar_v2_1_16_crossbar                                     |  1739|
 |4     |      addr_arbiter_ar                                    |axi_crossbar_v2_1_16_addr_arbiter                                 |    99|
-|5     |      addr_arbiter_aw                                    |axi_crossbar_v2_1_16_addr_arbiter_0                               |   112|
-|6     |      \gen_decerr_slave.decerr_slave_inst                |axi_crossbar_v2_1_16_decerr_slave                                 |    64|
+|5     |      addr_arbiter_aw                                    |axi_crossbar_v2_1_16_addr_arbiter_0                               |   111|
+|6     |      \gen_decerr_slave.decerr_slave_inst                |axi_crossbar_v2_1_16_decerr_slave                                 |    59|
 |7     |      \gen_master_slots[0].reg_slice_mi                  |axi_register_slice_v2_1_15_axi_register_slice                     |   167|
 |8     |        \b.b_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized1_12 |    20|
 |9     |        \r.r_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized2_13 |   147|
 |10    |      \gen_master_slots[1].reg_slice_mi                  |axi_register_slice_v2_1_15_axi_register_slice_1                   |   178|
 |11    |        \b.b_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized1_10 |    22|
 |12    |        \r.r_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized2_11 |   156|
-|13    |      \gen_master_slots[2].reg_slice_mi                  |axi_register_slice_v2_1_15_axi_register_slice_2                   |   177|
-|14    |        \b.b_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized1_8  |    24|
+|13    |      \gen_master_slots[2].reg_slice_mi                  |axi_register_slice_v2_1_15_axi_register_slice_2                   |   174|
+|14    |        \b.b_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized1_8  |    21|
 |15    |        \r.r_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized2_9  |   153|
-|16    |      \gen_master_slots[3].reg_slice_mi                  |axi_register_slice_v2_1_15_axi_register_slice_3                   |    64|
+|16    |      \gen_master_slots[3].reg_slice_mi                  |axi_register_slice_v2_1_15_axi_register_slice_3                   |    63|
 |17    |        \b.b_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized1    |    18|
-|18    |        \r.r_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized2    |    46|
+|18    |        \r.r_pipe                                        |axi_register_slice_v2_1_15_axic_register_slice__parameterized2    |    45|
 |19    |      \gen_slave_slots[0].gen_si_read.si_transactor_ar   |axi_crossbar_v2_1_16_si_transactor                                |   420|
 |20    |        \gen_multi_thread.arbiter_resp_inst              |axi_crossbar_v2_1_16_arbiter_resp_7                               |   146|
-|21    |      \gen_slave_slots[0].gen_si_write.si_transactor_aw  |axi_crossbar_v2_1_16_si_transactor__parameterized0                |   390|
-|22    |        \gen_multi_thread.arbiter_resp_inst              |axi_crossbar_v2_1_16_arbiter_resp                                 |   117|
+|21    |      \gen_slave_slots[0].gen_si_write.si_transactor_aw  |axi_crossbar_v2_1_16_si_transactor__parameterized0                |   388|
+|22    |        \gen_multi_thread.arbiter_resp_inst              |axi_crossbar_v2_1_16_arbiter_resp                                 |   115|
 |23    |      \gen_slave_slots[0].gen_si_write.splitter_aw_si    |axi_crossbar_v2_1_16_splitter                                     |     6|
-|24    |      \gen_slave_slots[0].gen_si_write.wdata_router_w    |axi_crossbar_v2_1_16_wdata_router                                 |    44|
-|25    |        wrouter_aw_fifo                                  |axi_data_fifo_v2_1_14_axic_reg_srl_fifo                           |    44|
+|24    |      \gen_slave_slots[0].gen_si_write.wdata_router_w    |axi_crossbar_v2_1_16_wdata_router                                 |    43|
+|25    |        wrouter_aw_fifo                                  |axi_data_fifo_v2_1_14_axic_reg_srl_fifo                           |    43|
 |26    |          \gen_srls[0].gen_rep[0].srl_nx1                |axi_data_fifo_v2_1_14_ndeep_srl__parameterized0                   |     2|
 |27    |          \gen_srls[0].gen_rep[1].srl_nx1                |axi_data_fifo_v2_1_14_ndeep_srl__parameterized0_5                 |     1|
 |28    |          \gen_srls[0].gen_rep[2].srl_nx1                |axi_data_fifo_v2_1_14_ndeep_srl__parameterized0_6                 |     6|
 |29    |      splitter_aw_mi                                     |axi_crossbar_v2_1_16_splitter_4                                   |     4|
 +------+---------------------------------------------------------+------------------------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.484 ; gain = 533.898 ; free physical = 3703 ; free virtual = 11762
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:38 ; elapsed = 00:01:41 . Memory (MB): peak = 834.859 ; gain = 556.781
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 70 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:29 ; elapsed = 00:00:40 . Memory (MB): peak = 1694.484 ; gain = 246.867 ; free physical = 3758 ; free virtual = 11818
-Synthesis Optimization Complete : Time (s): cpu = 00:00:36 ; elapsed = 00:00:54 . Memory (MB): peak = 1694.492 ; gain = 533.898 ; free physical = 3758 ; free virtual = 11817
+Synthesis finished with 0 errors, 0 critical warnings and 49 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:52 ; elapsed = 00:01:26 . Memory (MB): peak = 834.859 ; gain = 316.977
+Synthesis Optimization Complete : Time (s): cpu = 00:01:38 ; elapsed = 00:01:42 . Memory (MB): peak = 834.859 ; gain = 556.781
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 32 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -1595,11 +1590,11 @@ No Unisim elements were transformed.
 INFO: [Common 17-83] Releasing license: Synthesis
 319 Infos, 147 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:38 ; elapsed = 00:00:55 . Memory (MB): peak = 1726.500 ; gain = 590.738 ; free physical = 3760 ; free virtual = 11820
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.dcp' has been generated.
-INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.xci
+synth_design: Time (s): cpu = 00:01:42 ; elapsed = 00:01:46 . Memory (MB): peak = 834.859 ; gain = 563.676
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.dcp' has been generated.
+INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.xci
 INFO: [Coretcl 2-1174] Renamed 28 cell refs.
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_xbar_1_utilization_synth.rpt -pb system_xbar_1_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1750.512 ; gain = 0.000 ; free physical = 3768 ; free virtual = 11830
-INFO: [Common 17-206] Exiting Vivado at Mon Mar  2 08:36:35 2020...
+report_utilization: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.061 . Memory (MB): peak = 834.859 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Wed Mar  4 13:12:52 2020...

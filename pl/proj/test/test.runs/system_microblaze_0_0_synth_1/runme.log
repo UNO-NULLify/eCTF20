@@ -4,7 +4,7 @@
 
 
 ****** Vivado v2017.4 (64-bit)
-  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
   **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
     ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 
@@ -14,11 +14,11 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 131897 
+INFO: Helper process launched with PID 14708 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:09 . Memory (MB): peak = 1235.848 ; gain = 85.000 ; free physical = 919 ; free virtual = 9916
+Starting RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:16 . Memory (MB): peak = 374.684 ; gain = 103.102
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_microblaze_0_0' [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/synth/system_microblaze_0_0.vhd:134]
+INFO: [Synth 8-638] synthesizing module 'system_microblaze_0_0' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/synth/system_microblaze_0_0.vhd:134]
 	Parameter C_SCO bound to: 0 - type: integer 
 	Parameter C_FREQ bound to: 100000000 - type: integer 
 	Parameter C_USE_CONFIG_RESET bound to: 0 - type: integer 
@@ -183,8 +183,8 @@ INFO: [Synth 8-638] synthesizing module 'system_microblaze_0_0' [/ectf/pl/proj/t
 	Parameter C_M_AXI_DC_WUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_M_AXI_DC_RUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_M_AXI_DC_BUSER_WIDTH bound to: 1 - type: integer 
-INFO: [Synth 8-3491] module 'MicroBlaze' declared at '/ectf/pl/proj/test/bd/system/ipshared/4f30/hdl/microblaze_v10_0_vh_rfs.vhd:157134' bound to instance 'U0' of component 'MicroBlaze' [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/synth/system_microblaze_0_0.vhd:843]
-INFO: [Synth 8-256] done synthesizing module 'system_microblaze_0_0' (54#1) [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/synth/system_microblaze_0_0.vhd:134]
+INFO: [Synth 8-3491] module 'MicroBlaze' declared at 'c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ipshared/4f30/hdl/microblaze_v10_0_vh_rfs.vhd:157134' bound to instance 'U0' of component 'MicroBlaze' [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/synth/system_microblaze_0_0.vhd:843]
+INFO: [Synth 8-256] done synthesizing module 'system_microblaze_0_0' (54#1) [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/synth/system_microblaze_0_0.vhd:134]
 WARNING: [Synth 8-3331] design IAXI_Interface has unconnected port Non_Secure
 WARNING: [Synth 8-3331] design IAXI_Interface has unconnected port M_AXI_IP_AWREADY
 WARNING: [Synth 8-3331] design IAXI_Interface has unconnected port M_AXI_IP_WREADY
@@ -287,7 +287,7 @@ WARNING: [Synth 8-3331] design MMU has unconnected port Snoop_TLB_Addr[14]
 WARNING: [Synth 8-3331] design MMU has unconnected port Snoop_TLB_Addr[15]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1544.113 ; gain = 393.266 ; free physical = 560 ; free virtual = 9571
+Finished RTL Elaboration : Time (s): cpu = 00:00:41 ; elapsed = 00:00:42 . Memory (MB): peak = 720.406 ; gain = 448.824
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -297,7 +297,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:17 . Memory (MB): peak = 1544.113 ; gain = 393.266 ; free physical = 547 ; free virtual = 9556
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 720.406 ; gain = 448.824
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 752 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -306,16 +306,14 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_ooc_debug.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_ooc_debug.xdc] for cell 'U0'
-Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_ooc.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_ooc.xdc] for cell 'U0'
-Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xdc] for cell 'U0'
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/system_microblaze_0_0_propImpl.xdc].
+Parsing XDC File [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_ooc_debug.xdc] for cell 'U0'
+Finished Parsing XDC File [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_ooc_debug.xdc] for cell 'U0'
+Parsing XDC File [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xdc] for cell 'U0'
+Finished Parsing XDC File [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xdc] for cell 'U0'
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/system_microblaze_0_0_propImpl.xdc].
 Resolution: To avoid this warning, move constraints listed in [.Xil/system_microblaze_0_0_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
-Parsing XDC File [/ectf/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/dont_touch.xdc]
+Parsing XDC File [C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
@@ -328,23 +326,23 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   MUXCY_L => MUXCY: 203 instances
   RAM32M => RAM32M (RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMD32, RAMS32, RAMS32): 16 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.17 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1795.145 ; gain = 0.000 ; free physical = 167 ; free virtual = 9103
+Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.359 . Memory (MB): peak = 930.793 ; gain = 0.914
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 273 ; free virtual = 9219
+Finished Constraint Validation : Time (s): cpu = 00:01:23 ; elapsed = 00:01:27 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 273 ; free virtual = 9219
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:23 ; elapsed = 00:01:27 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for U0. (constraint file  C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:42 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 273 ; free virtual = 9219
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:23 ; elapsed = 00:01:27 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "new_prediction_bits" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "new_prediction_bits" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
@@ -361,7 +359,7 @@ INFO: [Synth 8-5546] ROM "of_fsl_get" won't be mapped to RAM because it is too s
 INFO: [Synth 8-5544] ROM "of_Sel_SPR_MSR" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "dbg_stop_instr_fetch" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:32 ; elapsed = 00:00:44 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 336 ; free virtual = 9291
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:32 ; elapsed = 00:01:36 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -930,7 +928,7 @@ INFO: [Synth 8-3886] merging instance 'U0/LOCKSTEP_Out_reg[294]' (FDR) to 'U0/LO
 INFO: [Synth 8-3886] merging instance 'U0/LOCKSTEP_Out_reg[290]' (FDR) to 'U0/LOCKSTEP_Out_reg[281]'
 INFO: [Synth 8-3886] merging instance 'U0/LOCKSTEP_Out_reg[284]' (FDR) to 'U0/LOCKSTEP_Out_reg[281]'
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:38 ; elapsed = 00:00:51 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 236 ; free virtual = 9190
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:59 ; elapsed = 00:02:04 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -964,13 +962,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:43 ; elapsed = 00:00:58 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 160 ; free virtual = 8910
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:27 ; elapsed = 00:02:32 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:45 ; elapsed = 00:01:00 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 160 ; free virtual = 8861
+Finished Timing Optimization : Time (s): cpu = 00:02:29 ; elapsed = 00:02:34 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1005,7 +1003,7 @@ Start Technology Mapping
 INFO: [Synth 8-3886] merging instance 'U0/MicroBlaze_Core_I/Performance.Core/Data_Flow_I/Byte_Doublet_Handle_gti_I/mem_Byte_Access_reg' (FDRE) to 'U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_byte_access_reg'
 INFO: [Synth 8-3886] merging instance 'U0/MicroBlaze_Core_I/Performance.Core/Data_Flow_I/Byte_Doublet_Handle_gti_I/mem_Doublet_Access_reg' (FDRE) to 'U0/MicroBlaze_Core_I/Performance.Core/Decode_I/mem_doublet_access_reg'
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:01:01 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 185 ; free virtual = 8836
+Finished Technology Mapping : Time (s): cpu = 00:02:33 ; elapsed = 00:02:39 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1029,7 +1027,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:47 ; elapsed = 00:01:02 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 272 ; free virtual = 8923
+Finished IO Insertion : Time (s): cpu = 00:02:36 ; elapsed = 00:02:41 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1042,7 +1040,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:47 ; elapsed = 00:01:02 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 272 ; free virtual = 8923
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:36 ; elapsed = 00:02:41 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1054,25 +1052,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:48 ; elapsed = 00:01:02 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 272 ; free virtual = 8925
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:37 ; elapsed = 00:02:42 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:48 ; elapsed = 00:01:02 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 272 ; free virtual = 8925
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:37 ; elapsed = 00:02:42 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:48 ; elapsed = 00:01:02 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 276 ; free virtual = 8922
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:37 ; elapsed = 00:02:42 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:48 ; elapsed = 00:01:02 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 276 ; free virtual = 8922
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:37 ; elapsed = 00:02:42 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1093,7 +1091,6 @@ Dynamic Shift Register Report:
 |dsrl        | Use_BTC_2.prediction_buffer_reg[3] | 4      | 4          | 4      | 0       | 0      | 0      | 0      | 
 |dsrl__1     | PC_Buffer_reg[3]                   | 4      | 32         | 32     | 0       | 0      | 0      | 0      | 
 |dsrl__2     | ibuffer_reg[3]                     | 4      | 43         | 43     | 0       | 0      | 0      | 0      | 
-|dsrl__3     | Use_BTC_2.prediction_buffer_reg[3] | 4      | 4          | 4      | 0       | 0      | 0      | 0      | 
 +------------+------------------------------------+--------+------------+--------+---------+--------+--------+--------+
 
 ---------------------------------------------------------------------------------
@@ -1614,7 +1611,7 @@ Report Instance Areas:
 |468   |            \Instruction_Prefetch_Mux[16].PC_Mux_MUXF7                        |MB_MUXF7_212                  |     2|
 |469   |            \Instruction_Prefetch_Mux[17].Gen_Instr_DFF                       |MB_FDR_213                    |     4|
 |470   |            \Instruction_Prefetch_Mux[17].PC_Mux_MUXF7                        |MB_MUXF7_214                  |     2|
-|471   |            \Instruction_Prefetch_Mux[18].Gen_Instr_DFF                       |MB_FDR_215                    |     4|
+|471   |            \Instruction_Prefetch_Mux[18].Gen_Instr_DFF                       |MB_FDR_215                    |    83|
 |472   |            \Instruction_Prefetch_Mux[18].PC_Mux_MUXF7                        |MB_MUXF7_216                  |     2|
 |473   |            \Instruction_Prefetch_Mux[19].Gen_Instr_DFF                       |MB_FDR_217                    |     3|
 |474   |            \Instruction_Prefetch_Mux[19].PC_Mux_MUXF7                        |MB_MUXF7_218                  |     2|
@@ -1660,7 +1657,7 @@ Report Instance Areas:
 |514   |            \Instruction_Prefetch_Mux[8].PC_Mux_MUXF7                         |MB_MUXF7_258                  |     2|
 |515   |            \Instruction_Prefetch_Mux[9].Gen_Instr_DFF                        |MB_FDR_259                    |     3|
 |516   |            \Instruction_Prefetch_Mux[9].PC_Mux_MUXF7                         |MB_MUXF7_260                  |     2|
-|517   |            \Use_BTC_2.BTC_RAM_Module                                         |RAM_Module                    |   225|
+|517   |            \Use_BTC_2.BTC_RAM_Module                                         |RAM_Module                    |   165|
 |518   |            \Use_BTC_2.PC_Predict_Mux[0].Gen_Instr_DFF                        |MB_FDR_261                    |     1|
 |519   |            \Use_BTC_2.PC_Predict_Mux[0].Predict_Mux_MUXF7                    |MB_MUXF7_262                  |     1|
 |520   |            \Use_BTC_2.PC_Predict_Mux[1].Gen_Instr_DFF                        |MB_FDR_263                    |     1|
@@ -1682,8 +1679,8 @@ Report Instance Areas:
 |536   |              MUXCY_I                                                         |MB_MUXCY_303                  |     2|
 |537   |            \Use_BTC_2.Using_FPGA.bt_jump_carry_and                           |carry_and_270                 |     1|
 |538   |              MUXCY_I                                                         |MB_MUXCY_302                  |     1|
-|539   |            \Use_BTC_2.Using_FPGA.bt_jump_carry_or                            |carry_or_271                  |    17|
-|540   |              MUXCY_I                                                         |MB_MUXCY_301                  |    17|
+|539   |            \Use_BTC_2.Using_FPGA.bt_jump_carry_or                            |carry_or_271                  |    12|
+|540   |              MUXCY_I                                                         |MB_MUXCY_301                  |    12|
 |541   |            \Using_FPGA.Incr_PC[0].MUXCY_XOR_I                                |MB_MUXCY_XORCY                |     1|
 |542   |            \Using_FPGA.Incr_PC[10].MUXCY_XOR_I                               |MB_MUXCY_XORCY_272            |     2|
 |543   |            \Using_FPGA.Incr_PC[11].MUXCY_XOR_I                               |MB_MUXCY_XORCY_273            |     2|
@@ -1939,11 +1936,11 @@ Report Instance Areas:
 |793   |        \Read_AXI_Performance.Gen_Bits[9].MEM_EX_Result_Inst                  |MB_FDRE_32                    |     1|
 +------+------------------------------------------------------------------------------+------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:48 ; elapsed = 00:01:02 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 274 ; free virtual = 8921
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:37 ; elapsed = 00:02:43 . Memory (MB): peak = 930.984 ; gain = 659.402
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 27505 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:35 ; elapsed = 00:00:43 . Memory (MB): peak = 1795.145 ; gain = 393.266 ; free physical = 340 ; free virtual = 8988
-Synthesis Optimization Complete : Time (s): cpu = 00:00:48 ; elapsed = 00:01:02 . Memory (MB): peak = 1795.145 ; gain = 644.297 ; free physical = 340 ; free virtual = 8988
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:28 ; elapsed = 00:02:14 . Memory (MB): peak = 930.984 ; gain = 448.824
+Synthesis Optimization Complete : Time (s): cpu = 00:02:38 ; elapsed = 00:02:43 . Memory (MB): peak = 930.984 ; gain = 659.402
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 785 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -1963,11 +1960,11 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 201 Infos, 200 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:50 ; elapsed = 00:01:04 . Memory (MB): peak = 1811.152 ; gain = 679.402 ; free physical = 949 ; free virtual = 9606
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/system_microblaze_0_0.dcp' has been generated.
-INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xci
+synth_design: Time (s): cpu = 00:02:46 ; elapsed = 00:02:52 . Memory (MB): peak = 930.984 ; gain = 668.004
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/system_microblaze_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP c:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0.xci
 INFO: [Coretcl 2-1174] Renamed 792 cell refs.
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/system_microblaze_0_0.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint 'C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_microblaze_0_0_synth_1/system_microblaze_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_microblaze_0_0_utilization_synth.rpt -pb system_microblaze_0_0_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.08 . Memory (MB): peak = 1835.164 ; gain = 0.000 ; free physical = 980 ; free virtual = 9665
-INFO: [Common 17-206] Exiting Vivado at Sun Mar  1 21:33:47 2020...
+report_utilization: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.125 . Memory (MB): peak = 930.984 ; gain = 0.000
+INFO: [Common 17-206] Exiting Vivado at Wed Mar  4 13:14:09 2020...

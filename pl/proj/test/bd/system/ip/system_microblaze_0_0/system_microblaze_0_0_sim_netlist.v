@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-// Date        : Sun Mar  1 21:33:46 2020
-// Host        : ssg0 running 64-bit Arch Linux
+// Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+// Date        : Wed Mar  4 13:14:04 2020
+// Host        : Lenovo-PC running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               /ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_sim_netlist.v
+//               C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_sim_netlist.v
 // Design      : system_microblaze_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -85,7 +85,7 @@ module system_microblaze_0_0
     S0_AXIS_TDATA,
     S0_AXIS_TVALID,
     S0_AXIS_TREADY);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF M0_AXIS:S0_AXIS:M1_AXIS:S1_AXIS:M2_AXIS:S2_AXIS:M3_AXIS:S3_AXIS:M4_AXIS:S4_AXIS:M5_AXIS:S5_AXIS:M6_AXIS:S6_AXIS:M7_AXIS:S7_AXIS:M8_AXIS:S8_AXIS:M9_AXIS:S9_AXIS:M10_AXIS:S10_AXIS:M11_AXIS:S11_AXIS:M12_AXIS:S12_AXIS:M13_AXIS:S13_AXIS:M14_AXIS:S14_AXIS:M15_AXIS:S15_AXIS:DLMB:ILMB:M_AXI_DP:M_AXI_IP:M_AXI_DC:M_AXI_IC:M_ACE_DC:M_ACE_IC:MON_DLMB:MON_ILMB:MON_AXI_DP:MON_AXI_IP:MON_AXI_DC:MON_AXI_IC:MON_ACE_DC:MON_ACE_IC, ASSOCIATED_RESET Reset, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0" *) input Clk;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 CLK.CLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME CLK.CLK, ASSOCIATED_BUSIF M0_AXIS:S0_AXIS:M1_AXIS:S1_AXIS:M2_AXIS:S2_AXIS:M3_AXIS:S3_AXIS:M4_AXIS:S4_AXIS:M5_AXIS:S5_AXIS:M6_AXIS:S6_AXIS:M7_AXIS:S7_AXIS:M8_AXIS:S8_AXIS:M9_AXIS:S9_AXIS:M10_AXIS:S10_AXIS:M11_AXIS:S11_AXIS:M12_AXIS:S12_AXIS:M13_AXIS:S13_AXIS:M14_AXIS:S14_AXIS:M15_AXIS:S15_AXIS:DLMB:ILMB:M_AXI_DP:M_AXI_IP:M_AXI_DC:M_AXI_IC:M_ACE_DC:M_ACE_IC:MON_DLMB:MON_ILMB:MON_AXI_DP:MON_AXI_IP:MON_AXI_DC:MON_AXI_IC:MON_ACE_DC:MON_ACE_IC, ASSOCIATED_RESET Reset, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0" *) input Clk;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 RST.RESET RST" *) (* x_interface_parameter = "XIL_INTERFACENAME RST.RESET, POLARITY ACTIVE_HIGH, TYPE PROCESSOR" *) input Reset;
   (* x_interface_info = "xilinx.com:interface:mbinterrupt:1.0 INTERRUPT INTERRUPT" *) (* x_interface_parameter = "XIL_INTERFACENAME INTERRUPT, SENSITIVITY EDGE_RISING, LOW_LATENCY 0" *) input Interrupt;
   (* x_interface_info = "xilinx.com:interface:mbinterrupt:1.0 INTERRUPT ADDRESS" *) input [0:31]Interrupt_Address;
@@ -98,7 +98,7 @@ module system_microblaze_0_0
   (* x_interface_info = "xilinx.com:interface:lmb:1.0 ILMB WAIT" *) input IWAIT;
   (* x_interface_info = "xilinx.com:interface:lmb:1.0 ILMB CE" *) input ICE;
   (* x_interface_info = "xilinx.com:interface:lmb:1.0 ILMB UE" *) input IUE;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_IP AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_IP, ID_WIDTH 0, READ_WRITE_MODE READ_ONLY, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, DATA_WIDTH 32, ADDR_WIDTH 32, PROTOCOL AXI4LITE, NUM_READ_OUTSTANDING 1, NUM_READ_THREADS 1, MAX_BURST_LENGTH 1, HAS_WSTRB 0, HAS_BRESP 0, FREQ_HZ 100000000, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 1, NUM_WRITE_OUTSTANDING 1, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) output [31:0]M_AXI_IP_AWADDR;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_IP AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_IP, ID_WIDTH 0, READ_WRITE_MODE READ_ONLY, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, DATA_WIDTH 32, ADDR_WIDTH 32, PROTOCOL AXI4LITE, NUM_READ_OUTSTANDING 1, NUM_READ_THREADS 1, MAX_BURST_LENGTH 1, HAS_WSTRB 0, HAS_BRESP 0, FREQ_HZ 1e+08, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_RRESP 1, NUM_WRITE_OUTSTANDING 1, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) output [31:0]M_AXI_IP_AWADDR;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_IP AWPROT" *) output [2:0]M_AXI_IP_AWPROT;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_IP AWVALID" *) output M_AXI_IP_AWVALID;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_IP AWREADY" *) input M_AXI_IP_AWREADY;
@@ -128,7 +128,7 @@ module system_microblaze_0_0
   (* x_interface_info = "xilinx.com:interface:lmb:1.0 DLMB CE" *) input DCE;
   (* x_interface_info = "xilinx.com:interface:lmb:1.0 DLMB UE" *) input DUE;
   (* x_interface_info = "xilinx.com:interface:lmb:1.0 DLMB BE" *) output [0:3]Byte_Enable;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_DP AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_DP, ID_WIDTH 0, READ_WRITE_MODE READ_WRITE, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, DATA_WIDTH 32, ADDR_WIDTH 32, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, MAX_BURST_LENGTH 1, PROTOCOL AXI4LITE, FREQ_HZ 100000000, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) output [31:0]M_AXI_DP_AWADDR;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_DP AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXI_DP, ID_WIDTH 0, READ_WRITE_MODE READ_WRITE, SUPPORTS_NARROW_BURST 0, HAS_BURST 0, DATA_WIDTH 32, ADDR_WIDTH 32, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, MAX_BURST_LENGTH 1, PROTOCOL AXI4LITE, FREQ_HZ 1e+08, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) output [31:0]M_AXI_DP_AWADDR;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_DP AWPROT" *) output [2:0]M_AXI_DP_AWPROT;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_DP AWVALID" *) output M_AXI_DP_AWVALID;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_DP AWREADY" *) input M_AXI_DP_AWREADY;
@@ -147,11 +147,11 @@ module system_microblaze_0_0
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_DP RRESP" *) input [1:0]M_AXI_DP_RRESP;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_DP RVALID" *) input M_AXI_DP_RVALID;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 M_AXI_DP RREADY" *) output M_AXI_DP_RREADY;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M0_AXIS TLAST" *) (* x_interface_parameter = "XIL_INTERFACENAME M0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef" *) output M0_AXIS_TLAST;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M0_AXIS TLAST" *) (* x_interface_parameter = "XIL_INTERFACENAME M0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef" *) output M0_AXIS_TLAST;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 M0_AXIS TDATA" *) output [31:0]M0_AXIS_TDATA;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 M0_AXIS TVALID" *) output M0_AXIS_TVALID;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 M0_AXIS TREADY" *) input M0_AXIS_TREADY;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 S0_AXIS TLAST" *) (* x_interface_parameter = "XIL_INTERFACENAME S0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef" *) input S0_AXIS_TLAST;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 S0_AXIS TLAST" *) (* x_interface_parameter = "XIL_INTERFACENAME S0_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1e+08, PHASE 0.000, CLK_DOMAIN system_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef" *) input S0_AXIS_TLAST;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 S0_AXIS TDATA" *) input [31:0]S0_AXIS_TDATA;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 S0_AXIS TVALID" *) input S0_AXIS_TVALID;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 S0_AXIS TREADY" *) output S0_AXIS_TREADY;
@@ -10659,7 +10659,7 @@ module system_microblaze_0_0_Decode_gti
         .D(EX_Use_Carry115_out),
         .Q(ex_use_carry),
         .R(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT5 #(
     .INIT(32'h00000400)) 
     \FPGA_Shift.cnt_shifts[31]_i_1 
@@ -10679,7 +10679,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(mem_exception_from_ex),
         .I5(mem_valid_reg_n_0),
         .O(E));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
+  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT4 #(
     .INIT(16'h0020)) 
     \Gen_M_Channel_Handling[0].M_AXIS_TLAST[0]_i_2 
@@ -10705,7 +10705,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(\No_Master_Debug_Logic.dbg_stop_instr_fetch_reg ),
         .I5(ex_mbar_sleep),
         .O(if_fetch_without_full_or_jump));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT5 #(
     .INIT(32'hFFFFF1FF)) 
     IFetch_INST_0_i_2
@@ -11075,7 +11075,7 @@ module system_microblaze_0_0_Decode_gti
         .out(ex_valid_jump),
         .sync_reset(reset_bool_for_rst),
         .wb_exception_i_reg(\LOCKSTEP_Out_reg[3071] ));
-  (* SOFT_HLUTNM = "soft_lutpair88" *) 
+  (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT3 #(
     .INIT(8'h04)) 
     Pause_Ack_i_1
@@ -11216,9 +11216,9 @@ module system_microblaze_0_0_Decode_gti
         .ex_set_bip(ex_set_bip),
         .ex_start_div_i_reg(PreFetch_Buffer_I1_n_87),
         .ex_valid(ex_valid),
-        .ex_valid_reg(PreFetch_Buffer_I1_n_131),
-        .ex_valid_reg_0(\Using_FPGA.Gen_Bits[30].MEM_EX_Result_Inst_n_0 ),
-        .ex_valid_reg_1(\Using_FPGA.Native_i_14_n_0 ),
+        .ex_valid_jump_reg(PreFetch_Buffer_I1_n_131),
+        .ex_valid_reg(\Using_FPGA.Gen_Bits[30].MEM_EX_Result_Inst_n_0 ),
+        .ex_valid_reg_0(\Using_FPGA.Native_i_14_n_0 ),
         .force12_out(force12_out),
         .force2_reg(PreFetch_Buffer_I1_n_49),
         .force_Val10_out(force_Val10_out),
@@ -11288,7 +11288,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(MEM_Is_Div_Instr),
         .I4(reset_bool_for_rst),
         .O(\Q_reg[32] ));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT5 #(
     .INIT(32'h00080808)) 
     S0_AXIS_TREADY_INST_0
@@ -11298,7 +11298,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(mem_exception_from_ex),
         .I4(mem_valid_reg_n_0),
         .O(D[44]));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT3 #(
     .INIT(8'h04)) 
     S0_AXIS_TREADY_INST_0_i_1
@@ -11380,7 +11380,7 @@ module system_microblaze_0_0_Decode_gti
        (.I0(ex_bit_insert),
         .I1(Q[3]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0_reg[30] ));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT3 #(
     .INIT(8'h0E)) 
     \Use_HW_BS.mem_left_shift_i_1 
@@ -11397,7 +11397,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(Q[2]),
         .I4(\Use_HW_BS.mem_mux3[0]_i_4_n_0 ),
         .O(\Use_HW_BS.mem_mux3_reg[0] [28]));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair68" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[0]_i_10 
@@ -11407,7 +11407,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_left_shift),
         .I4(\EX_Op1_reg[0] [0]),
         .O(\Use_HW_BS.mem_mux3[0]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair89" *) 
+  (* SOFT_HLUTNM = "soft_lutpair92" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_HW_BS.mem_mux3[0]_i_2 
@@ -11444,7 +11444,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_left_shift),
         .I4(\EX_Op1_reg[0] [7]),
         .O(\Use_HW_BS.mem_mux3[0]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[0]_i_6 
@@ -11454,7 +11454,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_left_shift),
         .I4(\EX_Op1_reg[0] [5]),
         .O(\Use_HW_BS.mem_mux3[0]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT3 #(
     .INIT(8'hF1)) 
     \Use_HW_BS.mem_mux3[0]_i_7 
@@ -11462,7 +11462,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(ex_left_shift),
         .I2(ex_bit_extract),
         .O(\Use_HW_BS.mem_mux3[0]_i_7_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[0]_i_8 
@@ -11472,7 +11472,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_left_shift),
         .I4(\EX_Op1_reg[0] [4]),
         .O(\Use_HW_BS.mem_mux3[0]_i_8_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[0]_i_9 
@@ -11600,7 +11600,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[14]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[14]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT5 #(
     .INIT(32'hEEEF2220)) 
     \Use_HW_BS.mem_mux3[14]_i_3 
@@ -11630,7 +11630,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[15]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[15]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
+  (* SOFT_HLUTNM = "soft_lutpair67" *) 
   LUT5 #(
     .INIT(32'hEEEF2220)) 
     \Use_HW_BS.mem_mux3[15]_i_3 
@@ -11660,7 +11660,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[16]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[16]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT5 #(
     .INIT(32'hEEEF2220)) 
     \Use_HW_BS.mem_mux3[16]_i_3 
@@ -11720,7 +11720,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[18]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[18]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT5 #(
     .INIT(32'hEEEF2220)) 
     \Use_HW_BS.mem_mux3[18]_i_3 
@@ -11740,7 +11740,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(\Use_HW_BS.mem_mux3[14]_i_2_n_0 ),
         .I5(Q[2]),
         .O(\Use_HW_BS.mem_mux3_reg[0] [9]));
-  (* SOFT_HLUTNM = "soft_lutpair92" *) 
+  (* SOFT_HLUTNM = "soft_lutpair93" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_HW_BS.mem_mux3[19]_i_2 
@@ -11748,7 +11748,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(Q[1]),
         .I2(\Use_HW_BS.mem_mux3[17]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[19]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[19]_i_3 
@@ -11778,7 +11778,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[1]_i_5_n_0 ),
         .O(\Use_HW_BS.mem_mux3[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair90" *) 
+  (* SOFT_HLUTNM = "soft_lutpair91" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_HW_BS.mem_mux3[1]_i_3 
@@ -11786,7 +11786,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(Q[1]),
         .I2(\Use_HW_BS.mem_mux3[0]_i_9_n_0 ),
         .O(\Use_HW_BS.mem_mux3[1]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair90" *) 
+  (* SOFT_HLUTNM = "soft_lutpair91" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_HW_BS.mem_mux3[1]_i_4 
@@ -11794,6 +11794,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(Q[1]),
         .I2(\Use_HW_BS.mem_mux3[1]_i_7_n_0 ),
         .O(\Use_HW_BS.mem_mux3[1]_i_4_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT5 #(
     .INIT(32'hBBBA888A)) 
     \Use_HW_BS.mem_mux3[1]_i_5 
@@ -11803,7 +11804,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_left_shift),
         .I4(\EX_Op1_reg[0] [25]),
         .O(\Use_HW_BS.mem_mux3[1]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair67" *) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[1]_i_6 
@@ -11813,7 +11814,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_left_shift),
         .I4(\EX_Op1_reg[0] [3]),
         .O(\Use_HW_BS.mem_mux3[1]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[1]_i_7 
@@ -11843,7 +11844,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(\Use_HW_BS.mem_mux3[0]_i_7_n_0 ),
         .I5(\EX_Op1_reg[0] [25]),
         .O(\Use_HW_BS.mem_mux3[20]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[20]_i_3 
@@ -11863,7 +11864,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(\Use_HW_BS.mem_mux3[16]_i_2_n_0 ),
         .I5(Q[2]),
         .O(\Use_HW_BS.mem_mux3_reg[0] [7]));
-  (* SOFT_HLUTNM = "soft_lutpair92" *) 
+  (* SOFT_HLUTNM = "soft_lutpair93" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_HW_BS.mem_mux3[21]_i_2 
@@ -11871,7 +11872,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(Q[1]),
         .I2(\Use_HW_BS.mem_mux3[19]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[21]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair67" *) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[21]_i_3 
@@ -11900,7 +11901,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[19]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[22]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[22]_i_3 
@@ -11983,7 +11984,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(Q[1]),
         .I4(\Use_HW_BS.mem_mux3_reg[30] ),
         .O(\Use_HW_BS.mem_mux3[26]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair68" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[27]_i_2 
@@ -11993,7 +11994,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_left_shift),
         .I4(\EX_Op1_reg[0] [31]),
         .O(\Use_HW_BS.mem_mux3_reg[27] ));
-  (* SOFT_HLUTNM = "soft_lutpair91" *) 
+  (* SOFT_HLUTNM = "soft_lutpair90" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_HW_BS.mem_mux3[28]_i_1 
@@ -12001,7 +12002,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(Q[2]),
         .I2(\Use_HW_BS.mem_mux3[24]_i_2_n_0 ),
         .O(\Use_HW_BS.mem_mux3_reg[0] [1]));
-  (* SOFT_HLUTNM = "soft_lutpair91" *) 
+  (* SOFT_HLUTNM = "soft_lutpair90" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_HW_BS.mem_mux3[29]_i_1 
@@ -12029,7 +12030,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[0]_i_5_n_0 ),
         .O(\Use_HW_BS.mem_mux3[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair89" *) 
+  (* SOFT_HLUTNM = "soft_lutpair92" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_HW_BS.mem_mux3[2]_i_3 
@@ -12037,7 +12038,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(Q[1]),
         .I2(\Use_HW_BS.mem_mux3[1]_i_6_n_0 ),
         .O(\Use_HW_BS.mem_mux3[2]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT5 #(
     .INIT(32'hFAFB5040)) 
     \Use_HW_BS.mem_mux3[30]_i_2 
@@ -12067,7 +12068,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[3]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT5 #(
     .INIT(32'hBBBA888A)) 
     \Use_HW_BS.mem_mux3[3]_i_3 
@@ -12097,7 +12098,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[4]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[4]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT5 #(
     .INIT(32'hBBBA888A)) 
     \Use_HW_BS.mem_mux3[4]_i_3 
@@ -12127,7 +12128,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[5]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT5 #(
     .INIT(32'hBBBA888A)) 
     \Use_HW_BS.mem_mux3[5]_i_3 
@@ -12157,7 +12158,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[6]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[6]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
+  (* SOFT_HLUTNM = "soft_lutpair67" *) 
   LUT5 #(
     .INIT(32'hBBBA888A)) 
     \Use_HW_BS.mem_mux3[6]_i_3 
@@ -12187,7 +12188,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(Q[1]),
         .I5(\Use_HW_BS.mem_mux3[7]_i_3_n_0 ),
         .O(\Use_HW_BS.mem_mux3[7]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT5 #(
     .INIT(32'hBBBA888A)) 
     \Use_HW_BS.mem_mux3[7]_i_3 
@@ -12217,7 +12218,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(ex_left_shift_i),
         .I5(\EX_Op1_reg[0] [18]),
         .O(\Use_HW_BS.mem_mux3[8]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT5 #(
     .INIT(32'hEE22EF20)) 
     \Use_HW_BS.mem_mux3[8]_i_3 
@@ -12247,7 +12248,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(ex_left_shift_i),
         .I5(\EX_Op1_reg[0] [17]),
         .O(\Use_HW_BS.mem_mux3[9]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT5 #(
     .INIT(32'hAAAAF0E2)) 
     \Use_HW_BS.mem_mux3[9]_i_3 
@@ -12257,14 +12258,13 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_bit_insert),
         .I4(ex_bit_extract),
         .O(\Use_HW_BS.mem_mux3[9]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair86" *) 
+  (* SOFT_HLUTNM = "soft_lutpair89" *) 
   LUT2 #(
     .INIT(4'hB)) 
     \Use_HW_BS.mem_void_bit_i_1 
        (.I0(reset_bool_for_rst),
         .I1(EX_Is_BS_Instr),
         .O(SR));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT5 #(
     .INIT(32'hA000B000)) 
     \Use_HW_BS.mem_void_bit_i_2 
@@ -12450,7 +12450,7 @@ module system_microblaze_0_0_Decode_gti
         .ex_valid(ex_valid),
         .mem_exception_from_ex(mem_exception_from_ex),
         .sync_reset(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
+  (* SOFT_HLUTNM = "soft_lutpair86" *) 
   LUT4 #(
     .INIT(16'h00F7)) 
     \Using_FPGA.Native_i_11 
@@ -12459,21 +12459,20 @@ module system_microblaze_0_0_Decode_gti
         .I2(\LOCKSTEP_Out_reg[3071] ),
         .I3(wb_reset),
         .O(\Using_FPGA.Native_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair93" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \Using_FPGA.Native_i_13 
        (.I0(mem_valid_reg_n_0),
         .I1(mem_gpr_write),
         .O(\Using_FPGA.Native_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair85" *) 
+  (* SOFT_HLUTNM = "soft_lutpair87" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \Using_FPGA.Native_i_14 
        (.I0(ex_valid),
         .I1(ex_gpr_write_reg_n_0),
         .O(\Using_FPGA.Native_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT5 #(
     .INIT(32'hBFFF8000)) 
     \Using_FPGA.Native_i_1__135 
@@ -12562,7 +12561,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(EX_Is_BS_Instr),
         .I2(EX_Is_Div_Instr),
         .O(R));
-  (* SOFT_HLUTNM = "soft_lutpair87" *) 
+  (* SOFT_HLUTNM = "soft_lutpair88" *) 
   LUT1 #(
     .INIT(2'h1)) 
     \Using_FPGA.Native_i_1__204 
@@ -12679,7 +12678,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_swap_instr),
         .I4(\Using_FPGA.Native_i_3__34_n_0 ),
         .O(\Using_FPGA.Native_i_2__174_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT3 #(
     .INIT(8'h15)) 
     \Using_FPGA.Native_i_2__176 
@@ -12687,7 +12686,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(mem_exception_from_ex),
         .I2(mem_valid_reg_n_0),
         .O(of_read_imm_reg_ii_reg_0));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT4 #(
     .INIT(16'h0020)) 
     \Using_FPGA.Native_i_2__2 
@@ -12696,7 +12695,7 @@ module system_microblaze_0_0_Decode_gti
         .I2(ex_valid),
         .I3(ex_Take_Intr_or_Exc_reg_0),
         .O(ex_start_div));
-  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT3 #(
     .INIT(8'h80)) 
     \Using_FPGA.Native_i_2__39 
@@ -12704,7 +12703,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(D[3]),
         .I2(\LOCKSTEP_Out_reg[3071] ),
         .O(wb_MSR_Clear_IE));
-  (* SOFT_HLUTNM = "soft_lutpair84" *) 
+  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT4 #(
     .INIT(16'h0020)) 
     \Using_FPGA.Native_i_3 
@@ -12723,6 +12722,7 @@ module system_microblaze_0_0_Decode_gti
         .I4(ex_Enable_Sext_Shift),
         .I5(\EX_Op1_reg[24]_1 ),
         .O(\Using_FPGA.Native_i_3__20_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT5 #(
     .INIT(32'hBF008000)) 
     \Using_FPGA.Native_i_3__29 
@@ -12741,7 +12741,6 @@ module system_microblaze_0_0_Decode_gti
         .I3(ex_Enable_Sext_Shift),
         .I4(\EX_Op1_reg[0] [0]),
         .O(\Using_FPGA.Native_i_3__3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT5 #(
     .INIT(32'hBF008000)) 
     \Using_FPGA.Native_i_3__30 
@@ -13081,14 +13080,14 @@ module system_microblaze_0_0_Decode_gti
         .D(PreFetch_Buffer_I1_n_154),
         .Q(ex_sel_fsl),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
+  (* SOFT_HLUTNM = "soft_lutpair86" *) 
   LUT2 #(
     .INIT(4'h1)) 
     \Using_LWX_SWX_instr.ex_reservation_i_4 
        (.I0(reset_bool_for_rst),
         .I1(\LOCKSTEP_Out_reg[3071] ),
         .O(\Using_LWX_SWX_instr.ex_reservation_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair84" *) 
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT4 #(
     .INIT(16'h0020)) 
     \Using_LWX_SWX_instr.ex_reservation_i_5 
@@ -13229,7 +13228,7 @@ module system_microblaze_0_0_Decode_gti
         .D(of_Sel_SPR_SLR),
         .Q(ex_Sel_SPR_SLR),
         .R(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT4 #(
     .INIT(16'hFF80)) 
     ex_Take_Intr_or_Exc_keep_i_1
@@ -13274,7 +13273,7 @@ module system_microblaze_0_0_Decode_gti
         .D(ex_atomic_Instruction_Pair0),
         .Q(ex_atomic_Instruction_Pair),
         .R(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT4 #(
     .INIT(16'h1555)) 
     ex_branch_with_delayslot_i_2
@@ -13364,7 +13363,7 @@ module system_microblaze_0_0_Decode_gti
         .I3(active_wakeup),
         .I4(reset_bool_for_rst),
         .O(ex_hibernate_i_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair85" *) 
+  (* SOFT_HLUTNM = "soft_lutpair87" *) 
   LUT4 #(
     .INIT(16'hA8AA)) 
     ex_hibernate_i_i_2
@@ -13654,14 +13653,14 @@ module system_microblaze_0_0_Decode_gti
         .I4(\Use_BTC_2.bt_ex_return_set_reg ),
         .I5(ex_mbar_sleep_i_3_n_0),
         .O(ex_mbar_sleep_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT2 #(
     .INIT(4'hB)) 
     ex_mbar_sleep_i_2
        (.I0(ex_Take_Intr_or_Exc_reg_0),
         .I1(ex_mbar_decode),
         .O(ex_mbar_sleep_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT2 #(
     .INIT(4'hE)) 
     ex_mbar_sleep_i_3
@@ -13674,7 +13673,7 @@ module system_microblaze_0_0_Decode_gti
         .D(ex_mbar_sleep_i_1_n_0),
         .Q(ex_mbar_sleep),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair88" *) 
+  (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT4 #(
     .INIT(16'h4F44)) 
     ex_mbar_stall_no_sleep_1_i_1
@@ -13765,7 +13764,7 @@ module system_microblaze_0_0_Decode_gti
         .D(ex_set_bip),
         .Q(ex_set_bip_reg_n_0),
         .R(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT5 #(
     .INIT(32'h0000002E)) 
     ex_sleep_i_i_1
@@ -13823,7 +13822,7 @@ module system_microblaze_0_0_Decode_gti
         .D(PC_Module_I_n_48),
         .Q(ex_valid),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT4 #(
     .INIT(16'h0020)) 
     fsl_carry_hold_value_cmb_inferred_i_2
@@ -13930,8 +13929,8 @@ module system_microblaze_0_0_Decode_gti
         .\EX_Branch_CMP_Op1_reg[0] (\EX_Branch_CMP_Op1_reg[0] ),
         .EX_Op1_CMP_Equal(EX_Op1_CMP_Equal),
         .EX_Op1_Zero(EX_Op1_Zero),
+        .\Use_BTC_2.bt_if_pc_incr_wait_reg (jump_logic_I1_n_8),
         .\Use_BTC_2.bt_saved_pc_valid_reg (jump_logic_I1_n_6),
-        .\Use_BTC_2.bt_saved_pc_valid_reg_0 (jump_logic_I1_n_8),
         .\Use_BTC_2.ex_jump_wanted_keep_reg (jump_logic_I1_n_9),
         .\Use_BTC_2.ex_jump_wanted_keep_reg_0 (PC_Module_I_n_2),
         .\Using_FPGA.Native (PreFetch_Buffer_I1_n_100),
@@ -13974,7 +13973,7 @@ module system_microblaze_0_0_Decode_gti
         .D(PC_Module_I_n_6),
         .Q(keep_jump_taken_with_ds),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair86" *) 
+  (* SOFT_HLUTNM = "soft_lutpair89" *) 
   LUT4 #(
     .INIT(16'hFF57)) 
     mask_reset_inferred_i_1
@@ -14015,6 +14014,7 @@ module system_microblaze_0_0_Decode_gti
         .wb_gpr_write_i0(wb_gpr_write_i0),
         .wb_valid_reg(mem_PipeRun_carry_and_n_2),
         .wb_valid_reg_0(D[11]));
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT5 #(
     .INIT(32'h02220000)) 
     mem_Write_DCache_i_1
@@ -14357,7 +14357,7 @@ module system_microblaze_0_0_Decode_gti
         .D(\Use_MuxCy[11].OF_Piperun_Stage_n_2 ),
         .Q(of_read_imm_reg),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT5 #(
     .INIT(32'h00000800)) 
     of_set_MSR_IE_hold_i_2
@@ -14373,7 +14373,7 @@ module system_microblaze_0_0_Decode_gti
         .D(\Use_MuxCy[3].OF_Piperun_Stage_n_5 ),
         .Q(of_set_MSR_IE_hold_reg_n_0),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT3 #(
     .INIT(8'h04)) 
     sign_16_23_inferred_i_1
@@ -14381,7 +14381,7 @@ module system_microblaze_0_0_Decode_gti
         .I1(\EX_Op1_reg[0] [7]),
         .I2(\Using_FPGA.Native_14 [1]),
         .O(\Using_FPGA.Native_15 ));
-  (* SOFT_HLUTNM = "soft_lutpair87" *) 
+  (* SOFT_HLUTNM = "soft_lutpair88" *) 
   LUT4 #(
     .INIT(16'h2AAA)) 
     \wb_MSR_i[30]_i_1 
@@ -14396,7 +14396,7 @@ module system_microblaze_0_0_Decode_gti
         .D(Trace_WB_Jump_Hit_reg_0),
         .Q(\wb_MSR_i_reg[30] ),
         .R(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair93" *) 
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT2 #(
     .INIT(4'h8)) 
     wb_exception_i_i_1
@@ -23735,7 +23735,7 @@ endmodule
 module system_microblaze_0_0_MB_FDR_126
    (\ex_instr_reg[17] ,
     ex_is_multi_or_load_instr_reg,
-    \Use_BTC_2.bt_addr_count_reg[6] ,
+    \Use_BTC_2.bt_addr_count_reg[0] ,
     ex_is_multi_or_load_instr0,
     ex_is_multi_instr20,
     EX_Bit_Extract0,
@@ -23761,7 +23761,7 @@ module system_microblaze_0_0_MB_FDR_126
     \Using_FPGA.Native_13 );
   output \ex_instr_reg[17] ;
   output ex_is_multi_or_load_instr_reg;
-  output \Use_BTC_2.bt_addr_count_reg[6] ;
+  output \Use_BTC_2.bt_addr_count_reg[0] ;
   output ex_is_multi_or_load_instr0;
   output ex_is_multi_instr20;
   output EX_Bit_Extract0;
@@ -23789,7 +23789,7 @@ module system_microblaze_0_0_MB_FDR_126
   wire Clk;
   wire EX_Bit_Extract0;
   wire FSL_Put_Blocking;
-  wire \Use_BTC_2.bt_addr_count_reg[6] ;
+  wire \Use_BTC_2.bt_addr_count_reg[0] ;
   wire \Using_FPGA.Native_0 ;
   wire \Using_FPGA.Native_1 ;
   wire \Using_FPGA.Native_10 ;
@@ -23830,7 +23830,7 @@ module system_microblaze_0_0_MB_FDR_126
         .I2(\Using_FPGA.Native_5 ),
         .I3(\Using_FPGA.Native_6 ),
         .I4(\Using_FPGA.Native_7 ),
-        .O(\Use_BTC_2.bt_addr_count_reg[6] ));
+        .O(\Use_BTC_2.bt_addr_count_reg[0] ));
   (* XILINX_LEGACY_PRIM = "FDR" *) 
   (* box_type = "PRIMITIVE" *) 
   FDRE #(
@@ -23934,7 +23934,7 @@ endmodule
 (* ORIG_REF_NAME = "MB_FDR" *) 
 module system_microblaze_0_0_MB_FDR_130
    (\ex_instr_reg[19] ,
-    \Use_BTC_2.bt_addr_count_reg[6] ,
+    \Use_BTC_2.bt_addr_count_reg[0] ,
     sync_reset,
     of_instr_ii_23,
     Clk,
@@ -23944,7 +23944,7 @@ module system_microblaze_0_0_MB_FDR_130
     \Using_FPGA.Native_3 ,
     \Using_FPGA.Native_4 );
   output \ex_instr_reg[19] ;
-  output \Use_BTC_2.bt_addr_count_reg[6] ;
+  output \Use_BTC_2.bt_addr_count_reg[0] ;
   input sync_reset;
   input of_instr_ii_23;
   input Clk;
@@ -23955,7 +23955,7 @@ module system_microblaze_0_0_MB_FDR_130
   input \Using_FPGA.Native_4 ;
 
   wire Clk;
-  wire \Use_BTC_2.bt_addr_count_reg[6] ;
+  wire \Use_BTC_2.bt_addr_count_reg[0] ;
   wire \Using_FPGA.Native_0 ;
   wire \Using_FPGA.Native_1 ;
   wire \Using_FPGA.Native_2 ;
@@ -23974,7 +23974,7 @@ module system_microblaze_0_0_MB_FDR_130
         .I3(\Using_FPGA.Native_2 ),
         .I4(\Using_FPGA.Native_3 ),
         .I5(\Using_FPGA.Native_4 ),
-        .O(\Use_BTC_2.bt_addr_count_reg[6] ));
+        .O(\Use_BTC_2.bt_addr_count_reg[0] ));
   (* XILINX_LEGACY_PRIM = "FDR" *) 
   (* box_type = "PRIMITIVE" *) 
   FDRE #(
@@ -24505,6 +24505,7 @@ module system_microblaze_0_0_MB_FDR_132
         .I4(ex_imm_cond_branch),
         .I5(ex_branch_with_delayslot),
         .O(\Use_BTC_2.bt_ex_imm_cond_branch_reg_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT4 #(
     .INIT(16'h4000)) 
     \Use_BTC_2.bt_ex_imm_cond_branch_i_2 
@@ -24523,7 +24524,6 @@ module system_microblaze_0_0_MB_FDR_132
         .D(of_instr_ii_41),
         .Q(\ex_opcode_reg[1] ),
         .R(sync_reset));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT4 #(
     .INIT(16'h0888)) 
     \Using_FPGA.Native_i_1__98 
@@ -24731,7 +24731,7 @@ endmodule
 (* ORIG_REF_NAME = "MB_FDR" *) 
 module system_microblaze_0_0_MB_FDR_140
    (\ex_instr_reg[23] ,
-    \Use_BTC_2.bt_addr_count_reg[6] ,
+    \Use_BTC_2.bt_addr_count_reg[0] ,
     EX_SWAP_Instr_reg,
     sync_reset,
     of_instr_ii_19,
@@ -24743,7 +24743,7 @@ module system_microblaze_0_0_MB_FDR_140
     \Using_FPGA.Native_4 ,
     \Using_FPGA.Native_5 );
   output \ex_instr_reg[23] ;
-  output \Use_BTC_2.bt_addr_count_reg[6] ;
+  output \Use_BTC_2.bt_addr_count_reg[0] ;
   output EX_SWAP_Instr_reg;
   input sync_reset;
   input of_instr_ii_19;
@@ -24757,7 +24757,7 @@ module system_microblaze_0_0_MB_FDR_140
 
   wire Clk;
   wire EX_SWAP_Instr_reg;
-  wire \Use_BTC_2.bt_addr_count_reg[6] ;
+  wire \Use_BTC_2.bt_addr_count_reg[0] ;
   wire \Using_FPGA.Native_0 ;
   wire \Using_FPGA.Native_1 ;
   wire \Using_FPGA.Native_2 ;
@@ -24783,7 +24783,7 @@ module system_microblaze_0_0_MB_FDR_140
         .I1(\Using_FPGA.Native_0 ),
         .I2(\Using_FPGA.Native_1 ),
         .I3(\Using_FPGA.Native_2 ),
-        .O(\Use_BTC_2.bt_addr_count_reg[6] ));
+        .O(\Use_BTC_2.bt_addr_count_reg[0] ));
   (* XILINX_LEGACY_PRIM = "FDR" *) 
   (* box_type = "PRIMITIVE" *) 
   FDRE #(
@@ -24959,7 +24959,7 @@ endmodule
 (* ORIG_REF_NAME = "MB_FDR" *) 
 module system_microblaze_0_0_MB_FDR_152
    (\ex_instr_reg[29] ,
-    \Use_BTC_2.bt_addr_count_reg[6] ,
+    \Use_BTC_2.bt_addr_count_reg[0] ,
     sync_reset,
     of_instr_ii_13,
     Clk,
@@ -24967,7 +24967,7 @@ module system_microblaze_0_0_MB_FDR_152
     \Using_FPGA.Native_1 ,
     \Using_FPGA.Native_2 );
   output \ex_instr_reg[29] ;
-  output \Use_BTC_2.bt_addr_count_reg[6] ;
+  output \Use_BTC_2.bt_addr_count_reg[0] ;
   input sync_reset;
   input of_instr_ii_13;
   input Clk;
@@ -24976,7 +24976,7 @@ module system_microblaze_0_0_MB_FDR_152
   input \Using_FPGA.Native_2 ;
 
   wire Clk;
-  wire \Use_BTC_2.bt_addr_count_reg[6] ;
+  wire \Use_BTC_2.bt_addr_count_reg[0] ;
   wire \Using_FPGA.Native_0 ;
   wire \Using_FPGA.Native_1 ;
   wire \Using_FPGA.Native_2 ;
@@ -24991,7 +24991,7 @@ module system_microblaze_0_0_MB_FDR_152
         .I1(\Using_FPGA.Native_0 ),
         .I2(\Using_FPGA.Native_1 ),
         .I3(\Using_FPGA.Native_2 ),
-        .O(\Use_BTC_2.bt_addr_count_reg[6] ));
+        .O(\Use_BTC_2.bt_addr_count_reg[0] ));
   (* XILINX_LEGACY_PRIM = "FDR" *) 
   (* box_type = "PRIMITIVE" *) 
   FDRE #(
@@ -26003,7 +26003,7 @@ module system_microblaze_0_0_MB_FDR_176
    (\ex_opcode_reg[3] ,
     ex_enable_sext_shift_i_reg,
     SR,
-    \Use_BTC_2.bt_addr_count_reg[6] ,
+    \Use_BTC_2.bt_addr_count_reg[0] ,
     \Using_FPGA.Native_0 ,
     EX_CMP_Op117_out,
     EX_Unsigned_Op116_out,
@@ -26036,7 +26036,7 @@ module system_microblaze_0_0_MB_FDR_176
   output \ex_opcode_reg[3] ;
   output ex_enable_sext_shift_i_reg;
   output [0:0]SR;
-  output \Use_BTC_2.bt_addr_count_reg[6] ;
+  output \Use_BTC_2.bt_addr_count_reg[0] ;
   output \Using_FPGA.Native_0 ;
   output EX_CMP_Op117_out;
   output EX_Unsigned_Op116_out;
@@ -26074,7 +26074,7 @@ module system_microblaze_0_0_MB_FDR_176
   wire EX_Unsigned_Op116_out;
   wire EX_Use_Carry115_out;
   wire [0:0]SR;
-  wire \Use_BTC_2.bt_addr_count_reg[6] ;
+  wire \Use_BTC_2.bt_addr_count_reg[0] ;
   wire \Using_FPGA.Native_0 ;
   wire \Using_FPGA.Native_1 ;
   wire \Using_FPGA.Native_10 ;
@@ -26162,7 +26162,7 @@ module system_microblaze_0_0_MB_FDR_176
     .INIT(4'hE)) 
     \Use_BTC_2.bt_addr_count[0]_i_1 
        (.I0(sync_reset),
-        .I1(\Use_BTC_2.bt_addr_count_reg[6] ),
+        .I1(\Use_BTC_2.bt_addr_count_reg[0] ),
         .O(SR));
   LUT6 #(
     .INIT(64'h0000000000002000)) 
@@ -26173,7 +26173,7 @@ module system_microblaze_0_0_MB_FDR_176
         .I3(\Using_FPGA.Native_4 ),
         .I4(\Using_FPGA.Native_5 ),
         .I5(\Using_FPGA.Native_6 ),
-        .O(\Use_BTC_2.bt_addr_count_reg[6] ));
+        .O(\Use_BTC_2.bt_addr_count_reg[0] ));
   (* XILINX_LEGACY_PRIM = "FDR" *) 
   (* box_type = "PRIMITIVE" *) 
   FDRE #(
@@ -26531,7 +26531,7 @@ module system_microblaze_0_0_MB_FDR_184
         .I4(\Using_FPGA.Native_1 ),
         .I5(\Using_FPGA.Native_2 ),
         .O(ex_move_to_MSR_instr_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT4 #(
     .INIT(16'h0028)) 
     ex_op1_cmp_eq_n_i_1
@@ -26564,7 +26564,7 @@ module system_microblaze_0_0_MB_FDR_184
         .I1(\Using_FPGA.Native_9 ),
         .I2(\Using_FPGA.Native_10 ),
         .O(force_Val10_out));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT4 #(
     .INIT(16'h2008)) 
     use_Reg_Neg_DI_i_1
@@ -26715,7 +26715,7 @@ module system_microblaze_0_0_MB_FDR_186
         .D(of_instr_ii_37),
         .Q(\ex_opcode_reg[5] ),
         .R(sync_reset));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \Using_FPGA.Native_i_1__90 
@@ -26768,7 +26768,7 @@ module system_microblaze_0_0_MB_FDR_186
         .I3(\Using_FPGA.Native_4 ),
         .I4(\Using_FPGA.Native_5 ),
         .O(of_is_div_instr));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT2 #(
     .INIT(4'h7)) 
     ex_is_multi_or_load_instr_i_3
@@ -27172,10 +27172,10 @@ module system_microblaze_0_0_MB_FDR_196
     \Use_BTC_2.bt_write_q_reg ,
     ex_atomic_Instruction_Pair0,
     \Use_BTC_2.bt_if_pc_incr_wait_reg ,
-    \Use_BTC_2.bt_addr_count_reg[6] ,
+    \Use_BTC_2.bt_addr_count_reg[0] ,
     of_pipe_ctrl_reg0,
     \imm_reg_reg[15] ,
-    ex_valid_reg,
+    ex_valid_jump_reg,
     ex_jump_q_reg,
     \Using_FPGA.Native_0 ,
     sync_reset,
@@ -27192,7 +27192,7 @@ module system_microblaze_0_0_MB_FDR_196
     EX_Is_Div_Instr,
     MEM_Is_Div_Instr,
     \Using_FPGA.Native_6 ,
-    ex_valid_reg_0,
+    ex_valid_reg,
     ex_jump,
     ex_jump_nodelay_reg,
     mem_valid_reg,
@@ -27206,10 +27206,10 @@ module system_microblaze_0_0_MB_FDR_196
   output \Use_BTC_2.bt_write_q_reg ;
   output ex_atomic_Instruction_Pair0;
   output \Use_BTC_2.bt_if_pc_incr_wait_reg ;
-  output \Use_BTC_2.bt_addr_count_reg[6] ;
+  output \Use_BTC_2.bt_addr_count_reg[0] ;
   output of_pipe_ctrl_reg0;
   output [0:0]\imm_reg_reg[15] ;
-  output ex_valid_reg;
+  output ex_valid_jump_reg;
   output ex_jump_q_reg;
   output \Using_FPGA.Native_0 ;
   input sync_reset;
@@ -27226,7 +27226,7 @@ module system_microblaze_0_0_MB_FDR_196
   input EX_Is_Div_Instr;
   input MEM_Is_Div_Instr;
   input \Using_FPGA.Native_6 ;
-  input ex_valid_reg_0;
+  input ex_valid_reg;
   input ex_jump;
   input ex_jump_nodelay_reg;
   input mem_valid_reg;
@@ -27240,7 +27240,7 @@ module system_microblaze_0_0_MB_FDR_196
   wire Clk;
   wire EX_Is_Div_Instr;
   wire MEM_Is_Div_Instr;
-  wire \Use_BTC_2.bt_addr_count_reg[6] ;
+  wire \Use_BTC_2.bt_addr_count_reg[0] ;
   wire \Use_BTC_2.bt_if_pc_incr_wait_reg ;
   wire \Use_BTC_2.bt_write_q_reg ;
   wire \Use_BTC_2.ex_prediction_bits_reg[0] ;
@@ -27262,8 +27262,8 @@ module system_microblaze_0_0_MB_FDR_196
   wire ex_jump_q;
   wire ex_jump_q_reg;
   wire ex_jump_wanted;
+  wire ex_valid_jump_reg;
   wire ex_valid_reg;
-  wire ex_valid_reg_0;
   wire [0:0]\imm_reg_reg[15] ;
   wire mem_exception_from_ex;
   wire mem_valid_reg;
@@ -27280,7 +27280,7 @@ module system_microblaze_0_0_MB_FDR_196
         .I1(\Using_FPGA.Native_5 [1]),
         .I2(\Using_FPGA.Native_5 [2]),
         .I3(\Using_FPGA.Native_5 [0]),
-        .O(\Use_BTC_2.bt_addr_count_reg[6] ));
+        .O(\Use_BTC_2.bt_addr_count_reg[0] ));
   LUT2 #(
     .INIT(4'h2)) 
     \Use_BTC_2.bt_if_pc_incr_wait_i_8 
@@ -27345,12 +27345,12 @@ module system_microblaze_0_0_MB_FDR_196
     .INIT(64'hFFFFFDDDFDDDFDDD)) 
     ex_valid_keep_i_3
        (.I0(ex_atomic_Instruction_Pair_reg),
-        .I1(ex_valid_reg_0),
+        .I1(ex_valid_reg),
         .I2(ex_jump),
         .I3(ex_jump_nodelay_reg),
         .I4(mem_valid_reg),
         .I5(mem_exception_from_ex),
-        .O(ex_valid_reg));
+        .O(ex_valid_jump_reg));
   LUT5 #(
     .INIT(32'h02000000)) 
     \imm_reg[0]_i_1 
@@ -28038,52 +28038,911 @@ endmodule
 (* ORIG_REF_NAME = "MB_FDR" *) 
 module system_microblaze_0_0_MB_FDR_215
    (of_pc,
+    \Use_BTC_2.bt_saved_pc_valid_reg ,
+    D,
+    \Use_BTC_2.bt_if_pc_incr_wait_reg ,
+    \Use_BTC_2.bt_ex_mispredict_handled_reg ,
+    of_branch_with_delayslot131_out,
+    of_read_imm_reg_ii0,
+    I5,
+    of_next_ex_valid,
+    \Use_BTC_2.bt_ex_mispredict_addr_hold_reg ,
     I098_out,
     S,
+    \if_pc_reg[31] ,
+    \Use_BTC_2.bt_ex_mispredict_pc_hold_reg ,
+    if_missed_fetch_reg,
+    ex_valid_reg,
+    ex_valid_jump_reg,
     \EX_Op1_reg[18] ,
     sync_reset,
     of_pc_ii_13,
     Clk,
-    Q,
+    \Use_BTC_2.bt_saved_pc_valid_reg_0 ,
+    \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ,
     \Using_FPGA.Native_0 ,
-    if_missed_fetch_reg,
+    \Use_Async_Reset.sync_reset_reg ,
+    \EX_Op2_reg[0] ,
+    ex_jump,
+    bt_jump,
+    \if_pc_reg[0] ,
+    Q,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56] ,
+    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ,
+    \Use_BTC_2.bt_saved_pc_reg[0] ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28] ,
+    bt_if_pc_incr_wait,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]_0 ,
+    if_pc_incr_carry3,
+    bt_ex_mispredict_handled,
+    \Using_FPGA.Native_1 ,
+    ex_branch_with_delayslot_reg,
+    ex_valid_reg_0,
+    \Use_BTC_2.bt_ex_jump_held_reg ,
+    \Use_BTC_2.bt_ex_mispredict_handled_reg_0 ,
+    of_Take_Interrupt_hold_reg,
+    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ,
+    \Use_BTC_2.bt_saved_pc_valid_reg_1 ,
+    \Using_FPGA.Native_2 ,
+    \Using_FPGA.Native_3 ,
+    \Using_FPGA.Native_4 ,
+    bt_ex_mispredict_addr_hold,
+    \Using_FPGA.Native_5 ,
+    CO,
+    \Use_BTC_2.bt_ex_return_reg ,
+    \Use_BTC_2.ex_prediction_bits_reg[3] ,
+    of_valid,
+    ex_Take_Intr_or_Exc_keep,
+    \if_pc_reg[18] ,
+    \Using_FPGA.Native_6 ,
+    if_missed_fetch_reg_0,
     IReady,
     mem_access_completed_reg,
-    \Use_BTC_2.bt_delayslot_target_reg[18] ,
-    \Using_FPGA.Native_1 ,
+    \Using_FPGA.Native_7 ,
+    bt_ex_mispredict_pc_hold,
+    iside_data_strobe_combined_sel,
+    \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg ,
+    ex_valid,
+    wb_exception_i_reg,
+    of_pause_reg,
+    out,
     of_op1_sel_spr_pc);
   output [0:0]of_pc;
+  output \Use_BTC_2.bt_saved_pc_valid_reg ;
+  output [29:0]D;
+  output \Use_BTC_2.bt_if_pc_incr_wait_reg ;
+  output \Use_BTC_2.bt_ex_mispredict_handled_reg ;
+  output of_branch_with_delayslot131_out;
+  output of_read_imm_reg_ii0;
+  output I5;
+  output of_next_ex_valid;
+  output \Use_BTC_2.bt_ex_mispredict_addr_hold_reg ;
   output I098_out;
   output [0:0]S;
+  output \if_pc_reg[31] ;
+  output \Use_BTC_2.bt_ex_mispredict_pc_hold_reg ;
+  output if_missed_fetch_reg;
+  output ex_valid_reg;
+  output ex_valid_jump_reg;
   output \EX_Op1_reg[18] ;
   input sync_reset;
   input of_pc_ii_13;
   input Clk;
-  input [0:0]Q;
+  input \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
+  input \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ;
+  input \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ;
   input \Using_FPGA.Native_0 ;
-  input if_missed_fetch_reg;
+  input \Use_Async_Reset.sync_reset_reg ;
+  input [29:0]\EX_Op2_reg[0] ;
+  input ex_jump;
+  input bt_jump;
+  input [29:0]\if_pc_reg[0] ;
+  input [29:0]Q;
+  input [1:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56] ;
+  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ;
+  input [29:0]\Use_BTC_2.bt_saved_pc_reg[0] ;
+  input [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] ;
+  input [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] ;
+  input [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] ;
+  input [3:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28] ;
+  input bt_if_pc_incr_wait;
+  input \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]_0 ;
+  input if_pc_incr_carry3;
+  input bt_ex_mispredict_handled;
+  input \Using_FPGA.Native_1 ;
+  input [0:0]ex_branch_with_delayslot_reg;
+  input ex_valid_reg_0;
+  input \Use_BTC_2.bt_ex_jump_held_reg ;
+  input \Use_BTC_2.bt_ex_mispredict_handled_reg_0 ;
+  input of_Take_Interrupt_hold_reg;
+  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ;
+  input \Use_BTC_2.bt_saved_pc_valid_reg_1 ;
+  input \Using_FPGA.Native_2 ;
+  input \Using_FPGA.Native_3 ;
+  input \Using_FPGA.Native_4 ;
+  input bt_ex_mispredict_addr_hold;
+  input \Using_FPGA.Native_5 ;
+  input [0:0]CO;
+  input \Use_BTC_2.bt_ex_return_reg ;
+  input [0:0]\Use_BTC_2.ex_prediction_bits_reg[3] ;
+  input of_valid;
+  input ex_Take_Intr_or_Exc_keep;
+  input [0:0]\if_pc_reg[18] ;
+  input \Using_FPGA.Native_6 ;
+  input if_missed_fetch_reg_0;
   input IReady;
   input mem_access_completed_reg;
-  input [2:0]\Use_BTC_2.bt_delayslot_target_reg[18] ;
-  input [1:0]\Using_FPGA.Native_1 ;
+  input [1:0]\Using_FPGA.Native_7 ;
+  input bt_ex_mispredict_pc_hold;
+  input iside_data_strobe_combined_sel;
+  input \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg ;
+  input ex_valid;
+  input wb_exception_i_reg;
+  input of_pause_reg;
+  input out;
   input of_op1_sel_spr_pc;
 
+  wire [0:0]CO;
   wire Clk;
+  wire [29:0]D;
   wire \EX_Op1_reg[18] ;
+  wire [29:0]\EX_Op2_reg[0] ;
   wire I098_out;
+  wire I5;
   wire IReady;
-  wire [0:0]Q;
+  wire \Instr_Addr[0]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[0]_INST_0_i_2_n_0 ;
+  wire \Instr_Addr[10]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[11]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[12]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[13]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[14]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[15]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[16]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[17]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[18]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[19]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[1]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[20]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[21]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[22]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[23]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[24]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[25]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[26]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[27]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[28]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[29]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[2]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[3]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[4]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[5]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[6]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[7]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[8]_INST_0_i_1_n_0 ;
+  wire \Instr_Addr[9]_INST_0_i_1_n_0 ;
+  wire \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg ;
+  wire \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ;
+  wire \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]_0 ;
+  wire [3:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28] ;
+  wire [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] ;
+  wire [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] ;
+  wire [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] ;
+  wire [1:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56] ;
+  wire [29:0]Q;
   wire [0:0]S;
-  wire [2:0]\Use_BTC_2.bt_delayslot_target_reg[18] ;
+  wire \Use_Async_Reset.sync_reset_reg ;
+  wire \Use_BTC_2.bt_ex_jump_held_reg ;
+  wire \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0 ;
+  wire \Use_BTC_2.bt_ex_mispredict_addr_hold_reg ;
+  wire \Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0 ;
+  wire \Use_BTC_2.bt_ex_mispredict_handled_reg ;
+  wire \Use_BTC_2.bt_ex_mispredict_handled_reg_0 ;
+  wire \Use_BTC_2.bt_ex_mispredict_pc_hold_reg ;
+  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ;
+  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ;
+  wire \Use_BTC_2.bt_ex_return_reg ;
+  wire \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0 ;
+  wire \Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0 ;
+  wire \Use_BTC_2.bt_if_pc_incr_wait_reg ;
+  wire \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ;
+  wire [29:0]\Use_BTC_2.bt_saved_pc_reg[0] ;
+  wire \Use_BTC_2.bt_saved_pc_valid_reg ;
+  wire \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
+  wire \Use_BTC_2.bt_saved_pc_valid_reg_1 ;
+  wire [0:0]\Use_BTC_2.ex_prediction_bits_reg[3] ;
   wire \Using_FPGA.Native_0 ;
-  wire [1:0]\Using_FPGA.Native_1 ;
+  wire \Using_FPGA.Native_1 ;
+  wire \Using_FPGA.Native_2 ;
+  wire \Using_FPGA.Native_3 ;
+  wire \Using_FPGA.Native_4 ;
+  wire \Using_FPGA.Native_5 ;
+  wire \Using_FPGA.Native_6 ;
+  wire [1:0]\Using_FPGA.Native_7 ;
+  wire bt_ex_mispredict_addr_hold;
+  wire bt_ex_mispredict_handled;
+  wire bt_ex_mispredict_pc_hold;
+  wire bt_if_pc_incr_wait;
+  wire bt_jump;
+  wire ex_Take_Intr_or_Exc_keep;
+  wire [0:0]ex_branch_with_delayslot_reg;
+  wire ex_jump;
+  wire ex_valid;
+  wire ex_valid_jump_reg;
+  wire ex_valid_reg;
+  wire ex_valid_reg_0;
   wire if_missed_fetch_reg;
+  wire if_missed_fetch_reg_0;
+  wire if_pc_incr_carry3;
+  wire [29:0]\if_pc_reg[0] ;
+  wire [0:0]\if_pc_reg[18] ;
+  wire \if_pc_reg[31] ;
+  wire iside_data_strobe_combined_sel;
   wire mem_access_completed_reg;
+  wire of_Take_Interrupt_hold_reg;
+  wire of_branch_with_delayslot131_out;
+  wire of_next_ex_valid;
   wire of_op1_sel_spr_pc;
+  wire of_pause_reg;
   wire [0:0]of_pc;
   wire of_pc_ii_13;
+  wire of_read_imm_reg_ii0;
+  wire of_read_imm_reg_ii1;
+  wire of_valid;
+  wire out;
   wire sync_reset;
+  wire wb_exception_i_reg;
 
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[0]_INST_0 
+       (.I0(\EX_Op2_reg[0] [29]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[0]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [29]),
+        .O(D[29]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[0]_INST_0_i_1 
+       (.I0(Q[29]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28] [3]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [29]),
+        .O(\Instr_Addr[0]_INST_0_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'hAAAAAAAAEAAAAAAA)) 
+    \Instr_Addr[0]_INST_0_i_2 
+       (.I0(bt_ex_mispredict_addr_hold),
+        .I1(\Use_BTC_2.ex_prediction_bits_reg[3] ),
+        .I2(\Use_BTC_2.bt_ex_return_reg ),
+        .I3(CO),
+        .I4(of_valid),
+        .I5(ex_Take_Intr_or_Exc_keep),
+        .O(\Instr_Addr[0]_INST_0_i_2_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[10]_INST_0 
+       (.I0(\EX_Op2_reg[0] [19]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[10]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [19]),
+        .O(D[19]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[10]_INST_0_i_1 
+       (.I0(Q[19]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] [1]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [19]),
+        .O(\Instr_Addr[10]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[11]_INST_0 
+       (.I0(\EX_Op2_reg[0] [18]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[11]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [18]),
+        .O(D[18]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[11]_INST_0_i_1 
+       (.I0(Q[18]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] [0]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [18]),
+        .O(\Instr_Addr[11]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[12]_INST_0 
+       (.I0(\EX_Op2_reg[0] [17]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[12]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [17]),
+        .O(D[17]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[12]_INST_0_i_1 
+       (.I0(Q[17]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] [7]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [17]),
+        .O(\Instr_Addr[12]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[13]_INST_0 
+       (.I0(\EX_Op2_reg[0] [16]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[13]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [16]),
+        .O(D[16]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[13]_INST_0_i_1 
+       (.I0(Q[16]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] [6]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [16]),
+        .O(\Instr_Addr[13]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[14]_INST_0 
+       (.I0(\EX_Op2_reg[0] [15]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[14]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [15]),
+        .O(D[15]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[14]_INST_0_i_1 
+       (.I0(Q[15]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] [5]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [15]),
+        .O(\Instr_Addr[14]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[15]_INST_0 
+       (.I0(\EX_Op2_reg[0] [14]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[15]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [14]),
+        .O(D[14]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[15]_INST_0_i_1 
+       (.I0(Q[14]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] [4]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [14]),
+        .O(\Instr_Addr[15]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[16]_INST_0 
+       (.I0(\EX_Op2_reg[0] [13]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[16]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [13]),
+        .O(D[13]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[16]_INST_0_i_1 
+       (.I0(Q[13]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] [3]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [13]),
+        .O(\Instr_Addr[16]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[17]_INST_0 
+       (.I0(\EX_Op2_reg[0] [12]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[17]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [12]),
+        .O(D[12]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[17]_INST_0_i_1 
+       (.I0(Q[12]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] [2]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [12]),
+        .O(\Instr_Addr[17]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[18]_INST_0 
+       (.I0(\EX_Op2_reg[0] [11]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[18]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [11]),
+        .O(D[11]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[18]_INST_0_i_1 
+       (.I0(Q[11]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] [1]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [11]),
+        .O(\Instr_Addr[18]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[19]_INST_0 
+       (.I0(\EX_Op2_reg[0] [10]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[19]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [10]),
+        .O(D[10]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[19]_INST_0_i_1 
+       (.I0(Q[10]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] [0]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [10]),
+        .O(\Instr_Addr[19]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[1]_INST_0 
+       (.I0(\EX_Op2_reg[0] [28]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[1]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [28]),
+        .O(D[28]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[1]_INST_0_i_1 
+       (.I0(Q[28]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28] [2]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [28]),
+        .O(\Instr_Addr[1]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[20]_INST_0 
+       (.I0(\EX_Op2_reg[0] [9]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[20]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [9]),
+        .O(D[9]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[20]_INST_0_i_1 
+       (.I0(Q[9]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] [7]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [9]),
+        .O(\Instr_Addr[20]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[21]_INST_0 
+       (.I0(\EX_Op2_reg[0] [8]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[21]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [8]),
+        .O(D[8]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[21]_INST_0_i_1 
+       (.I0(Q[8]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] [6]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [8]),
+        .O(\Instr_Addr[21]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[22]_INST_0 
+       (.I0(\EX_Op2_reg[0] [7]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[22]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [7]),
+        .O(D[7]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[22]_INST_0_i_1 
+       (.I0(Q[7]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] [5]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [7]),
+        .O(\Instr_Addr[22]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[23]_INST_0 
+       (.I0(\EX_Op2_reg[0] [6]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[23]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [6]),
+        .O(D[6]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[23]_INST_0_i_1 
+       (.I0(Q[6]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] [4]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [6]),
+        .O(\Instr_Addr[23]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[24]_INST_0 
+       (.I0(\EX_Op2_reg[0] [5]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[24]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [5]),
+        .O(D[5]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[24]_INST_0_i_1 
+       (.I0(Q[5]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] [3]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [5]),
+        .O(\Instr_Addr[24]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[25]_INST_0 
+       (.I0(\EX_Op2_reg[0] [4]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[25]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [4]),
+        .O(D[4]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[25]_INST_0_i_1 
+       (.I0(Q[4]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] [2]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [4]),
+        .O(\Instr_Addr[25]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[26]_INST_0 
+       (.I0(\EX_Op2_reg[0] [3]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[26]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [3]),
+        .O(D[3]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[26]_INST_0_i_1 
+       (.I0(Q[3]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] [1]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [3]),
+        .O(\Instr_Addr[26]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[27]_INST_0 
+       (.I0(\EX_Op2_reg[0] [2]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[27]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [2]),
+        .O(D[2]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[27]_INST_0_i_1 
+       (.I0(Q[2]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] [0]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [2]),
+        .O(\Instr_Addr[27]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[28]_INST_0 
+       (.I0(\EX_Op2_reg[0] [1]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[28]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [1]),
+        .O(D[1]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[28]_INST_0_i_1 
+       (.I0(Q[1]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56] [1]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [1]),
+        .O(\Instr_Addr[28]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[29]_INST_0 
+       (.I0(\EX_Op2_reg[0] [0]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[29]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [0]),
+        .O(D[0]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[29]_INST_0_i_1 
+       (.I0(Q[0]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56] [0]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [0]),
+        .O(\Instr_Addr[29]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[2]_INST_0 
+       (.I0(\EX_Op2_reg[0] [27]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[2]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [27]),
+        .O(D[27]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[2]_INST_0_i_1 
+       (.I0(Q[27]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28] [1]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [27]),
+        .O(\Instr_Addr[2]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[3]_INST_0 
+       (.I0(\EX_Op2_reg[0] [26]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[3]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [26]),
+        .O(D[26]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[3]_INST_0_i_1 
+       (.I0(Q[26]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28] [0]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [26]),
+        .O(\Instr_Addr[3]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[4]_INST_0 
+       (.I0(\EX_Op2_reg[0] [25]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[4]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [25]),
+        .O(D[25]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[4]_INST_0_i_1 
+       (.I0(Q[25]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] [7]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [25]),
+        .O(\Instr_Addr[4]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[5]_INST_0 
+       (.I0(\EX_Op2_reg[0] [24]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[5]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [24]),
+        .O(D[24]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[5]_INST_0_i_1 
+       (.I0(Q[24]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] [6]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [24]),
+        .O(\Instr_Addr[5]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[6]_INST_0 
+       (.I0(\EX_Op2_reg[0] [23]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[6]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [23]),
+        .O(D[23]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[6]_INST_0_i_1 
+       (.I0(Q[23]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] [5]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [23]),
+        .O(\Instr_Addr[6]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[7]_INST_0 
+       (.I0(\EX_Op2_reg[0] [22]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[7]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [22]),
+        .O(D[22]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[7]_INST_0_i_1 
+       (.I0(Q[22]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] [4]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [22]),
+        .O(\Instr_Addr[7]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[8]_INST_0 
+       (.I0(\EX_Op2_reg[0] [21]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[8]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [21]),
+        .O(D[21]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[8]_INST_0_i_1 
+       (.I0(Q[21]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] [3]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [21]),
+        .O(\Instr_Addr[8]_INST_0_i_1_n_0 ));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[9]_INST_0 
+       (.I0(\EX_Op2_reg[0] [20]),
+        .I1(ex_jump),
+        .I2(\Instr_Addr[9]_INST_0_i_1_n_0 ),
+        .I3(bt_jump),
+        .I4(\if_pc_reg[0] [20]),
+        .O(D[20]));
+  LUT5 #(
+    .INIT(32'hB8BBB888)) 
+    \Instr_Addr[9]_INST_0_i_1 
+       (.I0(Q[20]),
+        .I1(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] [2]),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [20]),
+        .O(\Instr_Addr[9]_INST_0_i_1_n_0 ));
+  LUT6 #(
+    .INIT(64'h0000000011110100)) 
+    \Use_BTC_2.bt_ex_mispredict_addr_hold_i_1 
+       (.I0(sync_reset),
+        .I1(ex_jump),
+        .I2(bt_ex_mispredict_handled),
+        .I3(\Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0 ),
+        .I4(bt_ex_mispredict_addr_hold),
+        .I5(\Using_FPGA.Native_1 ),
+        .O(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ));
+  LUT5 #(
+    .INIT(32'h40000000)) 
+    \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2 
+       (.I0(ex_Take_Intr_or_Exc_keep),
+        .I1(of_valid),
+        .I2(CO),
+        .I3(\Use_BTC_2.bt_ex_return_reg ),
+        .I4(\Use_BTC_2.ex_prediction_bits_reg[3] ),
+        .O(\Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'h000000000000AAFE)) 
+    \Use_BTC_2.bt_ex_mispredict_handled_i_1 
+       (.I0(bt_ex_mispredict_handled),
+        .I1(\Using_FPGA.Native_1 ),
+        .I2(ex_jump),
+        .I3(\Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0 ),
+        .I4(ex_branch_with_delayslot_reg),
+        .I5(sync_reset),
+        .O(\Use_BTC_2.bt_ex_mispredict_handled_reg ));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT4 #(
+    .INIT(16'h0007)) 
+    \Use_BTC_2.bt_ex_mispredict_handled_i_2 
+       (.I0(ex_valid_reg_0),
+        .I1(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
+        .I2(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
+        .O(\Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0 ));
+  LUT4 #(
+    .INIT(16'h1F0F)) 
+    \Use_BTC_2.bt_ex_mispredict_pc_hold_i_1 
+       (.I0(\Using_FPGA.Native_1 ),
+        .I1(ex_jump),
+        .I2(of_read_imm_reg_ii1),
+        .I3(bt_ex_mispredict_pc_hold),
+        .O(\Use_BTC_2.bt_ex_mispredict_pc_hold_reg ));
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  LUT5 #(
+    .INIT(32'hAAABABAB)) 
+    \Use_BTC_2.bt_ex_mispredict_pc_hold_i_2 
+       (.I0(bt_ex_mispredict_handled),
+        .I1(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
+        .I2(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I3(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
+        .I4(ex_valid_reg_0),
+        .O(of_read_imm_reg_ii1));
+  LUT6 #(
+    .INIT(64'h0000000010101110)) 
+    \Use_BTC_2.bt_if_pc_incr_wait_i_1 
+       (.I0(\Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0 ),
+        .I1(\Use_Async_Reset.sync_reset_reg ),
+        .I2(bt_if_pc_incr_wait),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
+        .I4(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]_0 ),
+        .I5(if_pc_incr_carry3),
+        .O(\Use_BTC_2.bt_if_pc_incr_wait_reg ));
+  LUT6 #(
+    .INIT(64'h0004C8CC00040004)) 
+    \Use_BTC_2.bt_if_pc_incr_wait_i_2 
+       (.I0(\Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0 ),
+        .I1(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
+        .I2(ex_valid_reg_0),
+        .I3(\Use_BTC_2.bt_ex_jump_held_reg ),
+        .I4(\Using_FPGA.Native_0 ),
+        .I5(\Use_BTC_2.bt_ex_mispredict_handled_reg_0 ),
+        .O(\Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0 ));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFEAAAAAAA)) 
+    \Use_BTC_2.bt_if_pc_incr_wait_i_5 
+       (.I0(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
+        .I1(\Using_FPGA.Native_5 ),
+        .I2(CO),
+        .I3(\Use_BTC_2.bt_ex_return_reg ),
+        .I4(\Use_BTC_2.ex_prediction_bits_reg[3] ),
+        .I5(bt_ex_mispredict_addr_hold),
+        .O(\Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0 ));
+  LUT6 #(
+    .INIT(64'h00000000CCCECFCE)) 
+    \Use_BTC_2.bt_saved_pc_valid_i_1 
+       (.I0(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
+        .I1(\Use_BTC_2.bt_if_pc_incr_wait_reg_0 ),
+        .I2(\Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0 ),
+        .I3(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ),
+        .I4(\Using_FPGA.Native_0 ),
+        .I5(\Use_Async_Reset.sync_reset_reg ),
+        .O(\Use_BTC_2.bt_saved_pc_valid_reg ));
   (* XILINX_LEGACY_PRIM = "FDR" *) 
   (* box_type = "PRIMITIVE" *) 
   FDRE #(
@@ -28094,12 +28953,31 @@ module system_microblaze_0_0_MB_FDR_215
         .D(of_pc_ii_13),
         .Q(of_pc),
         .R(sync_reset));
+  LUT5 #(
+    .INIT(32'hAAABABAB)) 
+    \Using_FPGA.Native_i_1__107 
+       (.I0(bt_ex_mispredict_handled),
+        .I1(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
+        .I2(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I3(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
+        .I4(ex_valid_reg_0),
+        .O(\if_pc_reg[31] ));
+  LUT6 #(
+    .INIT(64'hAAAAAAAAFFFFFFEA)) 
+    \Using_FPGA.Native_i_1__5 
+       (.I0(ex_jump),
+        .I1(ex_valid_reg_0),
+        .I2(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
+        .I3(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I4(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
+        .I5(bt_ex_mispredict_handled),
+        .O(I5));
   LUT6 #(
     .INIT(64'hFBFBFBFF08080800)) 
     \Using_FPGA.Native_i_1__74 
-       (.I0(Q),
-        .I1(\Using_FPGA.Native_0 ),
-        .I2(if_missed_fetch_reg),
+       (.I0(\if_pc_reg[18] ),
+        .I1(\Using_FPGA.Native_6 ),
+        .I2(if_missed_fetch_reg_0),
         .I3(IReady),
         .I4(mem_access_completed_reg),
         .I5(of_pc),
@@ -28114,12 +28992,72 @@ module system_microblaze_0_0_MB_FDR_215
     .INIT(64'h9009000000009009)) 
     bt_use_delayslot_target4_carry_i_1
        (.I0(of_pc),
-        .I1(\Use_BTC_2.bt_delayslot_target_reg[18] [2]),
-        .I2(\Using_FPGA.Native_1 [0]),
-        .I3(\Use_BTC_2.bt_delayslot_target_reg[18] [0]),
-        .I4(\Use_BTC_2.bt_delayslot_target_reg[18] [1]),
-        .I5(\Using_FPGA.Native_1 [1]),
+        .I1(Q[11]),
+        .I2(\Using_FPGA.Native_7 [0]),
+        .I3(Q[9]),
+        .I4(Q[10]),
+        .I5(\Using_FPGA.Native_7 [1]),
         .O(S));
+  LUT6 #(
+    .INIT(64'h00000000888A8888)) 
+    ex_branch_with_delayslot_i_1
+       (.I0(of_Take_Interrupt_hold_reg),
+        .I1(bt_ex_mispredict_handled),
+        .I2(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
+        .I3(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I4(\Use_BTC_2.bt_saved_pc_valid_reg_1 ),
+        .I5(\Using_FPGA.Native_2 ),
+        .O(of_branch_with_delayslot131_out));
+  LUT6 #(
+    .INIT(64'h000C000C0000000A)) 
+    ex_valid_i_1
+       (.I0(ex_valid),
+        .I1(of_next_ex_valid),
+        .I2(sync_reset),
+        .I3(wb_exception_i_reg),
+        .I4(ex_branch_with_delayslot_reg),
+        .I5(of_pause_reg),
+        .O(ex_valid_reg));
+  LUT6 #(
+    .INIT(64'h000C000C0000000A)) 
+    ex_valid_jump_i_1
+       (.I0(out),
+        .I1(of_next_ex_valid),
+        .I2(sync_reset),
+        .I3(wb_exception_i_reg),
+        .I4(ex_branch_with_delayslot_reg),
+        .I5(of_pause_reg),
+        .O(ex_valid_jump_reg));
+  LUT6 #(
+    .INIT(64'h00000000FFFF0007)) 
+    ex_valid_keep_i_2
+       (.I0(ex_valid_reg_0),
+        .I1(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
+        .I2(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
+        .I4(bt_ex_mispredict_handled),
+        .I5(\Using_FPGA.Native_4 ),
+        .O(of_next_ex_valid));
+  LUT6 #(
+    .INIT(64'h000000000000002E)) 
+    if_missed_fetch_i_1
+       (.I0(I5),
+        .I1(if_missed_fetch_reg_0),
+        .I2(iside_data_strobe_combined_sel),
+        .I3(\Using_FPGA.Native_1 ),
+        .I4(\No_Master_Debug_Logic.dbg_stop_instr_fetch_reg ),
+        .I5(sync_reset),
+        .O(if_missed_fetch_reg));
+  LUT6 #(
+    .INIT(64'h00000000888A8888)) 
+    of_read_imm_reg_ii_i_2
+       (.I0(of_Take_Interrupt_hold_reg),
+        .I1(bt_ex_mispredict_handled),
+        .I2(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
+        .I3(\Instr_Addr[0]_INST_0_i_2_n_0 ),
+        .I4(\Use_BTC_2.bt_saved_pc_valid_reg_1 ),
+        .I5(\Using_FPGA.Native_3 ),
+        .O(of_read_imm_reg_ii0));
 endmodule
 
 (* ORIG_REF_NAME = "MB_FDR" *) 
@@ -38213,112 +39151,83 @@ endmodule
 (* ORIG_REF_NAME = "MB_MUXCY" *) 
 module system_microblaze_0_0_MB_MUXCY_301
    (\if_pc_reg[31] ,
-    \Use_BTC_2.bt_saved_pc_valid_reg ,
     I1_1,
     in,
     I0,
     \Use_BTC_2.bt_if_pc_incr_wait_reg ,
+    \Use_BTC_2.bt_saved_pc_valid_reg ,
     \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ,
-    ex_branch_with_delayslot_reg,
+    \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ,
     D,
     \Use_BTC_2.jump_done_reg ,
     \Instr_Addr[30] ,
+    \Use_BTC_2.bt_ex_mispredict_handled_reg ,
     carry2,
-    \Use_BTC_2.bt_saved_pc_valid_reg_0 ,
-    \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ,
     \Using_FPGA.Native_0 ,
-    \Use_Async_Reset.sync_reset_reg ,
-    \Using_FPGA.Native_1 ,
     out,
-    \Using_FPGA.Native_2 ,
+    \Using_FPGA.Native_1 ,
     if_missed_fetch_reg,
     IReady,
     mem_access_completed_reg,
-    \Using_FPGA.Native_3 ,
+    \Using_FPGA.Native_2 ,
     Q,
     if_pc_write_q,
     we_hold,
     bt_valid_bit,
-    bt_if_pc_incr_wait,
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ,
-    if_pc_incr_carry3,
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ,
-    \Use_BTC_2.bt_ex_jump_held_reg ,
     \Use_BTC_2.ex_jump_wanted_delayslot_reg ,
     ex_valid,
     bt_ex_imm_cond_branch,
     \Use_BTC_2.ex_prediction_bits_reg[3] ,
     \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ,
-    \Using_FPGA.Native_4 ,
+    if_pc_incr_carry3,
+    \Using_FPGA.Native_3 ,
     ex_jump,
-    bt_ex_mispredict_addr_hold,
-    \Use_BTC_2.bt_ex_return_reg ,
-    CO,
-    of_valid,
-    ex_Take_Intr_or_Exc_keep,
     bt_ex_mispredict_handled,
     ex_jump_hold_0,
     \EX_Op2_reg[30] ,
     \if_pc_reg[30] ,
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 ,
     lopt,
-    lopt_1,
-    lopt_2);
+    lopt_1);
   output \if_pc_reg[31] ;
-  output \Use_BTC_2.bt_saved_pc_valid_reg ;
   output I1_1;
   output [0:0]in;
   output I0;
   output \Use_BTC_2.bt_if_pc_incr_wait_reg ;
+  output \Use_BTC_2.bt_saved_pc_valid_reg ;
   output \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ;
-  output ex_branch_with_delayslot_reg;
+  output \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ;
   output [0:0]D;
   output \Use_BTC_2.jump_done_reg ;
   output [1:0]\Instr_Addr[30] ;
+  input \Use_BTC_2.bt_ex_mispredict_handled_reg ;
   input carry2;
-  input \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
-  input \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ;
   input \Using_FPGA.Native_0 ;
-  input \Use_Async_Reset.sync_reset_reg ;
-  input \Using_FPGA.Native_1 ;
   input [0:0]out;
-  input \Using_FPGA.Native_2 ;
+  input \Using_FPGA.Native_1 ;
   input if_missed_fetch_reg;
   input IReady;
   input mem_access_completed_reg;
-  input \Using_FPGA.Native_3 ;
+  input \Using_FPGA.Native_2 ;
   input [0:0]Q;
   input if_pc_write_q;
   input we_hold;
   input bt_valid_bit;
-  input bt_if_pc_incr_wait;
-  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ;
-  input if_pc_incr_carry3;
-  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ;
-  input \Use_BTC_2.bt_ex_jump_held_reg ;
   input \Use_BTC_2.ex_jump_wanted_delayslot_reg ;
   input ex_valid;
   input bt_ex_imm_cond_branch;
   input [0:0]\Use_BTC_2.ex_prediction_bits_reg[3] ;
   input [0:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ;
-  input \Using_FPGA.Native_4 ;
+  input if_pc_incr_carry3;
+  input \Using_FPGA.Native_3 ;
   input ex_jump;
-  input bt_ex_mispredict_addr_hold;
-  input \Use_BTC_2.bt_ex_return_reg ;
-  input [0:0]CO;
-  input of_valid;
-  input ex_Take_Intr_or_Exc_keep;
   input bt_ex_mispredict_handled;
   input ex_jump_hold_0;
   input [1:0]\EX_Op2_reg[30] ;
   input [1:0]\if_pc_reg[30] ;
-  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 ;
   input lopt;
   output lopt_1;
-  output lopt_2;
 
   wire \<const1> ;
-  wire [0:0]CO;
   wire [0:0]D;
   wire [1:0]\EX_Op2_reg[30] ;
   wire I0;
@@ -38327,21 +39236,11 @@ module system_microblaze_0_0_MB_MUXCY_301
   wire [1:0]\Instr_Addr[30] ;
   wire [0:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ;
   wire [0:0]Q;
-  wire \Use_Async_Reset.sync_reset_reg ;
-  wire \Use_BTC_2.bt_ex_jump_held_reg ;
-  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ;
-  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ;
-  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 ;
-  wire \Use_BTC_2.bt_ex_return_reg ;
-  wire \Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0 ;
-  wire \Use_BTC_2.bt_if_pc_incr_wait_i_4_n_0 ;
-  wire \Use_BTC_2.bt_if_pc_incr_wait_i_7_n_0 ;
+  wire \Use_BTC_2.bt_ex_mispredict_handled_reg ;
   wire \Use_BTC_2.bt_if_pc_incr_wait_reg ;
   wire \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ;
   wire \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ;
-  wire \Use_BTC_2.bt_saved_pc_valid_i_3_n_0 ;
   wire \Use_BTC_2.bt_saved_pc_valid_reg ;
-  wire \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
   wire \Use_BTC_2.ex_jump_wanted_delayslot_reg ;
   wire [0:0]\Use_BTC_2.ex_prediction_bits_reg[3] ;
   wire \Use_BTC_2.jump_done_reg ;
@@ -38349,16 +39248,10 @@ module system_microblaze_0_0_MB_MUXCY_301
   wire \Using_FPGA.Native_1 ;
   wire \Using_FPGA.Native_2 ;
   wire \Using_FPGA.Native_3 ;
-  wire \Using_FPGA.Native_4 ;
-  wire \Using_FPGA.Native_i_1__107_n_0 ;
   wire bt_ex_imm_cond_branch;
-  wire bt_ex_mispredict_addr_hold;
   wire bt_ex_mispredict_handled;
-  wire bt_if_pc_incr_wait;
   wire bt_valid_bit;
   wire carry2;
-  wire ex_Take_Intr_or_Exc_keep;
-  wire ex_branch_with_delayslot_reg;
   wire ex_jump;
   wire ex_jump_hold_0;
   wire ex_valid;
@@ -38369,24 +39262,12 @@ module system_microblaze_0_0_MB_MUXCY_301
   wire if_pc_write_q;
   wire [0:0]in;
   wire mem_access_completed_reg;
-  wire of_valid;
   wire [0:0]out;
   wire we_hold;
 
   assign \if_pc_reg[31]  = lopt;
   assign lopt_1 = \<const1> ;
-  assign lopt_2 = \Using_FPGA.Native_i_1__107_n_0 ;
-  LUT6 #(
-    .INIT(64'hAAAAAAAAEAAAAAAA)) 
-    \Instr_Addr[0]_INST_0_i_2 
-       (.I0(bt_ex_mispredict_addr_hold),
-        .I1(\Use_BTC_2.ex_prediction_bits_reg[3] ),
-        .I2(\Use_BTC_2.bt_ex_return_reg ),
-        .I3(CO),
-        .I4(of_valid),
-        .I5(ex_Take_Intr_or_Exc_keep),
-        .O(ex_branch_with_delayslot_reg));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT4 #(
     .INIT(16'h88B8)) 
     \Instr_Addr[30]_INST_0 
@@ -38395,7 +39276,7 @@ module system_microblaze_0_0_MB_MUXCY_301
         .I2(\if_pc_reg[30] [1]),
         .I3(\if_pc_reg[31] ),
         .O(\Instr_Addr[30] [1]));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT4 #(
     .INIT(16'h88B8)) 
     \Instr_Addr[31]_INST_0 
@@ -38404,61 +39285,31 @@ module system_microblaze_0_0_MB_MUXCY_301
         .I2(\if_pc_reg[30] [0]),
         .I3(\if_pc_reg[31] ),
         .O(\Instr_Addr[30] [0]));
-  LUT6 #(
-    .INIT(64'h0000000010101110)) 
-    \Use_BTC_2.bt_if_pc_incr_wait_i_1 
-       (.I0(\Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0 ),
-        .I1(\Use_Async_Reset.sync_reset_reg ),
-        .I2(bt_if_pc_incr_wait),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_if_pc_incr_wait_i_4_n_0 ),
-        .I5(if_pc_incr_carry3),
-        .O(\Use_BTC_2.bt_if_pc_incr_wait_reg ));
-  LUT6 #(
-    .INIT(64'h0004C8CC00040004)) 
-    \Use_BTC_2.bt_if_pc_incr_wait_i_2 
-       (.I0(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
-        .I1(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
-        .I2(\Use_BTC_2.bt_if_pc_incr_wait_reg_0 ),
-        .I3(\Use_BTC_2.bt_ex_jump_held_reg ),
-        .I4(\Using_FPGA.Native_0 ),
-        .I5(\Use_BTC_2.bt_if_pc_incr_wait_i_7_n_0 ),
-        .O(\Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \Use_BTC_2.bt_if_pc_incr_wait_i_4 
        (.I0(\if_pc_reg[31] ),
         .I1(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ),
-        .O(\Use_BTC_2.bt_if_pc_incr_wait_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+        .O(\Use_BTC_2.bt_if_pc_incr_wait_reg_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \Use_BTC_2.bt_if_pc_incr_wait_i_7 
        (.I0(\if_pc_reg[31] ),
         .I1(bt_ex_mispredict_handled),
-        .O(\Use_BTC_2.bt_if_pc_incr_wait_i_7_n_0 ));
-  LUT6 #(
-    .INIT(64'h00000000CCCECFCE)) 
-    \Use_BTC_2.bt_saved_pc_valid_i_1 
-       (.I0(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
-        .I1(\Use_BTC_2.bt_if_pc_incr_wait_reg_1 ),
-        .I2(\Use_BTC_2.bt_if_pc_incr_wait_i_2_n_0 ),
-        .I3(\Use_BTC_2.bt_saved_pc_valid_i_3_n_0 ),
-        .I4(\Using_FPGA.Native_0 ),
-        .I5(\Use_Async_Reset.sync_reset_reg ),
-        .O(\Use_BTC_2.bt_saved_pc_valid_reg ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+        .O(\Use_BTC_2.bt_if_pc_incr_wait_reg_1 ));
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT5 #(
     .INIT(32'h80808000)) 
     \Use_BTC_2.bt_saved_pc_valid_i_3 
        (.I0(\if_pc_reg[31] ),
         .I1(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ),
         .I2(if_pc_incr_carry3),
-        .I3(\Using_FPGA.Native_4 ),
+        .I3(\Using_FPGA.Native_3 ),
         .I4(ex_jump),
-        .O(\Use_BTC_2.bt_saved_pc_valid_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+        .O(\Use_BTC_2.bt_saved_pc_valid_reg ));
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_BTC_2.if_prediction_bits_keep[3]_i_1 
@@ -38466,7 +39317,7 @@ module system_microblaze_0_0_MB_MUXCY_301
         .I1(if_pc_write_q),
         .I2(Q),
         .O(D));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'hFE)) 
     \Use_BTC_2.jump_done_i_1 
@@ -38474,7 +39325,7 @@ module system_microblaze_0_0_MB_MUXCY_301
         .I1(ex_jump),
         .I2(\if_pc_reg[31] ),
         .O(\Use_BTC_2.jump_done_reg ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT5 #(
     .INIT(32'h00E20000)) 
     \Use_BTC_2.prediction_buffer_reg[3][3]_srl4_i_2 
@@ -38488,26 +39339,17 @@ module system_microblaze_0_0_MB_MUXCY_301
     .INIT(64'hFBFBFBFF08080800)) 
     \Using_FPGA.Native_i_1__1 
        (.I0(in),
-        .I1(\Using_FPGA.Native_2 ),
+        .I1(\Using_FPGA.Native_1 ),
         .I2(if_missed_fetch_reg),
         .I3(IReady),
         .I4(mem_access_completed_reg),
-        .I5(\Using_FPGA.Native_3 ),
+        .I5(\Using_FPGA.Native_2 ),
         .O(I0));
-  LUT5 #(
-    .INIT(32'hAAABABAB)) 
-    \Using_FPGA.Native_i_1__107 
-       (.I0(bt_ex_mispredict_handled),
-        .I1(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 ),
-        .I2(ex_branch_with_delayslot_reg),
-        .I3(\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
-        .I4(\Use_BTC_2.bt_if_pc_incr_wait_reg_0 ),
-        .O(\Using_FPGA.Native_i_1__107_n_0 ));
   LUT3 #(
     .INIT(8'hB8)) 
     \Using_FPGA.Native_i_2__0 
        (.I0(in),
-        .I1(\Using_FPGA.Native_1 ),
+        .I1(\Using_FPGA.Native_0 ),
         .I2(out),
         .O(I1_1));
   LUT4 #(
@@ -38517,7 +39359,7 @@ module system_microblaze_0_0_MB_MUXCY_301
         .I1(ex_valid),
         .I2(bt_ex_imm_cond_branch),
         .I3(\Use_BTC_2.ex_prediction_bits_reg[3] ),
-        .O(\Use_BTC_2.bt_if_pc_incr_wait_reg_0 ));
+        .O(\Use_BTC_2.bt_if_pc_incr_wait_reg ));
   VCC VCC
        (.P(\<const1> ));
 endmodule
@@ -39884,7 +40726,7 @@ module system_microblaze_0_0_MB_MUXCY_89
     ex_Take_Intr_or_Exc_reg,
     \Use_BTC_2.bt_saved_pc_valid_reg ,
     mem_jump_taken_reg,
-    \Use_BTC_2.bt_saved_pc_valid_reg_0 ,
+    \Use_BTC_2.bt_if_pc_incr_wait_reg ,
     ex_jump_q_reg_0,
     jump_carry5,
     of_Take_Interrupt_hold_reg,
@@ -39908,7 +40750,7 @@ module system_microblaze_0_0_MB_MUXCY_89
   output ex_Take_Intr_or_Exc_reg;
   output \Use_BTC_2.bt_saved_pc_valid_reg ;
   output mem_jump_taken_reg;
-  output \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
+  output \Use_BTC_2.bt_if_pc_incr_wait_reg ;
   output ex_jump_q_reg_0;
   input jump_carry5;
   input of_Take_Interrupt_hold_reg;
@@ -39930,8 +40772,8 @@ module system_microblaze_0_0_MB_MUXCY_89
   input [0:0]ex_branch_with_delayslot_reg;
 
   wire [0:0]D;
+  wire \Use_BTC_2.bt_if_pc_incr_wait_reg ;
   wire \Use_BTC_2.bt_saved_pc_valid_reg ;
-  wire \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
   wire \Using_FPGA.Native_0 ;
   wire \Using_FPGA.Native_i_1__108_n_0 ;
   wire ex_Take_Intr_or_Exc_reg;
@@ -39972,7 +40814,7 @@ module system_microblaze_0_0_MB_MUXCY_89
     \Use_BTC_2.bt_if_pc_incr_wait_i_3 
        (.I0(sync_reset),
         .I1(ex_jump_q_reg),
-        .O(\Use_BTC_2.bt_saved_pc_valid_reg_0 ));
+        .O(\Use_BTC_2.bt_if_pc_incr_wait_reg ));
   (* XILINX_LEGACY_PRIM = "(MUXCY,XORCY)" *) 
   (* XILINX_TRANSFORM_PINMAP = "LO:O" *) 
   (* box_type = "PRIMITIVE" *) 
@@ -87028,7 +87870,7 @@ module system_microblaze_0_0_Operand_Select_gti
   wire [31:0]wb_exception_i_reg;
   wire [31:0]wb_exception_i_reg_0;
 
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h956A6A95)) 
     \Byte_Enable[0]_INST_0_i_1 
@@ -88217,7 +89059,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[11]_i_3_n_0 ),
         .I5(ex_bit_insert),
         .O(\Use_HW_BS.Using_BitField.mem_mask0_reg[1] [20]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'h3020)) 
     \Use_HW_BS.Using_BitField.mem_mask0[11]_i_2 
@@ -88265,7 +89107,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[13]_i_3_n_0 ),
         .I5(ex_bit_insert),
         .O(\Use_HW_BS.Using_BitField.mem_mask0_reg[1] [18]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'h00F8)) 
     \Use_HW_BS.Using_BitField.mem_mask0[13]_i_2 
@@ -88321,7 +89163,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I1(Q[1]),
         .I2(Q[2]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[14]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'hFFEEF0EE)) 
     \Use_HW_BS.Using_BitField.mem_mask0[14]_i_6 
@@ -88341,7 +89183,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[15]_i_3_n_0 ),
         .I5(ex_bit_insert),
         .O(\Use_HW_BS.Using_BitField.mem_mask0_reg[1] [16]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'h00FE)) 
     \Use_HW_BS.Using_BitField.mem_mask0[15]_i_2 
@@ -88386,7 +89228,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[10]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[1]_i_4_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[17]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'hFF80)) 
     \Use_HW_BS.Using_BitField.mem_mask0[17]_i_3 
@@ -88395,7 +89237,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I2(Q[6]),
         .I3(ex_bit_insert),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[17]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'h80FF)) 
     \Use_HW_BS.Using_BitField.mem_mask0[17]_i_4 
@@ -88424,7 +89266,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(Q[10]),
         .I5(\Use_HW_BS.Using_BitField.mem_mask0[2]_i_4_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[18]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \Use_HW_BS.Using_BitField.mem_mask0[18]_i_3 
@@ -88451,7 +89293,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[10]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[3]_i_4_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[19]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'hFFC8)) 
     \Use_HW_BS.Using_BitField.mem_mask0[19]_i_3 
@@ -88460,7 +89302,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I2(Q[7]),
         .I3(ex_bit_insert),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[19]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'hE0FF)) 
     \Use_HW_BS.Using_BitField.mem_mask0[19]_i_4 
@@ -88489,7 +89331,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(Q[6]),
         .I5(Q[10]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[1]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \Use_HW_BS.Using_BitField.mem_mask0[1]_i_3 
@@ -88518,7 +89360,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[6]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[1]_i_6_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[1]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     \Use_HW_BS.Using_BitField.mem_mask0[1]_i_6 
@@ -88566,7 +89408,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[10]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[5]_i_4_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[21]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'hFFF8)) 
     \Use_HW_BS.Using_BitField.mem_mask0[21]_i_3 
@@ -88575,7 +89417,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I2(ex_bit_insert),
         .I3(Q[8]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[21]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT4 #(
     .INIT(16'hFFD5)) 
     \Use_HW_BS.Using_BitField.mem_mask0[21]_i_4 
@@ -88604,7 +89446,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(Q[10]),
         .I5(\Use_HW_BS.Using_BitField.mem_mask0[6]_i_4_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[22]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'hFE)) 
     \Use_HW_BS.Using_BitField.mem_mask0[22]_i_3 
@@ -88631,7 +89473,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[10]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[7]_i_4_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[23]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     \Use_HW_BS.Using_BitField.mem_mask0[23]_i_3 
@@ -88640,7 +89482,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I2(Q[8]),
         .I3(Q[6]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[23]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT4 #(
     .INIT(16'hFFEF)) 
     \Use_HW_BS.Using_BitField.mem_mask0[23]_i_4 
@@ -88649,7 +89491,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I2(ex_bit_insert),
         .I3(Q[2]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[23]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h0055FCFC)) 
     \Use_HW_BS.Using_BitField.mem_mask0[24]_i_1 
@@ -88678,7 +89520,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[3]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[1]_i_5_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[25]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'hFFFFD555)) 
     \Use_HW_BS.Using_BitField.mem_mask0[25]_i_3 
@@ -88737,7 +89579,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[3]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[3]_i_5_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[27]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT5 #(
     .INIT(32'hFFFFDDD5)) 
     \Use_HW_BS.Using_BitField.mem_mask0[27]_i_3 
@@ -88796,7 +89638,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[3]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[5]_i_5_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[29]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'hFFFFEAFF)) 
     \Use_HW_BS.Using_BitField.mem_mask0[29]_i_3 
@@ -88826,7 +89668,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[2]_i_3_n_0 ),
         .I5(ex_bit_insert),
         .O(\Use_HW_BS.Using_BitField.mem_mask0_reg[1] [29]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'h40)) 
     \Use_HW_BS.Using_BitField.mem_mask0[2]_i_2 
@@ -88854,7 +89696,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[2]_i_7_n_0 ),
         .I5(Q[3]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[2]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'hF0880088)) 
     \Use_HW_BS.Using_BitField.mem_mask0[2]_i_5 
@@ -88919,7 +89761,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(Q[3]),
         .I5(\Use_HW_BS.Using_BitField.mem_mask0[7]_i_5_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[31]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'hFFFFFFFB)) 
     \Use_HW_BS.Using_BitField.mem_mask0[31]_i_3 
@@ -88959,7 +89801,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(Q[7]),
         .I5(Q[10]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'hA0800000)) 
     \Use_HW_BS.Using_BitField.mem_mask0[3]_i_3 
@@ -88987,7 +89829,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[7]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[3]_i_6_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[3]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'hC800)) 
     \Use_HW_BS.Using_BitField.mem_mask0[3]_i_6 
@@ -89036,7 +89878,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(ex_bit_insert),
         .I5(Q[10]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'hCC800000)) 
     \Use_HW_BS.Using_BitField.mem_mask0[5]_i_3 
@@ -89064,7 +89906,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[8]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[5]_i_6_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[5]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT4 #(
     .INIT(16'hE0A0)) 
     \Use_HW_BS.Using_BitField.mem_mask0[5]_i_6 
@@ -89083,7 +89925,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[6]_i_3_n_0 ),
         .I5(ex_bit_insert),
         .O(\Use_HW_BS.Using_BitField.mem_mask0_reg[1] [25]));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'h0E)) 
     \Use_HW_BS.Using_BitField.mem_mask0[6]_i_2 
@@ -89141,7 +89983,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(ex_bit_insert),
         .I5(Q[10]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[7]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT5 #(
     .INIT(32'hCCC80000)) 
     \Use_HW_BS.Using_BitField.mem_mask0[7]_i_3 
@@ -89169,7 +90011,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(Q[8]),
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[7]_i_6_n_0 ),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[7]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'hF0E0)) 
     \Use_HW_BS.Using_BitField.mem_mask0[7]_i_6 
@@ -89178,7 +90020,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I2(ex_bit_insert),
         .I3(Q[1]),
         .O(\Use_HW_BS.Using_BitField.mem_mask0[7]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'h0FFF8888)) 
     \Use_HW_BS.Using_BitField.mem_mask0[8]_i_1 
@@ -89198,7 +90040,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I4(\Use_HW_BS.Using_BitField.mem_mask0[9]_i_3_n_0 ),
         .I5(ex_bit_insert),
         .O(\Use_HW_BS.Using_BitField.mem_mask0_reg[1] [22]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'h0800)) 
     \Use_HW_BS.Using_BitField.mem_mask0[9]_i_2 
@@ -89909,7 +90751,7 @@ module system_microblaze_0_0_Operand_Select_gti
         .I3(ex_start_div),
         .I4(make_result_neg),
         .O(make_result_neg_reg));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \mem_byte_selects[1]_i_1 
@@ -90257,7 +91099,13 @@ module system_microblaze_0_0_PC_Module_gti
   wire \Instruction_Prefetch_Mux[11].Gen_Instr_DFF_n_2 ;
   wire \Instruction_Prefetch_Mux[12].Gen_Instr_DFF_n_2 ;
   wire \Instruction_Prefetch_Mux[17].Gen_Instr_DFF_n_2 ;
-  wire \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_2 ;
+  wire \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_1 ;
+  wire \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_32 ;
+  wire \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_33 ;
+  wire \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_38 ;
+  wire \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_40 ;
+  wire \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_41 ;
+  wire \Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_42 ;
   wire \Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_2 ;
   wire \Instruction_Prefetch_Mux[26].Gen_Instr_DFF_n_2 ;
   wire \Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_2 ;
@@ -90265,6 +91113,11 @@ module system_microblaze_0_0_PC_Module_gti
   wire \Instruction_Prefetch_Mux[4].Gen_Instr_DFF_n_2 ;
   wire \Instruction_Prefetch_Mux[8].Gen_Instr_DFF_n_2 ;
   wire \No_Master_Debug_Logic.dbg_stop_instr_fetch_reg ;
+  wire [3:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg ;
+  wire [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg ;
+  wire [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg ;
+  wire [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg ;
+  wire [7:6]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg ;
   wire \PC_Buffer_reg[3][31]_srl4_n_0 ;
   wire Q7_out;
   wire Q8_out;
@@ -90304,13 +91157,13 @@ module system_microblaze_0_0_PC_Module_gti
   wire \Use_BTC_2.BTC_RAM_Module_n_2 ;
   wire \Use_BTC_2.BTC_RAM_Module_n_3 ;
   wire \Use_BTC_2.BTC_RAM_Module_n_31 ;
-  wire \Use_BTC_2.BTC_RAM_Module_n_62 ;
-  wire \Use_BTC_2.BTC_RAM_Module_n_66 ;
-  wire \Use_BTC_2.BTC_RAM_Module_n_67 ;
-  wire \Use_BTC_2.BTC_RAM_Module_n_69 ;
+  wire \Use_BTC_2.BTC_RAM_Module_n_32 ;
+  wire \Use_BTC_2.BTC_RAM_Module_n_36 ;
+  wire \Use_BTC_2.BTC_RAM_Module_n_37 ;
+  wire \Use_BTC_2.BTC_RAM_Module_n_39 ;
   wire \Use_BTC_2.Using_FPGA.bt_ex_pc_comparator_n_4 ;
   wire \Use_BTC_2.Using_FPGA.bt_hit_carry_and_n_1 ;
-  wire \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_1 ;
+  wire \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4 ;
   wire \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5 ;
   wire \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ;
   wire \Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ;
@@ -90327,18 +91180,12 @@ module system_microblaze_0_0_PC_Module_gti
   wire \Use_BTC_2.bt_delayslot_written_i_1_n_0 ;
   wire \Use_BTC_2.bt_ex_jump_held_i_1_n_0 ;
   wire \Use_BTC_2.bt_ex_jump_held_reg_n_0 ;
-  wire \Use_BTC_2.bt_ex_mispredict_addr_hold_i_1_n_0 ;
-  wire \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0 ;
-  wire \Use_BTC_2.bt_ex_mispredict_handled_i_1_n_0 ;
-  wire \Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0 ;
-  wire \Use_BTC_2.bt_ex_mispredict_pc_hold_i_1_n_0 ;
   wire \Use_BTC_2.bt_ex_mispredict_taken_hold_i_1_n_0 ;
   wire \Use_BTC_2.bt_ex_mispredict_taken_hold_i_2_n_0 ;
   wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ;
   wire \Use_BTC_2.bt_ex_return_reg_n_0 ;
   wire \Use_BTC_2.bt_ex_return_set_i_1_n_0 ;
   wire \Use_BTC_2.bt_ex_return_set_reg_0 ;
-  wire \Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0 ;
   wire \Use_BTC_2.bt_if_pc_incr_wait_i_6_n_0 ;
   wire \Use_BTC_2.bt_if_pc_write_wait_i_1_n_0 ;
   wire \Use_BTC_2.bt_saved_pc_valid_hold_i_1_n_0 ;
@@ -90556,7 +91403,6 @@ module system_microblaze_0_0_PC_Module_gti
   wire lopt_78;
   wire lopt_79;
   wire lopt_8;
-  wire lopt_80;
   wire lopt_9;
   wire mem_access_completed_reg;
   wire mem_jump_hit0;
@@ -90608,7 +91454,6 @@ module system_microblaze_0_0_PC_Module_gti
   wire of_prediction_bits_i_2;
   wire of_prediction_bits_i_3;
   wire of_read_imm_reg_ii0;
-  wire of_read_imm_reg_ii1;
   wire of_return;
   wire of_valid;
   wire out;
@@ -90661,20 +91506,19 @@ module system_microblaze_0_0_PC_Module_gti
   wire [3:2]NLW_bt_use_delayslot_target4_carry__1_CO_UNCONNECTED;
   wire [3:0]NLW_bt_use_delayslot_target4_carry__1_O_UNCONNECTED;
 
-  assign lopt_1 = lopt_15;
-  assign lopt_14 = lopt;
-  assign lopt_16 = lopt_3;
-  assign lopt_18 = lopt_6;
-  assign lopt_19 = lopt_7;
+  assign lopt_1 = lopt_14;
+  assign lopt_13 = lopt;
+  assign lopt_15 = lopt_3;
+  assign lopt_17 = lopt_6;
+  assign lopt_18 = lopt_7;
   assign lopt_2 = S;
-  assign lopt_4 = lopt_17;
+  assign lopt_4 = lopt_16;
   assign lopt_5 = S136_in;
   assign reset_bool_for_rst = sync_reset;
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT4 #(
     .INIT(16'hFF1F)) 
     \Instr_Addr[0]_INST_0_i_3 
-       (.I0(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ),
+       (.I0(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4 ),
         .I1(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
         .I2(\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
         .I3(bt_ex_mispredict_handled),
@@ -90870,21 +91714,80 @@ module system_microblaze_0_0_PC_Module_gti
         .of_pc_ii_14(of_pc_ii_14),
         .out(p_1_in194_in));
   system_microblaze_0_0_MB_FDR_215 \Instruction_Prefetch_Mux[18].Gen_Instr_DFF 
-       (.Clk(Clk),
+       (.CO(bt_use_delayslot_target4),
+        .Clk(Clk),
+        .D(D[31:2]),
         .\EX_Op1_reg[18] (\EX_Op1_reg[18] ),
+        .\EX_Op2_reg[0] (\EX_Op2_reg[0] [31:2]),
         .I098_out(I098_out),
+        .I5(I5),
         .IReady(IReady),
-        .Q(S188_in),
-        .S(\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_2 ),
-        .\Use_BTC_2.bt_delayslot_target_reg[18] ({bt_delayslot_target[18],bt_delayslot_target[19],bt_delayslot_target[20]}),
-        .\Using_FPGA.Native_0 (\Using_FPGA.Native_7 ),
-        .\Using_FPGA.Native_1 ({of_pc[19],of_pc[20]}),
-        .if_missed_fetch_reg(if_missed_fetch_reg_0),
+        .\No_Master_Debug_Logic.dbg_stop_instr_fetch_reg (\No_Master_Debug_Logic.dbg_stop_instr_fetch_reg ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5 ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25]_0 (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[28] (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg[32] (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg[40] (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg[48] (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg[56] (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg ),
+        .Q({bt_delayslot_target[0],bt_delayslot_target[1],bt_delayslot_target[2],bt_delayslot_target[3],bt_delayslot_target[4],bt_delayslot_target[5],bt_delayslot_target[6],bt_delayslot_target[7],bt_delayslot_target[8],bt_delayslot_target[9],bt_delayslot_target[10],bt_delayslot_target[11],bt_delayslot_target[12],bt_delayslot_target[13],bt_delayslot_target[14],bt_delayslot_target[15],bt_delayslot_target[16],bt_delayslot_target[17],bt_delayslot_target[18],bt_delayslot_target[19],bt_delayslot_target[20],bt_delayslot_target[21],bt_delayslot_target[22],bt_delayslot_target[23],bt_delayslot_target[24],bt_delayslot_target[25],bt_delayslot_target[26],bt_delayslot_target[27],bt_delayslot_target[28],bt_delayslot_target[29]}),
+        .S(\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_40 ),
+        .\Use_Async_Reset.sync_reset_reg (\Use_Async_Reset.sync_reset_reg ),
+        .\Use_BTC_2.bt_ex_jump_held_reg (\Use_BTC_2.bt_if_pc_incr_wait_i_6_n_0 ),
+        .\Use_BTC_2.bt_ex_mispredict_addr_hold_reg (\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_38 ),
+        .\Use_BTC_2.bt_ex_mispredict_handled_reg (\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_33 ),
+        .\Use_BTC_2.bt_ex_mispredict_handled_reg_0 (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
+        .\Use_BTC_2.bt_ex_mispredict_pc_hold_reg (\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_42 ),
+        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg (\Instr_Addr[0]_INST_0_i_3_n_0 ),
+        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 (\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
+        .\Use_BTC_2.bt_ex_return_reg (\Use_BTC_2.bt_ex_return_reg_n_0 ),
+        .\Use_BTC_2.bt_if_pc_incr_wait_reg (\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_32 ),
+        .\Use_BTC_2.bt_if_pc_incr_wait_reg_0 (\Use_BTC_2.bt_saved_pc_valid_i_2_n_0 ),
+        .\Use_BTC_2.bt_saved_pc_reg[0] ({bt_saved_pc[0],bt_saved_pc[1],bt_saved_pc[2],bt_saved_pc[3],bt_saved_pc[4],bt_saved_pc[5],bt_saved_pc[6],bt_saved_pc[7],bt_saved_pc[8],bt_saved_pc[9],bt_saved_pc[10],bt_saved_pc[11],bt_saved_pc[12],bt_saved_pc[13],bt_saved_pc[14],bt_saved_pc[15],bt_saved_pc[16],bt_saved_pc[17],bt_saved_pc[18],bt_saved_pc[19],bt_saved_pc[20],bt_saved_pc[21],bt_saved_pc[22],bt_saved_pc[23],bt_saved_pc[24],bt_saved_pc[25],bt_saved_pc[26],bt_saved_pc[27],bt_saved_pc[28],bt_saved_pc[29]}),
+        .\Use_BTC_2.bt_saved_pc_valid_reg (\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_1 ),
+        .\Use_BTC_2.bt_saved_pc_valid_reg_0 (\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
+        .\Use_BTC_2.bt_saved_pc_valid_reg_1 (ex_branch_with_delayslot_i_3_n_0),
+        .\Use_BTC_2.ex_prediction_bits_reg[3] (\Use_BTC_2.ex_prediction_bits_reg_n_0_[3] ),
+        .\Using_FPGA.Native_0 (\Using_FPGA.Native_3 ),
+        .\Using_FPGA.Native_1 (\Using_FPGA.Native_4 ),
+        .\Using_FPGA.Native_2 (\Using_FPGA.Native_8 ),
+        .\Using_FPGA.Native_3 (\Using_FPGA.Native_9 ),
+        .\Using_FPGA.Native_4 (\Using_FPGA.Native_10 ),
+        .\Using_FPGA.Native_5 (\Using_FPGA.Native_11 ),
+        .\Using_FPGA.Native_6 (\Using_FPGA.Native_7 ),
+        .\Using_FPGA.Native_7 ({of_pc[19],of_pc[20]}),
+        .bt_ex_mispredict_addr_hold(bt_ex_mispredict_addr_hold),
+        .bt_ex_mispredict_handled(bt_ex_mispredict_handled),
+        .bt_ex_mispredict_pc_hold(bt_ex_mispredict_pc_hold),
+        .bt_if_pc_incr_wait(bt_if_pc_incr_wait),
+        .bt_jump(bt_jump),
+        .ex_Take_Intr_or_Exc_keep(ex_Take_Intr_or_Exc_keep),
+        .ex_branch_with_delayslot_reg(ex_branch_with_delayslot_reg),
+        .ex_jump(ex_jump),
+        .ex_valid(ex_valid),
+        .ex_valid_jump_reg(ex_valid_jump_reg),
+        .ex_valid_reg(ex_valid_reg),
+        .ex_valid_reg_0(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4 ),
+        .if_missed_fetch_reg(if_missed_fetch_reg),
+        .if_missed_fetch_reg_0(if_missed_fetch_reg_0),
+        .if_pc_incr_carry3(if_pc_incr_carry3),
+        .\if_pc_reg[0] ({new_pc_incr[0],new_pc_incr[1],new_pc_incr[2],new_pc_incr[3],new_pc_incr[4],new_pc_incr[5],new_pc_incr[6],new_pc_incr[7],new_pc_incr[8],new_pc_incr[9],new_pc_incr[10],new_pc_incr[11],new_pc_incr[12],new_pc_incr[13],new_pc_incr[14],new_pc_incr[15],new_pc_incr[16],new_pc_incr[17],new_pc_incr[18],new_pc_incr[19],new_pc_incr[20],new_pc_incr[21],new_pc_incr[22],new_pc_incr[23],new_pc_incr[24],new_pc_incr[25],new_pc_incr[26],new_pc_incr[27],new_pc_incr[28],new_pc_incr[29]}),
+        .\if_pc_reg[18] (S188_in),
+        .\if_pc_reg[31] (\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_41 ),
+        .iside_data_strobe_combined_sel(iside_data_strobe_combined_sel),
         .mem_access_completed_reg(mem_access_completed_reg),
+        .of_Take_Interrupt_hold_reg(of_Take_Interrupt_hold_reg),
+        .of_branch_with_delayslot131_out(of_branch_with_delayslot131_out),
+        .of_next_ex_valid(of_next_ex_valid),
         .of_op1_sel_spr_pc(of_op1_sel_spr_pc),
+        .of_pause_reg(of_pause_reg),
         .of_pc(of_pc[18]),
         .of_pc_ii_13(of_pc_ii_13),
-        .sync_reset(reset_bool_for_rst));
+        .of_read_imm_reg_ii0(of_read_imm_reg_ii0),
+        .of_valid(of_valid),
+        .out(out),
+        .sync_reset(reset_bool_for_rst),
+        .wb_exception_i_reg(wb_exception_i_reg));
   system_microblaze_0_0_MB_MUXF7_216 \Instruction_Prefetch_Mux[18].PC_Mux_MUXF7 
        (.I098_out(I098_out),
         .Q(S188_in),
@@ -91775,7 +92678,7 @@ module system_microblaze_0_0_PC_Module_gti
        (.A105_out(A105_out),
         .ADDRB(ADDRB),
         .Clk(Clk),
-        .D(D[31:2]),
+        .D({Q8_out,Q7_out}),
         .E(\Use_BTC_2.BTC_RAM_Module_n_3 ),
         .\EX_Op2_reg[0] (\EX_Op2_reg[0] [31:2]),
         .I013_out(I013_out),
@@ -91783,15 +92686,17 @@ module system_microblaze_0_0_PC_Module_gti
         .I111_out(I111_out),
         .I17_out(I17_out),
         .IReady_1(IReady_1),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg ),
         .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[24]_0 (\Use_BTC_2.BTC_RAM_Module_n_0 ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg ),
         .Q(p_0_in107_in),
         .\Use_BTC_2.bt_clear_wait_reg (bt_clear_wait),
         .\Use_BTC_2.bt_clear_wait_reg_0 (\Use_BTC_2.Using_FPGA.bt_hit_carry_and_n_1 ),
         .\Use_BTC_2.bt_delayslot_target_reg[0] ({bt_delayslot_target[0],bt_delayslot_target[1],bt_delayslot_target[2],bt_delayslot_target[3],bt_delayslot_target[4],bt_delayslot_target[5],bt_delayslot_target[6],bt_delayslot_target[7],bt_delayslot_target[8],bt_delayslot_target[9],bt_delayslot_target[10],bt_delayslot_target[11],bt_delayslot_target[12],bt_delayslot_target[13],bt_delayslot_target[14],bt_delayslot_target[15],bt_delayslot_target[16],bt_delayslot_target[17],bt_delayslot_target[18],bt_delayslot_target[19],bt_delayslot_target[20],bt_delayslot_target[21],bt_delayslot_target[22],bt_delayslot_target[23],bt_delayslot_target[24],bt_delayslot_target[25],bt_delayslot_target[26],bt_delayslot_target[27],bt_delayslot_target[28],bt_delayslot_target[29]}),
-        .\Use_BTC_2.bt_ex_mispredict_addr_hold_reg (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
-        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg (\Instr_Addr[0]_INST_0_i_3_n_0 ),
-        .\Use_BTC_2.bt_saved_pc_reg[0] ({bt_saved_pc[0],bt_saved_pc[1],bt_saved_pc[2],bt_saved_pc[3],bt_saved_pc[4],bt_saved_pc[5],bt_saved_pc[6],bt_saved_pc[7],bt_saved_pc[8],bt_saved_pc[9],bt_saved_pc[10],bt_saved_pc[11],bt_saved_pc[12],bt_saved_pc[13],bt_saved_pc[14],bt_saved_pc[15],bt_saved_pc[16],bt_saved_pc[17],bt_saved_pc[18],bt_saved_pc[19],bt_saved_pc[20],bt_saved_pc[21],bt_saved_pc[22],bt_saved_pc[23],bt_saved_pc[24],bt_saved_pc[25],bt_saved_pc[26],bt_saved_pc[27],bt_saved_pc[28],bt_saved_pc[29]}),
-        .\Use_BTC_2.bt_saved_pc_reg[29] (\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .\Use_BTC_2.bt_saved_pc_reg[29] (\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .\Use_BTC_2.bt_saved_pc_valid_reg (\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
         .\Use_BTC_2.bt_write_delayslot_reg (\Use_BTC_2.bt_write_delayslot_reg_n_0 ),
         .\Use_BTC_2.bt_write_q_reg (\Use_BTC_2.bt_write_q_reg_0 ),
@@ -91803,8 +92708,7 @@ module system_microblaze_0_0_PC_Module_gti
         .\Use_BTC_2.we_hold_reg (\Use_BTC_2.BTC_RAM_Module_n_2 ),
         .\Using_FPGA.Native (\Using_FPGA.Native_4 ),
         .\Using_FPGA.Native_0 (\Using_FPGA.Native_7 ),
-        .\Using_FPGA.Native_1 ({Q8_out,Q7_out}),
-        .\Using_FPGA.Native_2 (\Using_FPGA.Native_5 ),
+        .\Using_FPGA.Native_1 (\Using_FPGA.Native_5 ),
         .bt_clear_hold(bt_clear_hold),
         .bt_ex_imm_cond_branch(bt_ex_imm_cond_branch),
         .bt_ex_mispredict_pc_hold(bt_ex_mispredict_pc_hold),
@@ -91824,10 +92728,9 @@ module system_microblaze_0_0_PC_Module_gti
         .\ex_pc_i_reg[0] ({\ex_pc_i_reg_n_0_[0] ,\ex_pc_i_reg_n_0_[1] ,\ex_pc_i_reg_n_0_[2] ,\ex_pc_i_reg_n_0_[3] ,\ex_pc_i_reg_n_0_[4] ,\ex_pc_i_reg_n_0_[5] ,\ex_pc_i_reg_n_0_[6] ,\ex_pc_i_reg_n_0_[7] ,\ex_pc_i_reg_n_0_[8] ,\ex_pc_i_reg_n_0_[9] ,\ex_pc_i_reg_n_0_[10] ,\ex_pc_i_reg_n_0_[11] ,\ex_pc_i_reg_n_0_[12] ,\ex_pc_i_reg_n_0_[13] ,\ex_pc_i_reg_n_0_[14] ,\ex_pc_i_reg_n_0_[15] ,\ex_pc_i_reg_n_0_[16] ,\ex_pc_i_reg_n_0_[17] ,\ex_pc_i_reg_n_0_[18] ,\ex_pc_i_reg_n_0_[19] ,\ex_pc_i_reg_n_0_[20] ,\ex_pc_i_reg_n_0_[21] ,\ex_pc_i_reg_n_0_[22] ,\ex_pc_i_reg_n_0_[23] }),
         .ex_valid(ex_valid),
         .if_pc_incr_carry3(if_pc_incr_carry3),
-        .\if_pc_reg[0] ({new_pc_incr[0],new_pc_incr[1],new_pc_incr[2],new_pc_incr[3],new_pc_incr[4],new_pc_incr[5],new_pc_incr[6],new_pc_incr[7],new_pc_incr[8],new_pc_incr[9],new_pc_incr[10],new_pc_incr[11],new_pc_incr[12],new_pc_incr[13],new_pc_incr[14],new_pc_incr[15],new_pc_incr[16],new_pc_incr[17],new_pc_incr[18],new_pc_incr[19],new_pc_incr[20],new_pc_incr[21],new_pc_incr[22],new_pc_incr[23],new_pc_incr[24],new_pc_incr[25],new_pc_incr[26],new_pc_incr[27],new_pc_incr[28],new_pc_incr[29]}),
-        .\if_pc_reg[31] (\Use_BTC_2.BTC_RAM_Module_n_69 ),
+        .\if_pc_reg[31] (\Use_BTC_2.BTC_RAM_Module_n_39 ),
         .if_pc_write_q(if_pc_write_q),
-        .in({\Use_BTC_2.BTC_RAM_Module_n_66 ,\Use_BTC_2.BTC_RAM_Module_n_67 }),
+        .in({\Use_BTC_2.BTC_RAM_Module_n_36 ,\Use_BTC_2.BTC_RAM_Module_n_37 }),
         .jump_done(jump_done),
         .out({p_3_in37_in,p_3_in31_in}));
   system_microblaze_0_0_MB_FDR_261 \Use_BTC_2.PC_Predict_Mux[0].Gen_Instr_DFF 
@@ -91905,10 +92808,10 @@ module system_microblaze_0_0_PC_Module_gti
         .lopt(\^lopt ),
         .lopt_1(\^lopt_1 ),
         .lopt_10(lopt_10),
-        .lopt_11(\Use_BTC_2.BTC_RAM_Module_n_69 ),
+        .lopt_11(\Use_BTC_2.BTC_RAM_Module_n_39 ),
         .lopt_12(lopt_11),
         .lopt_13(lopt_12),
-        .lopt_14(lopt_13),
+        .lopt_14(\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_41 ),
         .lopt_2(\^lopt_2 ),
         .lopt_3(\^lopt_3 ),
         .lopt_4(\^lopt_4 ),
@@ -91937,13 +92840,12 @@ module system_microblaze_0_0_PC_Module_gti
         .we_hold(we_hold));
   system_microblaze_0_0_carry_and_270 \Use_BTC_2.Using_FPGA.bt_jump_carry_and 
        (.Carry_OUT(bt_hit_nopar),
-        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[26] (\Use_BTC_2.BTC_RAM_Module_n_69 ),
+        .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[26] (\Use_BTC_2.BTC_RAM_Module_n_39 ),
         .carry2(carry2),
         .lopt(lopt_9),
         .lopt_1(lopt_10));
   system_microblaze_0_0_carry_or_271 \Use_BTC_2.Using_FPGA.bt_jump_carry_or 
-       (.CO(bt_use_delayslot_target4),
-        .D(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_8 ),
+       (.D(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_8 ),
         .\EX_Op2_reg[30] (\EX_Op2_reg[0] [1:0]),
         .I0(I0),
         .I1_1(I1_1),
@@ -91951,34 +92853,23 @@ module system_microblaze_0_0_PC_Module_gti
         .\Instr_Addr[30] (D[1:0]),
         .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] (dob[25]),
         .Q(if_prediction_bits_keep[3]),
-        .\Use_Async_Reset.sync_reset_reg (\Use_Async_Reset.sync_reset_reg ),
-        .\Use_BTC_2.bt_ex_jump_held_reg (\Use_BTC_2.bt_if_pc_incr_wait_i_6_n_0 ),
-        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg (\Instr_Addr[0]_INST_0_i_3_n_0 ),
-        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 (\Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0 ),
-        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 (\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .\Use_BTC_2.bt_ex_return_reg (\Use_BTC_2.bt_ex_return_reg_n_0 ),
-        .\Use_BTC_2.bt_if_pc_incr_wait_reg (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5 ),
+        .\Use_BTC_2.bt_ex_mispredict_handled_reg (\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_41 ),
+        .\Use_BTC_2.bt_if_pc_incr_wait_reg (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4 ),
         .\Use_BTC_2.bt_if_pc_incr_wait_reg_0 (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ),
-        .\Use_BTC_2.bt_if_pc_incr_wait_reg_1 (\Use_BTC_2.bt_saved_pc_valid_i_2_n_0 ),
-        .\Use_BTC_2.bt_saved_pc_valid_reg (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_1 ),
-        .\Use_BTC_2.bt_saved_pc_valid_reg_0 (\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
+        .\Use_BTC_2.bt_if_pc_incr_wait_reg_1 (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
+        .\Use_BTC_2.bt_saved_pc_valid_reg (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5 ),
         .\Use_BTC_2.ex_jump_wanted_delayslot_reg (\Use_BTC_2.BTC_RAM_Module_n_31 ),
         .\Use_BTC_2.ex_prediction_bits_reg[3] (\Use_BTC_2.ex_prediction_bits_reg_n_0_[3] ),
         .\Use_BTC_2.jump_done_reg (\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_9 ),
-        .\Using_FPGA.Native (\Using_FPGA.Native_3 ),
-        .\Using_FPGA.Native_0 (\Using_FPGA.Native_5 ),
-        .\Using_FPGA.Native_1 (\Using_FPGA.Native_7 ),
-        .\Using_FPGA.Native_2 (\Use_BTC_2.ex_prediction_bits_reg[3]_0 ),
-        .\Using_FPGA.Native_3 (\Using_FPGA.Native_4 ),
+        .\Using_FPGA.Native (\Using_FPGA.Native_5 ),
+        .\Using_FPGA.Native_0 (\Using_FPGA.Native_7 ),
+        .\Using_FPGA.Native_1 (\Use_BTC_2.ex_prediction_bits_reg[3]_0 ),
+        .\Using_FPGA.Native_2 (\Using_FPGA.Native_4 ),
         .bt_ex_imm_cond_branch(bt_ex_imm_cond_branch),
-        .bt_ex_mispredict_addr_hold(bt_ex_mispredict_addr_hold),
         .bt_ex_mispredict_handled(bt_ex_mispredict_handled),
-        .bt_if_pc_incr_wait(bt_if_pc_incr_wait),
         .bt_jump(bt_jump),
         .bt_valid_bit(bt_valid_bit),
         .carry2(carry2),
-        .ex_Take_Intr_or_Exc_keep(ex_Take_Intr_or_Exc_keep),
-        .ex_branch_with_delayslot_reg(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
         .ex_jump(ex_jump),
         .ex_jump_hold_0(ex_jump_hold_0),
         .ex_valid(ex_valid),
@@ -91989,9 +92880,7 @@ module system_microblaze_0_0_PC_Module_gti
         .in(new_if_prediction_bits0),
         .lopt(lopt_11),
         .lopt_1(lopt_12),
-        .lopt_2(lopt_13),
         .mem_access_completed_reg(mem_access_completed_reg),
-        .of_valid(of_valid),
         .out(\Use_BTC_2.prediction_buffer_reg[3][3]_srl4_n_0 ),
         .we_hold(we_hold));
   LUT2 #(
@@ -92488,7 +93377,7 @@ module system_microblaze_0_0_PC_Module_gti
         .D(\Using_FPGA.Native_1 ),
         .Q(bt_ex_imm_cond_branch),
         .R(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT4 #(
     .INIT(16'h000E)) 
     \Use_BTC_2.bt_ex_jump_held_i_1 
@@ -92503,78 +93392,22 @@ module system_microblaze_0_0_PC_Module_gti
         .D(\Use_BTC_2.bt_ex_jump_held_i_1_n_0 ),
         .Q(\Use_BTC_2.bt_ex_jump_held_reg_n_0 ),
         .R(1'b0));
-  LUT6 #(
-    .INIT(64'h0000000011110100)) 
-    \Use_BTC_2.bt_ex_mispredict_addr_hold_i_1 
-       (.I0(reset_bool_for_rst),
-        .I1(ex_jump),
-        .I2(bt_ex_mispredict_handled),
-        .I3(\Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0 ),
-        .I4(bt_ex_mispredict_addr_hold),
-        .I5(\Using_FPGA.Native_4 ),
-        .O(\Use_BTC_2.bt_ex_mispredict_addr_hold_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'h40000000)) 
-    \Use_BTC_2.bt_ex_mispredict_addr_hold_i_2 
-       (.I0(ex_Take_Intr_or_Exc_keep),
-        .I1(of_valid),
-        .I2(bt_use_delayslot_target4),
-        .I3(\Use_BTC_2.bt_ex_return_reg_n_0 ),
-        .I4(\Use_BTC_2.ex_prediction_bits_reg_n_0_[3] ),
-        .O(\Use_BTC_2.bt_ex_mispredict_addr_hold_i_2_n_0 ));
   FDRE \Use_BTC_2.bt_ex_mispredict_addr_hold_reg 
        (.C(Clk),
         .CE(1'b1),
-        .D(\Use_BTC_2.bt_ex_mispredict_addr_hold_i_1_n_0 ),
+        .D(\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_38 ),
         .Q(bt_ex_mispredict_addr_hold),
         .R(1'b0));
-  LUT6 #(
-    .INIT(64'h000000000000AAFE)) 
-    \Use_BTC_2.bt_ex_mispredict_handled_i_1 
-       (.I0(bt_ex_mispredict_handled),
-        .I1(\Using_FPGA.Native_4 ),
-        .I2(ex_jump),
-        .I3(\Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0 ),
-        .I4(ex_branch_with_delayslot_reg),
-        .I5(reset_bool_for_rst),
-        .O(\Use_BTC_2.bt_ex_mispredict_handled_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'h0007)) 
-    \Use_BTC_2.bt_ex_mispredict_handled_i_2 
-       (.I0(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ),
-        .I1(\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
-        .I2(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .O(\Use_BTC_2.bt_ex_mispredict_handled_i_2_n_0 ));
   FDRE \Use_BTC_2.bt_ex_mispredict_handled_reg 
        (.C(Clk),
         .CE(1'b1),
-        .D(\Use_BTC_2.bt_ex_mispredict_handled_i_1_n_0 ),
+        .D(\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_33 ),
         .Q(bt_ex_mispredict_handled),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
-  LUT4 #(
-    .INIT(16'h1F0F)) 
-    \Use_BTC_2.bt_ex_mispredict_pc_hold_i_1 
-       (.I0(\Using_FPGA.Native_4 ),
-        .I1(ex_jump),
-        .I2(of_read_imm_reg_ii1),
-        .I3(bt_ex_mispredict_pc_hold),
-        .O(\Use_BTC_2.bt_ex_mispredict_pc_hold_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
-  LUT5 #(
-    .INIT(32'hAAABABAB)) 
-    \Use_BTC_2.bt_ex_mispredict_pc_hold_i_2 
-       (.I0(bt_ex_mispredict_handled),
-        .I1(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .I2(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
-        .I3(\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
-        .I4(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ),
-        .O(of_read_imm_reg_ii1));
   FDRE \Use_BTC_2.bt_ex_mispredict_pc_hold_reg 
        (.C(Clk),
         .CE(1'b1),
-        .D(\Use_BTC_2.bt_ex_mispredict_pc_hold_i_1_n_0 ),
+        .D(\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_42 ),
         .Q(bt_ex_mispredict_pc_hold),
         .R(reset_bool_for_rst));
   LUT6 #(
@@ -92634,17 +93467,7 @@ module system_microblaze_0_0_PC_Module_gti
         .D(\Use_BTC_2.bt_ex_return_set_i_1_n_0 ),
         .Q(bt_ex_return_set),
         .R(1'b0));
-  LUT6 #(
-    .INIT(64'hFFFFFFFFEAAAAAAA)) 
-    \Use_BTC_2.bt_if_pc_incr_wait_i_5 
-       (.I0(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .I1(\Using_FPGA.Native_11 ),
-        .I2(bt_use_delayslot_target4),
-        .I3(\Use_BTC_2.bt_ex_return_reg_n_0 ),
-        .I4(\Use_BTC_2.ex_prediction_bits_reg_n_0_[3] ),
-        .I5(bt_ex_mispredict_addr_hold),
-        .O(\Use_BTC_2.bt_if_pc_incr_wait_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hBF)) 
     \Use_BTC_2.bt_if_pc_incr_wait_i_6 
@@ -92655,7 +93478,7 @@ module system_microblaze_0_0_PC_Module_gti
   FDRE \Use_BTC_2.bt_if_pc_incr_wait_reg 
        (.C(Clk),
         .CE(1'b1),
-        .D(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_5 ),
+        .D(\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_32 ),
         .Q(bt_if_pc_incr_wait),
         .R(1'b0));
   LUT6 #(
@@ -92689,184 +93512,185 @@ module system_microblaze_0_0_PC_Module_gti
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[0] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[0]),
         .Q(bt_saved_pc[0]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[10] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[10]),
         .Q(bt_saved_pc[10]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[11] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[11]),
         .Q(bt_saved_pc[11]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[12] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[12]),
         .Q(bt_saved_pc[12]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[13] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[13]),
         .Q(bt_saved_pc[13]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[14] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[14]),
         .Q(bt_saved_pc[14]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[15] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[15]),
         .Q(bt_saved_pc[15]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[16] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[16]),
         .Q(bt_saved_pc[16]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[17] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[17]),
         .Q(bt_saved_pc[17]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[18] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[18]),
         .Q(bt_saved_pc[18]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[19] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[19]),
         .Q(bt_saved_pc[19]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[1] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[1]),
         .Q(bt_saved_pc[1]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[20] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[20]),
         .Q(bt_saved_pc[20]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[21] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[21]),
         .Q(bt_saved_pc[21]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[22] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[22]),
         .Q(bt_saved_pc[22]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[23] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[23]),
         .Q(bt_saved_pc[23]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[24] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[24]),
         .Q(bt_saved_pc[24]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[25] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[25]),
         .Q(bt_saved_pc[25]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[26] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[26]),
         .Q(bt_saved_pc[26]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[27] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[27]),
         .Q(bt_saved_pc[27]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[28] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[28]),
         .Q(bt_saved_pc[28]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[29] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[29]),
         .Q(bt_saved_pc[29]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[2] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[2]),
         .Q(bt_saved_pc[2]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[3] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[3]),
         .Q(bt_saved_pc[3]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[4] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[4]),
         .Q(bt_saved_pc[4]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[5] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[5]),
         .Q(bt_saved_pc[5]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[6] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[6]),
         .Q(bt_saved_pc[6]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[7] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[7]),
         .Q(bt_saved_pc[7]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[8] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[8]),
         .Q(bt_saved_pc[8]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.bt_saved_pc_reg[9] 
        (.C(Clk),
-        .CE(\Use_BTC_2.BTC_RAM_Module_n_62 ),
+        .CE(\Use_BTC_2.BTC_RAM_Module_n_32 ),
         .D(new_pc_incr[9]),
         .Q(bt_saved_pc[9]),
         .R(reset_bool_for_rst));
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT4 #(
     .INIT(16'h0302)) 
     \Use_BTC_2.bt_saved_pc_valid_hold_i_1 
@@ -92893,7 +93717,7 @@ module system_microblaze_0_0_PC_Module_gti
   FDRE \Use_BTC_2.bt_saved_pc_valid_reg 
        (.C(Clk),
         .CE(1'b1),
-        .D(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_1 ),
+        .D(\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_1 ),
         .Q(\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
         .R(1'b0));
   (* SOFT_HLUTNM = "soft_lutpair34" *) 
@@ -92929,7 +93753,7 @@ module system_microblaze_0_0_PC_Module_gti
         .D(of_imm_cond_branch),
         .Q(ex_imm_cond_branch),
         .R(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT3 #(
     .INIT(8'hCE)) 
     \Use_BTC_2.ex_jump_hold_i_1 
@@ -93001,13 +93825,13 @@ module system_microblaze_0_0_PC_Module_gti
   FDRE \Use_BTC_2.if_prediction_bits_keep_reg[0] 
        (.C(Clk),
         .CE(1'b1),
-        .D(\Use_BTC_2.BTC_RAM_Module_n_66 ),
+        .D(\Use_BTC_2.BTC_RAM_Module_n_36 ),
         .Q(if_prediction_bits_keep[0]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.if_prediction_bits_keep_reg[1] 
        (.C(Clk),
         .CE(1'b1),
-        .D(\Use_BTC_2.BTC_RAM_Module_n_67 ),
+        .D(\Use_BTC_2.BTC_RAM_Module_n_37 ),
         .Q(if_prediction_bits_keep[1]),
         .R(reset_bool_for_rst));
   FDRE \Use_BTC_2.if_prediction_bits_keep_reg[2] 
@@ -93039,7 +93863,7 @@ module system_microblaze_0_0_PC_Module_gti
         .A3(1'b0),
         .CE(IReady_1),
         .CLK(Clk),
-        .D(\Use_BTC_2.BTC_RAM_Module_n_66 ),
+        .D(\Use_BTC_2.BTC_RAM_Module_n_36 ),
         .Q(p_3_in37_in));
   (* srl_bus_name = "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3] " *) 
   (* srl_name = "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3][1]_srl4 " *) 
@@ -93052,7 +93876,7 @@ module system_microblaze_0_0_PC_Module_gti
         .A3(1'b0),
         .CE(IReady_1),
         .CLK(Clk),
-        .D(\Use_BTC_2.BTC_RAM_Module_n_67 ),
+        .D(\Use_BTC_2.BTC_RAM_Module_n_37 ),
         .Q(p_3_in31_in));
   (* srl_bus_name = "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3] " *) 
   (* srl_name = "U0/\MicroBlaze_Core_I/Performance.Core/Decode_I/PC_Module_I/Use_BTC_2.prediction_buffer_reg[3][2]_srl4 " *) 
@@ -93097,163 +93921,163 @@ module system_microblaze_0_0_PC_Module_gti
        (.D(new_pc_incr[0]),
         .LO(if_pc_carry[29]),
         .Q(S278_in),
-        .lopt(lopt_80));
+        .lopt(lopt_79));
   system_microblaze_0_0_MB_MUXCY_XORCY_272 \Using_FPGA.Incr_PC[10].MUXCY_XOR_I 
        (.LO(if_pc_carry[20]),
         .O(new_pc_incr[10]),
         .Q(S228_in),
         .\if_pc_reg[11] (if_pc_carry[19]),
-        .lopt(lopt_56),
-        .lopt_1(lopt_57),
-        .lopt_2(lopt_62));
+        .lopt(lopt_55),
+        .lopt_1(lopt_56),
+        .lopt_2(lopt_61));
   system_microblaze_0_0_MB_MUXCY_XORCY_273 \Using_FPGA.Incr_PC[11].MUXCY_XOR_I 
        (.LO(if_pc_carry[19]),
         .O(new_pc_incr[11]),
         .Q(S223_in),
         .\if_pc_reg[12] (if_pc_carry[18]),
-        .lopt(lopt_56),
-        .lopt_1(lopt_57),
-        .lopt_10(lopt_63),
-        .lopt_11(lopt_64),
+        .lopt(lopt_55),
+        .lopt_1(lopt_56),
+        .lopt_10(lopt_62),
+        .lopt_11(lopt_63),
         .lopt_2(S228_in),
-        .lopt_3(lopt_58),
-        .lopt_4(lopt_59),
+        .lopt_3(lopt_57),
+        .lopt_4(lopt_58),
         .lopt_5(S233_in),
-        .lopt_6(lopt_60),
-        .lopt_7(lopt_61),
+        .lopt_6(lopt_59),
+        .lopt_7(lopt_60),
         .lopt_8(S238_in),
-        .lopt_9(lopt_62));
+        .lopt_9(lopt_61));
   system_microblaze_0_0_MB_MUXCY_XORCY_274 \Using_FPGA.Incr_PC[12].MUXCY_XOR_I 
        (.LO(if_pc_carry[18]),
         .O(new_pc_incr[12]),
         .Q(S218_in),
         .\if_pc_reg[13] (if_pc_carry[17]),
-        .lopt(lopt_51),
-        .lopt_1(lopt_52),
-        .lopt_2(lopt_55));
+        .lopt(lopt_50),
+        .lopt_1(lopt_51),
+        .lopt_2(lopt_54));
   system_microblaze_0_0_MB_MUXCY_XORCY_275 \Using_FPGA.Incr_PC[13].MUXCY_XOR_I 
        (.LO(if_pc_carry[17]),
         .O(new_pc_incr[13]),
         .Q(S213_in),
         .\if_pc_reg[14] (if_pc_carry[16]),
-        .lopt(lopt_49),
-        .lopt_1(lopt_50),
-        .lopt_2(lopt_54));
+        .lopt(lopt_48),
+        .lopt_1(lopt_49),
+        .lopt_2(lopt_53));
   system_microblaze_0_0_MB_MUXCY_XORCY_276 \Using_FPGA.Incr_PC[14].MUXCY_XOR_I 
        (.LO(if_pc_carry[16]),
         .O(new_pc_incr[14]),
         .Q(S208_in),
         .\if_pc_reg[15] (if_pc_carry[15]),
-        .lopt(lopt_47),
-        .lopt_1(lopt_48),
-        .lopt_2(lopt_53));
+        .lopt(lopt_46),
+        .lopt_1(lopt_47),
+        .lopt_2(lopt_52));
   system_microblaze_0_0_MB_MUXCY_XORCY_277 \Using_FPGA.Incr_PC[15].MUXCY_XOR_I 
        (.LO(if_pc_carry[15]),
         .O(new_pc_incr[15]),
         .Q(S203_in),
         .\if_pc_reg[16] (if_pc_carry[14]),
-        .lopt(lopt_47),
-        .lopt_1(lopt_48),
-        .lopt_10(lopt_54),
-        .lopt_11(lopt_55),
+        .lopt(lopt_46),
+        .lopt_1(lopt_47),
+        .lopt_10(lopt_53),
+        .lopt_11(lopt_54),
         .lopt_2(S208_in),
-        .lopt_3(lopt_49),
-        .lopt_4(lopt_50),
+        .lopt_3(lopt_48),
+        .lopt_4(lopt_49),
         .lopt_5(S213_in),
-        .lopt_6(lopt_51),
-        .lopt_7(lopt_52),
+        .lopt_6(lopt_50),
+        .lopt_7(lopt_51),
         .lopt_8(S218_in),
-        .lopt_9(lopt_53));
+        .lopt_9(lopt_52));
   system_microblaze_0_0_MB_MUXCY_XORCY_278 \Using_FPGA.Incr_PC[16].MUXCY_XOR_I 
        (.LO(if_pc_carry[14]),
         .O(new_pc_incr[16]),
         .Q(S198_in),
         .\if_pc_reg[17] (if_pc_carry[13]),
-        .lopt(lopt_42),
-        .lopt_1(lopt_43),
-        .lopt_2(lopt_46));
+        .lopt(lopt_41),
+        .lopt_1(lopt_42),
+        .lopt_2(lopt_45));
   system_microblaze_0_0_MB_MUXCY_XORCY_279 \Using_FPGA.Incr_PC[17].MUXCY_XOR_I 
        (.LO(if_pc_carry[13]),
         .O(new_pc_incr[17]),
         .Q(S193_in),
         .\if_pc_reg[18] (if_pc_carry[12]),
-        .lopt(lopt_40),
-        .lopt_1(lopt_41),
-        .lopt_2(lopt_45));
+        .lopt(lopt_39),
+        .lopt_1(lopt_40),
+        .lopt_2(lopt_44));
   system_microblaze_0_0_MB_MUXCY_XORCY_280 \Using_FPGA.Incr_PC[18].MUXCY_XOR_I 
        (.LO(if_pc_carry[12]),
         .O(new_pc_incr[18]),
         .Q(S188_in),
         .\if_pc_reg[19] (if_pc_carry[11]),
-        .lopt(lopt_38),
-        .lopt_1(lopt_39),
-        .lopt_2(lopt_44));
+        .lopt(lopt_37),
+        .lopt_1(lopt_38),
+        .lopt_2(lopt_43));
   system_microblaze_0_0_MB_MUXCY_XORCY_281 \Using_FPGA.Incr_PC[19].MUXCY_XOR_I 
        (.LO(if_pc_carry[11]),
         .O(new_pc_incr[19]),
         .Q(S183_in),
         .\if_pc_reg[20] (if_pc_carry[10]),
-        .lopt(lopt_38),
-        .lopt_1(lopt_39),
-        .lopt_10(lopt_45),
-        .lopt_11(lopt_46),
+        .lopt(lopt_37),
+        .lopt_1(lopt_38),
+        .lopt_10(lopt_44),
+        .lopt_11(lopt_45),
         .lopt_2(S188_in),
-        .lopt_3(lopt_40),
-        .lopt_4(lopt_41),
+        .lopt_3(lopt_39),
+        .lopt_4(lopt_40),
         .lopt_5(S193_in),
-        .lopt_6(lopt_42),
-        .lopt_7(lopt_43),
+        .lopt_6(lopt_41),
+        .lopt_7(lopt_42),
         .lopt_8(S198_in),
-        .lopt_9(lopt_44));
+        .lopt_9(lopt_43));
   system_microblaze_0_0_MB_MUXCY_XORCY_282 \Using_FPGA.Incr_PC[1].MUXCY_XOR_I 
        (.LO(if_pc_carry[29]),
         .O(new_pc_incr[1]),
         .Q(S273_in),
         .\if_pc_reg[2] (if_pc_carry[28]),
-        .lopt(lopt_76),
-        .lopt_1(lopt_77),
-        .lopt_2(lopt_79));
+        .lopt(lopt_75),
+        .lopt_1(lopt_76),
+        .lopt_2(lopt_78));
   system_microblaze_0_0_MB_MUXCY_XORCY_283 \Using_FPGA.Incr_PC[20].MUXCY_XOR_I 
        (.LO(if_pc_carry[10]),
         .O(new_pc_incr[20]),
         .Q(S178_in),
         .\if_pc_reg[21] (if_pc_carry[9]),
-        .lopt(lopt_33),
-        .lopt_1(lopt_34),
-        .lopt_2(lopt_37));
+        .lopt(lopt_32),
+        .lopt_1(lopt_33),
+        .lopt_2(lopt_36));
   system_microblaze_0_0_MB_MUXCY_XORCY_284 \Using_FPGA.Incr_PC[21].MUXCY_XOR_I 
        (.LO(if_pc_carry[9]),
         .O(new_pc_incr[21]),
         .Q(S173_in),
         .\if_pc_reg[22] (if_pc_carry[8]),
-        .lopt(lopt_31),
-        .lopt_1(lopt_32),
-        .lopt_2(lopt_36));
+        .lopt(lopt_30),
+        .lopt_1(lopt_31),
+        .lopt_2(lopt_35));
   system_microblaze_0_0_MB_MUXCY_XORCY_285 \Using_FPGA.Incr_PC[22].MUXCY_XOR_I 
        (.LO(if_pc_carry[8]),
         .O(new_pc_incr[22]),
         .Q(S168_in),
         .\if_pc_reg[23] (if_pc_carry[7]),
-        .lopt(lopt_29),
-        .lopt_1(lopt_30),
-        .lopt_2(lopt_35));
+        .lopt(lopt_28),
+        .lopt_1(lopt_29),
+        .lopt_2(lopt_34));
   system_microblaze_0_0_MB_MUXCY_XORCY_286 \Using_FPGA.Incr_PC[23].MUXCY_XOR_I 
        (.LO(if_pc_carry[7]),
         .O(new_pc_incr[23]),
         .Q(S163_in),
         .\if_pc_reg[24] (if_pc_carry[6]),
-        .lopt(lopt_29),
-        .lopt_1(lopt_30),
-        .lopt_10(lopt_36),
-        .lopt_11(lopt_37),
+        .lopt(lopt_28),
+        .lopt_1(lopt_29),
+        .lopt_10(lopt_35),
+        .lopt_11(lopt_36),
         .lopt_2(S168_in),
-        .lopt_3(lopt_31),
-        .lopt_4(lopt_32),
+        .lopt_3(lopt_30),
+        .lopt_4(lopt_31),
         .lopt_5(S173_in),
-        .lopt_6(lopt_33),
-        .lopt_7(lopt_34),
+        .lopt_6(lopt_32),
+        .lopt_7(lopt_33),
         .lopt_8(S178_in),
-        .lopt_9(lopt_35));
+        .lopt_9(lopt_34));
   system_microblaze_0_0_MB_MUXCY_XORCY_287 \Using_FPGA.Incr_PC[24].MUXCY_XOR_I 
        (.ADDRB(ADDRB[0]),
         .LO(if_pc_carry[6]),
@@ -93265,9 +94089,9 @@ module system_microblaze_0_0_PC_Module_gti
         .bt_valid_bit(bt_valid_bit),
         .\if_pc_reg[24] (S158_in),
         .\if_pc_reg[25] (if_pc_carry[5]),
-        .lopt(lopt_24),
-        .lopt_1(lopt_25),
-        .lopt_2(lopt_28));
+        .lopt(lopt_23),
+        .lopt_1(lopt_24),
+        .lopt_2(lopt_27));
   system_microblaze_0_0_MB_MUXCY_XORCY_288 \Using_FPGA.Incr_PC[25].MUXCY_XOR_I 
        (.ADDRB(ADDRB[1]),
         .LO(if_pc_carry[5]),
@@ -93279,9 +94103,9 @@ module system_microblaze_0_0_PC_Module_gti
         .bt_valid_bit(bt_valid_bit),
         .\if_pc_reg[25] (S153_in),
         .\if_pc_reg[26] (if_pc_carry[4]),
-        .lopt(lopt_22),
-        .lopt_1(lopt_23),
-        .lopt_2(lopt_27));
+        .lopt(lopt_21),
+        .lopt_1(lopt_22),
+        .lopt_2(lopt_26));
   system_microblaze_0_0_MB_MUXCY_XORCY_289 \Using_FPGA.Incr_PC[26].MUXCY_XOR_I 
        (.ADDRB(ADDRB[2]),
         .LO(if_pc_carry[4]),
@@ -93293,9 +94117,9 @@ module system_microblaze_0_0_PC_Module_gti
         .bt_valid_bit(bt_valid_bit),
         .\if_pc_reg[26] (S148_in),
         .\if_pc_reg[27] (if_pc_carry[3]),
-        .lopt(lopt_20),
-        .lopt_1(lopt_21),
-        .lopt_2(lopt_26));
+        .lopt(lopt_19),
+        .lopt_1(lopt_20),
+        .lopt_2(lopt_25));
   system_microblaze_0_0_MB_MUXCY_XORCY_290 \Using_FPGA.Incr_PC[27].MUXCY_XOR_I 
        (.ADDRB(ADDRB[3]),
         .LO(if_pc_carry[3]),
@@ -93307,18 +94131,18 @@ module system_microblaze_0_0_PC_Module_gti
         .bt_valid_bit(bt_valid_bit),
         .\if_pc_reg[27] (S143_in),
         .\if_pc_reg[28] (if_pc_carry[2]),
-        .lopt(lopt_20),
-        .lopt_1(lopt_21),
-        .lopt_10(lopt_27),
-        .lopt_11(lopt_28),
+        .lopt(lopt_19),
+        .lopt_1(lopt_20),
+        .lopt_10(lopt_26),
+        .lopt_11(lopt_27),
         .lopt_2(S148_in),
-        .lopt_3(lopt_22),
-        .lopt_4(lopt_23),
+        .lopt_3(lopt_21),
+        .lopt_4(lopt_22),
         .lopt_5(S153_in),
-        .lopt_6(lopt_24),
-        .lopt_7(lopt_25),
+        .lopt_6(lopt_23),
+        .lopt_7(lopt_24),
         .lopt_8(S158_in),
-        .lopt_9(lopt_26));
+        .lopt_9(lopt_25));
   system_microblaze_0_0_MB_MUXCY_XORCY_291 \Using_FPGA.Incr_PC[28].MUXCY_XOR_I 
        (.ADDRB(ADDRB[4]),
         .LO(if_pc_carry[2]),
@@ -93330,9 +94154,9 @@ module system_microblaze_0_0_PC_Module_gti
         .bt_valid_bit(bt_valid_bit),
         .\if_pc_reg[28] (S136_in),
         .\if_pc_reg[29] (if_pc_carry[1]),
-        .lopt(lopt_16),
-        .lopt_1(lopt_17),
-        .lopt_2(lopt_19));
+        .lopt(lopt_15),
+        .lopt_1(lopt_16),
+        .lopt_2(lopt_18));
   system_microblaze_0_0_MB_MUXCY_XORCY_292 \Using_FPGA.Incr_PC[29].MUXCY_XOR_I 
        (.ADDRB(ADDRB[5]),
         .LO(if_pc_carry[1]),
@@ -93344,99 +94168,89 @@ module system_microblaze_0_0_PC_Module_gti
         .bt_valid_bit(bt_valid_bit),
         .if_pc_incr_carry3(if_pc_incr_carry3),
         .\if_pc_reg[29] (S),
-        .lopt(lopt_14),
-        .lopt_1(lopt_15),
-        .lopt_2(lopt_18));
+        .lopt(lopt_13),
+        .lopt_1(lopt_14),
+        .lopt_2(lopt_17));
   system_microblaze_0_0_MB_MUXCY_XORCY_293 \Using_FPGA.Incr_PC[2].MUXCY_XOR_I 
        (.LO(if_pc_carry[28]),
         .O(new_pc_incr[2]),
         .Q(S268_in),
         .\if_pc_reg[3] (if_pc_carry[27]),
-        .lopt(lopt_74),
-        .lopt_1(lopt_75),
-        .lopt_2(lopt_78));
+        .lopt(lopt_73),
+        .lopt_1(lopt_74),
+        .lopt_2(lopt_77));
   system_microblaze_0_0_MB_MUXCY_XORCY_294 \Using_FPGA.Incr_PC[3].MUXCY_XOR_I 
        (.LO(if_pc_carry[27]),
         .O(new_pc_incr[3]),
         .Q(S263_in),
         .\if_pc_reg[4] (if_pc_carry[26]),
-        .lopt(lopt_74),
-        .lopt_1(lopt_75),
+        .lopt(lopt_73),
+        .lopt_1(lopt_74),
         .lopt_2(S268_in),
-        .lopt_3(lopt_76),
-        .lopt_4(lopt_77),
+        .lopt_3(lopt_75),
+        .lopt_4(lopt_76),
         .lopt_5(S273_in),
-        .lopt_6(lopt_78),
-        .lopt_7(lopt_79),
-        .lopt_8(lopt_80),
+        .lopt_6(lopt_77),
+        .lopt_7(lopt_78),
+        .lopt_8(lopt_79),
         .lopt_9(S278_in));
   system_microblaze_0_0_MB_MUXCY_XORCY_295 \Using_FPGA.Incr_PC[4].MUXCY_XOR_I 
        (.LO(if_pc_carry[26]),
         .O(new_pc_incr[4]),
         .Q(S258_in),
         .\if_pc_reg[5] (if_pc_carry[25]),
-        .lopt(lopt_69),
-        .lopt_1(lopt_70),
-        .lopt_2(lopt_73));
+        .lopt(lopt_68),
+        .lopt_1(lopt_69),
+        .lopt_2(lopt_72));
   system_microblaze_0_0_MB_MUXCY_XORCY_296 \Using_FPGA.Incr_PC[5].MUXCY_XOR_I 
        (.LO(if_pc_carry[25]),
         .O(new_pc_incr[5]),
         .Q(S253_in),
         .\if_pc_reg[6] (if_pc_carry[24]),
-        .lopt(lopt_67),
-        .lopt_1(lopt_68),
-        .lopt_2(lopt_72));
+        .lopt(lopt_66),
+        .lopt_1(lopt_67),
+        .lopt_2(lopt_71));
   system_microblaze_0_0_MB_MUXCY_XORCY_297 \Using_FPGA.Incr_PC[6].MUXCY_XOR_I 
        (.LO(if_pc_carry[24]),
         .O(new_pc_incr[6]),
         .Q(S248_in),
         .\if_pc_reg[7] (if_pc_carry[23]),
-        .lopt(lopt_65),
-        .lopt_1(lopt_66),
-        .lopt_2(lopt_71));
+        .lopt(lopt_64),
+        .lopt_1(lopt_65),
+        .lopt_2(lopt_70));
   system_microblaze_0_0_MB_MUXCY_XORCY_298 \Using_FPGA.Incr_PC[7].MUXCY_XOR_I 
        (.LO(if_pc_carry[23]),
         .O(new_pc_incr[7]),
         .Q(S243_in),
         .\if_pc_reg[8] (if_pc_carry[22]),
-        .lopt(lopt_65),
-        .lopt_1(lopt_66),
-        .lopt_10(lopt_72),
-        .lopt_11(lopt_73),
+        .lopt(lopt_64),
+        .lopt_1(lopt_65),
+        .lopt_10(lopt_71),
+        .lopt_11(lopt_72),
         .lopt_2(S248_in),
-        .lopt_3(lopt_67),
-        .lopt_4(lopt_68),
+        .lopt_3(lopt_66),
+        .lopt_4(lopt_67),
         .lopt_5(S253_in),
-        .lopt_6(lopt_69),
-        .lopt_7(lopt_70),
+        .lopt_6(lopt_68),
+        .lopt_7(lopt_69),
         .lopt_8(S258_in),
-        .lopt_9(lopt_71));
+        .lopt_9(lopt_70));
   system_microblaze_0_0_MB_MUXCY_XORCY_299 \Using_FPGA.Incr_PC[8].MUXCY_XOR_I 
        (.LO(if_pc_carry[22]),
         .O(new_pc_incr[8]),
         .Q(S238_in),
         .\if_pc_reg[9] (if_pc_carry[21]),
-        .lopt(lopt_60),
-        .lopt_1(lopt_61),
-        .lopt_2(lopt_64));
+        .lopt(lopt_59),
+        .lopt_1(lopt_60),
+        .lopt_2(lopt_63));
   system_microblaze_0_0_MB_MUXCY_XORCY_300 \Using_FPGA.Incr_PC[9].MUXCY_XOR_I 
        (.CI(if_pc_carry[20]),
         .LO(if_pc_carry[21]),
         .O(new_pc_incr[9]),
         .Q(S233_in),
-        .lopt(lopt_58),
-        .lopt_1(lopt_59),
-        .lopt_2(lopt_63));
-  LUT6 #(
-    .INIT(64'hAAAAAAAAFFFFFFEA)) 
-    \Using_FPGA.Native_i_1__5 
-       (.I0(ex_jump),
-        .I1(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ),
-        .I2(\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
-        .I3(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
-        .I4(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .I5(bt_ex_mispredict_handled),
-        .O(I5));
+        .lopt(lopt_57),
+        .lopt_1(lopt_58),
+        .lopt_2(lopt_62));
   (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT2 #(
     .INIT(4'hB)) 
@@ -93450,7 +94264,7 @@ module system_microblaze_0_0_PC_Module_gti
         .CYINIT(1'b0),
         .DI({1'b1,1'b1,1'b1,1'b1}),
         .O(NLW_bt_use_delayslot_target4_carry_O_UNCONNECTED[3:0]),
-        .S({\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_2 ,\Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_2 ,\Instruction_Prefetch_Mux[26].Gen_Instr_DFF_n_2 ,\Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_2 }));
+        .S({\Instruction_Prefetch_Mux[18].Gen_Instr_DFF_n_40 ,\Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_2 ,\Instruction_Prefetch_Mux[26].Gen_Instr_DFF_n_2 ,\Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_2 }));
   CARRY4 bt_use_delayslot_target4_carry__0
        (.CI(bt_use_delayslot_target4_carry_n_0),
         .CO({bt_use_delayslot_target4_carry__0_n_0,bt_use_delayslot_target4_carry__0_n_1,bt_use_delayslot_target4_carry__0_n_2,bt_use_delayslot_target4_carry__0_n_3}),
@@ -93465,16 +94279,6 @@ module system_microblaze_0_0_PC_Module_gti
         .DI({1'b0,1'b0,1'b1,1'b1}),
         .O(NLW_bt_use_delayslot_target4_carry__1_O_UNCONNECTED[3:0]),
         .S({1'b0,1'b0,\Instruction_Prefetch_Mux[2].Gen_Instr_DFF_n_2 ,\Instruction_Prefetch_Mux[4].Gen_Instr_DFF_n_2 }));
-  LUT6 #(
-    .INIT(64'h00000000888A8888)) 
-    ex_branch_with_delayslot_i_1
-       (.I0(of_Take_Interrupt_hold_reg),
-        .I1(bt_ex_mispredict_handled),
-        .I2(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .I3(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
-        .I4(ex_branch_with_delayslot_i_3_n_0),
-        .I5(\Using_FPGA.Native_8 ),
-        .O(of_branch_with_delayslot131_out));
   LUT5 #(
     .INIT(32'h7FFFFFFF)) 
     ex_branch_with_delayslot_i_3
@@ -93484,7 +94288,7 @@ module system_microblaze_0_0_PC_Module_gti
         .I3(ex_valid),
         .I4(\Use_BTC_2.BTC_RAM_Module_n_31 ),
         .O(ex_branch_with_delayslot_i_3_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hEA)) 
     ex_delayslot_Instr_i_1
@@ -93507,7 +94311,7 @@ module system_microblaze_0_0_PC_Module_gti
        (.I0(\Use_BTC_2.ex_prediction_bits_reg_n_0_[3] ),
         .I1(bt_in_delayslot),
         .I2(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .I3(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ),
+        .I3(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_4 ),
         .I4(\Use_BTC_2.ex_imm_cond_branch_reg_0 ),
         .O(ex_delayslot_Instr2));
   FDRE \ex_pc_i_reg[0] 
@@ -93702,46 +94506,6 @@ module system_microblaze_0_0_PC_Module_gti
         .D(of_pc[9]),
         .Q(\ex_pc_i_reg_n_0_[9] ),
         .R(reset_bool_for_rst));
-  LUT6 #(
-    .INIT(64'h000C000C0000000A)) 
-    ex_valid_i_1
-       (.I0(ex_valid),
-        .I1(of_next_ex_valid),
-        .I2(reset_bool_for_rst),
-        .I3(wb_exception_i_reg),
-        .I4(ex_branch_with_delayslot_reg),
-        .I5(of_pause_reg),
-        .O(ex_valid_reg));
-  LUT6 #(
-    .INIT(64'h000C000C0000000A)) 
-    ex_valid_jump_i_1
-       (.I0(out),
-        .I1(of_next_ex_valid),
-        .I2(reset_bool_for_rst),
-        .I3(wb_exception_i_reg),
-        .I4(ex_branch_with_delayslot_reg),
-        .I5(of_pause_reg),
-        .O(ex_valid_jump_reg));
-  LUT6 #(
-    .INIT(64'h00000000FFFF0007)) 
-    ex_valid_keep_i_2
-       (.I0(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_6 ),
-        .I1(\Use_BTC_2.bt_saved_pc_valid_reg_n_0 ),
-        .I2(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .I4(bt_ex_mispredict_handled),
-        .I5(\Using_FPGA.Native_10 ),
-        .O(of_next_ex_valid));
-  LUT6 #(
-    .INIT(64'h000000000000002E)) 
-    if_missed_fetch_i_1
-       (.I0(I5),
-        .I1(if_missed_fetch_reg_0),
-        .I2(iside_data_strobe_combined_sel),
-        .I3(\Using_FPGA.Native_4 ),
-        .I4(\No_Master_Debug_Logic.dbg_stop_instr_fetch_reg ),
-        .I5(reset_bool_for_rst),
-        .O(if_missed_fetch_reg));
   FDSE \if_pc_reg[0] 
        (.C(Clk),
         .CE(E),
@@ -93934,7 +94698,7 @@ module system_microblaze_0_0_PC_Module_gti
         .D(D[22]),
         .Q(S233_in),
         .S(reset_bool_for_rst));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT5 #(
     .INIT(32'h000000EA)) 
     keep_jump_taken_with_ds_i_1
@@ -94143,16 +94907,6 @@ module system_microblaze_0_0_PC_Module_gti
         .D(\ex_pc_i_reg_n_0_[9] ),
         .Q(\Using_FPGA.Native_0 [22]),
         .R(reset_bool_for_rst));
-  LUT6 #(
-    .INIT(64'h00000000888A8888)) 
-    of_read_imm_reg_ii_i_2
-       (.I0(of_Take_Interrupt_hold_reg),
-        .I1(bt_ex_mispredict_handled),
-        .I2(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_n_0 ),
-        .I3(\Use_BTC_2.Using_FPGA.bt_jump_carry_or_n_7 ),
-        .I4(ex_branch_with_delayslot_i_3_n_0),
-        .I5(\Using_FPGA.Native_9 ),
-        .O(of_read_imm_reg_ii0));
 endmodule
 
 (* ORIG_REF_NAME = "PreFetch_Buffer_gti" *) 
@@ -94247,7 +95001,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
     \Using_FPGA.Native_3 ,
     if_pre_buffer_addr,
     \Using_FPGA.Native_4 ,
-    ex_valid_reg,
+    ex_valid_jump_reg,
     \Using_Mul_Instr.ex_not_mul_op_i_reg ,
     \Using_FPGA.Native_5 ,
     ex_jump_q_reg,
@@ -94312,7 +95066,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
     if_missed_fetch_reg,
     IReady,
     mem_access_completed_reg,
-    ex_valid_reg_0,
+    ex_valid_reg,
     mem_valid_reg,
     mem_exception_from_ex,
     ex_jump_q,
@@ -94327,7 +95081,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
     of_read_mem_write_op3_conflict_part2,
     of_read_mem_write_op3_conflict_part1,
     ex_mbar_is_sleep,
-    ex_valid_reg_1,
+    ex_valid_reg_0,
     \ex_gpr_write_addr_reg[0] ,
     \ex_gpr_write_addr_reg[4] ,
     I0,
@@ -94436,7 +95190,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
   output \Using_FPGA.Native_3 ;
   output [0:0]if_pre_buffer_addr;
   output \Using_FPGA.Native_4 ;
-  output ex_valid_reg;
+  output ex_valid_jump_reg;
   output \Using_Mul_Instr.ex_not_mul_op_i_reg ;
   output \Using_FPGA.Native_5 ;
   output ex_jump_q_reg;
@@ -94501,7 +95255,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
   input if_missed_fetch_reg;
   input IReady;
   input mem_access_completed_reg;
-  input ex_valid_reg_0;
+  input ex_valid_reg;
   input mem_valid_reg;
   input mem_exception_from_ex;
   input ex_jump_q;
@@ -94516,7 +95270,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
   input of_read_mem_write_op3_conflict_part2;
   input of_read_mem_write_op3_conflict_part1;
   input ex_mbar_is_sleep;
-  input ex_valid_reg_1;
+  input ex_valid_reg_0;
   input [1:0]\ex_gpr_write_addr_reg[0] ;
   input \ex_gpr_write_addr_reg[4] ;
   input I0;
@@ -94786,9 +95540,9 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
   wire ex_set_bip;
   wire ex_start_div_i_reg;
   wire ex_valid;
+  wire ex_valid_jump_reg;
   wire ex_valid_reg;
   wire ex_valid_reg_0;
-  wire ex_valid_reg_1;
   wire force12_out;
   wire force2_reg;
   wire force_Val10_out;
@@ -95186,7 +95940,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
        (.Clk(Clk),
         .EX_Bit_Extract0(EX_Bit_Extract0),
         .FSL_Put_Blocking(FSL_Put_Blocking),
-        .\Use_BTC_2.bt_addr_count_reg[6] (\Instruction_Prefetch_Mux[17].Gen_Instr_DFF_n_2 ),
+        .\Use_BTC_2.bt_addr_count_reg[0] (\Instruction_Prefetch_Mux[17].Gen_Instr_DFF_n_2 ),
         .\Using_FPGA.Native_0 (ex_enable_sext_shift_i0),
         .\Using_FPGA.Native_1 (of_instr[3]),
         .\Using_FPGA.Native_10 (of_instr[4]),
@@ -95231,7 +95985,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
         .of_pause_reg(of_pause_reg));
   system_microblaze_0_0_MB_FDR_130 \Instruction_Prefetch_Mux[19].Gen_Instr_DFF 
        (.Clk(Clk),
-        .\Use_BTC_2.bt_addr_count_reg[6] (\Instruction_Prefetch_Mux[19].Gen_Instr_DFF_n_1 ),
+        .\Use_BTC_2.bt_addr_count_reg[0] (\Instruction_Prefetch_Mux[19].Gen_Instr_DFF_n_1 ),
         .\Using_FPGA.Native_0 (\ex_instr_reg[8] [13]),
         .\Using_FPGA.Native_1 (\ex_instr_reg[8] [9]),
         .\Using_FPGA.Native_2 (\ex_instr_reg[8] [20]),
@@ -95367,7 +96121,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
   system_microblaze_0_0_MB_FDR_140 \Instruction_Prefetch_Mux[23].Gen_Instr_DFF 
        (.Clk(Clk),
         .EX_SWAP_Instr_reg(EX_SWAP_Instr_reg),
-        .\Use_BTC_2.bt_addr_count_reg[6] (\Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_1 ),
+        .\Use_BTC_2.bt_addr_count_reg[0] (\Instruction_Prefetch_Mux[23].Gen_Instr_DFF_n_1 ),
         .\Using_FPGA.Native_0 (\ex_instr_reg[8] [15]),
         .\Using_FPGA.Native_1 (\ex_instr_reg[8] [7]),
         .\Using_FPGA.Native_2 (\ex_instr_reg[8] [0]),
@@ -95438,7 +96192,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
         .of_pause_reg(of_pause_reg));
   system_microblaze_0_0_MB_FDR_152 \Instruction_Prefetch_Mux[29].Gen_Instr_DFF 
        (.Clk(Clk),
-        .\Use_BTC_2.bt_addr_count_reg[6] (\Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_1 ),
+        .\Use_BTC_2.bt_addr_count_reg[0] (\Instruction_Prefetch_Mux[29].Gen_Instr_DFF_n_1 ),
         .\Using_FPGA.Native_0 (\ex_instr_reg[8] [21]),
         .\Using_FPGA.Native_1 (\ex_instr_reg[8] [6]),
         .\Using_FPGA.Native_2 (\ex_instr_reg[8] [4]),
@@ -95548,7 +96302,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
         .\Using_FPGA.Native_2 (\Instruction_Prefetch_Mux[37].Gen_Instr_DFF_n_3 ),
         .\Using_FPGA.Native_3 (of_predecode[8]),
         .\ex_gpr_write_addr_reg[0] (\ex_gpr_write_addr_reg[0] ),
-        .ex_valid_reg(ex_valid_reg_1),
+        .ex_valid_reg(ex_valid_reg_0),
         .of_instr_ii_9(of_instr_ii_9),
         .of_op1_sel(of_op1_sel[1]),
         .sync_reset(sync_reset),
@@ -95648,7 +96402,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
         .\Using_FPGA.Native_9 (\Using_FPGA.Native_9 ),
         .\ex_gpr_write_addr_reg[0] (\ex_gpr_write_addr_reg[0] ),
         .ex_sel_alu_i_reg(ex_sel_alu_i_reg_0),
-        .ex_valid_reg(ex_valid_reg_1),
+        .ex_valid_reg(ex_valid_reg_0),
         .\mem_gpr_write_addr_reg[0] (\mem_gpr_write_addr_reg[0] [4:3]),
         .\mem_gpr_write_addr_reg[4] (\Instruction_Prefetch_Mux[42].Gen_Instr_DFF_n_1 ),
         .mem_valid_reg(mem_valid_reg_0),
@@ -95679,7 +96433,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
         .EX_Unsigned_Op116_out(EX_Unsigned_Op116_out),
         .EX_Use_Carry115_out(EX_Use_Carry115_out),
         .SR(SR),
-        .\Use_BTC_2.bt_addr_count_reg[6] (\Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_3 ),
+        .\Use_BTC_2.bt_addr_count_reg[0] (\Instruction_Prefetch_Mux[3].Gen_Instr_DFF_n_3 ),
         .\Using_FPGA.Native_0 (\Using_FPGA.Native_2 ),
         .\Using_FPGA.Native_1 (of_instr[0]),
         .\Using_FPGA.Native_10 (\ex_instr_reg[8] [0]),
@@ -95993,7 +96747,7 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
        (.Clk(Clk),
         .EX_Is_Div_Instr(EX_Is_Div_Instr),
         .MEM_Is_Div_Instr(MEM_Is_Div_Instr),
-        .\Use_BTC_2.bt_addr_count_reg[6] (OF_Valid_DFF_n_4),
+        .\Use_BTC_2.bt_addr_count_reg[0] (OF_Valid_DFF_n_4),
         .\Use_BTC_2.bt_if_pc_incr_wait_reg (\Use_BTC_2.bt_if_pc_incr_wait_reg ),
         .\Use_BTC_2.bt_write_q_reg (\Use_BTC_2.bt_write_q_reg ),
         .\Use_BTC_2.ex_prediction_bits_reg[0] (\Use_BTC_2.ex_prediction_bits_reg[0] ),
@@ -96015,8 +96769,8 @@ module system_microblaze_0_0_PreFetch_Buffer_gti
         .ex_jump_q(ex_jump_q),
         .ex_jump_q_reg(ex_jump_q_reg),
         .ex_jump_wanted(ex_jump_wanted),
+        .ex_valid_jump_reg(ex_valid_jump_reg),
         .ex_valid_reg(ex_valid_reg),
-        .ex_valid_reg_0(ex_valid_reg_0),
         .\imm_reg_reg[15] (\imm_reg_reg[15] ),
         .mem_exception_from_ex(mem_exception_from_ex),
         .mem_valid_reg(mem_valid_reg),
@@ -96595,7 +97349,6 @@ module system_microblaze_0_0_RAM_Module
     \Use_BTC_2.if_prediction_bits_keep_reg[2] ,
     bt_valid_bit,
     \Use_BTC_2.bt_write_q_reg_0 ,
-    D,
     \Use_BTC_2.bt_saved_pc_reg[29] ,
     I013_out,
     I09_out,
@@ -96603,6 +97356,11 @@ module system_microblaze_0_0_RAM_Module
     in,
     I17_out,
     \if_pc_reg[31] ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg ,
+    \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg ,
     bt_write_q,
     \Use_BTC_2.bt_clear_wait_reg ,
     Q,
@@ -96621,26 +97379,22 @@ module system_microblaze_0_0_RAM_Module
     \Use_BTC_2.bt_write_delayslot_reg ,
     ex_branch_with_delayslot,
     ex_bt_branch,
-    \EX_Op2_reg[0] ,
-    bt_jump,
-    \if_pc_reg[0] ,
-    \Use_BTC_2.bt_delayslot_target_reg[0] ,
-    \Use_BTC_2.bt_ex_mispredict_addr_hold_reg ,
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ,
-    \Use_BTC_2.bt_saved_pc_reg[0] ,
     \Use_BTC_2.ex_jump_wanted_keep_reg ,
     ex_jump_wanted,
     ex_jump_wanted_delayslot,
     bt_if_pc_incr_wait,
     if_pc_incr_carry3,
+    bt_jump,
     if_pc_write_q,
     \Use_BTC_2.if_prediction_bits_keep_reg[0] ,
     \Using_FPGA.Native_0 ,
     IReady_1,
+    D,
     \Using_FPGA.Native_1 ,
-    \Using_FPGA.Native_2 ,
     out,
+    \Use_BTC_2.bt_delayslot_target_reg[0] ,
     bt_in_delayslot,
+    \EX_Op2_reg[0] ,
     jump_done,
     Clk,
     ADDRB,
@@ -96653,7 +97407,6 @@ module system_microblaze_0_0_RAM_Module
   output [24:0]\Use_BTC_2.if_prediction_bits_keep_reg[2] ;
   output bt_valid_bit;
   output \Use_BTC_2.bt_write_q_reg_0 ;
-  output [29:0]D;
   output [0:0]\Use_BTC_2.bt_saved_pc_reg[29] ;
   output I013_out;
   output I09_out;
@@ -96661,6 +97414,11 @@ module system_microblaze_0_0_RAM_Module
   output [1:0]in;
   output I17_out;
   output \if_pc_reg[31] ;
+  output [3:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg ;
+  output [1:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg ;
+  output [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg ;
+  output [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg ;
+  output [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg ;
   input bt_write_q;
   input \Use_BTC_2.bt_clear_wait_reg ;
   input [0:0]Q;
@@ -96679,26 +97437,22 @@ module system_microblaze_0_0_RAM_Module
   input \Use_BTC_2.bt_write_delayslot_reg ;
   input ex_branch_with_delayslot;
   input ex_bt_branch;
-  input [29:0]\EX_Op2_reg[0] ;
-  input bt_jump;
-  input [29:0]\if_pc_reg[0] ;
-  input [29:0]\Use_BTC_2.bt_delayslot_target_reg[0] ;
-  input \Use_BTC_2.bt_ex_mispredict_addr_hold_reg ;
-  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ;
-  input [29:0]\Use_BTC_2.bt_saved_pc_reg[0] ;
   input \Use_BTC_2.ex_jump_wanted_keep_reg ;
   input ex_jump_wanted;
   input ex_jump_wanted_delayslot;
   input bt_if_pc_incr_wait;
   input if_pc_incr_carry3;
+  input bt_jump;
   input if_pc_write_q;
   input [1:0]\Use_BTC_2.if_prediction_bits_keep_reg[0] ;
   input \Using_FPGA.Native_0 ;
   input IReady_1;
-  input [1:0]\Using_FPGA.Native_1 ;
-  input \Using_FPGA.Native_2 ;
+  input [1:0]D;
+  input \Using_FPGA.Native_1 ;
   input [1:0]out;
+  input [29:0]\Use_BTC_2.bt_delayslot_target_reg[0] ;
   input bt_in_delayslot;
+  input [29:0]\EX_Op2_reg[0] ;
   input jump_done;
   input Clk;
   input [0:5]ADDRB;
@@ -96707,7 +97461,7 @@ module system_microblaze_0_0_RAM_Module
   wire A105_out;
   wire [0:5]ADDRB;
   wire Clk;
-  wire [29:0]D;
+  wire [1:0]D;
   wire [0:0]E;
   wire [29:0]\EX_Op2_reg[0] ;
   wire I013_out;
@@ -96715,36 +97469,6 @@ module system_microblaze_0_0_RAM_Module
   wire I111_out;
   wire I17_out;
   wire IReady_1;
-  wire \Instr_Addr[0]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[10]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[11]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[12]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[13]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[14]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[15]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[16]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[17]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[18]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[19]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[1]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[20]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[21]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[22]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[23]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[24]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[25]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[26]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[27]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[28]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[29]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[2]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[3]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[4]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[5]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[6]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[7]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[8]_INST_0_i_1_n_0 ;
-  wire \Instr_Addr[9]_INST_0_i_1_n_0 ;
   wire \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[0].Block_DistRAM.RAM_reg_0_63_0_0_n_0 ;
   wire \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[0].Block_DistRAM.RAM_reg_0_63_1_1_n_0 ;
   wire \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[0].Block_DistRAM.RAM_reg_0_63_2_2_n_0 ;
@@ -96829,14 +97553,11 @@ module system_microblaze_0_0_RAM_Module
   wire [7:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg ;
   wire \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.RAM_reg_0_63_6_6_i_1_n_0 ;
   wire \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.RAM_reg_0_63_7_7_i_1_n_0 ;
-  wire [7:6]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg ;
+  wire [1:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg ;
   wire [0:0]Q;
   wire \Use_BTC_2.bt_clear_wait_reg ;
   wire \Use_BTC_2.bt_clear_wait_reg_0 ;
   wire [29:0]\Use_BTC_2.bt_delayslot_target_reg[0] ;
-  wire \Use_BTC_2.bt_ex_mispredict_addr_hold_reg ;
-  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ;
-  wire [29:0]\Use_BTC_2.bt_saved_pc_reg[0] ;
   wire [0:0]\Use_BTC_2.bt_saved_pc_reg[29] ;
   wire \Use_BTC_2.bt_saved_pc_valid_reg ;
   wire \Use_BTC_2.bt_write_delayslot_reg ;
@@ -96850,8 +97571,7 @@ module system_microblaze_0_0_RAM_Module
   wire \Use_BTC_2.we_hold_reg ;
   wire \Using_FPGA.Native ;
   wire \Using_FPGA.Native_0 ;
-  wire [1:0]\Using_FPGA.Native_1 ;
-  wire \Using_FPGA.Native_2 ;
+  wire \Using_FPGA.Native_1 ;
   wire bt_clear_hold;
   wire bt_ex_imm_cond_branch;
   wire bt_ex_mispredict_pc_hold;
@@ -96872,7 +97592,6 @@ module system_microblaze_0_0_RAM_Module
   wire [23:0]\ex_pc_i_reg[0] ;
   wire ex_valid;
   wire if_pc_incr_carry3;
-  wire [29:0]\if_pc_reg[0] ;
   wire \if_pc_reg[31] ;
   wire if_pc_write_q;
   wire [1:0]in;
@@ -96882,546 +97601,6 @@ module system_microblaze_0_0_RAM_Module
   wire [7:0]p_1_in;
   wire [7:6]p_2_out;
 
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[0]_INST_0 
-       (.I0(\EX_Op2_reg[0] [29]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[0]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [29]),
-        .O(D[29]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[0]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [29]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg [3]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [29]),
-        .O(\Instr_Addr[0]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[10]_INST_0 
-       (.I0(\EX_Op2_reg[0] [19]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[10]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [19]),
-        .O(D[19]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[10]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [19]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg [1]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [19]),
-        .O(\Instr_Addr[10]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[11]_INST_0 
-       (.I0(\EX_Op2_reg[0] [18]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[11]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [18]),
-        .O(D[18]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[11]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [18]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg [0]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [18]),
-        .O(\Instr_Addr[11]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[12]_INST_0 
-       (.I0(\EX_Op2_reg[0] [17]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[12]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [17]),
-        .O(D[17]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[12]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [17]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg [7]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [17]),
-        .O(\Instr_Addr[12]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[13]_INST_0 
-       (.I0(\EX_Op2_reg[0] [16]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[13]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [16]),
-        .O(D[16]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[13]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [16]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg [6]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [16]),
-        .O(\Instr_Addr[13]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[14]_INST_0 
-       (.I0(\EX_Op2_reg[0] [15]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[14]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [15]),
-        .O(D[15]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[14]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [15]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg [5]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [15]),
-        .O(\Instr_Addr[14]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[15]_INST_0 
-       (.I0(\EX_Op2_reg[0] [14]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[15]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [14]),
-        .O(D[14]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[15]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [14]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg [4]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [14]),
-        .O(\Instr_Addr[15]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[16]_INST_0 
-       (.I0(\EX_Op2_reg[0] [13]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[16]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [13]),
-        .O(D[13]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[16]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [13]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg [3]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [13]),
-        .O(\Instr_Addr[16]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[17]_INST_0 
-       (.I0(\EX_Op2_reg[0] [12]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[17]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [12]),
-        .O(D[12]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[17]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [12]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg [2]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [12]),
-        .O(\Instr_Addr[17]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[18]_INST_0 
-       (.I0(\EX_Op2_reg[0] [11]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[18]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [11]),
-        .O(D[11]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[18]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [11]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg [1]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [11]),
-        .O(\Instr_Addr[18]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[19]_INST_0 
-       (.I0(\EX_Op2_reg[0] [10]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[19]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [10]),
-        .O(D[10]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[19]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [10]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[5].Block_DistRAM.data_outb_i_reg [0]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [10]),
-        .O(\Instr_Addr[19]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[1]_INST_0 
-       (.I0(\EX_Op2_reg[0] [28]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[1]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [28]),
-        .O(D[28]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[1]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [28]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg [2]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [28]),
-        .O(\Instr_Addr[1]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[20]_INST_0 
-       (.I0(\EX_Op2_reg[0] [9]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[20]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [9]),
-        .O(D[9]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[20]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [9]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg [7]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [9]),
-        .O(\Instr_Addr[20]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[21]_INST_0 
-       (.I0(\EX_Op2_reg[0] [8]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[21]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [8]),
-        .O(D[8]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[21]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [8]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg [6]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [8]),
-        .O(\Instr_Addr[21]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[22]_INST_0 
-       (.I0(\EX_Op2_reg[0] [7]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[22]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [7]),
-        .O(D[7]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[22]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [7]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg [5]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [7]),
-        .O(\Instr_Addr[22]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[23]_INST_0 
-       (.I0(\EX_Op2_reg[0] [6]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[23]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [6]),
-        .O(D[6]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[23]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [6]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg [4]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [6]),
-        .O(\Instr_Addr[23]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[24]_INST_0 
-       (.I0(\EX_Op2_reg[0] [5]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[24]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [5]),
-        .O(D[5]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[24]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [5]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg [3]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [5]),
-        .O(\Instr_Addr[24]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[25]_INST_0 
-       (.I0(\EX_Op2_reg[0] [4]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[25]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [4]),
-        .O(D[4]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[25]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [4]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg [2]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [4]),
-        .O(\Instr_Addr[25]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[26]_INST_0 
-       (.I0(\EX_Op2_reg[0] [3]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[26]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [3]),
-        .O(D[3]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[26]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [3]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg [1]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [3]),
-        .O(\Instr_Addr[26]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[27]_INST_0 
-       (.I0(\EX_Op2_reg[0] [2]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[27]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [2]),
-        .O(D[2]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[27]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [2]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[6].Block_DistRAM.data_outb_i_reg [0]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [2]),
-        .O(\Instr_Addr[27]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[28]_INST_0 
-       (.I0(\EX_Op2_reg[0] [1]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[28]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [1]),
-        .O(D[1]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[28]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [1]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg [7]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [1]),
-        .O(\Instr_Addr[28]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[29]_INST_0 
-       (.I0(\EX_Op2_reg[0] [0]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[29]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [0]),
-        .O(D[0]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[29]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [0]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg [6]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [0]),
-        .O(\Instr_Addr[29]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[2]_INST_0 
-       (.I0(\EX_Op2_reg[0] [27]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[2]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [27]),
-        .O(D[27]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[2]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [27]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg [1]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [27]),
-        .O(\Instr_Addr[2]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[3]_INST_0 
-       (.I0(\EX_Op2_reg[0] [26]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[3]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [26]),
-        .O(D[26]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[3]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [26]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg [0]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [26]),
-        .O(\Instr_Addr[3]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[4]_INST_0 
-       (.I0(\EX_Op2_reg[0] [25]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[4]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [25]),
-        .O(D[25]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[4]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [25]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg [7]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [25]),
-        .O(\Instr_Addr[4]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[5]_INST_0 
-       (.I0(\EX_Op2_reg[0] [24]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[5]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [24]),
-        .O(D[24]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[5]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [24]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg [6]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [24]),
-        .O(\Instr_Addr[5]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[6]_INST_0 
-       (.I0(\EX_Op2_reg[0] [23]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[6]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [23]),
-        .O(D[23]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[6]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [23]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg [5]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [23]),
-        .O(\Instr_Addr[6]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[7]_INST_0 
-       (.I0(\EX_Op2_reg[0] [22]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[7]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [22]),
-        .O(D[22]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[7]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [22]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg [4]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [22]),
-        .O(\Instr_Addr[7]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[8]_INST_0 
-       (.I0(\EX_Op2_reg[0] [21]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[8]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [21]),
-        .O(D[21]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[8]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [21]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg [3]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [21]),
-        .O(\Instr_Addr[8]_INST_0_i_1_n_0 ));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[9]_INST_0 
-       (.I0(\EX_Op2_reg[0] [20]),
-        .I1(ex_jump),
-        .I2(\Instr_Addr[9]_INST_0_i_1_n_0 ),
-        .I3(bt_jump),
-        .I4(\if_pc_reg[0] [20]),
-        .O(D[20]));
-  LUT5 #(
-    .INIT(32'hB8BBB888)) 
-    \Instr_Addr[9]_INST_0_i_1 
-       (.I0(\Use_BTC_2.bt_delayslot_target_reg[0] [20]),
-        .I1(\Use_BTC_2.bt_ex_mispredict_addr_hold_reg ),
-        .I2(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[4].Block_DistRAM.data_outb_i_reg [2]),
-        .I3(\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .I4(\Use_BTC_2.bt_saved_pc_reg[0] [20]),
-        .O(\Instr_Addr[9]_INST_0_i_1_n_0 ));
   RAM64X1S #(
     .INIT(64'h0000000000000000)) 
     \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[0].Block_DistRAM.RAM_reg_0_63_0_0 
@@ -97946,7 +98125,7 @@ module system_microblaze_0_0_RAM_Module
         .I1(bt_in_delayslot),
         .I2(\EX_Op2_reg[0] [26]),
         .O(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_0_0_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT5 #(
     .INIT(32'hFFEFEEEF)) 
     \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_0_0_i_10 
@@ -97962,7 +98141,7 @@ module system_microblaze_0_0_RAM_Module
        (.I0(E),
         .I1(\Use_BTC_2.we_hold_reg ),
         .O(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_0_0_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT5 #(
     .INIT(32'hFF1F111F)) 
     \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.RAM_reg_0_63_0_0_i_9 
@@ -98909,7 +99088,7 @@ module system_microblaze_0_0_RAM_Module
        (.C(Clk),
         .CE(E),
         .D(p_2_out[7]),
-        .Q(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg [7]),
+        .Q(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg [1]),
         .R(1'b0));
   FDRE #(
     .INIT(1'b0)) 
@@ -98917,7 +99096,7 @@ module system_microblaze_0_0_RAM_Module
        (.C(Clk),
         .CE(E),
         .D(p_2_out[6]),
-        .Q(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg [6]),
+        .Q(\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[7].Block_DistRAM.data_outb_i_reg [0]),
         .R(1'b0));
   LUT6 #(
     .INIT(64'hFE00AA00AA00AA00)) 
@@ -98949,7 +99128,7 @@ module system_microblaze_0_0_RAM_Module
         .I4(ex_branch_with_delayslot),
         .I5(ex_bt_branch),
         .O(\Use_BTC_2.bt_write_q_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_BTC_2.prediction_buffer_reg[3][0]_srl4_i_1 
@@ -98957,7 +99136,7 @@ module system_microblaze_0_0_RAM_Module
         .I1(if_pc_write_q),
         .I2(\Use_BTC_2.if_prediction_bits_keep_reg[0] [1]),
         .O(in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \Use_BTC_2.prediction_buffer_reg[3][1]_srl4_i_1 
@@ -98989,7 +99168,7 @@ module system_microblaze_0_0_RAM_Module
         .I2(\Use_BTC_2.if_prediction_bits_keep_reg[0] [1]),
         .I3(\Using_FPGA.Native_0 ),
         .I4(IReady_1),
-        .I5(\Using_FPGA.Native_1 [1]),
+        .I5(D[1]),
         .O(I013_out));
   LUT6 #(
     .INIT(64'hB8FFFFFFB8000000)) 
@@ -98999,7 +99178,7 @@ module system_microblaze_0_0_RAM_Module
         .I2(\Use_BTC_2.if_prediction_bits_keep_reg[0] [0]),
         .I3(\Using_FPGA.Native_0 ),
         .I4(IReady_1),
-        .I5(\Using_FPGA.Native_1 [0]),
+        .I5(D[0]),
         .O(I09_out));
   LUT5 #(
     .INIT(32'hB8FFB800)) 
@@ -99007,7 +99186,7 @@ module system_microblaze_0_0_RAM_Module
        (.I0(dob[26]),
         .I1(if_pc_write_q),
         .I2(\Use_BTC_2.if_prediction_bits_keep_reg[0] [1]),
-        .I3(\Using_FPGA.Native_2 ),
+        .I3(\Using_FPGA.Native_1 ),
         .I4(out[1]),
         .O(I111_out));
   LUT5 #(
@@ -99016,7 +99195,7 @@ module system_microblaze_0_0_RAM_Module
        (.I0(dob[27]),
         .I1(if_pc_write_q),
         .I2(\Use_BTC_2.if_prediction_bits_keep_reg[0] [0]),
-        .I3(\Using_FPGA.Native_2 ),
+        .I3(\Using_FPGA.Native_1 ),
         .I4(out[0]),
         .O(I17_out));
 endmodule
@@ -100994,111 +101173,82 @@ endmodule
 (* ORIG_REF_NAME = "carry_or" *) 
 module system_microblaze_0_0_carry_or_271
    (bt_jump,
-    \Use_BTC_2.bt_saved_pc_valid_reg ,
     I1_1,
     in,
     I0,
     \Use_BTC_2.bt_if_pc_incr_wait_reg ,
+    \Use_BTC_2.bt_saved_pc_valid_reg ,
     \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ,
-    ex_branch_with_delayslot_reg,
+    \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ,
     D,
     \Use_BTC_2.jump_done_reg ,
     \Instr_Addr[30] ,
+    \Use_BTC_2.bt_ex_mispredict_handled_reg ,
     carry2,
-    \Use_BTC_2.bt_saved_pc_valid_reg_0 ,
-    \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ,
     \Using_FPGA.Native ,
-    \Use_Async_Reset.sync_reset_reg ,
-    \Using_FPGA.Native_0 ,
     out,
-    \Using_FPGA.Native_1 ,
+    \Using_FPGA.Native_0 ,
     if_missed_fetch_reg,
     IReady,
     mem_access_completed_reg,
-    \Using_FPGA.Native_2 ,
+    \Using_FPGA.Native_1 ,
     Q,
     if_pc_write_q,
     we_hold,
     bt_valid_bit,
-    bt_if_pc_incr_wait,
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ,
-    if_pc_incr_carry3,
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ,
-    \Use_BTC_2.bt_ex_jump_held_reg ,
     \Use_BTC_2.ex_jump_wanted_delayslot_reg ,
     ex_valid,
     bt_ex_imm_cond_branch,
     \Use_BTC_2.ex_prediction_bits_reg[3] ,
     \Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ,
-    \Using_FPGA.Native_3 ,
+    if_pc_incr_carry3,
+    \Using_FPGA.Native_2 ,
     ex_jump,
-    bt_ex_mispredict_addr_hold,
-    \Use_BTC_2.bt_ex_return_reg ,
-    CO,
-    of_valid,
-    ex_Take_Intr_or_Exc_keep,
     bt_ex_mispredict_handled,
     ex_jump_hold_0,
     \EX_Op2_reg[30] ,
     \if_pc_reg[30] ,
-    \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 ,
     lopt,
-    lopt_1,
-    lopt_2);
+    lopt_1);
   output bt_jump;
-  output \Use_BTC_2.bt_saved_pc_valid_reg ;
   output I1_1;
   output [0:0]in;
   output I0;
   output \Use_BTC_2.bt_if_pc_incr_wait_reg ;
+  output \Use_BTC_2.bt_saved_pc_valid_reg ;
   output \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ;
-  output ex_branch_with_delayslot_reg;
+  output \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ;
   output [0:0]D;
   output \Use_BTC_2.jump_done_reg ;
   output [1:0]\Instr_Addr[30] ;
+  input \Use_BTC_2.bt_ex_mispredict_handled_reg ;
   input carry2;
-  input \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
-  input \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ;
   input \Using_FPGA.Native ;
-  input \Use_Async_Reset.sync_reset_reg ;
-  input \Using_FPGA.Native_0 ;
   input [0:0]out;
-  input \Using_FPGA.Native_1 ;
+  input \Using_FPGA.Native_0 ;
   input if_missed_fetch_reg;
   input IReady;
   input mem_access_completed_reg;
-  input \Using_FPGA.Native_2 ;
+  input \Using_FPGA.Native_1 ;
   input [0:0]Q;
   input if_pc_write_q;
   input we_hold;
   input bt_valid_bit;
-  input bt_if_pc_incr_wait;
-  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ;
-  input if_pc_incr_carry3;
-  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ;
-  input \Use_BTC_2.bt_ex_jump_held_reg ;
   input \Use_BTC_2.ex_jump_wanted_delayslot_reg ;
   input ex_valid;
   input bt_ex_imm_cond_branch;
   input [0:0]\Use_BTC_2.ex_prediction_bits_reg[3] ;
   input [0:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ;
-  input \Using_FPGA.Native_3 ;
+  input if_pc_incr_carry3;
+  input \Using_FPGA.Native_2 ;
   input ex_jump;
-  input bt_ex_mispredict_addr_hold;
-  input \Use_BTC_2.bt_ex_return_reg ;
-  input [0:0]CO;
-  input of_valid;
-  input ex_Take_Intr_or_Exc_keep;
   input bt_ex_mispredict_handled;
   input ex_jump_hold_0;
   input [1:0]\EX_Op2_reg[30] ;
   input [1:0]\if_pc_reg[30] ;
-  input \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 ;
   input lopt;
   output lopt_1;
-  output lopt_2;
 
-  wire [0:0]CO;
   wire [0:0]D;
   wire [1:0]\EX_Op2_reg[30] ;
   wire I0;
@@ -101107,17 +101257,11 @@ module system_microblaze_0_0_carry_or_271
   wire [1:0]\Instr_Addr[30] ;
   wire [0:0]\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ;
   wire [0:0]Q;
-  wire \Use_Async_Reset.sync_reset_reg ;
-  wire \Use_BTC_2.bt_ex_jump_held_reg ;
-  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg ;
-  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ;
-  wire \Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 ;
-  wire \Use_BTC_2.bt_ex_return_reg ;
+  wire \Use_BTC_2.bt_ex_mispredict_handled_reg ;
   wire \Use_BTC_2.bt_if_pc_incr_wait_reg ;
   wire \Use_BTC_2.bt_if_pc_incr_wait_reg_0 ;
   wire \Use_BTC_2.bt_if_pc_incr_wait_reg_1 ;
   wire \Use_BTC_2.bt_saved_pc_valid_reg ;
-  wire \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
   wire \Use_BTC_2.ex_jump_wanted_delayslot_reg ;
   wire [0:0]\Use_BTC_2.ex_prediction_bits_reg[3] ;
   wire \Use_BTC_2.jump_done_reg ;
@@ -101125,16 +101269,11 @@ module system_microblaze_0_0_carry_or_271
   wire \Using_FPGA.Native_0 ;
   wire \Using_FPGA.Native_1 ;
   wire \Using_FPGA.Native_2 ;
-  wire \Using_FPGA.Native_3 ;
   wire bt_ex_imm_cond_branch;
-  wire bt_ex_mispredict_addr_hold;
   wire bt_ex_mispredict_handled;
-  wire bt_if_pc_incr_wait;
   wire bt_jump;
   wire bt_valid_bit;
   wire carry2;
-  wire ex_Take_Intr_or_Exc_keep;
-  wire ex_branch_with_delayslot_reg;
   wire ex_jump;
   wire ex_jump_hold_0;
   wire ex_valid;
@@ -101145,15 +101284,12 @@ module system_microblaze_0_0_carry_or_271
   wire [0:0]in;
   wire lopt;
   wire lopt_1;
-  wire lopt_2;
   wire mem_access_completed_reg;
-  wire of_valid;
   wire [0:0]out;
   wire we_hold;
 
   system_microblaze_0_0_MB_MUXCY_301 MUXCY_I
-       (.CO(CO),
-        .D(D),
+       (.D(D),
         .\EX_Op2_reg[30] (\EX_Op2_reg[30] ),
         .I0(I0),
         .I1_1(I1_1),
@@ -101161,17 +101297,11 @@ module system_microblaze_0_0_carry_or_271
         .\Instr_Addr[30] (\Instr_Addr[30] ),
         .\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] (\Not_Using_XPM.Using_DistRAM.Native.The_DistRAMs[3].Block_DistRAM.data_outb_i_reg[25] ),
         .Q(Q),
-        .\Use_Async_Reset.sync_reset_reg (\Use_Async_Reset.sync_reset_reg ),
-        .\Use_BTC_2.bt_ex_jump_held_reg (\Use_BTC_2.bt_ex_jump_held_reg ),
-        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg (\Use_BTC_2.bt_ex_mispredict_taken_hold_reg ),
-        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 (\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_0 ),
-        .\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 (\Use_BTC_2.bt_ex_mispredict_taken_hold_reg_1 ),
-        .\Use_BTC_2.bt_ex_return_reg (\Use_BTC_2.bt_ex_return_reg ),
+        .\Use_BTC_2.bt_ex_mispredict_handled_reg (\Use_BTC_2.bt_ex_mispredict_handled_reg ),
         .\Use_BTC_2.bt_if_pc_incr_wait_reg (\Use_BTC_2.bt_if_pc_incr_wait_reg ),
         .\Use_BTC_2.bt_if_pc_incr_wait_reg_0 (\Use_BTC_2.bt_if_pc_incr_wait_reg_0 ),
         .\Use_BTC_2.bt_if_pc_incr_wait_reg_1 (\Use_BTC_2.bt_if_pc_incr_wait_reg_1 ),
         .\Use_BTC_2.bt_saved_pc_valid_reg (\Use_BTC_2.bt_saved_pc_valid_reg ),
-        .\Use_BTC_2.bt_saved_pc_valid_reg_0 (\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
         .\Use_BTC_2.ex_jump_wanted_delayslot_reg (\Use_BTC_2.ex_jump_wanted_delayslot_reg ),
         .\Use_BTC_2.ex_prediction_bits_reg[3] (\Use_BTC_2.ex_prediction_bits_reg[3] ),
         .\Use_BTC_2.jump_done_reg (\Use_BTC_2.jump_done_reg ),
@@ -101179,15 +101309,10 @@ module system_microblaze_0_0_carry_or_271
         .\Using_FPGA.Native_1 (\Using_FPGA.Native_0 ),
         .\Using_FPGA.Native_2 (\Using_FPGA.Native_1 ),
         .\Using_FPGA.Native_3 (\Using_FPGA.Native_2 ),
-        .\Using_FPGA.Native_4 (\Using_FPGA.Native_3 ),
         .bt_ex_imm_cond_branch(bt_ex_imm_cond_branch),
-        .bt_ex_mispredict_addr_hold(bt_ex_mispredict_addr_hold),
         .bt_ex_mispredict_handled(bt_ex_mispredict_handled),
-        .bt_if_pc_incr_wait(bt_if_pc_incr_wait),
         .bt_valid_bit(bt_valid_bit),
         .carry2(carry2),
-        .ex_Take_Intr_or_Exc_keep(ex_Take_Intr_or_Exc_keep),
-        .ex_branch_with_delayslot_reg(ex_branch_with_delayslot_reg),
         .ex_jump(ex_jump),
         .ex_jump_hold_0(ex_jump_hold_0),
         .ex_valid(ex_valid),
@@ -101199,9 +101324,7 @@ module system_microblaze_0_0_carry_or_271
         .in(in),
         .lopt(lopt),
         .lopt_1(lopt_1),
-        .lopt_2(lopt_2),
         .mem_access_completed_reg(mem_access_completed_reg),
-        .of_valid(of_valid),
         .out(out),
         .we_hold(we_hold));
 endmodule
@@ -103283,7 +103406,7 @@ module system_microblaze_0_0_jump_logic
     ex_Take_Intr_or_Exc_reg,
     \Use_BTC_2.bt_saved_pc_valid_reg ,
     mem_jump_taken_reg,
-    \Use_BTC_2.bt_saved_pc_valid_reg_0 ,
+    \Use_BTC_2.bt_if_pc_incr_wait_reg ,
     \Use_BTC_2.ex_jump_wanted_keep_reg ,
     EX_Op1_Zero,
     ex_branch_with_delayslot_reg,
@@ -103326,7 +103449,7 @@ module system_microblaze_0_0_jump_logic
   output ex_Take_Intr_or_Exc_reg;
   output \Use_BTC_2.bt_saved_pc_valid_reg ;
   output mem_jump_taken_reg;
-  output \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
+  output \Use_BTC_2.bt_if_pc_incr_wait_reg ;
   output \Use_BTC_2.ex_jump_wanted_keep_reg ;
   input EX_Op1_Zero;
   input ex_branch_with_delayslot_reg;
@@ -103368,8 +103491,8 @@ module system_microblaze_0_0_jump_logic
   wire EX_Op1_CMP_Equal;
   wire EX_Op1_Zero;
   wire MUXCY_JUMP_CARRY6_n_5;
+  wire \Use_BTC_2.bt_if_pc_incr_wait_reg ;
   wire \Use_BTC_2.bt_saved_pc_valid_reg ;
-  wire \Use_BTC_2.bt_saved_pc_valid_reg_0 ;
   wire \Use_BTC_2.ex_jump_wanted_keep_reg ;
   wire \Use_BTC_2.ex_jump_wanted_keep_reg_0 ;
   wire \Using_FPGA.Native ;
@@ -103478,8 +103601,8 @@ module system_microblaze_0_0_jump_logic
         .lopt_2(lopt_10));
   system_microblaze_0_0_MB_MUXCY_89 MUXCY_JUMP_CARRY6
        (.D(D),
+        .\Use_BTC_2.bt_if_pc_incr_wait_reg (\Use_BTC_2.bt_if_pc_incr_wait_reg ),
         .\Use_BTC_2.bt_saved_pc_valid_reg (\Use_BTC_2.bt_saved_pc_valid_reg ),
-        .\Use_BTC_2.bt_saved_pc_valid_reg_0 (\Use_BTC_2.bt_saved_pc_valid_reg_0 ),
         .\Using_FPGA.Native_0 (\Using_FPGA.Native_1 ),
         .ex_Take_Intr_or_Exc_reg(ex_Take_Intr_or_Exc_reg),
         .ex_Take_Intr_or_Exc_reg_0(ex_Take_Intr_or_Exc_reg_0),

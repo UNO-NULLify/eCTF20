@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Wed Mar  4 13:15:35 2020
+# Process ID: 14532
+# Current directory: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_auto_pc_2_synth_1
+# Command line: vivado.exe -log system_auto_pc_2.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_auto_pc_2.tcl
+# Log file: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_auto_pc_2_synth_1/system_auto_pc_2.vds
+# Journal file: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.runs/system_auto_pc_2_synth_1\vivado.jou
+#-----------------------------------------------------------
+source system_auto_pc_2.tcl -notrace
+INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP system_auto_pc_2, cache-ID = f3295334b1c48361.
+INFO: [Common 17-206] Exiting Vivado at Wed Mar  4 13:15:49 2020...

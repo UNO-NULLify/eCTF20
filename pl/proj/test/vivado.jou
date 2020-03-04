@@ -1,0 +1,60 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:55:39 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Wed Mar  4 12:56:33 2020
+# Process ID: 8276
+# Current directory: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent21516 C:\Users\Benjamin\Downloads\eCTF20-datapath-changes-edit\eCTF20-datapath-changes\pl\proj\test\test.xpr
+# Log file: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/vivado.log
+# Journal file: C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/test.xpr
+open_bd_design {C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/proj/test/bd/system/system.bd}
+update_compile_order -fileset sources_1
+startgroup
+set_property -dict [list CONFIG.NUM_MI {9}] [get_bd_cells mb_axi_mem_interconnect_0]
+endgroup
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:axi_timebase_wdt:3.0 axi_timebase_wdt_0
+endgroup
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/freeze] [get_bd_pins axi_timebase_wdt_0/s_axi_aclk]
+undo
+connect_bd_intf_net [get_bd_intf_pins axi_timebase_wdt_0/S_AXI] -boundary_type upper [get_bd_intf_pins mb_axi_mem_interconnect_0/M08_AXI]
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/s_axi_aresetn] [get_bd_pins proc_sys_reset_main_clk/peripheral_aresetn]
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/s_axi_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0]
+set_property location {1 227 482} [get_bd_cells axi_timebase_wdt_0]
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/wdt_reset] [get_bd_pins proc_sys_reset_main_clk/aux_reset_in]
+assign_bd_address [get_bd_addr_segs {axi_timebase_wdt_0/S_AXI/Reg }]
+startgroup
+create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0
+endgroup
+connect_bd_net [get_bd_pins xlconcat_0/In0] [get_bd_pins birdwtch_iface_0/int_mb]
+disconnect_bd_net /birdwtch_iface_0_int_mb [get_bd_pins axi_intc_0/intr]
+startgroup
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/wdt_interrupt] [get_bd_pins xlconcat_0/In1]
+connect_bd_net [get_bd_pins axi_timebase_wdt_0/wdt_interrupt] [get_bd_pins axi_intc_0/intr]
+endgroup
+disconnect_bd_net /axi_timebase_wdt_0_wdt_interrupt [get_bd_pins axi_intc_0/intr]
+startgroup
+connect_bd_net [get_bd_pins xlconcat_0/dout] [get_bd_pins axi_intc_0/intr]
+endgroup
+regenerate_bd_layout
+validate_bd_design
+connect_bd_net [get_bd_pins mb_axi_mem_interconnect_0/M08_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0]
+connect_bd_net [get_bd_pins mb_axi_mem_interconnect_0/M08_ARESETN] [get_bd_pins proc_sys_reset_main_clk/peripheral_aresetn]
+validate_bd_design
+reset_run system_microblaze_0_0_synth_1
+reset_run system_processing_system7_0_0_synth_1
+reset_run system_xbar_1_synth_1
+reset_run system_share_axi_bram_ctrl_0_0_synth_1
+reset_run system_share_axi_bram_ctrl_1_0_synth_1
+reset_run system_xbar_0_synth_1
+reset_run synth_1
+save_bd_design
+launch_runs impl_1 -jobs 4
+wait_on_run impl_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+open_run impl_1

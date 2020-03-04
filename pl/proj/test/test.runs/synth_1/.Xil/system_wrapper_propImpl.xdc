@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/ectf/pl/src/constraints/Cora-Z7-Master.xdc rfile:../../../../../src/constraints/Cora-Z7-Master.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/Benjamin/Downloads/eCTF20-datapath-changes-edit/eCTF20-datapath-changes/pl/src/constraints/Cora-Z7-Master.xdc rfile:../../../../../src/constraints/Cora-Z7-Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:11 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN L15 IOSTANDARD LVCMOS33} [get_ports {rgb_led[0]}]
 set_property src_info {type:XDC file:1 line:12 export:INPUT save:INPUT read:READ} [current_design]

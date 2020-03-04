@@ -1,11 +1,11 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
--- Date        : Sun Feb 16 17:51:06 2020
+-- Date        : Sun Feb 16 18:34:40 2020
 -- Host        : ssg0 running 64-bit Arch Linux
 -- Command     : write_vhdl -force -mode synth_stub -rename_top system_auto_pc_4 -prefix
---               system_auto_pc_4_ system_auto_pc_10_stub.vhdl
--- Design      : system_auto_pc_10
+--               system_auto_pc_4_ system_auto_pc_12_stub.vhdl
+-- Design      : system_auto_pc_12
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z007sclg400-1
 -- --------------------------------------------------------------------------------
