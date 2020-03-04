@@ -70,6 +70,7 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 
     # write secrets
     device_secrets.write(f'''
+#include <inttypes.h>
 #ifndef SECRETS_H
 #define SECRETS_H
 
@@ -79,11 +80,8 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 #define ROOT_VERIFY \"{user_secrets["root_verify"]}\"
 
 struct R_Data {{
-    u8 id;
-    char *name;
-    char *pub_key;
-    char *priv_key;
-    char *rand;
+    uint8_t id;
+    char *rand_pass;
 }};
 
 
@@ -92,7 +90,7 @@ struct R_Data region_data[{len(region_names)}] = \n{{ { write_region(region_name
 
 
 struct U_Data {{
-    u8 id;
+    uint8_t id;
     char *name;
     char *hw_secret;
     char *pin_hash;
