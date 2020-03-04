@@ -175,9 +175,23 @@ This function checks if the user and player are authorized to play a given song.
 Allows the user to login by checking if they are already logged in, checking if the username is provisioned for the board, and then checking the hash of the given pin against the stored hash of the user's pin. If they are already logged in, it will print a message saying so, otherwise there will be no or a generic error.
 
 #### logOff
+
+Checks if the users is logged in and if they are, then it wipes the UserMD struct.
+
 #### share
+
+Checks if the user is logged in, if they are the owner of the song, if the recipient exists, if the recipient already has access to the song, and if the song can be shared. If all of those checks pass, then it performs all functionality needed to share the song with the user.
+
 #### querySong
+
+Checks if the user is logged in and if the song is loaded. If those pass, then it prints out all of the song regions, the song owner, and all shared users.
+
 #### queryPlayer
+
+Prints all of the player regions and all of the device users.
+
 #### digitalOut
 #### play
 #### main
+
+Wipes the command channel, the songMD struct, UserMD struct, processes the interrupt, calls cacheCMD to cache the command channel, and calls the correct function based off of the command given.
