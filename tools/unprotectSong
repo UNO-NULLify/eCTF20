@@ -39,12 +39,13 @@ struct metadata {
 """
 
 class metadata(Structure):
-	_fields_ = [('owner_id', c_uint8),  # c_ubyte
+	_fields_ = [
+		('sharedInfo', c_char * (MAX_USERS * (64 + MAC))),
+		('owner_id', c_uint8),  # c_ubyte
         ('region_ids', c_uint8 * MAX_REGIONS),
 		('region_secrets', c_char * (MAX_REGION_SECRET + MAC) * MAX_REGIONS),
 		('song_name', c_char * MAX_SONG_NAME),
 		('endFullSong', c_long),
-		('sharedInfo', c_char * (MAX_USERS * (64 + MAC)))
 	]
 
 owner_id = ""

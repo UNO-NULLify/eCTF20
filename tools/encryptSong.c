@@ -6,12 +6,12 @@
 #define CHUNK_SIZE 4096
 
 struct metadata {
+    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
     uint8_t owner_id; // 1-Byte
     uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
     char song_name[MAX_SONG_NAME]; // 64-Bytes
     long int endFullSong;
-    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
 };
 
 static int
@@ -216,6 +216,61 @@ int main(int argc, char *argv[]){
   }
   /////////CLOSE FILE/////////
   // fclose (encFile);
+  fclose (encFile);
+  encFile = fopen(argv[9], "rb+"); // open the outfile for writing
+  if (encFile == NULL)
+  {
+      fprintf(stderr, "\nError opening file\n");
+      return 1;
+  }
+  ////////SIGN FILE////////
+// encFile = fopen("audio.drm", "rb");
+//   uint8_t root_verify[32] = {0};
+//   //convert from hex string to uint8_t
+//   for(int i = 0; i < 64; i = i + 2)
+//   {
+//     if(argv[10][i] >= '0' && argv[10][i] <= '9')
+//     {
+//       root_verify[i/2] = argv[10][i] - '0';
+//     }
+//     else{
+//       root_verify[i/2] = argv[10][i] - 'a' + 10;
+//     }
+//
+//     root_verify[i/2] = root_verify[i/2] << 4;
+//
+//     if(argv[10][i+1] >= '0' && argv[10][i+1] <= '9')
+//     {
+//       root_verify[i/2] += argv[10][i+1] - '0';
+//     }
+//     else{
+//       root_verify[i/2] += argv[10][i+1] - 'a' + 10;
+//     }
+//   }
+//
+// uint8_t signature[64] = {0};
+// unsigned char  buf_in[CHUNK_SIZE] = {0};
+// int eof;
+// uint8_t sigHash   [ 64];
+// crypto_blake2b_ctx ctx;
+// crypto_blake2b_init(&ctx);
+// //goto start of the file
+// fseek( encFile, 0, SEEK_SET );
+// do {
+//
+//     fread(buf_in, 1, sizeof buf_in, encFile);
+//     eof = feof(encFile);
+//     crypto_blake2b_update(&ctx, buf_in, sizeof buf_in);
+//
+// } while (! eof);
+// crypto_blake2b_final(&ctx, sigHash);
+//
+// fclose (encFile);
+// encFile = fopen("audio.drm", "a");
+
+// crypto_sign(uint8_t signature[64], const uint8_t secret_key[32], const uint8_t public_key[32], const uint8_t *message, size_t message_size);
+
+// fwrite(&metaIn, sizeof(struct metadata), 1, encFile);
   fclose (encFile);
 
   return 0;

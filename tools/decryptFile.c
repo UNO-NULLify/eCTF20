@@ -6,12 +6,12 @@
 
 
 struct metadata {
+    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
     uint8_t owner_id; // 1-Byte
     uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
     char song_name[MAX_SONG_NAME]; // 64-Bytes
     long int endFullSong;
-    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
 };
 
 //works with the full song
@@ -100,7 +100,7 @@ int readMetadata(FILE *infile, struct metadata * metaIn ){
   int yay = fread(metaIn, sizeof(struct metadata), 1, infile);
 
   if(yay != 0){
-    printf("Metadata read successfully!\n");
+    printf("Metadata read successfully!!\n");
   }
   
   else
@@ -124,7 +124,7 @@ int main(int argc, char *argv[]){
 
   /////////READ META FROM FILE/////////
   readMetadata(encFile, & meta);
-  // printStruct(meta); #Debug print
+  printStruct(meta); //#Debug print
 
   /////////DECRYPT FULL SONG/////////
 

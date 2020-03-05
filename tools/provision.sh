@@ -97,6 +97,10 @@ case "$choice" in
                         --infile ../sample-audio/Sound-Bite_One-Small-Step.wav \
                         --owner $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}') \
                         --user-secrets-path ./provision_test/user_secrets.json
+    python3 unprotectSong  \
+                        --region-secrets-path ./provision_test/region_secrets.json \
+                        --encrypted-song-path ./provision_test/audio/test-protect-small-step.drm \
+                        --user-secrets-path ./provision_test/user_secrets.json
 
     if [ ! $? -eq 0 ]; then
         printf "\nERROR: %s\n" "protectSong Failed!"
