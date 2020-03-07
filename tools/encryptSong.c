@@ -32,7 +32,6 @@ encrypt( FILE *fp_t, const char *source_file,
         crypto_lock(mac, buf_out, key, nonce, buf_in, rlen);
         fwrite(mac, 1, 16, fp_t);
         fwrite(buf_out, 1, (size_t) rlen, fp_t);
-
         //inc nonce
         for (int i = 23; i >= 0; i--)
         {
@@ -109,13 +108,13 @@ void printStructSize(struct metadata s) {
 
 int main(int argc, char *argv[]){
 
-  if(argc != 10) {
+  if(argc != 12) {
     printf("Metadata not formatted. Check arguments.\n");
     return 1;
   }
 
 	/////////READ IN INFO/////////
-	printf("\n----- Data Passed In -----\nowner_id: %s\nregion_ids: %s\nregion_secrets: %s\nsong_name: %s\n30path: %s\n30secret: %s\nfullpath: %s\nsecret: %s\noutFile: %s\n --- End Data Passed In ---\n", argv[1], argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], argv[8], argv[9]);
+	printf("\n----- Data Passed In! -----\nowner_id: %s\nregion_ids: %s\nregion_secrets: %s\nsong_name: %s\n30path: %s\n30secret: %s\nfullpath: %s\nsecret: %s\noutFile: %s\n root_sign: %s\n --- End Data Passed In ---\n", argv[1], argv[2], argv[3], argv[4], argv[5], argv[6], argv[7], argv[8], argv[9], argv[10], argv[11]);
 	// owner_id = argv[1];
 	// region_ids = argv[2];
 	// region_secrets = argv[3];
@@ -125,6 +124,8 @@ int main(int argc, char *argv[]){
 	// fullpath = argv[7]
 	// secret = argv[8]
 	// outFile = argv[9]
+  // root_sign = argv[10]
+  // pub_key = argv[10]
 	/////////READ IN STRUCT/////////
 
 	struct metadata meta = {0};
@@ -217,61 +218,98 @@ int main(int argc, char *argv[]){
   /////////CLOSE FILE/////////
   // fclose (encFile);
   fclose (encFile);
+
+  ////////SIGN FILE////////
   encFile = fopen(argv[9], "rb+"); // open the outfile for writing
   if (encFile == NULL)
   {
       fprintf(stderr, "\nError opening file\n");
       return 1;
   }
-  ////////SIGN FILE////////
-// encFile = fopen("audio.drm", "rb");
-//   uint8_t root_verify[32] = {0};
-//   //convert from hex string to uint8_t
-//   for(int i = 0; i < 64; i = i + 2)
-//   {
-//     if(argv[10][i] >= '0' && argv[10][i] <= '9')
-//     {
-//       root_verify[i/2] = argv[10][i] - '0';
-//     }
-//     else{
-//       root_verify[i/2] = argv[10][i] - 'a' + 10;
-//     }
-//
-//     root_verify[i/2] = root_verify[i/2] << 4;
-//
-//     if(argv[10][i+1] >= '0' && argv[10][i+1] <= '9')
-//     {
-//       root_verify[i/2] += argv[10][i+1] - '0';
-//     }
-//     else{
-//       root_verify[i/2] += argv[10][i+1] - 'a' + 10;
-//     }
-//   }
-//
-// uint8_t signature[64] = {0};
-// unsigned char  buf_in[CHUNK_SIZE] = {0};
-// int eof;
-// uint8_t sigHash   [ 64];
-// crypto_blake2b_ctx ctx;
-// crypto_blake2b_init(&ctx);
-// //goto start of the file
-// fseek( encFile, 0, SEEK_SET );
-// do {
-//
-//     fread(buf_in, 1, sizeof buf_in, encFile);
-//     eof = feof(encFile);
-//     crypto_blake2b_update(&ctx, buf_in, sizeof buf_in);
-//
-// } while (! eof);
-// crypto_blake2b_final(&ctx, sigHash);
-//
-// fclose (encFile);
-// encFile = fopen("audio.drm", "a");
 
-// crypto_sign(uint8_t signature[64], const uint8_t secret_key[32], const uint8_t public_key[32], const uint8_t *message, size_t message_size);
+  uint8_t root_verify[32] = {0};
+  //convert from hex string to uint8_t
+  for(int i = 0; i < 64; i = i + 2)
+  {
+    if(argv[10][i] >= '0' && argv[10][i] <= '9')
+    {
+      root_verify[i/2] = argv[10][i] - '0';
+    }
+    else{
+      root_verify[i/2] = argv[10][i] - 'a' + 10;
+    }
 
-// fwrite(&metaIn, sizeof(struct metadata), 1, encFile);
+    root_verify[i/2] = root_verify[i/2] << 4;
+
+    if(argv[10][i+1] >= '0' && argv[10][i+1] <= '9')
+    {
+      root_verify[i/2] += argv[10][i+1] - '0';
+    }
+    else{
+      root_verify[i/2] += argv[10][i+1] - 'a' + 10;
+    }
+  }
+
+
+    uint8_t public_key[32] = {0};
+  //convert from hex string to uint8_t
+  for(int i = 0; i < 64; i = i + 2)
+  {
+    if(argv[11][i] >= '0' && argv[11][i] <= '9')
+    {
+      public_key[i/2] = argv[11][i] - '0';
+    }
+    else{
+      public_key[i/2] = argv[11][i] - 'a' + 10;
+    }
+
+    public_key[i/2] = public_key[i/2] << 4;
+
+    if(argv[11][i+1] >= '0' && argv[11][i+1] <= '9')
+    {
+      public_key[i/2] += argv[11][i+1] - '0';
+    }
+    else{
+      public_key[i/2] += argv[11][i+1] - 'a' + 10;
+    }
+    // printf("\n\npublic key: %c\n\n", argv[11][i]);
+  }
+  uint8_t signature[64] = {0};
+  fseek( encFile, sizeof(meta.sharedInfo), SEEK_SET );
+
+  //number of bytes to sign
+  uint8_t toSign[15000] = {0};
+  fread(toSign, 1, sizeof toSign - 1000, encFile);
+  printf("\n\nendfullsong:%ld\n\n", meta.endFullSong);
+  fseek(encFile, meta.endFullSong, SEEK_SET);
+  fread(&toSign[14000], 1, 1000, encFile);
+
+  //toSign has the info to sign
+  //generate the public key (works with one provided)
+
+  // crypto_sign_public_key(public_key, root_verify);
+  // crypto_sign_public_key(public_key, root_verify);
+  crypto_sign(signature, root_verify, public_key, toSign, sizeof toSign);
+  int nay = crypto_check(signature, public_key, toSign, sizeof toSign);
+  printf("\nCry if -1 =%d \n", nay);
+  fseek(encFile, 0, SEEK_END);
+  printf("\n\nSIZE: %ld\n%d:%d:%d\n", sizeof signature, signature[0], signature[47], signature[63]);
+  int yay = fwrite(signature, sizeof(signature), 1, encFile);
+
+  uint8_t hashtest[64] = {0};
+  crypto_blake2b(hashtest, toSign, sizeof toSign);
+  printf("\n\nHASHTEST %d\n\n", hashtest[0]);
+
+  if(yay != 0){
+    printf("Signature written successfully!\n");
+  }
+  else
+  {
+       printf("Error writing file!\n");
+  }
   fclose (encFile);
+
+
 
   return 0;
 }

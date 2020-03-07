@@ -1,0 +1,109 @@
+#include "device/device_secrets"
+#include "constants.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <monocypher.h>
+#include <string.h>
+#define CHUNK_SIZE 4096
+
+
+struct metadata {
+    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
+    uint8_t owner_id; // 1-Byte
+    uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
+    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
+    char song_name[MAX_SONG_NAME]; // 64-Bytes
+    long int endFullSong;
+};
+
+//Write file metadata
+//Target file is the file to write to
+// metaIn is the metadata struct in to write to the file
+int readMetadata(FILE *infile, struct metadata * metaIn ){
+
+  int yay = fread(metaIn, sizeof(struct metadata), 1, infile);
+
+  if(yay != 0){
+    printf("Metadata read successfully!!\n");
+  }
+
+  else
+  {
+       printf("error reading file !\n");
+  }
+  return 1;
+}
+
+int main(int argc, char *argv[]){
+	struct metadata meta = {0};
+
+
+  FILE *encFile;
+  encFile = fopen("./provision_test/audio/test-protect-small-step.drm", "rb"); // open the outfile for reading
+  if (encFile == NULL)
+  {
+      fprintf(stderr, "\nError opening file\n");
+      return 1;
+  }
+  readMetadata(encFile, & meta);
+
+  uint8_t public_key[32] = {0};
+  char pub_str[64] = ROOT_VERIFY;
+  //convert from hex string to uint8_t
+  for(int i = 0; i < 64; i = i + 2)
+  {
+    if(pub_str[i] >= '0' && pub_str[i] <= '9')
+    {
+      public_key[i/2] = pub_str[i] - '0';
+    }
+    else{
+      public_key[i/2] = pub_str[i] - 'a' + 10;
+    }
+
+    public_key[i/2] = public_key[i/2] << 4;
+
+    if(pub_str[i+1] >= '0' && pub_str[i+1] <= '9')
+    {
+      public_key[i/2] += pub_str[i+1] - '0';
+    }
+    else{
+      public_key[i/2] += pub_str[i+1] - 'a' + 10;
+    }
+    // printf("\n\npublic key: %c\n\n", pub_str[i]);
+  }
+
+
+  fseek( encFile, sizeof(meta.sharedInfo), SEEK_SET );
+  //number of bytes to sign
+  uint8_t toSign[15000] = {0};
+  fread(toSign, 1, sizeof toSign - 1000, encFile);
+  printf("\n\nendfullsong:%ld\n\n", meta.endFullSong);
+  fseek(encFile, meta.endFullSong, SEEK_SET);
+  fread(&toSign[14000], 1, 1000, encFile);
+
+  uint8_t signature[64] = {0};
+
+  fseek(encFile, -64, SEEK_END);
+  fread(signature, 1, sizeof signature, encFile);
+  printf("\n\nSIZE: %ld\n%d:%d:%d\n", sizeof signature, signature[0], signature[47], signature[63]);
+
+
+  uint8_t hashtest[64] = {0};
+  crypto_blake2b(hashtest, toSign, sizeof toSign);
+  printf("\n\ntosign test: %d %d %d %d %d\n\n", toSign[0], toSign[14004], toSign[14001], toSign[14999], toSign[14000]);
+
+  printf("\n\nHASHTEST %d\n\n", hashtest[0]);
+
+  int yay = crypto_check(signature, public_key, toSign, sizeof toSign);
+  printf("\nyay =%d \n", yay);
+
+  if(yay == 0){
+    printf("Signature Verified!\n");
+  }
+  else
+  {
+       printf("TAMPER DETECTED\n");
+  }
+  fclose (encFile);
+
+}

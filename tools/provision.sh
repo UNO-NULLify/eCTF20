@@ -67,6 +67,7 @@ echo "Compiling encryption scripts"
 # gcc -Wall -pedantic -std=c1x -g -o  ./encryptFile encryptFile.c -lsodium
 gcc -Wall -pedantic -std=c1x -g -o  ./encryptSong encryptSong.c monocypher.c -I./
 gcc -Wall -pedantic -std=c1x -g -o  ./decryptFile decryptFile.c monocypher.c -I./
+
 #End Compile Song encription
 
 # Generate Test Song
@@ -120,6 +121,8 @@ python3 createDevice --region-list Canada USA \
                      --user-list $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g') \
                      --user-secrets-path ./provision_test/user_secrets.json \
                      --device-dir ./device
+
+gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
 
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "createDevice Failed!"

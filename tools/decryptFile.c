@@ -102,7 +102,7 @@ int readMetadata(FILE *infile, struct metadata * metaIn ){
   if(yay != 0){
     printf("Metadata read successfully!!\n");
   }
-  
+
   else
   {
        printf("error reading file !\n");

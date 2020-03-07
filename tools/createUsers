@@ -72,7 +72,7 @@ def main(user_list, outfile):
                                "pin": u[1],                # PIN   NEVER TOUCH DEVICE
                                "pin_hash": hashed.hex(),                                  # PIN hash convert bytes(hash, encoding="utf-8")
                                "salt": salt.hex(),                                        # to convert .hex() back to bytes bytes.fromhex(salt-as-hex)
-                               "pvt_key": pvt_key.hex(),                  #NEVER TOUCH DEVICE 
+                               "pvt_key": pvt_key.hex(),                  #NEVER TOUCH DEVICE
                                "pvt_key_enc": pvt_key_enc[1].hex() + pvt_key_enc[0].hex(),                          #  nacl.bindings.crypto_aead_chacha20poly1305...?
                                "pub_key": public_key.hex(),
                                "hw_secret": monocypher.generate_key(length=10).hex(),
@@ -81,7 +81,7 @@ def main(user_list, outfile):
         # generate pubic private key pair for additional integrity checks (Curve25519)
         pair = monocypher.generate_signing_key_pair()
         #signing_key = nacl.signing.SigningKey.generate()
-        signing_key = pair[1] # public
+        signing_key = pair[0]
 
         #EXAMPLE USE CASE: DELETE IN FINAL CODE
         #print(signing_key.encode(encoder=encoding.HexEncoder))
@@ -92,7 +92,7 @@ def main(user_list, outfile):
         #bad_msg = signed_msg[:-4]
 
         #verify_key = signing_key.verify_key
-        verify_key = pair[0] # private
+        verify_key = pair[1]
         #print(verify_key.verify(signed_msg))
 
         json_dict = {}

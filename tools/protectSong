@@ -85,6 +85,8 @@ def main():
         args.infile,
         str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash),
         args.outfile,
+        str(users["root_sign"]),
+        str(users["root_verify"])
     ])
 
 if __name__ == '__main__':
