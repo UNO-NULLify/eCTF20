@@ -144,11 +144,21 @@ key = randpasses[0]
 mac = str(region_secrets[0])[-32:]
 message = str(region_secrets[0])[:-32]
 
-key_hex = bytes.fromhex(key)
-mac_hex = bytes.fromhex(mac)
-message_hex = bytes.fromhex(message)
+print("\n\n\n\nUNPROTECT SONG\n")
 
-regionKey = monocypher.unlock(bytes(key, encoding="utf-8"), b'', mac_hex, message_hex)
+key_hex = bytes.fromhex(key)
+print(f"key HEX {key}")
+
+mac_hex = bytes.fromhex(mac)
+print(f"mac HEX {mac}")
+
+message_hex = bytes.fromhex(message)
+print(f"MESSAGE HEX {message}")
+nonce = bytes(24)
+print(f"NONCE {nonce}")
+regionKey = monocypher.unlock(key_hex, nonce, mac_hex, message_hex)
+
+print(f"REGION KEY {regionKey.hex()}")
 
 # Generate hardwareSecretHash
 hardwareSecretHash = monocypher.blake2b(hw_secret + songName).hex()

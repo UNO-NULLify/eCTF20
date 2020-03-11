@@ -35,6 +35,10 @@ def main():
 
     songName = bytes(args.infile.split("/")[-1], encoding="utf-8")  #size 32
 
+    print(f"The pin is {users['users'][args.owner]['pin']}")
+    print(f"The owner of the song is {args.owner}")
+    print(f"The ownerID of the song is {users['users'][args.owner]['id']}")
+
     songKey = monocypher.blake2b(bytes(users["users"][args.owner]["pin_hash"], encoding="utf-8") + \
                                 bytes(users["users"][args.owner]["pin"], encoding="utf-8") + \
                                 songName)
@@ -45,9 +49,11 @@ def main():
 
     for r in args.region_list:
         rand_pass = regions[r]["rand_pass"]
-        encrypted = monocypher.lock(bytes(rand_pass, encoding="utf-8"), b'', regionKey)
+        nonce = bytes(24)
+        encrypted = monocypher.lock(bytes.fromhex(rand_pass), nonce, regionKey)
 
-        print(f"RANDOM PASS: {regions[r]['rand_pass']}")
+        print(f"RANDOM PASS: {rand_pass}")
+        print(f"RANDOM PASS BYTES: {bytes.fromhex(rand_pass)}")
         print(f"ENCRYPTED: {encrypted[1].hex() + encrypted[0].hex()}")
         print(f"Region KEY: {regionKey.hex()}")
         #print(f"DECRYPTED: {monocypher.lock(bytes(rand_pass, encoding="utf-8"), b'', regionKey)}")

@@ -16,6 +16,43 @@ struct metadata {
     char song_name[MAX_SONG_NAME]; // 64-Bytes
     long int endFullSong;
 };
+//
+// uint8_t* datahex(char* string) {
+//
+//     if(string == NULL)
+//        return NULL;
+//
+//     size_t slength = strlen(string);
+//     if((slength % 2) != 0) // must be even
+//        return NULL;
+//
+//     size_t dlength = slength / 2;
+//
+//     uint8_t* data = malloc(dlength);
+//     memset(data, 0, dlength);
+//
+//     size_t index = 0;
+//     while (index < slength) {
+//         char c = string[index];
+//         int value = 0;
+//         if(c >= '0' && c <= '9')
+//           value = (c - '0');
+//         else if (c >= 'A' && c <= 'F')
+//           value = (10 + (c - 'A'));
+//         else if (c >= 'a' && c <= 'f')
+//           value = (10 + (c - 'a'));
+//         else {
+//           free(data);
+//           return NULL;
+//         }
+//
+//         data[(index/2)] += value << (((index + 1) % 2) * 4);
+//
+//         index++;
+//     }
+//
+//     return data;
+// }
 
 int readMetadata(FILE *infile, struct metadata * metaIn ){
   if(fread(metaIn, sizeof(struct metadata), 1, infile) == 0) {
@@ -28,14 +65,14 @@ int main(int argc, char *argv[]) {
 
 	// TODO Temp values
 	int given_id = 1;
-	char *pin = "853075628407151696844582077723561";
+	char *pin = "076881589374146332";
 
 	// Load metadata
 	struct metadata meta = {0};
 	FILE *encFile;
-	encFile = fopen("provision_test/audio/test-protect.drm", "rb");
+	encFile = fopen("provision_test/audio/test-protect-small-step.drm", "rb");
 	if (encFile == NULL) {
-		fprintf(stderr, "\nError opening file\n");
+		fprintf(stderr, "\nError opening file here\n");
 		return 1;
 	}
 	readMetadata(encFile, & meta);
@@ -49,52 +86,125 @@ int main(int argc, char *argv[]) {
 	// sprintf(hex, "%x", num);
 	// puts(hex);
 
-	// ------------ Generate regionKey ------------ 
+	// ------------ Generate regionKey ------------
 	printf("------------ Generate regionKey ------------\n");
 
-	// Get data
-	uint8_t mac[32] = {0};
-	uint8_t msg[96] = {0}; // This used to be 64 and worked why does only 32 work now?
+
+	unsigned char mac[32+1] = {0};
+	unsigned char msg[64+1] = {0};
 	printf("region_secret: ");
-	for(int k = 0; k < 96; k++) {
-		printf("%c", meta.region_secrets[0][k]);
-		if(k < 64) {
-			msg[k] = meta.region_secrets[0][k];
+	for(int i = 0; i < 96; i++) {
+		printf("%c", meta.region_secrets[0][i]);
+		if(i < 64) {
+			msg[i] = meta.region_secrets[0][i];
 		} else {
-			mac[(k-64)] = meta.region_secrets[0][k];
+			mac[(i-64)] = meta.region_secrets[0][i];
 		}
 	}
 	printf("\n");
+  printf("Region ID: %d\n", meta.region_ids[0] );
 
-	// Print
+
 	printf("mac: ");for(int i = 0; i < (sizeof(mac)/sizeof(mac[0])); i++) {printf("%c", mac[i]);}printf("\n");
 	printf("msg: %s\n", msg);
-	printf("key: %s\n", region_data[1].rand_pass);
-	
+	printf("key: %s\n", region_data[0].rand_pass);
+
+	uint8_t regionKey[32] = {0};
+	const uint8_t nonce[24] = {0};
+
+	uint8_t bytesMac[16] = {0};
+
+  //convert from hex string to uint8_t
+  for(int i = 0; i < 32; i = i + 2)
+  {
+    if(mac[i] >= '0' && mac[i] <= '9')
+    {
+      bytesMac[i/2] = mac[i] - '0';
+    }
+    else{
+      bytesMac[i/2] = mac[i] - 'a' + 10;
+    }
+
+    bytesMac[i/2] = bytesMac[i/2] << 4;
+
+    if(mac[i+1] >= '0' && mac[i+1] <= '9')
+    {
+      bytesMac[i/2] += mac[i+1] - '0';
+    }
+    else{
+      bytesMac[i/2] += mac[i+1] - 'a' + 10;
+    }
+  }
+
+  uint8_t bytesMsg[32] = {0};
 
 
-	// Decrypt
-	unsigned char regionKey[32] = {0};
-	uint8_t nonce[24] = {0};
-	crypto_unlock(regionKey, (uint8_t *)region_data[1].rand_pass, nonce, mac, msg, sizeof(msg) );
-	printf("\nregionKey: ");
+  //convert from hex string to uint8_t
+  for(int i = 0; i < 64; i = i + 2)
+  {
+    if(msg[i] >= '0' && msg[i] <= '9')
+    {
+      bytesMsg[i/2] = msg[i] - '0';
+    }
+    else{
+      bytesMsg[i/2] = msg[i] - 'a' + 10;
+    }
+
+    bytesMsg[i/2] = bytesMsg[i/2] << 4;
+
+    if(msg[i+1] >= '0' && msg[i+1] <= '9')
+    {
+      bytesMsg[i/2] += msg[i+1] - '0';
+    }
+    else{
+      bytesMsg[i/2] += msg[i+1] - 'a' + 10;
+    }
+  }
+
+  uint8_t bytesPass[32] = {0}; //region_data[0].rand_pass
+
+  //convert from hex string to uint8_t
+  for(int i = 0; i < 64; i = i + 2)
+  {
+    if(region_data[0].rand_pass[i] >= '0' && region_data[0].rand_pass[i] <= '9')
+    {
+      bytesPass[i/2] = region_data[0].rand_pass[i] - '0';
+    }
+    else{
+      bytesPass[i/2] = region_data[0].rand_pass[i] - 'a' + 10;
+    }
+
+    bytesPass[i/2] = bytesPass[i/2] << 4;
+
+    if(region_data[0].rand_pass[i+1] >= '0' && region_data[0].rand_pass[i+1] <= '9')
+    {
+      bytesPass[i/2] += region_data[0].rand_pass[i+1] - '0';
+    }
+    else{
+      bytesPass[i/2] += region_data[0].rand_pass[i+1] - 'a' + 10;
+    }
+  }
+
+	crypto_unlock(regionKey, bytesPass, nonce, bytesMac, bytesMsg, sizeof(bytesMsg));
+	printf("\nregionKey: %d \n", regionKey[0]);
+
 	for(int i = 0; i < (sizeof(regionKey)/sizeof(regionKey[0])); i++) {
-		printf("%c", regionKey[i]);
+		printf("%x", regionKey[i]);
 	}
 	printf("\n");
 
 	// regionKey = monocypher.unlock(bytes(key, encoding="utf-8"), b'', mac_hex, message_hex)
 
-	
+
 	for(int i=0; i < (sizeof(user_data) / sizeof(user_data[1])); i++) {
 		if(user_data[i].id == given_id){
 
-			// ------------ Generate hardwareSecretHash ------------ 
+			// ------------ Generate hardwareSecretHash ------------
 			printf("\n------------ Generate hardwareSecretHash ------------\n");
 			uint8_t *hshu = malloc(strlen(user_data[i].hw_secret) + strlen(meta.song_name)); // +1 for the null-terminator
 			memcpy(hshu, user_data[i].hw_secret, strlen(user_data[i].hw_secret));
 			memcpy(hshu + strlen(user_data[i].hw_secret), meta.song_name, strlen(meta.song_name)); // +1 for the null-terminator
-			
+
 			uint8_t hardwareSecretHash[64] = {0};
 			crypto_blake2b(hardwareSecretHash, hshu, strlen((char *)hshu));
 			// uint8_t hsh[64] = {0};
@@ -105,9 +215,9 @@ int main(int argc, char *argv[]) {
 				printf("%x", hardwareSecretHash[i]);
 			}
 			printf("\n");
-			
 
-			// ------------ Generate songKey ------------ 
+
+			// ------------ Generate songKey ------------
 			printf("\n------------ Generate songKey ------------\n");
 			uint8_t *song_str = malloc(strlen(user_data[i].pin_hash) + strlen(pin) + strlen(meta.song_name)); // +1 for the null-terminator
 			// TODO maybe check for errors in malloc here
@@ -126,14 +236,14 @@ int main(int argc, char *argv[]) {
 
 
 
-			// ------------ Generate Secret ------------ 
+			// ------------ Generate Secret ------------
 			printf("\n------------ Generate Secret ------------\n");
 			// END GOAL
 			// secret = str(songkey)+str(regionKey.hex())+str(hardwareSecretHash)
 			uint8_t secret[sizeof(songKey) + sizeof(regionKey) + sizeof(hardwareSecretHash)] = {0};
-			printf("Sizes: { songKey: %ld, regionKey: %ld, hardwareSecretHash: %ld, secret: %ld }\n", 
+			printf("Sizes: { songKey: %ld, regionKey: %ld, hardwareSecretHash: %ld, secret: %ld }\n",
 				sizeof(songKey), sizeof(regionKey), sizeof(hardwareSecretHash), sizeof(secret));
-			
+
 			memcpy(secret, songKey, sizeof(songKey));
 			memcpy(secret+sizeof(songKey), regionKey, sizeof(regionKey)); //both hardwareSecretHash
 			memcpy(secret+sizeof(songKey)+sizeof(regionKey), hardwareSecretHash, sizeof(hardwareSecretHash)); // first
@@ -189,12 +299,3 @@ void printUStruct(struct U_Data u) {
 	printf("pvt_key: %s\n", u.pvt_key);
 	printf("salt: %s\n", u.salt);
 }
-
-
-// mac: 37b572498fc198969fcd98f6b6dae994
-// msg: e54d8a4b6c5a6e3157c88cea527243a358f5722bbb825897355210bd253cfe0e
-// key: 384339ab32188527231c9db643df61f55cc756b20729f349d089737ff2afa07e
-
-// mac: 37b572498fc198969fcd98f6b6dae994
-// msg: e54d8a4b6c5a6e3157c88cea527243a358f5722bbb825897355210bd253cfe0e@�3%�
-// key: 384339ab32188527231c9db643df61f55cc756b20729f349d089737ff2afa07e
