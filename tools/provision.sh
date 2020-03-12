@@ -122,12 +122,16 @@ python3 createDevice --region-list Canada USA \
                      --user-secrets-path ./provision_test/user_secrets.json \
                      --device-dir ./device
 
-gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
-
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "createDevice Failed!"
   exit 1
 fi
+
+gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
+
+printf "\nTest Signing\n"
+
+./testSig
 
 # Add stop
 
