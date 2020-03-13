@@ -34,9 +34,30 @@ int readMetadata(FILE *infile, struct metadata * metaIn ){
   return 1;
 }
 
+//returns the users position in the metadata
+int find_user(struct U_Data *users, char *user_name)
+{
+  int pos = -1;
+  for(int i=0; i < MAX_USERS; i++)
+  {
+    if(strncmp(users[i].name, user_name, sizeof(user_name)) == 0)
+    {
+      pos = i;
+      return pos;
+    }
+  }
+  return pos;
+}
+
 int main(int argc, char *argv[]){
 	struct metadata meta = {0};
 
+  /*
+  TODO add params for: * file pointer
+                       * Logged in user id
+                       * Logged in user pin
+                       * Shared user name
+  */
 
   FILE *encFile;
   encFile = fopen("./provision_test/audio/test-protect-small-step.drm", "rb"); // open the outfile for reading
@@ -47,6 +68,14 @@ int main(int argc, char *argv[]){
   }
   readMetadata(encFile, & meta);
 
+  printf("\n\n%s\n%s\n\n\n", argv[1], argv[2]);
+
+  /*
+    TODO make this a function for universal applicability. 
+    I think we also need this for MACS anything else stored as hex string. 
+    i.e:
+    *char byte_me(*char out, *char in, size_t in)
+  */
   uint8_t public_key[32] = {0};
   char pub_str[64] = ROOT_VERIFY;
   //convert from hex string to uint8_t
