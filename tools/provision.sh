@@ -53,7 +53,7 @@ if [ ! $? -eq 0 ]; then
     exit 1
   fi
 
-  echo "Provisioned regions created in ./provision_test/region_secrets.json"
+  echo -e "${RED}Provisioned regions created in ./provision_test/region_secrets.json${NC}"
 
 python3 createUsers --user-list $(cat ./provision_test/test_users.txt) \
                     --outfile ./provision_test/user_secrets.json
@@ -63,7 +63,7 @@ if [ ! $? -eq 0 ]; then
     exit 1
   fi
 
-  echo "Provisioned regions created in ./provision_test/user_secrets.json"
+echo -e "${RED}Provisioned users created in ./provision_test/user_secrets.json${NC}"
 
 #Compile Song encription
 echo "Compiling encryption scripts"
@@ -141,9 +141,11 @@ fi
 
 gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
 
-printf "\nTest Signing\n"
+echo -e "${RED}Test signing${NC}"
 
-./testSig
+./testSig ${OWNER_NAME} ${OWNER_PIN}
+
+echo -e "${RED}End test signing${NC}"
 
 # Add stop
 
