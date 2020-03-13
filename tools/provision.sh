@@ -143,7 +143,7 @@ gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
 
 echo -e "${RED}Test signing${NC}"
 
-./testSig ${OWNER_NAME} ${OWNER_PIN}
+./testSig ${OWNER_NAME} ${OWNER_PIN} 1
 
 echo -e "${RED}End test signing${NC}"
 
