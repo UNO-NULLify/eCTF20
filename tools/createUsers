@@ -58,14 +58,18 @@ def main(user_list, outfile):
             #Key used for securing the private key. hash(hashpin + pin + salt)
             #secure_key = HASHER(bytes((hashed.decode()+u[1]+salt.hex()), encoding="utf-8"),
             #                            encoder=encoding.HexEncoder)[:32]
-            secure_key = monocypher.blake2b(hashed + bytes(u[1], encoding="utf-8"), salt)
+            secure_key = monocypher.blake2b(hashed + bytes(u[1], encoding="utf-8"))
 
             #Encrypting private key with the secure key
 
             #print(f"Encrypting user private key with {secure_key} length {len(secure_key)}")
             #box = secret.SecretBox(secure_key)
             #pvt_key_enc = box.encrypt(bytes(pvt_key))
-            pvt_key_enc = monocypher.lock(secure_key, i.to_bytes(24, 'big'), pvt_key)
+
+            nonce = bytes(24)
+            print(f"SECURE KEY = {secure_key.hex()}")
+
+            pvt_key_enc = monocypher.lock(secure_key, nonce, pvt_key)
 
 
             user_dict[u[0]] = {"id": i,
