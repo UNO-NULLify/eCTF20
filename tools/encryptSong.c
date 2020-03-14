@@ -16,7 +16,7 @@ struct metadata {
 
 static int
 encrypt( FILE *fp_t, const char *source_file,
-        const uint8_t key[32],uint8_t nonce [24] )
+        const uint8_t key[KEY_SZ],uint8_t nonce [24] )
 {
     unsigned char  buf_in[CHUNK_SIZE] = {0};
     unsigned char  buf_out[CHUNK_SIZE] = {0};
@@ -201,7 +201,7 @@ int main(int argc, char *argv[]){
   uint8_t temphash[64] = {0};
   crypto_blake2b(temphash, (const uint8_t *)argv[8], strlen(argv[8])); //turn long password into useable hash
 
-  uint8_t hash[32] = {0};
+  uint8_t hash[MAX_HASH_SZ] = {0};
   memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
 
   uint8_t nonce [24] = {0};
@@ -225,7 +225,7 @@ int main(int argc, char *argv[]){
   uint8_t temphash30[64] = {0};
   crypto_blake2b(temphash30, (const uint8_t *)argv[6], strlen(argv[6])); //turn long password into useable hash
 
-  uint8_t hash30[32] = {0};
+  uint8_t hash30[MAX_HASH_SZ] = {0};
   memcpy (hash30, temphash30, sizeof(hash30)); // need to reduce the size of the hash for use in encryption
 
   uint8_t nonce30 [24] = {0};
@@ -248,7 +248,7 @@ int main(int argc, char *argv[]){
       return 1;
   }
 
-  uint8_t root_verify[32] = {0};
+  uint8_t root_verify[KEY_SZ] = {0};
   //convert from hex string to uint8_t
   for(int i = 0; i < 64; i = i + 2)
   {
@@ -272,7 +272,7 @@ int main(int argc, char *argv[]){
   }
 
 
-    uint8_t public_key[32] = {0};
+    uint8_t public_key[KEY_SZ] = {0};
   //convert from hex string to uint8_t
   for(int i = 0; i < 64; i = i + 2)
   {

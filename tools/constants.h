@@ -7,3 +7,4 @@
 #define MAX_REGION_SECRET 64
 #define MAC 32
 #define MAX_SONG_SZ (1 << 25)
+#define KEY_SZ 32
