@@ -19,32 +19,27 @@
 
 /* Size constants */
 #define MAX_USERNAME_SZ 16
-#define MAX_HASH_SZ 32
 #define MAX_USERS 64
 #define MAX_SONG_NAME 64
 #define MAX_REGION_SZ 64
 #define MAX_REGIONS 64
-#define MAX_REGION_SECRET 64
-#define MAC 32
-#define MAX_SONG_SZ (1 << 25) // stop
+#define MAX_SONG_SZ (1 << 25)
 #define MAX_PIN_SZ 64
 #define BLAKE_SZ 64
-#define KEY_SZ 32 // TODO: Verify key size
 #define SONG_KEY_SZ MAX_PIN_SZ+MAX_HASH_SZ+MAX_SONG_NAME_SZ // TODO: this aint right
 #define SONG_PG_SZ (1<<24)		//16MB, half the size alloted for the song buffer
+
+/* Crypto constants */
+#define MAX_REGION_SECRET 64
+#define MAX_HASH_SZ 32
+#define MAC 32
+#define KEY_SZ 32
+
+
 
 /* Shared buffer values */
 enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };
 typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
-
-/* Struct to interpret shared command channel */
-typedef struct {
-    char cmd;                    // from commands enum
-    char drm_state;              // from states enum // TODO: At some point we have to write this data back
-    char username[MAX_USERNAME_SZ];  // stores logged in or attempted username
-    char pin[MAX_PIN_SZ];        // stores logged in or attempted pin
-    song_md *song;                   // shared buffer is a drm song
-} cmd_channel;
 
 typedef struct {
     char username[MAX_USERNAME_SZ];
@@ -71,6 +66,15 @@ typedef struct {
     int loaded; // 1 == loaded, 0 == not loaded
     song_md *song;                   // shared buffer is a drm song
 } player_md;
+
+/* Struct to interpret shared command channel */
+typedef struct {
+    char cmd;                    // from commands enum
+    char drm_state;              // from states enum // TODO: At some point we have to write this data back
+    char username[MAX_USERNAME_SZ];  // stores logged in or attempted username
+    char pin[MAX_PIN_SZ];        // stores logged in or attempted pin
+    song_md *song;                   // shared buffer is a drm song
+} cmd_channel;
 
 void setState(STATE state);
 
