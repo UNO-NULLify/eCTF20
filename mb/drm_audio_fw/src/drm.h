@@ -43,8 +43,9 @@ typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
 typedef struct {
     char username[MAX_USERNAME_SZ];
-    char recipient[MAX_USERNAME_SZ];
     char pin_hash[MAX_HASH_SZ];
+    char recipient[MAX_USERNAME_SZ];
+    char hw_secret[KEY_SZ];
     char pub_key[KEY_SZ];
     char pvt_key_enc[KEY_SZ];
 } user_md;
@@ -60,7 +61,6 @@ typedef struct {
 } song_md;
 
 typedef struct {
-    char hw_secret[KEY_SZ];
     char drm_state;              // from states enum
     int logged_in; // 1 == logged in, 0 == logged out, ? == no.
     int loaded; // 1 == loaded, 0 == not loaded
