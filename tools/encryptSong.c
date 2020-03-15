@@ -125,17 +125,17 @@ int main(int argc, char *argv[]){
   secret: %s\n \
   outFile: %s\n \
   root_sign: %s\n \
-  --- End Data Passed In ---\n", 
-  argv[1], 
-  argv[2], 
-  argv[3], 
-  argv[4], 
-  argv[5], 
-  argv[6], 
-  argv[7], 
-  argv[8], 
-  argv[9], 
-  argv[10], 
+  --- End Data Passed In ---\n",
+  argv[1],
+  argv[2],
+  argv[3],
+  argv[4],
+  argv[5],
+  argv[6],
+  argv[7],
+  argv[8],
+  argv[9],
+  argv[10],
   argv[11]);
 	// owner_id = argv[1];
 	// region_ids = argv[2];
@@ -216,6 +216,8 @@ int main(int argc, char *argv[]){
   /////////WRITE CURRENT LOCATION OF FILE POINTER/////////
 
   meta.endFullSong = ftell(encFile); // get cur location
+  fseek( encFile, 0, SEEK_END ); //go to start of file
+  meta.songSize = ftell(encFile); //get cur location
   fseek( encFile, 0, SEEK_SET ); //go to start of file
   writeMetadata(encFile, meta); // write metatdata with endFullSong included
   fseek( encFile, meta.endFullSong, SEEK_SET ); // go back to where we were
@@ -323,7 +325,7 @@ int main(int argc, char *argv[]){
   {
     puts("Crypto check passed\n");
   }
-  
+
   fseek(encFile, 0, SEEK_END);
   printf("\n\nSIZE: %ld\n%d:%d:%d\n", sizeof signature, signature[0], signature[47], signature[63]);
   int yay = fwrite(signature, sizeof(signature), 1, encFile);
