@@ -46,6 +46,7 @@ class metadata(Structure):
 		('region_secrets', c_char * (MAX_REGION_SECRET + MAC) * MAX_REGIONS),
 		('song_name', c_char * MAX_SONG_NAME),
 		('endFullSong', c_long),
+        ('songSize', c_long),
 	]
 
 owner_id = ""

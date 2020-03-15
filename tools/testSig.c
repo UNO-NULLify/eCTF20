@@ -14,6 +14,7 @@ struct metadata {
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
     char song_name[MAX_SONG_NAME]; // 64-Bytes
     long int endFullSong;
+    long int songSize;
 };
 
 //Write file metadata
@@ -105,5 +106,11 @@ int main(int argc, char *argv[]){
        printf("TAMPER DETECTED\n");
   }
   fclose (encFile);
+
+  //now we will share a song
+  //get their pub key from the file
+  //decrypt your private key = pin and pin hash
+
+
 
 }

@@ -12,6 +12,7 @@ struct metadata {
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
     char song_name[MAX_SONG_NAME]; // 64-Bytes
     long int endFullSong;
+    long int songSize;
 };
 
 static int

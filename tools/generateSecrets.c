@@ -15,6 +15,7 @@ struct metadata {
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
     char song_name[MAX_SONG_NAME]; // 64-Bytes
     long int endFullSong;
+    long int songSize;
 };
 //
 // uint8_t* datahex(char* string) {
@@ -65,7 +66,7 @@ int main(int argc, char *argv[]) {
 
 	// TODO Temp values
 	int given_id = 1;
-	char *pin = "076881589374146332";
+	char *pin = "00255313068452369380538494944179";
 
 	// Load metadata
 	struct metadata meta = {0};
@@ -107,7 +108,7 @@ int main(int argc, char *argv[]) {
 
 	printf("mac: ");for(int i = 0; i < (sizeof(mac)/sizeof(mac[0])); i++) {printf("%c", mac[i]);}printf("\n");
 	printf("msg: %s\n", msg);
-	printf("key: %s\n", region_data[0].rand_pass);
+	printf("key: %s\n", region_data[1].rand_pass);
 
 	uint8_t regionKey[32] = {0};
 	const uint8_t nonce[24] = {0};
@@ -161,27 +162,27 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  uint8_t bytesPass[32] = {0}; //region_data[0].rand_pass
+  uint8_t bytesPass[32] = {0}; //region_data[1].rand_pass
 
   //convert from hex string to uint8_t
   for(int i = 0; i < 64; i = i + 2)
   {
-    if(region_data[0].rand_pass[i] >= '0' && region_data[0].rand_pass[i] <= '9')
+    if(region_data[1].rand_pass[i] >= '0' && region_data[1].rand_pass[i] <= '9')
     {
-      bytesPass[i/2] = region_data[0].rand_pass[i] - '0';
+      bytesPass[i/2] = region_data[1].rand_pass[i] - '0';
     }
     else{
-      bytesPass[i/2] = region_data[0].rand_pass[i] - 'a' + 10;
+      bytesPass[i/2] = region_data[1].rand_pass[i] - 'a' + 10;
     }
 
     bytesPass[i/2] = bytesPass[i/2] << 4;
 
-    if(region_data[0].rand_pass[i+1] >= '0' && region_data[0].rand_pass[i+1] <= '9')
+    if(region_data[1].rand_pass[i+1] >= '0' && region_data[1].rand_pass[i+1] <= '9')
     {
-      bytesPass[i/2] += region_data[0].rand_pass[i+1] - '0';
+      bytesPass[i/2] += region_data[1].rand_pass[i+1] - '0';
     }
     else{
-      bytesPass[i/2] += region_data[0].rand_pass[i+1] - 'a' + 10;
+      bytesPass[i/2] += region_data[1].rand_pass[i+1] - 'a' + 10;
     }
   }
 
