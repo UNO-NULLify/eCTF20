@@ -19,66 +19,61 @@
 
 /* Size constants */
 #define MAX_USERNAME_SZ 16
-#define MAX_SONG_SZ 134217700 // 128MiB
-#define MAX_PIN_SZ 64
 #define MAX_USERS 64
-#define MAX_REGIONS 32
+#define MAX_SONG_NAME 64
 #define MAX_REGION_SZ 64
-#define MAX_REGION_SECRET 160
-#define MAX_SONG_NAME_SZ 64 // TODO: Verify this size
-#define HASH_SZ 32
+#define MAX_REGIONS 64
+#define MAX_SONG_SZ (1 << 25)
+#define MAX_PIN_SZ 64
 #define BLAKE_SZ 64
-#define KEY_SZ 32 // TODO: Verify key size
-#define SONG_KEY_SZ MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ // TODO: this aint right
+#define SONG_KEY_SZ MAX_PIN_SZ+MAX_HASH_SZ+MAX_SONG_NAME_SZ // TODO: this aint right
 #define SONG_PG_SZ (1<<24)		//16MB, half the size alloted for the song buffer
+
+/* Crypto constants */
+#define MAX_REGION_SECRET 64
+#define MAX_HASH_SZ 32
+#define MAC 32
+#define KEY_SZ 32
+
+
 
 /* Shared buffer values */
 enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };
 typedef enum states { STOPPED, WORKING, PLAYING, PAUSED } STATE;
 
 typedef struct {
-    char username[MAX_USERNAME_SZ]; // TODO: ASCII is 7-8 bits right?
+    char username[MAX_USERNAME_SZ];
+    char pin_hash[MAX_HASH_SZ];
     char recipient[MAX_USERNAME_SZ];
     char hw_secret[KEY_SZ];
-    char pin_hash[HASH_SZ];
     char pub_key[KEY_SZ];
     char pvt_key_enc[KEY_SZ];
-    int logged_in; // 1 == logged in, 0 == logged out, ? == no.
 } user_md;
 
 typedef struct {
-    char song_key[SONG_KEY_SZ];
-    char hardware_secret[KEY_SZ]; // TODO: These sizes aint right
-    char hardware_secret_30[KEY_SZ];
-} crypto;
-
-/* TODO:
- * - Replace char arrays with char pointers?
- * - Should we store IDs or names?
- */
-typedef struct {
-    char song_name[MAX_SONG_NAME_SZ];
-    char owner[MAX_USERNAME_SZ]; // Owner's username
-    char shared[MAX_USERS][MAX_USERNAME_SZ]; // List of shared usernames
-    char region_list[MAX_REGIONS][MAX_REGION_SZ]; // 32 regions max of size 64
-    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET]; // 32 regions max of size 160 + null
-    int num_regions; // Number of song regions
-    int num_users; // Number of shared users
-    int loaded; // 1 == loaded, 0 == not loaded
-    u32 file_size; // WAV file length (no digital signature or song_md)
-    u32 wav_size; // WAV data length
-    u32 md_size; // Song metadata length
-    char *file; // The full file
-    char *wav; // The encrypted song with no metadata
+    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
+    uint8_t owner_id; // 1-Byte
+    uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
+    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
+    char song_name[MAX_SONG_NAME]; // 64-Bytes
+    long int endFullSong;
+    char* wav;
 } song_md;
 
-// struct to interpret shared command channel
-typedef volatile struct __attribute__((__packed__)) {
+typedef struct {
+    char drm_state;              // from states enum
+    int logged_in; // 1 == logged in, 0 == logged out, ? == no.
+    int loaded; // 1 == loaded, 0 == not loaded
+    song_md *song;                   // shared buffer is a drm song
+} player_md;
+
+/* Struct to interpret shared command channel */
+typedef struct {
     char cmd;                    // from commands enum
     char drm_state;              // from states enum // TODO: At some point we have to write this data back
     char username[MAX_USERNAME_SZ];  // stores logged in or attempted username
     char pin[MAX_PIN_SZ];        // stores logged in or attempted pin
-    char *song;                   // shared buffer is a drm song
+    song_md *song;                   // shared buffer is a drm song
 } cmd_channel;
 
 void setState(STATE state);

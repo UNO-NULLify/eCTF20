@@ -14,14 +14,17 @@
 #include "xstatus.h"
 
 //////////////////////// GLOBALS ////////////////////////
-// Current user struct
+/* Current user struct */
 user_md UserMD;
 
-// Song metadata struct
+/* Song metadata struct */
 song_md SongMD;
 
+/* Player data struct */
+player_md PlayerMD;
+
 /* Crypto Struct*/
-crypto Crypto;
+// crypto Crypto;
 
 /* Player State */
 STATE state;
@@ -117,7 +120,8 @@ void setState(STATE s) {
 }
 
 /**
- * Store the CMD channel to less volatile structs
+ * @brief Store the CMD channel to less volatile structs
+ * @note I hate this.
  */
 int cacheCMD(char s) {
     switch (s) {
@@ -133,22 +137,22 @@ int cacheCMD(char s) {
                 xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Out of memory!");
                 return -1;
             }
-            crypto_argon2i(hash, HASH_SZ, work_area, nb_blocks, nb_iterations, (void *)CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
+            crypto_argon2i(hash, MAX_HASH_SZ, work_area, nb_blocks, nb_iterations, (void *)CMDChannel->pin, sizeof(CMDChannel->pin), salt, 16);
             free(work_area);
-            memcpy((void *)UserMD.pin_hash, hash, HASH_SZ);
+            memcpy((void *)UserMD.pin_hash, hash, MAX_HASH_SZ);
 
             uint8_t song_key [BLAKE_SZ];
-            uint8_t sk_input[MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ];
+            uint8_t sk_input[MAX_PIN_SZ+MAX_HASH_SZ+MAX_SONG_NAME];
             strcpy(sk_input, hash); // Songkey = blake2b(hashpin + pin + SongName)
             strcat(sk_input, (void *)CMDChannel->pin);
             strcat(sk_input, (void *)SongMD.song_name);
-            crypto_blake2b(song_key, sk_input, MAX_PIN_SZ+HASH_SZ+MAX_SONG_NAME_SZ);
+            crypto_blake2b(song_key, sk_input, MAX_PIN_SZ+MAX_HASH_SZ+MAX_SONG_NAME);
             memcpy((void *)Crypto.song_key, song_key, BLAKE_SZ);
             break;
         case LOGOUT:
-            if (UserMD.logged_in == 0) { break; }
+            if (PlayerMD.logged_in == 0) { break; }
         case QUERY_SONG:
-            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
+            memcpy((void *)PlayerMD.song, (void *)CMDChannel->song, sizeof(CMDChannel->song));
             break;
         case QUERY_PLAYER:
             break;
@@ -156,10 +160,10 @@ int cacheCMD(char s) {
             memcpy((void *)UserMD.recipient, (void*)CMDChannel->username, MAX_USERNAME_SZ);
             break;
         case PLAY:
-            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
+            memcpy((void *)PlayerMD.song, (void *)CMDChannel->song, sizeof(CMDChannel->song));
             break;
         case DIGITAL_OUT:
-            memcpy((void *)SongMD.file, (void *)CMDChannel->song, SongMD.file_size);
+            memcpy((void *)PlayerMD.song, (void *)CMDChannel->song, sizeof(CMDChannel->song));
             break;
         default:
             break;
@@ -181,16 +185,20 @@ int loadSongMD() {
 	return status;
 }
 
+/**
+ * @brief Decrypts the song
+ * @return
+ */
 int decryptSong() {
 	int status = 0;
 
     uint8_t hardware_secret_hash[BLAKE_SZ]; // HardwareSecretHash = hash(hardwareSecret+SongName)
-    uint8_t hsh_input[HARDWARE_SECRET_SZ+MAX_SONG_NAME_SZ];
+    uint8_t hsh_input[KEY_SZ+MAX_SONG_NAME];
 
-    strcpy(hsh_input, HARDWARE_SECRET); // TODO: Define HARDWARE_SECRET
+    strcpy(hsh_input, HARDWARE_SECRET); // TODO: Define HARDWARE_SECRET; replace strcpy with strncpy
     strcat(hsh_input, SongMD.song_name);
 
-    crypto_blake2b(hardware_secret_hash, hsh_input, HARDWARE_SECRET_SZ+MAX_SONG_NAME_SZ);
+    crypto_blake2b(hardware_secret_hash, hsh_input, KEY_SZ+MAX_SONG_NAME);
     memcpy((void *)Crypto.hardware_secret, hardware_secret_hash, BLAKE_SZ);
 
     // HardwareSecretHash30 = hash(hardwareSecret+SongName+”string”)
@@ -202,13 +210,13 @@ int decryptSong() {
  * @brief Checks whether the user can access the song.
  * @return access status
  */
-int checkAuth() {
+int checkAuth() { //TODO: convert username to UID and compare
     int user_access = 0;
     int region_access = 0;
     /* Check user is logged in */
-    if (UserMD.logged_in) {
+    if (PlayerMD.logged_in) {
         /* Check if user is the song owner */
-        if (crypto_verify64((void *)SongMD.owner,(void *)UserMD.username) == 0) {
+        if (crypto_verify64((void *)SongMD.owner_id,(void *)UserMD.username) == 0) {
             user_access = 1;
         }
         else {
@@ -246,7 +254,7 @@ int checkAuth() {
  */
 void logOn() {
     // check if logged in
-    if (UserMD.logged_in) {
+    if (PlayerMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: User already logged-in.");
         return;
     } else {
@@ -256,19 +264,20 @@ void logOn() {
             	// Check hash
             	if (crypto_verify32((void *)user_data[i].pin_hash, (void *)UserMD.pin_hash) == 0) {
             		memcpy(UserMD.username, user_data[i].name, MAX_USERNAME_SZ);
-            		memcpy(UserMD.pin_hash, user_data[i].pin_hash, HASH_SZ);
+            		memcpy(UserMD.pin_hash, user_data[i].pin_hash, MAX_HASH_SZ);
             		memcpy(UserMD.hw_secret, user_data[i].hw_secret, KEY_SZ);
             		memcpy(UserMD.pub_key, user_data[i].pub_key, KEY_SZ);
             	    memcpy(UserMD.pvt_key_enc, user_data[i].pvt_key, KEY_SZ);
-            		UserMD.logged_in = 1;
+            		PlayerMD.logged_in = 1;
             	}
             }
         }
 
         //if you aren't logged in after checking that stuff print message, clear struct, and sleep
-        if (!UserMD.logged_in) {
+        if (!PlayerMD.logged_in) {
             xil_printf("%s%s\r\n", MB_PROMPT, "LOGIN ERROR.");
             crypto_wipe(&UserMD, sizeof(UserMD));
+            PlayerMD.logged_in = 0;
             // delay failed attempt by 5 seconds
             sleep(LOGIN_DELAY);
         }
@@ -280,9 +289,10 @@ void logOn() {
  */
 void logOff() {
     // check if logged in
-    if (UserMD.logged_in) {
+    if (PlayerMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Logging out...");
         crypto_wipe(&UserMD, sizeof(UserMD));
+        PlayerMD.logged_in = 0;
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
         return;
@@ -300,7 +310,7 @@ void share() {
     int check_3 = 0;
     
     /* Check user is logged in */
-    if (!UserMD.logged_in) {
+    if (!PlayerMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in!");
         crypto_wipe(&SongMD, sizeof(SongMD));
         return;
@@ -359,15 +369,15 @@ void share() {
 /**
  * @brief List the users and regions that a song has been provisioned for.
  */
-void querySong() {
+void querySong() { //TODO: RIDs
     // check if logged in
-    if (!UserMD.logged_in) {
+    if (!PlayerMD.logged_in) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: Not logged in");
         return;
     }
     
     /* Check song is loaded */
-    if (!SongMD.loaded) {
+    if (!PlayerMD.loaded) {
         xil_printf("%s%s\r\n", MB_PROMPT, "ERROR: No song loaded!");
         crypto_wipe(&SongMD, sizeof(SongMD));
         return;
@@ -421,19 +431,23 @@ void queryPlayer() {
     xil_printf("\r\n");
 }
 
-void digitalOut() {    
+void digitalOut() {
+    u32 length;
+
     /* Check authorization */
     if (checkAuth() ||  PREVIEW_SZ > SongMD.wav_size) {
         /* Export full song */
+        length = sizeof(SongMD.wav);
         xil_printf("%s", "Dumping song (%dB)...", MB_PROMPT, SongMD.wav_size);
     } else {
         xil_printf("%s%s\r\n", MB_PROMPT, "Only playing 30 seconds");
-        SongMD.file_size -= SongMD.wav_size - PREVIEW_SZ;
-        SongMD.wav_size = PREVIEW_SZ;
+        length = PREVIEW_SZ;
     }
 
-    // move WAV file up in buffer, skipping metadata;
-    memmove((void *)&CMDChannel->song, (void *)SongMD.wav, SongMD.wav_size);
+    /* Zero out cmd channel song */
+    crypto_wipe((void *)&CMDChannel->song, sizeof((void *)&CMDChannel->song));
+    /* Copy song to cmd channel */
+    memcpy((void *)&CMDChannel->song, (void *)SongMD.wav, length);
 
     xil_printf("%s%s" MB_PROMPT, "Song dump finished\r\n");
 }
@@ -464,7 +478,7 @@ void play() {
         while (InterruptProcessed) {
             InterruptProcessed = FALSE;
             uint16_t cmd = read_cr();
-        	mb_printf("Command (P): %08X\r\n", cmd);
+        	xil_printf("Command (P): %08X\r\n", cmd);
 
             switch (cmd) {
                 case PAUSE:
@@ -569,6 +583,7 @@ int main() {
     crypto_wipe(&CMDChannel, sizeof(CMDChannel));
     crypto_wipe(&SongMD, sizeof(SongMD));
     crypto_wipe(&UserMD, sizeof(UserMD));
+    crypto_wipe(&PlayerMD, sizeof(PlayerMD));
 
     xil_printf("%s%s\r\n", MB_PROMPT, "INFO: Audio DRM Module has booted!");
 
@@ -579,7 +594,7 @@ int main() {
             uint32_t cmd = read_cr();
             InterruptProcessed = FALSE;
             setState(WORKING);
-            mb_printf("Command: %08X\r\n", cmd);
+            xil_printf("Command: %08X\r\n", cmd);
 
             switch (cmd) {
                 case LOGIN:

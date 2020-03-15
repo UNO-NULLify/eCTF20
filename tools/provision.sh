@@ -10,11 +10,14 @@
 
 # generate test data
 
-read -p "Clean all working files? Use this to build a project from scratch.(Warning: This will delete all uncommitted changes) (y/n) " choice
+RED='\033[0;31m'
+NC='\033[0m'
+
+read -p "Clean all working files? Use this to build a project from scratch. (Warning: This will delete all uncommitted changes) (y/n) " choice
 case "$choice" in
   y|Y ) printf cd ../; git reset --hard; git clean -d -fx; cd ./tools; make clean
   ;;
-  *) echo "Commit your changes before running this script."
+  *) echo "Commit your changes before running this script to create a new device."
      #exit 1
   ;;
 esac
@@ -50,7 +53,7 @@ if [ ! $? -eq 0 ]; then
     exit 1
   fi
 
-  echo "Provisioned regions created in ./provision_test/region_secrets.json"
+  echo -e "${RED}Provisioned regions created in ./provision_test/region_secrets.json${NC}"
 
 python3 createUsers --user-list $(cat ./provision_test/test_users.txt) \
                     --outfile ./provision_test/user_secrets.json
@@ -60,7 +63,7 @@ if [ ! $? -eq 0 ]; then
     exit 1
   fi
 
-  echo "Provisioned regions created in ./provision_test/user_secrets.json"
+echo -e "${RED}Provisioned users created in ./provision_test/user_secrets.json${NC}"
 
 #Compile Song encription
 echo "Compiling encryption scripts"
@@ -92,16 +95,20 @@ case "$choice" in
 
   ;;
   *) echo "Using privided audio sample."
+    echo -e "${RED} Protect Song${NC}"
     python3 protectSong --region-list USA Canada \
                         --region-secrets-path ./provision_test/region_secrets.json \
                         --outfile ./provision_test/audio/test-protect-small-step.drm \
                         --infile ../sample-audio/Sound-Bite_One-Small-Step.wav \
                         --owner $(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}') \
                         --user-secrets-path ./provision_test/user_secrets.json
+    echo -e "${RED} End Protect Song\n\n${NC}"
+    echo -e "${RED} UnProtect Song${NC}"
     python3 unprotectSong  \
                         --region-secrets-path ./provision_test/region_secrets.json \
                         --encrypted-song-path ./provision_test/audio/test-protect-small-step.drm \
                         --user-secrets-path ./provision_test/user_secrets.json
+    echo -e "${RED} End UnProtect Song${NC}"
 
     if [ ! $? -eq 0 ]; then
         printf "\nERROR: %s\n" "protectSong Failed!"
@@ -111,6 +118,11 @@ case "$choice" in
   echo "Protected song created in $SONG"
 
   esac
+
+OWNER_NAME="$(cat ./provision_test/test_users.txt | sed 's/:[0-9]*//g' | awk '{print $1}')"
+OWNER_PIN="$(cat ./provision_test/test_users.txt | sed 's/[a-zA-Z]:*//g' | awk '{print $1}')"
+echo -e "${RED}Song Owner: ${OWNER_NAME}\nOwner's Pin: ${OWNER_PIN}${NC}"
+
 # End Generate Test Song
 
 
@@ -122,12 +134,18 @@ python3 createDevice --region-list Canada USA \
                      --user-secrets-path ./provision_test/user_secrets.json \
                      --device-dir ./device
 
-gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
-
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "createDevice Failed!"
   exit 1
 fi
+
+gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
+
+echo -e "${RED}Test signing${NC}"
+
+./testSig ${OWNER_NAME} ${OWNER_PIN} 1
+
+echo -e "${RED}End test signing${NC}"
 
 # Add stop
 

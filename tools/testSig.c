@@ -35,9 +35,33 @@ int readMetadata(FILE *infile, struct metadata * metaIn ){
   return 1;
 }
 
+//returns the users position in the metadata
+int find_user(struct U_Data *users, char *user_name)
+{
+  int pos = -1;
+  for(int i=0; i < MAX_USERS; i++)
+  {
+    if(strncmp(users[i].name, user_name, sizeof(user_name)) == 0)
+    {
+      pos = i;
+      return pos;
+    }
+  }
+  return pos;
+}
+
 int main(int argc, char *argv[]){
 	struct metadata meta = {0};
 
+  //argv[1] song owner name
+  //argv[2] song owner pin
+  //argv[3] song owner id
+  /*
+  TODO add params for: * file pointer
+                       * Logged in user id
+                       * Logged in user pin
+                       * Shared user name
+  */
 
   FILE *encFile;
   encFile = fopen("./provision_test/audio/test-protect-small-step.drm", "rb"); // open the outfile for reading
@@ -48,6 +72,28 @@ int main(int argc, char *argv[]){
   }
   readMetadata(encFile, & meta);
 
+  printf("\n\nOwner: %s\nOwner Pin: %s\nOwner ID: %s\n\n\n\n", argv[1], argv[2], argv[3]);
+
+  int owner_id = (int) argv[3];
+
+  //recreate the owners private key
+  char hashed[64] = {0};
+  char hash_str[128] = {0};
+  //TODO change to strncat
+  strcat(hash_str, user_data[0].pin_hash);
+  strcat(hash_str, argv[2]);
+  crypto_blake2b(hashed, hash_str, sizeof(argv[2]));
+  puts("Recreating private key");
+  printf("\n\n\nSize of arg 2 %i\n\n\n", 64);
+  printf("\nhash str: %s\n", hash_str);
+  printf("\nhashed: %s\n", hashed);
+
+  /*
+    TODO make this a function for universal applicability. 
+    I think we also need this for MACS anything else stored as hex string. 
+    i.e:
+    *char byte_me(*char out, *char in, size_t in)
+  */
   uint8_t public_key[32] = {0};
   char pub_str[64] = ROOT_VERIFY;
   //convert from hex string to uint8_t

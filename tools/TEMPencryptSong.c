@@ -15,6 +15,7 @@ struct metadata {
     long int endFullSong;
     long int songSize;
 };
+
 static int
 encrypt( FILE *fp_t, const char *source_file,
         const uint8_t key[32],uint8_t nonce [24] )
