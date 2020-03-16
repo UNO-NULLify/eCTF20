@@ -16,10 +16,10 @@ struct metadata {
 };
 
 int readMetadata(FILE *infile, struct metadata * metaIn ){
-  if(fread(metaIn, sizeof(struct metadata), 1, infile) == 0) {
-       printf("Error reading metadata file !\n");
-  }
-  return 1;
+	if(fread(metaIn, sizeof(struct metadata), 1, infile) == 0) {
+		printf("Error reading metadata file !\n");
+	}
+	return 1;
 }
 
 void hex2bytes(uint8_t *hex, uint8_t *bytes) {
@@ -119,11 +119,11 @@ uint8_t * generateSecret(char *pin, struct metadata *meta) {
 			memcpy(secret+sizeof(songKey)+sizeof(regionKey), hardwareSecretHash, sizeof(hardwareSecretHash));
 
 			// Print secret
-			printf("Size: %d\nSecret: ", sizeof(secret));
+			printf("Secret: ");
 			for(int i = 0; i < (sizeof(secret)/sizeof(secret[0])); i++) {
 				printf("%x", secret[i]);
 			}
-			printf("\n");
+			printf("\n\n");
 
 			// TODO: Make this actually return something.
 			// I can't get it to work because c is dumb
@@ -132,11 +132,37 @@ uint8_t * generateSecret(char *pin, struct metadata *meta) {
 	}
 }
 
+uint8_t * generate30Secret(struct metadata *meta) {
+	for(int i=0; i < (sizeof(user_data) / sizeof(user_data[1])); i++) {
+		if(user_data[i].id == meta->owner_id){
+
+			// ------------ Generate hardwareSecretHash30 ------------
+			uint8_t *hsh30 = malloc(strlen(user_data[i].hw_secret) + strlen(meta->song_name) + 2); // +2 for the 30
+			memcpy(hsh30, user_data[i].hw_secret, strlen(user_data[i].hw_secret));
+			memcpy(hsh30 + strlen(user_data[i].hw_secret), meta->song_name, strlen(meta->song_name));
+			memcpy(hsh30 + strlen(user_data[i].hw_secret) + strlen(meta->song_name), "30", 2);
+
+			uint8_t hardwareSecretHash30[64] = {0};
+			crypto_blake2b(hardwareSecretHash30, hsh30, strlen((char *)hsh30));
+
+			printf("30Secret: ");
+			for(int i = 0; i < (sizeof(hardwareSecretHash30)/sizeof(hardwareSecretHash30[0])); i++) {
+				printf("%x", hardwareSecretHash30[i]);
+			}
+			printf("\n\n");
+
+			// TODO: Make this actually return something.
+			// I can't get it to work because c is dumb
+			// return hardwareSecretHash30;
+		}
+	}
+}
+
 int main(int argc, char *argv[]) {
 
 	// TODO: YOU MUST FILL IN THIS PIN.
 	// The pin will be available at implementation
-	char *pin = "PUT THE PIN FROM MAKE HERE";
+	char *pin = "PUT YOUR PIN HERE";
 
 	// Load metadata
 	struct metadata meta = {0};
@@ -149,4 +175,7 @@ int main(int argc, char *argv[]) {
 	readMetadata(encFile, &meta);
 
 	generateSecret(pin, &meta);
+
+	generate30Secret(&meta);
+
 }
