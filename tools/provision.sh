@@ -139,10 +139,9 @@ if [ ! $? -eq 0 ]; then
   exit 1
 fi
 
-gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
-
 echo -e "${RED}Test signing${NC}"
 
+gcc -Wall -pedantic -std=c1x -g -o  ./testSig testSig.c monocypher.c -I./
 ./testSig ${OWNER_NAME} ${OWNER_PIN} 1
 
 echo -e "${RED}End test signing${NC}"

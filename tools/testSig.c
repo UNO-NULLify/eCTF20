@@ -40,7 +40,7 @@ int find_user(struct U_Data *users, char *user_name)
   int pos = -1;
   for(int i=0; i < MAX_USERS; i++)
   {
-    if(strncmp(users[i].name, user_name, sizeof(user_name)) == 0)
+    if(strncmp(users[i].name, user_name, strlen(user_name)) == 0)
     {
       pos = i;
       return pos;
@@ -49,12 +49,59 @@ int find_user(struct U_Data *users, char *user_name)
   return pos;
 }
 
+void byte_me(char *dest, char *src, size_t src_len)
+{
+  for(int i = 0; i < src_len; i +=2)
+  {
+    if(src[i] >= '0' && src[i] <= '9')
+     {
+       dest[i/2] = src[i] - '0';
+     }
+     else
+     {
+       dest[i/2] = src[i] - 'a' + 10;
+     }
+
+    dest[i/2] = dest[i/2] << 4;
+
+    if(src[i+1] >= '0' && src[i+1] <= '9')
+    {
+      dest[i/2] += src[i+1] - '0';
+    }
+    else{
+      dest[i/2] += src[i+1] - 'a' + 10;
+    }
+  }
+}
+ void hex_me(char *dest, char *src, size_t src_len)
+  {
+    for(int i=0; i<src_len; i++)
+  {
+    uint8_t *buff[3] = {0};
+    snprintf(buff, sizeof(buff), "%x", src[i]);
+    strncat(dest, buff, sizeof(buff));
+    crypto_wipe(buff, sizeof(buff));
+  }
+  }
+  /*
+    for(int i=0; i<32; i++)
+  {
+    uint8_t *buff[3] = {0};
+    snprintf(buff, sizeof(buff), "%x", enc_pvt_key[i]);
+    strncat(enc_key_hex, buff, sizeof(buff));
+    crypto_wipe(buff, sizeof(buff));
+  }
+  }
+  */
+
 int main(int argc, char *argv[]){
 	struct metadata meta = {0};
+  uint8_t *hash_str;
 
   //argv[1] song owner name
   //argv[2] song owner pin
   //argv[3] song owner id
+  //argv[4] file pointer
   /*
   TODO add params for: * file pointer
                        * Logged in user id
@@ -71,53 +118,62 @@ int main(int argc, char *argv[]){
   }
   readMetadata(encFile, & meta);
 
-  printf("\n\nOwner: %s\nOwner Pin: %s\nOwner ID: %s\n\n\n\n", argv[1], argv[2], argv[3]);
+  int owner_id = atoi(argv[3]);
 
-  int owner_id = (int) argv[3];
+  printf("\n\nOwner: %s\nOwner Pin: %s\nOwner ID: %i\n\n\n\n", argv[1], argv[2], owner_id);
 
   //recreate the owners private key
-  char hashed[64] = {0};
-  char hash_str[128] = {0};
-  //TODO change to strncat
-  strcat(hash_str, user_data[0].pin_hash);
-  strcat(hash_str, argv[2]);
-  crypto_blake2b(hashed, hash_str, sizeof(argv[2]));
-  puts("Recreating private key");
-  printf("\n\n\nSize of arg 2 %i\n\n\n", 64);
-  printf("\nhash str: %s\n", hash_str);
-  printf("\nhashed: %s\n", hashed);
+  //initialize variables
+  uint8_t hashed[64] = {0};
+  uint8_t mac[16] = {0};
+  uint8_t enc_pvt_key[32] = {0};
 
-  /*
-    TODO make this a function for universal applicability. 
-    I think we also need this for MACS anything else stored as hex string. 
-    i.e:
-    *char byte_me(*char out, *char in, size_t in)
-  */
+  int hash_str_size = sizeof(uint8_t) * (64 + strlen(argv[2]));
+  hash_str = calloc(hash_str_size, sizeof(uint8_t));
+  printf("Size of Hash string: %i", hash_str_size);
+  printf("\nPin Length: %li\n", strlen(argv[2]));
+  byte_me(hash_str, user_data[owner_id-1].pin_hash, strlen(user_data[owner_id - 1].pin_hash));
+  memcpy((hash_str + 64), argv[2], strlen(argv[2]));
+  crypto_blake2b(hashed, hash_str, hash_str_size);  // session key
+  // debug
+  puts("Recreating private key");
+  printf("\nPin Hash: %s\n", user_data[owner_id-1].pin_hash);
+  // printf("\nhash str: %s\n", hash_str);
+  // printf("\nhashed: %s\n", hashed);
+  printf("\nlength of hashed: %li\n", strlen(hashed));
+
+  // generate nonce
+  char* nonce[24] = {0};
+  //generate mac
+  byte_me(mac, user_data[owner_id - 1].pvt_key + 64, 32);
+  printf("\nMac hex: %x\n", mac);
+  //generate enc_pvt_key
+  byte_me(enc_pvt_key, user_data[owner_id -1].pvt_key, 64);
+
+  puts("\nEncrypted key back to hex\n");
+
+  uint8_t *enc_key_hex[64] = {0};
+
+  for(int i=0; i<32; i++)
+  {
+    printf("%x", enc_pvt_key[i]);
+  }
+  puts("\n");
+//
+  //for(int i=0; i<32; i++)
+  //{
+  //  uint8_t *buff[3] = {0};
+  //  snprintf(buff, sizeof(buff), "%x", enc_pvt_key[i]);
+  //  strncat(enc_key_hex, buff, sizeof(buff));
+  //  crypto_wipe(buff, sizeof(buff));
+  //}
+  hex_me(enc_key_hex, enc_pvt_key, sizeof(enc_pvt_key));
+  printf("\nEncrypted key back to hex again\n%s\n", enc_key_hex);
+
   uint8_t public_key[32] = {0};
   char pub_str[64] = ROOT_VERIFY;
-  //convert from hex string to uint8_t
-  for(int i = 0; i < 64; i = i + 2)
-  {
-    if(pub_str[i] >= '0' && pub_str[i] <= '9')
-    {
-      public_key[i/2] = pub_str[i] - '0';
-    }
-    else{
-      public_key[i/2] = pub_str[i] - 'a' + 10;
-    }
 
-    public_key[i/2] = public_key[i/2] << 4;
-
-    if(pub_str[i+1] >= '0' && pub_str[i+1] <= '9')
-    {
-      public_key[i/2] += pub_str[i+1] - '0';
-    }
-    else{
-      public_key[i/2] += pub_str[i+1] - 'a' + 10;
-    }
-    // printf("\n\npublic key: %c\n\n", pub_str[i]);
-  }
-
+  byte_me(public_key, pub_str, strlen(pub_str));
 
   fseek( encFile, sizeof(meta.sharedInfo), SEEK_SET );
   //number of bytes to sign
