@@ -118,59 +118,7 @@ int main(int argc, char *argv[]){
       return 1;
   }
   readMetadata(encFile, & meta);
-
-  int owner_id = atoi(argv[3]);
-
-  printf("\n\nOwner: %s\nOwner Pin: %s\nOwner ID: %i\n\n\n\n", argv[1], argv[2], owner_id);
-
-  //recreate the owners private key
-  //initialize variables
-  uint8_t hashed[64] = {0};
-  uint8_t mac[16] = {0};
-  uint8_t enc_pvt_key[32] = {0};
-
-  int hash_str_size = sizeof(uint8_t) * (64 + strlen(argv[2]));
-  hash_str = calloc(hash_str_size, sizeof(uint8_t));
-  printf("Size of Hash string: %i", hash_str_size);
-  printf("\nPin Length: %li\n", strlen(argv[2]));
-  byte_me(hash_str, user_data[owner_id-1].pin_hash, strlen(user_data[owner_id - 1].pin_hash));
-  memcpy((hash_str + 64), argv[2], strlen(argv[2]));
-  crypto_blake2b(hashed, hash_str, hash_str_size);  // session key
-  // debug
-  puts("Recreating private key");
-  printf("\nPin Hash: %s\n", user_data[owner_id-1].pin_hash);
-  // printf("\nhash str: %s\n", hash_str);
-  // printf("\nhashed: %s\n", hashed);
-  printf("\nlength of hashed: %li\n", strlen(hashed));
-
-  // generate nonce
-  char* nonce[24] = {0};
-  //generate mac
-  byte_me(mac, user_data[owner_id - 1].pvt_key + 64, 32);
-  printf("\nMac hex: %x\n", mac);
-  //generate enc_pvt_key
-  byte_me(enc_pvt_key, user_data[owner_id -1].pvt_key, 64);
-
-  puts("\nEncrypted key back to hex\n");
-
-  uint8_t *enc_key_hex[64] = {0};
-
-  for(int i=0; i<32; i++)
-  {
-    printf("%x", enc_pvt_key[i]);
-  }
-  puts("\n");
-//
-  //for(int i=0; i<32; i++)
-  //{
-  //  uint8_t *buff[3] = {0};
-  //  snprintf(buff, sizeof(buff), "%x", enc_pvt_key[i]);
-  //  strncat(enc_key_hex, buff, sizeof(buff));
-  //  crypto_wipe(buff, sizeof(buff));
-  //}
-  hex_me(enc_key_hex, enc_pvt_key, sizeof(enc_pvt_key));
-  printf("\nEncrypted key back to hex again\n%s\n", enc_key_hex);
-
+  
   uint8_t public_key[32] = {0};
   char pub_str[64] = ROOT_VERIFY;
 
@@ -213,6 +161,72 @@ int main(int argc, char *argv[]){
   //get their pub key from the file
   //decrypt your private key = pin and pin hash
 
+  int owner_id = atoi(argv[3]);
 
+  printf("\n\nOwner: %s\nOwner Pin: %s\nOwner ID: %i\n\n\n\n", argv[1], argv[2], owner_id);
 
+  //recreate the owners private key
+  //initialize variables
+  uint8_t hashed[64] = {0};
+  uint8_t mac[16] = {0};
+  uint8_t enc_pvt_key[32] = {0};
+
+  int hash_str_size = sizeof(uint8_t) * (64 + strlen(argv[2]));
+  hash_str = calloc(hash_str_size, sizeof(uint8_t));
+  printf("Size of Hash string: %i", hash_str_size);
+  printf("\nPin Length: %li\n", strlen(argv[2]));
+  byte_me(hash_str, user_data[owner_id-1].pin_hash, strlen(user_data[owner_id - 1].pin_hash));
+  memcpy((hash_str + 64), argv[2], strlen(argv[2]));
+  crypto_blake2b(hashed, hash_str, hash_str_size);  // session key
+
+// debug
+  puts("Recreating private key");
+  printf("\nPin Hash: %s\n", user_data[owner_id-1].pin_hash);
+  // printf("\nhash str: %s\n", hash_str);
+  // printf("\nhashed: %s\n", hashed);
+  printf("\nlength of hashed: %li\n", strlen(hashed));
+
+  // generate nonce
+  char* nonce[24] = {0};
+  //generate mac
+  byte_me(mac, user_data[owner_id - 1].pvt_key + 64, 32);
+  // printf("\nMac hex: %x\n", mac);
+  //generate enc_pvt_key
+  byte_me(enc_pvt_key, user_data[owner_id -1].pvt_key, 64);
+
+  puts("\nEncrypted key back to hex\n");
+
+  uint8_t *enc_key_hex[64] = {0};
+
+  for(int i=0; i<32; i++)
+  {
+    printf("%x", enc_pvt_key[i]);
+  }
+  puts("\n");
+//
+  //for(int i=0; i<32; i++)
+  //{
+  //  uint8_t *buff[3] = {0};
+  //  snprintf(buff, sizeof(buff), "%x", enc_pvt_key[i]);
+  //  strncat(enc_key_hex, buff, sizeof(buff));
+  //  crypto_wipe(buff, sizeof(buff));
+  //}
+  //TODO fix errors in hex_me()
+  //hex_me(enc_key_hex, enc_pvt_key, sizeof(enc_pvt_key));
+  //printf("\nEncrypted key back to hex again\n%s\n", enc_key_hex);
+
+// unlock owner private key
+
+  uint8_t *pvt_key[32] = {0};
+  
+  crypto_unlock(pvt_key, hashed, nonce, mac, enc_pvt_key, 32);
+  
+    puts("decrypting private key");
+    for(int i=0; i<32; i++)
+    {
+      printf("%x", pvt_key[i]);
+    }
+    puts("\n");
+  
+  
 }
