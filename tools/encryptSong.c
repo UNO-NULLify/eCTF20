@@ -217,20 +217,19 @@ int main(int argc, char *argv[]){
 
   meta.endFullSong = ftell(encFile); // get cur location
   fseek( encFile, 0, SEEK_END ); //go to end of file
-  meta.songSize = ftell(encFile); //get cur location
-  fseek( encFile, 0, SEEK_SET ); //go to start of file
-  writeMetadata(encFile, meta); // write metatdata with endFullSong included
-  fseek( encFile, meta.endFullSong, SEEK_SET ); // go back to where we were
+  // fseek( encFile, meta.endFullSong, SEEK_SET ); // go back to where we were
 
   /////////ENCRYPT 30 SECOND SONG TO FILE/////////
-
-  // printf("\nEncrypting %s with the password: %s\n", argv[5],argv[6]);
+  printf("\nMETAINFO: endFullSong %ld - songSize 0%ld\n", meta.endFullSong, meta.songSize);
+  printf("\nEncrypting %s with the password: %s\n", argv[5],argv[6]);
   uint8_t temphash30[64] = {0};
   crypto_blake2b(temphash30, (const uint8_t *)argv[6], strlen(argv[6])); //turn long password into useable hash
 
   uint8_t hash30[MAX_HASH_SZ] = {0};
-  memcpy (hash30, temphash30, sizeof(hash30)); // need to reduce the size of the hash for use in encryption
 
+
+  memcpy (hash30, temphash30, sizeof(hash30)); // need to reduce the size of the hash for use in encryption
+  printf("\n\nHASH30: %d %d %d \n\n", hash30[0], hash30[20], hash30[31]);
   uint8_t nonce30 [24] = {0};
 
 
@@ -239,6 +238,11 @@ int main(int argc, char *argv[]){
     printf("Encryption Failed");
     return 1;
   }
+  meta.songSize = ftell(encFile) + 64; //get cur location
+  fseek( encFile, 0, SEEK_SET ); //go to start of file
+  writeMetadata(encFile, meta); // write metatdata with endFullSong included
+  printf("\nMETAINFO: endFullSong %ld - songSize 0%ld\n", meta.endFullSong, meta.songSize);
+
   /////////CLOSE FILE/////////
   // fclose (encFile);
   fclose (encFile);

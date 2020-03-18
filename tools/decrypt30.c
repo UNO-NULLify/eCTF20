@@ -117,10 +117,12 @@ int main(int argc, char *argv[]){
 
   uint8_t hash[32] = {0};
   memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
-
+  printf("\n\nHASH30: %d %d %d \n\n", hash[0], hash[20], hash[31]);
   uint8_t nonce [24] = {0};
   // long int end_of_file = ;
   fseek(encFile, meta.endFullSong, SEEK_SET);
+  printf("\nMETAINFO: endFullSong %ld - songSize 0%ld\n", meta.endFullSong, meta.songSize);
+
   if (decrypt("30SECOND_TEST", encFile, hash, nonce, meta.songSize - 64) != 0)
   {
     printf("Decryption Failed");
