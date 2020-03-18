@@ -216,7 +216,7 @@ int main(int argc, char *argv[]){
   /////////WRITE CURRENT LOCATION OF FILE POINTER/////////
 
   meta.endFullSong = ftell(encFile); // get cur location
-  fseek( encFile, 0, SEEK_END ); //go to start of file
+  fseek( encFile, 0, SEEK_END ); //go to end of file
   meta.songSize = ftell(encFile); //get cur location
   fseek( encFile, 0, SEEK_SET ); //go to start of file
   writeMetadata(encFile, meta); // write metatdata with endFullSong included
