@@ -7,11 +7,13 @@
 #define CHUNK_SIZE 4096
 
 struct metadata {
+    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
     uint8_t owner_id; // 1-Byte
     uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
-    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET]; // 64*160-Bytes
+    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
     char song_name[MAX_SONG_NAME]; // 64-Bytes
-    // char shared_ids[64]; // 64-Bytes TODO
+    long int endFullSong;
+    long int songSize;
 };
 
 static int

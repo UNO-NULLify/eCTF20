@@ -12,6 +12,7 @@ struct metadata {
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
     char song_name[MAX_SONG_NAME]; // 64-Bytes
     long int endFullSong;
+    long int songSize;
 };
 
 //works with the full song
@@ -92,9 +93,9 @@ void printStruct(struct metadata s) {
 	printf("song_name: %s\n\n", s.song_name);
 }
 
-//Write file metadata
-//Target file is the file to write to
-// metaIn is the metadata struct in to write to the file
+//Read file metadata
+//Target file is the file to read in
+// metaIn is the metadata struct in to read to
 int readMetadata(FILE *infile, struct metadata * metaIn ){
 
   int yay = fread(metaIn, sizeof(struct metadata), 1, infile);
