@@ -58,7 +58,7 @@ def main(user_list, outfile):
             #Key used for securing the private key. hash(hashpin + pin + salt)
             #secure_key = HASHER(bytes((hashed.decode()+u[1]+salt.hex()), encoding="utf-8"),
             #                            encoder=encoding.HexEncoder)[:32]
-            secure_key = monocypher.blake2b(hashed + bytes(u[1], encoding="utf-8"))
+            secure_key = monocypher.blake2b(bytes(hashed.hex(), encoding = "utf-8") + bytes(u[1], encoding="utf-8"))[:32]
 
             #Encrypting private key with the secure key
 

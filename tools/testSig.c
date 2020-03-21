@@ -118,7 +118,7 @@ int main(int argc, char *argv[]){
       return 1;
   }
   readMetadata(encFile, & meta);
-  
+
   uint8_t public_key[32] = {0};
   char pub_str[64] = ROOT_VERIFY;
 
@@ -173,11 +173,21 @@ int main(int argc, char *argv[]){
 
   int hash_str_size = sizeof(uint8_t) * (64 + strlen(argv[2]));
   hash_str = calloc(hash_str_size, sizeof(uint8_t));
-  printf("Size of Hash string: %i", hash_str_size);
+  printf("Size of Hash String: %i", hash_str_size);
   printf("\nPin Length: %li\n", strlen(argv[2]));
-  byte_me(hash_str, user_data[owner_id-1].pin_hash, strlen(user_data[owner_id - 1].pin_hash));
+  memcpy(hash_str, user_data[owner_id-1].pin_hash, 64);
+  // byte_me(hash_str, user_data[owner_id-1].pin_hash, strlen(user_data[owner_id - 1].pin_hash));
   memcpy((hash_str + 64), argv[2], strlen(argv[2]));
   crypto_blake2b(hashed, hash_str, hash_str_size);  // session key
+  printf("Printing string \n");
+
+  for(int i = 0 ; i < 64; i++)
+  {
+    printf("%x", hashed[i]);
+
+  }
+  printf("\n");
+
 
 // debug
   puts("Recreating private key");
@@ -187,7 +197,7 @@ int main(int argc, char *argv[]){
   printf("\nlength of hashed: %li\n", strlen(hashed));
 
   // generate nonce
-  char* nonce[24] = {0};
+  uint8_t nonce [24] = {0};
   //generate mac
   byte_me(mac, user_data[owner_id - 1].pvt_key + 64, 32);
   // printf("\nMac hex: %x\n", mac);
@@ -196,7 +206,7 @@ int main(int argc, char *argv[]){
 
   puts("\nEncrypted key back to hex\n");
 
-  uint8_t *enc_key_hex[64] = {0};
+  // uint8_t enc_key_hex[64] = {0};
 
   for(int i=0; i<32; i++)
   {
@@ -217,16 +227,16 @@ int main(int argc, char *argv[]){
 
 // unlock owner private key
 
-  uint8_t *pvt_key[32] = {0};
-  
+  uint8_t pvt_key[32] = {0};
+
   crypto_unlock(pvt_key, hashed, nonce, mac, enc_pvt_key, 32);
-  
+
     puts("decrypting private key");
     for(int i=0; i<32; i++)
     {
       printf("%x", pvt_key[i]);
     }
     puts("\n");
-  
-  
+
+
 }
