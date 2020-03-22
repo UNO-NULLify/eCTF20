@@ -237,6 +237,12 @@ int main(int argc, char *argv[]){
       printf("%x", pvt_key[i]);
     }
     puts("\n");
+  puts("Key Exchange");
+  
+  uint8_t shared_key[32] = {0};
 
+  crypto_key_exchange(shared_key, pvt_key, user_data[1].pub_key);  //using public key of users position 1.
+
+  printf("\nShared Key:\n%s\n", shared_key);
 
 }
