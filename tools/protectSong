@@ -8,83 +8,15 @@ import struct
 import os
 import wave
 from argparse import ArgumentParser
-import numpy as np
-
-
-class ProtectedSong(object):
-    """Example song object for protected song"""
-
-    def __init__(self, path_to_song, metadata):
-        """initialize values
-        Args:
-            path_to_song (string): file name where the song to be provisioned is stored
-            metadata (bytearray): bytes containing metadata information
-        """
-        self.song = path_to_song
-        self.full_song, self.original_song = self.read_song(path_to_song)
-        self.metadata = metadata
-
-    def save_secured_song_to_wave(self, file_location):
-        """Saves secured song to wave file assuming all the same characteristics as original song
-        Args:
-            file_location (string): location to store the file including name"""
-        protected_wav = wave.open(os.path.abspath(file_location), 'wb')
-        protected_wav.setnchannels(self.original_song.getnchannels())
-        protected_wav.setsampwidth(self.original_song.getsampwidth())
-        protected_wav.setframerate(self.original_song.getframerate())
-        protected_wav.writeframes(self.metadata)
-
-        for val in self.full_song:
-            protected_wav_val = struct.pack('<h', val)
-            protected_wav.writeframesraw(protected_wav_val)
-
-        protected_wav.close()
-
-    def read_song(self, path, metadata_frames=0):
-        """Reads a wave file
-        Args:
-            path (string): path to song
-            metadata_frames (int): if not 0 disregard this number of frames as metadata
-        Returns:
-            vals (array): integer array of decoded values
-            song (Wave Object): wave object associated with entered song
-        """
-        song = wave.open(os.path.abspath(path), 'r')
-        if metadata_frames:
-            song.readframes(metadata_frames)  # skip the metadata frames when assigning vals
-        vals = np.frombuffer(song.readframes(song.getnframes()), dtype=np.int16)
-        song.close()
-        return vals, song
-
-
-def create_metadata(regions, user, user_secret_location, region_info):
-    """Returns a byte string formatted as follows:
-    METADATA_LENGTH(1B)/ownerID(1B)/REGION_LEN(1B)/USER_LEN(1B)/REGIONID1(1B)/REGIONID2 (1B)/.../opt. parity
-    Args:
-        regions (list): list of regions to provision song for
-        user (string): user name for owner of the song
-        user_secret_location (string): path to user secrets file
-        region_info (dict): mapping of regions provided by region_information.json
-    Returns:
-        metadata (bytes): bytes of encoded metadata
-    Example:
-        >>create_metadata(['USA', 'Canada'], 'user1', 'user_secrets.json', {'USA': 1, 'Canada':2})
-        'x06/x00/x01/x00/x01/x02'
-    """
-    user_secrets = json.load(open(os.path.abspath(user_secret_location)))
-
-    # note: metadata must be an even length since each sample is 2B long
-    # and ARM processors require memory accesses to be aligned to the type size
-    metadata = struct.pack(
-        '=3B{regions_length}s{regions_len_2}s'.format(regions_length=len(regions), regions_len_2=len(regions) % 2),
-        int(user_secrets[user]['id']), len(regions), 0,
-        bytes([region_info[str(r)] for r in regions]),
-        b'\x00' if len(regions) % 2 else b'')
-
-    return bytes([len(metadata) + 1]) + metadata
+import monocypher
+import os
+from makeAudio import make_sample
+from subprocess import call
+from pprint import pprint
 
 
 def main():
+    #Take in command line arguments.
     parser = ArgumentParser(description='main interface to protect songs')
     parser.add_argument('--region-list', nargs='+', help='List of regions song can be played in', required=True)
     parser.add_argument('--region-secrets-path', help='File location for the region secrets file',
@@ -95,14 +27,73 @@ def main():
     parser.add_argument('--user-secrets-path', help='File location for the user secrets file', required=True)
     args = parser.parse_args()
 
+    #Take input from secret files
     regions = json.load(open(os.path.abspath(args.region_secrets_path)))
-    try:
-        metadata = create_metadata(args.region_list, args.owner, args.user_secrets_path, regions)
-    except ValueError:
-        raise ValueError('Ensure all user IDs are integers and all regions are in the provided region_information.json')
-    protected_song = ProtectedSong(args.infile, metadata)
-    protected_song.save_secured_song_to_wave(args.outfile)
+    users = json.load(open(os.path.abspath(args.user_secrets_path)))
 
+    #Unique song ID for the song. In place of song name.
+
+    songName = bytes(args.infile.split("/")[-1], encoding="utf-8")  #size 32
+
+    print(f"The pin is {users['users'][args.owner]['pin']}")
+    print(f"The owner of the song is {args.owner}")
+    print(f"The ownerID of the song is {users['users'][args.owner]['id']}")
+
+    songKey = monocypher.blake2b(bytes(users["users"][args.owner]["pin_hash"], encoding="utf-8") + \
+                                bytes(users["users"][args.owner]["pin"], encoding="utf-8") + \
+                                songName)
+
+    regionKey = os.urandom(32)
+
+    regionSecretList = []
+
+    for r in args.region_list:
+        rand_pass = regions[r]["rand_pass"]
+        nonce = bytes(24)
+        encrypted = monocypher.lock(bytes.fromhex(rand_pass), nonce, regionKey)
+
+        print(f"RANDOM PASS: {rand_pass}")
+        print(f"RANDOM PASS BYTES: {bytes.fromhex(rand_pass)}")
+        print(f"ENCRYPTED: {encrypted[1].hex() + encrypted[0].hex()}")
+        print(f"Region KEY: {regionKey.hex()}")
+        #print(f"DECRYPTED: {monocypher.lock(bytes(rand_pass, encoding="utf-8"), b'', regionKey)}")
+
+        regionSecretList.append(encrypted[1].hex() + encrypted[0].hex())
+
+    print("Region Secrets:\n")
+    pprint(regionSecretList)
+
+    hardwareSecretHash = monocypher.blake2b(bytes(users["users"][args.owner]["hw_secret"],
+                         encoding="utf-8") + songName).hex()
+    hardwareSecretHash30 = monocypher.blake2b(bytes(users["users"][args.owner]["hw_secret"],
+                           encoding="utf-8") + songName+bytes("30",
+                           encoding="utf-8")).hex()
+
+
+    print(f"encryption parts:\nSong Key: {songKey.hex()}\nRegion Key: {regionKey.hex()}\nHW Secret Hash: {hardwareSecretHash}\nHW 30: {hardwareSecretHash30}")
+    print(f"Creating 30 second chunk:")
+    smallFile = make_sample(args.infile)
+    parent = os.path.abspath(os.path.join(args.outfile, os.pardir))
+    out_f_name = args.outfile.split("/")[-1]
+    name = out_f_name.split(".")[0] + "_sample." + out_f_name.split(".")[1]
+
+    region_ids_tmp = []
+    for r in args.region_list:
+        region_ids_tmp.append(regions[r]["id"])
+
+    call(["./encryptSong",
+        str(users["users"][args.owner]["id"]),
+        ",".join([str(x) for x in region_ids_tmp]),
+        ",".join([str(x) for x in regionSecretList]),
+        args.infile.split("/")[-1],
+        smallFile,
+        str(hardwareSecretHash30),
+        args.infile,
+        str(songKey.hex())+str(regionKey.hex())+str(hardwareSecretHash),
+        args.outfile,
+        str(users["root_sign"]),
+        str(users["root_verify"])
+    ])
 
 if __name__ == '__main__':
     main()

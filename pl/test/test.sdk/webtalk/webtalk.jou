@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# 
+# Start of session at: Mon Feb 17 20:46:30 2020
+# Process ID: 42609
+# Current directory: /ectf/pl/proj/test/test.sdk/webtalk
+# Command line: wbtcv -mode batch -source sdk_webtalk.tcl
+# Log file: /ectf/pl/proj/test/test.sdk/webtalk/webtalk.log
+# Journal file: /ectf/pl/proj/test/test.sdk/webtalk/webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl

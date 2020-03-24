@@ -1,0 +1,212 @@
+{
+   ExpandedHierarchyInLayout: "",
+   comment_0: "I2S RTL Driver.  Drives PMOD pins connected to PMOD I2S Codec module.
+Data_accepted triggers each rising edge of LRCLK (48kHz) to signal to the
+fifo that it is ready for more data.",
+   comment_1: "PWM Module to drive RGB LEDS on board.",
+   comment_10: "MicroBlaze:
+Soft core processor that runs the
+Audio DRM module firmware.",
+   comment_2: "GPIO to allow the Zynq to create interrupts
+ to the MicroBlaze to trigger playback events.",
+   comment_3: "Block RAM (128KB) for MicroBlaze.",
+   comment_4: "Block RAM (32KB) for audio DMA",
+   comment_5: "GPIO to read out the capacity 
+state of the DMA FIFO",
+   comment_6: "Direct Memory Access module.
+Provides direct memory read-out streaming
+to FIFO buffer from DMA BRAM.",
+   comment_7: "DMA FIFO Buffer.
+Provides AXI Stream data buffering.
+The data_count output provides a count of
+how many bytes are in the buffer currently.",
+   comment_8: "Example Shared BRAM (8KB).
+Addressable by both the MB and the Zynq.
+Not used in the example design.
+Could be used for a mailbox type protocol.",
+   comment_9: "ADC Module for reading out various voltages.
+Used by petalinux kernel for performance monitorring.",
+   commentid: "comment_0|comment_1|comment_2|comment_3|comment_4|comment_5|comment_6|comment_7|comment_8|comment_9|comment_10|",
+   font_comment_0: "14",
+   font_comment_1: "14",
+   font_comment_10: "14",
+   font_comment_2: "14",
+   font_comment_3: "14",
+   font_comment_4: "14",
+   font_comment_5: "14",
+   font_comment_6: "14",
+   font_comment_7: "14",
+   font_comment_8: "14",
+   font_comment_9: "14",
+   guistr: "# # String gsaved with Nlview 6.6.11  2017-06-12 bk=1.3860 VDI=40 GEI=35 GUI=JA:1.6
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -y 1180 -defaultsOSRD
+preplace port vaux0 -pg 1 -y 1700 -defaultsOSRD
+preplace port vaux1 -pg 1 -y 1720 -defaultsOSRD
+preplace port vaux12 -pg 1 -y 1820 -defaultsOSRD
+preplace port ja0 -pg 1 -y 1440 -defaultsOSRD
+preplace port vaux13 -pg 1 -y 1840 -defaultsOSRD
+preplace port vaux5 -pg 1 -y 1740 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -y 1200 -defaultsOSRD
+preplace port ja1 -pg 1 -y 1400 -defaultsOSRD
+preplace port vaux6 -pg 1 -y 1760 -defaultsOSRD
+preplace port ja2 -pg 1 -y 1420 -defaultsOSRD
+preplace port vp_vn -pg 1 -y 1680 -defaultsOSRD
+preplace port vaux15 -pg 1 -y 1860 -defaultsOSRD
+preplace port ja3 -pg 1 -y 1380 -defaultsOSRD
+preplace port vaux8 -pg 1 -y 1780 -defaultsOSRD
+preplace port vaux9 -pg 1 -y 1800 -defaultsOSRD
+preplace portBus rgb_led -pg 1 -y 1610 -defaultsOSRD
+preplace inst share_blk_mem_gen_1 -pg 1 -lvl 9 -y 1120 -defaultsOSRD
+preplace inst axis_data_fifo_1 -pg 1 -lvl 3 -y 770 -defaultsOSRD
+preplace inst mb_dma_axi_bram_ctrl_0 -pg 1 -lvl 6 -y 850 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 2 -y 900 -defaultsOSRD
+preplace inst axis_switch_0 -pg 1 -lvl 3 -y 1470 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 4 -y 1540 -defaultsOSRD
+preplace inst mb_axi_mem_interconnect_0 -pg 1 -lvl 5 -y 390 -defaultsOSRD
+preplace inst i2s_output_1 -pg 1 -lvl 10 -y 1400 -defaultsOSRD
+preplace inst axi_intc_0 -pg 1 -lvl 3 -y 610 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 4 -y 1630 -defaultsOSRD
+preplace inst xadc_wiz_0 -pg 1 -lvl 8 -y 1780 -defaultsOSRD
+preplace inst rgb_PWM_0 -pg 1 -lvl 10 -y 1610 -defaultsOSRD
+preplace inst proc_sys_reset_0 -pg 1 -lvl 5 -y 1280 -defaultsOSRD
+preplace inst dma_axi_bram_ctrl_1 -pg 1 -lvl 6 -y 1110 -defaultsOSRD
+preplace inst data_lmb_v10_1 -pg 1 -lvl 5 -y 1000 -defaultsOSRD
+preplace inst mdm_0 -pg 1 -lvl 3 -y 940 -defaultsOSRD
+preplace inst blk_mem_gen_0 -pg 1 -lvl 7 -y 270 -defaultsOSRD
+preplace inst xlconcat_2 -pg 1 -lvl 5 -y 1560 -defaultsOSRD
+preplace inst data_lmb_bram_if_cntlr_1 -pg 1 -lvl 6 -y 390 -defaultsOSRD
+preplace inst ins_lmb_v10_0 -pg 1 -lvl 5 -y 870 -defaultsOSRD
+preplace inst ins_lmb_bram_if_cntlr_0 -pg 1 -lvl 6 -y 260 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 7 -y 740 -defaultsOSRD
+preplace inst microblaze_0 -pg 1 -lvl 4 -y 810 -defaultsOSRD
+preplace inst splitchannel_0 -pg 1 -lvl 9 -y 1410 -defaultsOSRD
+preplace inst share_axi_bram_ctrl_0 -pg 1 -lvl 6 -y 980 -defaultsOSRD
+preplace inst dma_blk_mem_gen_1 -pg 1 -lvl 7 -y 1050 -defaultsOSRD
+preplace inst share_axi_bram_ctrl_1 -pg 1 -lvl 8 -y 820 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -y 1170 -defaultsOSRD
+preplace inst clk_wiz_25M -pg 1 -lvl 4 -y 1270 -defaultsOSRD
+preplace inst birdwtch_iface_0 -pg 1 -lvl 8 -y 490 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 6 -y 1290 -defaultsOSRD
+preplace inst fifo_count_axi_gpio_0 -pg 1 -lvl 6 -y 540 -defaultsOSRD
+preplace inst axis_data_fifo_0 -pg 1 -lvl 6 -y 1510 -defaultsOSRD
+preplace netloc rgb_PWM_0_pwm 1 10 1 NJ
+preplace netloc axi_bram_ctrl_0_BRAM_PORTA1 1 6 3 2800 1110 NJ 1110 NJ
+preplace netloc microblaze_0_DLMB 1 4 1 1800
+preplace netloc Vaux1_0_1 1 0 8 NJ 1720 NJ 1720 NJ 1720 NJ 1720 NJ 1720 NJ 1720 NJ 1720 NJ
+preplace netloc Vaux12_0_1 1 0 8 NJ 1820 NJ 1820 NJ 1820 NJ 1820 NJ 1820 NJ 1820 NJ 1820 NJ
+preplace netloc i2s_output_1_i2s_sclk 1 10 1 NJ
+preplace netloc Vaux5_0_1 1 0 8 NJ 1740 NJ 1740 NJ 1740 NJ 1740 NJ 1740 NJ 1740 NJ 1740 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 6 5 2800J 1200 NJ 1200 NJ 1200 NJ 1200 NJ
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 9 410 980 800 530 1250J 530 1840 -10 2300 630 2830 450 3140 1590 NJ 1590 3830J
+preplace netloc mdm_0_Debug_SYS_Rst 1 0 4 30 1270 NJ 1270 NJ 1270 1220
+preplace netloc xlconcat_2_dout 1 5 1 2250
+preplace netloc axis_data_fifo_0_m_axis_tdata 1 6 3 2820 1410 NJ 1410 NJ
+preplace netloc axi_bram_ctrl_1_BRAM_PORTA1 1 8 1 3480
+preplace netloc i2s_output_1_i2s_sd 1 10 1 NJ
+preplace netloc ps7_0_axi_periph_M02_AXI 1 7 1 3150
+preplace netloc mb_dma_axi_bram_ctrl_0_BRAM_PORTA 1 6 1 2740
+preplace netloc mb_axi_mem_interconnect_0_M02_AXI 1 5 1 2320
+preplace netloc mb_axi_mem_interconnect_0_M05_AXI 1 5 1 2270
+preplace netloc microblaze_0_M_AXI_DP 1 4 1 1750
+preplace netloc i2s_output_1_i2s_lrclk 1 10 1 NJ
+preplace netloc data_lmb_bram_if_cntlr_1_BRAM_PORT 1 6 1 2770
+preplace netloc mb_axi_mem_interconnect_0_M04_AXI 1 5 5 2230 190 NJ 190 NJ 190 NJ 190 3840J
+preplace netloc processing_system7_0_DDR 1 6 5 2790J 1180 NJ 1180 NJ 1180 NJ 1180 NJ
+preplace netloc Vaux0_0_1 1 0 8 NJ 1700 NJ 1700 NJ 1700 NJ 1700 NJ 1700 NJ 1700 NJ 1700 NJ
+preplace netloc Vaux9_0_1 1 0 8 NJ 1800 NJ 1800 NJ 1800 NJ 1800 NJ 1800 NJ 1800 NJ 1800 NJ
+preplace netloc axis_data_fifo_0_axis_data_count 1 6 1 2750
+preplace netloc xlconstant_1_dout 1 4 1 1780J
+preplace netloc axis_data_fifo_1_M_AXIS 1 3 1 1230
+preplace netloc rst_ps7_0_100M_bus_struct_reset 1 1 5 420J 1030 NJ 1030 1260 1020 1780 -20 2330
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 6 840 -40 NJ -40 NJ -40 NJ -40 NJ -40 3120
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 2 1 830
+preplace netloc mb_axi_mem_interconnect_0_M03_AXI 1 5 1 2220
+preplace netloc mb_axi_mem_interconnect_0_M06_AXI 1 2 4 850 -50 NJ -50 NJ -50 2200
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 7 20 1260 420J 1180 NJ 1180 NJ 1180 1770 1410 NJ 1410 2740
+preplace netloc proc_sys_reset_0_peripheral_aresetn 1 5 1 2210
+preplace netloc ps7_0_axi_periph_M01_AXI 1 7 1 3160
+preplace netloc microblaze_0_M0_AXIS 1 4 2 1760J 800 2230
+preplace netloc mdm_0_MBDEBUG_0 1 3 1 1260
+preplace netloc microblaze_0_M_AXI_IP 1 4 1 1770
+preplace netloc axi_dma_0_M_AXI_MM2S 1 2 4 810 690 N 690 1820 790 2250
+preplace netloc birdwtch_iface_0_int_mb 1 2 7 830 -70 NJ -70 NJ -70 NJ -70 NJ -70 NJ -70 3480
+preplace netloc Conn 1 5 1 2240
+preplace netloc i2s_output_1_data_accepted 1 6 5 N 1480 NJ 1480 NJ 1480 3830J 1490 4200
+preplace netloc mb_axi_mem_interconnect_0_M00_AXI 1 5 1 2280
+preplace netloc rst_ps7_0_100M_interconnect_aresetn 1 1 6 NJ 1190 NJ 1190 NJ 1190 1810 1180 2220 1610 2810
+preplace netloc mb_axi_mem_interconnect_0_M07_AXI 1 5 3 2290 460 NJ 460 NJ
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 10 20 910 410 820 820 850 1230 900 1830 1070 2310 620 2770 470 3130 1600 NJ 1600 3820J
+preplace netloc microblaze_0_ILMB 1 4 1 1790
+preplace netloc Vp_Vn_0_1 1 0 8 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ 1680 NJ
+preplace netloc Vaux13_0_1 1 0 8 NJ 1840 NJ 1840 NJ 1840 NJ 1840 NJ 1840 NJ 1840 NJ 1840 NJ
+preplace netloc axis_data_fifo_1_axis_data_count 1 3 4 1210J -80 NJ -80 NJ -80 2740
+preplace netloc dma_axi_bram_ctrl_1_BRAM_PORTA 1 6 1 2760
+preplace netloc xadc_wiz_0_ip2intc_irpt 1 4 5 1830 1630 NJ 1630 2840J 1610 NJ 1610 3480
+preplace netloc splitchannel_0_o_right 1 9 1 N
+preplace netloc mdm_0_M_AXI 1 3 2 1220J 130 N
+preplace netloc ps7_0_axi_periph_M05_AXI 1 7 1 3120
+preplace netloc splitchannel_0_o_left 1 9 1 N
+preplace netloc Conn1 1 5 1 2260
+preplace netloc clk_wiz_0_clk_out1 1 4 6 1840 1190 2200 1620 2830J 1340 NJ 1340 NJ 1340 3850J
+preplace netloc Vaux8_0_1 1 0 8 NJ 1780 NJ 1780 NJ 1780 NJ 1780 NJ 1780 NJ 1780 NJ 1780 NJ
+preplace netloc mb_axi_mem_interconnect_0_M01_AXI 1 1 5 420 -60 NJ -60 NJ -60 NJ -60 2220
+preplace netloc processing_system7_0_M_AXI_GP0 1 6 1 2780
+preplace netloc xlconstant_0_dout 1 4 1 1780J
+preplace netloc mb_axi_mem_interconnect_0_M08_AXI 1 3 3 1260 1080 NJ 1080 2200
+preplace netloc rst_ps7_0_100M_mb_reset 1 1 3 400 520 NJ 520 1240J
+preplace netloc Vaux6_0_1 1 0 8 NJ 1760 NJ 1760 NJ 1760 NJ 1760 NJ 1760 NJ 1760 NJ 1760 NJ
+preplace netloc ins_lmb_bram_if_cntlr_0_BRAM_PORT 1 6 1 N
+preplace netloc i2s_output_1_i2s_mclk 1 10 1 NJ
+preplace netloc Vaux15_0_1 1 0 8 NJ 1860 NJ 1860 NJ 1860 NJ 1860 NJ 1860 NJ 1860 NJ 1860 NJ
+preplace netloc axi_intc_0_interrupt 1 3 1 1260
+preplace cgraphic comment_3 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_2 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_1 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_0 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_7 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_6 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_5 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_4 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_10 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_9 place left 110 0 textcolor 4 linecolor 3
+preplace cgraphic comment_8 place left 110 0 textcolor 4 linecolor 3
+levelinfo -pg 1 0 220 620 1040 1510 2020 2540 2980 3320 3650 4020 4560 -top -90 -bot 1950
+",
+   linktoobj_comment_0: "",
+   linktoobj_comment_1: "",
+   linktoobj_comment_10: "",
+   linktoobj_comment_2: "",
+   linktoobj_comment_3: "",
+   linktoobj_comment_4: "",
+   linktoobj_comment_5: "",
+   linktoobj_comment_6: "",
+   linktoobj_comment_7: "",
+   linktoobj_comment_8: "",
+   linktoobj_comment_9: "",
+   linktotype_comment_0: "bd_design",
+   linktotype_comment_1: "bd_design",
+   linktotype_comment_10: "bd_design",
+   linktotype_comment_2: "bd_design",
+   linktotype_comment_3: "bd_design",
+   linktotype_comment_4: "bd_design",
+   linktotype_comment_5: "bd_design",
+   linktotype_comment_6: "bd_design",
+   linktotype_comment_7: "bd_design",
+   linktotype_comment_8: "bd_design",
+   linktotype_comment_9: "bd_design",
+}
+0
+{
+   /comment_0: "comment_0",
+   /comment_1: "comment_1",
+   /comment_10: "comment_2",
+   /comment_2: "comment_3",
+   /comment_3: "comment_4",
+   /comment_4: "comment_5",
+   /comment_5: "comment_6",
+   /comment_6: "comment_7",
+   /comment_7: "comment_8",
+   /comment_8: "comment_9",
+   /comment_9: "comment_10",
+}

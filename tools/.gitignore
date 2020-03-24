@@ -2,6 +2,7 @@
 .idea/
 build/
 dist/
+device/*
 ECTFTools.egg-info
 tests/secrets.h
 tests/songs/

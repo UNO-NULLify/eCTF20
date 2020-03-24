@@ -2830,6 +2830,173 @@ __interrupt_handler
 ```
 ### New Flags
 
+
+```
+dy`0
+p)`0`
+@x`2
+!0""
+MB> Could not find region ID '%d'
+<unknown region>
+MB> Could not find region name '%s'
+MB> Could not find uid '%d'
+<unknown user>
+MB> Could not find username '%s'
+MB> No user logged in
+MB> User '%s' does not have access to this song
+MB> User '%s' has access to this song
+MB> Region Match. Full Song can be played. Unlocking...
+MB> Invalid region
+MB> Already logged in. Please log out first.
+MB> Logged in for user '%s'
+MB> Incorrect pin for user '%s'
+MB> User not found
+MB> Logging out...
+MB> Not logged in
+MB> Queried player (%d regions, %d users)
+MB> Queried song (%d regions, %d users)
+MB> No user is logged in. Cannot share song
+MB> User '%s' is not song's owner. Cannot share song
+MB> Username not found
+MB> Shared song with '%s'
+MB> Reading Audio File...
+MB> Song length = %dB
+MB> Song is locked.  Playing only %ds = %dB
+MB> Song is unlocked. Playing full song
+MB> Pausing... 
+MB> Resuming... 
+MB> Stopping playback...
+MB> Restarting song... 
+MB> Only playing 30 seconds
+MB> 
+MB> Dumping song (%dB)...
+MB> Song dump finished
+MB> DMA configuration ERROR
+MB> Audio DRM Module has Booted
+MB> Done Playing Song
+1234567890
+00000000
+0987654321
+drew
+misha
+United States
+Japan
+Australia
+MB> No config found for %d
+MB> Initialization failed %d
+MB> Device configured as SG mode
+0123456789ABCDEF
+xintc_intr.c
+xintc.c
+         (((((                  
+AAAAAA
+BBBBBB
+         (((((                  
+AAAAAA
+BBBBBB
+.shstrtab
+.vectors.reset
+.vectors.sw_exception
+.vectors.interrupt
+.vectors.hw_exception
+.text
+.init
+.fini
+.ctors
+.dtors
+.rodata
+.sdata2
+.data
+.sdata
+.sbss
+.bss
+.heap
+.stack
+```
+## gdb info functions
+### original
+```
+All defined functions:
+
+File ../src/main.c:
+void digital_out();
+int gen_song_md(char *);
+int is_locked();
+int is_provisioned_rid(char);
+int is_provisioned_uid(char);
+void load_song_md();
+void login();
+void logout();
+int main();
+void myISR(void);
+void play_song();
+void query_player();
+void query_song();
+int region_name_to_rid(char *, char *, int);
+int rid_to_region_name(char, char **, int);
+void share_song();
+int uid_to_username(char, char **, int);
+int username_to_uid(char *, char *, int);
+
+File ../src/platform.c:
+void cleanup_platform();
+void disable_caches();
+void enable_caches();
+void init_platform();
+void init_uart();
+
+File ../src/util.c:
+int SetUpInterruptSystem(XIntc *, XInterruptHandler);
+void enableLED(u32 *);
+u32 fnAudioPlay(XAxiDma, u32, u32);
+XStatus fnConfigDma(XAxiDma *);
+void setLED(u32 *, struct color);
+
+Non-debugging symbols:
+0x00006764  __interrupt_handler
+0x00006764  _interrupt_handler
+0x00006808  microblaze_register_handler
+0x0000681c  usleep
+0x00006844  Xil_ExceptionInit
+0x0000684c  Xil_ExceptionEnable
+0x0000686c  Xil_ExceptionRegisterHandler
+0x00006894  Xil_MemCpy
+0x00006904  getnum
+0x00006980  padding.part
+0x000069d8  outnum
+0x00006be4  xil_printf
+0x00007014  XAxiDma_Reset
+0x00007178  XAxiDma_ResetIsDone
+0x000071c4  XAxiDma_CfgInitialize
+0x00007634  XAxiDma_Busy
+0x0000766c  XAxiDma_SimpleTransfer
+---Type <return> to continue, or q <return> to quit---
+0x000077e0  XAxiDma_LookupConfig
+0x00007808  PWM_Set_Period
+0x00007814  PWM_Set_Duty
+0x0000782c  PWM_Enable
+0x0000783c  XIntc_InterruptHandler
+0x00007898  XIntc_DeviceInterruptHandler
+0x00007a2c  StubHandler
+0x00007a7c  XIntc_Initialize
+0x00007c90  XIntc_Start
+0x00007d98  XIntc_Connect
+0x00007e90  XIntc_Enable
+0x00007f5c  outbyte
+0x00007f88  Xil_Assert
+0x00007fd0  XNullHandler
+0x00007fd8  XUartPs_SendByte
+0x00007ff4  __errno
+0x00008004  __init
+0x00008040  __fini
+```
+### new compiler flags
+
+```
+All defined functions:
+```
+
+
 ```
 dy`0
 p)`0`

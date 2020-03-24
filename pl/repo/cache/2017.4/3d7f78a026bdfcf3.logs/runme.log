@@ -1,0 +1,481 @@
+
+*** Running vivado
+    with args -log system_birdwtch_iface_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_birdwtch_iface_0_0.tcl
+
+
+****** Vivado v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source system_birdwtch_iface_0_0.tcl -notrace
+Command: synth_design -top system_birdwtch_iface_0_0 -part xc7z007sclg400-1 -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 88778 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1230.121 ; gain = 85.000 ; free physical = 5822 ; free virtual = 11581
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'system_birdwtch_iface_0_0' [/ectf/pl/proj/test/bd/system/ip/system_birdwtch_iface_0_0/synth/system_birdwtch_iface_0_0.v:56]
+INFO: [Synth 8-638] synthesizing module 'birdwtch_iface_v1_0' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch_iface_v1_0.vhd:73]
+	Parameter C_S00_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S00_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'birdwtch' declared at '/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch.v:23' bound to instance 'birdwtch_inst' of component 'birdwtch' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch_iface_v1_0.vhd:134]
+INFO: [Synth 8-638] synthesizing module 'birdwtch' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch.v:23]
+	Parameter OPT_READ_SIDEEFFECTS bound to: 1'b1 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'birdwtch_iface_v1_0_S00_AXI' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch_iface_v1_0_S00_AXI.v:51]
+	Parameter OPT_READ_SIDEEFFECTS bound to: 1'b1 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter ADDR_LSB bound to: 2 - type: integer 
+	Parameter AW bound to: 6 - type: integer 
+	Parameter DW bound to: 32 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element pre_raddr_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch_iface_v1_0_S00_AXI.v:206]
+WARNING: [Synth 8-6014] Unused sequential element pre_waddr_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch_iface_v1_0_S00_AXI.v:310]
+INFO: [Synth 8-256] done synthesizing module 'birdwtch_iface_v1_0_S00_AXI' (1#1) [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch_iface_v1_0_S00_AXI.v:51]
+WARNING: [Synth 8-689] width (4) of port connection 'S_AXI_AWADDR' does not match port width (8) of module 'birdwtch_iface_v1_0_S00_AXI' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch.v:101]
+WARNING: [Synth 8-689] width (4) of port connection 'S_AXI_ARADDR' does not match port width (8) of module 'birdwtch_iface_v1_0_S00_AXI' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch.v:112]
+INFO: [Synth 8-638] synthesizing module 'birdwtch_iface_v1_0_S01_AXI' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/src/birdwtch_iface_v1_0_S01_AXI.v:51]
+	Parameter OPT_READ_SIDEEFFECTS bound to: 1'b1 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 8 - type: integer 
+	Parameter ADDR_LSB bound to: 2 - type: integer 
+	Parameter AW bound to: 6 - type: integer 
+	Parameter DW bound to: 32 - type: integer 
+WARNING: [Synth 8-6014] Unused sequential element pre_raddr_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/0ae3/src/birdwtch_iface_v1_0_S01_AXI.v:204]
+WARNING: [Synth 8-6014] Unused sequential element pre_waddr_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/0ae3/src/birdwtch_iface_v1_0_S01_AXI.v:313]
+WARNING: [Synth 8-3936] Found unconnected internal register 'wdata_reg' and it is trimmed from '32' to '16' bits. [/ectf/pl/proj/test/bd/system/ipshared/0ae3/src/birdwtch_iface_v1_0_S01_AXI.v:335]
+WARNING: [Synth 8-3936] Found unconnected internal register 'wstrb_reg' and it is trimmed from '4' to '2' bits. [/ectf/pl/proj/test/bd/system/ipshared/0ae3/src/birdwtch_iface_v1_0_S01_AXI.v:334]
+INFO: [Synth 8-256] done synthesizing module 'birdwtch_iface_v1_0_S01_AXI' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/0ae3/src/birdwtch_iface_v1_0_S01_AXI.v:51]
+WARNING: [Synth 8-689] width (4) of port connection 'S_AXI_AWADDR' does not match port width (8) of module 'birdwtch_iface_v1_0_S01_AXI' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch.v:133]
+WARNING: [Synth 8-689] width (4) of port connection 'S_AXI_ARADDR' does not match port width (8) of module 'birdwtch_iface_v1_0_S01_AXI' [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch.v:144]
+INFO: [Synth 8-256] done synthesizing module 'birdwtch' (3#1) [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch.v:23]
+INFO: [Synth 8-256] done synthesizing module 'birdwtch_iface_v1_0' (4#1) [/ectf/pl/proj/test/bd/system/ipshared/0ae3/hdl/birdwtch_iface_v1_0.vhd:73]
+INFO: [Synth 8-256] done synthesizing module 'system_birdwtch_iface_0_0' (5#1) [/ectf/pl/proj/test/bd/system/ip/system_birdwtch_iface_0_0/synth/system_birdwtch_iface_0_0.v:56]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWADDR[7]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWADDR[6]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWADDR[5]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWADDR[4]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWADDR[3]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWADDR[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWADDR[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWADDR[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWPROT[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWPROT[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_AWPROT[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARADDR[7]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARADDR[6]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARADDR[5]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARADDR[4]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARADDR[3]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARADDR[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARADDR[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARADDR[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARPROT[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARPROT[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S01_AXI has unconnected port S_AXI_ARPROT[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWADDR[7]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWADDR[6]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWADDR[5]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWADDR[4]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWADDR[3]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWADDR[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWADDR[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWADDR[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWPROT[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWPROT[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWPROT[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARADDR[7]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARADDR[6]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARADDR[5]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARADDR[4]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARADDR[3]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARADDR[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARADDR[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARADDR[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARPROT[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARPROT[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARPROT[0]
+WARNING: [Synth 8-3331] design birdwtch has unconnected port S01_AXI_ACLK
+WARNING: [Synth 8-3331] design birdwtch has unconnected port S01_AXI_ARESETN
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1271.652 ; gain = 126.531 ; free physical = 5828 ; free virtual = 11593
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1271.652 ; gain = 126.531 ; free physical = 5823 ; free virtual = 11587
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7z007sclg400-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1617.270 ; gain = 0.000 ; free physical = 5566 ; free virtual = 11352
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5609 ; free virtual = 11412
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z007sclg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5609 ; free virtual = 11412
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5610 ; free virtual = 11414
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3936] Found unconnected internal register 'pre_wdata_reg' and it is trimmed from '32' to '16' bits. [/ectf/pl/proj/test/bd/system/ipshared/0ae3/src/birdwtch_iface_v1_0_S01_AXI.v:319]
+WARNING: [Synth 8-3936] Found unconnected internal register 'pre_wstrb_reg' and it is trimmed from '4' to '2' bits. [/ectf/pl/proj/test/bd/system/ipshared/0ae3/src/birdwtch_iface_v1_0_S01_AXI.v:320]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5603 ; free virtual = 11407
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 3     
+	               16 Bit    Registers := 1     
+	                8 Bit    Registers := 4     
+	                4 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 13    
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 12    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module birdwtch_iface_v1_0_S00_AXI 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	                8 Bit    Registers := 2     
+	                4 Bit    Registers := 1     
+	                1 Bit    Registers := 6     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 6     
+Module birdwtch_iface_v1_0_S01_AXI 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 1     
+	               16 Bit    Registers := 1     
+	                8 Bit    Registers := 2     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 6     
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 6     
+Module birdwtch 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 66 (col length:40)
+BRAMs: 100 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3917] design system_birdwtch_iface_0_0 has port s00_axi_bresp[1] driven by constant 0
+INFO: [Synth 8-3917] design system_birdwtch_iface_0_0 has port s00_axi_bresp[0] driven by constant 0
+INFO: [Synth 8-3917] design system_birdwtch_iface_0_0 has port s00_axi_rresp[1] driven by constant 0
+INFO: [Synth 8-3917] design system_birdwtch_iface_0_0 has port s00_axi_rresp[0] driven by constant 0
+INFO: [Synth 8-3917] design system_birdwtch_iface_0_0 has port s01_axi_bresp[1] driven by constant 0
+INFO: [Synth 8-3917] design system_birdwtch_iface_0_0 has port s01_axi_bresp[0] driven by constant 0
+INFO: [Synth 8-3917] design system_birdwtch_iface_0_0 has port s01_axi_rresp[1] driven by constant 0
+INFO: [Synth 8-3917] design system_birdwtch_iface_0_0 has port s01_axi_rresp[0] driven by constant 0
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_awaddr[3]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_awaddr[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_awaddr[1]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_awaddr[0]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_awprot[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_awprot[1]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_awprot[0]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_araddr[3]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_araddr[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_araddr[1]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_araddr[0]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_arprot[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_arprot[1]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s00_axi_arprot[0]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_aclk
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_aresetn
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_awaddr[3]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_awaddr[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_awaddr[1]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_awaddr[0]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_awprot[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_awprot[1]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_awprot[0]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[31]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[30]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[29]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[28]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[27]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[26]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[25]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[24]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[23]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[22]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[21]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[20]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[19]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[18]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[17]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wdata[16]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wstrb[3]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_wstrb[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_araddr[3]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_araddr[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_araddr[1]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_araddr[0]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_arprot[2]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_arprot[1]
+WARNING: [Synth 8-3331] design system_birdwtch_iface_0_0 has unconnected port s01_axi_arprot[0]
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[0]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[1]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[1]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[2]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[2]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[3]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[3]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[4]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[4]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[5]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[5]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[6]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[6]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[7]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[7]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[8]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[8]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[9]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[9]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[10]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[10]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[11]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[11]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[12]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[12]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[13]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[13]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[14]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[14]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[15]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[15] )
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[16]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[17]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[17]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[18]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[18]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[19]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[19]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[20]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[20]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[21]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[21]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[22]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[22]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[23]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[23]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[24]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[24]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[25]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[25]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[26]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[26]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[27]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[27]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[28]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[28]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[29]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[29]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[30]'
+INFO: [Synth 8-3886] merging instance 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[30]' (FDE) to 'inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[31]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[31] )
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata_reg[31]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wstrb_reg[1]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wstrb_reg[0]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[15]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[14]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[13]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[12]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[11]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[10]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[9]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[8]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[7]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[6]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[5]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[4]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[3]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[2]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[1]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S00_AXI_inst/pre_wdata_reg[0]) is unused and will be removed from module system_birdwtch_iface_0_0.
+INFO: [Synth 8-3332] Sequential element (inst/birdwtch_inst/birdwtch_iface_v1_0_S01_AXI_inst/axi_rdata_reg[15]) is unused and will be removed from module system_birdwtch_iface_0_0.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5593 ; free virtual = 11395
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:29 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5441 ; free virtual = 11242
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:29 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5441 ; free virtual = 11242
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:29 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5439 ; free virtual = 11239
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5437 ; free virtual = 11238
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5437 ; free virtual = 11238
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5437 ; free virtual = 11238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5437 ; free virtual = 11238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5437 ; free virtual = 11238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5437 ; free virtual = 11238
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     1|
+|2     |LUT2 |     3|
+|3     |LUT3 |    32|
+|4     |LUT4 |     7|
+|5     |LUT5 |     3|
+|6     |LUT6 |     9|
+|7     |FDRE |   113|
++------+-----+------+
+
+Report Instance Areas: 
++------+---------------------------------------+----------------------------+------+
+|      |Instance                               |Module                      |Cells |
++------+---------------------------------------+----------------------------+------+
+|1     |top                                    |                            |   168|
+|2     |  inst                                 |birdwtch_iface_v1_0         |   168|
+|3     |    birdwtch_inst                      |birdwtch                    |   168|
+|4     |      birdwtch_iface_v1_0_S00_AXI_inst |birdwtch_iface_v1_0_S00_AXI |    83|
+|5     |      birdwtch_iface_v1_0_S01_AXI_inst |birdwtch_iface_v1_0_S01_AXI |    84|
++------+---------------------------------------+----------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5437 ; free virtual = 11238
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 50 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1617.270 ; gain = 126.531 ; free physical = 5494 ; free virtual = 11296
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1617.270 ; gain = 472.148 ; free physical = 5494 ; free virtual = 11296
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+80 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1617.270 ; gain = 485.520 ; free physical = 5481 ; free virtual = 11284
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_birdwtch_iface_0_0_synth_1/system_birdwtch_iface_0_0.dcp' has been generated.

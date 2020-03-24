@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="synth_1" LaunchPart="xc7z007sclg400-1" LaunchTime="1582415428">
+  <File Type="VDS-TIMING-PB" Name="system_wrapper_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="system_wrapper_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="system_wrapper.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="system_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="system_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="system_wrapper_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="system_wrapper.vds"/>
+  <File Type="REPORTS-TCL" Name="system_wrapper_reports.tcl"/>
+  <File Type="PA-TCL" Name="system_wrapper.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PPRDIR/../../src/hdl/i2s_output.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/splitchannel.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/bd/system/system.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../../src/bd/system/hdl/system_wrapper.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="system_wrapper"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PPRDIR/../../src/constraints/Cora-Z7-Master.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PPRDIR/../../src/constraints/Cora-Z7-Master.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2017"/>
+    <Step Id="synth_design">
+      <Option Id="FsmExtraction">0</Option>
+      <Option Id="FlattenHierarchy">1</Option>
+      <Option Id="Directive">0</Option>
+    </Step>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="system_data_lmb_bram_if_cntlr_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_birdwtch_iface_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_splitchannel_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_clk_wiz_25M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axis_data_fifo_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_microblaze_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_fifo_count_axi_gpio_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_ins_lmb_bram_if_cntlr_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_i2s_output_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axis_data_fifo_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_dma_0_0"/>
+</GenRun>

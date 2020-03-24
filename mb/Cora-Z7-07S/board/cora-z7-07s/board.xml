@@ -52,7 +52,7 @@
 								<pin_map port_index="5" component_pin="rgb_leds_tri_o_5"/>
 							</pin_maps>
 						</port_map>
-						<port_map logical_port="TRI_I" physical_port="rgb_leds_tri_o" dir="in" left="5" right="0"> 
+						<port_map logical_port="TRI_I" physical_port="rgb_leds_tri_i" dir="in" left="5" right="0"> 
 							<pin_maps>
 								<pin_map port_index="0" component_pin="rgb_leds_tri_o_0"/> 
 								<pin_map port_index="1" component_pin="rgb_leds_tri_o_1"/> 
@@ -62,7 +62,7 @@
 								<pin_map port_index="5" component_pin="rgb_leds_tri_o_5"/> 
 							</pin_maps>
 						</port_map>
-						<port_map logical_port="TRI_T" physical_port="rgb_leds_tri_o" dir="out" left="5" right="0"> 
+						<port_map logical_port="TRI_T" physical_port="rgb_leds_tri_t" dir="out" left="5" right="0"> 
 							<pin_maps>
 								<pin_map port_index="0" component_pin="rgb_leds_tri_o_0"/> 
 								<pin_map port_index="1" component_pin="rgb_leds_tri_o_1"/> 
@@ -366,34 +366,34 @@
 						<preferred_ip vendor="xilinx.com" library="ip" name="axi_quad_spi" order="0"/>
 					</preferred_ips>
 					<port_maps>
-						<port_map logical_port="IO0_I" physical_port="shield_spi_mosi_i" dir="in">
-							<pin_maps>
-								<pin_map port_index="0" component_pin="shield_spi_mosi_i"/> 
-							</pin_maps>
-						</port_map>
-						<port_map logical_port="IO0_O" physical_port="shield_spi_mosi_o" dir="out">
-							<pin_maps>
-								<pin_map port_index="0" component_pin="shield_spi_mosi_i"/> 
-							</pin_maps>
-						</port_map>
-						<port_map logical_port="IO0_T" physical_port="shield_spi_mosi_t" dir="out">
-							<pin_maps>
-								<pin_map port_index="0" component_pin="shield_spi_mosi_i"/> 
-							</pin_maps>
-						</port_map>
-						<port_map logical_port="IO1_I" physical_port="shield_spi_miso_i" dir="in">
+						<port_map logical_port="IO0_I" physical_port="shield_spi_miso_i" dir="in">
 							<pin_maps>
 								<pin_map port_index="0" component_pin="shield_spi_miso_i"/> 
 							</pin_maps>
 						</port_map>
-						<port_map logical_port="IO1_O" physical_port="shield_spi_miso_o" dir="out">
+						<port_map logical_port="IO0_O" physical_port="shield_spi_miso_o" dir="out">
 							<pin_maps>
 								<pin_map port_index="0" component_pin="shield_spi_miso_i"/> 
 							</pin_maps>
 						</port_map>
-						<port_map logical_port="IO1_T" physical_port="shield_spi_miso_t" dir="out">
+						<port_map logical_port="IO0_T" physical_port="shield_spi_miso_t" dir="out">
 							<pin_maps>
 								<pin_map port_index="0" component_pin="shield_spi_miso_i"/> 
+							</pin_maps>
+						</port_map>
+						<port_map logical_port="IO1_I" physical_port="shield_spi" dir="in">
+							<pin_maps>
+								<pin_map port_index="0" component_pin="shield_spi_mosi_i"/> 
+							</pin_maps>
+						</port_map>
+						<port_map logical_port="IO1_O" physical_port="shield_spi_mosi_o" dir="out">
+							<pin_maps>
+								<pin_map port_index="0" component_pin="shield_spi_mosi_i"/> 
+							</pin_maps>
+						</port_map>
+						<port_map logical_port="IO1_T" physical_port="shield_spi_mosi_t" dir="out">
+							<pin_maps>
+								<pin_map port_index="0" component_pin="shield_spi_mosi_i"/> 
 							</pin_maps>
 						</port_map>
 						<port_map logical_port="SCK_I" physical_port="shield_spi_sck_i" dir="in">
@@ -660,7 +660,7 @@
 		<connection name="part0_btns_2bits" component1="part0" component2="btns_2bits">
 			<connection_map name="part0_btns_2bits_1" c1_st_index="1" c1_end_index="2" c2_st_index="0" c2_end_index="1"/>
 		</connection>
-		<connection name="part0_rgb_leds" component1="part0" component2="rgb_leds">
+		<connection name="part0_rgb_leds" component1="part0" component2="reg_leds">
 			<connection_map name="part0_rgb_leds_1" c1_st_index="3" c1_end_index="8" c2_st_index="0" c2_end_index="5"/>
 		</connection>
 		<connection name="part0_ja" component1="part0" component2="ja">

@@ -1,0 +1,71 @@
+Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
+| Date         : Sun Jan 26 15:32:35 2020
+| Host         : ssg1 running 64-bit Manjaro Linux
+| Command      : report_control_sets -verbose -file birdwtch_iface_v1_0_control_sets_placed.rpt
+| Design       : birdwtch_iface_v1_0
+| Device       : xc7z007s
+------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |     9 |
+| Unused register locations in slices containing registers |    19 |
++----------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |               5 |            2 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |               0 |            0 |
+| Yes          | No                    | No                     |              72 |           22 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |               0 |            0 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++-------------------------+----------------------------------------------------------------+------------------+------------------+----------------+
+|       Clock Signal      |                          Enable Signal                         | Set/Reset Signal | Slice Load Count | Bel Load Count |
++-------------------------+----------------------------------------------------------------+------------------+------------------+----------------+
+|  s00_axi_aclk_IBUF_BUFG | birdwtch_iface_v1_0_S00_AXI_inst/s00_axi_arready_OBUF          |                  |                2 |              2 |
+|  s00_axi_aclk_IBUF_BUFG | birdwtch_iface_v1_0_S00_AXI_inst/s00_axi_awready_OBUF          |                  |                2 |              2 |
+|  s00_axi_aclk_IBUF_BUFG |                                                                |                  |                2 |              5 |
+|  s00_axi_aclk_IBUF_BUFG | birdwtch_iface_v1_0_S00_AXI_inst/slv_mem_reg_0_3_0_0_i_2_n_0   |                  |                2 |             16 |
+|  s00_axi_aclk_IBUF_BUFG | birdwtch_iface_v1_0_S00_AXI_inst/slv_mem_reg_0_3_24_24_i_2_n_0 |                  |                2 |             16 |
+|  s00_axi_aclk_IBUF_BUFG | birdwtch_iface_v1_0_S00_AXI_inst/slv_mem_reg_0_3_16_16_i_2_n_0 |                  |                2 |             16 |
+|  s00_axi_aclk_IBUF_BUFG | birdwtch_iface_v1_0_S00_AXI_inst/slv_mem_reg_0_3_8_8_i_2_n_0   |                  |                2 |             16 |
+|  s00_axi_aclk_IBUF_BUFG | birdwtch_iface_v1_0_S00_AXI_inst/axi_rdata[31]_i_1_n_0         |                  |                8 |             32 |
+|  s00_axi_aclk_IBUF_BUFG | birdwtch_iface_v1_0_S00_AXI_inst/s00_axi_wready_OBUF           |                  |               10 |             36 |
++-------------------------+----------------------------------------------------------------+------------------+------------------+----------------+
+
+
++--------+-----------------------+
+| Fanout | Number of ControlSets |
++--------+-----------------------+
+| 2      |                     2 |
+| 5      |                     1 |
+| 16+    |                     6 |
++--------+-----------------------+
+
+
