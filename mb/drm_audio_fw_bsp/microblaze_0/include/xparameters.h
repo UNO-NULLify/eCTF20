@@ -524,6 +524,7 @@
 #define XPAR_AXIDMA_0_c_addr_width 32
 
 
+
 /******************************************************************/
 
 /* Definitions for driver BIRDWTCH_IFACE */
@@ -533,6 +534,7 @@
 #define XPAR_BIRDWTCH_IFACE_0_DEVICE_ID 0
 #define XPAR_BIRDWTCH_IFACE_0_S00_AXI_BASEADDR 0x43C00000
 #define XPAR_BIRDWTCH_IFACE_0_S00_AXI_HIGHADDR 0x43C0FFFF
+
 
 
 /******************************************************************/
@@ -675,6 +677,7 @@
 #define XPAR_BRAM_3_HIGHADDR 0x04B01FFFU
 
 
+
 /******************************************************************/
 
 /* Definitions for driver CLK_WIZ */
@@ -720,6 +723,7 @@
 #define XPAR_CLK_WIZ_0_Enable_PLL1 0
 
 
+
 /******************************************************************/
 
 /* Definitions for driver EMACPS */
@@ -762,7 +766,9 @@
 #define XPAR_PS7_M_AXI_GP0_S_AXI_HIGHADDR 0x7FFFFFFF
 
 
+
 /* Definitions for peripheral AXIS_DATA_FIFO_0 */
+
 
 
 /******************************************************************/
@@ -778,6 +784,7 @@
 #define XPAR_FIFO_COUNT_AXI_GPIO_0_IS_DUAL 1
 
 
+
 /******************************************************************/
 
 /* Canonical definitions for peripheral FIFO_COUNT_AXI_GPIO_0 */
@@ -786,6 +793,7 @@
 #define XPAR_GPIO_0_DEVICE_ID XPAR_FIFO_COUNT_AXI_GPIO_0_DEVICE_ID
 #define XPAR_GPIO_0_INTERRUPT_PRESENT 0
 #define XPAR_GPIO_0_IS_DUAL 1
+
 
 
 /******************************************************************/
@@ -869,7 +877,9 @@
 #define XPAR_INTC_0_NUM_INTR_INPUTS 1U
 #define XPAR_INTC_0_INTC_TYPE 0U
 
+
 #define XPAR_INTC_0_BIRDWTCH_IFACE_0_VEC_ID XPAR_AXI_INTC_0_BIRDWTCH_IFACE_0_INT_MB_INTR
+
 
 /******************************************************************/
 

@@ -1,0 +1,16 @@
+{
+	"version": 2,
+	"name": "ectf20-documentation",
+	"builds": [{
+		"src": "index.js",
+		"use": "@now/node"
+	}],
+	"routes": [{
+		"src": "/.*",
+		"dest": "index.js"
+	}],
+	"env": {
+		"USERNAME": "ectf20",
+		"PASSWORD": "Steel2020"
+	}
+}
