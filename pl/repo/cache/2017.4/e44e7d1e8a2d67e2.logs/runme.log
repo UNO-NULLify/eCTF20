@@ -14,11 +14,11 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 61873 
+INFO: Helper process launched with PID 2331 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:10 . Memory (MB): peak = 1225.113 ; gain = 80.000 ; free physical = 2477 ; free virtual = 13979
+Starting RTL Elaboration : Time (s): cpu = 00:00:18 ; elapsed = 00:00:31 . Memory (MB): peak = 1227.812 ; gain = 83.000 ; free physical = 886 ; free virtual = 11796
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_share_axi_bram_ctrl_1_0' [/ectf/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/synth/system_share_axi_bram_ctrl_1_0.vhd:108]
+INFO: [Synth 8-638] synthesizing module 'system_share_axi_bram_ctrl_1_0' [/ectf_master/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/synth/system_share_axi_bram_ctrl_1_0.vhd:108]
 	Parameter C_BRAM_INST_MODE bound to: EXTERNAL - type: string 
 	Parameter C_MEMORY_DEPTH bound to: 2048 - type: integer 
 	Parameter C_BRAM_ADDR_WIDTH bound to: 11 - type: integer 
@@ -36,8 +36,8 @@ INFO: [Synth 8-638] synthesizing module 'system_share_axi_bram_ctrl_1_0' [/ectf/
 	Parameter C_ECC_TYPE bound to: 0 - type: integer 
 	Parameter C_FAULT_INJECT bound to: 0 - type: integer 
 	Parameter C_ECC_ONOFF_RESET_VALUE bound to: 0 - type: integer 
-INFO: [Synth 8-3491] module 'axi_bram_ctrl' declared at '/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23741' bound to instance 'U0' of component 'axi_bram_ctrl' [/ectf/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/synth/system_share_axi_bram_ctrl_1_0.vhd:261]
-INFO: [Synth 8-638] synthesizing module 'axi_bram_ctrl' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23911]
+INFO: [Synth 8-3491] module 'axi_bram_ctrl' declared at '/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23741' bound to instance 'U0' of component 'axi_bram_ctrl' [/ectf_master/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/synth/system_share_axi_bram_ctrl_1_0.vhd:261]
+INFO: [Synth 8-638] synthesizing module 'axi_bram_ctrl' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23911]
 	Parameter C_BRAM_INST_MODE bound to: EXTERNAL - type: string 
 	Parameter C_MEMORY_DEPTH bound to: 2048 - type: integer 
 	Parameter C_BRAM_ADDR_WIDTH bound to: 11 - type: integer 
@@ -55,7 +55,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_bram_ctrl' [/ectf/pl/src/bd/system/
 	Parameter C_ECC_TYPE bound to: 0 - type: integer 
 	Parameter C_FAULT_INJECT bound to: 0 - type: integer 
 	Parameter C_ECC_ONOFF_RESET_VALUE bound to: 0 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_bram_ctrl_top' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22911]
+INFO: [Synth 8-638] synthesizing module 'axi_bram_ctrl_top' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22911]
 	Parameter C_BRAM_ADDR_WIDTH bound to: 11 - type: integer 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 13 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
@@ -69,7 +69,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_bram_ctrl_top' [/ectf/pl/src/bd/sys
 	Parameter C_ECC_TYPE bound to: 0 - type: integer 
 	Parameter C_FAULT_INJECT bound to: 0 - type: integer 
 	Parameter C_ECC_ONOFF_RESET_VALUE bound to: 0 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'full_axi' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21854]
+INFO: [Synth 8-638] synthesizing module 'full_axi' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21854]
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 13 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_S_AXI_ID_WIDTH bound to: 13 - type: integer 
@@ -89,12 +89,12 @@ INFO: [Synth 8-638] synthesizing module 'full_axi' [/ectf/pl/src/bd/system/ipsha
 	Parameter C_ECC_STATUS_REGISTERS bound to: 0 - type: integer 
 	Parameter C_ECC_ONOFF_REGISTER bound to: 0 - type: integer 
 	Parameter C_CE_COUNTER_WIDTH bound to: 0 - type: integer 
-INFO: [Synth 8-3919] null assignment ignored [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21922]
-INFO: [Synth 8-3919] null assignment ignored [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22099]
-INFO: [Synth 8-638] synthesizing module 'sng_port_arb' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9219]
+INFO: [Synth 8-3919] null assignment ignored [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21922]
+INFO: [Synth 8-3919] null assignment ignored [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22099]
+INFO: [Synth 8-638] synthesizing module 'sng_port_arb' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9219]
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 13 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'sng_port_arb' (1#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9219]
-INFO: [Synth 8-638] synthesizing module 'wr_chnl' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:17016]
+INFO: [Synth 8-256] done synthesizing module 'sng_port_arb' (1#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9219]
+INFO: [Synth 8-638] synthesizing module 'wr_chnl' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:17016]
 	Parameter C_AXI_ADDR_WIDTH bound to: 13 - type: integer 
 	Parameter C_BRAM_ADDR_ADJUST_FACTOR bound to: 2 - type: integer 
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
@@ -105,72 +105,72 @@ INFO: [Synth 8-638] synthesizing module 'wr_chnl' [/ectf/pl/src/bd/system/ipshar
 	Parameter C_ECC bound to: 0 - type: integer 
 	Parameter C_ECC_WIDTH bound to: 0 - type: integer 
 	Parameter C_ECC_TYPE bound to: 0 - type: integer 
-INFO: [Synth 8-506] null port 'FaultInjectECC' ignored [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:16983]
-INFO: [Synth 8-638] synthesizing module 'wrap_brst' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:10218]
+INFO: [Synth 8-506] null port 'FaultInjectECC' ignored [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:16983]
+INFO: [Synth 8-638] synthesizing module 'wrap_brst' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:10218]
 	Parameter C_AXI_ADDR_WIDTH bound to: 13 - type: integer 
 	Parameter C_BRAM_ADDR_ADJUST_FACTOR bound to: 2 - type: integer 
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'wrap_brst' (2#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:10218]
-INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18358]
-INFO: [Synth 8-638] synthesizing module 'ua_narrow' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9752]
+INFO: [Synth 8-256] done synthesizing module 'wrap_brst' (2#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:10218]
+INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18358]
+INFO: [Synth 8-638] synthesizing module 'ua_narrow' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9752]
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_BRAM_ADDR_ADJUST_FACTOR bound to: 2 - type: integer 
 	Parameter C_NARROW_BURST_CNT_LEN bound to: 2 - type: integer 
-INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9931]
-INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9970]
-INFO: [Synth 8-256] done synthesizing module 'ua_narrow' (3#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9752]
-INFO: [Synth 8-638] synthesizing module 'SRL_FIFO' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:133]
+INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9931]
+INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9970]
+INFO: [Synth 8-256] done synthesizing module 'ua_narrow' (3#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:9752]
+INFO: [Synth 8-638] synthesizing module 'SRL_FIFO' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:133]
 	Parameter C_DATA_BITS bound to: 13 - type: integer 
 	Parameter C_DEPTH bound to: 8 - type: integer 
 	Parameter C_XON bound to: 0 - type: bool 
-INFO: [Synth 8-3491] module 'FDR' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3951' bound to instance 'Data_Exists_DFF' of component 'FDR' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:230]
+INFO: [Synth 8-3491] module 'FDR' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3951' bound to instance 'Data_Exists_DFF' of component 'FDR' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:230]
 INFO: [Synth 8-638] synthesizing module 'FDR' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3951]
 	Parameter INIT bound to: 1'b0 
 INFO: [Synth 8-256] done synthesizing module 'FDR' (4#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3951]
-INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
+INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
 INFO: [Synth 8-638] synthesizing module 'MUXCY_L' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636]
 INFO: [Synth 8-256] done synthesizing module 'MUXCY_L' (5#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636]
-INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
+INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
 INFO: [Synth 8-638] synthesizing module 'XORCY' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717]
 INFO: [Synth 8-256] done synthesizing module 'XORCY' (6#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717]
-INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
+INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
 INFO: [Synth 8-638] synthesizing module 'FDRE' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964]
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D_INVERTED bound to: 1'b0 
 	Parameter IS_R_INVERTED bound to: 1'b0 
 INFO: [Synth 8-256] done synthesizing module 'FDRE' (7#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964]
-INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
-INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
-INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
-INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
-INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
-INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
-INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
-INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
-INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
+INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
+INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
+INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
+INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
+INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
+INFO: [Synth 8-3491] module 'MUXCY_L' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:26636' bound to instance 'MUXCY_L_I' of component 'MUXCY_L' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:247]
+INFO: [Synth 8-3491] module 'XORCY' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:52717' bound to instance 'XORCY_I' of component 'XORCY' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:254]
+INFO: [Synth 8-3491] module 'FDRE' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:3964' bound to instance 'FDRE_I' of component 'FDRE' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:260]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
 INFO: [Synth 8-638] synthesizing module 'SRL16E' [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705]
 	Parameter INIT bound to: 16'b0000000000000000 
 	Parameter IS_CLK_INVERTED bound to: 1'b0 
 INFO: [Synth 8-256] done synthesizing module 'SRL16E' (8#1) [/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
-INFO: [Synth 8-256] done synthesizing module 'SRL_FIFO' (9#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:133]
-WARNING: [Synth 8-6014] Unused sequential element curr_awsize_reg_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18174]
-WARNING: [Synth 8-6014] Unused sequential element curr_awlen_reg_1_or_2_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18451]
-INFO: [Synth 8-256] done synthesizing module 'wr_chnl' (10#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:17016]
-INFO: [Synth 8-638] synthesizing module 'rd_chnl' [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:11498]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-3491] module 'SRL16E' declared at '/opt/Xilinx/Vivado/2017.4/scripts/rt/data/unisim_comp.v:50705' bound to instance 'SRL16E_I' of component 'SRL16E' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:271]
+INFO: [Synth 8-256] done synthesizing module 'SRL_FIFO' (9#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:133]
+WARNING: [Synth 8-6014] Unused sequential element curr_awsize_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18174]
+WARNING: [Synth 8-6014] Unused sequential element curr_awlen_reg_1_or_2_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:18451]
+INFO: [Synth 8-256] done synthesizing module 'wr_chnl' (10#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:17016]
+INFO: [Synth 8-638] synthesizing module 'rd_chnl' [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:11498]
 	Parameter C_AXI_ADDR_WIDTH bound to: 13 - type: integer 
 	Parameter C_BRAM_ADDR_ADJUST_FACTOR bound to: 2 - type: integer 
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
@@ -181,16 +181,16 @@ INFO: [Synth 8-638] synthesizing module 'rd_chnl' [/ectf/pl/src/bd/system/ipshar
 	Parameter C_ECC bound to: 0 - type: integer 
 	Parameter C_ECC_WIDTH bound to: 0 - type: integer 
 	Parameter C_ECC_TYPE bound to: 0 - type: integer 
-INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12774]
-WARNING: [Synth 8-6014] Unused sequential element curr_arsize_reg_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12641]
-WARNING: [Synth 8-6014] Unused sequential element no_ar_ack_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:14982]
-WARNING: [Synth 8-6014] Unused sequential element do_cmplt_burst_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:16034]
-WARNING: [Synth 8-6014] Unused sequential element axi_arsize_pipe_max_reg was removed.  [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12181]
-INFO: [Synth 8-256] done synthesizing module 'rd_chnl' (11#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:11498]
-INFO: [Synth 8-256] done synthesizing module 'full_axi' (12#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21854]
-INFO: [Synth 8-256] done synthesizing module 'axi_bram_ctrl_top' (13#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22911]
-INFO: [Synth 8-256] done synthesizing module 'axi_bram_ctrl' (14#1) [/ectf/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23911]
-INFO: [Synth 8-256] done synthesizing module 'system_share_axi_bram_ctrl_1_0' (15#1) [/ectf/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/synth/system_share_axi_bram_ctrl_1_0.vhd:108]
+INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12774]
+WARNING: [Synth 8-6014] Unused sequential element curr_arsize_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12641]
+WARNING: [Synth 8-6014] Unused sequential element no_ar_ack_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:14982]
+WARNING: [Synth 8-6014] Unused sequential element do_cmplt_burst_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:16034]
+WARNING: [Synth 8-6014] Unused sequential element axi_arsize_pipe_max_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:12181]
+INFO: [Synth 8-256] done synthesizing module 'rd_chnl' (11#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:11498]
+INFO: [Synth 8-256] done synthesizing module 'full_axi' (12#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:21854]
+INFO: [Synth 8-256] done synthesizing module 'axi_bram_ctrl_top' (13#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:22911]
+INFO: [Synth 8-256] done synthesizing module 'axi_bram_ctrl' (14#1) [/ectf_master/pl/src/bd/system/ipshared/20fd/hdl/axi_bram_ctrl_v4_0_rfs.vhd:23911]
+INFO: [Synth 8-256] done synthesizing module 'system_share_axi_bram_ctrl_1_0' (15#1) [/ectf_master/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/synth/system_share_axi_bram_ctrl_1_0.vhd:108]
 WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[12]
 WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[11]
 WARNING: [Synth 8-3331] design sng_port_arb has unconnected port AXI_AWADDR[10]
@@ -293,7 +293,7 @@ WARNING: [Synth 8-3331] design wr_chnl has unconnected port BRAM_RdData[23]
 WARNING: [Synth 8-3331] design wr_chnl has unconnected port BRAM_RdData[22]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:17 . Memory (MB): peak = 1344.645 ; gain = 199.531 ; free physical = 2468 ; free virtual = 13973
+Finished RTL Elaboration : Time (s): cpu = 00:00:29 ; elapsed = 00:00:54 . Memory (MB): peak = 1347.344 ; gain = 202.531 ; free physical = 1299 ; free virtual = 12202
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -303,7 +303,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:17 . Memory (MB): peak = 1344.645 ; gain = 199.531 ; free physical = 2472 ; free virtual = 13976
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:30 ; elapsed = 00:00:55 . Memory (MB): peak = 1347.344 ; gain = 202.531 ; free physical = 1266 ; free virtual = 12198
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 9 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -312,10 +312,10 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/system_share_axi_bram_ctrl_1_0_ooc.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/system_share_axi_bram_ctrl_1_0_ooc.xdc] for cell 'U0'
-Parsing XDC File [/ectf/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/system_share_axi_bram_ctrl_1_0_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_share_axi_bram_ctrl_1_0/system_share_axi_bram_ctrl_1_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
@@ -323,23 +323,23 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   FDR => FDRE: 1 instances
   MUXCY_L => MUXCY: 4 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1631.684 ; gain = 0.000 ; free physical = 2621 ; free virtual = 14128
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1601.367 ; gain = 0.000 ; free physical = 826 ; free virtual = 11766
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:21 ; elapsed = 00:00:35 . Memory (MB): peak = 1631.684 ; gain = 486.570 ; free physical = 2513 ; free virtual = 14022
+Finished Constraint Validation : Time (s): cpu = 00:01:00 ; elapsed = 00:01:46 . Memory (MB): peak = 1601.367 ; gain = 456.555 ; free physical = 836 ; free virtual = 11778
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:21 ; elapsed = 00:00:35 . Memory (MB): peak = 1631.684 ; gain = 486.570 ; free physical = 2513 ; free virtual = 14022
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:00 ; elapsed = 00:01:46 . Memory (MB): peak = 1601.367 ; gain = 456.555 ; free physical = 836 ; free virtual = 11777
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf_master/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:35 . Memory (MB): peak = 1631.684 ; gain = 486.570 ; free physical = 2513 ; free virtual = 14022
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:00 ; elapsed = 00:01:46 . Memory (MB): peak = 1601.367 ; gain = 456.555 ; free physical = 838 ; free virtual = 11780
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "max_wrap_burst" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "max_wrap_burst" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
@@ -391,7 +391,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'rd_data_sm_cs_reg' using e
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'rlast_sm_cs_reg' using encoding 'sequential' in module 'rd_chnl'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:22 ; elapsed = 00:00:36 . Memory (MB): peak = 1631.684 ; gain = 486.570 ; free physical = 2494 ; free virtual = 14003
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:01 ; elapsed = 00:01:48 . Memory (MB): peak = 1601.367 ; gain = 456.555 ; free physical = 821 ; free virtual = 11763
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -566,7 +566,7 @@ INFO: [Synth 8-3332] Sequential element (gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_F
 INFO: [Synth 8-3332] Sequential element (gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_RD_CHNL/axi_b2b_brst_reg) is unused and will be removed from module axi_bram_ctrl.
 INFO: [Synth 8-3332] Sequential element (gext_inst.abcv4_0_ext_inst/GEN_AXI4.I_FULL_AXI/I_RD_CHNL/GEN_RRESP.axi_rresp_int_reg[1]) is unused and will be removed from module axi_bram_ctrl.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:37 . Memory (MB): peak = 1631.684 ; gain = 486.570 ; free physical = 2465 ; free virtual = 13974
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:04 ; elapsed = 00:01:51 . Memory (MB): peak = 1601.367 ; gain = 456.555 ; free physical = 783 ; free virtual = 11725
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -578,13 +578,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:43 . Memory (MB): peak = 1631.684 ; gain = 486.570 ; free physical = 2296 ; free virtual = 13807
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:15 ; elapsed = 00:02:07 . Memory (MB): peak = 1601.367 ; gain = 456.555 ; free physical = 598 ; free virtual = 11549
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:44 . Memory (MB): peak = 1631.684 ; gain = 486.570 ; free physical = 2230 ; free virtual = 13741
+Finished Timing Optimization : Time (s): cpu = 00:01:18 ; elapsed = 00:02:10 . Memory (MB): peak = 1632.383 ; gain = 487.570 ; free physical = 562 ; free virtual = 11512
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -596,7 +596,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:44 . Memory (MB): peak = 1637.691 ; gain = 492.578 ; free physical = 2229 ; free virtual = 13739
+Finished Technology Mapping : Time (s): cpu = 00:01:18 ; elapsed = 00:02:11 . Memory (MB): peak = 1640.391 ; gain = 495.578 ; free physical = 572 ; free virtual = 11523
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -620,7 +620,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1637.691 ; gain = 492.578 ; free physical = 2225 ; free virtual = 13735
+Finished IO Insertion : Time (s): cpu = 00:01:19 ; elapsed = 00:02:12 . Memory (MB): peak = 1640.391 ; gain = 495.578 ; free physical = 570 ; free virtual = 11521
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -633,7 +633,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1637.691 ; gain = 492.578 ; free physical = 2225 ; free virtual = 13735
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:19 ; elapsed = 00:02:12 . Memory (MB): peak = 1640.391 ; gain = 495.578 ; free physical = 570 ; free virtual = 11521
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -645,25 +645,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1637.691 ; gain = 492.578 ; free physical = 2225 ; free virtual = 13735
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:19 ; elapsed = 00:02:12 . Memory (MB): peak = 1640.391 ; gain = 495.578 ; free physical = 569 ; free virtual = 11520
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1637.691 ; gain = 492.578 ; free physical = 2225 ; free virtual = 13735
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:19 ; elapsed = 00:02:12 . Memory (MB): peak = 1640.391 ; gain = 495.578 ; free physical = 568 ; free virtual = 11519
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1637.691 ; gain = 492.578 ; free physical = 2224 ; free virtual = 13735
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:20 ; elapsed = 00:02:12 . Memory (MB): peak = 1640.391 ; gain = 495.578 ; free physical = 565 ; free virtual = 11516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1637.691 ; gain = 492.578 ; free physical = 2224 ; free virtual = 13735
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:20 ; elapsed = 00:02:12 . Memory (MB): peak = 1640.391 ; gain = 495.578 ; free physical = 564 ; free virtual = 11516
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -711,11 +711,11 @@ Report Instance Areas:
 |12    |          I_WRAP_BRST                 |wrap_brst         |    39|
 +------+--------------------------------------+------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1637.691 ; gain = 492.578 ; free physical = 2224 ; free virtual = 13735
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:20 ; elapsed = 00:02:12 . Memory (MB): peak = 1640.391 ; gain = 495.578 ; free physical = 564 ; free virtual = 11516
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 287 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 1637.691 ; gain = 205.539 ; free physical = 2282 ; free virtual = 13792
-Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:45 . Memory (MB): peak = 1637.699 ; gain = 492.578 ; free physical = 2282 ; free virtual = 13792
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:03 ; elapsed = 00:01:36 . Memory (MB): peak = 1640.391 ; gain = 241.555 ; free physical = 620 ; free virtual = 11572
+Synthesis Optimization Complete : Time (s): cpu = 00:01:20 ; elapsed = 00:02:13 . Memory (MB): peak = 1640.398 ; gain = 495.578 ; free physical = 621 ; free virtual = 11572
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 10 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -729,5 +729,5 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 114 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:45 . Memory (MB): peak = 1669.707 ; gain = 537.965 ; free physical = 2289 ; free virtual = 13799
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/system_share_axi_bram_ctrl_1_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:01:22 ; elapsed = 00:02:14 . Memory (MB): peak = 1640.398 ; gain = 508.957 ; free physical = 632 ; free virtual = 11583
+INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_share_axi_bram_ctrl_1_0_synth_1/system_share_axi_bram_ctrl_1_0.dcp' has been generated.

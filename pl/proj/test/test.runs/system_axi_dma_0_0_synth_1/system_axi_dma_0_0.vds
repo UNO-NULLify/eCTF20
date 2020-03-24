@@ -2,12 +2,12 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Wed Feb 19 21:37:11 2020
-# Process ID: 10239
-# Current directory: /ectf/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1
+# Start of session at: Tue Feb  4 23:06:46 2020
+# Process ID: 30849
+# Current directory: /ectf_master/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1
 # Command line: vivado -log system_axi_dma_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_axi_dma_0_0.tcl
-# Log file: /ectf/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/system_axi_dma_0_0.vds
-# Journal file: /ectf/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/vivado.jou
+# Log file: /ectf_master/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/system_axi_dma_0_0.vds
+# Journal file: /ectf_master/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/vivado.jou
 #-----------------------------------------------------------
 source system_axi_dma_0_0.tcl -notrace
 Command: synth_design -top system_axi_dma_0_0 -part xc7z007sclg400-1 -mode out_of_context
@@ -15,15 +15,15 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 10493 
+INFO: Helper process launched with PID 30863 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:12 . Memory (MB): peak = 1236.852 ; gain = 86.000 ; free physical = 3932 ; free virtual = 10523
+Starting RTL Elaboration : Time (s): cpu = 00:00:20 ; elapsed = 00:00:33 . Memory (MB): peak = 1233.820 ; gain = 89.000 ; free physical = 1299 ; free virtual = 11967
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-2048] function xpm_fifo_getmemtype does not always return a value [/ectf/pl/proj/test/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:358]
-WARNING: [Synth 8-2048] function get_read_mode does not always return a value [/ectf/pl/proj/test/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:375]
-WARNING: [Synth 8-2048] function getmemtype does not always return a value [/ectf/pl/proj/test/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2365]
-WARNING: [Synth 8-2048] function get_read_mode does not always return a value [/ectf/pl/proj/test/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2379]
-INFO: [Synth 8-638] synthesizing module 'system_axi_dma_0_0' [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/synth/system_axi_dma_0_0.vhd:104]
+WARNING: [Synth 8-2048] function xpm_fifo_getmemtype does not always return a value [/ectf_master/pl/src/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:358]
+WARNING: [Synth 8-2048] function get_read_mode does not always return a value [/ectf_master/pl/src/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:375]
+WARNING: [Synth 8-2048] function getmemtype does not always return a value [/ectf_master/pl/src/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2365]
+WARNING: [Synth 8-2048] function get_read_mode does not always return a value [/ectf_master/pl/src/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2379]
+INFO: [Synth 8-638] synthesizing module 'system_axi_dma_0_0' [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/synth/system_axi_dma_0_0.vhd:104]
 	Parameter C_S_AXI_LITE_ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter C_S_AXI_LITE_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_DLYTMR_RESOLUTION bound to: 125 - type: integer 
@@ -45,7 +45,7 @@ INFO: [Synth 8-638] synthesizing module 'system_axi_dma_0_0' [/ectf/pl/proj/test
 	Parameter C_MM2S_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_MM2S_DATA_WIDTH bound to: 32 - type: integer 
-	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 16 - type: integer 
 	Parameter C_INCLUDE_MM2S_DRE bound to: 0 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
 	Parameter C_INCLUDE_S2MM_SF bound to: 1 - type: integer 
@@ -55,8 +55,8 @@ INFO: [Synth 8-638] synthesizing module 'system_axi_dma_0_0' [/ectf/pl/proj/test
 	Parameter C_S_AXIS_S2MM_TDATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-3491] module 'axi_dma' declared at '/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21505' bound to instance 'U0' of component 'axi_dma' [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/synth/system_axi_dma_0_0.vhd:317]
-INFO: [Synth 8-638] synthesizing module 'axi_dma' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21849]
+INFO: [Synth 8-3491] module 'axi_dma' declared at '/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21505' bound to instance 'U0' of component 'axi_dma' [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/synth/system_axi_dma_0_0.vhd:317]
+INFO: [Synth 8-638] synthesizing module 'axi_dma' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21849]
 	Parameter C_S_AXI_LITE_ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter C_S_AXI_LITE_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_DLYTMR_RESOLUTION bound to: 125 - type: integer 
@@ -75,7 +75,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma' [/ectf/pl/proj/test/bd/system/
 	Parameter C_MM2S_BURST_SIZE bound to: 16 - type: integer 
 	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_MM2S_DATA_WIDTH bound to: 32 - type: integer 
-	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 16 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
 	Parameter C_INCLUDE_S2MM_SF bound to: 1 - type: integer 
 	Parameter C_INCLUDE_S2MM_DRE bound to: 0 - type: integer 
@@ -89,7 +89,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma' [/ectf/pl/proj/test/bd/system/
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_MICRO_DMA bound to: 0 - type: integer 
 	Parameter C_INSTANCE bound to: axi_dma - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_dma_rst_module' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:1595]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_rst_module' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:1595]
 	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
@@ -98,9 +98,9 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_rst_module' [/ectf/pl/proj/test
 	Parameter C_M_AXI_MM2S_ACLK_FREQ_HZ bound to: 100000000 - type: integer 
 	Parameter C_M_AXI_S2MM_ACLK_FREQ_HZ bound to: 100000000 - type: integer 
 	Parameter C_M_AXI_SG_ACLK_FREQ_HZ bound to: 100000000 - type: integer 
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:1576]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:1577]
-INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/ectf/pl/proj/test/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:1576]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:1577]
+INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
 	Parameter C_CDC_TYPE bound to: 1 - type: integer 
 	Parameter C_RESET_STATE bound to: 0 - type: integer 
 	Parameter C_SINGLE_BIT bound to: 1 - type: integer 
@@ -108,33 +108,33 @@ INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/ectf/pl/proj/test/bd/system
 	Parameter C_VECTOR_WIDTH bound to: 32 - type: integer 
 	Parameter C_MTBF_STAGES bound to: 4 - type: integer 
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to' to cell 'FDR' [/ectf/pl/proj/test/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:514]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_IN_cdc_to' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:514]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2' to cell 'FDR' [/ectf/pl/proj/test/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:545]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d2' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:545]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3' to cell 'FDR' [/ectf/pl/proj/test/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:554]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d3' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:554]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4' to cell 'FDR' [/ectf/pl/proj/test/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:564]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d4' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:564]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5' to cell 'FDR' [/ectf/pl/proj/test/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:574]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d5' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:574]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6' to cell 'FDR' [/ectf/pl/proj/test/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:584]
-INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (1#1) [/ectf/pl/proj/test/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
-INFO: [Synth 8-638] synthesizing module 'axi_dma_reset' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:603]
+INFO: [Synth 8-113] binding component instance 'CROSS_PLEVEL_IN2SCNDRY_s_level_out_d6' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:584]
+INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (1#1) [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_reset' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:603]
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
 	Parameter C_SG_INCLUDE_STSCNTRL_STRM bound to: 0 - type: integer 
 	Parameter C_PRMRY_IS_ACLK_ASYNC bound to: 0 - type: integer 
 	Parameter C_AXI_PRMRY_ACLK_FREQ_HZ bound to: 100000000 - type: integer 
 	Parameter C_AXI_SCNDRY_ACLK_FREQ_HZ bound to: 100000000 - type: integer 
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:565]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:567]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:569]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:571]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:573]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:575]
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_reset' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:603]
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_rst_module' (3#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:1595]
-INFO: [Synth 8-638] synthesizing module 'axi_dma_reg_module' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:8254]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:565]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:567]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:569]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:571]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:573]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:575]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_reset' (2#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:603]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_rst_module' (3#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:1595]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_reg_module' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:8254]
 	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
 	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
@@ -148,22 +148,22 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_reg_module' [/ectf/pl/proj/test
 	Parameter C_NUM_S2MM_CHANNELS bound to: 1 - type: integer 
 	Parameter C_MICRO_DMA bound to: 0 - type: integer 
 	Parameter C_ENABLE_MULTI_CHANNEL bound to: 0 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_dma_lite_if' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2066]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_lite_if' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2066]
 	Parameter C_NUM_CE bound to: 23 - type: integer 
 	Parameter C_AXI_LITE_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_S_AXI_LITE_ADDR_WIDTH bound to: 10 - type: integer 
 	Parameter C_S_AXI_LITE_DATA_WIDTH bound to: 32 - type: integer 
-WARNING: [Synth 8-6014] Unused sequential element awaddr_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2160]
-WARNING: [Synth 8-6014] Unused sequential element wdata_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2162]
-WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.axi2ip_wrdata_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2315]
-INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.awready_i_reg' into 'GEN_SYNC_WRITE.wready_i_reg' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2147]
-INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.rdy1_reg' into 'GEN_SYNC_WRITE.wready_i_reg' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2276]
-WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.awready_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2147]
-WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.rdy1_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2276]
-INFO: [Synth 8-4471] merging register 'GEN_SYNC_READ.arvalid_re_d1_reg' into 'arready_i_reg' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3057]
-WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_READ.arvalid_re_d1_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3057]
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_lite_if' (4#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2066]
-INFO: [Synth 8-638] synthesizing module 'axi_dma_register' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3604]
+WARNING: [Synth 8-6014] Unused sequential element awaddr_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2160]
+WARNING: [Synth 8-6014] Unused sequential element wdata_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2162]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.axi2ip_wrdata_i_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2315]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.awready_i_reg' into 'GEN_SYNC_WRITE.wready_i_reg' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2147]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.rdy1_reg' into 'GEN_SYNC_WRITE.wready_i_reg' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2276]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.awready_i_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2147]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.rdy1_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2276]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_READ.arvalid_re_d1_reg' into 'arready_i_reg' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3057]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_READ.arvalid_re_d1_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3057]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_lite_if' (4#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2066]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_register' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3604]
 	Parameter C_NUM_REGISTERS bound to: 12 - type: integer 
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
 	Parameter C_SG_LENGTH_WIDTH bound to: 14 - type: integer 
@@ -171,13 +171,13 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_register' [/ectf/pl/proj/test/b
 	Parameter C_M_AXI_SG_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_MICRO_DMA bound to: 0 - type: integer 
 	Parameter C_ENABLE_MULTI_CHANNEL bound to: 0 - type: integer 
-WARNING: [Synth 8-6014] Unused sequential element sg_ftch_error_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3987]
-WARNING: [Synth 8-6014] Unused sequential element sg_updt_error_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3988]
-WARNING: [Synth 8-3848] Net sg_ctl in module/entity axi_dma_register does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3576]
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_register' (5#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3604]
-WARNING: [Synth 8-3848] Net s2mm_tailpntr_updated_pkt in module/entity axi_dma_reg_module does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:8214]
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_reg_module' (6#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:8254]
-INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_mngr' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14903]
+WARNING: [Synth 8-6014] Unused sequential element sg_ftch_error_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3987]
+WARNING: [Synth 8-6014] Unused sequential element sg_updt_error_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3988]
+WARNING: [Synth 8-3848] Net sg_ctl in module/entity axi_dma_register does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3576]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_register' (5#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3604]
+WARNING: [Synth 8-3848] Net s2mm_tailpntr_updated_pkt in module/entity axi_dma_reg_module does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:8214]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_reg_module' (6#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:8254]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_mngr' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14903]
 	Parameter C_PRMRY_IS_ACLK_ASYNC bound to: 0 - type: integer 
 	Parameter C_PRMY_CMDFIFO_DEPTH bound to: 4 - type: integer 
 	Parameter C_INCLUDE_SG bound to: 0 - type: integer 
@@ -194,31 +194,31 @@ INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_mngr' [/ectf/pl/proj/test/
 	Parameter C_ENABLE_MULTI_CHANNEL bound to: 0 - type: integer 
 	Parameter C_MICRO_DMA bound to: 0 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_dma_smple_sm' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11703]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_smple_sm' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11703]
 	Parameter C_M_AXI_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_SG_LENGTH_WIDTH bound to: 14 - type: integer 
 	Parameter C_MICRO_DMA bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_smple_sm' (7#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11703]
-INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_cmdsts_if' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13686]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_smple_sm' (7#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11703]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_cmdsts_if' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13686]
 	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_ENABLE_QUEUE bound to: 1 - type: integer 
 	Parameter C_ENABLE_MULTI_CHANNEL bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_mm2s_cmdsts_if' (8#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13686]
-INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_sts_mngr' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14001]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_mm2s_cmdsts_if' (8#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13686]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_mm2s_sts_mngr' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14001]
 	Parameter C_PRMRY_IS_ACLK_ASYNC bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_mm2s_sts_mngr' (9#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14001]
-WARNING: [Synth 8-3848] Net mm2s_desc_flush in module/entity axi_dma_mm2s_mngr does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14820]
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_mm2s_mngr' (10#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14903]
-INFO: [Synth 8-638] synthesizing module 'axi_dma_sofeof_gen' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11173]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_mm2s_sts_mngr' (9#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14001]
+WARNING: [Synth 8-3848] Net mm2s_desc_flush in module/entity axi_dma_mm2s_mngr does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14820]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_mm2s_mngr' (10#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:14903]
+INFO: [Synth 8-638] synthesizing module 'axi_dma_sofeof_gen' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11173]
 	Parameter C_PRMRY_IS_ACLK_ASYNC bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_dma_sofeof_gen' (11#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11173]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:55429]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma_sofeof_gen' (11#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11173]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:55429]
 	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
 	Parameter C_M_AXI_MM2S_ARID bound to: 0 - type: integer 
 	Parameter C_M_AXI_MM2S_ID_WIDTH bound to: 4 - type: integer 
 	Parameter C_M_AXI_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_M_AXI_MM2S_DATA_WIDTH bound to: 32 - type: integer 
-	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_M_AXIS_MM2S_TDATA_WIDTH bound to: 16 - type: integer 
 	Parameter C_INCLUDE_MM2S_STSFIFO bound to: 1 - type: integer 
 	Parameter C_MM2S_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
 	Parameter C_MM2S_STSCMD_IS_ASYNC bound to: 0 - type: integer 
@@ -252,13 +252,13 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover' [/ectf/pl/proj/test/bd/s
 	Parameter C_CMD_WIDTH bound to: 72 - type: integer 
 	Parameter C_MCDMA bound to: 0 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_mm2s_full_wrap' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:53565]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_mm2s_full_wrap' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:53565]
 	Parameter C_INCLUDE_MM2S bound to: 1 - type: integer 
 	Parameter C_MM2S_ARID bound to: 0 - type: integer 
 	Parameter C_MM2S_ID_WIDTH bound to: 4 - type: integer 
 	Parameter C_MM2S_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_MM2S_MDATA_WIDTH bound to: 32 - type: integer 
-	Parameter C_MM2S_SDATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_MM2S_SDATA_WIDTH bound to: 16 - type: integer 
 	Parameter C_INCLUDE_MM2S_STSFIFO bound to: 1 - type: integer 
 	Parameter C_MM2S_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
 	Parameter C_MM2S_STSCMD_IS_ASYNC bound to: 0 - type: integer 
@@ -273,16 +273,16 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_mm2s_full_wrap' [/ectf/pl
 	Parameter C_ENABLE_SKID_BUF bound to: 11111 - type: string 
 	Parameter C_MCDMA bound to: 0 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_reset' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:153]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_reset' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:153]
 	Parameter C_STSCMD_IS_ASYNC bound to: 0 - type: integer 
-INFO: [Synth 8-4471] merging register 'sig_cmd_stat_rst_int_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:191]
-INFO: [Synth 8-4471] merging register 'sig_mmap_rst_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:194]
-INFO: [Synth 8-4471] merging register 'sig_stream_rst_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:197]
-WARNING: [Synth 8-6014] Unused sequential element sig_cmd_stat_rst_int_reg_n_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:191]
-WARNING: [Synth 8-6014] Unused sequential element sig_mmap_rst_reg_n_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:194]
-WARNING: [Synth 8-6014] Unused sequential element sig_stream_rst_reg_n_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:197]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_reset' (12#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:153]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_cmd_status' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:2698]
+INFO: [Synth 8-4471] merging register 'sig_cmd_stat_rst_int_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:191]
+INFO: [Synth 8-4471] merging register 'sig_mmap_rst_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:194]
+INFO: [Synth 8-4471] merging register 'sig_stream_rst_reg_n_reg' into 'sig_cmd_stat_rst_user_reg_n_cdc_from_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:197]
+WARNING: [Synth 8-6014] Unused sequential element sig_cmd_stat_rst_int_reg_n_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:191]
+WARNING: [Synth 8-6014] Unused sequential element sig_mmap_rst_reg_n_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:194]
+WARNING: [Synth 8-6014] Unused sequential element sig_stream_rst_reg_n_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:197]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_reset' (12#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:153]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_cmd_status' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:2698]
 	Parameter C_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_INCLUDE_STSFIFO bound to: 1 - type: integer 
 	Parameter C_STSCMD_FIFO_DEPTH bound to: 1 - type: integer 
@@ -291,33 +291,33 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_cmd_status' [/ectf/pl/pro
 	Parameter C_STS_WIDTH bound to: 8 - type: integer 
 	Parameter C_ENABLE_CACHE_USER bound to: 0 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
 	Parameter C_DWIDTH bound to: 68 - type: integer 
 	Parameter C_DEPTH bound to: 1 - type: integer 
 	Parameter C_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_PRIM_TYPE bound to: 2 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-WARNING: [Synth 8-6014] Unused sequential element sig_inhibit_rdy_n_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:2014]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo' (13#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+WARNING: [Synth 8-6014] Unused sequential element sig_inhibit_rdy_n_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:2014]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo' (13#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
 	Parameter C_DWIDTH bound to: 8 - type: integer 
 	Parameter C_DEPTH bound to: 1 - type: integer 
 	Parameter C_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_PRIM_TYPE bound to: 2 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-WARNING: [Synth 8-6014] Unused sequential element sig_inhibit_rdy_n_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:2014]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized0' (13#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_cmd_status' (14#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:2698]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_rd_status_cntl' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:13746]
+WARNING: [Synth 8-6014] Unused sequential element sig_inhibit_rdy_n_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:2014]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized0' (13#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_cmd_status' (14#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:2698]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_rd_status_cntl' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:13746]
 	Parameter C_STS_WIDTH bound to: 8 - type: integer 
 	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_rd_status_cntl' (15#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:13746]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_pcc' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:7416]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_rd_status_cntl' (15#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:13746]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_pcc' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:7416]
 	Parameter C_IS_MM2S bound to: 1 - type: integer 
 	Parameter C_DRE_ALIGN_WIDTH bound to: 1 - type: integer 
 	Parameter C_SEL_ADDR_WIDTH bound to: 2 - type: integer 
 	Parameter C_ADDR_WIDTH bound to: 32 - type: integer 
-	Parameter C_STREAM_DWIDTH bound to: 32 - type: integer 
+	Parameter C_STREAM_DWIDTH bound to: 16 - type: integer 
 	Parameter C_MAX_BURST_LEN bound to: 16 - type: integer 
 	Parameter C_CMD_WIDTH bound to: 68 - type: integer 
 	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
@@ -326,61 +326,61 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_pcc' [/ectf/pl/proj/test/
 	Parameter C_NATIVE_XFER_WIDTH bound to: 32 - type: integer 
 	Parameter C_STRT_SF_OFFSET_WIDTH bound to: 1 - type: integer 
 	Parameter C_MCDMA bound to: 0 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_strb_gen2' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:4342]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_strb_gen2' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:4342]
 	Parameter C_OP_MODE bound to: 0 - type: integer 
 	Parameter C_STRB_WIDTH bound to: 4 - type: integer 
 	Parameter C_OFFSET_WIDTH bound to: 2 - type: integer 
 	Parameter C_NUM_BYTES_WIDTH bound to: 3 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_strb_gen2' (16#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:4342]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_strb_gen2__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:4342]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_strb_gen2' (16#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:4342]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_strb_gen2__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:4342]
 	Parameter C_OP_MODE bound to: 1 - type: integer 
 	Parameter C_STRB_WIDTH bound to: 4 - type: integer 
 	Parameter C_OFFSET_WIDTH bound to: 2 - type: integer 
 	Parameter C_NUM_BYTES_WIDTH bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_strb_gen2__parameterized0' (16#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:4342]
-INFO: [Synth 8-226] default block is never used [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:9490]
-WARNING: [Synth 8-6014] Unused sequential element sig_input_reg_full_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8048]
-WARNING: [Synth 8-6014] Unused sequential element sig_xfer_reg_full_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8359]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_pcc' (17#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:7416]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_addr_cntl' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10000]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_strb_gen2__parameterized0' (16#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:4342]
+INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:9490]
+WARNING: [Synth 8-6014] Unused sequential element sig_input_reg_full_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8048]
+WARNING: [Synth 8-6014] Unused sequential element sig_xfer_reg_full_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8359]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_pcc' (17#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:7416]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_addr_cntl' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10000]
 	Parameter C_ADDR_FIFO_DEPTH bound to: 4 - type: integer 
 	Parameter C_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_ADDR_ID bound to: 0 - type: integer 
 	Parameter C_ADDR_ID_WIDTH bound to: 4 - type: integer 
 	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10077]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10083]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10077]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10083]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo__parameterized1' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
 	Parameter C_DWIDTH bound to: 59 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_PRIM_TYPE bound to: 2 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'srl_fifo_f' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
+INFO: [Synth 8-638] synthesizing module 'srl_fifo_f' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
 	Parameter C_DWIDTH bound to: 59 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'srl_fifo_rbu_f' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
+INFO: [Synth 8-638] synthesizing module 'srl_fifo_rbu_f' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
 	Parameter C_DWIDTH bound to: 59 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'cntr_incr_decr_addn_f' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:143]
+INFO: [Synth 8-638] synthesizing module 'cntr_incr_decr_addn_f' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:143]
 	Parameter C_SIZE bound to: 3 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-256] done synthesizing module 'cntr_incr_decr_addn_f' (18#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:143]
-INFO: [Synth 8-638] synthesizing module 'dynshreg_f' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
+INFO: [Synth 8-256] done synthesizing module 'cntr_incr_decr_addn_f' (18#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:143]
+INFO: [Synth 8-638] synthesizing module 'dynshreg_f' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_DWIDTH bound to: 59 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-256] done synthesizing module 'dynshreg_f' (19#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
-INFO: [Synth 8-256] done synthesizing module 'srl_fifo_rbu_f' (20#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
-INFO: [Synth 8-256] done synthesizing module 'srl_fifo_f' (21#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized1' (21#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
-WARNING: [Synth 8-6014] Unused sequential element sig_next_tag_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10410]
-WARNING: [Synth 8-6014] Unused sequential element sig_next_cmd_cmplt_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10417]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_addr_cntl' (22#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10000]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_rddata_cntl' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12185]
+INFO: [Synth 8-256] done synthesizing module 'dynshreg_f' (19#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
+INFO: [Synth 8-256] done synthesizing module 'srl_fifo_rbu_f' (20#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
+INFO: [Synth 8-256] done synthesizing module 'srl_fifo_f' (21#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized1' (21#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+WARNING: [Synth 8-6014] Unused sequential element sig_next_tag_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10410]
+WARNING: [Synth 8-6014] Unused sequential element sig_next_cmd_cmplt_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10417]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_addr_cntl' (22#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10000]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_rddata_cntl' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12185]
 	Parameter C_INCLUDE_DRE bound to: 0 - type: integer 
 	Parameter C_ALIGN_WIDTH bound to: 1 - type: integer 
 	Parameter C_SEL_ADDR_WIDTH bound to: 2 - type: integer 
@@ -390,72 +390,72 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_rddata_cntl' [/ectf/pl/pr
 	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
 	Parameter C_ENABLE_MM2S_TKEEP bound to: 1 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_rdmux' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10681]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_rdmux' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10681]
 	Parameter C_SEL_ADDR_WIDTH bound to: 2 - type: integer 
 	Parameter C_MMAP_DWIDTH bound to: 32 - type: integer 
 	Parameter C_STREAM_DWIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_rdmux' (23#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10681]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo__parameterized2' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_rdmux' (23#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10681]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo__parameterized2' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
 	Parameter C_DWIDTH bound to: 29 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_PRIM_TYPE bound to: 2 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'srl_fifo_f__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
+INFO: [Synth 8-638] synthesizing module 'srl_fifo_f__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
 	Parameter C_DWIDTH bound to: 29 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'srl_fifo_rbu_f__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
+INFO: [Synth 8-638] synthesizing module 'srl_fifo_rbu_f__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
 	Parameter C_DWIDTH bound to: 29 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'dynshreg_f__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
+INFO: [Synth 8-638] synthesizing module 'dynshreg_f__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_DWIDTH bound to: 29 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-256] done synthesizing module 'dynshreg_f__parameterized0' (23#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
-INFO: [Synth 8-256] done synthesizing module 'srl_fifo_rbu_f__parameterized0' (23#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
-INFO: [Synth 8-256] done synthesizing module 'srl_fifo_f__parameterized0' (23#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized2' (23#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
-WARNING: [Synth 8-6014] Unused sequential element sig_next_dre_src_align_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12886]
-WARNING: [Synth 8-6014] Unused sequential element sig_next_dre_dest_align_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12887]
-WARNING: [Synth 8-6014] Unused sequential element sig_coelsc_reg_empty_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:13225]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_rddata_cntl' (24#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12185]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_rd_sf' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:20206]
+INFO: [Synth 8-256] done synthesizing module 'dynshreg_f__parameterized0' (23#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
+INFO: [Synth 8-256] done synthesizing module 'srl_fifo_rbu_f__parameterized0' (23#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
+INFO: [Synth 8-256] done synthesizing module 'srl_fifo_f__parameterized0' (23#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized2' (23#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+WARNING: [Synth 8-6014] Unused sequential element sig_next_dre_src_align_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12886]
+WARNING: [Synth 8-6014] Unused sequential element sig_next_dre_dest_align_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12887]
+WARNING: [Synth 8-6014] Unused sequential element sig_coelsc_reg_empty_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:13225]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_rddata_cntl' (24#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12185]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_rd_sf' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:20206]
 	Parameter C_SF_FIFO_DEPTH bound to: 128 - type: integer 
 	Parameter C_MAX_BURST_LEN bound to: 16 - type: integer 
 	Parameter C_DRE_IS_USED bound to: 0 - type: integer 
 	Parameter C_DRE_CNTL_FIFO_DEPTH bound to: 4 - type: integer 
 	Parameter C_DRE_ALIGN_WIDTH bound to: 1 - type: integer 
 	Parameter C_MMAP_DWIDTH bound to: 32 - type: integer 
-	Parameter C_STREAM_DWIDTH bound to: 32 - type: integer 
+	Parameter C_STREAM_DWIDTH bound to: 16 - type: integer 
 	Parameter C_STRT_SF_OFFSET_WIDTH bound to: 1 - type: integer 
 	Parameter C_ENABLE_MM2S_TKEEP bound to: 1 - type: integer 
 	Parameter C_TAG_WIDTH bound to: 4 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo__parameterized3' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_fifo__parameterized3' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
 	Parameter C_DWIDTH bound to: 8 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_IS_ASYNC bound to: 0 - type: integer 
 	Parameter C_PRIM_TYPE bound to: 2 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'srl_fifo_f__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
+INFO: [Synth 8-638] synthesizing module 'srl_fifo_f__parameterized1' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
 	Parameter C_DWIDTH bound to: 8 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'srl_fifo_rbu_f__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
+INFO: [Synth 8-638] synthesizing module 'srl_fifo_rbu_f__parameterized1' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
 	Parameter C_DWIDTH bound to: 8 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'dynshreg_f__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
+INFO: [Synth 8-638] synthesizing module 'dynshreg_f__parameterized1' [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
 	Parameter C_DEPTH bound to: 4 - type: integer 
 	Parameter C_DWIDTH bound to: 8 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-256] done synthesizing module 'dynshreg_f__parameterized1' (24#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
-INFO: [Synth 8-256] done synthesizing module 'srl_fifo_rbu_f__parameterized1' (24#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
-INFO: [Synth 8-256] done synthesizing module 'srl_fifo_f__parameterized1' (24#1) [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized3' (24#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_sfifo_autord' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1295]
+INFO: [Synth 8-256] done synthesizing module 'dynshreg_f__parameterized1' (24#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:397]
+INFO: [Synth 8-256] done synthesizing module 'srl_fifo_rbu_f__parameterized1' (24#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:697]
+INFO: [Synth 8-256] done synthesizing module 'srl_fifo_f__parameterized1' (24#1) [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:1000]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_fifo__parameterized3' (24#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1886]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_sfifo_autord' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1295]
 	Parameter C_DWIDTH bound to: 39 - type: integer 
 	Parameter C_DEPTH bound to: 128 - type: integer 
 	Parameter C_DATA_CNT_WIDTH bound to: 8 - type: integer 
@@ -463,7 +463,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_sfifo_autord' [/ectf/pl/p
 	Parameter C_NEED_ALMOST_FULL bound to: 0 - type: integer 
 	Parameter C_USE_BLKMEM bound to: 1 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'sync_fifo_fg' [/ectf/pl/proj/test/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2246]
+INFO: [Synth 8-638] synthesizing module 'sync_fifo_fg' [/ectf_master/pl/src/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2246]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_DCOUNT_WIDTH bound to: 8 - type: integer 
 	Parameter C_ENABLE_RLOCS bound to: 0 - type: integer 
@@ -503,7 +503,7 @@ INFO: [Synth 8-638] synthesizing module 'sync_fifo_fg' [/ectf/pl/proj/test/bd/sy
 	Parameter DOUT_RESET_VALUE bound to: 0 - type: string 
 	Parameter ECC_MODE bound to: no_ecc - type: string 
 	Parameter WAKEUP_TIME bound to: 0 - type: integer 
-INFO: [Synth 8-3491] module 'xpm_fifo_sync' declared at '/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1845' bound to instance 'xpm_fifo_sync_inst' of component 'xpm_fifo_sync' [/ectf/pl/proj/test/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2619]
+INFO: [Synth 8-3491] module 'xpm_fifo_sync' declared at '/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1845' bound to instance 'xpm_fifo_sync_inst' of component 'xpm_fifo_sync' [/ectf_master/pl/src/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2619]
 INFO: [Synth 8-638] synthesizing module 'xpm_fifo_sync' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1845]
 	Parameter FIFO_MEMORY_TYPE bound to: block - type: string 
 	Parameter ECC_MODE bound to: no_ecc - type: string 
@@ -691,22 +691,22 @@ INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_base' (29#1) [/opt/Xilinx
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
 INFO: [Synth 8-256] done synthesizing module 'xpm_fifo_sync' (30#1) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1845]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'sync_fifo_fg' (31#1) [/ectf/pl/proj/test/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2246]
-WARNING: [Synth 8-6014] Unused sequential element hold_ff_q_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1513]
+INFO: [Synth 8-256] done synthesizing module 'sync_fifo_fg' (31#1) [/ectf_master/pl/src/bd/system/ipshared/f10a/hdl/lib_fifo_v1_0_rfs.vhd:2246]
+WARNING: [Synth 8-6014] Unused sequential element hold_ff_q_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1513]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_sfifo_autord' (32#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1295]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_sfifo_autord' (32#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1295]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_rd_sf' (33#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:20206]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_skid_buf' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19498]
-	Parameter C_WDATA_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19520]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19521]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19523]
-INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19524]
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_skid_buf' (34#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19498]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_rd_sf' (33#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:20206]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_skid_buf' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19498]
+	Parameter C_WDATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19520]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19521]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19523]
+INFO: [Synth 8-5534] Detected attribute (* keep = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19524]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_skid_buf' (34#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19498]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_mm2s_full_wrap' (35#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:53565]
-INFO: [Synth 8-638] synthesizing module 'axi_datamover_s2mm_omit_wrap' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:49597]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_mm2s_full_wrap' (35#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:53565]
+INFO: [Synth 8-638] synthesizing module 'axi_datamover_s2mm_omit_wrap' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:49597]
 	Parameter C_INCLUDE_S2MM bound to: 0 - type: integer 
 	Parameter C_S2MM_AWID bound to: 1 - type: integer 
 	Parameter C_S2MM_ID_WIDTH bound to: 4 - type: integer 
@@ -724,21 +724,21 @@ INFO: [Synth 8-638] synthesizing module 'axi_datamover_s2mm_omit_wrap' [/ectf/pl
 	Parameter C_ENABLE_CACHE_USER bound to: 0 - type: integer 
 	Parameter C_MCDMA bound to: 0 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover_s2mm_omit_wrap' (36#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:49597]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover_s2mm_omit_wrap' (36#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:49597]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'axi_datamover' (37#1) [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:55429]
+INFO: [Synth 8-256] done synthesizing module 'axi_datamover' (37#1) [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:55429]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-WARNING: [Synth 8-3848] Net m_axi_sg_awuser in module/entity axi_dma does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21694]
-WARNING: [Synth 8-3848] Net m_axi_sg_aruser in module/entity axi_dma does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21720]
-WARNING: [Synth 8-3848] Net s_axis_s2mm_sts_tready in module/entity axi_dma does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21829]
-WARNING: [Synth 8-3848] Net tdest_out_int in module/entity axi_dma does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22377]
-WARNING: [Synth 8-3848] Net same_tdest in module/entity axi_dma does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22378]
-WARNING: [Synth 8-3848] Net strm_valid in module/entity axi_dma does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22410]
-WARNING: [Synth 8-3848] Net bd_eq in module/entity axi_dma does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22403]
-WARNING: [Synth 8-3848] Net m_axis_ftch1_desc_available in module/entity axi_dma does not have driver. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22312]
-INFO: [Synth 8-256] done synthesizing module 'axi_dma' (38#1) [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21849]
+WARNING: [Synth 8-3848] Net m_axi_sg_awuser in module/entity axi_dma does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21694]
+WARNING: [Synth 8-3848] Net m_axi_sg_aruser in module/entity axi_dma does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21720]
+WARNING: [Synth 8-3848] Net s_axis_s2mm_sts_tready in module/entity axi_dma does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21829]
+WARNING: [Synth 8-3848] Net tdest_out_int in module/entity axi_dma does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22377]
+WARNING: [Synth 8-3848] Net same_tdest in module/entity axi_dma does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22378]
+WARNING: [Synth 8-3848] Net strm_valid in module/entity axi_dma does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22410]
+WARNING: [Synth 8-3848] Net bd_eq in module/entity axi_dma does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22403]
+WARNING: [Synth 8-3848] Net m_axis_ftch1_desc_available in module/entity axi_dma does not have driver. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:22312]
+INFO: [Synth 8-256] done synthesizing module 'axi_dma' (38#1) [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:21849]
 INFO: [Synth 8-5772] Detected attribute (* rw_addr_collision = "no" *) on RAM gen_wr_a.gen_word_narrow.mem_reg 
-INFO: [Synth 8-256] done synthesizing module 'system_axi_dma_0_0' (39#1) [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/synth/system_axi_dma_0_0.vhd:104]
+INFO: [Synth 8-256] done synthesizing module 'system_axi_dma_0_0' (39#1) [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/synth/system_axi_dma_0_0.vhd:104]
 WARNING: [Synth 8-3331] design axi_dma_sofeof_gen has unconnected port axi_prmry_aclk
 WARNING: [Synth 8-3331] design axi_dma_mm2s_cmdsts_if has unconnected port m_axis_mm2s_sts_tkeep[0]
 WARNING: [Synth 8-3331] design axi_dma_mm2s_cmdsts_if has unconnected port mm2s_err
@@ -841,7 +841,7 @@ WARNING: [Synth 8-3331] design axi_dma_mm2s_mngr has unconnected port m_axis_mm2
 WARNING: [Synth 8-3331] design axi_dma_mm2s_mngr has unconnected port m_axis_mm2s_ftch_tdata_new[41]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:01:20 ; elapsed = 00:01:29 . Memory (MB): peak = 1388.383 ; gain = 237.531 ; free physical = 6683 ; free virtual = 13323
+Finished RTL Elaboration : Time (s): cpu = 00:03:04 ; elapsed = 00:03:39 . Memory (MB): peak = 1386.352 ; gain = 241.531 ; free physical = 1010 ; free virtual = 11729
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -851,7 +851,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:20 ; elapsed = 00:01:29 . Memory (MB): peak = 1388.383 ; gain = 237.531 ; free physical = 6671 ; free virtual = 13316
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:03:05 ; elapsed = 00:03:40 . Memory (MB): peak = 1386.352 ; gain = 241.531 ; free physical = 1011 ; free virtual = 11731
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 12 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -860,15 +860,15 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_ooc.xdc] for cell 'U0'
-WARNING: [Constraints 18-633] Creating clock all_clock with 2 sources. [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_ooc.xdc:51]
-Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_ooc.xdc] for cell 'U0'
-Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0.xdc] for cell 'U0'
-Parsing XDC File [/ectf/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/dont_touch.xdc]
-Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_clocks.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_clocks.xdc] for cell 'U0'
+Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_ooc.xdc] for cell 'U0'
+WARNING: [Constraints 18-633] Creating clock all_clock with 2 sources. [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_ooc.xdc:51]
+Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0.xdc] for cell 'U0'
+Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0.xdc] for cell 'U0'
+Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_clocks.xdc] for cell 'U0'
+Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0_clocks.xdc] for cell 'U0'
 Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst'
 Finished Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl] for cell 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/I_DATA_FIFO/BLK_MEM.I_SYNC_FIFOGEN_FIFO/xpm_fifo_instance.xpm_fifo_sync_inst/xpm_fifo_base_inst'
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/tcl/xpm_fifo_rst.tcl]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/system_axi_dma_0_0_propImpl.xdc].
@@ -879,29 +879,29 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 12 instances were transformed.
   FDR => FDRE: 12 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1657.250 ; gain = 0.000 ; free physical = 6230 ; free virtual = 12870
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1621.203 ; gain = 0.000 ; free physical = 539 ; free virtual = 11267
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:31 ; elapsed = 00:01:47 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 6711 ; free virtual = 13353
+Finished Constraint Validation : Time (s): cpu = 00:03:34 ; elapsed = 00:04:29 . Memory (MB): peak = 1621.203 ; gain = 476.383 ; free physical = 1259 ; free virtual = 11981
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:31 ; elapsed = 00:01:47 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 6711 ; free virtual = 13353
+Finished Loading Part and Timing Information : Time (s): cpu = 00:03:34 ; elapsed = 00:04:29 . Memory (MB): peak = 1621.203 ; gain = 476.383 ; free physical = 1259 ; free virtual = 11981
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf_master/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/dont_touch.xdc, line 9).
 Applied set_property DONT_TOUCH = true for U0/I_PRMRY_DATAMOVER/\GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER /\GEN_INCLUDE_MM2S_SF.I_RD_SF /I_DATA_FIFO/\BLK_MEM.I_SYNC_FIFOGEN_FIFO /\xpm_fifo_instance.xpm_fifo_sync_inst /xpm_fifo_base_inst. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:31 ; elapsed = 00:01:47 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 6714 ; free virtual = 13355
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:03:34 ; elapsed = 00:04:29 . Memory (MB): peak = 1621.203 ; gain = 476.383 ; free physical = 1261 ; free virtual = 11983
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.rst_wvalid_re_reg' into 'GEN_SYNC_WRITE.bvalid_i_reg' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2193]
-INFO: [Synth 8-4471] merging register 'GEN_SYNC_READ.rst_rvalid_re_reg' into 'GEN_SYNC_READ.s_axi_lite_rvalid_i_reg' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2964]
-WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.rst_wvalid_re_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2193]
-WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_READ.rst_rvalid_re_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2964]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_WRITE.rst_wvalid_re_reg' into 'GEN_SYNC_WRITE.bvalid_i_reg' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2193]
+INFO: [Synth 8-4471] merging register 'GEN_SYNC_READ.rst_rvalid_re_reg' into 'GEN_SYNC_READ.s_axi_lite_rvalid_i_reg' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2964]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_WRITE.rst_wvalid_re_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2193]
+WARNING: [Synth 8-6014] Unused sequential element GEN_SYNC_READ.rst_rvalid_re_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:2964]
 INFO: [Synth 8-5546] ROM "wrce" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "wrce" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "wrce" won't be mapped to RAM because it is too sparse
@@ -967,19 +967,19 @@ INFO: [Synth 8-5544] ROM "sig_sm_ld_xfer_reg_ns" won't be mapped to Block RAM be
 INFO: [Synth 8-5544] ROM "sig_pcc_sm_state_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "sig_pcc_sm_state_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "sig_pcc_sm_state_ns" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-WARNING: [Synth 8-6014] Unused sequential element sig_addr_cntr_im0_msh_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8895]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[0] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[1] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[2] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[3] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element sig_addr_cntr_im0_msh_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8895]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[0] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[1] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[2] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[3] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
 INFO: [Synth 8-5544] ROM "fifo_full_p1" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[0] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[1] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[2] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[3] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[0] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[1] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[2] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[3] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
 INFO: [Synth 8-5544] ROM "fifo_full_p1" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-4471] merging register 'sig_coelsc_cmd_cmplt_reg_reg' into 'sig_coelsc_reg_full_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12425]
-WARNING: [Synth 8-6014] Unused sequential element sig_coelsc_cmd_cmplt_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12425]
+INFO: [Synth 8-4471] merging register 'sig_coelsc_cmd_cmplt_reg_reg' into 'sig_coelsc_reg_full_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12425]
+WARNING: [Synth 8-6014] Unused sequential element sig_coelsc_cmd_cmplt_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12425]
 INFO: [Synth 8-5544] ROM "sig_addr_posted_cntr_eq_0" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "sig_addr_posted_cntr_max" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5546] ROM "sig_new_len_eq_0" won't be mapped to RAM because it is too sparse
@@ -987,18 +987,18 @@ INFO: [Synth 8-5546] ROM "sig_dbeat_cntr_eq_1" won't be mapped to RAM because it
 INFO: [Synth 8-5546] ROM "sig_dbeat_cntr_eq_0" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1021]
 INFO: [Synth 8-5544] ROM "gen_fwft.leaving_empty_fwft" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[0] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[1] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[2] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
-WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[3] was removed.  [/ectf/pl/proj/test/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[0] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[1] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[2] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
+WARNING: [Synth 8-6014] Unused sequential element INFERRED_GEN.data_reg[3] was removed.  [/ectf_master/pl/src/bd/system/ipshared/51ce/hdl/lib_srl_fifo_v1_0_rfs.vhd:490]
 INFO: [Synth 8-5544] ROM "fifo_full_p1" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
-INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:21643]
+INFO: [Synth 8-5818] HDL ADVISOR - The operator resource <adder> is shared. To prevent sharing consider applying a KEEP on the output of the operator [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:21643]
 INFO: [Synth 8-5544] ROM "sig_token_eq_max" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "sig_token_eq_zero" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "sig_token_eq_one" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-WARNING: [Synth 8-6014] Unused sequential element sig_token_cntr_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
-INFO: [Synth 8-4471] merging register 'GEN_NO_HOLD_DATA.mm2s_cmnd_pending_reg' into 'GEN_NO_HOLD_DATA.s_axis_mm2s_cmd_tvalid_reg' [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13747]
-WARNING: [Synth 8-6014] Unused sequential element GEN_NO_HOLD_DATA.mm2s_cmnd_pending_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13747]
+WARNING: [Synth 8-6014] Unused sequential element sig_token_cntr_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
+INFO: [Synth 8-4471] merging register 'GEN_NO_HOLD_DATA.mm2s_cmnd_pending_reg' into 'GEN_NO_HOLD_DATA.s_axis_mm2s_cmd_tvalid_reg' [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13747]
+WARNING: [Synth 8-6014] Unused sequential element GEN_NO_HOLD_DATA.mm2s_cmnd_pending_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13747]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -1014,7 +1014,7 @@ WARNING: [Synth 8-6014] Unused sequential element GEN_NO_HOLD_DATA.mm2s_cmnd_pen
 INFO: [Synth 8-3354] encoded FSM with state register 'sig_pcc_sm_state_reg' using encoding 'sequential' in module 'axi_datamover_pcc'
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:32 ; elapsed = 00:01:48 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 6685 ; free virtual = 13327
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:03:36 ; elapsed = 00:04:31 . Memory (MB): peak = 1621.203 ; gain = 476.383 ; free physical = 1251 ; free virtual = 11973
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1040,44 +1040,45 @@ Detailed RTL Component Info :
 	   2 Input      3 Bit       Adders := 2     
 	   2 Input      2 Bit       Adders := 2     
 	   4 Input      2 Bit       Adders := 1     
+	   2 Input      1 Bit       Adders := 1     
 +---Registers : 
 	              150 Bit    Registers := 1     
 	               68 Bit    Registers := 1     
 	               39 Bit    Registers := 2     
-	               32 Bit    Registers := 6     
+	               32 Bit    Registers := 4     
 	               23 Bit    Registers := 2     
-	               16 Bit    Registers := 5     
+	               16 Bit    Registers := 7     
 	               14 Bit    Registers := 2     
 	               10 Bit    Registers := 3     
 	                8 Bit    Registers := 8     
 	                7 Bit    Registers := 6     
 	                6 Bit    Registers := 1     
-	                4 Bit    Registers := 17    
+	                4 Bit    Registers := 14    
 	                3 Bit    Registers := 6     
-	                2 Bit    Registers := 8     
-	                1 Bit    Registers := 198   
+	                2 Bit    Registers := 11    
+	                1 Bit    Registers := 199   
 +---RAMs : 
 	               4K Bit         RAMs := 1     
 +---Muxes : 
 	   2 Input    150 Bit        Muxes := 1     
 	   5 Input     32 Bit        Muxes := 1     
-	   2 Input     32 Bit        Muxes := 4     
+	   2 Input     32 Bit        Muxes := 3     
 	   2 Input     23 Bit        Muxes := 3     
-	   2 Input     16 Bit        Muxes := 3     
+	   2 Input     16 Bit        Muxes := 5     
 	   2 Input     14 Bit        Muxes := 1     
 	   2 Input     11 Bit        Muxes := 2     
 	   2 Input      8 Bit        Muxes := 9     
 	   2 Input      7 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 12    
+	   2 Input      4 Bit        Muxes := 11    
 	   4 Input      4 Bit        Muxes := 4     
 	  11 Input      3 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 3     
 	  12 Input      3 Bit        Muxes := 1     
 	   3 Input      3 Bit        Muxes := 1     
-	   2 Input      2 Bit        Muxes := 30    
+	   2 Input      2 Bit        Muxes := 32    
 	   5 Input      2 Bit        Muxes := 6     
 	   7 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 102   
+	   2 Input      1 Bit        Muxes := 105   
 	   8 Input      1 Bit        Muxes := 6     
 	   4 Input      1 Bit        Muxes := 6     
 	   3 Input      1 Bit        Muxes := 1     
@@ -1323,21 +1324,23 @@ Detailed RTL Component Info :
 +---Adders : 
 	   2 Input      5 Bit       Adders := 1     
 	   2 Input      4 Bit       Adders := 2     
+	   2 Input      1 Bit       Adders := 1     
 +---Registers : 
 	                4 Bit    Registers := 1     
-	                1 Bit    Registers := 2     
+	                1 Bit    Registers := 3     
 +---Muxes : 
-	   2 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 5     
+	   2 Input     16 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 8     
 Module axi_datamover_skid_buf 
 Detailed RTL Component Info : 
 +---Registers : 
-	               32 Bit    Registers := 2     
-	                4 Bit    Registers := 3     
+	               16 Bit    Registers := 2     
+	                2 Bit    Registers := 3     
 	                1 Bit    Registers := 10    
 +---Muxes : 
-	   2 Input     32 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 1     
+	   2 Input     16 Bit        Muxes := 1     
+	   2 Input      2 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 2     
 Module axi_datamover_mm2s_full_wrap 
 Detailed RTL Component Info : 
@@ -1397,42 +1400,42 @@ WARNING: [Synth 8-6014] Unused sequential element gen_fwft.next_state_d1_inst/d_
 WARNING: [Synth 8-6014] Unused sequential element gen_fwft.empty_fwft_d1_inst/d_out_reg was removed.  [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1811]
 WARNING: [Synth 8-6014] Unused sequential element gen_fwft.ge_fwft_d1_inst/d_out_reg was removed.  [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1811]
 WARNING: [Synth 8-6014] Unused sequential element rst_d2_inst/d_out_reg was removed.  [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv:1811]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_input_user_type_reg_reg[3:0]' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_input_cache_type_reg_reg[3:0]' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8040]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_reg2_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg2_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_rd_xfer_cmplt_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_last_mmap_dbeat_reg_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12507]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/OMIT_DRE_CNTL.I_DRE_CNTL_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/OMIT_DRE_CNTL.I_DRE_CNTL_FIFO/sig_init_reg2_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg2_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_reset_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19581]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_stop_request_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sready_stop_reg_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19576]
-INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg2_reg' [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-WARNING: [Synth 8-6014] Unused sequential element I_AXI_DMA_REG_MODULE/GEN_AXI_LITE_IF.AXI_LITE_IF_I/GEN_SYNC_READ.axi2ip_rdce_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3056]
-WARNING: [Synth 8-6014] Unused sequential element I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/irqthresh_wren_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3821]
-WARNING: [Synth 8-6014] Unused sequential element I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/irqdelay_wren_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3764]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_input_user_type_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8040]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/sig_next_cache_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10368]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/sig_next_user_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10369]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_reg2_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_rd_xfer_cmplt_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12507]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_ls_addr_cntr_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12921]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/OMIT_DRE_CNTL.I_DRE_CNTL_FIFO/sig_init_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/OMIT_DRE_CNTL.I_DRE_CNTL_FIFO/sig_init_reg2_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_reset_reg_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19581]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_stop_request_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19576]
-WARNING: [Synth 8-6014] Unused sequential element INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.I_MM2S_CMDSTS/mm2s_done_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13828]
-WARNING: [Synth 8-6014] Unused sequential element INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.I_MM2S_CMDSTS/mm2s_tag_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13832]
-INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_LESS_23.cmnd_data_reg' and it is trimmed from '150' to '68' bits. [/ectf/pl/proj/test/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11866]
-INFO: [Synth 8-41] '+' operator could not be merged with '+' operator due to loss of accuracy [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:21587]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_input_user_type_reg_reg[3:0]' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_input_cache_type_reg_reg[3:0]' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8040]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_reg2_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg2_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_rd_xfer_cmplt_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_last_mmap_dbeat_reg_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12507]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/OMIT_DRE_CNTL.I_DRE_CNTL_FIFO/sig_init_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/OMIT_DRE_CNTL.I_DRE_CNTL_FIFO/sig_init_reg2_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg2_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_reset_reg_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_mmap_reset_reg_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19581]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_stop_request_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sready_stop_reg_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19576]
+INFO: [Synth 8-4471] merging register 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg' into 'I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg2_reg' [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+WARNING: [Synth 8-6014] Unused sequential element I_AXI_DMA_REG_MODULE/GEN_AXI_LITE_IF.AXI_LITE_IF_I/GEN_SYNC_READ.axi2ip_rdce_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3056]
+WARNING: [Synth 8-6014] Unused sequential element I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/irqthresh_wren_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3821]
+WARNING: [Synth 8-6014] Unused sequential element I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/irqdelay_wren_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:3764]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/I_CMD_FIFO/sig_init_reg2_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_CMD_STATUS/GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO/sig_init_reg2_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_input_user_type_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8040]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO/sig_init_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/sig_next_cache_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10368]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/sig_next_user_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:10369]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO/sig_init_reg2_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_rd_xfer_cmplt_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12507]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_ls_addr_cntr_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:12921]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/OMIT_DRE_CNTL.I_DRE_CNTL_FIFO/sig_init_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1961]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/OMIT_DRE_CNTL.I_DRE_CNTL_FIFO/sig_init_reg2_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:1962]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_reset_reg_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19581]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_stop_request_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:19576]
+WARNING: [Synth 8-6014] Unused sequential element INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.I_MM2S_CMDSTS/mm2s_done_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13828]
+WARNING: [Synth 8-6014] Unused sequential element INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.I_MM2S_CMDSTS/mm2s_tag_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:13832]
+INFO: [Synth 8-3936] Found unconnected internal register 'INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR/GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM/GEN_CMD_BTT_LESS_23.cmnd_data_reg' and it is trimmed from '150' to '68' bits. [/ectf_master/pl/src/bd/system/ipshared/bf8c/hdl/axi_dma_v7_1_vh_rfs.vhd:11866]
+INFO: [Synth 8-41] '+' operator could not be merged with '+' operator due to loss of accuracy [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:21587]
 INFO: [Synth 8-5546] ROM "I_AXI_DMA_REG_MODULE/GEN_AXI_LITE_IF.AXI_LITE_IF_I/wrce" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "I_AXI_DMA_REG_MODULE/GEN_AXI_LITE_IF.AXI_LITE_IF_I/wrce" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "I_AXI_DMA_REG_MODULE/GEN_AXI_LITE_IF.AXI_LITE_IF_I/wrce" won't be mapped to RAM because it is too sparse
@@ -1463,8 +1466,8 @@ INFO: [Synth 8-5546] ROM "I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_
 INFO: [Synth 8-5546] ROM "I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_dbeat_cntr_eq_0" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_dbeat_cntr_eq_1" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_RD_DATA_CNTL/sig_new_len_eq_0" won't be mapped to RAM because it is too sparse
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_addr_cntr_im0_msh_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8895]
-WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/sig_token_cntr_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_addr_cntr_im0_msh_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:8895]
+WARNING: [Synth 8-6014] Unused sequential element I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/GEN_INCLUDE_MM2S_SF.I_RD_SF/sig_token_cntr_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/71f3/hdl/axi_datamover_v5_1_vh_rfs.vhd:21645]
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
@@ -1493,8 +1496,6 @@ INFO: [Synth 8-3333] propagating constant 0 across sequential element (U0/\I_PRM
 INFO: [Synth 8-3886] merging instance 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_input_drr_reg_reg' (FDRE) to 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_MSTR_PCC/sig_input_eof_reg_reg'
 INFO: [Synth 8-3886] merging instance 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sready_stop_reg_reg' (FDRE) to 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sstrb_stop_mask_reg[0]'
 INFO: [Synth 8-3886] merging instance 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sstrb_stop_mask_reg[0]' (FDRE) to 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sstrb_stop_mask_reg[1]'
-INFO: [Synth 8-3886] merging instance 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sstrb_stop_mask_reg[1]' (FDRE) to 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sstrb_stop_mask_reg[2]'
-INFO: [Synth 8-3886] merging instance 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sstrb_stop_mask_reg[2]' (FDRE) to 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/ENABLE_AXIS_SKID.I_MM2S_SKID_BUF/sig_sstrb_stop_mask_reg[3]'
 INFO: [Synth 8-3886] merging instance 'U0/I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[5]' (FDRE) to 'U0/I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[6]'
 INFO: [Synth 8-3886] merging instance 'U0/I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[6]' (FDRE) to 'U0/I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[7]'
 INFO: [Synth 8-3886] merging instance 'U0/I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[7]' (FDRE) to 'U0/I_AXI_DMA_REG_MODULE/GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER/dmacr_i_reg[8]'
@@ -1615,7 +1616,7 @@ INFO: [Synth 8-3886] merging instance 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S
 INFO: [Synth 8-3886] merging instance 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/sig_next_len_reg_reg[6]' (FDRE) to 'U0/I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/sig_next_len_reg_reg[7]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (U0/\I_PRMRY_DATAMOVER/GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER/I_ADDR_CNTL/sig_next_len_reg_reg[7] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:34 ; elapsed = 00:01:50 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 6641 ; free virtual = 13283
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:03:40 ; elapsed = 00:04:36 . Memory (MB): peak = 1621.203 ; gain = 476.383 ; free physical = 1117 ; free virtual = 11840
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
@@ -1643,14 +1644,14 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:38 ; elapsed = 00:01:55 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7177 ; free virtual = 13816
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:03:53 ; elapsed = 00:04:55 . Memory (MB): peak = 1621.203 ; gain = 476.383 ; free physical = 778 ; free virtual = 11502
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5775] Found 'rw_addr_collision' attribute set to 'no' on SDP RAM gen_wr_a.gen_word_narrow.mem_reg. Setting write mode to NO_CHANGE 
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:39 ; elapsed = 00:01:56 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7155 ; free virtual = 13794
+Finished Timing Optimization : Time (s): cpu = 00:03:57 ; elapsed = 00:05:00 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 693 ; free virtual = 11418
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1676,7 +1677,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:39 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7153 ; free virtual = 13792
+Finished Technology Mapping : Time (s): cpu = 00:03:58 ; elapsed = 00:05:01 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 677 ; free virtual = 11403
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1700,7 +1701,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:39 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7153 ; free virtual = 13792
+Finished IO Insertion : Time (s): cpu = 00:03:59 ; elapsed = 00:05:02 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 699 ; free virtual = 11424
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1713,7 +1714,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:39 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7153 ; free virtual = 13792
+Finished Renaming Generated Instances : Time (s): cpu = 00:03:59 ; elapsed = 00:05:02 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 699 ; free virtual = 11424
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1725,25 +1726,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:40 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7153 ; free virtual = 13792
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:04:00 ; elapsed = 00:05:02 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 698 ; free virtual = 11423
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:40 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7153 ; free virtual = 13792
+Finished Renaming Generated Ports : Time (s): cpu = 00:04:00 ; elapsed = 00:05:02 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 698 ; free virtual = 11423
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:40 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7153 ; free virtual = 13792
+Finished Handling Custom Attributes : Time (s): cpu = 00:04:00 ; elapsed = 00:05:02 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 698 ; free virtual = 11423
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:40 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7153 ; free virtual = 13792
+Finished Renaming Generated Nets : Time (s): cpu = 00:04:00 ; elapsed = 00:05:02 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 697 ; free virtual = 11423
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1777,15 +1778,15 @@ Report Cell Usage:
 +------+-----------+------+
 |1     |CARRY4     |    19|
 |2     |LUT1       |    19|
-|3     |LUT2       |    81|
-|4     |LUT3       |   118|
-|5     |LUT4       |   109|
-|6     |LUT5       |    92|
-|7     |LUT6       |   173|
+|3     |LUT2       |    78|
+|4     |LUT3       |   104|
+|5     |LUT4       |   106|
+|6     |LUT5       |   106|
+|7     |LUT6       |   178|
 |8     |RAMB36E1_1 |     1|
-|9     |SRL16E     |    55|
+|9     |SRL16E     |    56|
 |10    |FDR        |     8|
-|11    |FDRE       |   722|
+|11    |FDRE       |   687|
 |12    |FDSE       |    23|
 +------+-----------+------+
 
@@ -1793,8 +1794,8 @@ Report Instance Areas:
 +------+----------------------------------------------------------------+-----------------------------------+------+
 |      |Instance                                                        |Module                             |Cells |
 +------+----------------------------------------------------------------+-----------------------------------+------+
-|1     |top                                                             |                                   |  1420|
-|2     |  U0                                                            |axi_dma                            |  1420|
+|1     |top                                                             |                                   |  1385|
+|2     |  U0                                                            |axi_dma                            |  1385|
 |3     |    \INCLUDE_MM2S_SOF_EOF_GENERATOR.I_MM2S_DMA_MNGR             |axi_dma_mm2s_mngr                  |    81|
 |4     |      \GEN_MM2S_DMA_CONTROL.GEN_SIMPLE_DMA_MODE.I_MM2S_SMPL_SM  |axi_dma_smple_sm                   |    60|
 |5     |      \GEN_MM2S_DMA_CONTROL.I_MM2S_CMDSTS                       |axi_dma_mm2s_cmdsts_if             |    15|
@@ -1803,13 +1804,13 @@ Report Instance Areas:
 |8     |    I_AXI_DMA_REG_MODULE                                        |axi_dma_reg_module                 |   246|
 |9     |      \GEN_AXI_LITE_IF.AXI_LITE_IF_I                            |axi_dma_lite_if                    |   135|
 |10    |      \GEN_MM2S_REGISTERS.I_MM2S_DMA_REGISTER                   |axi_dma_register                   |   111|
-|11    |    I_PRMRY_DATAMOVER                                           |axi_datamover                      |  1041|
-|12    |      \GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER                        |axi_datamover_mm2s_full_wrap       |  1041|
-|13    |        \ENABLE_AXIS_SKID.I_MM2S_SKID_BUF                       |axi_datamover_skid_buf             |   123|
-|14    |        \GEN_INCLUDE_MM2S_SF.I_RD_SF                            |axi_datamover_rd_sf                |   247|
-|15    |          I_DATA_FIFO                                           |axi_datamover_sfifo_autord         |   223|
-|16    |            \BLK_MEM.I_SYNC_FIFOGEN_FIFO                        |sync_fifo_fg                       |   223|
-|17    |              \xpm_fifo_instance.xpm_fifo_sync_inst             |xpm_fifo_sync                      |   223|
+|11    |    I_PRMRY_DATAMOVER                                           |axi_datamover                      |  1006|
+|12    |      \GEN_MM2S_FULL.I_MM2S_FULL_WRAPPER                        |axi_datamover_mm2s_full_wrap       |  1006|
+|13    |        \ENABLE_AXIS_SKID.I_MM2S_SKID_BUF                       |axi_datamover_skid_buf             |    52|
+|14    |        \GEN_INCLUDE_MM2S_SF.I_RD_SF                            |axi_datamover_rd_sf                |   283|
+|15    |          I_DATA_FIFO                                           |axi_datamover_sfifo_autord         |   257|
+|16    |            \BLK_MEM.I_SYNC_FIFOGEN_FIFO                        |sync_fifo_fg                       |   257|
+|17    |              \xpm_fifo_instance.xpm_fifo_sync_inst             |xpm_fifo_sync                      |   257|
 |18    |                xpm_fifo_base_inst                              |xpm_fifo_base                      |   209|
 |19    |                  \gen_sdpram.xpm_memory_base_inst              |xpm_memory_base                    |     1|
 |20    |                  \gen_fwft.rdpp1_inst                          |xpm_counter_updn__parameterized1   |     8|
@@ -1820,39 +1821,40 @@ Report Instance Areas:
 |25    |                  wrpp1_inst                                    |xpm_counter_updn__parameterized3_4 |    24|
 |26    |                  wrpp2_inst                                    |xpm_counter_updn__parameterized0   |    15|
 |27    |                  xpm_fifo_rst_inst                             |xpm_fifo_rst                       |    15|
-|28    |          \OMIT_DRE_CNTL.I_DRE_CNTL_FIFO                        |axi_datamover_fifo__parameterized3 |    12|
-|29    |            \USE_SRL_FIFO.I_SYNC_FIFO                           |srl_fifo_f__parameterized1         |     9|
-|30    |              I_SRL_FIFO_RBU_F                                  |srl_fifo_rbu_f__parameterized1     |     9|
+|28    |          \OMIT_DRE_CNTL.I_DRE_CNTL_FIFO                        |axi_datamover_fifo__parameterized3 |    13|
+|29    |            \USE_SRL_FIFO.I_SYNC_FIFO                           |srl_fifo_f__parameterized1         |    10|
+|30    |              I_SRL_FIFO_RBU_F                                  |srl_fifo_rbu_f__parameterized1     |    10|
 |31    |                CNTR_INCR_DECR_ADDN_F_I                         |cntr_incr_decr_addn_f_2            |     8|
-|32    |        I_ADDR_CNTL                                             |axi_datamover_addr_cntl            |   101|
-|33    |          \GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO                       |axi_datamover_fifo__parameterized1 |    56|
-|34    |            \USE_SRL_FIFO.I_SYNC_FIFO                           |srl_fifo_f                         |    51|
-|35    |              I_SRL_FIFO_RBU_F                                  |srl_fifo_rbu_f                     |    51|
-|36    |                CNTR_INCR_DECR_ADDN_F_I                         |cntr_incr_decr_addn_f_1            |     9|
-|37    |                DYNSHREG_F_I                                    |dynshreg_f                         |    41|
-|38    |        I_CMD_STATUS                                            |axi_datamover_cmd_status           |    69|
-|39    |          \GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO                   |axi_datamover_fifo__parameterized0 |    15|
-|40    |          I_CMD_FIFO                                            |axi_datamover_fifo                 |    54|
-|41    |        I_MSTR_PCC                                              |axi_datamover_pcc                  |   374|
-|42    |        I_RD_DATA_CNTL                                          |axi_datamover_rddata_cntl          |   115|
-|43    |          \GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO                  |axi_datamover_fifo__parameterized2 |    47|
-|44    |            \USE_SRL_FIFO.I_SYNC_FIFO                           |srl_fifo_f__parameterized0         |    44|
-|45    |              I_SRL_FIFO_RBU_F                                  |srl_fifo_rbu_f__parameterized0     |    44|
-|46    |                CNTR_INCR_DECR_ADDN_F_I                         |cntr_incr_decr_addn_f              |    19|
-|47    |                DYNSHREG_F_I                                    |dynshreg_f__parameterized0         |    24|
-|48    |        I_RD_STATUS_CNTLR                                       |axi_datamover_rd_status_cntl       |     7|
-|49    |        I_RESET                                                 |axi_datamover_reset                |     5|
-|50    |    I_RST_MODULE                                                |axi_dma_rst_module                 |    40|
-|51    |      \GEN_RESET_FOR_MM2S.RESET_I                               |axi_dma_reset                      |    29|
-|52    |      REG_HRD_RST                                               |cdc_sync                           |     4|
-|53    |      REG_HRD_RST_OUT                                           |cdc_sync_0                         |     4|
+|32    |                DYNSHREG_F_I                                    |dynshreg_f__parameterized1         |     1|
+|33    |        I_ADDR_CNTL                                             |axi_datamover_addr_cntl            |   101|
+|34    |          \GEN_ADDR_FIFO.I_ADDR_QUAL_FIFO                       |axi_datamover_fifo__parameterized1 |    56|
+|35    |            \USE_SRL_FIFO.I_SYNC_FIFO                           |srl_fifo_f                         |    51|
+|36    |              I_SRL_FIFO_RBU_F                                  |srl_fifo_rbu_f                     |    51|
+|37    |                CNTR_INCR_DECR_ADDN_F_I                         |cntr_incr_decr_addn_f_1            |     9|
+|38    |                DYNSHREG_F_I                                    |dynshreg_f                         |    41|
+|39    |        I_CMD_STATUS                                            |axi_datamover_cmd_status           |    69|
+|40    |          \GEN_INCLUDE_STATUS_FIFO.I_STS_FIFO                   |axi_datamover_fifo__parameterized0 |    15|
+|41    |          I_CMD_FIFO                                            |axi_datamover_fifo                 |    54|
+|42    |        I_MSTR_PCC                                              |axi_datamover_pcc                  |   374|
+|43    |        I_RD_DATA_CNTL                                          |axi_datamover_rddata_cntl          |   115|
+|44    |          \GEN_DATA_CNTL_FIFO.I_DATA_CNTL_FIFO                  |axi_datamover_fifo__parameterized2 |    47|
+|45    |            \USE_SRL_FIFO.I_SYNC_FIFO                           |srl_fifo_f__parameterized0         |    44|
+|46    |              I_SRL_FIFO_RBU_F                                  |srl_fifo_rbu_f__parameterized0     |    44|
+|47    |                CNTR_INCR_DECR_ADDN_F_I                         |cntr_incr_decr_addn_f              |    19|
+|48    |                DYNSHREG_F_I                                    |dynshreg_f__parameterized0         |    24|
+|49    |        I_RD_STATUS_CNTLR                                       |axi_datamover_rd_status_cntl       |     7|
+|50    |        I_RESET                                                 |axi_datamover_reset                |     5|
+|51    |    I_RST_MODULE                                                |axi_dma_rst_module                 |    40|
+|52    |      \GEN_RESET_FOR_MM2S.RESET_I                               |axi_dma_reset                      |    29|
+|53    |      REG_HRD_RST                                               |cdc_sync                           |     4|
+|54    |      REG_HRD_RST_OUT                                           |cdc_sync_0                         |     4|
 +------+----------------------------------------------------------------+-----------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:40 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7153 ; free virtual = 13792
+Finished Writing Synthesis Report : Time (s): cpu = 00:04:00 ; elapsed = 00:05:02 . Memory (MB): peak = 1651.219 ; gain = 506.398 ; free physical = 697 ; free virtual = 11423
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 252 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:33 ; elapsed = 00:01:44 . Memory (MB): peak = 1657.250 ; gain = 237.531 ; free physical = 7211 ; free virtual = 13850
-Synthesis Optimization Complete : Time (s): cpu = 00:01:40 ; elapsed = 00:01:57 . Memory (MB): peak = 1657.250 ; gain = 506.398 ; free physical = 7211 ; free virtual = 13850
+Synthesis Optimization Runtime : Time (s): cpu = 00:03:43 ; elapsed = 00:04:27 . Memory (MB): peak = 1651.219 ; gain = 271.547 ; free physical = 761 ; free virtual = 11493
+Synthesis Optimization Complete : Time (s): cpu = 00:04:00 ; elapsed = 00:05:03 . Memory (MB): peak = 1651.227 ; gain = 506.398 ; free physical = 761 ; free virtual = 11493
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 28 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -1865,13 +1867,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   FDR => FDRE: 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-449 Infos, 196 Warnings, 0 Critical Warnings and 0 Errors encountered.
+447 Infos, 196 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:41 ; elapsed = 00:01:58 . Memory (MB): peak = 1681.258 ; gain = 549.504 ; free physical = 7222 ; free virtual = 13861
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/system_axi_dma_0_0.dcp' has been generated.
-INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf/pl/proj/test/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0.xci
-INFO: [Coretcl 2-1174] Renamed 52 cell refs.
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/system_axi_dma_0_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:04:03 ; elapsed = 00:05:06 . Memory (MB): peak = 1651.227 ; gain = 519.777 ; free physical = 721 ; free virtual = 11448
+INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/system_axi_dma_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf_master/pl/src/bd/system/ip/system_axi_dma_0_0/system_axi_dma_0_0.xci
+INFO: [Coretcl 2-1174] Renamed 53 cell refs.
+INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_axi_dma_0_0_synth_1/system_axi_dma_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_axi_dma_0_0_utilization_synth.rpt -pb system_axi_dma_0_0_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1705.270 ; gain = 0.000 ; free physical = 7223 ; free virtual = 13865
-INFO: [Common 17-206] Exiting Vivado at Wed Feb 19 21:39:16 2020...
+report_utilization: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.12 . Memory (MB): peak = 1675.230 ; gain = 0.000 ; free physical = 741 ; free virtual = 11472
+INFO: [Common 17-206] Exiting Vivado at Tue Feb  4 23:12:13 2020...

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7z007sclg400-1" LaunchTime="1582415433">
+<GenRun Id="impl_1" LaunchPart="xc7z007sclg400-1" LaunchTime="1580955755">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="system_wrapper.drc"/>
   <File Type="BG-BGN" Name="system_wrapper.bgn"/>
@@ -71,14 +71,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/splitchannel.v">
-      <FileInfo>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PPRDIR/bd/system/system.bd">
+    <File Path="$PPRDIR/../../src/bd/system/system.bd">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -112,32 +105,64 @@
   <Strategy Version="1" Minor="2">
     <StratHandle Name="Performance_ExtraTimingOpt" Flow="Vivado Implementation 2017"/>
     <Step Id="init_design"/>
-    <Step Id="opt_design">
-      <Option Id="Directive">4</Option>
-    </Step>
+    <Step Id="opt_design"/>
     <Step Id="power_opt_design"/>
     <Step Id="place_design">
-      <Option Id="Directive">15</Option>
+      <Option Id="Directive">8</Option>
     </Step>
     <Step Id="post_place_power_opt_design"/>
     <Step Id="phys_opt_design" EnableStepBool="1">
       <Option Id="Directive">0</Option>
     </Step>
     <Step Id="route_design">
-      <Option Id="Directive">5</Option>
+      <Option Id="Directive">0</Option>
     </Step>
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
-  <BlockFileSet Type="BlockSrcs" Name="system_data_lmb_bram_if_cntlr_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_birdwtch_iface_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_splitchannel_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_clk_wiz_25M_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_axis_data_fifo_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_10"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_dma_axi_bram_ctrl_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_proc_sys_reset_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_5"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_mb_dma_axi_bram_ctrl_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_dma_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axis_data_fifo_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_microblaze_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_fifo_count_axi_gpio_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_ins_lmb_bram_if_cntlr_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xadc_wiz_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_blk_mem_gen_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_clk_wiz_25M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_8"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xlconstant_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_2"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_data_lmb_bram_if_cntlr_1_0"/>
   <BlockFileSet Type="BlockSrcs" Name="system_i2s_output_1_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_axis_data_fifo_0_0"/>
-  <BlockFileSet Type="BlockSrcs" Name="system_axi_dma_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_data_lmb_v10_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_dma_blk_mem_gen_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_int_axi_gpio_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_ins_lmb_bram_if_cntlr_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_mdm_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_rst_ps7_0_100M_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_rgb_PWM_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xbar_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_share_axi_bram_ctrl_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xlconcat_2_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_7"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xlconstant_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_proc_sys_reset_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_4"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_3"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_9"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_xbar_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_share_axi_bram_ctrl_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_ins_lmb_v10_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_share_blk_mem_gen_1_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_pc_6"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_axi_intc_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_cc_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_cc_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="system_auto_cc_2"/>
 </GenRun>

@@ -855,7 +855,7 @@
       parameter C_USE_S_AXI_HP3 = 0;
       parameter C_USE_S_AXI_ACP = 0;
       parameter C_PS7_SI_REV = "PRODUCTION";
-      parameter C_FCLK_CLK0_BUF = "TRUE";
+      parameter C_FCLK_CLK0_BUF = "FALSE";
       parameter C_FCLK_CLK1_BUF = "FALSE";
       parameter C_FCLK_CLK2_BUF = "FALSE";
       parameter C_FCLK_CLK3_BUF = "FALSE";
@@ -1253,7 +1253,7 @@ output bit S_AXI_GP0_RVALID
      FCLK_CLK0 = 1'b0;
   end
 
-  always #(5.0) FCLK_CLK0 <= ~FCLK_CLK0;
+  always #(10.0) FCLK_CLK0 <= ~FCLK_CLK0;
 
   always@(posedge FCLK_CLK0)
   begin

@@ -1,8 +1,8 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-// Date        : Sun Feb 16 17:50:38 2020
-// Host        : ssg0 running 64-bit Arch Linux
+// Date        : Tue Feb  4 23:40:23 2020
+// Host        : ssg1 running 64-bit Manjaro Linux
 // Command     : write_verilog -force -mode synth_stub -rename_top system_xlconstant_1_0 -prefix
 //               system_xlconstant_1_0_ system_xlconstant_0_0_stub.v
 // Design      : system_xlconstant_0_0

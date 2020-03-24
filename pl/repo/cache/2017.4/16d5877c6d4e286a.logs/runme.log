@@ -14,12 +14,12 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 56370 
+INFO: Helper process launched with PID 30893 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 1227.113 ; gain = 82.000 ; free physical = 2875 ; free virtual = 14123
+Starting RTL Elaboration : Time (s): cpu = 00:00:19 ; elapsed = 00:00:30 . Memory (MB): peak = 1229.812 ; gain = 85.000 ; free physical = 1340 ; free virtual = 12007
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_axis_data_fifo_0_0' [/ectf/pl/src/bd/system/ip/system_axis_data_fifo_0_0/synth/system_axis_data_fifo_0_0.v:57]
-INFO: [Synth 8-638] synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' [/ectf/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:62]
+INFO: [Synth 8-638] synthesizing module 'system_axis_data_fifo_0_0' [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/synth/system_axis_data_fifo_0_0.v:57]
+INFO: [Synth 8-638] synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' [/ectf_master/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:62]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_AXIS_TDATA_WIDTH bound to: 16 - type: integer 
 	Parameter C_AXIS_TID_WIDTH bound to: 1 - type: integer 
@@ -94,7 +94,7 @@ INFO: [Synth 8-638] synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' 
 	Parameter C_RD_PNTR_WIDTH_WDCH bound to: 10 - type: integer 
 	Parameter C_RD_PNTR_WIDTH_WRCH bound to: 4 - type: integer 
 	Parameter C_WR_PNTR_WIDTH_AXIS bound to: 12 - type: integer 
-INFO: [Synth 8-5534] Detected attribute (* KEEP = "TRUE" *) [/ectf/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:181]
+INFO: [Synth 8-5534] Detected attribute (* KEEP = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:181]
 INFO: [Synth 8-638] synthesizing module 'xpm_cdc_sync_rst' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1045]
 	Parameter DEST_SYNC_FF bound to: 2 - type: integer 
 	Parameter INIT bound to: 32'sb00000000000000000000000000000001 
@@ -104,7 +104,7 @@ INFO: [Synth 8-638] synthesizing module 'xpm_cdc_sync_rst' [/opt/Xilinx/Vivado/2
 	Parameter DEF_VAL bound to: 1'b1 
 INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1097]
 INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_sync_rst' (1#1) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1045]
-INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_converter_wrapper' [/ectf/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:600]
+INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_converter_wrapper' [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:600]
 	Parameter C_TDATA_WIDTH bound to: 16 - type: integer 
 	Parameter C_TID_WIDTH bound to: 1 - type: integer 
 	Parameter C_TDEST_WIDTH bound to: 1 - type: integer 
@@ -132,7 +132,7 @@ INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_
 	Parameter G_TASK_SEVERITY_WARNING bound to: 1 - type: integer 
 	Parameter G_TASK_SEVERITY_INFO bound to: 0 - type: integer 
 	Parameter P_TPAYLOAD_WIDTH bound to: 24 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_axis2vector' [/ectf/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:810]
+INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_axis2vector' [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:810]
 	Parameter C_TDATA_WIDTH bound to: 16 - type: integer 
 	Parameter C_TID_WIDTH bound to: 1 - type: integer 
 	Parameter C_TDEST_WIDTH bound to: 1 - type: integer 
@@ -165,8 +165,8 @@ INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_axis2ve
 	Parameter P_TID_INDX bound to: 21 - type: integer 
 	Parameter P_TDEST_INDX bound to: 22 - type: integer 
 	Parameter P_TUSER_INDX bound to: 23 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_axis2vector' (2#1) [/ectf/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:810]
-INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_vector2axis' [/ectf/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:992]
+INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_axis2vector' (2#1) [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:810]
+INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_vector2axis' [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:992]
 	Parameter C_TDATA_WIDTH bound to: 16 - type: integer 
 	Parameter C_TID_WIDTH bound to: 1 - type: integer 
 	Parameter C_TDEST_WIDTH bound to: 1 - type: integer 
@@ -199,8 +199,8 @@ INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_vector2
 	Parameter P_TID_INDX bound to: 21 - type: integer 
 	Parameter P_TDEST_INDX bound to: 22 - type: integer 
 	Parameter P_TUSER_INDX bound to: 23 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_vector2axis' (3#1) [/ectf/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:992]
-INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_converter_wrapper' (4#1) [/ectf/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:600]
+INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_vector2axis' (3#1) [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:992]
+INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_converter_wrapper' (4#1) [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:600]
 INFO: [Synth 8-638] synthesizing module 'xpm_cdc_sync_rst__parameterized0' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1045]
 INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_sync_rst__parameterized0' (4#1) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1045]
 INFO: [Synth 8-638] synthesizing module 'xpm_cdc_single' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:153]
@@ -209,8 +209,8 @@ INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_single' (5#1) [/opt/Xilinx
 INFO: [Synth 8-638] synthesizing module 'xpm_cdc_gray' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:300]
 INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:390]
 INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_gray' (17#1) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:300]
-INFO: [Synth 8-256] done synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' (34#1) [/ectf/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:62]
-INFO: [Synth 8-256] done synthesizing module 'system_axis_data_fifo_0_0' (35#1) [/ectf/pl/src/bd/system/ip/system_axis_data_fifo_0_0/synth/system_axis_data_fifo_0_0.v:57]
+INFO: [Synth 8-256] done synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' (34#1) [/ectf_master/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:62]
+INFO: [Synth 8-256] done synthesizing module 'system_axis_data_fifo_0_0' (35#1) [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/synth/system_axis_data_fifo_0_0.v:57]
 WARNING: [Synth 8-3331] design axis_infrastructure_v1_1_0_util_aclken_converter_wrapper has unconnected port ACLK
 WARNING: [Synth 8-3331] design axis_infrastructure_v1_1_0_util_aclken_converter_wrapper has unconnected port ARESETN
 WARNING: [Synth 8-3331] design axis_infrastructure_v1_1_0_util_aclken_converter_wrapper has unconnected port S_ACLKEN
@@ -313,7 +313,7 @@ WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[6]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[5]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:01:09 ; elapsed = 00:01:17 . Memory (MB): peak = 1443.262 ; gain = 298.148 ; free physical = 2665 ; free virtual = 13919
+Finished RTL Elaboration : Time (s): cpu = 00:02:11 ; elapsed = 00:02:42 . Memory (MB): peak = 1445.961 ; gain = 301.148 ; free physical = 1020 ; free virtual = 11723
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -323,7 +323,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:09 ; elapsed = 00:01:17 . Memory (MB): peak = 1443.262 ; gain = 298.148 ; free physical = 2671 ; free virtual = 13925
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:02:12 ; elapsed = 00:02:43 . Memory (MB): peak = 1445.961 ; gain = 301.148 ; free physical = 1029 ; free virtual = 11731
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 27 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -332,14 +332,14 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_ooc.xdc] for cell 'inst'
-Parsing XDC File [/ectf/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xdc] for cell 'inst'
-Parsing XDC File [/ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc]
-Parsing XDC File [/ectf/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_clocks.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_clocks.xdc] for cell 'inst'
+Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xdc] for cell 'inst'
+Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xdc] for cell 'inst'
+Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_clocks.xdc] for cell 'inst'
+Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_clocks.xdc] for cell 'inst'
 Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst'
 Finished Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst'
 Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst'
@@ -363,21 +363,21 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1585.301 ; gain = 0.000 ; free physical = 2510 ; free virtual = 13762
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1554.984 ; gain = 0.000 ; free physical = 812 ; free virtual = 11523
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:20 ; elapsed = 00:01:35 . Memory (MB): peak = 1585.301 ; gain = 440.188 ; free physical = 2473 ; free virtual = 13724
+Finished Constraint Validation : Time (s): cpu = 00:02:39 ; elapsed = 00:03:35 . Memory (MB): peak = 1554.984 ; gain = 410.172 ; free physical = 905 ; free virtual = 11621
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:20 ; elapsed = 00:01:35 . Memory (MB): peak = 1585.301 ; gain = 440.188 ; free physical = 2473 ; free virtual = 13724
+Finished Loading Part and Timing Information : Time (s): cpu = 00:02:39 ; elapsed = 00:03:35 . Memory (MB): peak = 1554.984 ; gain = 410.172 ; free physical = 905 ; free virtual = 11621
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc, line 9).
 Applied set_property DONT_TOUCH = true for inst/\gen_async_clock_and_reset.inst_xpm_cdc_sync_rst . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generator_inst /inst_fifo_gen/\gaxis_fifo.gaxisf.axisf /\grf.rf /\gntv_or_sync_fifo.gcx.clkx /rd_pntr_cdc_inst. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generator_inst /inst_fifo_gen/\gaxis_fifo.gaxisf.axisf /\grf.rf /\gntv_or_sync_fifo.gcx.clkx /wr_pntr_cdc_inst. (constraint file  auto generated constraint, line ).
@@ -386,11 +386,11 @@ Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generat
 Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generator_inst /inst_fifo_gen/\gaxis_fifo.gaxisf.axisf /\grf.rf /rstblk/\ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_sync_rst_inst_wrst . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generator_inst /inst_fifo_gen/\gaxis_fifo.gaxisf.axisf /\grf.rf /rstblk/\ngwrdrst.grst.g7serrst.gsckt_wrst.xpm_cdc_sync_rst_inst_wrst . (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:20 ; elapsed = 00:01:35 . Memory (MB): peak = 1585.301 ; gain = 440.188 ; free physical = 2475 ; free virtual = 13726
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:40 ; elapsed = 00:03:35 . Memory (MB): peak = 1554.984 ; gain = 410.172 ; free physical = 907 ; free virtual = 11623
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "leaving_empty_fwft" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:20 ; elapsed = 00:01:35 . Memory (MB): peak = 1585.301 ; gain = 440.188 ; free physical = 2552 ; free virtual = 13804
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:40 ; elapsed = 00:03:36 . Memory (MB): peak = 1554.984 ; gain = 410.172 ; free physical = 897 ; free virtual = 11612
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -574,7 +574,7 @@ INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_in
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[4]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[4]'
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:21 ; elapsed = 00:01:36 . Memory (MB): peak = 1585.301 ; gain = 440.188 ; free physical = 2524 ; free virtual = 13778
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:41 ; elapsed = 00:03:37 . Memory (MB): peak = 1571.000 ; gain = 426.188 ; free physical = 882 ; free virtual = 11601
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -586,13 +586,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:25 ; elapsed = 00:01:42 . Memory (MB): peak = 1585.301 ; gain = 440.188 ; free physical = 2393 ; free virtual = 13654
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:55 ; elapsed = 00:03:57 . Memory (MB): peak = 1575.000 ; gain = 430.188 ; free physical = 738 ; free virtual = 11464
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:25 ; elapsed = 00:01:42 . Memory (MB): peak = 1585.301 ; gain = 440.188 ; free physical = 2392 ; free virtual = 13653
+Finished Timing Optimization : Time (s): cpu = 00:02:55 ; elapsed = 00:03:57 . Memory (MB): peak = 1575.000 ; gain = 430.188 ; free physical = 736 ; free virtual = 11462
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -616,7 +616,7 @@ INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_in
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_D_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_D_reg'
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:25 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.316 ; gain = 448.203 ; free physical = 2375 ; free virtual = 13636
+Finished Technology Mapping : Time (s): cpu = 00:02:55 ; elapsed = 00:03:58 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11459
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -640,7 +640,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.316 ; gain = 448.203 ; free physical = 2382 ; free virtual = 13643
+Finished IO Insertion : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -653,7 +653,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.316 ; gain = 448.203 ; free physical = 2382 ; free virtual = 13643
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -665,25 +665,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.316 ; gain = 448.203 ; free physical = 2382 ; free virtual = 13643
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.316 ; gain = 448.203 ; free physical = 2382 ; free virtual = 13643
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.316 ; gain = 448.203 ; free physical = 2382 ; free virtual = 13643
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.316 ; gain = 448.203 ; free physical = 2382 ; free virtual = 13643
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -773,11 +773,11 @@ Report Instance Areas:
 |39    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_single_inst_rrst_wr  |xpm_cdc_single                           |     5|
 +------+--------------------------------------------------------------------------------------+-----------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.316 ; gain = 448.203 ; free physical = 2382 ; free virtual = 13643
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 506 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:01:29 . Memory (MB): peak = 1593.316 ; gain = 306.164 ; free physical = 2438 ; free virtual = 13699
-Synthesis Optimization Complete : Time (s): cpu = 00:01:26 ; elapsed = 00:01:42 . Memory (MB): peak = 1593.324 ; gain = 448.203 ; free physical = 2438 ; free virtual = 13699
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:38 ; elapsed = 00:03:17 . Memory (MB): peak = 1595.039 ; gain = 341.203 ; free physical = 788 ; free virtual = 11513
+Synthesis Optimization Complete : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.047 ; gain = 450.227 ; free physical = 788 ; free virtual = 11514
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 47 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -804,5 +804,5 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 INFO: [Common 17-83] Releasing license: Synthesis
 71 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:30 ; elapsed = 00:01:50 . Memory (MB): peak = 2045.504 ; gain = 913.762 ; free physical = 2062 ; free virtual = 13334
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/system_axis_data_fifo_0_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:03:06 ; elapsed = 00:04:20 . Memory (MB): peak = 1983.195 ; gain = 851.754 ; free physical = 439 ; free virtual = 11159
+INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/system_axis_data_fifo_0_0.dcp' has been generated.
