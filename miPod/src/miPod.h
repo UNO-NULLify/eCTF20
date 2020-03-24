@@ -65,21 +65,8 @@ typedef struct __attribute__((__packed__)) {
 #define get_drm_song(d) ((char *)(&d.md) + d.md.md_size)
 
 // shared buffer values
-enum commands {
-  QUERY_PLAYER,
-  QUERY_SONG,
-  LOGIN,
-  LOGOUT,
-  SHARE,
-  PLAY,
-  STOP,
-  DIGITAL_OUT,
-  PAUSE,
-  RESTART,
-  FF,
-  RW
-};
-enum states { STOPPED, WORKING, PLAYING, PAUSED };
+enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGITAL_OUT, PAUSE, RESTART, SEEKFWD, SEEKREV, FASTFWD };
+enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 // struct to interpret shared command channel
 typedef volatile struct __attribute__((__packed__)) {

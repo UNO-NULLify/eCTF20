@@ -1,0 +1,314 @@
+
+*** Running vivado
+    with args -log birdwtch_iface_v1_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source birdwtch_iface_v1_0.tcl
+
+
+****** Vivado v2017.4 (64-bit)
+  **** SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+  **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+    ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
+
+source birdwtch_iface_v1_0.tcl -notrace
+Command: synth_design -top birdwtch_iface_v1_0 -part xc7z007sclg400-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 23388 
+---------------------------------------------------------------------------------
+Starting Synthesize : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1211.816 ; gain = 67.000 ; free physical = 698 ; free virtual = 13015
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'birdwtch_iface_v1_0' [/ectf/pl/proj/ip_repo/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0.vhd:49]
+	Parameter C_S00_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S00_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-3491] module 'birdwtch_iface_v1_0_S00_AXI' declared at '/ectf/pl/proj/ip_repo/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0_S00_AXI.v:52' bound to instance 'birdwtch_iface_v1_0_S00_AXI_inst' of component 'birdwtch_iface_v1_0_S00_AXI' [/ectf/pl/proj/ip_repo/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0.vhd:85]
+INFO: [Synth 8-638] synthesizing module 'birdwtch_iface_v1_0_S00_AXI' [/ectf/pl/proj/ip_repo/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0_S00_AXI.v:52]
+	Parameter OPT_READ_SIDEEFFECTS bound to: 1'b1 
+	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
+	Parameter C_S_AXI_ADDR_WIDTH bound to: 4 - type: integer 
+	Parameter ADDR_LSB bound to: 2 - type: integer 
+	Parameter AW bound to: 2 - type: integer 
+	Parameter DW bound to: 32 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'birdwtch_iface_v1_0_S00_AXI' (1#1) [/ectf/pl/proj/ip_repo/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0_S00_AXI.v:52]
+WARNING: [Synth 8-3848] Net int_mb in module/entity birdwtch_iface_v1_0 does not have driver. [/ectf/pl/proj/ip_repo/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0.vhd:19]
+INFO: [Synth 8-256] done synthesizing module 'birdwtch_iface_v1_0' (2#1) [/ectf/pl/proj/ip_repo/birdwtch_iface_1.0/hdl/birdwtch_iface_v1_0.vhd:49]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWPROT[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWPROT[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_AWPROT[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARPROT[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARPROT[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0_S00_AXI has unconnected port S_AXI_ARPROT[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0 has unconnected port int_mb
+---------------------------------------------------------------------------------
+Finished Synthesize : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1254.348 ; gain = 109.531 ; free physical = 710 ; free virtual = 13027
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1254.348 ; gain = 109.531 ; free physical = 711 ; free virtual = 13028
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z007sclg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1262.352 ; gain = 117.535 ; free physical = 710 ; free virtual = 13028
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7z007sclg400-1
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1270.359 ; gain = 125.543 ; free physical = 703 ; free virtual = 13020
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	                4 Bit    Registers := 3     
+	                1 Bit    Registers := 5     
++---RAMs : 
+	              128 Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 7     
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 6     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module birdwtch_iface_v1_0_S00_AXI 
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 2     
+	                4 Bit    Registers := 3     
+	                1 Bit    Registers := 5     
++---RAMs : 
+	              128 Bit         RAMs := 1     
++---Muxes : 
+	   2 Input     32 Bit        Muxes := 7     
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 3     
+	   2 Input      1 Bit        Muxes := 6     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 66 (col length:40)
+BRAMs: 100 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-3917] design birdwtch_iface_v1_0 has port s00_axi_bresp[1] driven by constant 0
+WARNING: [Synth 8-3917] design birdwtch_iface_v1_0 has port s00_axi_bresp[0] driven by constant 0
+WARNING: [Synth 8-3917] design birdwtch_iface_v1_0 has port s00_axi_rresp[1] driven by constant 0
+WARNING: [Synth 8-3917] design birdwtch_iface_v1_0 has port s00_axi_rresp[0] driven by constant 0
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0 has unconnected port int_mb
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0 has unconnected port s00_axi_awprot[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0 has unconnected port s00_axi_awprot[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0 has unconnected port s00_axi_awprot[0]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0 has unconnected port s00_axi_arprot[2]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0 has unconnected port s00_axi_arprot[1]
+WARNING: [Synth 8-3331] design birdwtch_iface_v1_0 has unconnected port s00_axi_arprot[0]
+WARNING: [Synth 8-3332] Sequential element (birdwtch_iface_v1_0_S00_AXI_inst/pre_waddr_reg[1]) is unused and will be removed from module birdwtch_iface_v1_0.
+WARNING: [Synth 8-3332] Sequential element (birdwtch_iface_v1_0_S00_AXI_inst/pre_waddr_reg[0]) is unused and will be removed from module birdwtch_iface_v1_0.
+WARNING: [Synth 8-3332] Sequential element (birdwtch_iface_v1_0_S00_AXI_inst/pre_raddr_reg[1]) is unused and will be removed from module birdwtch_iface_v1_0.
+WARNING: [Synth 8-3332] Sequential element (birdwtch_iface_v1_0_S00_AXI_inst/pre_raddr_reg[0]) is unused and will be removed from module birdwtch_iface_v1_0.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:37 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 521 ; free virtual = 12840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Preliminary Mapping  Report (see note below)
++--------------------+----------------------------------------------+-----------+----------------------+-----------------+
+|Module Name         | RTL Object                                   | Inference | Size (Depth x Width) | Primitives      | 
++--------------------+----------------------------------------------+-----------+----------------------+-----------------+
+|birdwtch_iface_v1_0 | birdwtch_iface_v1_0_S00_AXI_inst/slv_mem_reg | Implied   | 4 x 32               | RAM16X1D x 32   | 
++--------------------+----------------------------------------------+-----------+----------------------+-----------------+
+
+Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+No constraint files found.
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:37 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 521 ; free virtual = 12840
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Distributed RAM: Final Mapping  Report
++--------------------+----------------------------------------------+-----------+----------------------+-----------------+
+|Module Name         | RTL Object                                   | Inference | Size (Depth x Width) | Primitives      | 
++--------------------+----------------------------------------------+-----------+----------------------+-----------------+
+|birdwtch_iface_v1_0 | birdwtch_iface_v1_0_S00_AXI_inst/slv_mem_reg | Implied   | 4 x 32               | RAM16X1D x 32   | 
++--------------------+----------------------------------------------+-----------+----------------------+-----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:37 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 520 ; free virtual = 12839
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 520 ; free virtual = 12839
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 520 ; free virtual = 12839
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 520 ; free virtual = 12839
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 520 ; free virtual = 12839
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 520 ; free virtual = 12839
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 520 ; free virtual = 12839
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |LUT2     |     1|
+|3     |LUT3     |    28|
+|4     |LUT4     |     7|
+|5     |LUT5     |    10|
+|6     |LUT6     |     3|
+|7     |RAM16X1D |    32|
+|8     |FDRE     |    77|
+|9     |IBUF     |    47|
+|10    |OBUF     |    41|
+|11    |OBUFT    |     1|
++------+---------+------+
+
+Report Instance Areas: 
++------+-----------------------------------+----------------------------+------+
+|      |Instance                           |Module                      |Cells |
++------+-----------------------------------+----------------------------+------+
+|1     |top                                |                            |   248|
+|2     |  birdwtch_iface_v1_0_S00_AXI_inst |birdwtch_iface_v1_0_S00_AXI |   158|
++------+-----------------------------------+----------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 520 ; free virtual = 12839
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 23 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.719 ; gain = 243.902 ; free physical = 522 ; free virtual = 12841
+Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:38 . Memory (MB): peak = 1388.727 ; gain = 243.902 ; free physical = 522 ; free virtual = 12840
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 79 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+  A total of 32 instances were transformed.
+  RAM16X1D => RAM32X1D (RAMD32, RAMD32): 32 instances
+
+INFO: [Common 17-83] Releasing license: Synthesis
+14 Infos, 23 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:40 . Memory (MB): peak = 1491.730 ; gain = 360.285 ; free physical = 486 ; free virtual = 12806
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/ip_repo/edit_birdwtch_iface_v1_0.runs/synth_1/birdwtch_iface_v1_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file birdwtch_iface_v1_0_utilization_synth.rpt -pb birdwtch_iface_v1_0_utilization_synth.pb
+report_utilization: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1515.742 ; gain = 0.000 ; free physical = 488 ; free virtual = 12808
+INFO: [Common 17-206] Exiting Vivado at Sun Jan 26 15:31:26 2020...

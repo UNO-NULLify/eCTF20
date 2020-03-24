@@ -6,11 +6,28 @@ Use: Once per device
 import os
 import json
 from argparse import ArgumentParser
+from pprint import pprint
 
+def write_region(region_names, region_secrets):
+    #i = 1
+    f_str = f""
+    for r in region_names:
+        #f_str += f'\n{{ {region_secrets[r]["id"]}, \"{r}\",\"{region_secrets[r]["pub_key"]}\", \"{region_secrets[r]["priv_key_enc"]}\", \"{region_secrets[r]["rand_pass"]}\" }},'
+        f_str += f'\n{{ {region_secrets[r]["id"]}, \"{region_secrets[r]["rand_pass"]}\" }},'
+        #i = i+1
+    return f_str
+
+def write_users(user_names, user_secrets):
+    #i = 1
+    f_str = f"\n"
+    for u in user_names:
+        f_str += f"{{ {user_secrets['users'][u]['id']},\"{u}\", \"{user_secrets['users'][u]['hw_secret']}\", \"{user_secrets['users'][u]['pin_hash']}\", \"{user_secrets['users'][u]['pub_key']}\", \"{user_secrets['users'][u]['pvt_key_enc']}\", \"{user_secrets['users'][u]['salt']}\" }},\n"
+        #i = i+1
+    return f_str
 
 
 def main(region_names, user_names, user_secrets, region_secrets, device_dir):
-    file_name = "device_secrets.h"
+    file_name = "device_secrets"
 
     # create device directory
     try:
@@ -27,44 +44,69 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
         return
 
     # check for valid region names
+    
+    
     try:
-        rids = [str(region_secrets[r]) for r in region_names]
+        #rids = list(str(region_secrets[r]) for r in region_names)
+        rids = list(region_secrets[r] for r in region_names)
+        
+        #print("\nRegion Secrets\n")
+        #pprint(rids)
     except Exception as e:
         print("Unable to create secrets file: {e} "
-              "Please ensure all regions entered are in the list: {user_secrets}".format(e=e, user_secrets=user_secrets.keys()))
+              "Please ensure all regions entered are in the list: {region_secrets}".format(e=e, region_secrets=region_secrets.keys()))
         return
 
     # check for valid user names
     try:
-        uids = [str(user_secrets[u]['id']) for u in usernames]
+        #users = [str(user_secrets['users'][u].items()) for u in usernames]
+        users = list(user_secrets["users"][u].values() for u in user_names)
+        #print("\nUser Secrets\n")
+        #pprint(users)
     except Exception as e:
         print("Unable to create secrets file: {e} "
-              "Please ensure all regions entered are in the list: {user_secrets}".format(e=e, user_secrets=user_secrets.keys()))
+              "Please ensure all users entered are in the list: {user_secrets}".format(e=e, user_secrets=user_secrets["users"].keys()))
         return
 
     # write secrets
     device_secrets.write(f'''
+#include <inttypes.h>
 #ifndef SECRETS_H
 #define SECRETS_H
 
-#define NUM_REGIONS {len(region_secrets)}
-const char *REGION_NAMES[] = {{ {", ".join(['"' + r + '"' for r in region_secrets])} }};
-const u8 REGION_IDS[] = {{ {", ".join([str(r) for r in region_secrets.values()])} }};
+#define PROVISIONED_REGIONS {len(region_names)}
+#define PROVISIONED_USERS {len(user_names)}
 
-#define NUM_PROVISIONED_REGIONS {len(region_names)}
-const u8 PROVISIONED_RIDS[] = {{ {", ".join(rids)} }};
+#define ROOT_VERIFY \"{user_secrets["root_verify"]}\"
 
-#define NUM_USERS {len(user_secrets)}
-const char *USERNAMES[] = {{ {", ".join(['"' + u + '"' for u in user_secrets])} }};
-const u8 USER_IDS[] = {{ {", ".join([str(user_secrets[u]['id']) for u in user_names])} }};
+struct R_Data {{
+    uint8_t id;
+    char *rand_pass;
+}};
 
-#define NUM_PROVISIONED_USERS {len(user_names)}
-const u8 PROVISIONED_UIDS[] = {{ {", ".join(uids)} }};
-const char *PROVISIONED_PINS[] = {{ {", ".join(['"' + user_secrets[u]['pin'] + '"' for u in user_names])} }};
+
+struct R_Data region_data[{len(region_names)}] = \n{{ { write_region(region_names, region_secrets) }\n}};
+
+
+
+struct U_Data {{
+    uint8_t id;
+    char *name;
+    char *hw_secret;
+    char *pin_hash;
+    char *pub_key;
+    char *pvt_key;
+    char *salt;
+}};
+
+struct U_Data user_data[{len(user_names)}] = \n{{ { write_users(user_names, user_secrets) }}};
+
 
 #endif // SECRETS_H
 ''')
 
+# enum USERNAMES {{ {", ".join([u for u in user_names])} }};
+# struct U_Data user_data{[len(user_names)]} = {{ {", ".join([u for u in user_names])} }};
 
 def get_args():
     """gets arguments from command line"""
