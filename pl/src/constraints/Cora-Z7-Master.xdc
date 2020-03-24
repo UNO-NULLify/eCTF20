@@ -4,8 +4,8 @@
 ## - rename the used ports (in each line, after get_ports) according to the top level signal names in the project
 
 ## PL System Clock
-#set_property -dict { PACKAGE_PIN H16   IOSTANDARD LVCMOS33 } [get_ports { clk50 }]; #IO_L13P_T2_MRCC_35 Sch=sysclk
-#create_clock -add -name sys_clk_pin -period 40.00 -waveform {0 20} [get_ports { clk50 }];#set
+set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33} [get_ports clk50]
+create_clock -period 20.000 -name sys_clk_pin -waveform {0.000 10.000} -add [get_ports clk50]
 
 ## RGB LEDs
 set_property -dict {PACKAGE_PIN L15 IOSTANDARD LVCMOS33} [get_ports {rgb_led[0]}]
@@ -150,3 +150,7 @@ set_property -dict {PACKAGE_PIN L10 IOSTANDARD LVCMOS33} [get_ports vp_vn_v_n]
 #set_property -dict { PACKAGE_PIN K19   IOSTANDARD LVCMOS33 } [get_ports { user_dio[12] }]; #IO_L10P_T1_AD11P_35 Sch=user_dio[12]
 
 set_property BITSTREAM.GENERAL.COMPRESS TRUE [current_design]
+
+
+create_pblock pblock_clk_wiz_25M
+add_cells_to_pblock [get_pblocks pblock_clk_wiz_25M] [get_cells -quiet [list system_i/clk_wiz_25M]]
