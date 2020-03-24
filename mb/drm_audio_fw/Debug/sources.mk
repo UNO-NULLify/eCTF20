@@ -1,3 +1,7 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
 LD_SRCS := 
 OBJ_SRCS := 
 S_SRCS := 
@@ -13,5 +17,4 @@ ELFSIZE :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 src \
-
 

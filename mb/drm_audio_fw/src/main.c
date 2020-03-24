@@ -3,7 +3,8 @@
  * Audio Digital Rights Management
  */
 
-#include "constants.h"
+//#include "constants.h"
+#include "drm.h"
 #include "platform.h"
 #include "secrets.h"
 #include "sleep.h"
@@ -54,6 +55,7 @@ void myISR(void) { InterruptProcessed = TRUE; }
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
 // returns whether an rid has been provisioned
+/* TODO rewrite is_provisioned_rid
 int is_provisioned_rid(char rid) {
   for (int i = 0; i < NUM_PROVISIONED_REGIONS; i++) {
     if (rid == PROVISIONED_RIDS[i]) {
@@ -63,7 +65,10 @@ int is_provisioned_rid(char rid) {
   return FALSE;
 }
 
+*/
+
 // looks up the region name corresponding to the rid
+/* TODO rewrite rid_to_region_name
 int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
   for (int i = 0; i < NUM_REGIONS; i++) {
     if (rid == REGION_IDS[i] &&
@@ -77,8 +82,9 @@ int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
   *region_name = "<unknown region>";
   return FALSE;
 }
-
+*/
 // looks up the rid corresponding to the region name
+/* TODO rewrite region_name_torid
 int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
   for (int i = 0; i < NUM_REGIONS; i++) {
     if (!strcmp(region_name, REGION_NAMES[i]) &&
@@ -92,8 +98,9 @@ int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
   *rid = -1;
   return FALSE;
 }
-
+*/
 // returns whether a uid has been provisioned
+/* TODO rewrite is_provisioned_uid
 int is_provisioned_uid(char uid) {
   for (int i = 0; i < NUM_PROVISIONED_USERS; i++) {
     if (uid == PROVISIONED_UIDS[i]) {
@@ -102,8 +109,9 @@ int is_provisioned_uid(char uid) {
   }
   return FALSE;
 }
-
+*/
 // looks up the username corresponding to the uid
+/* TODO rewrite uid_to_usernume
 int uid_to_username(char uid, char **username, int provisioned_only) {
   for (int i = 0; i < NUM_USERS; i++) {
     if (uid == USER_IDS[i] && (!provisioned_only || is_provisioned_uid(uid))) {
@@ -116,8 +124,9 @@ int uid_to_username(char uid, char **username, int provisioned_only) {
   *username = "<unknown user>";
   return FALSE;
 }
-
+*/
 // looks up the uid corresponding to the username
+/* TODO rewrite username_to_uid
 int username_to_uid(char *username, char *uid, int provisioned_only) {
   for (int i = 0; i < NUM_USERS; i++) {
     if (!strcmp(username, USERNAMES[USER_IDS[i]]) &&
@@ -131,8 +140,9 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
   *uid = -1;
   return FALSE;
 }
-
+*/
 // loads the song metadata in the shared buffer into the local struct
+/* TODO write load_song_md
 void load_song_md() {
   s.song_md.md_size = c->song.md.md_size;
   s.song_md.owner_id = c->song.md.owner_id;
@@ -141,9 +151,10 @@ void load_song_md() {
   memcpy(s.song_md.rids, (void *)get_drm_rids(c->song), s.song_md.num_regions);
   memcpy(s.song_md.uids, (void *)get_drm_uids(c->song), s.song_md.num_users);
 }
-
+*/
 // checks if the song loaded into the shared buffer is locked for the current
 // user
+/* TODO write is_locked
 int is_locked() {
   int locked = TRUE;
 
@@ -188,10 +199,12 @@ int is_locked() {
   }
   return locked;
 }
+*/
 
 // copy the local song metadata into buf in the correct format
 // returns the size of the metadata in buf (including the metadata size field)
 // song metadata should be loaded before call
+/*TODO rewrite gen_song_md
 int gen_song_md(char *buf) {
   buf[0] = ((5 + s.song_md.num_regions + s.song_md.num_users) / 2) *
            2; // account for parity
@@ -203,7 +216,7 @@ int gen_song_md(char *buf) {
 
   return buf[0];
 }
-
+*/
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
 
 // attempt to log in to the credentials in the shared buffer
@@ -258,6 +271,7 @@ void logout() {
 }
 
 // handles a request to query the player's metadata
+/* TODO write query player
 void query_player() {
   c->query.num_regions = NUM_PROVISIONED_REGIONS;
   c->query.num_users = NUM_PROVISIONED_USERS;
@@ -305,8 +319,9 @@ void query_song() {
   mb_printf("Queried song (%d regions, %d users)\r\n", c->query.num_regions,
             c->query.num_users);
 }
-
+*/
 // add a user to the song's list of users
+/* TODO rewrite share_song
 void share_song() {
   int new_md_len, shift;
   char new_md[256], uid;
@@ -346,8 +361,9 @@ void share_song() {
 
   mb_printf("Shared song with '%s'\r\n", c->username);
 }
-
+*/
 // plays a song and looks for play-time commands
+/* TODO rewrite play_song
 void play_song() {
   u32 counter = 0, rem, cp_num, cp_xfil_cnt, offset, dma_cnt, length,
       *fifo_fill;
@@ -431,8 +447,9 @@ void play_song() {
     rem -= cp_num;
   }
 }
-
+*/
 // removes DRM data from song for digital out
+/* TODO rewrite digital_out
 void digital_out() {
   // remove metadata size from file and chunk sizes
   c->song.file_size -= c->song.md.md_size;
@@ -450,7 +467,7 @@ void digital_out() {
 
   mb_printf("Song dump finished\r\n");
 }
-
+*/
 //////////////////////// MAIN ////////////////////////
 
 int main() {
@@ -503,22 +520,28 @@ int main() {
       case LOGOUT:
         logout();
         break;
+      /* TODO write query_player in main
       case QUERY_PLAYER:
         query_player();
         break;
+      TODO write query_song in main
       case QUERY_SONG:
         query_song();
         break;
+      TODO write share_song in main
       case SHARE:
         share_song();
         break;
+      TODO write play_song in main
       case PLAY:
         play_song();
         mb_printf("Done Playing Song\r\n");
         break;
+      TODO write digital_out in main
       case DIGITAL_OUT:
         digital_out();
         break;
+      */
       default:
         break;
       }
@@ -526,7 +549,8 @@ int main() {
       // reset statuses and sleep to allowe player to recognize WORKING state
       strcpy((char *)c->username, s.username);
       c->login_status = s.logged_in;
-      usleep(500);
+      // TODO find sleep.h
+      sleep(0.5); //usleep(500);
       set_stopped();
     }
   }
