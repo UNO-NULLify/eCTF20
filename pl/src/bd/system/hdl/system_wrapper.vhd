@@ -1,8 +1,8 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
---Date        : Wed Feb  5 20:22:02 2020
---Host        : ssg1 running 64-bit Manjaro Linux
+--Date        : Sun Jan 19 17:06:31 2020
+--Host        : vagrant-eCTF running 64-bit Ubuntu 18.10
 --Command     : generate_target system_wrapper.bd
 --Design      : system_wrapper
 --Purpose     : IP block netlist
@@ -34,7 +34,6 @@ entity system_wrapper is
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
-    clk50 : in STD_LOGIC;
     ja0 : out STD_LOGIC;
     ja1 : out STD_LOGIC;
     ja2 : out STD_LOGIC;
@@ -87,6 +86,8 @@ architecture STRUCTURE of system_wrapper is
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
+    vp_vn_v_n : in STD_LOGIC;
+    vp_vn_v_p : in STD_LOGIC;
     vaux0_v_n : in STD_LOGIC;
     vaux0_v_p : in STD_LOGIC;
     vaux1_v_n : in STD_LOGIC;
@@ -105,14 +106,11 @@ architecture STRUCTURE of system_wrapper is
     vaux13_v_p : in STD_LOGIC;
     vaux15_v_n : in STD_LOGIC;
     vaux15_v_p : in STD_LOGIC;
-    vp_vn_v_n : in STD_LOGIC;
-    vp_vn_v_p : in STD_LOGIC;
+    rgb_led : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    ja3 : out STD_LOGIC;
     ja1 : out STD_LOGIC;
     ja0 : out STD_LOGIC;
-    ja2 : out STD_LOGIC;
-    ja3 : out STD_LOGIC;
-    rgb_led : out STD_LOGIC_VECTOR ( 5 downto 0 );
-    clk50 : in STD_LOGIC
+    ja2 : out STD_LOGIC
   );
   end component system;
 begin
@@ -139,7 +137,6 @@ system_i: component system
       FIXED_IO_ps_clk => FIXED_IO_ps_clk,
       FIXED_IO_ps_porb => FIXED_IO_ps_porb,
       FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
-      clk50 => clk50,
       ja0 => ja0,
       ja1 => ja1,
       ja2 => ja2,
