@@ -4,6 +4,3 @@ export PATH="/ectf/tools:$PATH"
 echo "export PATH=/ectf/tools:$PATH" >> ~/.bashrc
 sudo apt install -y python3-pip clang-format
 sudo pip3 install numpy pydub
-
-# make && make check && make install
-
