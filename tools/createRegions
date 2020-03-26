@@ -5,9 +5,6 @@ Use: Once per ecosystem of devices
 """
 import json
 from argparse import ArgumentParser
-# Replace
-from nacl import utils, public, secret
-# End Replace
 import monocypher
 import os
 
