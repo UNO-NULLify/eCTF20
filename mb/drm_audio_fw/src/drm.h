@@ -117,11 +117,14 @@ void setState(STATE state);
 #define MAX_SONG_SZ (1 << 25)
 
 // LED colors and controller
+/* TODO delete me? defined in util.h
 struct color {
   u32 r;
   u32 g;
   u32 b;
 };
+*/
+
 
 // struct to interpret shared buffer as a query
 typedef struct {

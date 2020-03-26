@@ -226,17 +226,17 @@ void login() {
     memcpy((void *)c->username, s.username, USERNAME_SZ);
     memcpy((void *)c->pin, s.pin, MAX_PIN_SZ);
   } else {
-    for (int i = 0; i < NUM_PROVISIONED_USERS; i++) {
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
       // search for matching username
-      if (!strcmp((void *)c->username, USERNAMES[PROVISIONED_UIDS[i]])) {
+      if (!strcmp((void *)c->username, user_data[i].name)) {
         // check if pin matches
-        if (!strcmp((void *)c->pin, PROVISIONED_PINS[i])) {
+        if (!strcmp((void *)c->pin, user_data[i].pin_hash)) {
           // update states
           s.logged_in = 1;
           c->login_status = 1;
           memcpy(s.username, (void *)c->username, USERNAME_SZ);
           memcpy(s.pin, (void *)c->pin, MAX_PIN_SZ);
-          s.uid = PROVISIONED_UIDS[i];
+          s.uid = user_data[i].id;
           mb_printf("Logged in for user '%s'\r\n", c->username);
           return;
         } else {
