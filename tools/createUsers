@@ -6,11 +6,6 @@ Use: Once per user
 
 import json
 from argparse import ArgumentParser
-# Replace
-#from nacl import pwhash, secret, utils, encoding, public, hash
-#from nacl.pwhash.argon2id import SALTBYTES, OPSLIMIT_SENSITIVE, MEMLIMIT_SENSITIVE
-#import nacl.signing
-# End Replace
 import monocypher
 import os
 
