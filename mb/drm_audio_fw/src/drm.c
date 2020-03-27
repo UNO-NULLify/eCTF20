@@ -489,6 +489,7 @@ void play() {
                     break;
                 case PLAY:
                     xil_printf("%s%s" MB_PROMPT, "Resuming...\r\n");
+                    CMDChannel->drm_state = PLAY;
                     setState(PLAYING);
                     break;
                 case STOP:
@@ -590,10 +591,12 @@ int main() {
     // Run forever
     while (1) {
         // Wait for interrupt to start
+        CMDChannel->drm_state = STOPPED;
         if (InterruptProcessed) {
             uint32_t cmd = read_cr();
             InterruptProcessed = FALSE;
             setState(WORKING);
+            CMDChannel->drm_state = WORKING;
             xil_printf("Command: %08X\r\n", cmd);
 
             switch (cmd) {
