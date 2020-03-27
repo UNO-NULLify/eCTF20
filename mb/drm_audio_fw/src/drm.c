@@ -105,16 +105,20 @@ void setState(STATE s) {
     switch (s) {
         case WORKING:
             setLED(led, YELLOW);
+            CMDChannel->drm_state = s;
             break;
         case PLAYING:
             setLED(led, GREEN);
+            CMDChannel->drm_state = s;
             break;
         case PAUSED:
             setLED(led, BLUE);
+            CMDChannel->drm_state = s;
             break;
         case STOPPED:
         default:
             setLED(led, RED);
+            CMDChannel->drm_state = s;
             break;
     }
 }
@@ -591,14 +595,11 @@ int main() {
     // Run forever
     while (1) {
         // Wait for interrupt to start
-        CMDChannel->drm_state = STOPPED;
         if (InterruptProcessed) {
             uint32_t cmd = read_cr();
             InterruptProcessed = FALSE;
             setState(WORKING);
-            CMDChannel->drm_state = WORKING;
             xil_printf("Command: %08X\r\n", cmd);
-
             switch (cmd) {
                 case LOGIN:
                     /* Cache CMD channel _differently_ */
