@@ -251,11 +251,7 @@ static int decrypt(const char *target_file, FILE *fp_s, const unsigned char key[
 // TODO: UNTESTED
 uint8_t decryptFull(FILE *encFile, struct metadata *meta, uint8_t *secret) {
 	uint8_t temphash[64] = {0};
-	uint8_t secretString[160]= {0};
-
-	byte_me(secretString, (const uint8_t *)secret, strlen(secret));
-
-	crypto_blake2b(temphash, secretString, 160); //turn long password into useable hash
+	crypto_blake2b(temphash, secret, 160); //turn long password into useable hash
 
 	printf("temphash: ");
 	for (int i = 0; i < 64; i++) {
@@ -285,6 +281,9 @@ uint8_t decryptFull(FILE *encFile, struct metadata *meta, uint8_t *secret) {
 
 	// uint8_t nonce[24] = {0};
 
+  printf("THis is the cur loc %ld", ftell(encFile));
+
+  printf("%s meta songname", meta->song_name);
 	if (decrypt(meta->song_name, encFile, hash, nonce, meta->endFullSong) != 0) {
 		printf("\033[0;31m");
 		printf("Decryption Failed!\n");
@@ -328,10 +327,16 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 	}
 	readMetadata(encFile, &meta);
 
+  long int myLoc = ftell(encFile);
+  
+
 	// Verify Signature (quit if it doesn't verify)
-	if (verifySignature(encFile, &meta)) {
+	if (verifySignature(encFile, &meta)) 
+  {
 		return 1;
 	}
+
+   fseek(encFile, myLoc, SEEK_SET);
 
 	// Check if the user owns the song
 	if(uid == meta.owner_id) {
@@ -358,7 +363,6 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 		} else {
 			// User is not signed in, play 30 Second Sample
 			printf("User is not signed in\n");
-
 			// Generate 30 secret
             uint8_t *secret30 = generate30Secret(&meta);
             printf("Secret30: ");
@@ -379,7 +383,7 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 int main(int argc, char *argv[]) {
 
   // These variables will be stored in implementation
-  char *pin = "664351090542874976736031472796744";
+  char *pin = "222159695024";
   uint8_t uid = 1;
   uint8_t sample = 0;
 
