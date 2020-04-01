@@ -248,42 +248,15 @@ static int decrypt(const char *target_file, FILE *fp_s, const unsigned char key[
 	return 0;
 }
 
-// TODO: UNTESTED
 uint8_t decryptFull(FILE *encFile, struct metadata *meta, uint8_t *secret) {
 	uint8_t temphash[64] = {0};
 	crypto_blake2b(temphash, secret, 160); //turn long password into useable hash
-
-	printf("temphash: ");
-	for (int i = 0; i < 64; i++) {
-		printf("%x", temphash[i]);
-	}
-	printf("\n\n");
 
 	uint8_t hash[32] = {0};
 	memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
 
 	uint8_t nonce [24] = {0};
 
-
-
-
-	// uint8_t temphash[64] = {0};
-	// crypto_blake2b(temphash, (const uint8_t *)secret, strlen(secret)); // turn long password into useable hash
-
-	// printf("temphash: ");
-	// for (int i = 0; i < 64; i++) {
-	// 	printf("%x", temphash[i]);
-	// }
-	// printf("\n\n");
-
-	// uint8_t hash[32] = {0};
-	// memcpy(hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
-
-	// uint8_t nonce[24] = {0};
-
-  printf("THis is the cur loc %ld", ftell(encFile));
-
-  printf("%s meta songname", meta->song_name);
 	if (decrypt(meta->song_name, encFile, hash, nonce, meta->endFullSong) != 0) {
 		printf("\033[0;31m");
 		printf("Decryption Failed!\n");
@@ -291,9 +264,9 @@ uint8_t decryptFull(FILE *encFile, struct metadata *meta, uint8_t *secret) {
 		return 1;
     }
 	fclose(encFile);
+	return 0;
 }
 
-// TODO: UNTESTED
 uint8_t decrypt30(FILE *encFile, struct metadata *meta, uint8_t *secret30) {
   uint8_t temphash[64] = {0};
   crypto_blake2b(temphash, (const uint8_t *) secret30, strlen(secret30)); // turn long password into useable hash
@@ -331,12 +304,11 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
   
 
 	// Verify Signature (quit if it doesn't verify)
-	if (verifySignature(encFile, &meta)) 
-  {
+	if (verifySignature(encFile, &meta)) {
 		return 1;
 	}
 
-   fseek(encFile, myLoc, SEEK_SET);
+    fseek(encFile, myLoc, SEEK_SET);
 
 	// Check if the user owns the song
 	if(uid == meta.owner_id) {
@@ -356,7 +328,7 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
         printf("Playing full song\n");
     } else {
 		// Check if the user is signed in
-		if(uid != -1) { //TODO: CHANGE TO !=
+		if(uid != -1) {
 			// User is signed in
 			printf("User is signed in, but doesn't own the song");
 			// Check if song has been shared with user
@@ -383,16 +355,10 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 int main(int argc, char *argv[]) {
 
   // These variables will be stored in implementation
-  char *pin = "222159695024";
+  char *pin = "7480724457714773069141594359603694857949790757759299";
   uint8_t uid = 1;
   uint8_t sample = 0;
 
   return play(pin, uid, sample);
+
 }
-
-// 30secret: a356fa178c75447b179136ea7450edb8a0256cd2ab7d8ab1975251b5257864c08d129af18e8dd12ae917505e608de54008d1e3d42f36f20b05c5b72ace9f99a3
-//   secret: f141a9aa3fbc704b6ccaf5c8ba9d8fe69b34fb169f07277478772e3aa08631ede5f6ad1be956784fb885ebebc951471f60629a43ca7f3a24f5783bc218f541cc5510e0b5117b734d9e00cf4fc31759614f8dd40e53e9f654e69721ce685439cc19ee8a163bfd34fa9d3046fa66cfd1466936ed5a29a7e4efcebef4eb94b2d7b12af0aef6d3a964af554a385083a9286f62dda1ff74481f40c7596318482239b4
-
-// secretString::: f141a9aa3fbc704b6ccaf5c8ba9d8fe69b34fb169f7277478772e3aa08631ede5f6ad1be956784fb885ebebc951471f60629a43ca7f3a24f5783bc218f541cc5510e0b5117b734d9e0cf4fc31759614f8dd4e53e9f654e69721ce685439cc19ee8a163bfd34fa9d3046fa66cfd1466936ed5a29a7e4efcebef4eb94b2d7b12af0aef6d3a964af554a385083a9286f62dda1ff74481f40c7596318482239b4
-
-// temphash::: 26b56bfab291efbdd559fe1f5cf9fdc0e2783c83f8e6cf1d7c2410649d3ad69a5a282d05771d78ffaa90a269752b91f7d04cf88ae8a660c47687db40df084
