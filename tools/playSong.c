@@ -91,7 +91,7 @@ uint8_t *generateSecret(char *pin, struct metadata *meta) {
 	// Check if decryption failed
 	if (regionKey[0] == NULL) {
 		printf("\033[0;31m");
-		printf("\n\nCrypto Unlock Failed!\n\n");
+		printf("Crypto Unlock Failed!\n");
 		printf("\033[0m");
 		return 1;
 	}
@@ -172,15 +172,6 @@ void byte_me(char *dest, char *src, size_t src_len) {
   }
 }
 
-void hex_me(char *dest, char *src, size_t src_len) {
-  for (int i = 0; i < src_len; i++) {
-    uint8_t *buff[3] = {0};
-    snprintf(buff, sizeof(buff), "%x", src[i]);
-    strncat(dest, buff, sizeof(buff));
-    crypto_wipe(buff, sizeof(buff));
-  }
-}
-
 uint8_t verifySignature(FILE *encFile, struct metadata *meta) {
   uint8_t public_key[32] = {0};
   char pub_str[64] = ROOT_VERIFY;
@@ -201,11 +192,15 @@ uint8_t verifySignature(FILE *encFile, struct metadata *meta) {
   int yay = crypto_check(signature, public_key, toSign, sizeof toSign);
 
   if (yay == 0) {
+    printf("\033[0;32m");
     printf("Signature Verified!\n");
-	return 0;
+    printf("\033[0m");
+    return 0;
   } else {
-    printf("TAMPER DETECTED\n");
-	return 1;
+    printf("\033[0;31m");
+    printf("TAMPER DETECTED!\nSignature Failed!\n");
+    printf("\033[0m");
+    return 1;
   }
   fclose(encFile);
 }
@@ -242,7 +237,7 @@ static int decrypt(const char *target_file, FILE *fp_s, const unsigned char key[
 		}
 		nonce[23]++;
 
-	} while ((endRead - CHUNK_SIZE) > ftell(fp_s)); // read untill we are one buffer away
+	} while ((endRead - CHUNK_SIZE) > ftell(fp_s)); // read until we are one buffer away
 	
 	fread(mac, 1, 16, fp_s);
 	rlen = fread(buf_in, 1, endRead - ftell(fp_s), fp_s);
@@ -255,27 +250,47 @@ static int decrypt(const char *target_file, FILE *fp_s, const unsigned char key[
 
 // TODO: UNTESTED
 uint8_t decryptFull(FILE *encFile, struct metadata *meta, uint8_t *secret) {
+	uint8_t temphash[64] = {0};
+	uint8_t secretString[160]= {0};
 
+	byte_me(secretString, (const uint8_t *)secret, strlen(secret));
 
-	printf("Secret Inside Decrypt: ");
-	for (int i = 0; i < 160; i++) {
-		printf("%x", secret[i]);
+	crypto_blake2b(temphash, secretString, 160); //turn long password into useable hash
+
+	printf("temphash: ");
+	for (int i = 0; i < 64; i++) {
+		printf("%x", temphash[i]);
 	}
 	printf("\n\n");
-	
-
-	uint8_t temphash[64] = {0};
-	crypto_blake2b(temphash, (const uint8_t *)secret, strlen(secret)); // turn long password into useable hash
 
 	uint8_t hash[32] = {0};
-	memcpy(hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
+	memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
 
-	uint8_t nonce[24] = {0};
+	uint8_t nonce [24] = {0};
+
+
+
+
+	// uint8_t temphash[64] = {0};
+	// crypto_blake2b(temphash, (const uint8_t *)secret, strlen(secret)); // turn long password into useable hash
+
+	// printf("temphash: ");
+	// for (int i = 0; i < 64; i++) {
+	// 	printf("%x", temphash[i]);
+	// }
+	// printf("\n\n");
+
+	// uint8_t hash[32] = {0};
+	// memcpy(hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
+
+	// uint8_t nonce[24] = {0};
 
 	if (decrypt(meta->song_name, encFile, hash, nonce, meta->endFullSong) != 0) {
-		printf("Decryption Failed");
+		printf("\033[0;31m");
+		printf("Decryption Failed!\n");
+		printf("\033[0m"); 
 		return 1;
-	}
+    }
 	fclose(encFile);
 }
 
@@ -286,14 +301,14 @@ uint8_t decrypt30(FILE *encFile, struct metadata *meta, uint8_t *secret30) {
 
   uint8_t hash[32] = {0};
   memcpy(hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
-  printf("\n\nHASH30: %d %d %d \n\n", hash[0], hash[20], hash[31]);
   uint8_t nonce[24] = {0};
 
   fseek(encFile, meta->endFullSong, SEEK_SET);
-  printf("\nMETAINFO: endFullSong %ld - songSize 0%ld\n", meta->endFullSong, meta->songSize);
 
   if (decrypt("30SECOND_TEST", encFile, hash, nonce, meta->songSize - 64) != 0) {
-    printf("Decryption Failed");
+    printf("\033[0;31m");
+    printf("30 Second Decryption Failed!\n");
+    printf("\033[0m");
     return 1;
   }
   fclose(encFile);
@@ -306,7 +321,9 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 	FILE *encFile;
 	encFile = fopen("provision_test/audio/test-protect-small-step.drm", "rb");
 	if (encFile == NULL) {
-		fprintf(stderr, "\nError reading metadata\n");
+		printf("\033[0;31m");
+		printf("Error reading metadata!\n");
+		printf("\033[0m");
 		return 1;
 	}
 	readMetadata(encFile, &meta);
@@ -334,7 +351,7 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
         printf("Playing full song\n");
     } else {
 		// Check if the user is signed in
-		if(uid == -1) { //TODO: CHANGE TO !=
+		if(uid != -1) { //TODO: CHANGE TO !=
 			// User is signed in
 			printf("User is signed in, but doesn't own the song");
 			// Check if song has been shared with user
@@ -362,16 +379,16 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 int main(int argc, char *argv[]) {
 
   // These variables will be stored in implementation
-  char *pin = "2928867265771123465330098090921596624901254176576";
+  char *pin = "664351090542874976736031472796744";
   uint8_t uid = 1;
   uint8_t sample = 0;
 
   return play(pin, uid, sample);
 }
 
-// 30secret:
-// 2f7761988693e3af87415c0d3b18e6213b606fcd5dc741b02a2334deead142ffb1c02a0901c55d2d5e041009a29b65314d839b23a0b30982500a455a2964577a
-// secret:
-// b768352b0d39b0edfad8eb07c54a198515858a73454db7fcedbc6ff5d4464a7c42e0c1b79d57720e3ec282666ab778e9416eda211c36518517ce74e555de9de3b2e3e0006d51bbdbc1eab48068fe75d5f7905f47ad7bf3fb12d91d183b2e903e8b0ef94d246c73aed8a70f41c9f0b0ab5055ec8b35bd9605b04fab033c49962d2278d2433bf8f2e35b01333b416d9263cbce194a37dfab8554616506b98a3820
-// secret:
-// b768352bd39b0edfad8eb7c54a198515858a73454db7fcedbc6ff5d4464a7c42e0c1b79d5772e3ec282666ab778e9416eda211c36518517ce74e555de9de3b2e3e006d51bbdbc1eab48068fe75d5f7905f47ad7bf3fb12d91d183b2e903e8bef94d246c73aed8a7f41c9f0b0ab5055ec8b35bd965b04fab33c49962d2278d2433bf8f2e35b1333b416d9263cbce194a37dfab855461656b98a3820
+// 30secret: a356fa178c75447b179136ea7450edb8a0256cd2ab7d8ab1975251b5257864c08d129af18e8dd12ae917505e608de54008d1e3d42f36f20b05c5b72ace9f99a3
+//   secret: f141a9aa3fbc704b6ccaf5c8ba9d8fe69b34fb169f07277478772e3aa08631ede5f6ad1be956784fb885ebebc951471f60629a43ca7f3a24f5783bc218f541cc5510e0b5117b734d9e00cf4fc31759614f8dd40e53e9f654e69721ce685439cc19ee8a163bfd34fa9d3046fa66cfd1466936ed5a29a7e4efcebef4eb94b2d7b12af0aef6d3a964af554a385083a9286f62dda1ff74481f40c7596318482239b4
+
+// secretString::: f141a9aa3fbc704b6ccaf5c8ba9d8fe69b34fb169f7277478772e3aa08631ede5f6ad1be956784fb885ebebc951471f60629a43ca7f3a24f5783bc218f541cc5510e0b5117b734d9e0cf4fc31759614f8dd4e53e9f654e69721ce685439cc19ee8a163bfd34fa9d3046fa66cfd1466936ed5a29a7e4efcebef4eb94b2d7b12af0aef6d3a964af554a385083a9286f62dda1ff74481f40c7596318482239b4
+
+// temphash::: 26b56bfab291efbdd559fe1f5cf9fdc0e2783c83f8e6cf1d7c2410649d3ad69a5a282d05771d78ffaa90a269752b91f7d04cf88ae8a660c47687db40df084
