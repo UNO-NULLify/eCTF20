@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#define CHUNK_SIZE 4096
 struct metadata {
   char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte
                                         // key (stored as hex) + room for MAC]
@@ -19,8 +19,9 @@ struct metadata {
 int readMetadata(FILE *infile, struct metadata *metaIn) {
   if (fread(metaIn, sizeof(struct metadata), 1, infile) == 0) {
     printf("Error reading metadata file !\n");
+	return 1;
   }
-  return 1;
+  return 0;
 }
 
 void hex2bytes(uint8_t *hex, uint8_t *bytes) {
@@ -171,23 +172,193 @@ uint8_t *generate30Secret(struct metadata *meta) {
   }
 }
 
-int main(int argc, char *argv[]) {
+void byte_me(char *dest, char *src, size_t src_len) {
+  for (int i = 0; i < src_len; i += 2) {
+    if (src[i] >= '0' && src[i] <= '9') {
+      dest[i / 2] = src[i] - '0';
+    } else {
+      dest[i / 2] = src[i] - 'a' + 10;
+    }
 
-  // TODO: YOU MUST FILL IN THIS PIN.
-  // The pin will be available at implementation
-  char *pin = "PUT YOUR PIN HERE";
+    dest[i / 2] = dest[i / 2] << 4;
 
-  // Load metadata
-  struct metadata meta = {0};
-  FILE *encFile;
-  encFile = fopen("provision_test/audio/test-protect-small-step.drm", "rb");
-  if (encFile == NULL) {
-    fprintf(stderr, "\nError opening file here\n");
+    if (src[i + 1] >= '0' && src[i + 1] <= '9') {
+      dest[i / 2] += src[i + 1] - '0';
+    } else {
+      dest[i / 2] += src[i + 1] - 'a' + 10;
+    }
+  }
+}
+
+void hex_me(char *dest, char *src, size_t src_len) {
+  for (int i = 0; i < src_len; i++) {
+    uint8_t *buff[3] = {0};
+    snprintf(buff, sizeof(buff), "%x", src[i]);
+    strncat(dest, buff, sizeof(buff));
+    crypto_wipe(buff, sizeof(buff));
+  }
+}
+
+uint8_t verifySignature(FILE *encFile, struct metadata *meta) {
+  uint8_t public_key[32] = {0};
+  char pub_str[64] = ROOT_VERIFY;
+
+  byte_me(public_key, pub_str, strlen(pub_str));
+
+  fseek(encFile, sizeof(meta->sharedInfo), SEEK_SET);
+  // number of bytes to sign
+  uint8_t toSign[15000] = {0};
+  fread(toSign, 1, sizeof toSign - 1000, encFile);
+  fseek(encFile, meta->endFullSong, SEEK_SET);
+  fread(&toSign[14000], 1, 1000, encFile);
+  uint8_t signature[64] = {0};
+  fseek(encFile, -64, SEEK_END);
+  fread(signature, 1, sizeof signature, encFile);
+  uint8_t hashtest[64] = {0};
+  crypto_blake2b(hashtest, toSign, sizeof toSign);
+  int yay = crypto_check(signature, public_key, toSign, sizeof toSign);
+
+  if (yay == 0) {
+    printf("Signature Verified!\n");
+	return 0;
+  } else {
+    printf("TAMPER DETECTED\n");
+	return 1;
+  }
+  fclose(encFile);
+}
+
+static int decrypt(const char *target_file, FILE *fp_s, const unsigned char key[32], uint8_t nonce[24], long int endRead) {
+	unsigned char buf_in[CHUNK_SIZE] = {0};
+	unsigned char buf_out[CHUNK_SIZE] = {0};
+	unsigned char mac[16] = {0};
+
+	FILE *fp_t;
+	size_t rlen;
+
+	fp_t = fopen(target_file, "wb");
+
+	do {
+		fread(mac, 1, 16, fp_s);
+		rlen = fread(buf_in, 1, sizeof buf_in, fp_s);
+		// eof = feof(fp_s);
+		if (crypto_unlock(buf_out, key, nonce, mac, buf_in, rlen) != 0) {
+			return 1;
+		}
+		fwrite(buf_out, 1, (size_t)rlen, fp_t);
+
+		// incremet nonce
+		for (int i = 23; i >= 0; i--) {
+		if (i == 0) {
+			if (nonce[i] == 255) {
+			memset(nonce, 0, 24);
+			}
+		} else if (nonce[i] == 255) {
+			nonce[i] = 0;
+			nonce[i - 1] += 1;
+		}
+		}
+		nonce[23]++;
+
+	} while ((endRead - CHUNK_SIZE) > ftell(fp_s)); // read untill we are one buffer away
+	
+	fread(mac, 1, 16, fp_s);
+	rlen = fread(buf_in, 1, endRead - ftell(fp_s), fp_s);
+	if (crypto_unlock(buf_out, key, nonce, mac, buf_in, rlen) != 0) {
+		return 1;
+	}
+	fwrite(buf_out, 1, (size_t)rlen, fp_t);
+	return 0;
+}
+
+// TODO: UNTESTED
+uint8_t decryptFull(FILE *encFile, struct metadata *meta, uint8_t *secret) {
+  uint8_t temphash[64] = {0};
+  crypto_blake2b(temphash, (const uint8_t *)secret, strlen(secret)); // turn long password into useable hash
+
+  uint8_t hash[32] = {0};
+  memcpy(hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
+
+  uint8_t nonce[24] = {0};
+
+  if (decrypt(meta->song_name, encFile, hash, nonce, meta->endFullSong) != 0) {
+    printf("Decryption Failed");
     return 1;
   }
-  readMetadata(encFile, &meta);
+  fclose(encFile);
+}
 
-  generateSecret(pin, &meta);
+// TODO: UNTESTED
+uint8_t decrypt30(FILE *encFile, struct metadata *meta, uint8_t *secret30) {
+  uint8_t temphash[64] = {0};
+  crypto_blake2b(temphash, (const uint8_t *) secret30, strlen(secret30)); // turn long password into useable hash
 
-  generate30Secret(&meta);
+  uint8_t hash[32] = {0};
+  memcpy(
+      hash, temphash,
+      sizeof(
+          hash)); // need to reduce the size of the hash for use in encryption
+  printf("\n\nHASH30: %d %d %d \n\n", hash[0], hash[20], hash[31]);
+  uint8_t nonce[24] = {0};
+  // long int end_of_file = ;
+  fseek(encFile, meta->endFullSong, SEEK_SET);
+  printf("\nMETAINFO: endFullSong %ld - songSize 0%ld\n", meta->endFullSong,
+         meta->songSize);
+
+  if (decrypt("30SECOND_TEST", encFile, hash, nonce, meta->songSize - 64) !=
+      0) {
+    printf("Decryption Failed");
+    return 1;
+  }
+  fclose(encFile);
+}
+
+int play(char *pin, uint8_t uid, uint8_t sample) {
+
+	// Load metadata
+	struct metadata meta = {0};
+	FILE *encFile;
+	encFile = fopen("provision_test/audio/test-protect-small-step.drm", "rb");
+	if (encFile == NULL) {
+		fprintf(stderr, "\nError reading metadata\n");
+		return 1;
+	}
+	readMetadata(encFile, &meta);
+
+	// Verify Signature (quit if it doesn't verify)
+	if (verifySignature(encFile, &meta)) {
+		return 1;
+	}
+
+	// Check if the user owns the song
+	if(uid == meta.owner_id) {
+		// User owns song
+		printf("User owns the song\n");
+        printf("Playing full song\n");
+        generateSecret(pin, &meta);
+    } else {
+		// Check if the user is signed in
+		if(uid != -1) {
+			// User is signed in
+			// Check if song has been shared with user
+			printf("THIS IS NOT IMPLEMENTED YET");
+		} else {
+			// User is not signed in
+			// 30 Second Sample
+			printf("Playing 30 second sample\n");
+			generate30Secret(&meta);
+        }
+	}
+
+	return 0;
+}
+
+int main(int argc, char *argv[]) {
+
+  // These variables will be stored in implementation
+  char *pin = "856464039901919411";
+  uint8_t uid = 1;
+  uint8_t sample = 0;
+
+  play(pin, uid, sample);
 }
