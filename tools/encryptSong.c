@@ -96,6 +96,30 @@ void printStruct(struct metadata s) {
 	printf("song_name: %s\n\n", s.song_name);
 }
 
+void byte_me(char *dest, char *src, size_t src_len)
+{
+  for(int i = 0; i < src_len; i +=2)
+  {
+    if(src[i] >= '0' && src[i] <= '9')
+    {
+      dest[i/2] = src[i] - '0';
+    }
+    else
+    {
+      dest[i/2] = src[i] - 'a' + 10;
+    }
+    dest[i/2] = dest[i/2] << 4;
+    if(src[i+1] >= '0' && src[i+1] <= '9')
+    {
+      dest[i/2] += src[i+1] - '0';
+    }
+    else{
+      dest[i/2] += src[i+1] - 'a' + 10;
+    }
+  }
+}
+
+
 //TODO REMOVE
 void printStructSize(struct metadata s) {
 	printf("\n -- Struct Sizes -- \n");
@@ -199,13 +223,31 @@ int main(int argc, char *argv[]){
 
   /////////ENCRYPT FULLSONG TO FILE /////////
   // printf("\nEncrypting %s with the password: %s\n", argv[7],argv[8]);
+
+
+  uint8_t secretString[160]= {0};
+
+  byte_me(secretString, (const uint8_t *)argv[8],strlen(argv[8]));
+
+  printf("secretString::: ");
+  for (int i = 0; i < (160); i++) {
+    printf("%x", *(secretString + (i * sizeof(uint8_t))));
+  }
+  printf("\n\n");
+
   uint8_t temphash[64] = {0};
-  crypto_blake2b(temphash, (const uint8_t *)argv[8], strlen(argv[8])); //turn long password into useable hash
+  crypto_blake2b(temphash, secretString, 160); //turn long password into useable hash
 
   uint8_t hash[MAX_HASH_SZ] = {0};
   memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
 
   uint8_t nonce [24] = {0};
+
+  printf("temphash::: ");
+  for (int i = 0; i < (64); i++) {
+    printf("%x", *(temphash + (i * sizeof(uint8_t))));
+  }
+  printf("\n\n");
 
   if (encrypt(encFile, argv[7], hash, nonce) != 0)
   {
