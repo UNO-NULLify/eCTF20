@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
--- Date        : Wed Feb  5 20:44:21 2020
--- Host        : ssg1 running 64-bit Manjaro Linux
+-- Date        : Sun Feb 16 17:46:10 2020
+-- Host        : ssg0 running 64-bit Arch Linux
 -- Command     : write_vhdl -force -mode funcsim
---               /ectf_master/pl/src/bd/system/ip/system_proc_sys_reset_0_0/system_proc_sys_reset_0_0_sim_netlist.vhdl
+--               /ectf/pl/src/bd/system/ip/system_proc_sys_reset_0_0/system_proc_sys_reset_0_0_sim_netlist.vhdl
 -- Design      : system_proc_sys_reset_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -1094,7 +1094,7 @@ architecture STRUCTURE of system_proc_sys_reset_0_0 is
   attribute x_interface_info of mb_reset : signal is "xilinx.com:signal:reset:1.0 mb_rst RST";
   attribute x_interface_parameter of mb_reset : signal is "XIL_INTERFACENAME mb_rst, POLARITY ACTIVE_HIGH, TYPE PROCESSOR";
   attribute x_interface_info of slowest_sync_clk : signal is "xilinx.com:signal:clock:1.0 clock CLK";
-  attribute x_interface_parameter of slowest_sync_clk : signal is "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 24565217, PHASE 0.0, CLK_DOMAIN /clk_wiz_25M_clk_out1";
+  attribute x_interface_parameter of slowest_sync_clk : signal is "XIL_INTERFACENAME clock, ASSOCIATED_RESET mb_reset:bus_struct_reset:interconnect_aresetn:peripheral_aresetn:peripheral_reset, FREQ_HZ 24573991, PHASE 0.0, CLK_DOMAIN /clk_wiz_25M_clk_out1";
   attribute x_interface_info of bus_struct_reset : signal is "xilinx.com:signal:reset:1.0 bus_struct_reset RST";
   attribute x_interface_parameter of bus_struct_reset : signal is "XIL_INTERFACENAME bus_struct_reset, POLARITY ACTIVE_HIGH, TYPE INTERCONNECT";
   attribute x_interface_info of interconnect_aresetn : signal is "xilinx.com:signal:reset:1.0 interconnect_low_rst RST";

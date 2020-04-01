@@ -14,11 +14,11 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 702 
+INFO: Helper process launched with PID 59592 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1230.812 ; gain = 86.000 ; free physical = 1080 ; free virtual = 11857
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1228.113 ; gain = 83.000 ; free physical = 2881 ; free virtual = 14301
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_int_axi_gpio_0_0' [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/synth/system_int_axi_gpio_0_0.vhd:84]
+INFO: [Synth 8-638] synthesizing module 'system_int_axi_gpio_0_0' [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/synth/system_int_axi_gpio_0_0.vhd:84]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 9 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
@@ -34,8 +34,8 @@ INFO: [Synth 8-638] synthesizing module 'system_int_axi_gpio_0_0' [/ectf_master/
 	Parameter C_IS_DUAL bound to: 0 - type: integer 
 	Parameter C_DOUT_DEFAULT_2 bound to: 32'b00000000000000000000000000000000 
 	Parameter C_TRI_DEFAULT_2 bound to: 32'b11111111111111111111111111111111 
-INFO: [Synth 8-3491] module 'axi_gpio' declared at '/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1265' bound to instance 'U0' of component 'axi_gpio' [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/synth/system_int_axi_gpio_0_0.vhd:167]
-INFO: [Synth 8-638] synthesizing module 'axi_gpio' [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1358]
+INFO: [Synth 8-3491] module 'axi_gpio' declared at '/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1265' bound to instance 'U0' of component 'axi_gpio' [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/synth/system_int_axi_gpio_0_0.vhd:167]
+INFO: [Synth 8-638] synthesizing module 'axi_gpio' [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1358]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 9 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
@@ -51,9 +51,9 @@ INFO: [Synth 8-638] synthesizing module 'axi_gpio' [/ectf_master/pl/src/bd/syste
 	Parameter C_IS_DUAL bound to: 0 - type: integer 
 	Parameter C_DOUT_DEFAULT_2 bound to: 0 - type: integer 
 	Parameter C_TRI_DEFAULT_2 bound to: -1 - type: integer 
-INFO: [Synth 8-5534] Detected attribute (* max_fanout = "10000" *) [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1295]
-INFO: [Synth 8-5534] Detected attribute (* max_fanout = "10000" *) [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1296]
-INFO: [Synth 8-638] synthesizing module 'axi_lite_ipif' [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
+INFO: [Synth 8-5534] Detected attribute (* max_fanout = "10000" *) [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1295]
+INFO: [Synth 8-5534] Detected attribute (* max_fanout = "10000" *) [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1296]
+INFO: [Synth 8-638] synthesizing module 'axi_lite_ipif' [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 9 - type: integer 
 	Parameter C_S_AXI_MIN_SIZE bound to: 32'b00000000000000000000000111111111 
@@ -62,7 +62,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_lite_ipif' [/ectf_master/pl/src/bd/
 	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 128'b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111 
 	Parameter C_ARD_NUM_CE_ARRAY bound to: 32'b00000000000000000000000000000100 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'slave_attachment' [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
+INFO: [Synth 8-638] synthesizing module 'slave_attachment' [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
 	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 128'b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111 
 	Parameter C_ARD_NUM_CE_ARRAY bound to: 32'b00000000000000000000000000000100 
 	Parameter C_IPIF_ABUS_WIDTH bound to: 9 - type: integer 
@@ -71,41 +71,41 @@ INFO: [Synth 8-638] synthesizing module 'slave_attachment' [/ectf_master/pl/src/
 	Parameter C_USE_WSTRB bound to: 0 - type: integer 
 	Parameter C_DPHASE_TIMEOUT bound to: 8 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'address_decoder' [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
+INFO: [Synth 8-638] synthesizing module 'address_decoder' [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
 	Parameter C_BUS_AWIDTH bound to: 9 - type: integer 
 	Parameter C_S_AXI_MIN_SIZE bound to: 511 - type: integer 
 	Parameter C_ARD_ADDR_RANGE_ARRAY bound to: 128'b00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001111 
 	Parameter C_ARD_NUM_CE_ARRAY bound to: 32'b00000000000000000000000000000100 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-638] synthesizing module 'pselect_f' [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-638] synthesizing module 'pselect_f' [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
 	Parameter C_AB bound to: 2 - type: integer 
 	Parameter C_AW bound to: 2 - type: integer 
 	Parameter C_BAR bound to: 2'b00 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pselect_f' (1#1) [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
-INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'pselect_f' (1#1) [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized0' [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
 	Parameter C_AB bound to: 2 - type: integer 
 	Parameter C_AW bound to: 2 - type: integer 
 	Parameter C_BAR bound to: 2'b01 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized0' (1#1) [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
-INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized1' [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized0' (1#1) [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized1' [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
 	Parameter C_AB bound to: 2 - type: integer 
 	Parameter C_AW bound to: 2 - type: integer 
 	Parameter C_BAR bound to: 2'b10 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized1' (1#1) [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
-INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized2' [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized1' (1#1) [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-638] synthesizing module 'pselect_f__parameterized2' [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
 	Parameter C_AB bound to: 2 - type: integer 
 	Parameter C_AW bound to: 2 - type: integer 
 	Parameter C_BAR bound to: 2'b11 
 	Parameter C_FAMILY bound to: nofamily - type: string 
-INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized2' (1#1) [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
-INFO: [Synth 8-256] done synthesizing module 'address_decoder' (2#1) [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
-INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2550]
-INFO: [Synth 8-256] done synthesizing module 'slave_attachment' (3#1) [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
-INFO: [Synth 8-256] done synthesizing module 'axi_lite_ipif' (4#1) [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
-INFO: [Synth 8-638] synthesizing module 'GPIO_Core' [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:178]
+INFO: [Synth 8-256] done synthesizing module 'pselect_f__parameterized2' (1#1) [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1534]
+INFO: [Synth 8-256] done synthesizing module 'address_decoder' (2#1) [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:1775]
+INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2550]
+INFO: [Synth 8-256] done synthesizing module 'slave_attachment' (3#1) [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2341]
+INFO: [Synth 8-256] done synthesizing module 'axi_lite_ipif' (4#1) [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2948]
+INFO: [Synth 8-638] synthesizing module 'GPIO_Core' [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:178]
 	Parameter C_DW bound to: 32 - type: integer 
 	Parameter C_AW bound to: 9 - type: integer 
 	Parameter C_GPIO_WIDTH bound to: 1 - type: integer 
@@ -122,8 +122,8 @@ INFO: [Synth 8-638] synthesizing module 'GPIO_Core' [/ectf_master/pl/src/bd/syst
 	Parameter C_DOUT_DEFAULT_2 bound to: 0 - type: integer 
 	Parameter C_TRI_DEFAULT_2 bound to: -1 - type: integer 
 	Parameter C_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:443]
-INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
+INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:443]
+INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/ectf/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
 	Parameter C_CDC_TYPE bound to: 1 - type: integer 
 	Parameter C_RESET_STATE bound to: 0 - type: integer 
 	Parameter C_SINGLE_BIT bound to: 0 - type: integer 
@@ -131,23 +131,23 @@ INFO: [Synth 8-638] synthesizing module 'cdc_sync' [/ectf_master/pl/src/bd/syste
 	Parameter C_VECTOR_WIDTH bound to: 1 - type: integer 
 	Parameter C_MTBF_STAGES bound to: 4 - type: integer 
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_IN_cdc_to' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:736]
+INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_IN_cdc_to' to cell 'FDR' [/ectf/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:736]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d2' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:772]
+INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d2' to cell 'FDR' [/ectf/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:772]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d3' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:788]
+INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d3' to cell 'FDR' [/ectf/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:788]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d4' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:804]
+INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d4' to cell 'FDR' [/ectf/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:804]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d5' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:821]
+INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d5' to cell 'FDR' [/ectf/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:821]
 	Parameter INIT bound to: 1'b0 
-INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d6' to cell 'FDR' [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:837]
-INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (5#1) [/ectf_master/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
-WARNING: [Synth 8-6014] Unused sequential element Not_Dual.ALLOUT_ND.READ_REG_GEN[0].GPIO_DBus_i_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:319]
-WARNING: [Synth 8-6014] Unused sequential element Not_Dual.gpio_Data_In_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:486]
-INFO: [Synth 8-256] done synthesizing module 'GPIO_Core' (6#1) [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:178]
-INFO: [Synth 8-256] done synthesizing module 'axi_gpio' (7#1) [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1358]
-INFO: [Synth 8-256] done synthesizing module 'system_int_axi_gpio_0_0' (8#1) [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/synth/system_int_axi_gpio_0_0.vhd:84]
+INFO: [Synth 8-113] binding component instance 'CROSS2_PLEVEL_IN2SCNDRY_s_level_out_bus_d6' to cell 'FDR' [/ectf/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:837]
+INFO: [Synth 8-256] done synthesizing module 'cdc_sync' (5#1) [/ectf/pl/src/bd/system/ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd:106]
+WARNING: [Synth 8-6014] Unused sequential element Not_Dual.ALLOUT_ND.READ_REG_GEN[0].GPIO_DBus_i_reg was removed.  [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:319]
+WARNING: [Synth 8-6014] Unused sequential element Not_Dual.gpio_Data_In_reg was removed.  [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:486]
+INFO: [Synth 8-256] done synthesizing module 'GPIO_Core' (6#1) [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:178]
+INFO: [Synth 8-256] done synthesizing module 'axi_gpio' (7#1) [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1358]
+INFO: [Synth 8-256] done synthesizing module 'system_int_axi_gpio_0_0' (8#1) [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/synth/system_int_axi_gpio_0_0.vhd:84]
 WARNING: [Synth 8-3331] design cdc_sync has unconnected port prmry_aclk
 WARNING: [Synth 8-3331] design cdc_sync has unconnected port prmry_resetn
 WARNING: [Synth 8-3331] design cdc_sync has unconnected port prmry_in
@@ -207,7 +207,7 @@ WARNING: [Synth 8-3331] design slave_attachment has unconnected port S_AXI_WSTRB
 WARNING: [Synth 8-3331] design slave_attachment has unconnected port S_AXI_WSTRB[1]
 WARNING: [Synth 8-3331] design slave_attachment has unconnected port S_AXI_WSTRB[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1274.344 ; gain = 129.531 ; free physical = 1034 ; free virtual = 11844
+Finished RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1272.645 ; gain = 127.531 ; free physical = 2847 ; free virtual = 14267
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -217,7 +217,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1274.344 ; gain = 129.531 ; free physical = 1036 ; free virtual = 11845
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1272.645 ; gain = 127.531 ; free physical = 2841 ; free virtual = 14261
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 6 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -226,45 +226,45 @@ INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0_ooc.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0_ooc.xdc] for cell 'U0'
-Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0_board.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0_board.xdc] for cell 'U0'
-Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0.xdc] for cell 'U0'
-Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0.xdc] for cell 'U0'
-Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0_ooc.xdc] for cell 'U0'
+Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0_ooc.xdc] for cell 'U0'
+Parsing XDC File [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0_board.xdc] for cell 'U0'
+Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0_board.xdc] for cell 'U0'
+Parsing XDC File [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0.xdc] for cell 'U0'
+Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_int_axi_gpio_0_0/system_int_axi_gpio_0_0.xdc] for cell 'U0'
+Parsing XDC File [/ectf/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 6 instances were transformed.
   FDR => FDRE: 6 instances
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1594.953 ; gain = 0.000 ; free physical = 1158 ; free virtual = 11954
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1625.270 ; gain = 0.000 ; free physical = 2463 ; free virtual = 13887
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:42 ; elapsed = 00:01:09 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 1070 ; free virtual = 11877
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2498 ; free virtual = 13924
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:42 ; elapsed = 00:01:09 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 1069 ; free virtual = 11877
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2498 ; free virtual = 13924
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf_master/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for U0. (constraint file  /ectf/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:42 ; elapsed = 00:01:09 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 1072 ; free virtual = 11879
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2499 ; free virtual = 13925
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "s_axi_rresp_i" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "s_axi_rresp_i" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "s_axi_bresp_i" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "s_axi_bresp_i" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
-WARNING: [Synth 8-6014] Unused sequential element INCLUDE_DPHASE_TIMER.dpto_cnt_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2674]
+WARNING: [Synth 8-6014] Unused sequential element INCLUDE_DPHASE_TIMER.dpto_cnt_reg was removed.  [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2674]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:42 ; elapsed = 00:01:10 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 1069 ; free virtual = 11877
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:24 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2488 ; free virtual = 13914
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -365,9 +365,9 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-4471] merging register 'bus2ip_reset_reg' into 'AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_reg' [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1684]
-WARNING: [Synth 8-6014] Unused sequential element bus2ip_reset_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1684]
-WARNING: [Synth 8-6014] Unused sequential element AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/INCLUDE_DPHASE_TIMER.dpto_cnt_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2674]
+INFO: [Synth 8-4471] merging register 'bus2ip_reset_reg' into 'AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst_reg' [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1684]
+WARNING: [Synth 8-6014] Unused sequential element bus2ip_reset_reg was removed.  [/ectf/pl/src/bd/system/ipshared/c450/hdl/axi_gpio_v2_0_vh_rfs.vhd:1684]
+WARNING: [Synth 8-6014] Unused sequential element AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/INCLUDE_DPHASE_TIMER.dpto_cnt_reg was removed.  [/ectf/pl/src/bd/system/ipshared/cced/hdl/axi_lite_ipif_v3_0_vh_rfs.vhd:2674]
 WARNING: [Synth 8-3331] design axi_gpio has unconnected port s_axi_wstrb[3]
 WARNING: [Synth 8-3331] design axi_gpio has unconnected port s_axi_wstrb[2]
 WARNING: [Synth 8-3331] design axi_gpio has unconnected port s_axi_wstrb[1]
@@ -481,7 +481,7 @@ INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/bus2
 INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[1]) is unused and will be removed from module axi_gpio.
 INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/bus2ip_addr_i_reg[0]) is unused and will be removed from module axi_gpio.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:01:11 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 1058 ; free virtual = 11866
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:24 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2471 ; free virtual = 13896
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -493,13 +493,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:55 ; elapsed = 00:01:28 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 891 ; free virtual = 11696
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2339 ; free virtual = 13765
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:55 ; elapsed = 00:01:28 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 890 ; free virtual = 11695
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2337 ; free virtual = 13763
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -513,7 +513,7 @@ Start Technology Mapping
 INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_bresp_i_reg[0]) is unused and will be removed from module axi_gpio.
 INFO: [Synth 8-3332] Sequential element (AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i_reg[0]) is unused and will be removed from module axi_gpio.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:55 ; elapsed = 00:01:28 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 889 ; free virtual = 11694
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2337 ; free virtual = 13763
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -537,7 +537,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:56 ; elapsed = 00:01:29 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 889 ; free virtual = 11694
+Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2379 ; free virtual = 13789
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -550,7 +550,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:56 ; elapsed = 00:01:29 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 889 ; free virtual = 11694
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2379 ; free virtual = 13789
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -562,25 +562,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:56 ; elapsed = 00:01:29 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 889 ; free virtual = 11695
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2380 ; free virtual = 13789
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:56 ; elapsed = 00:01:29 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 889 ; free virtual = 11695
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2380 ; free virtual = 13789
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:56 ; elapsed = 00:01:29 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 889 ; free virtual = 11695
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2380 ; free virtual = 13789
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:56 ; elapsed = 00:01:29 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 889 ; free virtual = 11695
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2380 ; free virtual = 13789
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -620,11 +620,11 @@ Report Instance Areas:
 |8     |    gpio_core_1                                                           |GPIO_Core                 |    11|
 +------+--------------------------------------------------------------------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:56 ; elapsed = 00:01:29 . Memory (MB): peak = 1594.953 ; gain = 450.141 ; free physical = 889 ; free virtual = 11695
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2380 ; free virtual = 13789
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 39 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:39 ; elapsed = 00:00:47 . Memory (MB): peak = 1594.953 ; gain = 129.531 ; free physical = 974 ; free virtual = 11779
-Synthesis Optimization Complete : Time (s): cpu = 00:00:57 ; elapsed = 00:01:29 . Memory (MB): peak = 1594.961 ; gain = 450.141 ; free physical = 974 ; free virtual = 11779
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:18 . Memory (MB): peak = 1625.270 ; gain = 127.531 ; free physical = 2437 ; free virtual = 13847
+Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 480.156 ; free physical = 2437 ; free virtual = 13847
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -634,5 +634,5 @@ No Unisim elements were transformed.
 INFO: [Common 17-83] Releasing license: Synthesis
 127 Infos, 99 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:59 ; elapsed = 00:01:30 . Memory (MB): peak = 1594.961 ; gain = 463.520 ; free physical = 983 ; free virtual = 11789
-INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/system_int_axi_gpio_0_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:31 . Memory (MB): peak = 1625.270 ; gain = 493.527 ; free physical = 2421 ; free virtual = 13831
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_int_axi_gpio_0_0_synth_1/system_int_axi_gpio_0_0.dcp' has been generated.

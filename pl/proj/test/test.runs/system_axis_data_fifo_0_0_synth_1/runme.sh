@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1'
+HD_PWD='/ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -36,3 +36,4 @@ EAStep()
      fi
 }
 
+EAStep vivado -log system_axis_data_fifo_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_axis_data_fifo_0_0.tcl

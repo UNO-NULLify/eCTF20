@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/ectf_master/pl/proj/test/test.runs/system_processing_system7_0_0_synth_1'
+HD_PWD='/ectf/pl/proj/test/test.runs/system_processing_system7_0_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

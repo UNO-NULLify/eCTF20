@@ -14,25 +14,25 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 508 
+INFO: Helper process launched with PID 61043 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1225.820 ; gain = 81.000 ; free physical = 1419 ; free virtual = 12194
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1224.109 ; gain = 79.000 ; free physical = 2568 ; free virtual = 14020
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_rgb_PWM_0_0' [/ectf_master/pl/src/bd/system/ip/system_rgb_PWM_0_0/synth/system_rgb_PWM_0_0.sv:56]
-INFO: [Synth 8-638] synthesizing module 'PWM_v2_0' [/ectf_master/pl/src/bd/system/ipshared/a485/hdl/PWM_v2_0.sv:4]
+INFO: [Synth 8-638] synthesizing module 'system_rgb_PWM_0_0' [/ectf/pl/src/bd/system/ip/system_rgb_PWM_0_0/synth/system_rgb_PWM_0_0.sv:56]
+INFO: [Synth 8-638] synthesizing module 'PWM_v2_0' [/ectf/pl/src/bd/system/ipshared/a485/hdl/PWM_v2_0.sv:4]
 	Parameter NUM_PWM bound to: 6 - type: integer 
 	Parameter POLARITY bound to: 1'b1 
 	Parameter C_PWM_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_PWM_AXI_ADDR_WIDTH bound to: 7 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'PWM_AXI' [/ectf_master/pl/src/bd/system/ipshared/a485/hdl/PWM_AXI.sv:4]
+INFO: [Synth 8-638] synthesizing module 'PWM_AXI' [/ectf/pl/src/bd/system/ipshared/a485/hdl/PWM_AXI.sv:4]
 	Parameter NUM_PWM bound to: 6 - type: integer 
 	Parameter C_S_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_S_AXI_ADDR_WIDTH bound to: 7 - type: integer 
 	Parameter ADDR_LSB bound to: 2 - type: integer 
 	Parameter OPT_MEM_ADDR_BITS bound to: 4 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'PWM_AXI' (1#1) [/ectf_master/pl/src/bd/system/ipshared/a485/hdl/PWM_AXI.sv:4]
-INFO: [Synth 8-256] done synthesizing module 'PWM_v2_0' (2#1) [/ectf_master/pl/src/bd/system/ipshared/a485/hdl/PWM_v2_0.sv:4]
-INFO: [Synth 8-256] done synthesizing module 'system_rgb_PWM_0_0' (3#1) [/ectf_master/pl/src/bd/system/ip/system_rgb_PWM_0_0/synth/system_rgb_PWM_0_0.sv:56]
+INFO: [Synth 8-256] done synthesizing module 'PWM_AXI' (1#1) [/ectf/pl/src/bd/system/ipshared/a485/hdl/PWM_AXI.sv:4]
+INFO: [Synth 8-256] done synthesizing module 'PWM_v2_0' (2#1) [/ectf/pl/src/bd/system/ipshared/a485/hdl/PWM_v2_0.sv:4]
+INFO: [Synth 8-256] done synthesizing module 'system_rgb_PWM_0_0' (3#1) [/ectf/pl/src/bd/system/ip/system_rgb_PWM_0_0/synth/system_rgb_PWM_0_0.sv:56]
 WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_AWPROT[2]
 WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_AWPROT[1]
 WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_AWPROT[0]
@@ -40,7 +40,7 @@ WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_ARPROT[2]
 WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_ARPROT[1]
 WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_ARPROT[0]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1267.352 ; gain = 122.531 ; free physical = 1432 ; free virtual = 12208
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1265.641 ; gain = 120.531 ; free physical = 2568 ; free virtual = 14020
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -50,7 +50,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1267.352 ; gain = 122.531 ; free physical = 1430 ; free virtual = 12206
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1265.641 ; gain = 120.531 ; free physical = 2566 ; free virtual = 14018
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z007sclg400-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -62,27 +62,27 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1582.977 ; gain = 0.000 ; free physical = 1137 ; free virtual = 11913
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00 . Memory (MB): peak = 1613.258 ; gain = 0.000 ; free physical = 2701 ; free virtual = 14154
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1582.977 ; gain = 438.156 ; free physical = 1114 ; free virtual = 11889
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2641 ; free virtual = 14094
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1582.977 ; gain = 438.156 ; free physical = 1111 ; free virtual = 11886
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:23 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2641 ; free virtual = 14094
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1582.977 ; gain = 438.156 ; free physical = 1113 ; free virtual = 11888
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2642 ; free virtual = 14096
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/a485/hdl/PWM_v2_0.sv:101]
-WARNING: [Synth 8-327] inferring latch for variable 'reg_data_out_reg' [/ectf_master/pl/src/bd/system/ipshared/a485/hdl/PWM_AXI.sv:388]
+WARNING: [Synth 8-6014] Unused sequential element count_reg was removed.  [/ectf/pl/src/bd/system/ipshared/a485/hdl/PWM_v2_0.sv:101]
+WARNING: [Synth 8-327] inferring latch for variable 'reg_data_out_reg' [/ectf/pl/src/bd/system/ipshared/a485/hdl/PWM_AXI.sv:388]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:38 ; elapsed = 00:01:00 . Memory (MB): peak = 1582.977 ; gain = 438.156 ; free physical = 1085 ; free virtual = 11861
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:24 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2632 ; free virtual = 14086
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -143,7 +143,7 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-6014] Unused sequential element inst/count_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/a485/hdl/PWM_v2_0.sv:101]
+WARNING: [Synth 8-6014] Unused sequential element inst/count_reg was removed.  [/ectf/pl/src/bd/system/ipshared/a485/hdl/PWM_v2_0.sv:101]
 WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_AWPROT[2]
 WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_AWPROT[1]
 WARNING: [Synth 8-3331] design PWM_AXI has unconnected port S_AXI_AWPROT[0]
@@ -193,7 +193,7 @@ INFO: [Synth 8-3332] Sequential element (inst/PWM_AXI_inst/axi_rresp_reg[1]) is 
 INFO: [Synth 8-3332] Sequential element (inst/PWM_AXI_inst/axi_araddr_reg[1]) is unused and will be removed from module system_rgb_PWM_0_0.
 INFO: [Synth 8-3332] Sequential element (inst/PWM_AXI_inst/axi_araddr_reg[0]) is unused and will be removed from module system_rgb_PWM_0_0.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:01:03 . Memory (MB): peak = 1582.977 ; gain = 438.156 ; free physical = 980 ; free virtual = 11788
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:24 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2614 ; free virtual = 14067
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -205,13 +205,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:53 ; elapsed = 00:01:22 . Memory (MB): peak = 1582.977 ; gain = 438.156 ; free physical = 596 ; free virtual = 11397
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:30 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2348 ; free virtual = 13802
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:01:23 . Memory (MB): peak = 1582.977 ; gain = 438.156 ; free physical = 592 ; free virtual = 11394
+Finished Timing Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:30 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2348 ; free virtual = 13801
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -223,7 +223,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:54 ; elapsed = 00:01:23 . Memory (MB): peak = 1590.984 ; gain = 446.164 ; free physical = 588 ; free virtual = 11390
+Finished Technology Mapping : Time (s): cpu = 00:00:22 ; elapsed = 00:00:30 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2345 ; free virtual = 13798
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -247,7 +247,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:55 ; elapsed = 00:01:25 . Memory (MB): peak = 1590.984 ; gain = 446.164 ; free physical = 619 ; free virtual = 11428
+Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2346 ; free virtual = 13800
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -260,7 +260,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:55 ; elapsed = 00:01:25 . Memory (MB): peak = 1590.984 ; gain = 446.164 ; free physical = 620 ; free virtual = 11430
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2346 ; free virtual = 13800
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -272,25 +272,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:55 ; elapsed = 00:01:25 . Memory (MB): peak = 1590.984 ; gain = 446.164 ; free physical = 619 ; free virtual = 11429
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2346 ; free virtual = 13800
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:55 ; elapsed = 00:01:25 . Memory (MB): peak = 1590.984 ; gain = 446.164 ; free physical = 619 ; free virtual = 11429
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2346 ; free virtual = 13800
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:01:25 . Memory (MB): peak = 1590.984 ; gain = 446.164 ; free physical = 619 ; free virtual = 11429
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2346 ; free virtual = 13799
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:55 ; elapsed = 00:01:25 . Memory (MB): peak = 1590.984 ; gain = 446.164 ; free physical = 619 ; free virtual = 11430
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2346 ; free virtual = 13799
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -324,11 +324,11 @@ Report Instance Areas:
 |3     |    PWM_AXI_inst |PWM_AXI  |   513|
 +------+-----------------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:55 ; elapsed = 00:01:25 . Memory (MB): peak = 1590.984 ; gain = 446.164 ; free physical = 619 ; free virtual = 11430
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2346 ; free virtual = 13799
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 9 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:40 ; elapsed = 00:00:49 . Memory (MB): peak = 1590.984 ; gain = 130.539 ; free physical = 676 ; free virtual = 11486
-Synthesis Optimization Complete : Time (s): cpu = 00:00:55 ; elapsed = 00:01:25 . Memory (MB): peak = 1590.992 ; gain = 446.164 ; free physical = 685 ; free virtual = 11495
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1613.258 ; gain = 120.531 ; free physical = 2403 ; free virtual = 13857
+Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1613.258 ; gain = 468.148 ; free physical = 2403 ; free virtual = 13857
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 40 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -340,5 +340,5 @@ No Unisim elements were transformed.
 INFO: [Common 17-83] Releasing license: Synthesis
 59 Infos, 15 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:58 ; elapsed = 00:01:28 . Memory (MB): peak = 1590.992 ; gain = 459.543 ; free physical = 679 ; free virtual = 11483
-INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_rgb_PWM_0_0_synth_1/system_rgb_PWM_0_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:32 . Memory (MB): peak = 1621.266 ; gain = 489.527 ; free physical = 2394 ; free virtual = 13847
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_rgb_PWM_0_0_synth_1/system_rgb_PWM_0_0.dcp' has been generated.

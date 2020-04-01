@@ -56,14 +56,12 @@
 //  Output     Output      Phase    Duty Cycle   Pk-to-Pk     Phase
 //   Clock     Freq (MHz)  (degrees)    (%)     Jitter (ps)  Error (ps)
 //----------------------------------------------------------------------------
-// clk_codec____24.565______0.000______50.0______273.008____141.855
-// _clk_bus___100.893______0.000______50.0______199.515____141.855
-// __clk_mb___141.250______0.000______50.0______184.824____141.855
+// clk_out1____24.574______0.000______50.0______448.322____335.207
 //
 //----------------------------------------------------------------------------
 // Input Clock   Freq (MHz)    Input Jitter (UI)
 //----------------------------------------------------------------------------
-// __primary__________50.000____________0.010
+// __primary_________100.000____________0.010
 
 `timescale 1ps/1ps
 
@@ -71,9 +69,7 @@ module system_clk_wiz_25M_0_clk_wiz
 
  (// Clock in ports
   // Clock out ports
-  output        clk_codec,
-  output        clk_bus,
-  output        clk_mb,
+  output        clk_out1,
   // Status and control signals
   input         reset,
   output        locked,
@@ -97,9 +93,9 @@ wire clk_in2_system_clk_wiz_25M_0;
   //    * Unused inputs are tied off
   //    * Unused outputs are labeled unused
 
-  wire        clk_codec_system_clk_wiz_25M_0;
-  wire        clk_bus_system_clk_wiz_25M_0;
-  wire        clk_mb_system_clk_wiz_25M_0;
+  wire        clk_out1_system_clk_wiz_25M_0;
+  wire        clk_out2_system_clk_wiz_25M_0;
+  wire        clk_out3_system_clk_wiz_25M_0;
   wire        clk_out4_system_clk_wiz_25M_0;
   wire        clk_out5_system_clk_wiz_25M_0;
   wire        clk_out6_system_clk_wiz_25M_0;
@@ -113,7 +109,9 @@ wire clk_in2_system_clk_wiz_25M_0;
   wire        clkfbout_buf_system_clk_wiz_25M_0;
   wire        clkfboutb_unused;
     wire clkout0b_unused;
+   wire clkout1_unused;
    wire clkout1b_unused;
+   wire clkout2_unused;
    wire clkout2b_unused;
    wire clkout3_unused;
    wire clkout3b_unused;
@@ -129,33 +127,25 @@ wire clk_in2_system_clk_wiz_25M_0;
     .CLKOUT4_CASCADE      ("FALSE"),
     .COMPENSATION         ("ZHOLD"),
     .STARTUP_WAIT         ("FALSE"),
-    .DIVCLK_DIVIDE        (1),
-    .CLKFBOUT_MULT_F      (14.125),
+    .DIVCLK_DIVIDE        (5),
+    .CLKFBOUT_MULT_F      (34.250),
     .CLKFBOUT_PHASE       (0.000),
     .CLKFBOUT_USE_FINE_PS ("FALSE"),
-    .CLKOUT0_DIVIDE_F     (28.750),
+    .CLKOUT0_DIVIDE_F     (27.875),
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKOUT1_DIVIDE       (7),
-    .CLKOUT1_PHASE        (0.000),
-    .CLKOUT1_DUTY_CYCLE   (0.500),
-    .CLKOUT1_USE_FINE_PS  ("FALSE"),
-    .CLKOUT2_DIVIDE       (5),
-    .CLKOUT2_PHASE        (0.000),
-    .CLKOUT2_DUTY_CYCLE   (0.500),
-    .CLKOUT2_USE_FINE_PS  ("FALSE"),
-    .CLKIN1_PERIOD        (20.000))
+    .CLKIN1_PERIOD        (10.000))
   mmcm_adv_inst
     // Output clocks
    (
     .CLKFBOUT            (clkfbout_system_clk_wiz_25M_0),
     .CLKFBOUTB           (clkfboutb_unused),
-    .CLKOUT0             (clk_codec_system_clk_wiz_25M_0),
+    .CLKOUT0             (clk_out1_system_clk_wiz_25M_0),
     .CLKOUT0B            (clkout0b_unused),
-    .CLKOUT1             (clk_bus_system_clk_wiz_25M_0),
+    .CLKOUT1             (clkout1_unused),
     .CLKOUT1B            (clkout1b_unused),
-    .CLKOUT2             (clk_mb_system_clk_wiz_25M_0),
+    .CLKOUT2             (clkout2_unused),
     .CLKOUT2B            (clkout2b_unused),
     .CLKOUT3             (clkout3_unused),
     .CLKOUT3B            (clkout3b_unused),
@@ -205,17 +195,9 @@ wire clk_in2_system_clk_wiz_25M_0;
 
 
   BUFG clkout1_buf
-   (.O   (clk_codec),
-    .I   (clk_codec_system_clk_wiz_25M_0));
+   (.O   (clk_out1),
+    .I   (clk_out1_system_clk_wiz_25M_0));
 
-
-  BUFG clkout2_buf
-   (.O   (clk_bus),
-    .I   (clk_bus_system_clk_wiz_25M_0));
-
-  BUFG clkout3_buf
-   (.O   (clk_mb),
-    .I   (clk_mb_system_clk_wiz_25M_0));
 
 
 

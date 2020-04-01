@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
 -- Date        : Sat Feb 22 17:51:11 2020
 -- Host        : ssg0 running 64-bit Arch Linux
--- Command     : write_vhdl -force -mode funcsim
---               /ectf/pl/proj/test/bd/system/ip/system_ins_lmb_bram_if_cntlr_0_0/system_ins_lmb_bram_if_cntlr_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_ins_lmb_bram_if_cntlr_0_0 -prefix
+--               system_ins_lmb_bram_if_cntlr_0_0_ system_ins_lmb_bram_if_cntlr_0_0_sim_netlist.vhdl
 -- Design      : system_ins_lmb_bram_if_cntlr_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -142,8 +142,6 @@ entity system_ins_lmb_bram_if_cntlr_0_0_lmb_bram_if_cntlr is
   attribute C_UE_FAILING_REGISTERS of system_ins_lmb_bram_if_cntlr_0_0_lmb_bram_if_cntlr : entity is 0;
   attribute C_WRITE_ACCESS : integer;
   attribute C_WRITE_ACCESS of system_ins_lmb_bram_if_cntlr_0_0_lmb_bram_if_cntlr : entity is 2;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_ins_lmb_bram_if_cntlr_0_0_lmb_bram_if_cntlr : entity is "lmb_bram_if_cntlr";
 end system_ins_lmb_bram_if_cntlr_0_0_lmb_bram_if_cntlr;
 
 architecture STRUCTURE of system_ins_lmb_bram_if_cntlr_0_0_lmb_bram_if_cntlr is

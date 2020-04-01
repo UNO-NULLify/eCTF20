@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log system_auto_pc_4.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_auto_pc_4.tcl
+    with args -log system_auto_pc_1.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_auto_pc_1.tcl
 
 
 ****** Vivado v2017.4 (64-bit)
@@ -8,18 +8,18 @@
   **** IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
     ** Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 
-source system_auto_pc_4.tcl -notrace
-Command: synth_design -top system_auto_pc_4 -part xc7z007sclg400-1 -mode out_of_context
+source system_auto_pc_1.tcl -notrace
+Command: synth_design -top system_auto_pc_1 -part xc7z007sclg400-1 -mode out_of_context
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 4361 
+INFO: Helper process launched with PID 63313 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:20 . Memory (MB): peak = 1234.816 ; gain = 90.000 ; free physical = 1944 ; free virtual = 12649
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:12 . Memory (MB): peak = 1231.117 ; gain = 86.000 ; free physical = 170 ; free virtual = 11115
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_auto_pc_4' [/ectf_master/pl/src/bd/system/ip/system_auto_pc_4/synth/system_auto_pc_4.v:58]
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_axi_protocol_converter' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4811]
+INFO: [Synth 8-638] synthesizing module 'system_auto_pc_1' [/ectf/pl/src/bd/system/ip/system_auto_pc_1/synth/system_auto_pc_1.v:58]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_axi_protocol_converter' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4811]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_M_AXI_PROTOCOL bound to: 2 - type: integer 
 	Parameter C_S_AXI_PROTOCOL bound to: 0 - type: integer 
@@ -45,39 +45,39 @@ INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_axi_prot
 	Parameter P_SLVERR bound to: 2'b10 
 	Parameter P_PROTECTION bound to: 1 - type: integer 
 	Parameter P_CONVERSION bound to: 2 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4229]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4229]
 	Parameter C_S_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 3 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_AXI_SUPPORTS_WRITE bound to: 1 - type: integer 
 	Parameter C_AXI_SUPPORTS_READ bound to: 1 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_aw_channel' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3974]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_aw_channel' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3974]
 	Parameter C_ID_WIDTH bound to: 3 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_cmd_translator' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3467]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_cmd_translator' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3467]
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter P_AXBURST_FIXED bound to: 2'b00 
 	Parameter P_AXBURST_INCR bound to: 2'b01 
 	Parameter P_AXBURST_WRAP bound to: 2'b10 
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_incr_cmd' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3093]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_incr_cmd' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3093]
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter L_AXI_ADDR_LOW_BIT bound to: 12 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_incr_cmd' (1#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3093]
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_wrap_cmd' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2903]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_incr_cmd' (1#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3093]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_wrap_cmd' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2903]
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter L_AXI_ADDR_LOW_BIT bound to: 12 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_wrap_cmd' (2#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2903]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_cmd_translator' (3#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3467]
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_wr_cmd_fsm' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3225]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_wrap_cmd' (2#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2903]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_cmd_translator' (3#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3467]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_wr_cmd_fsm' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3225]
 	Parameter SM_IDLE bound to: 2'b00 
 	Parameter SM_CMD_EN bound to: 2'b01 
 	Parameter SM_CMD_ACCEPTED bound to: 2'b10 
 	Parameter SM_DONE_WAIT bound to: 2'b11 
-INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3279]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_wr_cmd_fsm' (4#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3225]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_aw_channel' (5#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3974]
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_b_channel' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3609]
+INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3279]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_wr_cmd_fsm' (4#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3225]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_aw_channel' (5#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3974]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_b_channel' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3609]
 	Parameter C_ID_WIDTH bound to: 3 - type: integer 
 	Parameter LP_RESP_OKAY bound to: 2'b00 
 	Parameter LP_RESP_EXOKAY bound to: 2'b01 
@@ -89,7 +89,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_b_ch
 	Parameter P_RWIDTH bound to: 2 - type: integer 
 	Parameter P_RDEPTH bound to: 4 - type: integer 
 	Parameter P_RAWIDTH bound to: 2 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
 	Parameter C_WIDTH bound to: 11 - type: integer 
 	Parameter C_AWIDTH bound to: 2 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
@@ -97,8 +97,8 @@ INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simp
 	Parameter C_EMPTY_PRE bound to: 2'b00 
 	Parameter C_FULL bound to: 2'b10 
 	Parameter C_FULL_PRE bound to: 2'b01 
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo' (6#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo' (6#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized0' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
 	Parameter C_WIDTH bound to: 2 - type: integer 
 	Parameter C_AWIDTH bound to: 2 - type: integer 
 	Parameter C_DEPTH bound to: 4 - type: integer 
@@ -106,22 +106,22 @@ INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simp
 	Parameter C_EMPTY_PRE bound to: 2'b00 
 	Parameter C_FULL bound to: 2'b10 
 	Parameter C_FULL_PRE bound to: 2'b01 
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized0' (6#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_b_channel' (7#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3609]
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_ar_channel' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4085]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized0' (6#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_b_channel' (7#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3609]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_ar_channel' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4085]
 	Parameter C_ID_WIDTH bound to: 3 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_rd_cmd_fsm' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3336]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_rd_cmd_fsm' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3336]
 	Parameter SM_IDLE bound to: 2'b00 
 	Parameter SM_CMD_EN bound to: 2'b01 
 	Parameter SM_CMD_ACCEPTED bound to: 2'b10 
 	Parameter SM_DONE bound to: 2'b11 
-INFO: [Synth 8-226] default block is never used [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3398]
-WARNING: [Synth 8-6014] Unused sequential element state_r1_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3386]
-WARNING: [Synth 8-6014] Unused sequential element s_arlen_r_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3387]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_rd_cmd_fsm' (8#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3336]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_ar_channel' (9#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4085]
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_r_channel' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3814]
+INFO: [Synth 8-226] default block is never used [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3398]
+WARNING: [Synth 8-6014] Unused sequential element state_r1_reg was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3386]
+WARNING: [Synth 8-6014] Unused sequential element s_arlen_r_reg was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3387]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_rd_cmd_fsm' (8#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3336]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_ar_channel' (9#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4085]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_r_channel' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3814]
 	Parameter C_ID_WIDTH bound to: 3 - type: integer 
 	Parameter C_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter P_WIDTH bound to: 4 - type: integer 
@@ -130,7 +130,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_r_ch
 	Parameter P_D_WIDTH bound to: 34 - type: integer 
 	Parameter P_D_DEPTH bound to: 32 - type: integer 
 	Parameter P_D_AWIDTH bound to: 5 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized1' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized1' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
 	Parameter C_WIDTH bound to: 34 - type: integer 
 	Parameter C_AWIDTH bound to: 5 - type: integer 
 	Parameter C_DEPTH bound to: 32 - type: integer 
@@ -138,8 +138,8 @@ INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simp
 	Parameter C_EMPTY_PRE bound to: 5'b00000 
 	Parameter C_FULL bound to: 5'b11110 
 	Parameter C_FULL_PRE bound to: 5'b11010 
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized1' (9#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
-INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized2' [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized1' (9#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized2' [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
 	Parameter C_WIDTH bound to: 4 - type: integer 
 	Parameter C_AWIDTH bound to: 5 - type: integer 
 	Parameter C_DEPTH bound to: 32 - type: integer 
@@ -147,9 +147,9 @@ INFO: [Synth 8-638] synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simp
 	Parameter C_EMPTY_PRE bound to: 5'b00000 
 	Parameter C_FULL bound to: 5'b11110 
 	Parameter C_FULL_PRE bound to: 5'b11010 
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized2' (9#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_r_channel' (10#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3814]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized2' (9#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2816]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s_r_channel' (10#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3814]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 3 - type: integer 
@@ -260,27 +260,27 @@ INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register
 	Parameter G_AXI_RUSER_INDEX bound to: 38 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 38 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_DATA_WIDTH bound to: 64 - type: integer 
 	Parameter C_REG_CONFIG bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' (11#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' (11#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized0' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_DATA_WIDTH bound to: 37 - type: integer 
 	Parameter C_REG_CONFIG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized0' (11#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized1' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized0' (11#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized1' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_DATA_WIDTH bound to: 5 - type: integer 
 	Parameter C_REG_CONFIG bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized1' (11#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized2' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized1' (11#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized2' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_DATA_WIDTH bound to: 38 - type: integer 
 	Parameter C_REG_CONFIG bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized2' (11#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [/ectf_master/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized2' (11#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [/ectf/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
 	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 3 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
@@ -372,8 +372,8 @@ INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' [
 	Parameter G_AXI_RUSER_INDEX bound to: 38 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 38 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (12#1) [/ectf_master/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [/ectf_master/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector' (12#1) [/ectf/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [/ectf/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
 	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 3 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
@@ -465,10 +465,10 @@ INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' [
 	Parameter G_AXI_RUSER_INDEX bound to: 38 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 38 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (13#1) [/ectf_master/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice' (14#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
-WARNING: [Synth 8-350] instance 'SI_REG' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4395]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi' (13#1) [/ectf/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice' (14#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
+WARNING: [Synth 8-350] instance 'SI_REG' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4395]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice__parameterized0' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_AXI_PROTOCOL bound to: 2 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 1 - type: integer 
@@ -579,27 +579,27 @@ INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axi_register
 	Parameter G_AXI_RUSER_INDEX bound to: 34 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 34 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized3' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized3' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_DATA_WIDTH bound to: 35 - type: integer 
 	Parameter C_REG_CONFIG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized3' (14#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized4' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized3' (14#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized4' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_DATA_WIDTH bound to: 36 - type: integer 
 	Parameter C_REG_CONFIG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized4' (14#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized5' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized4' (14#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized5' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_DATA_WIDTH bound to: 2 - type: integer 
 	Parameter C_REG_CONFIG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized5' (14#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized6' [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized5' (14#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized6' [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: virtex6 - type: string 
 	Parameter C_DATA_WIDTH bound to: 34 - type: integer 
 	Parameter C_REG_CONFIG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized6' (14#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice__parameterized6' (14#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' [/ectf/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
 	Parameter C_AXI_PROTOCOL bound to: 2 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
@@ -691,8 +691,8 @@ INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__p
 	Parameter G_AXI_RUSER_INDEX bound to: 34 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 34 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' (14#1) [/ectf_master/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
-INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' [/ectf_master/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_axi2vector__parameterized0' (14#1) [/ectf/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' [/ectf/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
 	Parameter C_AXI_PROTOCOL bound to: 2 - type: integer 
 	Parameter C_AXI_ID_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
@@ -784,12 +784,12 @@ INFO: [Synth 8-638] synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__p
 	Parameter G_AXI_RUSER_INDEX bound to: 34 - type: integer 
 	Parameter G_AXI_RUSER_WIDTH bound to: 0 - type: integer 
 	Parameter G_AXI_RPAYLOAD_WIDTH bound to: 34 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' (14#1) [/ectf_master/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice__parameterized0' (14#1) [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
-WARNING: [Synth 8-350] instance 'MI_REG' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4650]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s' (15#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4229]
-INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_axi_protocol_converter' (16#1) [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4811]
-INFO: [Synth 8-256] done synthesizing module 'system_auto_pc_4' (17#1) [/ectf_master/pl/src/bd/system/ip/system_auto_pc_4/synth/system_auto_pc_4.v:58]
+INFO: [Synth 8-256] done synthesizing module 'axi_infrastructure_v1_1_0_vector2axi__parameterized0' (14#1) [/ectf/pl/src/bd/system/ipshared/ec67/hdl/axi_infrastructure_v1_1_vl_rfs.v:474]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axi_register_slice__parameterized0' (14#1) [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:2300]
+WARNING: [Synth 8-350] instance 'MI_REG' of module 'axi_register_slice_v2_1_15_axi_register_slice' requires 93 connections, but only 92 given [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4650]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_b2s' (15#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4229]
+INFO: [Synth 8-256] done synthesizing module 'axi_protocol_converter_v2_1_15_axi_protocol_converter' (16#1) [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:4811]
+INFO: [Synth 8-256] done synthesizing module 'system_auto_pc_1' (17#1) [/ectf/pl/src/bd/system/ip/system_auto_pc_1/synth/system_auto_pc_1.v:58]
 WARNING: [Synth 8-3331] design axi_infrastructure_v1_1_0_vector2axi__parameterized0 has unconnected port m_axi_bid[0]
 WARNING: [Synth 8-3331] design axi_infrastructure_v1_1_0_vector2axi__parameterized0 has unconnected port m_axi_buser[0]
 WARNING: [Synth 8-3331] design axi_infrastructure_v1_1_0_vector2axi__parameterized0 has unconnected port m_axi_rid[0]
@@ -892,7 +892,7 @@ WARNING: [Synth 8-3331] design axi_protocol_converter_v2_1_15_b2s_b_channel has 
 WARNING: [Synth 8-3331] design axi_protocol_converter_v2_1_15_axi_protocol_converter has unconnected port s_axi_awlock[0]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 1356.348 ; gain = 211.531 ; free physical = 1951 ; free virtual = 12658
+Finished RTL Elaboration : Time (s): cpu = 00:00:25 ; elapsed = 00:00:33 . Memory (MB): peak = 1353.648 ; gain = 208.531 ; free physical = 1288 ; free virtual = 10746
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -902,115 +902,115 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:41 ; elapsed = 00:00:56 . Memory (MB): peak = 1356.348 ; gain = 211.531 ; free physical = 1950 ; free virtual = 12657
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:25 ; elapsed = 00:00:34 . Memory (MB): peak = 1353.648 ; gain = 208.531 ; free physical = 1712 ; free virtual = 11171
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z007sclg400-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_auto_pc_4/system_auto_pc_4_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_auto_pc_4/system_auto_pc_4_ooc.xdc] for cell 'inst'
-Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_auto_pc_4_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_auto_pc_4_synth_1/dont_touch.xdc]
+Parsing XDC File [/ectf/pl/src/bd/system/ip/system_auto_pc_1/system_auto_pc_1_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/ectf/pl/src/bd/system/ip/system_auto_pc_1/system_auto_pc_1_ooc.xdc] for cell 'inst'
+Parsing XDC File [/ectf/pl/proj/test/test.runs/system_auto_pc_1_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_auto_pc_1_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1608.371 ; gain = 0.000 ; free physical = 1631 ; free virtual = 12343
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1637.688 ; gain = 0.000 ; free physical = 1059 ; free virtual = 10522
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:01:10 ; elapsed = 00:01:44 . Memory (MB): peak = 1608.371 ; gain = 463.555 ; free physical = 1685 ; free virtual = 12397
+Finished Constraint Validation : Time (s): cpu = 00:00:36 ; elapsed = 00:00:53 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1104 ; free virtual = 10569
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:01:10 ; elapsed = 00:01:44 . Memory (MB): peak = 1608.371 ; gain = 463.555 ; free physical = 1685 ; free virtual = 12397
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:36 ; elapsed = 00:00:53 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1105 ; free virtual = 10570
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf_master/pl/proj/test/test.runs/system_auto_pc_4_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf/pl/proj/test/test.runs/system_auto_pc_1_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:10 ; elapsed = 00:01:44 . Memory (MB): peak = 1608.371 ; gain = 463.555 ; free physical = 1685 ; free virtual = 12397
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:53 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1105 ; free virtual = 10570
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[3] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[2] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[1] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[0] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[3] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[2] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[1] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[0] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element bresp_cnt_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3759]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[31] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[30] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[29] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[28] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[27] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[26] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[25] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[24] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[23] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[22] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[21] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[20] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[19] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[18] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[17] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[16] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[15] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[14] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[13] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[12] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[11] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[10] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[9] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[8] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[7] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[6] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[5] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[4] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[3] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[2] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[1] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[0] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[31] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[30] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[29] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[28] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[27] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[26] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[25] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[24] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[23] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[22] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[21] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[20] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[19] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[18] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[17] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[16] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[15] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[14] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[13] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[12] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[11] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[10] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[9] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[8] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[7] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[6] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[5] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[4] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[3] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[2] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[1] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
-WARNING: [Synth 8-6014] Unused sequential element memory_reg[0] was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[3] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[2] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[1] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[0] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[3] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[2] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[1] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[0] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element bresp_cnt_reg was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3759]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[31] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[30] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[29] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[28] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[27] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[26] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[25] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[24] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[23] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[22] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[21] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[20] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[19] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[18] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[17] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[16] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[15] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[14] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[13] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[12] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[11] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[10] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[9] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[8] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[7] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[6] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[5] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[4] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[3] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[2] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[1] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[0] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[31] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[30] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[29] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[28] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[27] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[26] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[25] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[24] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[23] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[22] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[21] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[20] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[19] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[18] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[17] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[16] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[15] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[14] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[13] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[12] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[11] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[10] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[9] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[8] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[7] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[6] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[5] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[4] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[3] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[2] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[1] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
+WARNING: [Synth 8-6014] Unused sequential element memory_reg[0] was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:2857]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:11 ; elapsed = 00:01:45 . Memory (MB): peak = 1608.371 ; gain = 463.555 ; free physical = 1674 ; free virtual = 12386
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:37 ; elapsed = 00:00:53 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1074 ; free virtual = 10540
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1209,9 +1209,9 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-3936] Found unconnected internal register 'gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw.aw_pipe/m_payload_i_reg' and it is trimmed from '64' to '56' bits. [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:422]
-INFO: [Synth 8-3936] Found unconnected internal register 'gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/m_payload_i_reg' and it is trimmed from '64' to '56' bits. [/ectf_master/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:422]
-WARNING: [Synth 8-6014] Unused sequential element gen_axilite.gen_b2s_conv.axilite_b2s/WR.b_channel_0/bresp_cnt_reg was removed.  [/ectf_master/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3759]
+INFO: [Synth 8-3936] Found unconnected internal register 'gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw.aw_pipe/m_payload_i_reg' and it is trimmed from '64' to '56' bits. [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:422]
+INFO: [Synth 8-3936] Found unconnected internal register 'gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/m_payload_i_reg' and it is trimmed from '64' to '56' bits. [/ectf/pl/src/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:422]
+WARNING: [Synth 8-6014] Unused sequential element gen_axilite.gen_b2s_conv.axilite_b2s/WR.b_channel_0/bresp_cnt_reg was removed.  [/ectf/pl/src/bd/system/ipshared/ff69/hdl/axi_protocol_converter_v2_1_vl_rfs.v:3759]
 INFO: [Synth 8-3886] merging instance 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/r.r_pipe/aresetn_d_reg[0]' (FDR) to 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/b.b_pipe/aresetn_d_reg[0]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/b.b_pipe/aresetn_d_reg[0]' (FDR) to 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw.aw_pipe/aresetn_d_reg[0]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/aw.aw_pipe/aresetn_d_reg[1]' (FDR) to 'inst/gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/b.b_pipe/aresetn_d_reg[1]'
@@ -1259,7 +1259,7 @@ INFO: [Synth 8-3332] Sequential element (gen_axilite.gen_b2s_conv.axilite_b2s/SI
 INFO: [Synth 8-3332] Sequential element (gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/m_payload_i_reg[40]) is unused and will be removed from module axi_protocol_converter_v2_1_15_axi_protocol_converter.
 INFO: [Synth 8-3332] Sequential element (gen_axilite.gen_b2s_conv.axilite_b2s/SI_REG/ar.ar_pipe/m_payload_i_reg[37]) is unused and will be removed from module axi_protocol_converter_v2_1_15_axi_protocol_converter.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:13 ; elapsed = 00:01:47 . Memory (MB): peak = 1608.371 ; gain = 463.555 ; free physical = 1639 ; free virtual = 12351
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:37 ; elapsed = 00:00:54 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 946 ; free virtual = 10412
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1271,13 +1271,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:20 ; elapsed = 00:01:57 . Memory (MB): peak = 1608.371 ; gain = 463.555 ; free physical = 1482 ; free virtual = 12194
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:42 ; elapsed = 00:01:00 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 703 ; free virtual = 10170
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:22 ; elapsed = 00:01:59 . Memory (MB): peak = 1626.363 ; gain = 481.547 ; free physical = 1373 ; free virtual = 12085
+Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:01:01 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1713 ; free virtual = 11189
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1291,7 +1291,7 @@ Start Technology Mapping
 INFO: [Synth 8-3332] Sequential element (gen_axilite.gen_b2s_conv.axilite_b2s/WR.aw_channel_0/cmd_translator_0/incr_cmd_0/axlen_cnt_reg[8]) is unused and will be removed from module axi_protocol_converter_v2_1_15_axi_protocol_converter.
 INFO: [Synth 8-3332] Sequential element (gen_axilite.gen_b2s_conv.axilite_b2s/RD.ar_channel_0/cmd_translator_0/incr_cmd_0/axlen_cnt_reg[8]) is unused and will be removed from module axi_protocol_converter_v2_1_15_axi_protocol_converter.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:22 ; elapsed = 00:01:59 . Memory (MB): peak = 1634.371 ; gain = 489.555 ; free physical = 1371 ; free virtual = 12083
+Finished Technology Mapping : Time (s): cpu = 00:00:43 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1709 ; free virtual = 11176
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1327,7 +1327,7 @@ INFO: [Synth 8-4618] Found max_fanout attribute set to 20 on net \gen_axilite.ge
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:23 ; elapsed = 00:02:00 . Memory (MB): peak = 1634.371 ; gain = 489.555 ; free physical = 1376 ; free virtual = 12088
+Finished IO Insertion : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1694 ; free virtual = 11168
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1340,7 +1340,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:23 ; elapsed = 00:02:00 . Memory (MB): peak = 1634.371 ; gain = 489.555 ; free physical = 1376 ; free virtual = 12088
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1692 ; free virtual = 11167
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1352,25 +1352,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:23 ; elapsed = 00:02:00 . Memory (MB): peak = 1634.371 ; gain = 489.555 ; free physical = 1376 ; free virtual = 12088
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1670 ; free virtual = 11149
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:23 ; elapsed = 00:02:00 . Memory (MB): peak = 1634.371 ; gain = 489.555 ; free physical = 1376 ; free virtual = 12088
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1669 ; free virtual = 11149
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:23 ; elapsed = 00:02:00 . Memory (MB): peak = 1634.371 ; gain = 489.555 ; free physical = 1376 ; free virtual = 12088
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1669 ; free virtual = 11149
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:23 ; elapsed = 00:02:00 . Memory (MB): peak = 1634.371 ; gain = 489.555 ; free physical = 1376 ; free virtual = 12088
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1668 ; free virtual = 11148
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -1448,11 +1448,11 @@ Report Instance Areas:
 |24    |        bresp_fifo_0                       |axi_protocol_converter_v2_1_15_b2s_simple_fifo__parameterized0 |     9|
 +------+-------------------------------------------+---------------------------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:23 ; elapsed = 00:02:00 . Memory (MB): peak = 1634.371 ; gain = 489.555 ; free physical = 1376 ; free virtual = 12088
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1668 ; free virtual = 11148
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 116 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:07 ; elapsed = 00:01:26 . Memory (MB): peak = 1634.371 ; gain = 237.531 ; free physical = 1433 ; free virtual = 12145
-Synthesis Optimization Complete : Time (s): cpu = 00:01:23 ; elapsed = 00:02:00 . Memory (MB): peak = 1634.379 ; gain = 489.555 ; free physical = 1433 ; free virtual = 12145
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:37 ; elapsed = 00:00:48 . Memory (MB): peak = 1637.688 ; gain = 208.531 ; free physical = 1718 ; free virtual = 11198
+Synthesis Optimization Complete : Time (s): cpu = 00:00:44 ; elapsed = 00:01:02 . Memory (MB): peak = 1637.688 ; gain = 492.570 ; free physical = 1718 ; free virtual = 11198
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 18 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -1464,5 +1464,5 @@ No Unisim elements were transformed.
 INFO: [Common 17-83] Releasing license: Synthesis
 136 Infos, 178 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:25 ; elapsed = 00:02:02 . Memory (MB): peak = 1634.379 ; gain = 502.934 ; free physical = 1448 ; free virtual = 12160
-INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_auto_pc_4_synth_1/system_auto_pc_4.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:01:03 . Memory (MB): peak = 1663.688 ; gain = 531.941 ; free physical = 1740 ; free virtual = 11212
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_auto_pc_1_synth_1/system_auto_pc_1.dcp' has been generated.

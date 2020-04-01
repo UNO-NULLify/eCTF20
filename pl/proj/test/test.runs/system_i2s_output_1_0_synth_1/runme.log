@@ -14,24 +14,24 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 32683 
+INFO: Helper process launched with PID 10626 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1225.812 ; gain = 80.992 ; free physical = 1044 ; free virtual = 11823
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1228.125 ; gain = 82.992 ; free physical = 4632 ; free virtual = 11221
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_i2s_output_1_0' [/ectf_master/pl/src/bd/system/ip/system_i2s_output_1_0/synth/system_i2s_output_1_0.vhd:69]
-INFO: [Synth 8-3491] module 'i2s_output' declared at '/ectf_master/pl/src/hdl/i2s_output.vhd:12' bound to instance 'U0' of component 'i2s_output' [/ectf_master/pl/src/bd/system/ip/system_i2s_output_1_0/synth/system_i2s_output_1_0.vhd:95]
-INFO: [Synth 8-638] synthesizing module 'i2s_output' [/ectf_master/pl/src/hdl/i2s_output.vhd:26]
+INFO: [Synth 8-638] synthesizing module 'system_i2s_output_1_0' [/ectf/pl/proj/test/bd/system/ip/system_i2s_output_1_0/synth/system_i2s_output_1_0.vhd:69]
+INFO: [Synth 8-3491] module 'i2s_output' declared at '/ectf/pl/src/hdl/i2s_output.vhd:12' bound to instance 'U0' of component 'i2s_output' [/ectf/pl/proj/test/bd/system/ip/system_i2s_output_1_0/synth/system_i2s_output_1_0.vhd:95]
+INFO: [Synth 8-638] synthesizing module 'i2s_output' [/ectf/pl/src/hdl/i2s_output.vhd:26]
 	Parameter DDR_CLK_EDGE bound to: OPPOSITE_EDGE - type: string 
 	Parameter INIT bound to: 1'b0 
 	Parameter IS_C_INVERTED bound to: 1'b0 
 	Parameter IS_D1_INVERTED bound to: 1'b0 
 	Parameter IS_D2_INVERTED bound to: 1'b0 
 	Parameter SRTYPE bound to: SYNC - type: string 
-INFO: [Synth 8-113] binding component instance 'mclk_ODDR' to cell 'ODDR' [/ectf_master/pl/src/hdl/i2s_output.vhd:36]
-INFO: [Synth 8-256] done synthesizing module 'i2s_output' (1#1) [/ectf_master/pl/src/hdl/i2s_output.vhd:26]
-INFO: [Synth 8-256] done synthesizing module 'system_i2s_output_1_0' (2#1) [/ectf_master/pl/src/bd/system/ip/system_i2s_output_1_0/synth/system_i2s_output_1_0.vhd:69]
+INFO: [Synth 8-113] binding component instance 'mclk_ODDR' to cell 'ODDR' [/ectf/pl/src/hdl/i2s_output.vhd:36]
+INFO: [Synth 8-256] done synthesizing module 'i2s_output' (1#1) [/ectf/pl/src/hdl/i2s_output.vhd:26]
+INFO: [Synth 8-256] done synthesizing module 'system_i2s_output_1_0' (2#1) [/ectf/pl/proj/test/bd/system/ip/system_i2s_output_1_0/synth/system_i2s_output_1_0.vhd:69]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1267.344 ; gain = 122.523 ; free physical = 1062 ; free virtual = 11836
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1270.656 ; gain = 125.523 ; free physical = 4511 ; free virtual = 11098
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -41,7 +41,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1267.344 ; gain = 122.523 ; free physical = 1062 ; free virtual = 11837
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1270.656 ; gain = 125.523 ; free physical = 4489 ; free virtual = 11077
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -55,26 +55,26 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1559.969 ; gain = 0.000 ; free physical = 756 ; free virtual = 11531
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1594.281 ; gain = 0.000 ; free physical = 2522 ; free virtual = 9116
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:33 ; elapsed = 00:00:52 . Memory (MB): peak = 1559.969 ; gain = 415.148 ; free physical = 794 ; free virtual = 11570
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:25 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 2602 ; free virtual = 9200
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:33 ; elapsed = 00:00:52 . Memory (MB): peak = 1559.969 ; gain = 415.148 ; free physical = 794 ; free virtual = 11570
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:25 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 2602 ; free virtual = 9200
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:33 ; elapsed = 00:00:52 . Memory (MB): peak = 1559.969 ; gain = 415.148 ; free physical = 796 ; free virtual = 11571
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:25 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 2603 ; free virtual = 9200
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-6014] Unused sequential element step_reg was removed.  [/ectf_master/pl/src/hdl/i2s_output.vhd:32]
+WARNING: [Synth 8-6014] Unused sequential element step_reg was removed.  [/ectf/pl/src/hdl/i2s_output.vhd:32]
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:33 ; elapsed = 00:00:52 . Memory (MB): peak = 1559.969 ; gain = 415.148 ; free physical = 788 ; free virtual = 11563
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:25 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 2581 ; free virtual = 9178
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -128,9 +128,9 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-6014] Unused sequential element U0/step_reg was removed.  [/ectf_master/pl/src/hdl/i2s_output.vhd:32]
+WARNING: [Synth 8-6014] Unused sequential element U0/step_reg was removed.  [/ectf/pl/src/hdl/i2s_output.vhd:32]
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:53 . Memory (MB): peak = 1559.969 ; gain = 415.148 ; free physical = 772 ; free virtual = 11547
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:25 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 2566 ; free virtual = 9163
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -142,13 +142,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:01:10 . Memory (MB): peak = 1559.969 ; gain = 415.148 ; free physical = 1112 ; free virtual = 11888
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:31 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1937 ; free virtual = 8539
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:01:10 . Memory (MB): peak = 1559.969 ; gain = 415.148 ; free physical = 1112 ; free virtual = 11887
+Finished Timing Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:31 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1943 ; free virtual = 8544
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -160,7 +160,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:01:10 . Memory (MB): peak = 1580.008 ; gain = 435.188 ; free physical = 1109 ; free virtual = 11884
+Finished Technology Mapping : Time (s): cpu = 00:00:21 ; elapsed = 00:00:31 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1940 ; free virtual = 8541
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -184,7 +184,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:48 ; elapsed = 00:01:12 . Memory (MB): peak = 1580.008 ; gain = 435.188 ; free physical = 1090 ; free virtual = 11868
+Finished IO Insertion : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1984 ; free virtual = 8585
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -197,7 +197,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:48 ; elapsed = 00:01:12 . Memory (MB): peak = 1580.008 ; gain = 435.188 ; free physical = 1090 ; free virtual = 11868
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1983 ; free virtual = 8585
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -209,25 +209,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:48 ; elapsed = 00:01:12 . Memory (MB): peak = 1580.008 ; gain = 435.188 ; free physical = 1090 ; free virtual = 11868
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1984 ; free virtual = 8585
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:48 ; elapsed = 00:01:12 . Memory (MB): peak = 1580.008 ; gain = 435.188 ; free physical = 1090 ; free virtual = 11868
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1984 ; free virtual = 8585
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:48 ; elapsed = 00:01:12 . Memory (MB): peak = 1580.008 ; gain = 435.188 ; free physical = 1090 ; free virtual = 11868
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1983 ; free virtual = 8585
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:48 ; elapsed = 00:01:12 . Memory (MB): peak = 1580.008 ; gain = 435.188 ; free physical = 1090 ; free virtual = 11867
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1983 ; free virtual = 8585
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -261,11 +261,11 @@ Report Instance Areas:
 |2     |  U0     |i2s_output |    75|
 +------+---------+-----------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:48 ; elapsed = 00:01:12 . Memory (MB): peak = 1580.008 ; gain = 435.188 ; free physical = 1090 ; free virtual = 11867
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 1983 ; free virtual = 8585
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 2 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:34 ; elapsed = 00:00:42 . Memory (MB): peak = 1580.008 ; gain = 142.562 ; free physical = 1138 ; free virtual = 11918
-Synthesis Optimization Complete : Time (s): cpu = 00:00:48 ; elapsed = 00:01:12 . Memory (MB): peak = 1580.016 ; gain = 435.188 ; free physical = 1137 ; free virtual = 11917
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1594.281 ; gain = 125.523 ; free physical = 2009 ; free virtual = 8611
+Synthesis Optimization Complete : Time (s): cpu = 00:00:22 ; elapsed = 00:00:32 . Memory (MB): peak = 1594.281 ; gain = 449.148 ; free physical = 2008 ; free virtual = 8610
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -277,9 +277,9 @@ No Unisim elements were transformed.
 INFO: [Common 17-83] Releasing license: Synthesis
 19 Infos, 2 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:51 ; elapsed = 00:01:15 . Memory (MB): peak = 1580.016 ; gain = 448.566 ; free physical = 1112 ; free virtual = 11888
-INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_i2s_output_1_0_synth_1/system_i2s_output_1_0.dcp' has been generated.
-INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_i2s_output_1_0_synth_1/system_i2s_output_1_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:00:24 ; elapsed = 00:00:33 . Memory (MB): peak = 1613.312 ; gain = 481.551 ; free physical = 2471 ; free virtual = 9072
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_i2s_output_1_0_synth_1/system_i2s_output_1_0.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_i2s_output_1_0_synth_1/system_i2s_output_1_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_i2s_output_1_0_utilization_synth.rpt -pb system_i2s_output_1_0_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1604.020 ; gain = 0.000 ; free physical = 1113 ; free virtual = 11889
-INFO: [Common 17-206] Exiting Vivado at Tue Feb  4 23:23:23 2020...
+report_utilization: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.06 . Memory (MB): peak = 1637.324 ; gain = 0.000 ; free physical = 2845 ; free virtual = 9447
+INFO: [Common 17-206] Exiting Vivado at Wed Feb 19 21:37:51 2020...

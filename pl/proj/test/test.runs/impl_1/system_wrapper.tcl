@@ -65,21 +65,22 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
+  set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7z007sclg400-1
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
-  set_property webtalk.parent_dir /ectf_master/pl/proj/test/test.cache/wt [current_project]
-  set_property parent.project_path /ectf_master/pl/proj/test/test.xpr [current_project]
-  set_property ip_repo_paths /ectf_master/pl/repo [current_project]
-  set_property ip_output_repo /ectf_master/pl/repo/cache [current_project]
+  set_property webtalk.parent_dir /ectf/pl/proj/test/test.cache/wt [current_project]
+  set_property parent.project_path /ectf/pl/proj/test/test.xpr [current_project]
+  set_property ip_repo_paths /ectf/pl/repo [current_project]
+  set_property ip_output_repo /ectf/pl/repo/cache [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
-  add_files -quiet /ectf_master/pl/proj/test/test.runs/synth_1/system_wrapper.dcp
+  add_files -quiet /ectf/pl/proj/test/test.runs/synth_1/system_wrapper.dcp
   set_msg_config -source 4 -id {BD 41-1661} -limit 0
   set_param project.isImplRun true
-  add_files /ectf_master/pl/src/bd/system/system.bd
+  add_files /ectf/pl/proj/test/bd/system/system.bd
   set_param project.isImplRun false
-  read_xdc /ectf_master/pl/src/constraints/Cora-Z7-Master.xdc
+  read_xdc /ectf/pl/src/constraints/Cora-Z7-Master.xdc
   set_param project.isImplRun true
   link_design -top system_wrapper -part xc7z007sclg400-1
   set_param project.isImplRun false
@@ -98,7 +99,7 @@ start_step opt_design
 set ACTIVE_STEP opt_design
 set rc [catch {
   create_msg_db opt_design.pb
-  opt_design 
+  opt_design -directive RuntimeOptimized
   write_checkpoint -force system_wrapper_opt.dcp
   create_report "impl_1_opt_report_drc_0" "report_drc -file system_wrapper_drc_opted.rpt -pb system_wrapper_drc_opted.pb -rpx system_wrapper_drc_opted.rpx"
   close_msg_db -file opt_design.pb
@@ -116,7 +117,7 @@ set ACTIVE_STEP place_design
 set rc [catch {
   create_msg_db place_design.pb
   implement_debug_core 
-  place_design -directive ExtraTimingOpt
+  place_design -directive RuntimeOptimized
   write_checkpoint -force system_wrapper_placed.dcp
   create_report "impl_1_place_report_io_0" "report_io -file system_wrapper_io_placed.rpt"
   create_report "impl_1_place_report_utilization_0" "report_utilization -file system_wrapper_utilization_placed.rpt -pb system_wrapper_utilization_placed.pb"
@@ -151,7 +152,7 @@ start_step route_design
 set ACTIVE_STEP route_design
 set rc [catch {
   create_msg_db route_design.pb
-  route_design -directive Explore
+  route_design -directive RuntimeOptimized
   write_checkpoint -force system_wrapper_routed.dcp
   create_report "impl_1_route_report_drc_0" "report_drc -file system_wrapper_drc_routed.rpt -pb system_wrapper_drc_routed.pb -rpx system_wrapper_drc_routed.rpx"
   create_report "impl_1_route_report_methodology_0" "report_methodology -file system_wrapper_methodology_drc_routed.rpt -pb system_wrapper_methodology_drc_routed.pb -rpx system_wrapper_methodology_drc_routed.rpx"

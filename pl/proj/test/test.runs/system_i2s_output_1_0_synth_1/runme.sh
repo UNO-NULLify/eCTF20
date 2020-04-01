@@ -20,7 +20,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/ectf_master/pl/proj/test/test.runs/system_i2s_output_1_0_synth_1'
+HD_PWD='/ectf/pl/proj/test/test.runs/system_i2s_output_1_0_synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -36,3 +36,4 @@ EAStep()
      fi
 }
 
+EAStep vivado -log system_i2s_output_1_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_i2s_output_1_0.tcl

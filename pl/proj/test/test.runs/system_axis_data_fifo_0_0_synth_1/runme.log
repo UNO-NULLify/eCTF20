@@ -14,19 +14,19 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 30893 
+INFO: Helper process launched with PID 43246 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:19 ; elapsed = 00:00:30 . Memory (MB): peak = 1229.812 ; gain = 85.000 ; free physical = 1340 ; free virtual = 12007
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 1232.121 ; gain = 87.000 ; free physical = 4277 ; free virtual = 11765
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_axis_data_fifo_0_0' [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/synth/system_axis_data_fifo_0_0.v:57]
-INFO: [Synth 8-638] synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' [/ectf_master/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:62]
+INFO: [Synth 8-638] synthesizing module 'system_axis_data_fifo_0_0' [/ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/synth/system_axis_data_fifo_0_0.v:57]
+INFO: [Synth 8-638] synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' [/ectf/pl/proj/test/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:62]
 	Parameter C_FAMILY bound to: zynq - type: string 
-	Parameter C_AXIS_TDATA_WIDTH bound to: 16 - type: integer 
+	Parameter C_AXIS_TDATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_AXIS_TID_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXIS_TDEST_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXIS_TUSER_WIDTH bound to: 1 - type: integer 
-	Parameter C_AXIS_SIGNAL_SET bound to: 32'b00000000000000000000000000011011 
-	Parameter C_FIFO_DEPTH bound to: 4096 - type: integer 
+	Parameter C_AXIS_SIGNAL_SET bound to: 32'b00000000000000000000000000010011 
+	Parameter C_FIFO_DEPTH bound to: 2048 - type: integer 
 	Parameter C_FIFO_MODE bound to: 1 - type: integer 
 	Parameter C_IS_ACLK_ASYNC bound to: 1 - type: integer 
 	Parameter C_SYNCHRONIZER_STAGE bound to: 2 - type: integer 
@@ -53,14 +53,14 @@ INFO: [Synth 8-638] synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' 
 	Parameter P_TREADY_EXISTS bound to: 1 - type: integer 
 	Parameter P_TDATA_EXISTS bound to: 1 - type: integer 
 	Parameter P_TSTRB_EXISTS bound to: 0 - type: integer 
-	Parameter P_TKEEP_EXISTS bound to: 1 - type: integer 
+	Parameter P_TKEEP_EXISTS bound to: 0 - type: integer 
 	Parameter P_TLAST_EXISTS bound to: 1 - type: integer 
 	Parameter P_TID_EXISTS bound to: 0 - type: integer 
 	Parameter P_TDEST_EXISTS bound to: 0 - type: integer 
 	Parameter P_TUSER_EXISTS bound to: 0 - type: integer 
-	Parameter P_AXIS_PAYLOAD_WIDTH bound to: 19 - type: integer 
-	Parameter P_WR_PNTR_WIDTH bound to: 12 - type: integer 
-	Parameter P_FIFO_COUNT_WIDTH bound to: 13 - type: integer 
+	Parameter P_AXIS_PAYLOAD_WIDTH bound to: 33 - type: integer 
+	Parameter P_WR_PNTR_WIDTH bound to: 11 - type: integer 
+	Parameter P_FIFO_COUNT_WIDTH bound to: 12 - type: integer 
 	Parameter P_FIFO_TYPE bound to: 1 - type: integer 
 	Parameter P_IMPLEMENTATION_TYPE_AXIS bound to: 11 - type: integer 
 	Parameter P_COMMON_CLOCK bound to: 0 - type: integer 
@@ -93,8 +93,8 @@ INFO: [Synth 8-638] synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' 
 	Parameter C_RD_PNTR_WIDTH_WACH bound to: 4 - type: integer 
 	Parameter C_RD_PNTR_WIDTH_WDCH bound to: 10 - type: integer 
 	Parameter C_RD_PNTR_WIDTH_WRCH bound to: 4 - type: integer 
-	Parameter C_WR_PNTR_WIDTH_AXIS bound to: 12 - type: integer 
-INFO: [Synth 8-5534] Detected attribute (* KEEP = "TRUE" *) [/ectf_master/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:181]
+	Parameter C_WR_PNTR_WIDTH_AXIS bound to: 11 - type: integer 
+INFO: [Synth 8-5534] Detected attribute (* KEEP = "TRUE" *) [/ectf/pl/proj/test/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:181]
 INFO: [Synth 8-638] synthesizing module 'xpm_cdc_sync_rst' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1045]
 	Parameter DEST_SYNC_FF bound to: 2 - type: integer 
 	Parameter INIT bound to: 32'sb00000000000000000000000000000001 
@@ -104,8 +104,8 @@ INFO: [Synth 8-638] synthesizing module 'xpm_cdc_sync_rst' [/opt/Xilinx/Vivado/2
 	Parameter DEF_VAL bound to: 1'b1 
 INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1097]
 INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_sync_rst' (1#1) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1045]
-INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_converter_wrapper' [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:600]
-	Parameter C_TDATA_WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_converter_wrapper' [/ectf/pl/proj/test/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:600]
+	Parameter C_TDATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_TID_WIDTH bound to: 1 - type: integer 
 	Parameter C_TDEST_WIDTH bound to: 1 - type: integer 
 	Parameter C_TUSER_WIDTH bound to: 1 - type: integer 
@@ -131,13 +131,13 @@ INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_
 	Parameter G_TASK_SEVERITY_ERR bound to: 2 - type: integer 
 	Parameter G_TASK_SEVERITY_WARNING bound to: 1 - type: integer 
 	Parameter G_TASK_SEVERITY_INFO bound to: 0 - type: integer 
-	Parameter P_TPAYLOAD_WIDTH bound to: 24 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_axis2vector' [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:810]
-	Parameter C_TDATA_WIDTH bound to: 16 - type: integer 
+	Parameter P_TPAYLOAD_WIDTH bound to: 44 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_axis2vector' [/ectf/pl/proj/test/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:810]
+	Parameter C_TDATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_TID_WIDTH bound to: 1 - type: integer 
 	Parameter C_TDEST_WIDTH bound to: 1 - type: integer 
 	Parameter C_TUSER_WIDTH bound to: 1 - type: integer 
-	Parameter C_TPAYLOAD_WIDTH bound to: 24 - type: integer 
+	Parameter C_TPAYLOAD_WIDTH bound to: 44 - type: integer 
 	Parameter C_SIGNAL_SET bound to: 255 - type: integer 
 	Parameter G_INDX_SS_TREADY bound to: 0 - type: integer 
 	Parameter G_INDX_SS_TDATA bound to: 1 - type: integer 
@@ -159,19 +159,19 @@ INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_axis2ve
 	Parameter G_TASK_SEVERITY_WARNING bound to: 1 - type: integer 
 	Parameter G_TASK_SEVERITY_INFO bound to: 0 - type: integer 
 	Parameter P_TDATA_INDX bound to: 0 - type: integer 
-	Parameter P_TSTRB_INDX bound to: 16 - type: integer 
-	Parameter P_TKEEP_INDX bound to: 18 - type: integer 
-	Parameter P_TLAST_INDX bound to: 20 - type: integer 
-	Parameter P_TID_INDX bound to: 21 - type: integer 
-	Parameter P_TDEST_INDX bound to: 22 - type: integer 
-	Parameter P_TUSER_INDX bound to: 23 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_axis2vector' (2#1) [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:810]
-INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_vector2axis' [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:992]
-	Parameter C_TDATA_WIDTH bound to: 16 - type: integer 
+	Parameter P_TSTRB_INDX bound to: 32 - type: integer 
+	Parameter P_TKEEP_INDX bound to: 36 - type: integer 
+	Parameter P_TLAST_INDX bound to: 40 - type: integer 
+	Parameter P_TID_INDX bound to: 41 - type: integer 
+	Parameter P_TDEST_INDX bound to: 42 - type: integer 
+	Parameter P_TUSER_INDX bound to: 43 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_axis2vector' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:810]
+INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_vector2axis' [/ectf/pl/proj/test/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:992]
+	Parameter C_TDATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_TID_WIDTH bound to: 1 - type: integer 
 	Parameter C_TDEST_WIDTH bound to: 1 - type: integer 
 	Parameter C_TUSER_WIDTH bound to: 1 - type: integer 
-	Parameter C_TPAYLOAD_WIDTH bound to: 24 - type: integer 
+	Parameter C_TPAYLOAD_WIDTH bound to: 44 - type: integer 
 	Parameter C_SIGNAL_SET bound to: 255 - type: integer 
 	Parameter G_INDX_SS_TREADY bound to: 0 - type: integer 
 	Parameter G_INDX_SS_TDATA bound to: 1 - type: integer 
@@ -193,14 +193,14 @@ INFO: [Synth 8-638] synthesizing module 'axis_infrastructure_v1_1_0_util_vector2
 	Parameter G_TASK_SEVERITY_WARNING bound to: 1 - type: integer 
 	Parameter G_TASK_SEVERITY_INFO bound to: 0 - type: integer 
 	Parameter P_TDATA_INDX bound to: 0 - type: integer 
-	Parameter P_TSTRB_INDX bound to: 16 - type: integer 
-	Parameter P_TKEEP_INDX bound to: 18 - type: integer 
-	Parameter P_TLAST_INDX bound to: 20 - type: integer 
-	Parameter P_TID_INDX bound to: 21 - type: integer 
-	Parameter P_TDEST_INDX bound to: 22 - type: integer 
-	Parameter P_TUSER_INDX bound to: 23 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_vector2axis' (3#1) [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:992]
-INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_converter_wrapper' (4#1) [/ectf_master/pl/src/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:600]
+	Parameter P_TSTRB_INDX bound to: 32 - type: integer 
+	Parameter P_TKEEP_INDX bound to: 36 - type: integer 
+	Parameter P_TLAST_INDX bound to: 40 - type: integer 
+	Parameter P_TID_INDX bound to: 41 - type: integer 
+	Parameter P_TDEST_INDX bound to: 42 - type: integer 
+	Parameter P_TUSER_INDX bound to: 43 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_vector2axis' (3#1) [/ectf/pl/proj/test/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:992]
+INFO: [Synth 8-256] done synthesizing module 'axis_infrastructure_v1_1_0_util_aclken_converter_wrapper' (4#1) [/ectf/pl/proj/test/bd/system/ipshared/0ab1/hdl/axis_infrastructure_v1_1_vl_rfs.v:600]
 INFO: [Synth 8-638] synthesizing module 'xpm_cdc_sync_rst__parameterized0' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1045]
 INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_sync_rst__parameterized0' (4#1) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:1045]
 INFO: [Synth 8-638] synthesizing module 'xpm_cdc_single' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:153]
@@ -209,8 +209,8 @@ INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_single' (5#1) [/opt/Xilinx
 INFO: [Synth 8-638] synthesizing module 'xpm_cdc_gray' [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:300]
 INFO: [Synth 8-5534] Detected attribute (* ASYNC_REG = "TRUE" *) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:390]
 INFO: [Synth 8-256] done synthesizing module 'xpm_cdc_gray' (17#1) [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv:300]
-INFO: [Synth 8-256] done synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' (34#1) [/ectf_master/pl/src/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:62]
-INFO: [Synth 8-256] done synthesizing module 'system_axis_data_fifo_0_0' (35#1) [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/synth/system_axis_data_fifo_0_0.v:57]
+INFO: [Synth 8-256] done synthesizing module 'axis_data_fifo_v1_1_16_axis_data_fifo' (34#1) [/ectf/pl/proj/test/bd/system/ipshared/e3dd/hdl/axis_data_fifo_v1_1_vl_rfs.v:62]
+INFO: [Synth 8-256] done synthesizing module 'system_axis_data_fifo_0_0' (35#1) [/ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/synth/system_axis_data_fifo_0_0.v:57]
 WARNING: [Synth 8-3331] design axis_infrastructure_v1_1_0_util_aclken_converter_wrapper has unconnected port ACLK
 WARNING: [Synth 8-3331] design axis_infrastructure_v1_1_0_util_aclken_converter_wrapper has unconnected port ARESETN
 WARNING: [Synth 8-3331] design axis_infrastructure_v1_1_0_util_aclken_converter_wrapper has unconnected port S_ACLKEN
@@ -219,7 +219,6 @@ WARNING: [Synth 8-3331] design wr_dc_fwft_ext_as has unconnected port WR_RST
 WARNING: [Synth 8-3331] design wr_status_flags_as has unconnected port WR_RST
 WARNING: [Synth 8-3331] design wr_status_flags_as has unconnected port RST_FULL_FF
 WARNING: [Synth 8-3331] design wr_status_flags_as has unconnected port SAFETY_CKT_WR_RST
-WARNING: [Synth 8-3331] design wr_status_flags_as has unconnected port WR_PNTR_PLUS3[11]
 WARNING: [Synth 8-3331] design wr_status_flags_as has unconnected port WR_PNTR_PLUS3[10]
 WARNING: [Synth 8-3331] design wr_status_flags_as has unconnected port WR_PNTR_PLUS3[9]
 WARNING: [Synth 8-3331] design wr_status_flags_as has unconnected port WR_PNTR_PLUS3[8]
@@ -240,7 +239,6 @@ WARNING: [Synth 8-3331] design wr_logic has unconnected port WR_RST_BUSY
 WARNING: [Synth 8-3331] design wr_logic has unconnected port EMPTY
 WARNING: [Synth 8-3331] design wr_logic has unconnected port RAM_RD_EN
 WARNING: [Synth 8-3331] design wr_logic has unconnected port ALMOST_EMPTY
-WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[11]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[10]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[9]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[8]
@@ -252,7 +250,6 @@ WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[3]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[2]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[1]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[0]
-WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[11]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[10]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[9]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[8]
@@ -264,7 +261,6 @@ WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_AS
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[2]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[1]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[0]
-WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[11]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[10]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[9]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[8]
@@ -284,7 +280,6 @@ WARNING: [Synth 8-3331] design rd_fwft has unconnected port SAFETY_CKT_RD_RST
 WARNING: [Synth 8-3331] design rd_fwft has unconnected port RAM_ALMOST_EMPTY
 WARNING: [Synth 8-3331] design rd_status_flags_as has unconnected port RD_RST
 WARNING: [Synth 8-3331] design rd_status_flags_as has unconnected port SAFETY_CKT_RD_RST
-WARNING: [Synth 8-3331] design rd_status_flags_as has unconnected port RD_PNTR_PLUS2[11]
 WARNING: [Synth 8-3331] design rd_status_flags_as has unconnected port RD_PNTR_PLUS2[10]
 WARNING: [Synth 8-3331] design rd_status_flags_as has unconnected port RD_PNTR_PLUS2[9]
 WARNING: [Synth 8-3331] design rd_status_flags_as has unconnected port RD_PNTR_PLUS2[8]
@@ -304,16 +299,21 @@ WARNING: [Synth 8-3331] design rd_logic has unconnected port RAM_WR_EN
 WARNING: [Synth 8-3331] design rd_logic has unconnected port RST_FULL_FF
 WARNING: [Synth 8-3331] design rd_logic has unconnected port ALMOST_FULL_FB
 WARNING: [Synth 8-3331] design rd_logic has unconnected port FULL
-WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[11]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[10]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[9]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[8]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[7]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[6]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[5]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[4]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[3]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[2]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[1]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[0]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH[10]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:02:11 ; elapsed = 00:02:42 . Memory (MB): peak = 1445.961 ; gain = 301.148 ; free physical = 1020 ; free virtual = 11723
+Finished RTL Elaboration : Time (s): cpu = 00:01:09 ; elapsed = 00:01:18 . Memory (MB): peak = 1448.270 ; gain = 303.148 ; free physical = 6390 ; free virtual = 13890
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -323,23 +323,23 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:02:12 ; elapsed = 00:02:43 . Memory (MB): peak = 1445.961 ; gain = 301.148 ; free physical = 1029 ; free virtual = 11731
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:09 ; elapsed = 00:01:18 . Memory (MB): peak = 1448.270 ; gain = 303.148 ; free physical = 6399 ; free virtual = 13899
 ---------------------------------------------------------------------------------
-INFO: [Netlist 29-17] Analyzing 27 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 26 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Device 21-403] Loading part xc7z007sclg400-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_ooc.xdc] for cell 'inst'
-Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xdc] for cell 'inst'
-Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc]
-Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_clocks.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_clocks.xdc] for cell 'inst'
+Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_ooc.xdc] for cell 'inst'
+Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_ooc.xdc] for cell 'inst'
+Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xdc] for cell 'inst'
+Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xdc] for cell 'inst'
+Parsing XDC File [/ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc]
+Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc]
+Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_clocks.xdc] for cell 'inst'
+Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0_clocks.xdc] for cell 'inst'
 Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst'
 Finished Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst'
 Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst'
@@ -363,21 +363,21 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1554.984 ; gain = 0.000 ; free physical = 812 ; free virtual = 11523
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1584.309 ; gain = 0.000 ; free physical = 6163 ; free virtual = 13662
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:02:39 ; elapsed = 00:03:35 . Memory (MB): peak = 1554.984 ; gain = 410.172 ; free physical = 905 ; free virtual = 11621
+Finished Constraint Validation : Time (s): cpu = 00:01:20 ; elapsed = 00:01:35 . Memory (MB): peak = 1584.309 ; gain = 439.188 ; free physical = 6312 ; free virtual = 13794
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:02:39 ; elapsed = 00:03:35 . Memory (MB): peak = 1554.984 ; gain = 410.172 ; free physical = 905 ; free virtual = 11621
+Finished Loading Part and Timing Information : Time (s): cpu = 00:01:20 ; elapsed = 00:01:35 . Memory (MB): peak = 1584.309 ; gain = 439.188 ; free physical = 6312 ; free virtual = 13794
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc, line 9).
+Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/dont_touch.xdc, line 9).
 Applied set_property DONT_TOUCH = true for inst/\gen_async_clock_and_reset.inst_xpm_cdc_sync_rst . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generator_inst /inst_fifo_gen/\gaxis_fifo.gaxisf.axisf /\grf.rf /\gntv_or_sync_fifo.gcx.clkx /rd_pntr_cdc_inst. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generator_inst /inst_fifo_gen/\gaxis_fifo.gaxisf.axisf /\grf.rf /\gntv_or_sync_fifo.gcx.clkx /wr_pntr_cdc_inst. (constraint file  auto generated constraint, line ).
@@ -386,11 +386,11 @@ Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generat
 Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generator_inst /inst_fifo_gen/\gaxis_fifo.gaxisf.axisf /\grf.rf /rstblk/\ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_sync_rst_inst_wrst . (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for inst/\gen_fifo_generator.fifo_generator_inst /inst_fifo_gen/\gaxis_fifo.gaxisf.axisf /\grf.rf /rstblk/\ngwrdrst.grst.g7serrst.gsckt_wrst.xpm_cdc_sync_rst_inst_wrst . (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:40 ; elapsed = 00:03:35 . Memory (MB): peak = 1554.984 ; gain = 410.172 ; free physical = 907 ; free virtual = 11623
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:01:20 ; elapsed = 00:01:35 . Memory (MB): peak = 1584.309 ; gain = 439.188 ; free physical = 6315 ; free virtual = 13796
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "leaving_empty_fwft" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:40 ; elapsed = 00:03:36 . Memory (MB): peak = 1554.984 ; gain = 410.172 ; free physical = 897 ; free virtual = 11612
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:01:20 ; elapsed = 00:01:36 . Memory (MB): peak = 1584.309 ; gain = 439.188 ; free physical = 6307 ; free virtual = 13789
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -403,21 +403,22 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     13 Bit       Adders := 2     
-	   3 Input     12 Bit       Adders := 2     
+	   2 Input     12 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 2     
+	   3 Input     11 Bit       Adders := 2     
 +---XORs : 
-	   2 Input     12 Bit         XORs := 2     
-	   2 Input      1 Bit         XORs := 76    
+	   2 Input     11 Bit         XORs := 2     
+	   2 Input      1 Bit         XORs := 68    
 +---Registers : 
-	               19 Bit    Registers := 1     
-	               13 Bit    Registers := 2     
-	               12 Bit    Registers := 11    
-	                5 Bit    Registers := 10    
+	               33 Bit    Registers := 1     
+	               12 Bit    Registers := 2     
+	               11 Bit    Registers := 13    
+	                5 Bit    Registers := 8     
 	                4 Bit    Registers := 1     
 	                2 Bit    Registers := 3     
-	                1 Bit    Registers := 41    
+	                1 Bit    Registers := 33    
 +---Muxes : 
-	   4 Input     13 Bit        Muxes := 1     
+	   4 Input     12 Bit        Muxes := 1     
 	   2 Input      2 Bit        Muxes := 4     
 	   5 Input      2 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 9     
@@ -464,32 +465,27 @@ Detailed RTL Component Info :
 +---Registers : 
 	                5 Bit    Registers := 2     
 	                1 Bit    Registers := 8     
-Module blk_mem_gen_prim_width__parameterized1 
-Detailed RTL Component Info : 
-+---XORs : 
-	   2 Input      1 Bit         XORs := 2     
-+---Registers : 
-	                5 Bit    Registers := 2     
-	                1 Bit    Registers := 8     
 Module memory 
 Detailed RTL Component Info : 
 +---Registers : 
-	               19 Bit    Registers := 1     
+	               33 Bit    Registers := 1     
 Module xpm_cdc_gray 
 Detailed RTL Component Info : 
 +---XORs : 
-	   2 Input     12 Bit         XORs := 1     
-	   2 Input      1 Bit         XORs := 11    
+	   2 Input     11 Bit         XORs := 1     
+	   2 Input      1 Bit         XORs := 10    
 +---Registers : 
-	               12 Bit    Registers := 4     
+	               11 Bit    Registers := 4     
 Module rd_bin_cntr 
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     11 Bit       Adders := 1     
 +---Registers : 
-	               12 Bit    Registers := 1     
+	               11 Bit    Registers := 2     
 Module compare 
 Detailed RTL Component Info : 
 +---XORs : 
-	   2 Input      1 Bit         XORs := 12    
+	   2 Input      1 Bit         XORs := 11    
 Module rd_status_flags_as 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -510,17 +506,19 @@ Detailed RTL Component Info :
 Module rd_dc_fwft_ext_as 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     13 Bit       Adders := 1     
-	   3 Input     12 Bit       Adders := 1     
+	   2 Input     12 Bit       Adders := 1     
+	   3 Input     11 Bit       Adders := 1     
 +---Registers : 
-	               13 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
 +---Muxes : 
-	   4 Input     13 Bit        Muxes := 1     
+	   4 Input     12 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 1     
 Module wr_bin_cntr 
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     11 Bit       Adders := 1     
 +---Registers : 
-	               12 Bit    Registers := 2     
+	               11 Bit    Registers := 3     
 Module wr_status_flags_as 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -530,10 +528,10 @@ Detailed RTL Component Info :
 Module wr_dc_fwft_ext_as 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     13 Bit       Adders := 1     
-	   3 Input     12 Bit       Adders := 1     
+	   2 Input     12 Bit       Adders := 1     
+	   3 Input     11 Bit       Adders := 1     
 +---Registers : 
-	               13 Bit    Registers := 1     
+	               12 Bit    Registers := 1     
 Module axis_data_fifo_v1_1_16_axis_data_fifo 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -553,28 +551,18 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[0]' (FDS) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[0]'
+INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[0]' (FDS) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[0]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[0]' (FDS) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[0]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[0]' (FDS) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[0]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[0]' (FDS) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[0]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[1]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[1]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[1]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[1]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[1]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[1]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[1]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[2]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[2]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[2]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[2]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[2]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[2]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[2]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[3]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[3]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[3]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[3]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[3]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[3]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[3]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4]'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[4]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[4]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4]'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[4]' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTA_SHFT_REG_reg[4]'
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:41 ; elapsed = 00:03:37 . Memory (MB): peak = 1571.000 ; gain = 426.188 ; free physical = 882 ; free virtual = 11601
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:21 ; elapsed = 00:01:36 . Memory (MB): peak = 1584.309 ; gain = 439.188 ; free physical = 6298 ; free virtual = 13780
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -586,13 +574,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:55 ; elapsed = 00:03:57 . Memory (MB): peak = 1575.000 ; gain = 430.188 ; free physical = 738 ; free virtual = 11464
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:25 ; elapsed = 00:01:42 . Memory (MB): peak = 1584.309 ; gain = 439.188 ; free physical = 6171 ; free virtual = 13652
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:55 ; elapsed = 00:03:57 . Memory (MB): peak = 1575.000 ; gain = 430.188 ; free physical = 736 ; free virtual = 11462
+Finished Timing Optimization : Time (s): cpu = 00:01:25 ; elapsed = 00:01:42 . Memory (MB): peak = 1584.309 ; gain = 439.188 ; free physical = 6170 ; free virtual = 13652
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -605,18 +593,12 @@ Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.POR_B_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.POR_B_reg'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.POR_A_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.POR_A_reg'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.POR_B_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.POR_B_reg'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.POR_A_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.POR_A_reg'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_reg'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_reg'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_reg'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg'
 INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[0].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_D_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_D_reg'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.ENB_NO_REG.ENB_dly_D_reg'
-INFO: [Synth 8-3886] merging instance 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_D_reg' (FD) to 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.ENA_NO_REG.ENA_dly_D_reg'
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:55 ; elapsed = 00:03:58 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11459
+Finished Technology Mapping : Time (s): cpu = 00:01:25 ; elapsed = 00:01:42 . Memory (MB): peak = 1597.324 ; gain = 452.203 ; free physical = 6169 ; free virtual = 13651
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -640,7 +622,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
+Finished IO Insertion : Time (s): cpu = 00:01:26 ; elapsed = 00:01:43 . Memory (MB): peak = 1597.324 ; gain = 452.203 ; free physical = 6169 ; free virtual = 13651
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -653,7 +635,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:26 ; elapsed = 00:01:43 . Memory (MB): peak = 1597.324 ; gain = 452.203 ; free physical = 6169 ; free virtual = 13651
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -665,25 +647,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:26 ; elapsed = 00:01:43 . Memory (MB): peak = 1597.324 ; gain = 452.203 ; free physical = 6169 ; free virtual = 13651
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:26 ; elapsed = 00:01:43 . Memory (MB): peak = 1597.324 ; gain = 452.203 ; free physical = 6169 ; free virtual = 13651
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:26 ; elapsed = 00:01:43 . Memory (MB): peak = 1597.324 ; gain = 452.203 ; free physical = 6169 ; free virtual = 13651
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:26 ; elapsed = 00:01:43 . Memory (MB): peak = 1597.324 ; gain = 452.203 ; free physical = 6169 ; free virtual = 13651
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP and Shift Register Reporting
@@ -693,7 +675,7 @@ Static Shift Register Report:
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 |Module Name            | RTL Name                                                                                                                                                                                                          | Length | Width | Reset Signal | Pull out first Reg | Pull out last Reg | SRL16E | SRLC32E | 
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
-|fifo_generator_v13_2_1 | inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[2].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4] | 4      | 2     | NO           | NO                 | YES               | 2      | 0       | 
+|fifo_generator_v13_2_1 | inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.mem/gbm.gbmg.gbmga.ngecc.bmg/inst_blk_mem_gen/gnbram.gnativebmg.native_blk_mem_gen/valid.cstr/ramloop[1].ram.r/SAFETY_CKT_GEN.RSTB_SHFT_REG_reg[4] | 4      | 2     | NO           | NO                 | YES               | 2      | 0       | 
 +-----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------+-------+--------------+--------------------+-------------------+--------+---------+
 
 ---------------------------------------------------------------------------------
@@ -713,73 +695,70 @@ Report Cell Usage:
 +------+---------+------+
 |      |Cell     |Count |
 +------+---------+------+
-|1     |CARRY4   |    20|
+|1     |CARRY4   |     6|
 |2     |LUT1     |     8|
-|3     |LUT2     |    52|
-|4     |LUT3     |     6|
-|5     |LUT4     |    41|
-|6     |LUT5     |     8|
-|7     |LUT6     |    13|
+|3     |LUT2     |    62|
+|4     |LUT3     |    16|
+|5     |LUT4     |    39|
+|6     |LUT5     |    14|
+|7     |LUT6     |    25|
 |8     |MUXCY    |    24|
-|9     |RAMB18E1 |     1|
-|10    |RAMB36E1 |     2|
-|11    |SRL16E   |     2|
-|12    |FDRE     |   245|
-|13    |FDSE     |    13|
+|9     |RAMB36E1 |     2|
+|10    |SRL16E   |     2|
+|11    |FDRE     |   244|
+|12    |FDSE     |    13|
 +------+---------+------+
 
 Report Instance Areas: 
 +------+--------------------------------------------------------------------------------------+-----------------------------------------+------+
 |      |Instance                                                                              |Module                                   |Cells |
 +------+--------------------------------------------------------------------------------------+-----------------------------------------+------+
-|1     |top                                                                                   |                                         |   435|
-|2     |  inst                                                                                |axis_data_fifo_v1_1_16_axis_data_fifo    |   435|
+|1     |top                                                                                   |                                         |   455|
+|2     |  inst                                                                                |axis_data_fifo_v1_1_16_axis_data_fifo    |   455|
 |3     |    \gen_async_clock_and_reset.inst_xpm_cdc_sync_rst                                  |xpm_cdc_sync_rst                         |     2|
-|4     |    \gen_fifo_generator.fifo_generator_inst                                           |fifo_generator_v13_2_1                   |   430|
-|5     |      inst_fifo_gen                                                                   |fifo_generator_v13_2_1_synth             |   430|
-|6     |        \gaxis_fifo.gaxisf.axisf                                                      |fifo_generator_top                       |   430|
-|7     |          \grf.rf                                                                     |fifo_generator_ramfifo                   |   430|
-|8     |            \gntv_or_sync_fifo.gcx.clkx                                               |clk_x_pntrs                              |   174|
-|9     |              wr_pntr_cdc_inst                                                        |xpm_cdc_gray__1                          |    74|
-|10    |              rd_pntr_cdc_inst                                                        |xpm_cdc_gray                             |    74|
-|11    |            \gntv_or_sync_fifo.gl0.rd                                                 |rd_logic                                 |    81|
+|4     |    \gen_fifo_generator.fifo_generator_inst                                           |fifo_generator_v13_2_1                   |   450|
+|5     |      inst_fifo_gen                                                                   |fifo_generator_v13_2_1_synth             |   450|
+|6     |        \gaxis_fifo.gaxisf.axisf                                                      |fifo_generator_top                       |   450|
+|7     |          \grf.rf                                                                     |fifo_generator_ramfifo                   |   450|
+|8     |            \gntv_or_sync_fifo.gcx.clkx                                               |clk_x_pntrs                              |   169|
+|9     |              wr_pntr_cdc_inst                                                        |xpm_cdc_gray__1                          |    67|
+|10    |              rd_pntr_cdc_inst                                                        |xpm_cdc_gray                             |    67|
+|11    |            \gntv_or_sync_fifo.gl0.rd                                                 |rd_logic                                 |    85|
 |12    |              \gr1.gr1_int.rfwft                                                      |rd_fwft                                  |    19|
-|13    |              \gr1.grdc2.rdc                                                          |rd_dc_fwft_ext_as                        |    19|
+|13    |              \gr1.grdc2.rdc                                                          |rd_dc_fwft_ext_as                        |    15|
 |14    |              \gras.rsts                                                              |rd_status_flags_as                       |    15|
 |15    |                c0                                                                    |compare_1                                |     7|
 |16    |                c1                                                                    |compare_2                                |     6|
-|17    |              rpntr                                                                   |rd_bin_cntr                              |    28|
-|18    |            \gntv_or_sync_fifo.gl0.wr                                                 |wr_logic                                 |   102|
-|19    |              \gwas.gwdc1.wdcext                                                      |wr_dc_fwft_ext_as                        |    21|
-|20    |              \gwas.wsts                                                              |wr_status_flags_as                       |    29|
-|21    |                c1                                                                    |compare                                  |    12|
-|22    |                c2                                                                    |compare_0                                |    12|
-|23    |              wpntr                                                                   |wr_bin_cntr                              |    52|
-|24    |            \gntv_or_sync_fifo.mem                                                    |memory                                   |    37|
-|25    |              \gbm.gbmg.gbmga.ngecc.bmg                                               |blk_mem_gen_v8_4_1                       |    18|
-|26    |                inst_blk_mem_gen                                                      |blk_mem_gen_v8_4_1_synth                 |    18|
-|27    |                  \gnbram.gnativebmg.native_blk_mem_gen                               |blk_mem_gen_top                          |    18|
-|28    |                    \valid.cstr                                                       |blk_mem_gen_generic_cstr                 |    18|
+|17    |              rpntr                                                                   |rd_bin_cntr                              |    36|
+|18    |            \gntv_or_sync_fifo.gl0.wr                                                 |wr_logic                                 |   110|
+|19    |              \gwas.gwdc1.wdcext                                                      |wr_dc_fwft_ext_as                        |    15|
+|20    |              \gwas.wsts                                                              |wr_status_flags_as                       |    17|
+|21    |                c1                                                                    |compare                                  |     6|
+|22    |                c2                                                                    |compare_0                                |     7|
+|23    |              wpntr                                                                   |wr_bin_cntr                              |    78|
+|24    |            \gntv_or_sync_fifo.mem                                                    |memory                                   |    50|
+|25    |              \gbm.gbmg.gbmga.ngecc.bmg                                               |blk_mem_gen_v8_4_1                       |    17|
+|26    |                inst_blk_mem_gen                                                      |blk_mem_gen_v8_4_1_synth                 |    17|
+|27    |                  \gnbram.gnativebmg.native_blk_mem_gen                               |blk_mem_gen_top                          |    17|
+|28    |                    \valid.cstr                                                       |blk_mem_gen_generic_cstr                 |    17|
 |29    |                      \ramloop[0].ram.r                                               |blk_mem_gen_prim_width                   |     1|
 |30    |                        \prim_noinit.ram                                              |blk_mem_gen_prim_wrapper                 |     1|
-|31    |                      \ramloop[1].ram.r                                               |blk_mem_gen_prim_width__parameterized0   |     1|
-|32    |                        \prim_noinit.ram                                              |blk_mem_gen_prim_wrapper__parameterized0 |     1|
-|33    |                      \ramloop[2].ram.r                                               |blk_mem_gen_prim_width__parameterized1   |    16|
-|34    |                        \prim_noinit.ram                                              |blk_mem_gen_prim_wrapper__parameterized1 |     2|
-|35    |            rstblk                                                                    |reset_blk_ramfifo                        |    36|
-|36    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.xpm_cdc_sync_rst_inst_wrst           |xpm_cdc_sync_rst__parameterized0__1      |     5|
-|37    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_sync_rst_inst_wrst   |xpm_cdc_sync_rst__parameterized0         |     5|
-|38    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_single_inst_wrst_rd  |xpm_cdc_single__1                        |     5|
-|39    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_single_inst_rrst_wr  |xpm_cdc_single                           |     5|
+|31    |                      \ramloop[1].ram.r                                               |blk_mem_gen_prim_width__parameterized0   |    16|
+|32    |                        \prim_noinit.ram                                              |blk_mem_gen_prim_wrapper__parameterized0 |     2|
+|33    |            rstblk                                                                    |reset_blk_ramfifo                        |    36|
+|34    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.xpm_cdc_sync_rst_inst_wrst           |xpm_cdc_sync_rst__parameterized0__1      |     5|
+|35    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_sync_rst_inst_wrst   |xpm_cdc_sync_rst__parameterized0         |     5|
+|36    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_single_inst_wrst_rd  |xpm_cdc_single__1                        |     5|
+|37    |              \ngwrdrst.grst.g7serrst.gsckt_wrst.gic_rst.xpm_cdc_single_inst_rrst_wr  |xpm_cdc_single                           |     5|
 +------+--------------------------------------------------------------------------------------+-----------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.039 ; gain = 450.227 ; free physical = 733 ; free virtual = 11458
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:26 ; elapsed = 00:01:43 . Memory (MB): peak = 1597.324 ; gain = 452.203 ; free physical = 6169 ; free virtual = 13651
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 506 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:02:38 ; elapsed = 00:03:17 . Memory (MB): peak = 1595.039 ; gain = 341.203 ; free physical = 788 ; free virtual = 11513
-Synthesis Optimization Complete : Time (s): cpu = 00:02:57 ; elapsed = 00:03:59 . Memory (MB): peak = 1595.047 ; gain = 450.227 ; free physical = 788 ; free virtual = 11514
+Synthesis finished with 0 errors, 0 critical warnings and 510 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:20 ; elapsed = 00:01:30 . Memory (MB): peak = 1597.324 ; gain = 316.164 ; free physical = 6226 ; free virtual = 13708
+Synthesis Optimization Complete : Time (s): cpu = 00:01:26 ; elapsed = 00:01:43 . Memory (MB): peak = 1597.332 ; gain = 452.203 ; free physical = 6226 ; free virtual = 13708
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 47 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 32 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 Sourcing Tcl File [/opt/Xilinx/Vivado/2017.4/data/ip/xpm/xpm_cdc/tcl/xpm_cdc_gray.tcl] for cell 'inst/gen_fifo_generator.fifo_generator_inst/inst_fifo_gen/gaxis_fifo.gaxisf.axisf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst'
@@ -802,13 +781,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   (MUXCY,XORCY) => CARRY4: 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-71 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
+55 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:03:06 ; elapsed = 00:04:20 . Memory (MB): peak = 1983.195 ; gain = 851.754 ; free physical = 439 ; free virtual = 11159
-INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/system_axis_data_fifo_0_0.dcp' has been generated.
-INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf_master/pl/src/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xci
-INFO: [Coretcl 2-1174] Renamed 38 cell refs.
-INFO: [Common 17-1381] The checkpoint '/ectf_master/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/system_axis_data_fifo_0_0.dcp' has been generated.
+synth_design: Time (s): cpu = 00:01:29 ; elapsed = 00:01:50 . Memory (MB): peak = 2038.512 ; gain = 906.762 ; free physical = 5946 ; free virtual = 13412
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/system_axis_data_fifo_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf/pl/proj/test/bd/system/ip/system_axis_data_fifo_0_0/system_axis_data_fifo_0_0.xci
+INFO: [Coretcl 2-1174] Renamed 36 cell refs.
+INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_axis_data_fifo_0_0_synth_1/system_axis_data_fifo_0_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_axis_data_fifo_0_0_utilization_synth.rpt -pb system_axis_data_fifo_0_0_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.05 . Memory (MB): peak = 2007.207 ; gain = 0.000 ; free physical = 438 ; free virtual = 11159
-INFO: [Common 17-206] Exiting Vivado at Tue Feb  4 23:11:25 2020...
+report_utilization: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.06 . Memory (MB): peak = 2062.523 ; gain = 0.000 ; free physical = 5944 ; free virtual = 13411
+INFO: [Common 17-206] Exiting Vivado at Thu Feb 20 21:09:51 2020...

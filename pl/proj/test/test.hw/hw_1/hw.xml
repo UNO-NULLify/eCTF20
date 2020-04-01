@@ -9,8 +9,8 @@
     <Object name="xc7z007s_1" gui_info="">
       <Properties Property="FULL_PROBES.FILE" value=""/>
       <Properties Property="PROBES.FILE" value=""/>
-      <Properties Property="PROGRAM.HW_BITSTREAM" value="/ectf_master/mb/Cora-Z7-07S/download.bit"/>
-      <Properties Property="SLR.COUNT" value="/home/alinnell/1"/>
+      <Properties Property="PROGRAM.HW_BITSTREAM" value="/ectf/mb/Cora-Z7-07S/download.bit"/>
+      <Properties Property="SLR.COUNT" value="/home/azimuth/1"/>
     </Object>
   </ObjectList>
   <probeset name="hw project" active="false"/>

@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-// Date        : Thu Feb 20 21:08:48 2020
+// Date        : Mon Mar  2 08:36:25 2020
 // Host        : ssg0 running 64-bit Arch Linux
-// Command     : write_verilog -force -mode synth_stub -rename_top system_share_axi_bram_ctrl_0_0 -prefix
-//               system_share_axi_bram_ctrl_0_0_ system_share_axi_bram_ctrl_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub
+//               /ectf/pl/proj/test/bd/system/ip/system_share_axi_bram_ctrl_0_0/system_share_axi_bram_ctrl_0_0_stub.v
 // Design      : system_share_axi_bram_ctrl_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z007sclg400-1

@@ -1,6 +1,4 @@
-set_property SRC_FILE_INFO {cfile:/ectf_master/pl/src/constraints/Cora-Z7-Master.xdc rfile:../../../../../src/constraints/Cora-Z7-Master.xdc id:1} [current_design]
-set_property src_info {type:XDC file:1 line:7 export:INPUT save:INPUT read:READ} [current_design]
-set_property -dict {PACKAGE_PIN H16 IOSTANDARD LVCMOS33} [get_ports clk50]
+set_property SRC_FILE_INFO {cfile:/ectf/pl/src/constraints/Cora-Z7-Master.xdc rfile:../../../../../src/constraints/Cora-Z7-Master.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:11 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN L15 IOSTANDARD LVCMOS33} [get_ports {rgb_led[0]}]
 set_property src_info {type:XDC file:1 line:12 export:INPUT save:INPUT read:READ} [current_design]
@@ -61,6 +59,3 @@ set_property src_info {type:XDC file:1 line:88 export:INPUT save:INPUT read:READ
 set_property -dict {PACKAGE_PIN K9 IOSTANDARD LVCMOS33} [get_ports vp_vn_v_p]
 set_property src_info {type:XDC file:1 line:89 export:INPUT save:INPUT read:READ} [current_design]
 set_property -dict {PACKAGE_PIN L10 IOSTANDARD LVCMOS33} [get_ports vp_vn_v_n]
-set_property src_info {type:XDC file:1 line:155 export:INPUT save:INPUT read:READ} [current_design]
-create_pblock pblock_clk_wiz_25M
-add_cells_to_pblock [get_pblocks pblock_clk_wiz_25M] [get_cells -quiet [list system_i/clk_wiz_25M]]

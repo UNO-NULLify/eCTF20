@@ -11,10 +11,6 @@ find . -mindepth 1 -type d -exec rm -rf {} +
 find . -type f ! -name 'cleanup.sh' \
                ! -name 'cleanup.cmd' \
                ! -name 'create_project.tcl' \
-               ! -name 'create_bd.tcl' \
                ! -name 'release.py' \
                ! -name '.gitignore' \
-               ! -name 'gen_bitstream.tcl' \
                -exec rm -rf {} +
-find ../src/bd/system -type f ! -name system_wrapper.vhd -exec rm -rf {} +
-
