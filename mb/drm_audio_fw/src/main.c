@@ -69,8 +69,8 @@ u32 read_cr()
 
 // returns whether an rid has been provisioned
 int is_provisioned_rid(char rid) {
-    for (int i = 0; i < NUM_PROVISIONED_REGIONS; i++) {
-        if (rid == PROVISIONED_RIDS[i]) {
+    for (int i = 0; i < PROVISIONED_REGIONS; i++) {
+        if (rid == region_data[i].id) {
             return TRUE;
         }
     }
@@ -79,10 +79,11 @@ int is_provisioned_rid(char rid) {
 
 // looks up the region name corresponding to the rid
 int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
-    for (int i = 0; i < NUM_REGIONS; i++) {
-        if (rid == REGION_IDS[i] &&
+    for (int i = 0; i < PROVISIONED_REGIONS; i++) {
+        if (rid == region_data[i].id &&
             (!provisioned_only || is_provisioned_rid(rid))) {
-            *region_name = (char *)REGION_NAMES[i];
+        	//TODO add region name in secrets.h
+            *region_name = (char *)region_data[i].rand_pass;
             return TRUE;
         }
     }
@@ -95,10 +96,11 @@ int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
 
 // looks up the rid corresponding to the region name
 int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
-    for (int i = 0; i < NUM_REGIONS; i++) {
-        if (!strcmp(region_name, REGION_NAMES[i]) &&
-            (!provisioned_only || is_provisioned_rid(REGION_IDS[i]))) {
-            *rid = REGION_IDS[i];
+    for (int i = 0; i < PROVISIONED_REGIONS; i++) {
+    	//TODO add region name to secrets.h
+        if (!strcmp(region_name, region_data[i].rand_pass) &&
+            (!provisioned_only || is_provisioned_rid(region_data[i].id))) {
+            *rid = region_data[i].id;
             return TRUE;
         }
     }
@@ -111,8 +113,8 @@ int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
 
 // returns whether a uid has been provisioned
 int is_provisioned_uid(char uid) {
-    for (int i = 0; i < NUM_PROVISIONED_USERS; i++) {
-        if (uid == PROVISIONED_UIDS[i]) {
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
+        if (uid == user_data[i].id) {
             return TRUE;
         }
     }
@@ -122,10 +124,10 @@ int is_provisioned_uid(char uid) {
 
 // looks up the username corresponding to the uid
 int uid_to_username(char uid, char **username, int provisioned_only) {
-    for (int i = 0; i < NUM_USERS; i++) {
-        if (uid == USER_IDS[i] &&
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
+        if (uid == user_data[i].id &&
             (!provisioned_only || is_provisioned_uid(uid))) {
-            *username = (char *)USERNAMES[i];
+            *username = (char *)user_data[i].name;
             return TRUE;
         }
     }
@@ -138,10 +140,10 @@ int uid_to_username(char uid, char **username, int provisioned_only) {
 
 // looks up the uid corresponding to the username
 int username_to_uid(char *username, char *uid, int provisioned_only) {
-    for (int i = 0; i < NUM_USERS; i++) {
-        if (!strcmp(username, USERNAMES[USER_IDS[i]]) &&
-            (!provisioned_only || is_provisioned_uid(USER_IDS[i]))) {
-            *uid = USER_IDS[i];
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
+        if (!strcmp(username, user_data[i].name) &&
+            (!provisioned_only || is_provisioned_uid(user_data[i].id))) {
+            *uid = user_data[i].id;
             return TRUE;
         }
     }
@@ -177,7 +179,7 @@ int is_locked() {
         if (s.uid == s.song_md.owner_id) {
             locked = FALSE;
         } else {
-            for (int i = 0; i < NUM_PROVISIONED_USERS && locked; i++) {
+            for (int i = 0; i < PROVISIONED_USERS && locked; i++) {
                 if (s.uid == s.song_md.uids[i]) {
                     locked = FALSE;
                 }
@@ -193,8 +195,8 @@ int is_locked() {
 
         // search for region match
         for (int i = 0; i < s.song_md.num_regions; i++) {
-            for (int j = 0; j < (u8)NUM_PROVISIONED_REGIONS; j++) {
-                if (PROVISIONED_RIDS[j] == s.song_md.rids[i]) {
+            for (int j = 0; j < (u8)PROVISIONED_REGIONS; j++) {
+                if (region_data[j].id == s.song_md.rids[i]) {
                     locked = FALSE;
                 }
             }
@@ -236,17 +238,18 @@ void login() {
         memcpy((void*)c->username, s.username, USERNAME_SZ);
         memcpy((void*)c->pin, s.pin, MAX_PIN_SZ);
     } else {
-        for (int i = 0; i < NUM_PROVISIONED_USERS; i++) {
+        for (int i = 0; i < PROVISIONED_USERS; i++) {
             // search for matching username
-            if (!strcmp((void*)c->username, USERNAMES[PROVISIONED_UIDS[i]])) {
+            if (!strcmp((void*)c->username, user_data[i].name)) {
                 // check if pin matches
-                if (!strcmp((void*)c->pin, PROVISIONED_PINS[i])) {
+            	//TODO convert c->pin to hash
+                if (!strcmp((void*)c->pin, user_data[i].pin_hash)) {
                     //update states
                     s.logged_in = 1;
                     c->login_status = 1;
                     memcpy(s.username, (void*)c->username, USERNAME_SZ);
                     memcpy(s.pin, (void*)c->pin, MAX_PIN_SZ);
-                    s.uid = PROVISIONED_UIDS[i];
+                    s.uid = user_data[i].id;
                     mb_printf("Logged in for user '%s'\r\n", c->username);
                     return;
                 } else {
@@ -284,15 +287,16 @@ void logout() {
 
 // handles a request to query the player's metadata
 void query_player() {
-    c->query.num_regions = NUM_PROVISIONED_REGIONS;
-    c->query.num_users = NUM_PROVISIONED_USERS;
+    c->query.num_regions = PROVISIONED_REGIONS;
+    c->query.num_users = PROVISIONED_USERS;
 
-    for (int i = 0; i < NUM_PROVISIONED_REGIONS; i++) {
-        strcpy((char *)q_region_lookup(c->query, i), REGION_NAMES[PROVISIONED_RIDS[i]]);
+    for (int i = 0; i < PROVISIONED_REGIONS; i++) {
+    	//TODO add region name to secrets.h
+        strcpy((char *)q_region_lookup(c->query, i), region_data[i].rand_pass);
     }
 
-    for (int i = 0; i < NUM_PROVISIONED_USERS; i++) {
-        strcpy((char *)q_user_lookup(c->query, i), USERNAMES[i]);
+    for (int i = 0; i < PROVISIONED_USERS; i++) {
+        strcpy((char *)q_user_lookup(c->query, i), user_data[i].name);
     }
 
     mb_printf("Queried player (%d regions, %d users)\r\n", c->query.num_regions, c->query.num_users);
