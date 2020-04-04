@@ -72,7 +72,7 @@ To build the reference design for the first time, follow these steps:
 10. Run `./packageDevice ../boot-image/template.bif device1/miPod.bin device1/download.bit` to create a `miPod.BIN` file with your bitstream.
 11. Insert the SD card into the SD card reader, and insert that into your laptop.
     Ensure that this is passed through to the VM through the VirtualBox USB options
-12. Run the `./deployDevice /dev/sdb ../BOOT.BIN global_provisioning/audio/ device1/miPod ../boot-image/image.ub --mipod-bin-path device1/miPod.bin` script.
+12. Run the `./deployDevice /dev/sdb ../boot-image/BOOT.BIN global_provisioning/audio/ device1/miPod ../boot-image/image.ub --mipod-bin-path device1/miPod.bin` script.
 13. Remove the SD card and place it into the board.
 14. Ensure that the jumper is connecting both pins of JP2 (this allows the device to boot from the SD card)
 15. Connect the Cora board to the computer. Ensure that the board (Digilent Adept USB Device) is passed through to the VM.
