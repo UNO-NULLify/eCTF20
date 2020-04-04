@@ -1,7 +1,7 @@
 Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
-| Date         : Mon Mar  2 08:36:14 2020
+| Date         : Sat Apr  4 14:32:03 2020
 | Host         : ssg0 running 64-bit Arch Linux
 | Command      : report_utilization -file system_processing_system7_0_0_utilization_synth.rpt -pb system_processing_system7_0_0_utilization_synth.pb
 | Design       : system_processing_system7_0_0

@@ -24,16 +24,15 @@ set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
-set_property webtalk.parent_dir /ectf/pl/proj/test/test.cache/wt [current_project]
-set_property parent.project_path /ectf/pl/proj/test/test.xpr [current_project]
+set_property webtalk.parent_dir /ectf_dev/ectf/eCTF20/pl/proj/test/test.cache/wt [current_project]
+set_property parent.project_path /ectf_dev/ectf/eCTF20/pl/proj/test/test.xpr [current_project]
 set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language VHDL [current_project]
-set_property ip_repo_paths /ectf/pl/repo [current_project]
-set_property ip_output_repo /ectf/pl/repo/cache [current_project]
+set_property ip_repo_paths /ectf_dev/ectf/eCTF20/pl/repo [current_project]
+set_property ip_output_repo /ectf_dev/ectf/eCTF20/pl/repo/cache [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_ip -quiet /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.xci
-set_property used_in_implementation false [get_files -all /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_ooc.xdc]
+read_ip -quiet /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.xci
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -43,10 +42,8 @@ set_property used_in_implementation false [get_files -all /ectf/pl/proj/test/bd/
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 
-set cached_ip [config_ip_cache -export -no_bom -use_project_ipc -dir /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1 -new_name system_xbar_1 -ip [get_ips system_xbar_1]]
+set cached_ip [config_ip_cache -export -no_bom -use_project_ipc -dir /ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_1_synth_1 -new_name system_xbar_1 -ip [get_ips system_xbar_1]]
 
 if { $cached_ip eq {} } {
 
@@ -85,32 +82,32 @@ write_checkpoint -force -noxdef system_xbar_1.dcp
 create_report "system_xbar_1_synth_1_synth_report_utilization_0" "report_utilization -file system_xbar_1_utilization_synth.rpt -pb system_xbar_1_utilization_synth.pb"
 
 if { [catch {
-  file copy -force /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.dcp /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.dcp
+  file copy -force /ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.dcp /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.dcp
 } _RESULT ] } { 
   send_msg_id runtcl-3 error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
   error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
 }
 
 if { [catch {
-  write_verilog -force -mode synth_stub /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.v
+  write_verilog -force -mode synth_stub /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode synth_stub /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.vhdl
+  write_vhdl -force -mode synth_stub /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_verilog -force -mode funcsim /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_sim_netlist.v
+  write_verilog -force -mode funcsim /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_sim_netlist.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 if { [catch {
-  write_vhdl -force -mode funcsim /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_sim_netlist.vhdl
+  write_vhdl -force -mode funcsim /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_sim_netlist.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
@@ -120,46 +117,46 @@ if { [catch {
 
 
 if { [catch {
-  file copy -force /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.dcp /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.dcp
+  file copy -force /ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1.dcp /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1.dcp
 } _RESULT ] } { 
   send_msg_id runtcl-3 error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
   error "ERROR: Unable to successfully create or copy the sub-design checkpoint file."
 }
 
 if { [catch {
-  file rename -force /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1_stub.v /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.v
+  file rename -force /ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1_stub.v /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a Verilog synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1_stub.vhdl /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.vhdl
+  file rename -force /ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1_stub.vhdl /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create a VHDL synthesis stub for the sub-design. This may lead to errors in top level synthesis of the design. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1_sim_netlist.v /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_sim_netlist.v
+  file rename -force /ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1_sim_netlist.v /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_sim_netlist.v
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the Verilog functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 if { [catch {
-  file rename -force /ectf/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1_sim_netlist.vhdl /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_sim_netlist.vhdl
+  file rename -force /ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_1_synth_1/system_xbar_1_sim_netlist.vhdl /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_sim_netlist.vhdl
 } _RESULT ] } { 
   puts "CRITICAL WARNING: Unable to successfully create the VHDL functional simulation sub-design file. Post-Synthesis Functional Simulation with this file may not be possible or may give incorrect results. Error reported: $_RESULT"
 }
 
 }; # end if cached_ip 
 
-if {[file isdir /ectf/pl/proj/test/test.ip_user_files/ip/system_xbar_1]} {
+if {[file isdir /ectf_dev/ectf/eCTF20/pl/proj/test/test.ip_user_files/ip/system_xbar_1]} {
   catch { 
-    file copy -force /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.v /ectf/pl/proj/test/test.ip_user_files/ip/system_xbar_1
+    file copy -force /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.v /ectf_dev/ectf/eCTF20/pl/proj/test/test.ip_user_files/ip/system_xbar_1
   }
 }
 
-if {[file isdir /ectf/pl/proj/test/test.ip_user_files/ip/system_xbar_1]} {
+if {[file isdir /ectf_dev/ectf/eCTF20/pl/proj/test/test.ip_user_files/ip/system_xbar_1]} {
   catch { 
-    file copy -force /ectf/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.vhdl /ectf/pl/proj/test/test.ip_user_files/ip/system_xbar_1
+    file copy -force /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_1/system_xbar_1_stub.vhdl /ectf_dev/ectf/eCTF20/pl/proj/test/test.ip_user_files/ip/system_xbar_1
   }
 }
