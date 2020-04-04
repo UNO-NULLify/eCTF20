@@ -5,6 +5,7 @@
 *.size
 download.bit
 *.bif
+/miPod/
 
 # SDK files
 RemoteSystemsTempFiles
