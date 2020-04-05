@@ -82,8 +82,9 @@ int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
         if (rid == region_data[i].id &&
             (!provisioned_only || is_provisioned_rid(rid))) {
-        	//TODO add region name in secrets.h
-            *region_name = (char *)region_data[i].rand_pass;
+
+            *region_name = (char *)region_data[i].name;
+
             return TRUE;
         }
     }
@@ -97,8 +98,9 @@ int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
 // looks up the rid corresponding to the region name
 int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
-    	//TODO add region name to secrets.h
-        if (!strcmp(region_name, region_data[i].rand_pass) &&
+
+        if (!strcmp(region_name, region_data[i].name) &&
+
             (!provisioned_only || is_provisioned_rid(region_data[i].id))) {
             *rid = region_data[i].id;
             return TRUE;
@@ -292,7 +294,9 @@ void query_player() {
 
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
     	//TODO add region name to secrets.h
-        strcpy((char *)q_region_lookup(c->query, i), region_data[i].rand_pass);
+
+        strcpy((char *)q_region_lookup(c->query, i), region_data[i].name);
+
     }
 
     for (int i = 0; i < PROVISIONED_USERS; i++) {
