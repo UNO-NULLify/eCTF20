@@ -4,6 +4,7 @@
 #define SECRETS_H
 
 #define PROVISIONED_REGIONS 2
+
 #define PROVISIONED_USERS 64
 
 #define ROOT_VERIFY "34554fa88b8c0feade3b119bf6da249b497f3e03f2e5d78c9900ceee20f34cf4"
