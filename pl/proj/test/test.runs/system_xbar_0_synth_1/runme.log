@@ -14,44 +14,44 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 156527 
+INFO: Helper process launched with PID 10788 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 1245.582 ; gain = 85.000 ; free physical = 3414 ; free virtual = 11464
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:11 . Memory (MB): peak = 1246.855 ; gain = 92.000 ; free physical = 5989 ; free virtual = 10699
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-638] synthesizing module 'system_xbar_0' [/ectf/pl/proj/test/bd/system/ip/system_xbar_0/synth/system_xbar_0.v:60]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4882]
+INFO: [Synth 8-638] synthesizing module 'system_xbar_0' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_0/synth/system_xbar_0.v:60]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4882]
 	Parameter C_FAMILY bound to: zynq - type: string 
-	Parameter C_NUM_SLAVE_SLOTS bound to: 2 - type: integer 
+	Parameter C_NUM_SLAVE_SLOTS bound to: 3 - type: integer 
 	Parameter C_NUM_MASTER_SLOTS bound to: 8 - type: integer 
-	Parameter C_AXI_ID_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_ID_WIDTH bound to: 2 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
-	Parameter C_AXI_PROTOCOL bound to: 2 - type: integer 
+	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_NUM_ADDR_RANGES bound to: 2 - type: integer 
 	Parameter C_M_AXI_BASE_ADDR bound to: 1024'b1111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000001000000000000000000000000000000011111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000100101100110000000000000000111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000001001011000000000000000000001111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000000000010010100001000000000000000011111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000100101100100000000000000000111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000100000000000000100000000000000001111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000000000010010110001000000000000000000000000000000000000000000000000111000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000 
 	Parameter C_M_AXI_ADDR_WIDTH bound to: 512'b00000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000110100000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000001011000000000000000000000000000011101 
-	Parameter C_S_AXI_BASE_ID bound to: 64'b0000000000000000000000000000000100000000000000000000000000000000 
-	Parameter C_S_AXI_THREAD_ID_WIDTH bound to: 64'b0000000000000000000000000000000000000000000000000000000000000000 
+	Parameter C_S_AXI_BASE_ID bound to: 96'b000000000000000000000000000000100000000000000000000000000000000100000000000000000000000000000000 
+	Parameter C_S_AXI_THREAD_ID_WIDTH bound to: 96'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_AXI_SUPPORTS_USER_SIGNALS bound to: 0 - type: integer 
 	Parameter C_AXI_AWUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_ARUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_WUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_RUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_BUSER_WIDTH bound to: 1 - type: integer 
-	Parameter C_M_AXI_WRITE_CONNECTIVITY bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
-	Parameter C_M_AXI_READ_CONNECTIVITY bound to: 256'b0000000000000000000000000000001100000000000000000000000000000011000000000000000000000000000000110000000000000000000000000000001100000000000000000000000000000011000000000000000000000000000000110000000000000000000000000000001100000000000000000000000000000011 
+	Parameter C_M_AXI_WRITE_CONNECTIVITY bound to: 256'b0000000000000000000000000000010100000000000000000000000000000101000000000000000000000000000001010000000000000000000000000000010100000000000000000000000000000101000000000000000000000000000001010000000000000000000000000000010100000000000000000000000000000001 
+	Parameter C_M_AXI_READ_CONNECTIVITY bound to: 256'b0000000000000000000000000000011100000000000000000000000000000111000000000000000000000000000001110000000000000000000000000000011100000000000000000000000000000111000000000000000000000000000001110000000000000000000000000000011100000000000000000000000000000011 
 	Parameter C_R_REGISTER bound to: 0 - type: integer 
-	Parameter C_S_AXI_SINGLE_THREAD bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
-	Parameter C_S_AXI_WRITE_ACCEPTANCE bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
-	Parameter C_S_AXI_READ_ACCEPTANCE bound to: 64'b0000000000000000000000000000000100000000000000000000000000000001 
+	Parameter C_S_AXI_SINGLE_THREAD bound to: 96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
+	Parameter C_S_AXI_WRITE_ACCEPTANCE bound to: 96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
+	Parameter C_S_AXI_READ_ACCEPTANCE bound to: 96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_M_AXI_WRITE_ISSUING bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
 	Parameter C_M_AXI_READ_ISSUING bound to: 256'b0000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001 
-	Parameter C_S_AXI_ARB_PRIORITY bound to: 64'b0000000000000000000000000000000000000000000000000000000000000000 
+	Parameter C_S_AXI_ARB_PRIORITY bound to: 96'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_M_AXI_SECURE bound to: 256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_CONNECTIVITY_MODE bound to: 0 - type: integer 
 	Parameter P_ONES bound to: 65'b11111111111111111111111111111111111111111111111111111111111111111 
-	Parameter P_S_AXI_BASE_ID bound to: 128'b00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000 
-	Parameter P_S_AXI_HIGH_ID bound to: 128'b00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000 
+	Parameter P_S_AXI_BASE_ID bound to: 192'b000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000 
+	Parameter P_S_AXI_HIGH_ID bound to: 192'b000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000 
 	Parameter P_AXI4 bound to: 0 - type: integer 
 	Parameter P_AXI3 bound to: 1 - type: integer 
 	Parameter P_AXILITE bound to: 2 - type: integer 
@@ -59,8 +59,8 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' [/ec
 	Parameter P_INCR bound to: 2'b01 
 	Parameter P_M_AXI_SUPPORTS_WRITE bound to: 8'b11111111 
 	Parameter P_M_AXI_SUPPORTS_READ bound to: 8'b11111111 
-	Parameter P_S_AXI_SUPPORTS_WRITE bound to: 2'b01 
-	Parameter P_S_AXI_SUPPORTS_READ bound to: 2'b11 
+	Parameter P_S_AXI_SUPPORTS_WRITE bound to: 3'b101 
+	Parameter P_S_AXI_SUPPORTS_READ bound to: 3'b111 
 	Parameter C_DEBUG bound to: 1 - type: integer 
 	Parameter P_RANGE_CHECK bound to: 1 - type: integer 
 	Parameter P_ADDR_DECODE bound to: 1 - type: integer 
@@ -68,30 +68,30 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' [/ec
 	Parameter P_LEN bound to: 8 - type: integer 
 	Parameter P_LOCK bound to: 1 - type: integer 
 	Parameter P_FAMILY bound to: zynq - type: string 
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_crossbar_sasd' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:1240]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_crossbar_sasd' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:1240]
 	Parameter C_FAMILY bound to: zynq - type: string 
-	Parameter C_NUM_SLAVE_SLOTS bound to: 2 - type: integer 
+	Parameter C_NUM_SLAVE_SLOTS bound to: 3 - type: integer 
 	Parameter C_NUM_MASTER_SLOTS bound to: 8 - type: integer 
 	Parameter C_NUM_ADDR_RANGES bound to: 2 - type: integer 
-	Parameter C_AXI_ID_WIDTH bound to: 1 - type: integer 
+	Parameter C_AXI_ID_WIDTH bound to: 2 - type: integer 
 	Parameter C_AXI_ADDR_WIDTH bound to: 32 - type: integer 
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
-	Parameter C_AXI_PROTOCOL bound to: 2 - type: integer 
+	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_M_AXI_BASE_ADDR bound to: 1024'b1111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000001000000000000000000000000000000011111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000100101100110000000000000000111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000000001001011000000000000000000001111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000000000010010100001000000000000000011111111111111111111111111111111111111111111111111111111111111110000000000000000000000000000000000000100101100100000000000000000111111111111111111111111111111111111111111111111111111111111111100000000000000000000000000000000100000000000000100000000000000001111111111111111111111111111111111111111111111111111111111111111000000000000000000000000000000000000010010110001000000000000000000000000000000000000000000000000111000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000 
 	Parameter C_M_AXI_HIGH_ADDR bound to: 1024'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100101100111111111111111111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001001011000000011111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010010100001111111111111111100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100101100101111111111111111000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000111111111111111110000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010010110001111111111111111100000000000000000000000000000000111000000011111111111111111111110000000000000000000000000000000000111111111111111111111111111111 
-	Parameter C_S_AXI_BASE_ID bound to: 128'b00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000 
-	Parameter C_S_AXI_HIGH_ID bound to: 128'b00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000 
+	Parameter C_S_AXI_BASE_ID bound to: 192'b000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000 
+	Parameter C_S_AXI_HIGH_ID bound to: 192'b000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_AXI_SUPPORTS_USER_SIGNALS bound to: 0 - type: integer 
 	Parameter C_AXI_AWUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_ARUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_WUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_RUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_BUSER_WIDTH bound to: 1 - type: integer 
-	Parameter C_S_AXI_SUPPORTS_WRITE bound to: 2'b01 
-	Parameter C_S_AXI_SUPPORTS_READ bound to: 2'b11 
+	Parameter C_S_AXI_SUPPORTS_WRITE bound to: 3'b101 
+	Parameter C_S_AXI_SUPPORTS_READ bound to: 3'b111 
 	Parameter C_M_AXI_SUPPORTS_WRITE bound to: 8'b11111111 
 	Parameter C_M_AXI_SUPPORTS_READ bound to: 8'b11111111 
-	Parameter C_S_AXI_ARB_PRIORITY bound to: 64'b0000000000000000000000000000000000000000000000000000000000000000 
+	Parameter C_S_AXI_ARB_PRIORITY bound to: 96'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_M_AXI_SECURE bound to: 256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_M_AXI_ERR_MODE bound to: 256'b0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
 	Parameter C_R_REGISTER bound to: 0 - type: integer 
@@ -104,10 +104,10 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_crossbar_sasd' [/e
 	Parameter P_NUM_MASTER_SLOTS_DE bound to: 9 - type: integer 
 	Parameter P_NUM_MASTER_SLOTS_LOG bound to: 3 - type: integer 
 	Parameter P_NUM_MASTER_SLOTS_DE_LOG bound to: 4 - type: integer 
-	Parameter P_NUM_SLAVE_SLOTS_LOG bound to: 1 - type: integer 
+	Parameter P_NUM_SLAVE_SLOTS_LOG bound to: 2 - type: integer 
 	Parameter P_AXI_AUSER_WIDTH bound to: 1 - type: integer 
 	Parameter P_AXI_WID_WIDTH bound to: 1 - type: integer 
-	Parameter P_AMESG_WIDTH bound to: 64 - type: integer 
+	Parameter P_AMESG_WIDTH bound to: 65 - type: integer 
 	Parameter P_BMESG_WIDTH bound to: 3 - type: integer 
 	Parameter P_RMESG_WIDTH bound to: 36 - type: integer 
 	Parameter P_WMESG_WIDTH bound to: 39 - type: integer 
@@ -121,7 +121,7 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_crossbar_sasd' [/e
 	Parameter P_FULLY_REG bound to: 1 - type: integer 
 	Parameter P_R_REG_CONFIG bound to: 0 - type: integer 
 	Parameter P_DECERR bound to: 2'b11 
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:794]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:794]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_NUM_TARGETS bound to: 8 - type: integer 
 	Parameter C_NUM_TARGETS_LOG bound to: 3 - type: integer 
@@ -135,100 +135,100 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' [/ec
 	Parameter C_TARGET_QUAL bound to: 9'b011111111 
 	Parameter C_RESOLUTION bound to: 2 - type: integer 
 	Parameter C_COMPARATOR_THRESHOLD bound to: 6 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b001000000000000000000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_carry_and' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:62]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_carry_and' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:62]
 	Parameter C_FAMILY bound to: rtl - type: string 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_carry_and' (1#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:62]
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_carry_and' (1#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:62]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b111000000000000000000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized0' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b000001001011000100000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized2' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized1' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized2' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b100000000000000100000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized2' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized3' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized2' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized3' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b000001001011001000000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized3' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized4' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized3' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized4' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b000001001010000100000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized4' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized5' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized4' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized5' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b000001001011000000000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized5' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized6' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized5' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized6' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b000001001011001100000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized6' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized7' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized6' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized7' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_VALUE bound to: 30'b100000000000000000000000000000 
 	Parameter C_DATA_WIDTH bound to: 30 - type: integer 
 	Parameter C_BITS_PER_LUT bound to: 6 - type: integer 
 	Parameter C_NUM_LUT bound to: 5 - type: integer 
 	Parameter C_FIX_DATA_WIDTH bound to: 30 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized7' (2#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' (3#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:794]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_comparator_static__parameterized7' (2#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2133]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_addr_decoder' (3#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:794]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
 	Parameter C_FAMILY bound to: rtl - type: string 
-	Parameter C_RATIO bound to: 2 - type: integer 
-	Parameter C_SEL_WIDTH bound to: 1 - type: integer 
+	Parameter C_RATIO bound to: 3 - type: integer 
+	Parameter C_SEL_WIDTH bound to: 2 - type: integer 
 	Parameter C_DATA_WIDTH bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' (4#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc' (4#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
 	Parameter C_FAMILY bound to: rtl - type: string 
-	Parameter C_RATIO bound to: 2 - type: integer 
-	Parameter C_SEL_WIDTH bound to: 1 - type: integer 
+	Parameter C_RATIO bound to: 3 - type: integer 
+	Parameter C_SEL_WIDTH bound to: 2 - type: integer 
 	Parameter C_DATA_WIDTH bound to: 39 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' (4#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized0' (4#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
 	Parameter C_AXI_ID_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_DATA_WIDTH bound to: 32 - type: integer 
 	Parameter C_AXI_BUSER_WIDTH bound to: 1 - type: integer 
 	Parameter C_AXI_RUSER_WIDTH bound to: 1 - type: integer 
-	Parameter C_AXI_PROTOCOL bound to: 2 - type: integer 
+	Parameter C_AXI_PROTOCOL bound to: 0 - type: integer 
 	Parameter C_RESP bound to: 3 - type: integer 
 	Parameter P_WRITE_IDLE bound to: 2'b00 
 	Parameter P_WRITE_DATA bound to: 2'b01 
@@ -238,80 +238,90 @@ INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' [/ec
 	Parameter P_AXI4 bound to: 0 - type: integer 
 	Parameter P_AXI3 bound to: 1 - type: integer 
 	Parameter P_AXILITE bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' (5#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter_sasd' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:65]
+INFO: [Synth 8-155] case statement is not full and has no default [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3631]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_decerr_slave' (5#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3500]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter_sasd' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:65]
 	Parameter C_FAMILY bound to: zynq - type: string 
-	Parameter C_NUM_S bound to: 2 - type: integer 
-	Parameter C_NUM_S_LOG bound to: 1 - type: integer 
-	Parameter C_AMESG_WIDTH bound to: 64 - type: integer 
+	Parameter C_NUM_S bound to: 3 - type: integer 
+	Parameter C_NUM_S_LOG bound to: 2 - type: integer 
+	Parameter C_AMESG_WIDTH bound to: 65 - type: integer 
 	Parameter C_GRANT_ENC bound to: 1 - type: integer 
-	Parameter C_ARB_PRIORITY bound to: 64'b0000000000000000000000000000000000000000000000000000000000000000 
-	Parameter P_PRIO_MASK bound to: 2'b00 
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized1' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+	Parameter C_ARB_PRIORITY bound to: 96'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000 
+	Parameter P_PRIO_MASK bound to: 3'b000 
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized1' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
 	Parameter C_FAMILY bound to: rtl - type: string 
-	Parameter C_RATIO bound to: 2 - type: integer 
-	Parameter C_SEL_WIDTH bound to: 1 - type: integer 
-	Parameter C_DATA_WIDTH bound to: 64 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized1' (5#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
-INFO: [Synth 8-3936] Found unconnected internal register 'gen_arbiter.next_rr_hot_reg' and it is trimmed from '16' to '2' bits. [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:276]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter_sasd' (6#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:65]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_splitter' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
+	Parameter C_RATIO bound to: 3 - type: integer 
+	Parameter C_SEL_WIDTH bound to: 2 - type: integer 
+	Parameter C_DATA_WIDTH bound to: 65 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized1' (5#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-3936] Found unconnected internal register 'gen_arbiter.next_rr_hot_reg' and it is trimmed from '16' to '3' bits. [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:276]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_addr_arbiter_sasd' (6#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:65]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_splitter' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
 	Parameter C_NUM_M bound to: 3 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_splitter' (7#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
-INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_splitter__parameterized0' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_splitter' (7#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
+INFO: [Synth 8-638] synthesizing module 'axi_crossbar_v2_1_16_splitter__parameterized0' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
 	Parameter C_NUM_M bound to: 2 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_splitter__parameterized0' (7#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized2' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_splitter__parameterized0' (7#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4459]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized2' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_RATIO bound to: 9 - type: integer 
 	Parameter C_SEL_WIDTH bound to: 4 - type: integer 
 	Parameter C_DATA_WIDTH bound to: 1 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized2' (7#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized3' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized2' (7#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized3' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_RATIO bound to: 9 - type: integer 
 	Parameter C_SEL_WIDTH bound to: 4 - type: integer 
 	Parameter C_DATA_WIDTH bound to: 36 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized3' (7#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
-INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized3' (7#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-638] synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
 	Parameter C_FAMILY bound to: zynq - type: string 
 	Parameter C_DATA_WIDTH bound to: 36 - type: integer 
 	Parameter C_REG_CONFIG bound to: 0 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' (8#1) [/ectf/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
-INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized4' [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+INFO: [Synth 8-256] done synthesizing module 'axi_register_slice_v2_1_15_axic_register_slice' (8#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/3ed1/hdl/axi_register_slice_v2_1_vl_rfs.v:189]
+INFO: [Synth 8-638] synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized4' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
 	Parameter C_FAMILY bound to: rtl - type: string 
 	Parameter C_RATIO bound to: 9 - type: integer 
 	Parameter C_SEL_WIDTH bound to: 4 - type: integer 
 	Parameter C_DATA_WIDTH bound to: 3 - type: integer 
-INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized4' (8#1) [/ectf/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2056]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2067]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_w_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2078]
-WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_r_beat_cnt_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2091]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_crossbar_sasd' (9#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:1240]
-INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' (10#1) [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4882]
-INFO: [Synth 8-256] done synthesizing module 'system_xbar_0' (11#1) [/ectf/pl/proj/test/bd/system/ip/system_xbar_0/synth/system_xbar_0.v:60]
+INFO: [Synth 8-256] done synthesizing module 'generic_baseblocks_v2_1_0_mux_enc__parameterized4' (8#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/b752/hdl/generic_baseblocks_v2_1_vl_rfs.v:2452]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_aw_trans_seq_i_reg was removed.  [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2056]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_ar_trans_seq_i_reg was removed.  [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2067]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_w_beat_cnt_i_reg was removed.  [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2078]
+WARNING: [Synth 8-6014] Unused sequential element gen_debug_trans_seq.debug_r_beat_cnt_i_reg was removed.  [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:2091]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_crossbar_sasd' (9#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:1240]
+INFO: [Synth 8-256] done synthesizing module 'axi_crossbar_v2_1_16_axi_crossbar' (10#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:4882]
+INFO: [Synth 8-256] done synthesizing module 'system_xbar_0' (11#1) [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_0/synth/system_xbar_0.v:60]
 WARNING: [Synth 8-3331] design axi_register_slice_v2_1_15_axic_register_slice has unconnected port ACLK
 WARNING: [Synth 8-3331] design axi_register_slice_v2_1_15_axic_register_slice has unconnected port ARESET
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_AWID[0]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_WLAST
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARID[0]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARLEN[7]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARLEN[6]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARLEN[5]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARLEN[4]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARLEN[3]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARLEN[2]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARLEN[1]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_decerr_slave has unconnected port S_AXI_ARLEN[0]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_addr_decoder has unconnected port ADDR[1]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_addr_decoder has unconnected port ADDR[0]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_AWID[5]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_AWID[4]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_AWID[3]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_AWID[2]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_AWID[1]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_AWID[0]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_WID[5]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_WID[4]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_WID[3]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_WID[2]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_WID[1]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_WID[0]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_ARID[5]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_ARID[4]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_ARID[3]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_ARID[2]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_ARID[1]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port S_AXI_ARID[0]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[15]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[14]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[13]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[12]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[11]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[10]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[9]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[8]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[7]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[6]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[5]
@@ -320,6 +330,14 @@ WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnecte
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[2]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[1]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_BID[0]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[15]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[14]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[13]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[12]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[11]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[10]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[9]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[8]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[7]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[6]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[5]
@@ -328,6 +346,10 @@ WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnecte
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[2]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[1]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_crossbar_sasd has unconnected port M_AXI_RID[0]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awid[5]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awid[4]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awid[3]
+WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awid[2]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awid[1]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awid[0]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awaddr[63]
@@ -370,30 +392,9 @@ WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[10]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[9]
 WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[8]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[7]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[6]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[5]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[4]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[3]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[2]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[1]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlen[0]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awsize[5]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awsize[4]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awsize[3]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awsize[2]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awsize[1]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awsize[0]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awburst[3]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awburst[2]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awburst[1]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awburst[0]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlock[1]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awlock[0]
-WARNING: [Synth 8-3331] design axi_crossbar_v2_1_16_axi_crossbar has unconnected port s_axi_awcache[7]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:20 . Memory (MB): peak = 1368.113 ; gain = 207.531 ; free physical = 2766 ; free virtual = 10818
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:20 . Memory (MB): peak = 1370.387 ; gain = 215.531 ; free physical = 4972 ; free virtual = 9769
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -403,42 +404,50 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:20 . Memory (MB): peak = 1368.113 ; gain = 207.531 ; free physical = 2765 ; free virtual = 10821
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:20 . Memory (MB): peak = 1370.387 ; gain = 215.531 ; free physical = 4943 ; free virtual = 9742
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z007sclg400-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_xbar_0/system_xbar_0_ooc.xdc] for cell 'inst'
-Finished Parsing XDC File [/ectf/pl/proj/test/bd/system/ip/system_xbar_0/system_xbar_0_ooc.xdc] for cell 'inst'
-Parsing XDC File [/ectf/pl/proj/test/test.runs/system_xbar_0_synth_1/dont_touch.xdc]
-Finished Parsing XDC File [/ectf/pl/proj/test/test.runs/system_xbar_0_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1649.152 ; gain = 0.000 ; free physical = 2249 ; free virtual = 10303
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1641.426 ; gain = 1.000 ; free physical = 4370 ; free virtual = 9180
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:39 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2905 ; free virtual = 10961
+Finished Constraint Validation : Time (s): cpu = 00:00:22 ; elapsed = 00:00:39 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 4382 ; free virtual = 9224
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z007sclg400-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:39 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2905 ; free virtual = 10961
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:22 ; elapsed = 00:00:39 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 4382 ; free virtual = 9223
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
-Applied set_property DONT_TOUCH = true for inst. (constraint file  /ectf/pl/proj/test/test.runs/system_xbar_0_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:39 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2907 ; free virtual = 10963
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:22 ; elapsed = 00:00:39 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 4384 ; free virtual = 9226
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-4471] merging register 'gen_axilite.s_axi_wready_i_reg' into 'gen_axilite.s_axi_awready_i_reg' [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3572]
-WARNING: [Synth 8-6014] Unused sequential element gen_axilite.s_axi_wready_i_reg was removed.  [/ectf/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3572]
+INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "f_mux_return1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "f_mux_return1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-4471] merging register 'gen_axi.s_axi_rvalid_i_reg' into 'gen_axi.read_cs_reg[0:0]' [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3667]
+WARNING: [Synth 8-6014] Unused sequential element gen_axi.s_axi_rvalid_i_reg was removed.  [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3667]
+INFO: [Synth 8-5546] ROM "gen_axi.read_cs" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "gen_axi.s_axi_rlast_i" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "gen_axi.s_axi_rlast_i" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element gen_axi.read_cnt_reg was removed.  [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3670]
+INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
+INFO: [Synth 8-5544] ROM "f_mux_return1" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return8" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return8" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return7" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
@@ -467,7 +476,7 @@ INFO: [Synth 8-5544] ROM "f_mux_return3" won't be mapped to Block RAM because ad
 INFO: [Synth 8-5544] ROM "f_mux_return2" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "f_mux_return1" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:39 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2897 ; free virtual = 10953
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:39 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 4337 ; free virtual = 9176
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -479,20 +488,26 @@ Report RTL Partitions:
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 1     
 +---Registers : 
-	               64 Bit    Registers := 1     
+	               65 Bit    Registers := 1     
 	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 1     
 	                4 Bit    Registers := 1     
-	                3 Bit    Registers := 1     
-	                2 Bit    Registers := 6     
-	                1 Bit    Registers := 9     
+	                3 Bit    Registers := 6     
+	                2 Bit    Registers := 3     
+	                1 Bit    Registers := 12    
 +---Muxes : 
-	   2 Input     64 Bit        Muxes := 2     
+	   2 Input     65 Bit        Muxes := 3     
 	   2 Input      9 Bit        Muxes := 1     
-	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 2     
 	   2 Input      4 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 73    
+	   4 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 96    
+	   4 Input      1 Bit        Muxes := 8     
+	   3 Input      1 Bit        Muxes := 1     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -504,20 +519,41 @@ Module axi_crossbar_v2_1_16_addr_decoder
 Detailed RTL Component Info : 
 +---Muxes : 
 	   2 Input      8 Bit        Muxes := 1     
+Module generic_baseblocks_v2_1_0_mux_enc 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
+Module generic_baseblocks_v2_1_0_mux_enc__parameterized0 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 3     
 Module axi_crossbar_v2_1_16_decerr_slave 
 Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      8 Bit       Adders := 1     
 +---Registers : 
-	                1 Bit    Registers := 4     
+	                8 Bit    Registers := 1     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 8     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+	   4 Input      2 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 8     
+	   2 Input      1 Bit        Muxes := 11    
+	   3 Input      1 Bit        Muxes := 1     
+Module generic_baseblocks_v2_1_0_mux_enc__parameterized1 
+Detailed RTL Component Info : 
 +---Muxes : 
 	   2 Input      1 Bit        Muxes := 3     
 Module axi_crossbar_v2_1_16_addr_arbiter_sasd 
 Detailed RTL Component Info : 
 +---Registers : 
-	               64 Bit    Registers := 1     
-	                2 Bit    Registers := 5     
-	                1 Bit    Registers := 4     
+	               65 Bit    Registers := 1     
+	                3 Bit    Registers := 5     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 3     
 +---Muxes : 
-	   2 Input     64 Bit        Muxes := 2     
+	   2 Input     65 Bit        Muxes := 3     
 	   2 Input      1 Bit        Muxes := 7     
 Module axi_crossbar_v2_1_16_splitter 
 Detailed RTL Component Info : 
@@ -564,40 +600,42 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (inst/\gen_sasd.crossbar_sasd_0/addr_arbiter_inst/s_awvalid_reg_reg[1] )
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/s_arvalid_reg_reg[1]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/s_awvalid_reg_reg[1]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[63]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[62]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[61]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[60]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[59]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[58]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[57]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[56]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[55]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[54]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[53]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[52]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[51]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[50]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[49]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[45]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[44]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[43]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[42]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[41]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[40]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[39]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[38]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[37]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[36]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[35]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[34]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[33]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
-INFO: [Synth 8-3332] Sequential element (gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[0]) is unused and will be removed from module axi_crossbar_v2_1_16_axi_crossbar.
+INFO: [Synth 8-5546] ROM "gen_axi.s_axi_rlast_i" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "gen_axi.read_cs" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-6014] Unused sequential element gen_axi.read_cnt_reg was removed.  [/ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ipshared/c631/hdl/axi_crossbar_v2_1_vl_rfs.v:3670]
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_awready[1] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_wready[1] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bid[5] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bid[4] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bid[3] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bid[2] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bid[1] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bid[0] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bresp[3] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bresp[2] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_bvalid[1] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_rid[5] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_rid[4] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_rid[3] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_rid[2] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_rid[1] driven by constant 0
+INFO: [Synth 8-3917] design system_xbar_0 has port s_axi_rid[0] driven by constant 0
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/s_awvalid_reg_reg[1] )
+INFO: [Synth 8-3886] merging instance 'inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.last_rr_hot_reg[1]' (FDRE) to 'inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_grant_enc_i_reg[0]'
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/gen_decerr.decerr_slave_inst/gen_axi.s_axi_bid_i_reg[0]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/gen_decerr.decerr_slave_inst/gen_axi.s_axi_rid_i_reg[0]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/s_arvalid_reg_reg[1]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/s_awvalid_reg_reg[1]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[64]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[63]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[62]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[61]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[60]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[46]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[1]) is unused and will be removed from module system_xbar_0.
+INFO: [Synth 8-3332] Sequential element (inst/gen_sasd.crossbar_sasd_0/addr_arbiter_inst/gen_arbiter.m_amesg_i_reg[0]) is unused and will be removed from module system_xbar_0.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:40 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2854 ; free virtual = 10909
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:40 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 4574 ; free virtual = 9407
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -609,13 +647,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:46 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2199 ; free virtual = 10255
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 5106 ; free virtual = 9935
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2235 ; free virtual = 10292
+Finished Timing Optimization : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 5100 ; free virtual = 9927
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -627,7 +665,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2294 ; free virtual = 10351
+Finished Technology Mapping : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 5126 ; free virtual = 9951
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -651,7 +689,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2816 ; free virtual = 10875
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 6143 ; free virtual = 10962
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -664,7 +702,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2816 ; free virtual = 10875
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 6143 ; free virtual = 10962
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -676,25 +714,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2815 ; free virtual = 10873
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 6143 ; free virtual = 10961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2817 ; free virtual = 10874
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 6138 ; free virtual = 10957
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2816 ; free virtual = 10874
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 6135 ; free virtual = 10954
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2816 ; free virtual = 10873
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 6142 ; free virtual = 10961
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -711,12 +749,12 @@ Report Cell Usage:
 |      |Cell |Count |
 +------+-----+------+
 |1     |LUT1 |     2|
-|2     |LUT2 |    51|
-|3     |LUT3 |     9|
-|4     |LUT4 |    39|
-|5     |LUT5 |    59|
-|6     |LUT6 |   217|
-|7     |FDRE |    69|
+|2     |LUT2 |    49|
+|3     |LUT3 |    13|
+|4     |LUT4 |    87|
+|5     |LUT5 |    62|
+|6     |LUT6 |   299|
+|7     |FDRE |   108|
 |8     |FDSE |     1|
 +------+-----+------+
 
@@ -724,20 +762,20 @@ Report Instance Areas:
 +------+-------------------------------------+----------------------------------------------+------+
 |      |Instance                             |Module                                        |Cells |
 +------+-------------------------------------+----------------------------------------------+------+
-|1     |top                                  |                                              |   447|
-|2     |  inst                               |axi_crossbar_v2_1_16_axi_crossbar             |   447|
-|3     |    \gen_sasd.crossbar_sasd_0        |axi_crossbar_v2_1_16_crossbar_sasd            |   447|
-|4     |      addr_arbiter_inst              |axi_crossbar_v2_1_16_addr_arbiter_sasd        |   241|
-|5     |      \gen_decerr.decerr_slave_inst  |axi_crossbar_v2_1_16_decerr_slave             |    16|
-|6     |      splitter_ar                    |axi_crossbar_v2_1_16_splitter__parameterized0 |     9|
-|7     |      splitter_aw                    |axi_crossbar_v2_1_16_splitter                 |    21|
+|1     |top                                  |                                              |   621|
+|2     |  inst                               |axi_crossbar_v2_1_16_axi_crossbar             |   621|
+|3     |    \gen_sasd.crossbar_sasd_0        |axi_crossbar_v2_1_16_crossbar_sasd            |   615|
+|4     |      addr_arbiter_inst              |axi_crossbar_v2_1_16_addr_arbiter_sasd        |   372|
+|5     |      \gen_decerr.decerr_slave_inst  |axi_crossbar_v2_1_16_decerr_slave             |    45|
+|6     |      splitter_ar                    |axi_crossbar_v2_1_16_splitter__parameterized0 |    18|
+|7     |      splitter_aw                    |axi_crossbar_v2_1_16_splitter                 |    19|
 +------+-------------------------------------+----------------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2816 ; free virtual = 10873
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 6142 ; free virtual = 10961
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 252 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:34 . Memory (MB): peak = 1649.152 ; gain = 207.531 ; free physical = 2872 ; free virtual = 10930
-Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1649.152 ; gain = 488.570 ; free physical = 2872 ; free virtual = 10930
+Synthesis finished with 0 errors, 0 critical warnings and 175 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:23 ; elapsed = 00:00:34 . Memory (MB): peak = 1641.426 ; gain = 215.531 ; free physical = 6200 ; free virtual = 11018
+Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:47 . Memory (MB): peak = 1641.426 ; gain = 486.570 ; free physical = 6200 ; free virtual = 11018
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -745,13 +783,13 @@ INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 INFO: [Common 17-83] Releasing license: Synthesis
-121 Infos, 105 Warnings, 0 Critical Warnings and 0 Errors encountered.
+135 Infos, 107 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:48 . Memory (MB): peak = 1664.168 ; gain = 528.410 ; free physical = 3398 ; free virtual = 11456
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_xbar_0_synth_1/system_xbar_0.dcp' has been generated.
-INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf/pl/proj/test/bd/system/ip/system_xbar_0/system_xbar_0.xci
+synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:48 . Memory (MB): peak = 1665.449 ; gain = 529.691 ; free physical = 6190 ; free virtual = 11008
+INFO: [Common 17-1381] The checkpoint '/ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_0_synth_1/system_xbar_0.dcp' has been generated.
+INFO: [Coretcl 2-1482] Added synthesis output to IP cache for IP /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_xbar_0/system_xbar_0.xci
 INFO: [Coretcl 2-1174] Renamed 6 cell refs.
-INFO: [Common 17-1381] The checkpoint '/ectf/pl/proj/test/test.runs/system_xbar_0_synth_1/system_xbar_0.dcp' has been generated.
+INFO: [Common 17-1381] The checkpoint '/ectf_dev/ectf/eCTF20/pl/proj/test/test.runs/system_xbar_0_synth_1/system_xbar_0.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_xbar_0_utilization_synth.rpt -pb system_xbar_0_utilization_synth.pb
-report_utilization: Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1688.180 ; gain = 0.000 ; free physical = 3386 ; free virtual = 11445
-INFO: [Common 17-206] Exiting Vivado at Mon Mar  2 08:36:27 2020...
+report_utilization: Time (s): cpu = 00:00:00.04 ; elapsed = 00:00:00.07 . Memory (MB): peak = 1689.461 ; gain = 0.000 ; free physical = 6147 ; free virtual = 10968
+INFO: [Common 17-206] Exiting Vivado at Sat Apr  4 14:32:16 2020...
