@@ -2,8 +2,8 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Fri Apr  3 12:10:00 2020
-# Process ID: 26732
+# Start of session at: Sat Apr  4 16:20:41 2020
+# Process ID: 34098
 # Current directory: /ectf_dev/ectf/eCTF20/pl
 # Command line: vivado -mode batch -source ..//pl/proj/create_project.tcl -tclargs --project_name test
 # Log file: /ectf_dev/ectf/eCTF20/pl/vivado.log
@@ -69,4 +69,4 @@ ERROR: [Common 17-53] User Exception: Project already exists on disk, please use
      /ectf_dev/ectf/eCTF20/pl/test/test.cache
      /ectf_dev/ectf/eCTF20/pl/test/test.hw
      /ectf_dev/ectf/eCTF20/pl/test/test.sdk
-INFO: [Common 17-206] Exiting Vivado at Fri Apr  3 12:10:06 2020...
+INFO: [Common 17-206] Exiting Vivado at Sat Apr  4 16:20:46 2020...

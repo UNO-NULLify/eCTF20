@@ -14,19 +14,20 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include <stdint.h>
 
 volatile cmd_channel *c;
+volatile uint32_t cmdreg = 0x43C00000;
 
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
-// sends a command to the microblaze using the shared command channel and
-// interrupt
+// sends a command to the microblaze using the shared command channel and interrupt
 void send_command(int cmd) {
-  memcpy((void *)&c->cmd, &cmd, 1);
-
-  // trigger gpio interrupt
-  system("devmem 0x41200000 32 0");
-  system("devmem 0x41200000 32 1");
+    //trigger gpio interrupt by writing to command register
+	char devmemcmd[64];
+	sprintf(devmemcmd, "devmem 0x%08x 32 0x%08x",cmdreg, cmd << 16);
+	printf(devmemcmd);
+    system(devmemcmd);
 }
 
 // parses the input of a command with up to two arguments

@@ -2,12 +2,12 @@
 # Vivado v2017.4 (64-bit)
 # SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
 # IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
-# Start of session at: Wed Feb 19 22:59:17 2020
-# Process ID: 23925
-# Current directory: /ectf/pl
+# Start of session at: Sat Apr  4 16:21:31 2020
+# Process ID: 34992
+# Current directory: /ectf_dev/ectf/eCTF20/pl
 # Command line: vivado -mode batch -source ..//pl/proj/create_project.tcl -tclargs --project_name test
-# Log file: /ectf/pl/vivado.log
-# Journal file: /ectf/pl/vivado.jou
+# Log file: /ectf_dev/ectf/eCTF20/pl/vivado.log
+# Journal file: /ectf_dev/ectf/eCTF20/pl/vivado.jou
 #-----------------------------------------------------------
 source ..//pl/proj/create_project.tcl
 # set origin_dir "."
@@ -65,10 +65,8 @@ source ..//pl/proj/create_project.tcl
 # set orig_proj_dir "[file normalize "$origin_dir/test"]"
 # create_project ${project_name} ./${project_name} -part xc7z007sclg400-1
 ERROR: [Common 17-53] User Exception: Project already exists on disk, please use '-force' option to overwrite: 
-     /ectf/pl/test/test.xpr
-     /ectf/pl/test/test.sim
-     /ectf/pl/test/test.cache
-     /ectf/pl/test/test.hw
-     /ectf/pl/test/test.sdk
-     /ectf/pl/test/test.ip_user_files
-INFO: [Common 17-206] Exiting Vivado at Wed Feb 19 22:59:21 2020...
+     /ectf_dev/ectf/eCTF20/pl/test/test.xpr
+     /ectf_dev/ectf/eCTF20/pl/test/test.cache
+     /ectf_dev/ectf/eCTF20/pl/test/test.hw
+     /ectf_dev/ectf/eCTF20/pl/test/test.sdk
+INFO: [Common 17-206] Exiting Vivado at Sat Apr  4 16:21:37 2020...
