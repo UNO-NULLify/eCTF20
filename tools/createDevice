@@ -13,7 +13,7 @@ def write_region(region_names, region_secrets):
     f_str = f""
     for r in region_names:
         #f_str += f'\n{{ {region_secrets[r]["id"]}, \"{r}\",\"{region_secrets[r]["pub_key"]}\", \"{region_secrets[r]["priv_key_enc"]}\", \"{region_secrets[r]["rand_pass"]}\" }},'
-        f_str += f'\n{{ {region_secrets[r]["id"]}, \"{region_secrets[r]["rand_pass"]}\" }},'
+        f_str += f'\n{{ {region_secrets[r]["id"]}, \"{r}\", \"{region_secrets[r]["rand_pass"]}\" }},'
         #i = i+1
     return f_str
 
@@ -81,6 +81,7 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 
 struct R_Data {{
     uint8_t id;
+    char *name
     char *rand_pass;
 }};
 
