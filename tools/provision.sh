@@ -194,7 +194,7 @@ fi
 
   read -p "What is the name of your ssd card (sdb)? " DEVICE
 
-  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
+  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ./device/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
 
 #printf "\n\nRunning buildDevice...\n"
 #(./buildDevice -p /ectf/ -n test -bf all -secrets_dir ./device)
