@@ -153,6 +153,7 @@ uint8_t *generate30Secret(struct metadata *meta) {
   }
 }
 
+// TODO
 uint8_t *generateSharedSecret(struct metadata *meta) {
   // TODO
   return 0;
@@ -290,26 +291,68 @@ uint8_t decrypt30(FILE *encFile, struct metadata *meta, uint8_t *secret30) {
   fclose(encFile);
 }
 
+// TODO
 uint8_t decryptShared(FILE *encFile, struct metadata *meta, uint8_t *secretShared){
 	// TODO
 	return 0;
 }
 
-int play(char *pin, uint8_t uid, uint8_t sample) {
+uint8_t playFull(FILE *encFile, struct metadata *meta, char *pin) {
+	// Generate full secret
+	uint8_t *secret = generateSecret(pin, meta);
 
-  // Load metadata
-  struct metadata meta = {0};
-  FILE *encFile;
-  encFile = fopen("provision_test/audio/test-protect-small-step.drm", "rb");
-  if (encFile == NULL) {
-    printf("\033[0;31m");
-    printf("Error reading metadata!\n");
-    printf("\033[0m");
-    return 1;
-  }
-  readMetadata(encFile, &meta);
+	// TODO: Remove this print statement
+	printf("Secret: ");
+	for (int i = 0; i < 160; i++) {
+		printf("%x", secret[i]);
+	}
+	printf("\n\n");
 
-  long int myLoc = ftell(encFile);
+	// Decrypt full song
+	return decryptFull(encFile, meta, secret);
+}
+
+uint8_t play30(FILE *encFile, struct metadata *meta){
+	// Generate 30 secret
+	uint8_t *secret30 = generate30Secret(meta);
+
+	printf("Secret30: ");
+	for (int i = 0; i < 64; i++) {
+		printf("%x", secret30[i]);
+	}
+	printf("\n\n");
+
+	// Decrypt 30 second sample
+	return decrypt30(encFile, meta, secret30);
+}
+
+// TODO
+uint8_t playShared(FILE *encFile, struct metadata *meta, uint8_t uid) {
+	// Get shared info from metadata
+	printf("Shared Info: ");
+	for (int i = 0; i < 96; i++) {
+		printf("%x", meta->sharedInfo[uid][i]);
+	}
+	printf("\n\n");
+
+	return 0;
+}
+
+int play(char *pin, uint8_t uid) {
+
+	// Load metadata
+	struct metadata meta = {0};
+	FILE *encFile;
+	encFile = fopen("provision_test/audio/test-protect.drm", "rb");
+	if (encFile == NULL) {
+		printf("\033[0;31m");
+		printf("Error reading metadata!\n");
+		printf("\033[0m");
+		return 1;
+	}
+	readMetadata(encFile, &meta);
+
+	long int myLoc = ftell(encFile);
   
 	// Verify Signature (quit if it doesn't verify)
 	if (verifySignature(encFile, &meta)) {
@@ -318,95 +361,65 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 
     fseek(encFile, myLoc, SEEK_SET);
 
-	// Check if the user owns the song
-	if(uid == meta.owner_id) {
-		// User owns song
-		printf("User owns the song\n");
-		
-		// Generate full secret
-        uint8_t *secret = generateSecret(pin, &meta);
-        printf("Secret: ");
-        for (int i = 0; i < 160; i++) {
-          printf("%x", secret[i]);
-        }
-        printf("\n\n");
+	// Check if the user is signed in
+	if(uid != -1) {
+		// User is signed in
+		printf("User is signed in.\n");
 
-        // Decrypt full song
-        decryptFull(encFile, &meta, secret);
-        printf("Playing full song\n");
-    } else {
-		// Check if the user is signed in
-		if(uid != -1) {
-			// User is signed in
-			printf("User is signed in, but doesn't own the song\n");
+		// Check if the user owns the song
+		if (uid == meta.owner_id) {
+			// User owns song
+			printf("User owns the song.\nPlaying full song.\n");
+
+			// Play full song
+			return playFull(encFile, &meta, pin);
+
+		} else {
+			// User doesn't own the song.
+			printf("User doesn't own the song.\n");
 
 			// Check if song has been shared with user
 			if(meta.sharedInfo[uid][0] != '\0') {
 
-				// Get shared info from metadata
-				printf("Shared Info: ");
-				for (int i = 0; i < 96; i++) {
-					printf("%x", meta.sharedInfo[uid][i]);
-				}
-				printf("\n\n");
+				// Song has been shared with user, play shared song
+				printf("Song has been shared with user.\nPlaying shared song.\n");
 
+				// Play shared song
+				return playShared(encFile, &meta, uid);
 
-				// Generate shared secret
-				// uint8_t *sharedSecret = generateSharedSecret(pin, &meta);
-				// printf("Shared Secret: ");
-				// for (int i = 0; i < 160; i++) {
-				// 	printf("%x", sharedSecret[i]);
-				// }
-				// printf("\n\n");
-
-				// Decrypt shared song
-				// decryptShared(encFile, &meta, sharedSecret);
-				printf("Playing shared song\n");
 			} else {
 				// Song has not been shared with user, play 30 Second Sample
-				printf("Song has not been shared with user %u.\n Playing 30 second sample\n", uid);
+				printf("Song has not been shared with user %u.\nPlaying 30 second sample.\n", uid);
 
-				// Generate 30 secret
-				uint8_t *secret30 = generate30Secret(&meta);
-				printf("Secret30: ");
-				for (int i = 0; i < 64; i++) {
-					printf("%x", secret30[i]);
-				}
-				printf("\n\n");
-
-				// Decrypt 30 second sample
-				decrypt30(encFile, &meta, secret30);
-				printf("Playing 30 second sample\n");
-				return 0;
+				// Play 30 second sample
+				return play30(encFile, &meta);
 			}
-		} else {
-			// User is not signed in, play 30 Second Sample
-			printf("User is not signed in\n");
-			
-			// Generate 30 secret
-            uint8_t *secret30 = generate30Secret(&meta);
-            printf("Secret30: ");
-            for (int i = 0; i < 64; i++) {
-              printf("%x", secret30[i]);
-            }
-            printf("\n\n");
-
-            // Decrypt 30 second sample
-            decrypt30(encFile, &meta, secret30);
-            printf("Playing 30 second sample\n");
-        }
+		}
+	} else {
+		// User is not signed in, play 30 Second Sample
+		printf("User is not signed in.\nPlaying 30 second sample.\n");
+		
+		// Play 30 second sample
+		return play30(encFile, &meta);
 	}
-
-	return 0;
 }
 
 int main(int argc, char *argv[]) {
 
-  // These variables will be stored in implementation
-  char *pin = "7480724457714773069141594359603694857949790757759299";
-  uint8_t uid = 3;
-  uint8_t sample = 0;
+	// These variables will be stored in implementation
+	char *pin = "77369750";
+	uint8_t uid = 1;
 
-  return play(pin, uid, sample);
+	if(play(pin, uid)){
+		printf("\033[0;31m");
+		printf("Song failed to play!\n");
+		printf("\033[0m");
+		return 1;
+    } else {
+		printf("\033[0;32m");
+		printf("Song played successfully!\n");
+		printf("\033[0m");
+		return 0;
+	}
 
 }
