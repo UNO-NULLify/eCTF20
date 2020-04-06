@@ -6,7 +6,7 @@
 #include <string.h>
 
 struct metadata {
-  char sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
+  uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
   uint8_t owner_id;                     // 1-Byte
   uint8_t region_ids[MAX_REGIONS];      // 64-Bytes
   char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
@@ -248,15 +248,15 @@ int shareSong(uint8_t uid, uint8_t sid, char * pin, struct metadata * meta)
   uint8_t encrypted[48] = {0};
   uint8_t nonceEnc[24] = {0};
   uint8_t macEnc[16]= {0};
-  crypto_lock(encrypted + 32, encrypted, shared_key, nonceEnc, hash ,32 );
+  crypto_lock(meta->sharedInfo[sid-1] + 32, meta->sharedInfo[sid-1] , shared_key, nonceEnc, hash ,32 );
   printf("encrypteddd\n ");
   for (int i = 0; i < (48); i++) {
-    printf("%x", *(encrypted + (i * sizeof(uint8_t))));
+    printf("%x", *(meta->sharedInfo[sid-1]  + (i * sizeof(uint8_t))));
   }
    printf("\n\n");
   uint8_t decrypted[32]= {0};
   uint8_t nonceDec[24] = {0};
-  crypto_unlock(decrypted, shared_key, nonceDec, encrypted + 32, encrypted, 32);
+  crypto_unlock(decrypted, shared_key, nonceDec, meta->sharedInfo[sid-1] + 32, meta->sharedInfo[sid-1], 32);
   printf("decryptedd\n ");
   for (int i = 0; i < (32); i++) {
     printf("%x", *(decrypted + (i * sizeof(uint8_t))));
@@ -282,7 +282,7 @@ int main(int argc, char *argv[]){
   //shareSong(1,2);
   printf("Song owner = %u\n", meta.owner_id);
   //example of how to share the song
-  shareSong(meta.owner_id, 2, "5927807726344711810782530294068260", &meta);
+  shareSong(meta.owner_id, 2, "58102742238035581", &meta);
 
   return 0;
 }

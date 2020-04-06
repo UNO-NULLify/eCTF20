@@ -6,7 +6,7 @@
 #include <string.h>
 
 struct metadata {
-    char sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
+    uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
     uint8_t owner_id; // 1-Byte
     uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
