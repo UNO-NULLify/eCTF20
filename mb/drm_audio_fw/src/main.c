@@ -16,6 +16,7 @@
 #include "constants.h"
 #include "sleep.h"
 #include "fsl.h"
+#include "monocypher.h"
 
 
 
@@ -57,6 +58,31 @@ void myISR(void) {
     InterruptProcessed = TRUE;
 }
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
+
+void byte_me(char *dest, char *src, size_t src_len)
+{
+  for(int i = 0; i < src_len; i +=2)
+  {
+    if(src[i] >= '0' && src[i] <= '9')
+     {
+       dest[i/2] = src[i] - '0';
+     }
+     else
+     {
+       dest[i/2] = src[i] - 'a' + 10;
+     }
+
+    dest[i/2] = dest[i/2] << 4;
+
+    if(src[i+1] >= '0' && src[i+1] <= '9')
+    {
+      dest[i/2] += src[i+1] - '0';
+    }
+    else{
+      dest[i/2] += src[i+1] - 'a' + 10;
+    }
+  }
+}
 
 u32 read_cr()
 {
@@ -241,7 +267,29 @@ void login() {
             if (!strcmp((void*)c->username, user_data[i].name)) {
                 // check if pin matches
             	//TODO convert c->pin to hash
-                if (!strcmp((void*)c->pin, user_data[i].pin_hash)) {
+            	//secrets pin hash to bytes
+            	uint8_t usr_pin_bytes[ARGON_HASH_SZ] = {0};
+            	byte_me(usr_pin_bytes, user_data[i].pin_hash, strlen(user_data[i].pin_hash));
+            	//
+            	//make comparison hash
+            	uint8_t cmp_hash[ARGON_HASH_SZ] = {0};
+            	//work area
+            	uint8_t *work_area;
+            	work_area = (uint8_t *) malloc(ARGON_BLOCKS*1024);
+            	//salt bytes
+            	uint8_t salt_bytes[ARGON_SALT_SZ] = {0};
+            	byte_me(salt_bytes, user_data[i].salt, strlen(user_data[i].salt));
+            	crypto_argon2i(cmp_hash,
+            				   ARGON_HASH_SZ,
+							   work_area,
+							   ARGON_BLOCKS,
+							   ARGON_ITTERS,
+							   (void*)c->pin,
+							   strlen((void*)c->pin),
+							   salt_bytes,
+							   ARGON_SALT_SZ);
+            	//TODO implement crypto_verify32
+                if (!strcmp((void*)c->pin, usr_pin_bytes)) {
                     //update states
                     s.logged_in = 1;
                     c->login_status = 1;
@@ -249,12 +297,14 @@ void login() {
                     memcpy(s.pin, (void*)c->pin, MAX_PIN_SZ);
                     s.uid = user_data[i].id;
                     mb_printf("Logged in for user '%s'\r\n", c->username);
+                    free(work_area);
                     return;
                 } else {
                     // reject login attempt
                     mb_printf("Incorrect pin for user '%s'\r\n", c->username);
                     memset((void*)c->username, 0, USERNAME_SZ);
                     memset((void*)c->pin, 0, MAX_PIN_SZ);
+                    free(work_area);
                     return;
                 }
             }
@@ -289,7 +339,6 @@ void query_player() {
     c->query.num_users = PROVISIONED_USERS;
 
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
-    	//TODO add region name to secrets.h
         strcpy((char *)q_region_lookup(c->query, i), region_data[i].name);
     }
 

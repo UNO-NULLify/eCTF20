@@ -33,6 +33,10 @@
 #define USERNAME_SZ 64
 #define MAX_PIN_SZ 64
 #define SONG_PG_SZ (1<<24)		//16MB, half the size alloted for the song buffer
+#define ARGON_BLOCKS 8
+#define ARGON_ITTERS 3
+#define ARGON_HASH_SZ 32
+#define ARGON_SALT_SZ 16
 
 // LED colors and controller
 struct color {

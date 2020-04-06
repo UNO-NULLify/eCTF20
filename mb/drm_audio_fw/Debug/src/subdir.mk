@@ -9,17 +9,20 @@ LD_SRCS += \
 C_SRCS += \
 ../src/main.c \
 ../src/platform.c \
-../src/util.c 
+../src/util.c \
+../src/monocypher.c  
 
 OBJS += \
 ./src/main.o \
 ./src/platform.o \
-./src/util.o 
+./src/util.o \
+./src/monocypher.o  
 
 C_DEPS += \
 ./src/main.d \
 ./src/platform.d \
-./src/util.d 
+./src/util.d \
+./src/monocypher.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
