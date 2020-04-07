@@ -375,7 +375,7 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 				printf("\n\n");
 
 				// Decrypt 30 second sample
-				decrypt30(encFile, &meta, secret30);
+				printf("d30 res: %u", decrypt30(encFile, &meta, secret30));
 				printf("Playing 30 second sample\n");
 				return 0;
 			}
@@ -392,8 +392,8 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
             printf("\n\n");
 
             // Decrypt 30 second sample
-            decrypt30(encFile, &meta, secret30);
-            printf("Playing 30 second sample\n");
+            printf("d30 res: %u", decrypt30(encFile, &meta, secret30));
+            printf("Playing 300 second sample\n");
         }
 	}
 
@@ -403,7 +403,7 @@ int play(char *pin, uint8_t uid, uint8_t sample) {
 int main(int argc, char *argv[]) {
 
   // These variables will be stored in implementation
-  char *pin = "7480724457714773069141594359603694857949790757759299";
+  char *pin = "903494461251310648071306908532497731221875540674065";
   uint8_t uid = 3;
   uint8_t sample = 0;
 

@@ -180,6 +180,7 @@ int shareSong(uint8_t uid, uint8_t sid, char * pin, struct metadata * meta)
 {
   printf("The uid is %u\n", uid);
   printf("The sid is %u\n", sid);
+  printf("The name for the sharie is %s\n", user_data[sid-1].name);
   uint8_t hashed[64] = {0};
   uint8_t mac[16] = {0};
   uint8_t enc_pvt_key[32] = {0};
@@ -215,7 +216,7 @@ int shareSong(uint8_t uid, uint8_t sid, char * pin, struct metadata * meta)
 	puts("\n");
   uint8_t shared_key[32] = {0};
 
-  crypto_key_exchange(shared_key, pvt_key, user_data[sid].pub_key);  //using public key of users position 1.
+  crypto_key_exchange(shared_key, pvt_key, user_data[sid-1].pub_key);  //using public key of users position 1.
 
   printf("\nShared Key:\n%s\n", shared_key);
   uint8_t * secretFull;
@@ -248,6 +249,7 @@ int shareSong(uint8_t uid, uint8_t sid, char * pin, struct metadata * meta)
   uint8_t encrypted[48] = {0};
   uint8_t nonceEnc[24] = {0};
   uint8_t macEnc[16]= {0};
+  
   crypto_lock(meta->sharedInfo[sid-1] + 32, meta->sharedInfo[sid-1] , shared_key, nonceEnc, hash ,32 );
   printf("encrypteddd\n ");
   for (int i = 0; i < (48); i++) {
@@ -261,18 +263,32 @@ int shareSong(uint8_t uid, uint8_t sid, char * pin, struct metadata * meta)
   for (int i = 0; i < (32); i++) {
     printf("%x", *(decrypted + (i * sizeof(uint8_t))));
   }
-  
-  // hex_me(meta->sharedInfo[sid-1],encrypted, sizeof(encrypted));
-  // printf("\nur dumb %s\n", meta-> sharedInfo[sid-1]);
-
-
   return 0;
 }
+
+//Write file metadata
+//Target file is the file to write to
+// metaIn is the metadata struct in to write to the file
+int writeMetadata(FILE *outfile, struct metadata metaIn ){
+
+  int yay = fwrite(&metaIn, sizeof(struct metadata), 1, outfile);
+
+  if(yay != 0){
+    printf("Metadata written successfully!\n");
+  }
+  else
+  {
+       printf("Error writing file!\n");
+  }
+  return 1;
+}
+
+
 
 int main(int argc, char *argv[]){
   struct metadata meta = {0};
   FILE *encFile;
-  encFile = fopen("./provision_test/audio/test-protect-small-step.drm", "rb"); // open the outfile for reading
+  encFile = fopen("./provision_test/audio/test-protect-small-step.drm", "rb+"); // open the outfile for reading
   if (encFile == NULL)
   {
       fprintf(stderr, "\nError opening file\n");
@@ -282,7 +298,35 @@ int main(int argc, char *argv[]){
   //shareSong(1,2);
   printf("Song owner = %u\n", meta.owner_id);
   //example of how to share the song
-  shareSong(meta.owner_id, 2, "58102742238035581", &meta);
+  shareSong(meta.owner_id, 2, "903494461251310648071306908532497731221875540674065", &meta);
+
+  fseek(encFile, 0, SEEK_SET );
+
+  writeMetadata(encFile, meta);
+
+  fseek(encFile, 0, SEEK_SET );
+
+  readMetadata(encFile, & meta);
+
+  shareSong(meta.owner_id, 5, "903494461251310648071306908532497731221875540674065", &meta);
+
+  fseek(encFile, 0, SEEK_SET );
+
+  writeMetadata(encFile, meta);
+
+  fseek(encFile, 0, SEEK_SET );
+
+  readMetadata(encFile, & meta);
+
+  shareSong(meta.owner_id, 64, "903494461251310648071306908532497731221875540674065", &meta);
+
+  fseek(encFile, 0, SEEK_SET );
+
+  writeMetadata(encFile, meta);
+
+  fseek(encFile, 0, SEEK_SET );
+
+  readMetadata(encFile, & meta);
 
   return 0;
 }
