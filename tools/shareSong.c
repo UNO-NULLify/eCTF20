@@ -216,9 +216,18 @@ int shareSong(uint8_t uid, uint8_t sid, char * pin, struct metadata * meta)
 	puts("\n");
   uint8_t shared_key[32] = {0};
 
-  crypto_key_exchange(shared_key, pvt_key, user_data[sid-1].pub_key);  //using public key of users position 1.
 
-  printf("\nShared Key:\n%s\n", shared_key);
+  uint8_t pub_key[32] = {0};
+  byte_me(pub_key, user_data[sid -1].pub_key, 64);
+
+
+  crypto_key_exchange(shared_key, pvt_key, pub_key);  //using public key of users position 1.
+
+  printf("\nsharedkey ");
+  for (int i = 0; i < (32); i++) {
+    printf("%x", *(shared_key + (i * sizeof(uint8_t))));
+  }
+  printf("\n\n");
   uint8_t * secretFull;
   //secretFull = calloc(160, sizeof(uint8_t));
 
@@ -298,35 +307,11 @@ int main(int argc, char *argv[]){
   //shareSong(1,2);
   printf("Song owner = %u\n", meta.owner_id);
   //example of how to share the song
-  shareSong(meta.owner_id, 2, "903494461251310648071306908532497731221875540674065", &meta);
+  shareSong(meta.owner_id, 2, "8101128319412399138213041898994121902396200603110170616351", &meta);
 
   fseek(encFile, 0, SEEK_SET );
 
   writeMetadata(encFile, meta);
-
-  fseek(encFile, 0, SEEK_SET );
-
-  readMetadata(encFile, & meta);
-
-  shareSong(meta.owner_id, 5, "903494461251310648071306908532497731221875540674065", &meta);
-
-  fseek(encFile, 0, SEEK_SET );
-
-  writeMetadata(encFile, meta);
-
-  fseek(encFile, 0, SEEK_SET );
-
-  readMetadata(encFile, & meta);
-
-  shareSong(meta.owner_id, 64, "903494461251310648071306908532497731221875540674065", &meta);
-
-  fseek(encFile, 0, SEEK_SET );
-
-  writeMetadata(encFile, meta);
-
-  fseek(encFile, 0, SEEK_SET );
-
-  readMetadata(encFile, & meta);
 
   return 0;
 }

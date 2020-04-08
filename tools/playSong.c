@@ -364,11 +364,31 @@ uint8_t playShared(FILE *encFile, struct metadata *meta, uint8_t uid, char *pin)
 	puts("\n");
 	uint8_t shared_key[32] = {0};
 
-	printf("pub: %s", user_data[meta->owner_id - 1].pub_key);
+	uint8_t pub_key[32] = {0};
+  byte_me(pub_key, user_data[meta->owner_id - 1].pub_key, 64);
 
-	crypto_key_exchange(shared_key, pvt_key, user_data[meta->owner_id - 1].pub_key);
+	crypto_key_exchange(shared_key, pvt_key, pub_key);
 
-	printf("\nShared Key:\n%s\n", shared_key);
+  printf("\nsharedkey ");
+  for (int i = 0; i < (32); i++) {
+    printf("%x", *(shared_key + (i * sizeof(uint8_t))));
+  }
+  printf("\n\n");
+
+  uint8_t decrypted[32]= {0};
+  uint8_t nonceDec[24] = {0};
+  crypto_unlock(decrypted, shared_key, nonceDec, meta->sharedInfo[uid-1] + 32, meta->sharedInfo[uid-1], 32);
+  printf("decryptedd\n ");
+  for (int i = 0; i < (32); i++) {
+    printf("%x", *(decrypted + (i * sizeof(uint8_t))));
+  }
+  if (decrypt(meta->song_name, encFile, decrypted, nonce, meta->endFullSong) != 0) {
+    printf("\033[0;31m");
+    printf("Decryption Failed!\n");
+    printf("\033[0m");
+    return 1;
+  }
+  fclose(encFile);
 
 	return 0;
 
@@ -379,7 +399,7 @@ int play(char *pin, uint8_t uid) {
   // Load metadata
   struct metadata meta = {0};
   FILE *encFile;
-  encFile = fopen("provision_test/audio/test-protect.drm", "rb");
+  encFile = fopen("provision_test/audio/test-protect-small-step.drm", "rb");
   if (encFile == NULL) {
     printf("\033[0;31m");
     printf("Error reading metadata!\n");
@@ -442,8 +462,8 @@ int play(char *pin, uint8_t uid) {
 int main(int argc, char *argv[]) {
 
   // These variables will be stored in implementation
-  char *pin1 = "77369750";
-  char *pin2 = "45057594598848215831224880463449931824192013461488606736986";
+  char *pin1 = "378775708766787119507006469582236346664";
+  char *pin2 = "504114488956562319768884891717077595038390237525841500791172";
   uint8_t uid = 2;
 
   if (play(pin2, uid)) {
