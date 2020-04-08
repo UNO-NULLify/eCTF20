@@ -16,6 +16,7 @@
 #include "constants.h"
 #include "sleep.h"
 #include "fsl.h"
+#include "monocypher.h"
 
 
 
@@ -57,6 +58,31 @@ void myISR(void) {
     InterruptProcessed = TRUE;
 }
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
+
+void byte_me(char *dest, char *src, size_t src_len)
+{
+  for(int i = 0; i < src_len; i +=2)
+  {
+    if(src[i] >= '0' && src[i] <= '9')
+     {
+       dest[i/2] = src[i] - '0';
+     }
+     else
+     {
+       dest[i/2] = src[i] - 'a' + 10;
+     }
+
+    dest[i/2] = dest[i/2] << 4;
+
+    if(src[i+1] >= '0' && src[i+1] <= '9')
+    {
+      dest[i/2] += src[i+1] - '0';
+    }
+    else{
+      dest[i/2] += src[i+1] - 'a' + 10;
+    }
+  }
+}
 
 u32 read_cr()
 {
@@ -235,17 +261,44 @@ int gen_song_md(char *buf) {
 
 // attempt to log in to the credentials in the shared buffer
 void login() {
+    mb_printf("entered login function\n"); //TODO REMOVE
     if (s.logged_in) {
         mb_printf("Already logged in. Please log out first.\r\n");
         memcpy((void*)c->username, s.username, USERNAME_SZ);
         memcpy((void*)c->pin, s.pin, MAX_PIN_SZ);
     } else {
+        mb_printf("Checking username\n"); //TODO REMOVE
         for (int i = 0; i < PROVISIONED_USERS; i++) {
             // search for matching username
             if (!strcmp((void*)c->username, user_data[i].name)) {
                 // check if pin matches
             	//TODO convert c->pin to hash
-                if (!strcmp((void*)c->pin, user_data[i].pin_hash)) {
+            	//secrets pin hash to bytes
+                mb_printf("Found the username\n"); //TODO: REMOVE
+            	uint8_t usr_pin_bytes[ARGON_HASH_SZ] = {0};
+            	byte_me(usr_pin_bytes, user_data[i].pin_hash, strlen(user_data[i].pin_hash));
+            	//
+            	//make comparison hash
+            	uint8_t cmp_hash[ARGON_HASH_SZ] = {0};
+            	//work area
+            	uint8_t *work_area;
+            	work_area = (uint8_t *) malloc(ARGON_BLOCKS*1024);
+            	//salt bytes
+            	uint8_t salt_bytes[ARGON_SALT_SZ] = {0};
+            	byte_me(salt_bytes, user_data[i].salt, strlen(user_data[i].salt));
+                mb_printf("starting the hashing\n\n");
+            	crypto_argon2i(cmp_hash,
+            				   ARGON_HASH_SZ,
+							   work_area,
+							   ARGON_BLOCKS,
+							   ARGON_ITTERS,
+							   (void*)c->pin,
+							   strlen((void*)c->pin),
+							   salt_bytes,
+							   ARGON_SALT_SZ);
+                mb_printf("hash completed \n\n"); //TODO: REMOVE
+            	//TODO implement crypto_verify32
+                if (!strcmp((void*)c->pin, usr_pin_bytes)) {
                     //update states
                     s.logged_in = 1;
                     c->login_status = 1;
@@ -253,12 +306,14 @@ void login() {
                     memcpy(s.pin, (void*)c->pin, MAX_PIN_SZ);
                     s.uid = user_data[i].id;
                     mb_printf("Logged in for user '%s'\r\n", c->username);
+                    free(work_area);
                     return;
                 } else {
                     // reject login attempt
                     mb_printf("Incorrect pin for user '%s'\r\n", c->username);
                     memset((void*)c->username, 0, USERNAME_SZ);
                     memset((void*)c->pin, 0, MAX_PIN_SZ);
+                    free(work_area);
                     return;
                 }
             }
@@ -574,7 +629,11 @@ int main() {
 
             switch (cmd) {
             case LOGIN:
+                //debug printing -- delete later
+                mb_printf("uname: %s\n\n", c->username);
                 login();
+                //debug printing -- delete later
+                mb_printf("login finished\n\n");
                 break;
             case LOGOUT:
                 logout();
