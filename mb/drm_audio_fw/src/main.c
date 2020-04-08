@@ -261,17 +261,20 @@ int gen_song_md(char *buf) {
 
 // attempt to log in to the credentials in the shared buffer
 void login() {
+    mb_printf("entered login function\n"); //TODO REMOVE
     if (s.logged_in) {
         mb_printf("Already logged in. Please log out first.\r\n");
         memcpy((void*)c->username, s.username, USERNAME_SZ);
         memcpy((void*)c->pin, s.pin, MAX_PIN_SZ);
     } else {
+        mb_printf("Checking username\n"); //TODO REMOVE
         for (int i = 0; i < PROVISIONED_USERS; i++) {
             // search for matching username
             if (!strcmp((void*)c->username, user_data[i].name)) {
                 // check if pin matches
             	//TODO convert c->pin to hash
             	//secrets pin hash to bytes
+                mb_printf("Found the username\n"); //TODO: REMOVE
             	uint8_t usr_pin_bytes[ARGON_HASH_SZ] = {0};
             	byte_me(usr_pin_bytes, user_data[i].pin_hash, strlen(user_data[i].pin_hash));
             	//
@@ -283,6 +286,7 @@ void login() {
             	//salt bytes
             	uint8_t salt_bytes[ARGON_SALT_SZ] = {0};
             	byte_me(salt_bytes, user_data[i].salt, strlen(user_data[i].salt));
+                mb_printf("starting the hashing\n\n");
             	crypto_argon2i(cmp_hash,
             				   ARGON_HASH_SZ,
 							   work_area,
@@ -292,6 +296,7 @@ void login() {
 							   strlen((void*)c->pin),
 							   salt_bytes,
 							   ARGON_SALT_SZ);
+                mb_printf("hash completed \n\n"); //TODO: REMOVE
             	//TODO implement crypto_verify32
                 if (!strcmp((void*)c->pin, usr_pin_bytes)) {
                     //update states
@@ -624,7 +629,11 @@ int main() {
 
             switch (cmd) {
             case LOGIN:
+                //debug printing -- delete later
+                mb_printf("uname: %s\n\n", c->username);
                 login();
+                //debug printing -- delete later
+                mb_printf("login finished\n\n");
                 break;
             case LOGOUT:
                 logout();
