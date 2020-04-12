@@ -306,14 +306,14 @@ void login() {
                     memcpy(s.pin, (void*)c->pin, MAX_PIN_SZ);
                     s.uid = user_data[i].id;
                     mb_printf("Logged in for user '%s'\r\n", c->username);
-                    free(work_area);
+                    //free(work_area);
                     return;
                 } else {
                     // reject login attempt
                     mb_printf("Incorrect pin for user '%s'\r\n", c->username);
                     memset((void*)c->username, 0, USERNAME_SZ);
                     memset((void*)c->pin, 0, MAX_PIN_SZ);
-                    free(work_area);
+                    //free(work_area);
                     return;
                 }
             }
