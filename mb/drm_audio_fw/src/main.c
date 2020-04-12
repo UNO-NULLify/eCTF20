@@ -283,6 +283,14 @@ void login() {
             	//work area
             	uint8_t *work_area;
             	work_area = (uint8_t *) malloc(ARGON_BLOCKS*1024);
+            	if (work_area == NULL)
+            	{
+            		mb_printf("\nFailed to allocate the work area. Aborting.\n");
+            		memset((void*)c->username, 0, USERNAME_SZ);
+            		memset((void*)c->pin, 0, MAX_PIN_SZ);
+            		return;
+            	}
+            	mb_printf("\n\nwork area %x\n\n", work_area);
             	//salt bytes
             	uint8_t salt_bytes[ARGON_SALT_SZ] = {0};
             	byte_me(salt_bytes, user_data[i].salt, strlen(user_data[i].salt));
@@ -306,14 +314,14 @@ void login() {
                     memcpy(s.pin, (void*)c->pin, MAX_PIN_SZ);
                     s.uid = user_data[i].id;
                     mb_printf("Logged in for user '%s'\r\n", c->username);
-                    //free(work_area);
+                    free(work_area);
                     return;
                 } else {
                     // reject login attempt
                     mb_printf("Incorrect pin for user '%s'\r\n", c->username);
                     memset((void*)c->username, 0, USERNAME_SZ);
                     memset((void*)c->pin, 0, MAX_PIN_SZ);
-                    //free(work_area);
+                    free(work_area);
                     return;
                 }
             }
