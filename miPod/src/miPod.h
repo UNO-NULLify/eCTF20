@@ -9,7 +9,7 @@
 #define SRC_MIPOD_H_
 
 // miPod constants
-#define USR_CMD_SZ 64
+#define USR_CMD_SZ 135
 
 // protocol constants
 #define MAX_REGIONS 64
