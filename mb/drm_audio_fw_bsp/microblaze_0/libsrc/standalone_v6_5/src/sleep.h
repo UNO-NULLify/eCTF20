@@ -40,7 +40,8 @@
 extern "C" {
 #endif
 
-int usleep(unsigned long useconds);
+int nsleep(unsigned long useconds);
+//int usleep(unsigned long useconds);
 unsigned sleep(unsigned int seconds);
 
 #ifdef __cplusplus
