@@ -1,5 +1,5 @@
 # 1 "../src/main.c"
-# 1 "/ectf/mb/drm_audio_fw/Debug//"
+# 1 "/ectf_dev/ectf/eCTF20/mb/drm_audio_fw/Debug//"
 # 1 "<built-in>"
 #define __STDC__ 1
 #define __STDC_VERSION__ 201112L
@@ -215,6 +215,12 @@
 #define _LITTLE_ENDIAN 1
 #define __LITTLE_ENDIAN__ 1
 #define __MICROBLAZEEL__ 1
+#define HAVE_HW_MUL 1
+#define __HAVE_HW_MUL__ 1
+#define HAVE_HW_DIV 1
+#define __HAVE_HW_DIV__ 1
+#define HAVE_HW_BSHIFT 1
+#define __HAVE_HW_BSHIFT__ 1
 # 1 "<command-line>"
 # 1 "../src/main.c"
 
@@ -2368,7 +2374,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_ASYNC_WAKEUP 3
 #define XPAR_MICROBLAZE_0_AVOID_PRIMITIVES 0
 #define XPAR_MICROBLAZE_0_BASE_VECTORS 0x0000000000000000
-#define XPAR_MICROBLAZE_0_BRANCH_TARGET_CACHE_SIZE 0
+#define XPAR_MICROBLAZE_0_BRANCH_TARGET_CACHE_SIZE 4
 #define XPAR_MICROBLAZE_0_CACHE_BYTE_SIZE 8192
 #define XPAR_MICROBLAZE_0_DADDR_SIZE 32
 #define XPAR_MICROBLAZE_0_DATA_SIZE 32
@@ -2384,11 +2390,11 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_DCACHE_VICTIMS 0
 #define XPAR_MICROBLAZE_0_DC_AXI_MON 0
 #define XPAR_MICROBLAZE_0_DEBUG_COUNTER_WIDTH 32
-#define XPAR_MICROBLAZE_0_DEBUG_ENABLED 2
-#define XPAR_MICROBLAZE_0_DEBUG_EVENT_COUNTERS 0
+#define XPAR_MICROBLAZE_0_DEBUG_ENABLED 0
+#define XPAR_MICROBLAZE_0_DEBUG_EVENT_COUNTERS 5
 #define XPAR_MICROBLAZE_0_DEBUG_EXTERNAL_TRACE 0
 #define XPAR_MICROBLAZE_0_DEBUG_INTERFACE 0
-#define XPAR_MICROBLAZE_0_DEBUG_LATENCY_COUNTERS 0
+#define XPAR_MICROBLAZE_0_DEBUG_LATENCY_COUNTERS 1
 #define XPAR_MICROBLAZE_0_DEBUG_PROFILE_SIZE 0
 #define XPAR_MICROBLAZE_0_DEBUG_TRACE_ASYNC_RESET 0
 #define XPAR_MICROBLAZE_0_DEBUG_TRACE_SIZE 8192
@@ -2497,7 +2503,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_M_AXI_IP_DATA_WIDTH 32
 #define XPAR_MICROBLAZE_0_M_AXI_IP_THREAD_ID_WIDTH 1
 #define XPAR_MICROBLAZE_0_M_AXI_I_BUS_EXCEPTION 0
-#define XPAR_MICROBLAZE_0_NUMBER_OF_PC_BRK 2
+#define XPAR_MICROBLAZE_0_NUMBER_OF_PC_BRK 1
 #define XPAR_MICROBLAZE_0_NUMBER_OF_RD_ADDR_BRK 0
 #define XPAR_MICROBLAZE_0_NUMBER_OF_WR_ADDR_BRK 0
 #define XPAR_MICROBLAZE_0_NUM_SYNC_FF_CLK 2
@@ -2555,7 +2561,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_0_TRACE 0
 #define XPAR_MICROBLAZE_0_UNALIGNED_EXCEPTIONS 0
 #define XPAR_MICROBLAZE_0_USE_BARREL 1
-#define XPAR_MICROBLAZE_0_USE_BRANCH_TARGET_CACHE 0
+#define XPAR_MICROBLAZE_0_USE_BRANCH_TARGET_CACHE 1
 #define XPAR_MICROBLAZE_0_USE_CONFIG_RESET 0
 #define XPAR_MICROBLAZE_0_USE_DCACHE 0
 #define XPAR_MICROBLAZE_0_USE_DIV 1
@@ -2591,7 +2597,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_ASYNC_WAKEUP 3
 #define XPAR_MICROBLAZE_AVOID_PRIMITIVES 0
 #define XPAR_MICROBLAZE_BASE_VECTORS 0x0000000000000000
-#define XPAR_MICROBLAZE_BRANCH_TARGET_CACHE_SIZE 0
+#define XPAR_MICROBLAZE_BRANCH_TARGET_CACHE_SIZE 4
 #define XPAR_MICROBLAZE_CACHE_BYTE_SIZE 8192
 #define XPAR_MICROBLAZE_DADDR_SIZE 32
 #define XPAR_MICROBLAZE_DATA_SIZE 32
@@ -2607,11 +2613,11 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_DCACHE_VICTIMS 0
 #define XPAR_MICROBLAZE_DC_AXI_MON 0
 #define XPAR_MICROBLAZE_DEBUG_COUNTER_WIDTH 32
-#define XPAR_MICROBLAZE_DEBUG_ENABLED 2
-#define XPAR_MICROBLAZE_DEBUG_EVENT_COUNTERS 0
+#define XPAR_MICROBLAZE_DEBUG_ENABLED 0
+#define XPAR_MICROBLAZE_DEBUG_EVENT_COUNTERS 5
 #define XPAR_MICROBLAZE_DEBUG_EXTERNAL_TRACE 0
 #define XPAR_MICROBLAZE_DEBUG_INTERFACE 0
-#define XPAR_MICROBLAZE_DEBUG_LATENCY_COUNTERS 0
+#define XPAR_MICROBLAZE_DEBUG_LATENCY_COUNTERS 1
 #define XPAR_MICROBLAZE_DEBUG_PROFILE_SIZE 0
 #define XPAR_MICROBLAZE_DEBUG_TRACE_ASYNC_RESET 0
 #define XPAR_MICROBLAZE_DEBUG_TRACE_SIZE 8192
@@ -2720,7 +2726,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_M_AXI_IP_DATA_WIDTH 32
 #define XPAR_MICROBLAZE_M_AXI_IP_THREAD_ID_WIDTH 1
 #define XPAR_MICROBLAZE_M_AXI_I_BUS_EXCEPTION 0
-#define XPAR_MICROBLAZE_NUMBER_OF_PC_BRK 2
+#define XPAR_MICROBLAZE_NUMBER_OF_PC_BRK 1
 #define XPAR_MICROBLAZE_NUMBER_OF_RD_ADDR_BRK 0
 #define XPAR_MICROBLAZE_NUMBER_OF_WR_ADDR_BRK 0
 #define XPAR_MICROBLAZE_NUM_SYNC_FF_CLK 2
@@ -2778,7 +2784,7 @@ void cleanup_platform();
 #define XPAR_MICROBLAZE_TRACE 0
 #define XPAR_MICROBLAZE_UNALIGNED_EXCEPTIONS 0
 #define XPAR_MICROBLAZE_USE_BARREL 1
-#define XPAR_MICROBLAZE_USE_BRANCH_TARGET_CACHE 0
+#define XPAR_MICROBLAZE_USE_BRANCH_TARGET_CACHE 1
 #define XPAR_MICROBLAZE_USE_CONFIG_RESET 0
 #define XPAR_MICROBLAZE_USE_DCACHE 0
 #define XPAR_MICROBLAZE_USE_DIV 1
@@ -2827,7 +2833,7 @@ void cleanup_platform();
 #define XPAR_AXI_DMA_0_BASEADDR 0x04B10000
 #define XPAR_AXI_DMA_0_HIGHADDR 0x04B1FFFF
 #define XPAR_AXI_DMA_0_SG_INCLUDE_STSCNTRL_STRM 0
-#define XPAR_AXI_DMA_0_INCLUDE_MM2S_DRE 0
+#define XPAR_AXI_DMA_0_INCLUDE_MM2S_DRE 1
 #define XPAR_AXI_DMA_0_INCLUDE_S2MM_DRE 0
 #define XPAR_AXI_DMA_0_INCLUDE_MM2S 1
 #define XPAR_AXI_DMA_0_INCLUDE_S2MM 0
@@ -2837,7 +2843,7 @@ void cleanup_platform();
 #define XPAR_AXI_DMA_0_ENABLE_MULTI_CHANNEL 0
 #define XPAR_AXI_DMA_0_NUM_MM2S_CHANNELS 1
 #define XPAR_AXI_DMA_0_NUM_S2MM_CHANNELS 1
-#define XPAR_AXI_DMA_0_MM2S_BURST_SIZE 16
+#define XPAR_AXI_DMA_0_MM2S_BURST_SIZE 256
 #define XPAR_AXI_DMA_0_S2MM_BURST_SIZE 16
 #define XPAR_AXI_DMA_0_MICRO_DMA 0
 #define XPAR_AXI_DMA_0_ADDR_WIDTH 32
@@ -2850,7 +2856,7 @@ void cleanup_platform();
 #define XPAR_AXIDMA_0_BASEADDR 0x04B10000
 #define XPAR_AXIDMA_0_SG_INCLUDE_STSCNTRL_STRM 0
 #define XPAR_AXIDMA_0_INCLUDE_MM2S 1
-#define XPAR_AXIDMA_0_INCLUDE_MM2S_DRE 0
+#define XPAR_AXIDMA_0_INCLUDE_MM2S_DRE 1
 #define XPAR_AXIDMA_0_M_AXI_MM2S_DATA_WIDTH 32
 #define XPAR_AXIDMA_0_INCLUDE_S2MM 0
 #define XPAR_AXIDMA_0_INCLUDE_S2MM_DRE 0
@@ -2859,7 +2865,7 @@ void cleanup_platform();
 #define XPAR_AXIDMA_0_ENABLE_MULTI_CHANNEL 0
 #define XPAR_AXIDMA_0_NUM_MM2S_CHANNELS 1
 #define XPAR_AXIDMA_0_NUM_S2MM_CHANNELS 1
-#define XPAR_AXIDMA_0_MM2S_BURST_SIZE 16
+#define XPAR_AXIDMA_0_MM2S_BURST_SIZE 256
 #define XPAR_AXIDMA_0_S2MM_BURST_SIZE 16
 #define XPAR_AXIDMA_0_MICRO_DMA 0
 #define XPAR_AXIDMA_0_c_addr_width 32
@@ -2879,7 +2885,7 @@ void cleanup_platform();
 
 
 
-#define XPAR_XBRAM_NUM_INSTANCES 4U
+#define XPAR_XBRAM_NUM_INSTANCES 3U
 
 
 #define XPAR_DATA_LMB_BRAM_IF_CNTLR_1_DEVICE_ID 0U
@@ -2918,25 +2924,7 @@ void cleanup_platform();
 
 
 
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_DEVICE_ID 2U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_DATA_WIDTH 32U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_ECC 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_FAULT_INJECT 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_CE_FAILING_REGISTERS 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_UE_FAILING_REGISTERS 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_ECC_STATUS_REGISTERS 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_CE_COUNTER_WIDTH 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_ECC_ONOFF_REGISTER 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_ECC_ONOFF_RESET_VALUE 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_WRITE_ACCESS 0U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_BASEADDR 0xC0000000U
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_HIGHADDR 0xC0007FFFU
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_CTRL_BASEADDR 0xFFFFFFFFU
-#define XPAR_MB_DMA_AXI_BRAM_CTRL_0_S_AXI_CTRL_HIGHADDR 0xFFFFFFFFU
-
-
-
-#define XPAR_SHARE_AXI_BRAM_CTRL_0_DEVICE_ID 3U
+#define XPAR_SHARE_AXI_BRAM_CTRL_0_DEVICE_ID 2U
 #define XPAR_SHARE_AXI_BRAM_CTRL_0_DATA_WIDTH 32U
 #define XPAR_SHARE_AXI_BRAM_CTRL_0_ECC 0U
 #define XPAR_SHARE_AXI_BRAM_CTRL_0_FAULT_INJECT 0U
@@ -2986,7 +2974,7 @@ void cleanup_platform();
 #define XPAR_BRAM_1_HIGHADDR 0x0001FFFFU
 
 
-#define XPAR_BRAM_2_DEVICE_ID XPAR_MB_DMA_AXI_BRAM_CTRL_0_DEVICE_ID
+#define XPAR_BRAM_2_DEVICE_ID XPAR_SHARE_AXI_BRAM_CTRL_0_DEVICE_ID
 #define XPAR_BRAM_2_DATA_WIDTH 32U
 #define XPAR_BRAM_2_ECC 0U
 #define XPAR_BRAM_2_FAULT_INJECT 0U
@@ -2997,23 +2985,8 @@ void cleanup_platform();
 #define XPAR_BRAM_2_ECC_ONOFF_REGISTER 0U
 #define XPAR_BRAM_2_ECC_ONOFF_RESET_VALUE 0U
 #define XPAR_BRAM_2_WRITE_ACCESS 0U
-#define XPAR_BRAM_2_BASEADDR 0xC0000000U
-#define XPAR_BRAM_2_HIGHADDR 0xC0007FFFU
-
-
-#define XPAR_BRAM_3_DEVICE_ID XPAR_SHARE_AXI_BRAM_CTRL_0_DEVICE_ID
-#define XPAR_BRAM_3_DATA_WIDTH 32U
-#define XPAR_BRAM_3_ECC 0U
-#define XPAR_BRAM_3_FAULT_INJECT 0U
-#define XPAR_BRAM_3_CE_FAILING_REGISTERS 0U
-#define XPAR_BRAM_3_UE_FAILING_REGISTERS 0U
-#define XPAR_BRAM_3_ECC_STATUS_REGISTERS 0U
-#define XPAR_BRAM_3_CE_COUNTER_WIDTH 0U
-#define XPAR_BRAM_3_ECC_ONOFF_REGISTER 0U
-#define XPAR_BRAM_3_ECC_ONOFF_RESET_VALUE 0U
-#define XPAR_BRAM_3_WRITE_ACCESS 0U
-#define XPAR_BRAM_3_BASEADDR 0x04B00000U
-#define XPAR_BRAM_3_HIGHADDR 0x04B01FFFU
+#define XPAR_BRAM_2_BASEADDR 0x04B00000U
+#define XPAR_BRAM_2_HIGHADDR 0x04B01FFFU
 
 
 
@@ -3022,28 +2995,28 @@ void cleanup_platform();
 #define XPAR_XCLK_WIZ_NUM_INSTANCES 1
 
 
-#define XPAR_CLK_WIZ_25M_DEVICE_ID 0
-#define XPAR_CLK_WIZ_25M_BASEADDR 0x80010000
-#define XPAR_CLK_WIZ_25M_HIGHADDR 0x8001FFFF
-#define XPAR_CLK_WIZ_25M_ENABLE_CLOCK_MONITOR 0
-#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK0 0
-#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK1 0
-#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK2 0
-#define XPAR_CLK_WIZ_25M_ENABLE_USER_CLOCK3 0
-#define XPAR_CLK_WIZ_25M_REF_CLK_FREQ 100.0
-#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ0 100.0
-#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ1 100.0
-#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ2 100.0
-#define XPAR_CLK_WIZ_25M_USER_CLK_FREQ3 100.0
-#define XPAR_CLK_WIZ_25M_PRECISION 1
-#define XPAR_CLK_WIZ_25M_ENABLE_PLL0 0
-#define XPAR_CLK_WIZ_25M_ENABLE_PLL1 0
+#define XPAR_CLK_WIZ_CODEC_DEVICE_ID 0
+#define XPAR_CLK_WIZ_CODEC_BASEADDR 0x80010000
+#define XPAR_CLK_WIZ_CODEC_HIGHADDR 0x8001FFFF
+#define XPAR_CLK_WIZ_CODEC_ENABLE_CLOCK_MONITOR 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_USER_CLOCK0 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_USER_CLOCK1 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_USER_CLOCK2 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_USER_CLOCK3 0
+#define XPAR_CLK_WIZ_CODEC_REF_CLK_FREQ 100.0
+#define XPAR_CLK_WIZ_CODEC_USER_CLK_FREQ0 100.0
+#define XPAR_CLK_WIZ_CODEC_USER_CLK_FREQ1 100.0
+#define XPAR_CLK_WIZ_CODEC_USER_CLK_FREQ2 100.0
+#define XPAR_CLK_WIZ_CODEC_USER_CLK_FREQ3 100.0
+#define XPAR_CLK_WIZ_CODEC_PRECISION 1
+#define XPAR_CLK_WIZ_CODEC_ENABLE_PLL0 0
+#define XPAR_CLK_WIZ_CODEC_ENABLE_PLL1 0
 
 
 
 
 
-#define XPAR_CLK_WIZ_0_DEVICE_ID XPAR_CLK_WIZ_25M_DEVICE_ID
+#define XPAR_CLK_WIZ_0_DEVICE_ID XPAR_CLK_WIZ_CODEC_DEVICE_ID
 #define XPAR_CLK_WIZ_0_BASEADDR 0x80010000
 #define XPAR_CLK_WIZ_0_HIGHADDR 0x8001FFFF
 #define XPAR_CLK_WIZ_0_ENABLE_CLOCK_MONITOR 0
@@ -3101,7 +3074,7 @@ void cleanup_platform();
 
 #define XPAR_PS7_M_AXI_GP0_S_AXI_BASEADDR 0x40000000
 #define XPAR_PS7_M_AXI_GP0_S_AXI_HIGHADDR 0x7FFFFFFF
-# 771 "/ectf/mb/drm_audio_fw_bsp/microblaze_0/include/xparameters.h"
+# 738 "/ectf/mb/drm_audio_fw_bsp/microblaze_0/include/xparameters.h"
 #define XPAR_XGPIO_NUM_INSTANCES 1
 
 
@@ -3164,7 +3137,7 @@ void cleanup_platform();
 
 
 
-#define XPAR_INTC_MAX_NUM_INTR_INPUTS 1
+#define XPAR_INTC_MAX_NUM_INTR_INPUTS 2
 #define XPAR_XINTC_HAS_IPR 1
 #define XPAR_XINTC_HAS_SIE 1
 #define XPAR_XINTC_HAS_CIE 1
@@ -3176,10 +3149,10 @@ void cleanup_platform();
 #define XPAR_AXI_INTC_0_DEVICE_ID 0
 #define XPAR_AXI_INTC_0_BASEADDR 0x04B30000
 #define XPAR_AXI_INTC_0_HIGHADDR 0x04B3FFFF
-#define XPAR_AXI_INTC_0_KIND_OF_INTR 0xFFFFFFFF
+#define XPAR_AXI_INTC_0_KIND_OF_INTR 0xFFFFFFFD
 #define XPAR_AXI_INTC_0_HAS_FAST 0
 #define XPAR_AXI_INTC_0_IVAR_RESET_VALUE 0x00000010
-#define XPAR_AXI_INTC_0_NUM_INTR_INPUTS 1
+#define XPAR_AXI_INTC_0_NUM_INTR_INPUTS 2
 
 
 
@@ -3190,6 +3163,8 @@ void cleanup_platform();
 #define XPAR_AXI_INTC_0_TYPE 0U
 #define XPAR_BIRDWTCH_IFACE_0_INT_MB_MASK 0X000001U
 #define XPAR_AXI_INTC_0_BIRDWTCH_IFACE_0_INT_MB_INTR 0U
+#define XPAR_AXI_TIMEBASE_WDT_0_WDT_INTERRUPT_MASK 0X000002U
+#define XPAR_AXI_INTC_0_AXI_TIMEBASE_WDT_0_WDT_INTERRUPT_INTR 1U
 
 
 
@@ -3197,13 +3172,14 @@ void cleanup_platform();
 #define XPAR_INTC_0_DEVICE_ID XPAR_AXI_INTC_0_DEVICE_ID
 #define XPAR_INTC_0_BASEADDR 0x04B30000U
 #define XPAR_INTC_0_HIGHADDR 0x04B3FFFFU
-#define XPAR_INTC_0_KIND_OF_INTR 0xFFFFFFFFU
+#define XPAR_INTC_0_KIND_OF_INTR 0xFFFFFFFDU
 #define XPAR_INTC_0_HAS_FAST 0U
 #define XPAR_INTC_0_IVAR_RESET_VALUE 0x00000010U
-#define XPAR_INTC_0_NUM_INTR_INPUTS 1U
+#define XPAR_INTC_0_NUM_INTR_INPUTS 2U
 #define XPAR_INTC_0_INTC_TYPE 0U
 
 #define XPAR_INTC_0_BIRDWTCH_IFACE_0_VEC_ID XPAR_AXI_INTC_0_BIRDWTCH_IFACE_0_INT_MB_INTR
+#define XPAR_INTC_0_WDTTB_0_VEC_ID XPAR_AXI_INTC_0_AXI_TIMEBASE_WDT_0_WDT_INTERRUPT_INTR
 
 
 
@@ -3298,6 +3274,28 @@ void cleanup_platform();
 #define XPAR_XUSBPS_0_DEVICE_ID XPAR_PS7_USB_0_DEVICE_ID
 #define XPAR_XUSBPS_0_BASEADDR 0xE0002000
 #define XPAR_XUSBPS_0_HIGHADDR 0xE0002FFF
+
+
+
+
+
+#define XPAR_XWDTTB_NUM_INSTANCES 1U
+
+
+#define XPAR_AXI_TIMEBASE_WDT_0_DEVICE_ID 0U
+#define XPAR_AXI_TIMEBASE_WDT_0_BASEADDR 0x04B40000U
+#define XPAR_AXI_TIMEBASE_WDT_0_HIGHADDR 0x04B4FFFFU
+#define XPAR_AXI_TIMEBASE_WDT_0_ENABLE_WINDOW_WDT 0U
+#define XPAR_AXI_TIMEBASE_WDT_0_MAX_COUNT_WIDTH 32U
+#define XPAR_AXI_TIMEBASE_WDT_0_SST_COUNT_WIDTH 8U
+
+
+#define XPAR_WDTTB_0_DEVICE_ID 0U
+#define XPAR_WDTTB_0_BASEADDR 0x04B40000U
+#define XPAR_WDTTB_0_HIGHADDR 0x04B4FFFFU
+#define XPAR_WDTTB_0_ENABLE_WINDOW_WDT 0U
+#define XPAR_WDTTB_0_MAX_COUNT_WIDTH 32U
+#define XPAR_WDTTB_0_SST_COUNT_WIDTH 8U
 # 9 "../src/main.c" 2
 # 1 "/ectf/mb/drm_audio_fw_bsp/microblaze_0/include/xil_exception.h" 1
 # 61 "/ectf/mb/drm_audio_fw_bsp/microblaze_0/include/xil_exception.h"
@@ -6026,7 +6024,7 @@ typedef struct {
  u32 Options;
  int IntcType;
 # 309 "/ectf/mb/drm_audio_fw_bsp/microblaze_0/include/xintc.h"
- XIntc_VectorTableEntry HandlerTable[1];
+ XIntc_VectorTableEntry HandlerTable[2];
 
 
 } XIntc_Config;
@@ -6094,9 +6092,9 @@ int XIntc_SimulateIntr(XIntc * InstancePtr, u8 Id);
 #define SHARED_DDR_BASE (0x20000000 + 0x1CC00000)
 
 
-#define CHUNK_SZ 16000
 
-#define FIFO_CAP 2048*2
+#define FIFO_CAP (2048 - 1)
+
 
 
 #define PREVIEW_TIME_SEC 30
@@ -6220,23 +6218,365 @@ XStatus fnConfigDma(XAxiDma *AxiDma);
 # 14 "../src/main.c" 2
 # 1 "../src/secrets.h" 1
 
+# 1 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/inttypes.h" 1 3
+# 14 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/inttypes.h" 3
+#define _INTTYPES_H 
+
+
+
+
+
+#define __need_wchar_t 
+# 1 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/lib/gcc/microblaze-xilinx-elf/6.2.0/include/stddef.h" 1 3 4
+# 161 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/lib/gcc/microblaze-xilinx-elf/6.2.0/include/stddef.h" 3 4
+#undef __need_ptrdiff_t
+# 238 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/lib/gcc/microblaze-xilinx-elf/6.2.0/include/stddef.h" 3 4
+#undef __need_size_t
+# 347 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/lib/gcc/microblaze-xilinx-elf/6.2.0/include/stddef.h" 3 4
+#undef __need_wchar_t
+# 401 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/lib/gcc/microblaze-xilinx-elf/6.2.0/include/stddef.h" 3 4
+#undef NULL
+
+
+
+
+#define NULL ((void *)0)
+
+
+
+
+
+#undef __need_NULL
+
+
+
+
+#define offsetof(TYPE,MEMBER) __builtin_offsetof (TYPE, MEMBER)
+# 22 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/inttypes.h" 2 3
+
+#define __STRINGIFY(a) #a
+
+
+#define __PRI8(x) __INT8 __STRINGIFY(x)
+#define __PRI8LEAST(x) __LEAST8 __STRINGIFY(x)
+#define __PRI8FAST(x) __FAST8 __STRINGIFY(x)
+# 41 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/inttypes.h" 3
+#define __SCN8(x) __INT8 __STRINGIFY(x)
+#define __SCN8LEAST(x) __LEAST8 __STRINGIFY(x)
+#define __SCN8FAST(x) __FAST8 __STRINGIFY(x)
+
+
+
+#define PRId8 __PRI8(d)
+#define PRIi8 __PRI8(i)
+#define PRIo8 __PRI8(o)
+#define PRIu8 __PRI8(u)
+#define PRIx8 __PRI8(x)
+#define PRIX8 __PRI8(X)
+
+
+
+
+#define SCNd8 __SCN8(d)
+#define SCNi8 __SCN8(i)
+#define SCNo8 __SCN8(o)
+#define SCNu8 __SCN8(u)
+#define SCNx8 __SCN8(x)
+
+
+
+
+#define PRIdLEAST8 __PRI8LEAST(d)
+#define PRIiLEAST8 __PRI8LEAST(i)
+#define PRIoLEAST8 __PRI8LEAST(o)
+#define PRIuLEAST8 __PRI8LEAST(u)
+#define PRIxLEAST8 __PRI8LEAST(x)
+#define PRIXLEAST8 __PRI8LEAST(X)
+
+
+
+
+#define SCNdLEAST8 __SCN8LEAST(d)
+#define SCNiLEAST8 __SCN8LEAST(i)
+#define SCNoLEAST8 __SCN8LEAST(o)
+#define SCNuLEAST8 __SCN8LEAST(u)
+#define SCNxLEAST8 __SCN8LEAST(x)
+
+
+
+#define PRIdFAST8 __PRI8FAST(d)
+#define PRIiFAST8 __PRI8FAST(i)
+#define PRIoFAST8 __PRI8FAST(o)
+#define PRIuFAST8 __PRI8FAST(u)
+#define PRIxFAST8 __PRI8FAST(x)
+#define PRIXFAST8 __PRI8FAST(X)
+
+
+
+
+#define SCNdFAST8 __SCN8FAST(d)
+#define SCNiFAST8 __SCN8FAST(i)
+#define SCNoFAST8 __SCN8FAST(o)
+#define SCNuFAST8 __SCN8FAST(u)
+#define SCNxFAST8 __SCN8FAST(x)
+
+
+
+
+#define __PRI16(x) __INT16 __STRINGIFY(x)
+#define __PRI16LEAST(x) __LEAST16 __STRINGIFY(x)
+#define __PRI16FAST(x) __FAST16 __STRINGIFY(x)
+#define __SCN16(x) __INT16 __STRINGIFY(x)
+#define __SCN16LEAST(x) __LEAST16 __STRINGIFY(x)
+#define __SCN16FAST(x) __FAST16 __STRINGIFY(x)
+
+
+#define PRId16 __PRI16(d)
+#define PRIi16 __PRI16(i)
+#define PRIo16 __PRI16(o)
+#define PRIu16 __PRI16(u)
+#define PRIx16 __PRI16(x)
+#define PRIX16 __PRI16(X)
+
+#define SCNd16 __SCN16(d)
+#define SCNi16 __SCN16(i)
+#define SCNo16 __SCN16(o)
+#define SCNu16 __SCN16(u)
+#define SCNx16 __SCN16(x)
+
+
+#define PRIdLEAST16 __PRI16LEAST(d)
+#define PRIiLEAST16 __PRI16LEAST(i)
+#define PRIoLEAST16 __PRI16LEAST(o)
+#define PRIuLEAST16 __PRI16LEAST(u)
+#define PRIxLEAST16 __PRI16LEAST(x)
+#define PRIXLEAST16 __PRI16LEAST(X)
+
+#define SCNdLEAST16 __SCN16LEAST(d)
+#define SCNiLEAST16 __SCN16LEAST(i)
+#define SCNoLEAST16 __SCN16LEAST(o)
+#define SCNuLEAST16 __SCN16LEAST(u)
+#define SCNxLEAST16 __SCN16LEAST(x)
+
+
+#define PRIdFAST16 __PRI16FAST(d)
+#define PRIiFAST16 __PRI16FAST(i)
+#define PRIoFAST16 __PRI16FAST(o)
+#define PRIuFAST16 __PRI16FAST(u)
+#define PRIxFAST16 __PRI16FAST(x)
+#define PRIXFAST16 __PRI16FAST(X)
+
+#define SCNdFAST16 __SCN16FAST(d)
+#define SCNiFAST16 __SCN16FAST(i)
+#define SCNoFAST16 __SCN16FAST(o)
+#define SCNuFAST16 __SCN16FAST(u)
+#define SCNxFAST16 __SCN16FAST(x)
+
+
+#define __PRI32(x) __INT32 __STRINGIFY(x)
+#define __SCN32(x) __INT32 __STRINGIFY(x)
+#define __PRI32LEAST(x) __LEAST32 __STRINGIFY(x)
+#define __SCN32LEAST(x) __LEAST32 __STRINGIFY(x)
+#define __PRI32FAST(x) __FAST32 __STRINGIFY(x)
+#define __SCN32FAST(x) __FAST32 __STRINGIFY(x)
+
+#define PRId32 __PRI32(d)
+#define PRIi32 __PRI32(i)
+#define PRIo32 __PRI32(o)
+#define PRIu32 __PRI32(u)
+#define PRIx32 __PRI32(x)
+#define PRIX32 __PRI32(X)
+
+#define SCNd32 __SCN32(d)
+#define SCNi32 __SCN32(i)
+#define SCNo32 __SCN32(o)
+#define SCNu32 __SCN32(u)
+#define SCNx32 __SCN32(x)
+
+
+#define PRIdLEAST32 __PRI32LEAST(d)
+#define PRIiLEAST32 __PRI32LEAST(i)
+#define PRIoLEAST32 __PRI32LEAST(o)
+#define PRIuLEAST32 __PRI32LEAST(u)
+#define PRIxLEAST32 __PRI32LEAST(x)
+#define PRIXLEAST32 __PRI32LEAST(X)
+
+#define SCNdLEAST32 __SCN32LEAST(d)
+#define SCNiLEAST32 __SCN32LEAST(i)
+#define SCNoLEAST32 __SCN32LEAST(o)
+#define SCNuLEAST32 __SCN32LEAST(u)
+#define SCNxLEAST32 __SCN32LEAST(x)
+
+
+#define PRIdFAST32 __PRI32FAST(d)
+#define PRIiFAST32 __PRI32FAST(i)
+#define PRIoFAST32 __PRI32FAST(o)
+#define PRIuFAST32 __PRI32FAST(u)
+#define PRIxFAST32 __PRI32FAST(x)
+#define PRIXFAST32 __PRI32FAST(X)
+
+#define SCNdFAST32 __SCN32FAST(d)
+#define SCNiFAST32 __SCN32FAST(i)
+#define SCNoFAST32 __SCN32FAST(o)
+#define SCNuFAST32 __SCN32FAST(u)
+#define SCNxFAST32 __SCN32FAST(x)
+
+
+
+#define __PRI64(x) __INT64 __STRINGIFY(x)
+#define __SCN64(x) __INT64 __STRINGIFY(x)
+
+#define __PRI64LEAST(x) __LEAST64 __STRINGIFY(x)
+#define __SCN64LEAST(x) __LEAST64 __STRINGIFY(x)
+#define __PRI64FAST(x) __FAST64 __STRINGIFY(x)
+#define __SCN64FAST(x) __FAST64 __STRINGIFY(x)
+
+
+#define PRId64 __PRI64(d)
+#define PRIi64 __PRI64(i)
+#define PRIo64 __PRI64(o)
+#define PRIu64 __PRI64(u)
+#define PRIx64 __PRI64(x)
+#define PRIX64 __PRI64(X)
+
+#define SCNd64 __SCN64(d)
+#define SCNi64 __SCN64(i)
+#define SCNo64 __SCN64(o)
+#define SCNu64 __SCN64(u)
+#define SCNx64 __SCN64(x)
+
+
+
+#define PRIdLEAST64 __PRI64LEAST(d)
+#define PRIiLEAST64 __PRI64LEAST(i)
+#define PRIoLEAST64 __PRI64LEAST(o)
+#define PRIuLEAST64 __PRI64LEAST(u)
+#define PRIxLEAST64 __PRI64LEAST(x)
+#define PRIXLEAST64 __PRI64LEAST(X)
+
+#define SCNdLEAST64 __SCN64LEAST(d)
+#define SCNiLEAST64 __SCN64LEAST(i)
+#define SCNoLEAST64 __SCN64LEAST(o)
+#define SCNuLEAST64 __SCN64LEAST(u)
+#define SCNxLEAST64 __SCN64LEAST(x)
+
+
+
+#define PRIdFAST64 __PRI64FAST(d)
+#define PRIiFAST64 __PRI64FAST(i)
+#define PRIoFAST64 __PRI64FAST(o)
+#define PRIuFAST64 __PRI64FAST(u)
+#define PRIxFAST64 __PRI64FAST(x)
+#define PRIXFAST64 __PRI64FAST(X)
+
+#define SCNdFAST64 __SCN64FAST(d)
+#define SCNiFAST64 __SCN64FAST(i)
+#define SCNoFAST64 __SCN64FAST(o)
+#define SCNuFAST64 __SCN64FAST(u)
+#define SCNxFAST64 __SCN64FAST(x)
+
+
+
+
+
+
+
+#define __PRIMAX(x) __STRINGIFY(ll ##x)
+#define __SCNMAX(x) __STRINGIFY(ll ##x)
+
+
+
+
+
+#define PRIdMAX __PRIMAX(d)
+#define PRIiMAX __PRIMAX(i)
+#define PRIoMAX __PRIMAX(o)
+#define PRIuMAX __PRIMAX(u)
+#define PRIxMAX __PRIMAX(x)
+#define PRIXMAX __PRIMAX(X)
+
+#define SCNdMAX __SCNMAX(d)
+#define SCNiMAX __SCNMAX(i)
+#define SCNoMAX __SCNMAX(o)
+#define SCNuMAX __SCNMAX(u)
+#define SCNxMAX __SCNMAX(x)
+# 289 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/inttypes.h" 3
+#define __PRIPTR(x) __STRINGIFY(x)
+#define __SCNPTR(x) __STRINGIFY(x)
+
+
+#define PRIdPTR __PRIPTR(d)
+#define PRIiPTR __PRIPTR(i)
+#define PRIoPTR __PRIPTR(o)
+#define PRIuPTR __PRIPTR(u)
+#define PRIxPTR __PRIPTR(x)
+#define PRIXPTR __PRIPTR(X)
+
+#define SCNdPTR __SCNPTR(d)
+#define SCNiPTR __SCNPTR(i)
+#define SCNoPTR __SCNPTR(o)
+#define SCNuPTR __SCNPTR(u)
+#define SCNxPTR __SCNPTR(x)
+
+
+
+# 307 "/opt/Xilinx/SDK/2017.4/gnu/microblaze/lin/microblaze-xilinx-elf/include/inttypes.h" 3
+typedef struct {
+  intmax_t quot;
+  intmax_t rem;
+} imaxdiv_t;
+
+
+
+
+
+extern intmax_t imaxabs(intmax_t j);
+extern imaxdiv_t imaxdiv(intmax_t numer, intmax_t denomer);
+extern intmax_t strtoimax(const char *restrict, char **restrict, int);
+extern uintmax_t strtoumax(const char *restrict, char **restrict, int);
+extern intmax_t wcstoimax(const wchar_t *restrict, wchar_t **restrict, int);
+extern uintmax_t wcstoumax(const wchar_t *restrict, wchar_t **restrict, int);
+# 3 "../src/secrets.h" 2
 
 #define SECRETS_H 
 
-#define NUM_REGIONS 3
-const char *REGION_NAMES[] = { "United States", "Japan", "Australia" };
-const u8 REGION_IDS[] = { 0, 1, 2 };
+#define PROVISIONED_REGIONS 2
+#define PROVISIONED_USERS 3
 
-#define NUM_PROVISIONED_REGIONS 2
-const u8 PROVISIONED_RIDS[] = { 0, 1 };
+#define ROOT_VERIFY "db2668ff5c5167e11e81ff8637f172c9c2d1107263f0da852307058212af8a84"
 
-#define NUM_USERS 3
-const char *USERNAMES[] = { "drew", "ben", "misha" };
-const u8 USER_IDS[] = { 0, 1, 2 };
 
-#define NUM_PROVISIONED_USERS 3
-const u8 PROVISIONED_UIDS[] = { 0, 1, 2 };
-const char *PROVISIONED_PINS[] = { "1234567890", "00000000", "0987654321" };
+# 11 "../src/secrets.h"
+struct R_Data {
+    uint8_t id;
+    char *rand_pass;
+};
+
+
+struct R_Data region_data[2] =
+{
+{ 1, "d6157f1ff56e9fb3b934bcabebff2e95dc6379f9e8a679e91fb28e71ceb1c234" },
+{ 2, "7016cc70136936a9dc5d2023bfbb5aa40dfb23ec268d1cef3309ca87ad6ec96d" },
+};
+
+
+
+struct U_Data {
+    uint8_t id;
+    char *name;
+    char *hw_secret;
+    char *pin_hash;
+    char *pub_key;
+    char *pvt_key;
+    char *salt;
+};
+
+struct U_Data user_data[3] =
+{
+{ 1,"drew", "dc8098901602e0f735cf", "38293dcaceaf69f6e49c1ebb9219375691ef399f34a14afea1c26107692259b5", "979083188c1453d8c35c53394f71786705af28cd6449e7df8992806de7114642", "d433689830161592ff2f072fdb0fa9f57d7164527f657471ef91f67837a235f6b86bf35be634e4fafd9e9799f83be27a", "a33b41850101f4aac345a37db64305e5" },
+{ 2,"ben", "73f1cbcae106e3eea569", "87e3f70f55fcf37116a25b0b1f1a861fc20845927401ee0d175cbca465d429d6", "c122c81cdc39dabadb594b4c3fe6ce3abebeb9912c5457d90546f2a5b3a9db17", "448c6e2b5132ba863c59a90ace8df2b6f503d561a1266b548171468e9691416ec316746663312e84d63c007652006010", "edc259e5325eea7ba224958e1e87d1dc" },
+{ 3,"misha", "b1184d4ae0aae83ff6b8", "19ae840b411663825c2213894e0e21c11c2637b76dc37821a9471526a853209b", "36fbc7a35fa89fe746f9028975ed2d3d070016b6a1dce2918940504cb2f20946", "075c4afa8f9cceec8cf197f3df9e000301071908563546d7e9b2678c19cc241ab7ad3f91be410a5722a0b74dcf8b8378", "5ed72d6765f136eae1e1bbde6ed31883" },
+};
 # 15 "../src/main.c" 2
 
 
@@ -6378,14 +6718,16 @@ void myISR(void) {
 u32 read_cr()
 {
 
- return ((*cmdreg) & 0x00FF0000) >> 16;
+ u32 cmd = *cmdreg;
+ return (cmd & 0x00FF0000) >> 16;
  *cmdreg |= 0xFFFFFFFF;
+
 }
 
 
 int is_provisioned_rid(char rid) {
     for (int i = 0; i < 2; i++) {
-        if (rid == PROVISIONED_RIDS[i]) {
+        if (rid == region_data[i].id) {
             return 1U;
         }
     }
@@ -6394,10 +6736,11 @@ int is_provisioned_rid(char rid) {
 
 
 int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
-    for (int i = 0; i < 3; i++) {
-        if (rid == REGION_IDS[i] &&
+    for (int i = 0; i < 2; i++) {
+        if (rid == region_data[i].id &&
             (!provisioned_only || is_provisioned_rid(rid))) {
-            *region_name = (char *)REGION_NAMES[i];
+
+            *region_name = (char *)region_data[i].rand_pass;
             return 1U;
         }
     }
@@ -6410,10 +6753,11 @@ int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
 
 
 int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
-    for (int i = 0; i < 3; i++) {
-        if (!strcmp(region_name, REGION_NAMES[i]) &&
-            (!provisioned_only || is_provisioned_rid(REGION_IDS[i]))) {
-            *rid = REGION_IDS[i];
+    for (int i = 0; i < 2; i++) {
+
+        if (!strcmp(region_name, region_data[i].rand_pass) &&
+            (!provisioned_only || is_provisioned_rid(region_data[i].id))) {
+            *rid = region_data[i].id;
             return 1U;
         }
     }
@@ -6427,7 +6771,7 @@ int region_name_to_rid(char *region_name, char *rid, int provisioned_only) {
 
 int is_provisioned_uid(char uid) {
     for (int i = 0; i < 3; i++) {
-        if (uid == PROVISIONED_UIDS[i]) {
+        if (uid == user_data[i].id) {
             return 1U;
         }
     }
@@ -6438,9 +6782,9 @@ int is_provisioned_uid(char uid) {
 
 int uid_to_username(char uid, char **username, int provisioned_only) {
     for (int i = 0; i < 3; i++) {
-        if (uid == USER_IDS[i] &&
+        if (uid == user_data[i].id &&
             (!provisioned_only || is_provisioned_uid(uid))) {
-            *username = (char *)USERNAMES[i];
+            *username = (char *)user_data[i].name;
             return 1U;
         }
     }
@@ -6454,9 +6798,9 @@ int uid_to_username(char uid, char **username, int provisioned_only) {
 
 int username_to_uid(char *username, char *uid, int provisioned_only) {
     for (int i = 0; i < 3; i++) {
-        if (!strcmp(username, USERNAMES[USER_IDS[i]]) &&
-            (!provisioned_only || is_provisioned_uid(USER_IDS[i]))) {
-            *uid = USER_IDS[i];
+        if (!strcmp(username, user_data[i].name) &&
+            (!provisioned_only || is_provisioned_uid(user_data[i].id))) {
+            *uid = user_data[i].id;
             return 1U;
         }
     }
@@ -6509,7 +6853,7 @@ int is_locked() {
 
         for (int i = 0; i < s.song_md.num_regions; i++) {
             for (int j = 0; j < (u8)2; j++) {
-                if (PROVISIONED_RIDS[j] == s.song_md.rids[i]) {
+                if (region_data[j].id == s.song_md.rids[i]) {
                     locked = 0U;
                 }
             }
@@ -6553,15 +6897,16 @@ void login() {
     } else {
         for (int i = 0; i < 3; i++) {
 
-            if (!strcmp((void*)c->username, USERNAMES[PROVISIONED_UIDS[i]])) {
+            if (!strcmp((void*)c->username, user_data[i].name)) {
 
-                if (!strcmp((void*)c->pin, PROVISIONED_PINS[i])) {
+
+                if (!strcmp((void*)c->pin, user_data[i].pin_hash)) {
 
                     s.logged_in = 1;
                     c->login_status = 1;
                     memcpy(s.username, (void*)c->username, 64);
                     memcpy(s.pin, (void*)c->pin, 64);
-                    s.uid = PROVISIONED_UIDS[i];
+                    s.uid = user_data[i].id;
                     xil_printf("\r\nMB> " "Logged in for user '%s'\r\n", c->username);
                     return;
                 } else {
@@ -6603,11 +6948,12 @@ void query_player() {
     c->query.num_users = 3;
 
     for (int i = 0; i < 2; i++) {
-        strcpy((char *)(c->query.regions + (i * 64)), REGION_NAMES[PROVISIONED_RIDS[i]]);
+
+        strcpy((char *)(c->query.regions + (i * 64)), region_data[i].rand_pass);
     }
 
     for (int i = 0; i < 3; i++) {
-        strcpy((char *)(c->query.users + (i * 64)), USERNAMES[i]);
+        strcpy((char *)(c->query.users + (i * 64)), user_data[i].name);
     }
 
     xil_printf("\r\nMB> " "Queried player (%d regions, %d users)\r\n", c->query.num_regions, c->query.num_users);
@@ -6687,12 +7033,13 @@ void share_song() {
 
 
 void play_song() {
-    u32 rem = 0, cp_num, cp_xfil_cnt, dma_cnt, length;
+    u32 rem = 0;
+    u32 length = 0;
 
 
 
-    u32* fifo_fill_in = (u32 *)(0x04B20000 + 0x8);
-    u32* fifo_fill_out = (u32 *)(0x04B20000);
+    volatile u32* fifo_fill_in = (u32 *)(0x04B20000 + 0x8);
+    volatile u32* fifo_fill_out = (u32 *)(0x04B20000);
 
 
     xil_printf("\r\nMB> " "Reading Audio File...");
@@ -6757,42 +7104,19 @@ void play_song() {
 
 
 
-        cp_num = (rem > 16000) ? 16000 : rem;
 
 
+        u32 chunk = ((2048 - 1) - *fifo_fill_in)*4;
+        u32 dma_to_ipf_count = (chunk < rem) ? chunk : rem;
+# 464 "../src/main.c"
+  if (dma_to_ipf_count > 0)
+   XAxiDma_SimpleTransfer( &sAxiDma,
+        (u32)(((char *)(&c->song.md) + c->song.md.md_size) + length - rem),
+        dma_to_ipf_count,
+        0x00);
 
+  while (XAxiDma_Busy(&sAxiDma, 0x00) && rem != length);
 
-
-
-        Xil_MemCpy((void *)(0xC0000000U),
-                   (void *)(((char *)(&c->song.md) + c->song.md.md_size) + length - rem),
-                   (u32)(cp_num));
-
-        cp_xfil_cnt = cp_num;
-
-        while (cp_xfil_cnt > 0)
-        {
-
-
-
-
-
-
-            while (XAxiDma_Busy(&sAxiDma, 0x00)
-                   && rem != length && *fifo_fill_in < (2048*2 - 32));
-
-
-
-            dma_cnt = (2048*2 - *fifo_fill_in > cp_xfil_cnt)
-                      ? 2048*2 - *fifo_fill_in
-                      : cp_xfil_cnt;
-
-
-            fnAudioPlay(sAxiDma, 0, dma_cnt);
-            cp_xfil_cnt -= dma_cnt;
-
-
-        }
 
 
 
@@ -6804,12 +7128,12 @@ void play_song() {
 
 
          asm volatile ("" "get\t%0,rfsl" "0" : "=d" (sample));
-# 499 "../src/main.c"
+# 492 "../src/main.c"
          asm volatile ("" "put\t%0,rfsl" "0" :: "d" ((sample & 0x0000FFFF) | (sample & 0x0000FFFF)<<16));
          asm volatile ("" "put\t%0,rfsl" "0" :: "d" ((sample & 0xFFFF0000) | (sample & 0xFFFF0000)>>16));
         }
 
-        rem -= cp_num;
+        rem -= dma_to_ipf_count;
     }
 }
 

@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (lin64) Build 2086221 Fri Dec 15 20:54:30 MST 2017
--- Date        : Sun Feb 16 17:45:31 2020
+-- Date        : Sat Apr  4 14:32:08 2020
 -- Host        : ssg0 running 64-bit Arch Linux
--- Command     : write_vhdl -force -mode synth_stub -rename_top system_mdm_0_0 -prefix
---               system_mdm_0_0_ system_mdm_0_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               /ectf_dev/ectf/eCTF20/pl/proj/test/bd/system/ip/system_mdm_0_0/system_mdm_0_0_stub.vhdl
 -- Design      : system_mdm_0_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z007sclg400-1
@@ -18,7 +18,6 @@ entity system_mdm_0_0 is
     S_AXI_ARESETN : in STD_LOGIC;
     M_AXI_ACLK : in STD_LOGIC;
     M_AXI_ARESETN : in STD_LOGIC;
-    Interrupt : out STD_LOGIC;
     Debug_SYS_Rst : out STD_LOGIC;
     S_AXI_AWADDR : in STD_LOGIC_VECTOR ( 4 downto 0 );
     S_AXI_AWVALID : in STD_LOGIC;
@@ -102,7 +101,7 @@ architecture stub of system_mdm_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "S_AXI_ACLK,S_AXI_ARESETN,M_AXI_ACLK,M_AXI_ARESETN,Interrupt,Debug_SYS_Rst,S_AXI_AWADDR[4:0],S_AXI_AWVALID,S_AXI_AWREADY,S_AXI_WDATA[31:0],S_AXI_WSTRB[3:0],S_AXI_WVALID,S_AXI_WREADY,S_AXI_BRESP[1:0],S_AXI_BVALID,S_AXI_BREADY,S_AXI_ARADDR[4:0],S_AXI_ARVALID,S_AXI_ARREADY,S_AXI_RDATA[31:0],S_AXI_RRESP[1:0],S_AXI_RVALID,S_AXI_RREADY,M_AXI_AWID[0:0],M_AXI_AWADDR[31:0],M_AXI_AWLEN[7:0],M_AXI_AWSIZE[2:0],M_AXI_AWBURST[1:0],M_AXI_AWLOCK,M_AXI_AWCACHE[3:0],M_AXI_AWPROT[2:0],M_AXI_AWQOS[3:0],M_AXI_AWVALID,M_AXI_AWREADY,M_AXI_WDATA[31:0],M_AXI_WSTRB[3:0],M_AXI_WLAST,M_AXI_WVALID,M_AXI_WREADY,M_AXI_BRESP[1:0],M_AXI_BID[0:0],M_AXI_BVALID,M_AXI_BREADY,M_AXI_ARID[0:0],M_AXI_ARADDR[31:0],M_AXI_ARLEN[7:0],M_AXI_ARSIZE[2:0],M_AXI_ARBURST[1:0],M_AXI_ARLOCK,M_AXI_ARCACHE[3:0],M_AXI_ARPROT[2:0],M_AXI_ARQOS[3:0],M_AXI_ARVALID,M_AXI_ARREADY,M_AXI_RID[0:0],M_AXI_RDATA[31:0],M_AXI_RRESP[1:0],M_AXI_RLAST,M_AXI_RVALID,M_AXI_RREADY,LMB_Data_Addr_0[0:31],LMB_Addr_Strobe_0,LMB_Ready_0,LMB_Byte_Enable_0[0:3],LMB_Data_Read_0[0:31],LMB_Data_Write_0[0:31],LMB_Read_Strobe_0,LMB_Write_Strobe_0,LMB_CE_0,LMB_UE_0,LMB_Wait_0,Dbg_Clk_0,Dbg_TDI_0,Dbg_TDO_0,Dbg_Reg_En_0[0:7],Dbg_Capture_0,Dbg_Shift_0,Dbg_Update_0,Dbg_Rst_0,Dbg_Disable_0";
+attribute black_box_pad_pin of stub : architecture is "S_AXI_ACLK,S_AXI_ARESETN,M_AXI_ACLK,M_AXI_ARESETN,Debug_SYS_Rst,S_AXI_AWADDR[4:0],S_AXI_AWVALID,S_AXI_AWREADY,S_AXI_WDATA[31:0],S_AXI_WSTRB[3:0],S_AXI_WVALID,S_AXI_WREADY,S_AXI_BRESP[1:0],S_AXI_BVALID,S_AXI_BREADY,S_AXI_ARADDR[4:0],S_AXI_ARVALID,S_AXI_ARREADY,S_AXI_RDATA[31:0],S_AXI_RRESP[1:0],S_AXI_RVALID,S_AXI_RREADY,M_AXI_AWID[0:0],M_AXI_AWADDR[31:0],M_AXI_AWLEN[7:0],M_AXI_AWSIZE[2:0],M_AXI_AWBURST[1:0],M_AXI_AWLOCK,M_AXI_AWCACHE[3:0],M_AXI_AWPROT[2:0],M_AXI_AWQOS[3:0],M_AXI_AWVALID,M_AXI_AWREADY,M_AXI_WDATA[31:0],M_AXI_WSTRB[3:0],M_AXI_WLAST,M_AXI_WVALID,M_AXI_WREADY,M_AXI_BRESP[1:0],M_AXI_BID[0:0],M_AXI_BVALID,M_AXI_BREADY,M_AXI_ARID[0:0],M_AXI_ARADDR[31:0],M_AXI_ARLEN[7:0],M_AXI_ARSIZE[2:0],M_AXI_ARBURST[1:0],M_AXI_ARLOCK,M_AXI_ARCACHE[3:0],M_AXI_ARPROT[2:0],M_AXI_ARQOS[3:0],M_AXI_ARVALID,M_AXI_ARREADY,M_AXI_RID[0:0],M_AXI_RDATA[31:0],M_AXI_RRESP[1:0],M_AXI_RLAST,M_AXI_RVALID,M_AXI_RREADY,LMB_Data_Addr_0[0:31],LMB_Addr_Strobe_0,LMB_Ready_0,LMB_Byte_Enable_0[0:3],LMB_Data_Read_0[0:31],LMB_Data_Write_0[0:31],LMB_Read_Strobe_0,LMB_Write_Strobe_0,LMB_CE_0,LMB_UE_0,LMB_Wait_0,Dbg_Clk_0,Dbg_TDI_0,Dbg_TDO_0,Dbg_Reg_En_0[0:7],Dbg_Capture_0,Dbg_Shift_0,Dbg_Update_0,Dbg_Rst_0,Dbg_Disable_0";
 attribute x_core_info : string;
 attribute x_core_info of stub : architecture is "MDM,Vivado 2017.4";
 begin

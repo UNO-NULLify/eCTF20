@@ -1,0 +1,54 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Mon Apr 13 19:31:44 2020
+# Process ID: 7629
+# Current directory: /ectf/pl
+# Command line: vivado -mode batch -source ..//pl/proj/gen_bitstream.tcl -tclargs --project_file ..//pl/proj/test/test.xpr
+# Log file: /ectf/pl/vivado.log
+# Journal file: /ectf/pl/vivado.jou
+#-----------------------------------------------------------
+source ..//pl/proj/gen_bitstream.tcl
+# set origin_dir "."
+# set project_bd "$origin_dir/src/bd/system/system.bd"
+# set synth_comp "synth_design Complete!"
+# set impl_run "Running Design Initialization..."
+# set bitstream_comp "write_bitstream Complete!"
+# if { $::argc > 0 } {
+#   for {set i 0} {$i < [llength $::argc]} {incr i} {
+#     set option [string trim [lindex $::argv $i]]
+#     switch -regexp -- $option {
+#       "--project_file" { incr i; set project_file [lindex $::argv $i] }
+#       default {
+#         if { [regexp {^-} $option] } {
+#           puts "ERROR: Unknown option '$option' specified, expecting --project_file arg.\n"
+#           return 1
+#         }
+#       }
+#     }
+#   }
+#   open_project $project_file
+#   open_bd_design $project_bd
+# }
+INFO: [Project 1-313] Project file moved from '/ectf_dev/ectf/eCTF20/pl/proj/test' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository '/ectf/pl/repo'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/opt/Xilinx/Vivado/2017.4/data/ip'.
+WARNING: [IP_Flow 19-3664] IP 'system_microblaze_0_0' generated file not found '/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/data/mb_bootloop_le.elf'. Please regenerate to continue.
+WARNING: [IP_Flow 19-3664] IP 'system_microblaze_0_0' generated file not found '/ectf/pl/proj/test/bd/system/ip/system_microblaze_0_0/data/mb_bootloop_le.elf'. Please regenerate to continue.
+open_project: Time (s): cpu = 00:00:04 ; elapsed = 00:00:06 . Memory (MB): peak = 1245.988 ; gain = 84.156 ; free physical = 1439 ; free virtual = 3626
+ERROR: [BD 41-1333] Can not open BD file ./src/bd/system/system.bd, as it is not part of this project. Please use 'add_files' to add this BD-file to current project, before opening.
+ERROR: [Common 17-39] 'open_bd_design' failed due to earlier errors.
+
+    while executing
+"open_bd_design $project_bd"
+    invoked from within
+"if { $::argc > 0 } {
+  for {set i 0} {$i < [llength $::argc]} {incr i} {
+    set option [string trim [lindex $::argv $i]]
+    switch -regexp -- $optio..."
+    (file "..//pl/proj/gen_bitstream.tcl" line 19)
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 13 19:31:57 2020...

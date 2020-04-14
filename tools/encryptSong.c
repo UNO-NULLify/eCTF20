@@ -6,7 +6,7 @@
 #define CHUNK_SIZE 4096
 
 struct metadata {
-    uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
+    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
     uint8_t owner_id; // 1-Byte
     uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
@@ -95,30 +95,6 @@ void printStruct(struct metadata s) {
 
 	printf("song_name: %s\n\n", s.song_name);
 }
-
-void byte_me(char *dest, char *src, size_t src_len)
-{
-  for(int i = 0; i < src_len; i +=2)
-  {
-    if(src[i] >= '0' && src[i] <= '9')
-    {
-      dest[i/2] = src[i] - '0';
-    }
-    else
-    {
-      dest[i/2] = src[i] - 'a' + 10;
-    }
-    dest[i/2] = dest[i/2] << 4;
-    if(src[i+1] >= '0' && src[i+1] <= '9')
-    {
-      dest[i/2] += src[i+1] - '0';
-    }
-    else{
-      dest[i/2] += src[i+1] - 'a' + 10;
-    }
-  }
-}
-
 
 //TODO REMOVE
 void printStructSize(struct metadata s) {
@@ -223,31 +199,13 @@ int main(int argc, char *argv[]){
 
   /////////ENCRYPT FULLSONG TO FILE /////////
   // printf("\nEncrypting %s with the password: %s\n", argv[7],argv[8]);
-
-
-  uint8_t secretString[160]= {0};
-
-  byte_me(secretString, (const uint8_t *)argv[8],strlen(argv[8]));
-
-  printf("secretString::: ");
-  for (int i = 0; i < (160); i++) {
-    printf("%x", *(secretString + (i * sizeof(uint8_t))));
-  }
-  printf("\n\n");
-
   uint8_t temphash[64] = {0};
-  crypto_blake2b(temphash, secretString, 160); //turn long password into useable hash
+  crypto_blake2b(temphash, (const uint8_t *)argv[8], strlen(argv[8])); //turn long password into useable hash
 
   uint8_t hash[MAX_HASH_SZ] = {0};
   memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
 
   uint8_t nonce [24] = {0};
-
-  printf("temphash::: ");
-  for (int i = 0; i < (64); i++) {
-    printf("%x", *(temphash + (i * sizeof(uint8_t))));
-  }
-  printf("\n\n");
 
   if (encrypt(encFile, argv[7], hash, nonce) != 0)
   {
@@ -264,19 +222,14 @@ int main(int argc, char *argv[]){
   /////////ENCRYPT 30 SECOND SONG TO FILE/////////
   printf("\nMETAINFO: endFullSong %ld - songSize 0%ld\n", meta.endFullSong, meta.songSize);
   printf("\nEncrypting %s with the password: %s\n", argv[5],argv[6]);
-
-  uint8_t secretString30[64] = {0};
-
-  byte_me(secretString30, (const uint8_t *)argv[6],strlen(argv[6]));
-
   uint8_t temphash30[64] = {0};
-  crypto_blake2b(temphash30, secretString30, 64); //turn long password into useable hash
+  crypto_blake2b(temphash30, (const uint8_t *)argv[6], strlen(argv[6])); //turn long password into useable hash
 
   uint8_t hash30[MAX_HASH_SZ] = {0};
 
 
   memcpy (hash30, temphash30, sizeof(hash30)); // need to reduce the size of the hash for use in encryption
-  //printf("\n\nHASH30: %d %d %d \n\n", hash30[0], hash30[20], hash30[31]);
+  printf("\n\nHASH30: %d %d %d \n\n", hash30[0], hash30[20], hash30[31]);
   uint8_t nonce30 [24] = {0};
 
 
@@ -285,7 +238,6 @@ int main(int argc, char *argv[]){
     printf("Encryption Failed");
     return 1;
   }
-
   meta.songSize = ftell(encFile) + 64; //get cur location
   fseek( encFile, 0, SEEK_SET ); //go to start of file
   writeMetadata(encFile, meta); // write metatdata with endFullSong included

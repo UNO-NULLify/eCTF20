@@ -1,33 +1,36 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+################################################################################
+
 # Add inputs and outputs from these tool invocations to the build variables 
 LD_SRCS += \
 ../src/lscript.ld 
 
 C_SRCS += \
-../src/drm.c \
+../src/main.c \
 ../src/platform.c \
 ../src/util.c \
-../src/monocypher.c
+../src/monocypher.c  
 
 OBJS += \
-./src/drm.o \
+./src/main.o \
 ./src/platform.o \
 ./src/util.o \
-./src/monocypher.o
+./src/monocypher.o  
 
 C_DEPS += \
-./src/drm.d \
+./src/main.d \
 ./src/platform.d \
 ./src/util.d \
-./src/monocypher.d
+./src/monocypher.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
 src/%.o: ../src/%.c
 	@echo 'Building file: $<'
 	@echo 'Invoking: MicroBlaze gcc compiler'
-	mb-gcc -Wall -Wextra -mxl-barrel-shift -mno-xl-soft-div -mno-xl-soft-mul -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conversion -fstack-check -mxl-reorder -Wstack-protector --param ssp-buffer-size=4 -ftrapv -Wl,-z,relro,-z,now -Wl,-z,noexecstack -I"../../drm_audio_fw_bsp/microblaze_0/include" -I"../../drm_audio_fw/src/include" -I"/opt/Xilinx/SDK/2017.4/gnu/microblaze/linux_toolchain/lin32_le/microblazeel-xilinx-linux-gnu/sys-root/usr/include" -c -fmessage-length=0 -MT"$@" -mlittle-endian -mcpu=v10.0 -Wl,--relax -ffunction-sections -fdata-sections -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
+	mb-gcc -Wall -Os -s -I"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -c -fmessage-length=0 -MT"$@" -save-temps -I"/ectf/mb/drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mxl-barrel-shift -mno-xl-soft-div -mcpu=v10.0 -mno-xl-soft-mul -Wl,--no-relax -Wl,--gc-sections -ffunction-sections -fdata-sections -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
-
 
 

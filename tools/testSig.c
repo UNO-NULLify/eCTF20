@@ -8,13 +8,13 @@
 
 
 struct metadata {
-	uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
-	uint8_t owner_id; // 1-Byte
-	uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
-	char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
-	char song_name[MAX_SONG_NAME]; // 64-Bytes
-	long int endFullSong;
-	long int songSize;
+    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
+    uint8_t owner_id; // 1-Byte
+    uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
+    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
+    char song_name[MAX_SONG_NAME]; // 64-Bytes
+    long int endFullSong;
+    long int songSize;
 };
 
 //Write file metadata
@@ -25,12 +25,12 @@ int readMetadata(FILE *infile, struct metadata * metaIn ){
   int yay = fread(metaIn, sizeof(struct metadata), 1, infile);
 
   if(yay != 0){
-	printf("Metadata read successfully!!\n");
+    printf("Metadata read successfully!!\n");
   }
 
   else
   {
-	   printf("error reading file !\n");
+       printf("error reading file !\n");
   }
   return 1;
 }
@@ -41,11 +41,11 @@ int find_user(struct U_Data *users, char *user_name)
   int pos = -1;
   for(int i=0; i < MAX_USERS; i++)
   {
-	if(strncmp(users[i].name, user_name, strlen(user_name)) == 0)
-	{
-	  pos = i;
-	  return pos;
-	}
+    if(strncmp(users[i].name, user_name, strlen(user_name)) == 0)
+    {
+      pos = i;
+      return pos;
+    }
   }
   return pos;
 }
@@ -54,43 +54,43 @@ void byte_me(char *dest, char *src, size_t src_len)
 {
   for(int i = 0; i < src_len; i +=2)
   {
-	if(src[i] >= '0' && src[i] <= '9')
-	 {
-	   dest[i/2] = src[i] - '0';
-	 }
-	 else
-	 {
-	   dest[i/2] = src[i] - 'a' + 10;
-	 }
+    if(src[i] >= '0' && src[i] <= '9')
+     {
+       dest[i/2] = src[i] - '0';
+     }
+     else
+     {
+       dest[i/2] = src[i] - 'a' + 10;
+     }
 
-	dest[i/2] = dest[i/2] << 4;
+    dest[i/2] = dest[i/2] << 4;
 
-	if(src[i+1] >= '0' && src[i+1] <= '9')
-	{
-	  dest[i/2] += src[i+1] - '0';
-	}
-	else{
-	  dest[i/2] += src[i+1] - 'a' + 10;
-	}
+    if(src[i+1] >= '0' && src[i+1] <= '9')
+    {
+      dest[i/2] += src[i+1] - '0';
+    }
+    else{
+      dest[i/2] += src[i+1] - 'a' + 10;
+    }
   }
 }
  void hex_me(char *dest, char *src, size_t src_len)
   {
-	for(int i=0; i<src_len; i++)
-	{
-	  uint8_t *buff[3] = {0};
-	  snprintf(buff, sizeof(buff), "%x", src[i]);
-	  strncat(dest, buff, sizeof(buff));
-	  crypto_wipe(buff, sizeof(buff));
-	}
+    for(int i=0; i<src_len; i++)
+  {
+    uint8_t *buff[3] = {0};
+    snprintf(buff, sizeof(buff), "%x", src[i]);
+    strncat(dest, buff, sizeof(buff));
+    crypto_wipe(buff, sizeof(buff));
+  }
   }
   /*
-	for(int i=0; i<32; i++)
+    for(int i=0; i<32; i++)
   {
-	uint8_t *buff[3] = {0};
-	snprintf(buff, sizeof(buff), "%x", enc_pvt_key[i]);
-	strncat(enc_key_hex, buff, sizeof(buff));
-	crypto_wipe(buff, sizeof(buff));
+    uint8_t *buff[3] = {0};
+    snprintf(buff, sizeof(buff), "%x", enc_pvt_key[i]);
+    strncat(enc_key_hex, buff, sizeof(buff));
+    crypto_wipe(buff, sizeof(buff));
   }
   }
   */
@@ -105,17 +105,17 @@ int main(int argc, char *argv[]){
   //argv[4] file pointer
   /*
   TODO add params for: * file pointer
-					   * Logged in user id
-					   * Logged in user pin
-					   * Shared user name
+                       * Logged in user id
+                       * Logged in user pin
+                       * Shared user name
   */
 
   FILE *encFile;
   encFile = fopen("./provision_test/audio/test-protect-small-step.drm", "rb"); // open the outfile for reading
   if (encFile == NULL)
   {
-	  fprintf(stderr, "\nError opening file\n");
-	  return 1;
+      fprintf(stderr, "\nError opening file\n");
+      return 1;
   }
   readMetadata(encFile, & meta);
 
@@ -149,11 +149,11 @@ int main(int argc, char *argv[]){
   printf("\nyay =%d \n", yay);
 
   if(yay == 0){
-	printf("Signature Verified!\n");
+    printf("Signature Verified!\n");
   }
   else
   {
-	   printf("TAMPER DETECTED\n");
+       printf("TAMPER DETECTED\n");
   }
   fclose (encFile);
 
@@ -183,7 +183,7 @@ int main(int argc, char *argv[]){
 
   for(int i = 0 ; i < 64; i++)
   {
-	printf("%x", hashed[i]);
+    printf("%x", hashed[i]);
 
   }
   printf("\n");
@@ -210,7 +210,7 @@ int main(int argc, char *argv[]){
 
   for(int i=0; i<32; i++)
   {
-	printf("%x", enc_pvt_key[i]);
+    printf("%x", enc_pvt_key[i]);
   }
   puts("\n");
 //
@@ -231,12 +231,12 @@ int main(int argc, char *argv[]){
 
   crypto_unlock(pvt_key, hashed, nonce, mac, enc_pvt_key, 32);
 
-	puts("decrypting private key");
-	for(int i=0; i<32; i++)
-	{
-	  printf("%x", pvt_key[i]);
-	}
-	puts("\n");
+    puts("decrypting private key");
+    for(int i=0; i<32; i++)
+    {
+      printf("%x", pvt_key[i]);
+    }
+    puts("\n");
   puts("Key Exchange");
   
   uint8_t shared_key[32] = {0};
