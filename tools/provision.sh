@@ -191,6 +191,8 @@ fi
            cp ../boot-image/purchased_boards_BOOT.BIN ../BOOT.BIN
            ;;
   esac
+  
+  lsblk
 
   read -p "What is the name of your ssd card (sdb)? " DEVICE
 
