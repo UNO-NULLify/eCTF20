@@ -182,16 +182,13 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
 }
 
 
-// loads the song metadata in the shared buffer into the local struct
-void load_song_md() {
-    s.song_md.md_size = c->song.md.md_size;
-    s.song_md.owner_id = c->song.md.owner_id;
-    s.song_md.num_regions = c->song.md.num_regions;
-    s.song_md.num_users = c->song.md.num_users;
-    memcpy(s.song_md.rids, (void *)get_drm_rids(c->song), s.song_md.num_regions);
-    memcpy(s.song_md.uids, (void *)get_drm_uids(c->song), s.song_md.num_users);
+int load_song_md() {
+    if(fread(s.song_md, sizeof(s.song_md), 1, c->song.md)) {
+        //the reading didn't work return 1
+        return 1;
+    }
+    return 0;
 }
-
 
 // checks if the song loaded into the shared buffer is locked for the current user
 int is_locked() {
@@ -200,9 +197,9 @@ int is_locked() {
     // check for authorized user
     if (!s.logged_in) {
         mb_printf("No user logged in");
+    } else if (load_song_md()) {
+        mb_printf("Error Reading Metadata!\n");
     } else {
-        load_song_md();
-
         // check if user is authorized to play song
         if (s.uid == s.song_md.owner_id) {
             locked = FALSE;
@@ -250,7 +247,6 @@ int gen_song_md(char *buf) {
     buf[3] = s.song_md.num_users;
     memcpy(buf + 4, s.song_md.rids, s.song_md.num_regions);
     memcpy(buf + 4 + s.song_md.num_regions, s.song_md.uids, s.song_md.num_users);
-
     return buf[0];
 }
 
@@ -363,12 +359,17 @@ void query_player() {
 }
 
 
+//REFERENCE VERSION
 // handles a request to query song metadata
 void query_song() {
     char *name;
 
     // load song
-    load_song_md();
+    if(load_song_md()) {
+        mb_printf("Error reading metadata!\n");
+        return;
+    }
+
     memset((void *)&c->query, 0, sizeof(query));
 
     c->query.num_regions = s.song_md.num_regions;
@@ -394,14 +395,51 @@ void query_song() {
 }
 
 
+//NEW VERSION
+void query_song() {
+    char *name;
+    int num = 0;
+    //load song
+    if(load_song_md()) {
+        mb_printf("Error reading metadata!\n");
+        return;
+    }
+    mb_printf("load song worked!")
+    /*
+    //count the number of regions and put it in num_regions
+    for(int i = 0; i < sizeof(meta.region_ids)/sizeof(meta.region_ids[0]); i++) {
+        if(s.song_md.region_ids[i] != NULL) {
+
+        }
+    }
+    //count the number of users and put it in num_users
+    for(int i = 0; i < (sizeof(s.song_md.sharedInfo)/sizeof(s.song_md.sharedInfo[0])); i++) {
+        if(s.song_md.sharedInfo[i] != NULL) {
+            num++;
+        }
+    }
+    c->query.num_users = num;
+    //owner
+
+    //regions
+    char * rnames[];
+    //users
+    char * unames[]; 
+    */
+}
+
+
+
 // add a user to the song's list of users
 void share_song() {
     int new_md_len, shift;
     char new_md[256], uid;
 
     // reject non-owner attempts to share
-    load_song_md();
-    if (!s.logged_in) {
+    if(load_song_md()) {
+        mb_printf("Error reading metadata!\n");
+        return;
+    } else if (!s.logged_in) {
         mb_printf("No user is logged in. Cannot share song\r\n");
         c->song.wav_size = 0;
         return;
@@ -446,7 +484,10 @@ void play_song() {
 
 
     mb_printf("Reading Audio File...");
-    load_song_md();
+    if(load_song_md()) {
+        mb_printf("Error reading metadata!\n");
+        return;
+    }
 
     // get WAV length
     length = c->song.wav_size;
