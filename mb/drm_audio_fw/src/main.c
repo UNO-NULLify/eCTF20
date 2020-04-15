@@ -185,7 +185,12 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
 
 
 void load_song_md() {
-    memcpy(&s.song_md, &c->song.md, sizeof(s.song_md));
+    memcpy(s.song_md.sharedInfo, c->song.md.sharedInfo, (sizeof(uint8_t) * MAX_USERS * 48));
+    s.song_md.owner_id = c->song.md.owner_id;
+    memcpy(s.song_md.region_ids, c->song.md.region_ids, (sizeof(uint8_t) * MAX_REGIONS));
+    memcpy(s.song_md.song_name, c->song.md.song_name, (sizeof(char)*MAX_SONG_NAME));
+    s.song_md.endFullSong = c->song.md.endFullSong;
+    s.song_md.songSize = c->song.md.songSize;
 }
 
 
@@ -254,6 +259,7 @@ int gen_song_md(char *buf) {
 
 // attempt to log in to the credentials in the shared buffer
 void login() {
+    mb_printf("uname: %s\nPIN: %s\n\r\n", c->username, c->pin);
     if (s.logged_in) {
         mb_printf("Already logged in. Please log out first.\r\n");
         memcpy((void*)c->username, s.username, USERNAME_SZ);
@@ -275,7 +281,7 @@ void login() {
             	memset(work_area, 0, sizeof(work_area));
             	if (work_area == NULL)
             	{
-            		mb_printf("\nFailed to allocate the work area. Aborting.\n");
+            		mb_printf("\nFailed to allocate the work area. Aborting.\r\n");
             		memset((void*)c->username, 0, USERNAME_SZ);
             		memset((void*)c->pin, 0, MAX_PIN_SZ);
             		return;
@@ -283,7 +289,7 @@ void login() {
             	//salt bytes
             	uint8_t salt_bytes[ARGON_SALT_SZ] = {0};
             	byte_me(salt_bytes, user_data[i].salt, strlen(user_data[i].salt));
-            	crypto_argon2i(cmp_hash,
+                crypto_argon2i(cmp_hash,
             				   ARGON_HASH_SZ,
 							   work_area,
 							   ARGON_BLOCKS,
@@ -292,7 +298,6 @@ void login() {
 							   strlen((void*)c->pin),
 							   salt_bytes,
 							   ARGON_SALT_SZ);
-
                 if (!crypto_verify32(cmp_hash, usr_pin_bytes)) {
                     //update states
                     s.logged_in = 1;
@@ -309,6 +314,7 @@ void login() {
                     memset((void*)c->username, 0, USERNAME_SZ);
                     memset((void*)c->pin, 0, MAX_PIN_SZ);
                     free(work_area);
+                    mb_printf("returning");
                     return;
                 }
             }
@@ -391,7 +397,7 @@ void query_song() {
 
 //NEW VERSION
 void query_song() {
-    char *name;
+    uint8_t *name;
     int num = 0;
 
     //load song
@@ -400,13 +406,14 @@ void query_song() {
     memset((void *)&c->query, 0, sizeof(query));
 
     //copy owner to query struct
-    uid_to_username(s.song_md.owner_id, &name, FALSE);
+    uid_to_username(s.song_md.owner_id+1, &name, FALSE);
+    mb_printf("owner: %s\r\n", name);
     strncpy((char *)c->query.owner, name, strlen(name));
 
     //count the number of users and put and copy the users
     for(int i = 0; i < MAX_USERS; i++) {
         if(s.song_md.sharedInfo[i] != NULL) {
-            uid_to_username(s.song_md.sharedInfo[i], &name, FALSE);
+            uid_to_username(i+1, &name, FALSE);
             strncpy((char *)q_user_lookup(c->query, i), name, strlen(name));
             num++;
         }
@@ -416,7 +423,8 @@ void query_song() {
     
     //count the number of regions and copy the regions
     for(int i = 0; i < MAX_REGIONS && s.song_md.region_ids[i] != NULL; i++) {
-        rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
+        rid_to_region_name(s.song_md.region_ids[i]+1, &name, FALSE);
+        mb_printf("region: %s\r\n", name);
         strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
         num++;
     }
@@ -659,10 +667,10 @@ int main() {
 
             switch (cmd) {
             case LOGIN:
-                //login();
+                login();
                 break;
             case LOGOUT:
-                //logout();
+                logout();
                 break;
             case QUERY_PLAYER:
                 query_player();
