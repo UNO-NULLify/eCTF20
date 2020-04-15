@@ -395,11 +395,11 @@ void query_song() {
     char *name;
     int num = 0;
 
-    memset((void *)&c->query, 0, sizeof(query));
-    
     //load song
     load_song_md();
     mb_printf("load song worked!");
+    
+    memset((void *)&c->query, 0, sizeof(query));
 
     //copy owner to query struct
     uid_to_username(s.song_md.owner_id, &name, FALSE);
