@@ -93,7 +93,7 @@ u32 read_cr()
 
 }
 
-/*
+
 // returns whether an rid has been provisioned
 int is_provisioned_rid(char rid) {
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
@@ -102,8 +102,8 @@ int is_provisioned_rid(char rid) {
         }
     }
     return FALSE;
-} 
-*/
+}
+
 
 // looks up the region name corresponding to the rid
 int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
@@ -252,7 +252,6 @@ int gen_song_md(char *buf) {
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
 
-/*
 // attempt to log in to the credentials in the shared buffer
 void login() {
     if (s.logged_in) {
@@ -320,7 +319,7 @@ void login() {
         memset((void*)c->username, 0, USERNAME_SZ);
         memset((void*)c->pin, 0, MAX_PIN_SZ);
     }
-} */
+}
 
 
 // attempt to log out
@@ -398,7 +397,7 @@ void query_song() {
     //load song
     load_song_md();
     mb_printf("load song worked!");
-    
+
     memset((void *)&c->query, 0, sizeof(query));
 
     //copy owner to query struct
@@ -406,7 +405,7 @@ void query_song() {
     strncpy((char *)c->query.owner, name, strlen(name));
 
     //count the number of users and put and copy the users
-    for(int i = 0; i < (sizeof(s.song_md.sharedInfo)/sizeof(s.song_md.sharedInfo[0])); i++) {
+    for(int i = 0; i < PROVISIONED_USERS; i++) {
         if(s.song_md.sharedInfo[i] != NULL) {
             uid_to_username(s.song_md.uids[i], &name, FALSE);
             strncpy((char *)q_user_lookup(c->query, i), name, strlen(name));
@@ -417,7 +416,7 @@ void query_song() {
     num = 0;
     
     //count the number of regions and copy the regions
-    for(int i = 0; i < sizeof(s.song_md.regions_ids)/sizeof(s.song_md.regions_ids[0]) && s.song_md.regions_ids[i] != NULL; i++) {
+    for(int i = 0; i < PROVISIONED_REGIONS && s.song_md.regions_ids[i] != NULL; i++) {
         rid_to_region_name(s.song_md.regions_ids[i], &name, FALSE);
         strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
         num++;
