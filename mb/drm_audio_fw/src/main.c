@@ -407,7 +407,6 @@ void query_song() {
 
     //copy owner to query struct
     uid_to_username(s.song_md.owner_id+1, &name, FALSE);
-    mb_printf("owner: %s\r\n", name);
     strncpy((char *)c->query.owner, name, strlen(name));
 
     //count the number of users and put and copy the users
@@ -422,13 +421,17 @@ void query_song() {
     num = 0;
     
     //count the number of regions and copy the regions
-    for(int i = 0; i < MAX_REGIONS && s.song_md.region_ids[i] != NULL; i++) {
-        rid_to_region_name(s.song_md.region_ids[i]+1, &name, FALSE);
-        mb_printf("region: %s\r\n", name);
-        strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
-        num++;
+    for(int i = 0; i < MAX_REGIONS; i++) {
+        if(s.song_md.region_ids[i] == NULL) break;
+        else {
+            rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
+            strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
+            num++;
+        }
     }
     c->query.num_regions = num;
+
+    mb_printf("Queried song (%d regions, %d users)\r\n", c->query.num_regions, c->query.num_users);
 }
 
 
@@ -653,7 +656,7 @@ int main() {
     // clear command channel
     memset((void*)c, 0, sizeof(cmd_channel));
 
-    mb_printf("Audio DRM Module has Booted (Modified)\n\r");
+    mb_printf("Audio DRM Module has Booted (Modified)\r\n");
 
     // Handle commands forever
 
