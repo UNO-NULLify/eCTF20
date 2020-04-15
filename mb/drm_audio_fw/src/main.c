@@ -345,12 +345,12 @@ void query_player() {
 
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
 
-        strcpy((char *)q_region_lookup(c->query, i), region_data[i].name);
+        strncpy((char *)q_region_lookup(c->query, i), region_data[i].name, strlen(name));
 
     }
 
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-        strcpy((char *)q_user_lookup(c->query, i), user_data[i].name);
+        strncpy((char *)q_user_lookup(c->query, i), user_data[i].name, strlen(name));
     }
 
     mb_printf("Queried player (%d regions, %d users)\r\n", c->query.num_regions, c->query.num_users);
@@ -393,38 +393,36 @@ void query_song() {
 //NEW VERSION
 void query_song() {
     char *name;
-    int numU, numR = 0;
+    int num = 0;
+
+    memset((void *)&c->query, 0, sizeof(query));
+    
     //load song
     load_song_md();
     mb_printf("load song worked!");
-    
-    //count the number of regions and put it in num_regions
-    for(int i = 0; i < sizeof(s.song_md.regions_ids)/sizeof(s.song_md.regions_ids[0]) && s.song_md.regions_ids[i] != NULL; i++) {
-            numR++;
-    }
-    c->query.num_regions = numR;
 
-    //count the number of users and put it in num_users
+    //copy owner to query struct
+    uid_to_username(s.song_md.owner_id, &name, FALSE);
+    strncpy((char *)c->query.owner, name, strlen(name));
+
+    //count the number of users and put and copy the users
     for(int i = 0; i < (sizeof(s.song_md.sharedInfo)/sizeof(s.song_md.sharedInfo[0])); i++) {
         if(s.song_md.sharedInfo[i] != NULL) {
-            numU++;
+            uid_to_username(s.song_md.uids[i], &name, FALSE);
+            strncpy((char *)q_user_lookup(c->query, i), name, strlen(name));
+            num++;
         }
     }
-    c->query.num_users = numU;
+    c->query.num_users = num;
+    num = 0;
     
-    //owner
-    c->query.owner = uid_to_username(s.song_md.owner_id);
-    
-    //regions
-    char * rnames[numR];
-    for(int i = 0; i < numR; i++) {
-        rnames[i] = rid_to_region_name(s.song_md.region_ids[i]);
+    //count the number of regions and copy the regions
+    for(int i = 0; i < sizeof(s.song_md.regions_ids)/sizeof(s.song_md.regions_ids[0]) && s.song_md.regions_ids[i] != NULL; i++) {
+        rid_to_region_name(s.song_md.regions_ids[i], &name, FALSE);
+        strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
+        num++;
     }
-
-    //users
-    char * unames[numU];
-    
-
+    c->query.num_regions = num;
 }
 
 
