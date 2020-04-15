@@ -396,7 +396,6 @@ void query_song() {
 
     //load song
     load_song_md();
-    mb_printf("load song worked!");
 
     memset((void *)&c->query, 0, sizeof(query));
 
@@ -655,7 +654,6 @@ int main() {
         if (InterruptProcessed) {
         	uint32_t cmd = read_cr();
             InterruptProcessed = FALSE;
-            mb_printf("Command: %08X\r\n", cmd);
 
             set_working();
 
