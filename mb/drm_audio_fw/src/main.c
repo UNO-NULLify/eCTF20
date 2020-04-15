@@ -185,7 +185,7 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
 
 
 void load_song_md() {
-    memcpy(&s.song_md, &c->song.md, sizeof((void *) s.song_md));
+    memcpy(&s.song_md, &c->song.md, sizeof(s.song_md));
 }
 
 /*
