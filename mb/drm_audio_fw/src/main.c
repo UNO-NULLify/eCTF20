@@ -21,8 +21,6 @@
 
 
 //////////////////////// GLOBALS ////////////////////////
-
-
 // audio DMA access
 static XAxiDma sAxiDma;
 
@@ -49,6 +47,9 @@ volatile u32* cmdreg = 0x80000000;		//todo use XPAR definition
 // internal state store
 internal_state s;
 
+// new metadata
+new_song_md meta;
+
 //////////////////////// INTERRUPT HANDLING ////////////////////////
 // shared variable between main thread and interrupt processing thread
 volatile static int InterruptProcessed = FALSE;
@@ -59,38 +60,157 @@ void myISR(void) {
 }
 //////////////////////// UTILITY FUNCTIONS ////////////////////////
 
-void byte_me(uint8_t *dest, char *src, size_t src_len)
-{
-  for(int i = 0; i < src_len; i +=2)
-  {
-    if(src[i] >= '0' && src[i] <= '9')
-     {
+void byte_me(uint8_t *dest, char *src, size_t src_len) {
+  for(int i = 0; i < src_len; i +=2) {
+    if(src[i] >= '0' && src[i] <= '9') {
        dest[i/2] = src[i] - '0';
-     }
-     else
-     {
+     } else {
        dest[i/2] = src[i] - 'a' + 10;
      }
 
     dest[i/2] = dest[i/2] << 4;
 
-    if(src[i+1] >= '0' && src[i+1] <= '9')
-    {
+    if(src[i+1] >= '0' && src[i+1] <= '9') {
       dest[i/2] += src[i+1] - '0';
-    }
-    else{
+    } else {
       dest[i/2] += src[i+1] - 'a' + 10;
     }
   }
 }
 
-u32 read_cr()
-{
+void hex_me(char *dest, char *src, size_t src_len) {
+    for(int i=0; i<src_len; i++) {
+        uint8_t *buff[3] = {0};
+        snprintf(buff, sizeof(buff), "%x", src[i]);
+        strncat(dest, buff, sizeof(buff));
+        crypto_wipe(buff, sizeof(buff));
+    }
+}
+
+void hex2bytes(uint8_t *hex, uint8_t *bytes) {
+    for (int i = 0; i < strlen(hex); i = i + 2) {
+        if (hex[i] >= '0' && hex[i] <= '9') {
+            bytes[i / 2] = hex[i] - '0';
+        } else {
+            bytes[i / 2] = hex[i] - 'a' + 10;
+        }
+
+        bytes[i / 2] = bytes[i / 2] << 4;
+
+        if (hex[i + 1] >= '0' && hex[i + 1] <= '9') {
+            bytes[i / 2] += hex[i + 1] - '0';
+        } else {
+            bytes[i / 2] += hex[i + 1] - 'a' + 10;
+        }
+    }
+}
+
+uint8_t * generateSecret(char *pin) {
+    // ------------ Generate regionKey ------------
+    uint8_t mac[32 + 1] = {0};
+    uint8_t msg[64 + 1] = {0};
+    // First 64 of region_secret is the encrypted msg. Second 32 is the mac.
+    for (int i = 0; i < 96; i++) {
+        if (i < 64) {
+            msg[i] = meta.region_secrets[0][i];
+        } else {
+            mac[(i - 64)] = meta.region_secrets[0][i];
+        }
+    }
+
+    // Convert mac from hex string to uint8_t
+    uint8_t bytesMac[16] = {0};
+    hex2bytes(mac, bytesMac);
+
+    // Convert msg from hex string to uint8_t
+    uint8_t bytesMsg[32] = {0};
+    hex2bytes(msg, bytesMsg);
+
+    // Determine which region_data by region_id
+    int region_index = 0;
+    for (int i = 0; i < (sizeof(region_data) / sizeof(region_data[0])); i++) {
+        if (region_data[i].id == meta.region_ids[0]) {
+            region_index = i;
+            break;
+        }
+    }
+
+    // Convert rand_pass from hex string to uint8_t
+    uint8_t bytesPass[32] = {0};
+    hex2bytes(region_data[region_index].rand_pass, bytesPass);
+
+    // Instantiate output and nonce
+    uint8_t regionKey[32] = {0};
+    const uint8_t nonce[24] = {0};
+
+    // Decrypt
+    if(crypto_unlock(regionKey, bytesPass, nonce, bytesMac, bytesMsg,
+                     sizeof(bytesMsg)))
+    {
+
+        printf("Unlock Failed\n");
+        return 1;
+    }
+    // Check if decryption failed
+    if (regionKey[0] == NULL) {
+        printf("\033[0;31m");
+        printf("\n\nCrypto Unlock Failed!\n\n");
+        printf("\033[0m");
+        return 1;
+    }
+
+    for (int i = 0; i < (sizeof(user_data) / sizeof(user_data[1])); i++) {
+        if (user_data[i].id == meta.owner_id) {
+
+            // ------------ Generate hardwareSecretHash ------------
+            uint8_t *hshu =
+                    malloc(strlen(user_data[i].hw_secret) + strlen(meta.song_name));
+            memcpy(hshu, user_data[i].hw_secret, strlen(user_data[i].hw_secret));
+            memcpy(hshu + strlen(user_data[i].hw_secret), meta.song_name,
+                   strlen(meta.song_name));
+
+            uint8_t hardwareSecretHash[64] = {0};
+            crypto_blake2b(hardwareSecretHash, hshu, strlen((char *)hshu));
+
+            // ------------ Generate songKey ------------
+            uint8_t *song_str = malloc(strlen(user_data[i].pin_hash) + strlen(pin) +
+                                       strlen(meta.song_name));
+            memcpy(song_str, user_data[i].pin_hash, strlen(user_data[i].pin_hash));
+            memcpy(song_str + strlen(user_data[i].pin_hash), pin, strlen(pin));
+            memcpy(song_str + strlen(user_data[i].pin_hash) + strlen(pin),
+                   meta.song_name, strlen(meta.song_name));
+
+            uint8_t songKey[64] = {0};
+            crypto_blake2b(songKey, song_str, strlen((char *)song_str));
+
+            // ------------ Generate Secret ------------
+            static uint8_t secret[sizeof(songKey) + sizeof(regionKey) +
+                                  sizeof(hardwareSecretHash)] = {0};
+
+            memcpy(secret, songKey, sizeof(songKey));
+            memcpy(secret + sizeof(songKey), regionKey, sizeof(regionKey));
+            memcpy(secret + sizeof(songKey) + sizeof(regionKey), hardwareSecretHash,
+                   sizeof(hardwareSecretHash));
+
+            // Print secret
+            printf("Secret: ");
+            for (int i = 0; i < (sizeof(secret) / sizeof(secret[0])); i++) {
+                printf("%x", secret[i]);
+            }
+            printf("\n\n");
+
+            // TODO: Make this actually return something.
+            // I can't get it to work because c is dumb
+            return secret;
+        }
+    }
+}
+
+u32 read_cr() {
 	//read cr bits and adjust to match command enum format
 	u32 cmd = *cmdreg;
 	return (cmd & 0x00FF0000) >> 16;
 	*cmdreg |= 0xFFFFFFFF;		//???
-
 }
 
 // returns whether an rid has been provisioned
@@ -181,6 +301,19 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
     return FALSE;
 }
 
+//Write file metadata
+//Target file is the file to write to
+// metaIn is the metadata struct in to write to the file
+int writeMetadata() {
+    int yay = memcpy((void *)&c->song.md, &meta, sizeof(new_song_md));
+    if(yay != 0) {
+        mb_printf("Metadata written successfully!\n");
+    } else {
+        mb_printf("Error writing file!\n");
+        return 1;
+    }
+    return 0;
+}
 
 // loads the song metadata in the shared buffer into the local struct
 void load_song_md() {
@@ -250,7 +383,6 @@ int gen_song_md(char *buf) {
     buf[3] = s.song_md.num_users;
     memcpy(buf + 4, s.song_md.rids, s.song_md.num_regions);
     memcpy(buf + 4 + s.song_md.num_regions, s.song_md.uids, s.song_md.num_users);
-
     return buf[0];
 }
 
@@ -395,44 +527,110 @@ void query_song() {
 
 
 // add a user to the song's list of users
-void share_song() {
-    int new_md_len, shift;
-    char new_md[256], uid;
+int share_song()
+{
+    //share_song(uint8_t uid, uint8_t sid, char * pin, new_song_md * meta)
+    uint8_t uid = s.uid;
+    uint8_t sid = 0; //TODO: what is the sid?!
+    char* pin = s.pin;
+    printf("The uid is %u\n", uid);
+    printf("The sid is %u\n", sid);
+    printf("The name for the sharie is %s\n", user_data[sid-1].name);
+    uint8_t hashed[64] = {0};
+    uint8_t mac[16] = {0};
+    uint8_t enc_pvt_key[32] = {0};
+    int hash_str_size = sizeof(uint8_t) * (64 + strlen(pin));
+    uint8_t *hash_str;
+    hash_str = calloc(hash_str_size, sizeof(uint8_t));
 
-    // reject non-owner attempts to share
-    load_song_md();
-    if (!s.logged_in) {
-        mb_printf("No user is logged in. Cannot share song\r\n");
-        c->song.wav_size = 0;
-        return;
-    } else if (s.uid != s.song_md.owner_id) {
-        mb_printf("User '%s' is not song's owner. Cannot share song\r\n", s.username);
-        c->song.wav_size = 0;
-        return;
-    } else if (!username_to_uid((char *)c->username, &uid, TRUE)) {
-        mb_printf("Username not found\r\n");
-        c->song.wav_size = 0;
-        return;
+    memcpy(hash_str, user_data[uid-1].pin_hash, 64);
+    // byte_me(hash_str, user_data[uid-1].pin_hash, strlen(user_data[uid - 1].pin_hash));
+    memcpy((hash_str + 64), pin, strlen(pin));
+    crypto_blake2b(hashed, hash_str, hash_str_size);  // session key
+
+    // generate nonce
+    uint8_t nonce [24] = {0};
+    //generate mac
+    byte_me(mac, user_data[uid - 1].pvt_key + 64, 32);
+    // printf("\nMac hex: %x\n", mac);
+    //generate enc_pvt_key
+    byte_me(enc_pvt_key, user_data[uid -1].pvt_key, 64);
+
+    uint8_t pvt_key[32] = {0};
+
+    if(crypto_unlock(pvt_key, hashed, nonce, mac, enc_pvt_key, 32)){
+        printf("Unlock Failed\n");
+        return 1;
     }
 
-    // generate new song metadata
-    s.song_md.uids[s.song_md.num_users++] = uid;
-    new_md_len = gen_song_md(new_md);
-    shift = new_md_len - s.song_md.md_size;
-
-    // shift over song and add new metadata
-    if (shift) {
-        memmove((void *)get_drm_song(c->song) + shift, (void *)get_drm_song(c->song), c->song.wav_size);
+    puts("decrypting private key");
+    for(int i=0; i<32; i++)
+    {
+        printf("%x", pvt_key[i]);
     }
-    memcpy((void *)&c->song.md, new_md, new_md_len);
+    puts("\n");
+    uint8_t shared_key[32] = {0};
 
-    // update file size
-    c->song.file_size += shift;
-    c->song.wav_size  += shift;
 
-    mb_printf("Shared song with '%s'\r\n", c->username);
+    uint8_t pub_key[32] = {0};
+    byte_me(pub_key, user_data[sid -1].pub_key, 64);
+
+
+    crypto_key_exchange(shared_key, pvt_key, pub_key);  //using public key of users position 1.
+
+    printf("\nsharedkey ");
+    for (int i = 0; i < (32); i++) {
+        printf("%x", *(shared_key + (i * sizeof(uint8_t))));
+    }
+    printf("\n\n");
+    uint8_t * secretFull;
+    //secretFull = calloc(160, sizeof(uint8_t));
+
+    secretFull  = generateSecret(pin);
+    uint8_t temphash[64] = {0};
+
+
+    // hex_me(testArray, secretFull, (160 * sizeof(uint8_t)));
+    //160 is length of secret
+    crypto_blake2b(temphash, secretFull, 160); //turn long password into useable hash
+
+
+    printf("temphash ");
+    for (int i = 0; i < (64); i++) {
+        printf("%x", *(temphash + (i * sizeof(uint8_t))));
+    }
+    printf("\n\n");
+
+    uint8_t hash[ARGON_HASH_SZ] = {0};
+    memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
+
+    printf("hash ");
+    for (int i = 0; i < (32); i++) {
+        printf("%x", *(temphash + (i * sizeof(uint8_t))));
+    }
+    printf("\n\n");
+    //size of mac returned + 32 bytes of key
+    uint8_t encrypted[48] = {0};
+    uint8_t nonceEnc[24] = {0};
+    uint8_t macEnc[16]= {0};
+
+    crypto_lock(meta.sharedInfo[sid-1] + 32, meta.sharedInfo[sid-1] , shared_key, nonceEnc, hash ,32 );
+    printf("encrypteddd\n ");
+    for (int i = 0; i < (48); i++) {
+        printf("%x", *(meta.sharedInfo[sid-1]  + (i * sizeof(uint8_t))));
+    }
+    printf("\n\n");
+    uint8_t decrypted[32]= {0};
+    uint8_t nonceDec[24] = {0};
+    crypto_unlock(decrypted, shared_key, nonceDec, meta.sharedInfo[sid-1] + 32, meta.sharedInfo[sid-1], 32);
+    printf("decryptedd\n ");
+    for (int i = 0; i < (32); i++) {
+        printf("%x", *(decrypted + (i * sizeof(uint8_t))));
+    }
+
+    writeMetadata();
+    return 0;
 }
-
 
 // plays a song and looks for play-time commands
 void play_song() {

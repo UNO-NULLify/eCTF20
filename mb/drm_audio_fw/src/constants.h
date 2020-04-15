@@ -60,6 +60,16 @@ typedef struct {
 #define q_user_lookup(q, i) (q.users + (i * USERNAME_SZ))
 
 
+typedef struct {
+    uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
+    uint8_t owner_id;                     // 1-Byte
+    uint8_t region_ids[MAX_REGIONS];      // 64-Bytes
+    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
+    char song_name[MAX_SONG_NAME];                             // 64-Bytes
+    long int endFullSong;
+    long int songSize;
+} new_song_md;
+
 // struct to interpret drm metadata
 typedef struct __attribute__((__packed__)) {
     char md_size;
