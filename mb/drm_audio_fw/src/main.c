@@ -217,7 +217,7 @@ int is_locked() {
         locked = TRUE; // reset lock for region check
 
         // search for region match
-        for (int i = 0; i < (sizeof(s.song_md.region_ids)/sizeof(s.song_md.region_ids[0])) && s.song_md.region_ids[i] != NULL; i++) {
+        for (int i = 0; i < MAX_REGIONS && s.song_md.region_ids[i] != NULL; i++) {
             for (int j = 0; j < (u8)PROVISIONED_REGIONS; j++) {
                 if (region_data[j].id == s.song_md.region_ids[i]) {
                     locked = FALSE;
@@ -405,7 +405,7 @@ void query_song() {
     strncpy((char *)c->query.owner, name, strlen(name));
 
     //count the number of users and put and copy the users
-    for(int i = 0; i < (sizeof(s.song_md.sharedInfo)/sizeof(s.song_md.sharedInfo[0])); i++) {
+    for(int i = 0; i < MAX_USERS; i++) {
         if(s.song_md.sharedInfo[i] != NULL) {
             uid_to_username(s.song_md.sharedInfo[i], &name, FALSE);
             strncpy((char *)q_user_lookup(c->query, i), name, strlen(name));
@@ -416,7 +416,7 @@ void query_song() {
     num = 0;
     
     //count the number of regions and copy the regions
-    for(int i = 0; i < (sizeof(s.song_md.region_ids)/sizeof(s.song_md.region_ids[0])) && s.song_md.region_ids[i] != NULL; i++) {
+    for(int i = 0; i < MAX_REGIONS && s.song_md.region_ids[i] != NULL; i++) {
         rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
         strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
         num++;
