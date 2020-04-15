@@ -188,7 +188,7 @@ void load_song_md() {
     memcpy(&s.song_md, &c->song.md, sizeof(s.song_md));
 }
 
-/*
+
 // checks if the song loaded into the shared buffer is locked for the current user
 int is_locked() {
     int locked = TRUE;
@@ -217,7 +217,7 @@ int is_locked() {
         locked = TRUE; // reset lock for region check
 
         // search for region match
-        for (int i = 0; i < s.song_md.num_regions; i++) {
+        for (int i = 0; i < (sizeof(s.song_md.region_ids)/sizeof(s.song_md.region_ids[0])) && s.song_md.region_ids[i] != NULL; i++) {
             for (int j = 0; j < (u8)PROVISIONED_REGIONS; j++) {
                 if (region_data[j].id == s.song_md.region_ids[i]) {
                     locked = FALSE;
@@ -234,7 +234,7 @@ int is_locked() {
     return locked;
 }
 
-
+/*
 // copy the local song metadata into buf in the correct format
 // returns the size of the metadata in buf (including the metadata size field)
 // song metadata should be loaded before call
@@ -405,7 +405,7 @@ void query_song() {
     strncpy((char *)c->query.owner, name, strlen(name));
 
     //count the number of users and put and copy the users
-    for(int i = 0; i < PROVISIONED_USERS; i++) {
+    for(int i = 0; i < (sizeof(s.song_md.sharedInfo)/sizeof(s.song_md.sharedInfo[0])); i++) {
         if(s.song_md.sharedInfo[i] != NULL) {
             uid_to_username(s.song_md.sharedInfo[i], &name, FALSE);
             strncpy((char *)q_user_lookup(c->query, i), name, strlen(name));
@@ -416,7 +416,7 @@ void query_song() {
     num = 0;
     
     //count the number of regions and copy the regions
-    for(int i = 0; i < PROVISIONED_REGIONS && s.song_md.region_ids[i] != NULL; i++) {
+    for(int i = 0; i < (sizeof(s.song_md.region_ids)/sizeof(s.song_md.region_ids[0])) && s.song_md.region_ids[i] != NULL; i++) {
         rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
         strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
         num++;
