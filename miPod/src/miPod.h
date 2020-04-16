@@ -41,7 +41,8 @@ typedef struct {
 #define q_user_lookup(q, i) (q.users + (i * USERNAME_SZ))
 
 // struct to interpret drm metadata
-typedef struct {
+typedef struct __attribute__((__packed__)) {
+//typedef struct {
     uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte
                                     // key + room for 16 byte MAC]
     uint8_t owner_id;                  // 1-Byte
@@ -55,11 +56,12 @@ typedef struct {
 // struct to interpret shared buffer as a drm song file
 // packing values skip over non-relevant WAV metadata
 typedef struct __attribute__((__packed__)) {
-  char packing1[4];
-  int file_size;
-  char packing2[32];
-  int wav_size;
-  drm_md md;
+//typedef struct {
+    char packing1[4];
+    u32 file_size;
+    char packing2[32];
+    u32 wav_size;
+    drm_md md;
 } song;
 
 // accessors for variable-length metadata fields
@@ -73,19 +75,19 @@ enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 // struct to interpret shared command channel
 typedef volatile struct __attribute__((__packed__)) {
-  char cmd;                   // from commands enum
-  char drm_state;             // from states enum
-  char login_status;          // 0 = logged off, 1 = logged on
-  char padding;               // not used
-  char username[USERNAME_SZ]; // stores logged in or attempted username
-  char pin[MAX_PIN_SZ];       // stores logged in or attempted pin
+//typedef volatile struct {
+    char cmd;                   // from commands enum
+    char drm_state;             // from states enum
+    char login_status;          // 0 = logged off, 1 = logged on
+    char padding;               // not used
+    char username[USERNAME_SZ]; // stores logged in or attempted username
+    char pin[MAX_PIN_SZ];       // stores logged in or attempted pin
 
-  // shared buffer is either a drm song or a query
-  union {
-    song song;
-    query query;
-    char buf[MAX_SONG_SZ]; // sets correct size of cmd_channel for allocation
-  };
+    // shared buffer is either a drm song or a query
+    union {
+        song song;
+        query query;
+    };
 } cmd_channel;
 
 #endif /* SRC_MIPOD_H_ */

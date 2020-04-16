@@ -412,7 +412,7 @@ void query_song() {
 
     //count the number of users and put and copy the users
     for(int i = 0; i < MAX_USERS; i++) {
-        if(*s.song_md.sharedInfo[i] != NULL) {
+        if(s.song_md.sharedInfo[i][0] != NULL) {
             uid_to_username(i+1, &name, FALSE);
             strncpy((char *)q_user_lookup(c->query, i), name, strlen(name));
             mb_printf("user %d is authorized: %s", i+1, name);
@@ -432,6 +432,7 @@ void query_song() {
             rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
             strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
             num++;
+            mb_printf("%s is authorized", name);
         }
     }
     c->query.num_regions = num;

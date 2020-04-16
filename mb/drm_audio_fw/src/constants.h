@@ -69,8 +69,8 @@ typedef struct {
 
 
 // struct to interpret drm metadata
-//typedef struct __attribute__((__packed__)) {
-typedef struct {
+typedef struct __attribute__((__packed__)) {
+//typedef struct {
     uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte
                                     // key + room for 16 byte MAC]
     uint8_t owner_id;                  // 1-Byte
@@ -84,8 +84,8 @@ typedef struct {
 
 // struct to interpret shared buffer as a drm song file
 // packing values skip over non-relevant WAV metadata
-//typedef struct __attribute__((__packed__)) {
-typedef struct {
+typedef struct __attribute__((__packed__)) {
+//typedef struct {
     char packing1[4];
     u32 file_size;
     char packing2[32];
@@ -105,8 +105,8 @@ enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 
 // struct to interpret shared command channel
-//typedef volatile struct __attribute__((__packed__)) {
-typedef volatile struct {
+typedef volatile struct __attribute__((__packed__)) {
+//typedef volatile struct {
     char cmd;                   // from commands enum
     char drm_state;             // from states enum
     char login_status;          // 0 = logged off, 1 = logged on
