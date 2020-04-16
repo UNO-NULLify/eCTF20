@@ -18,6 +18,9 @@
 #define USERNAME_SZ 64
 #define MAX_PIN_SZ 64
 #define MAX_SONG_SZ (1 << 25)
+#define MAX_SONG_NAME 64
+#define MAX_REGION_SECRET 64
+#define MAC 32
 
 // printing utility
 #define MP_PROMPT "mP> "
@@ -41,12 +44,12 @@ typedef struct {
 #define q_user_lookup(q, i) (q.users + (i * USERNAME_SZ))
 
 // struct to interpret drm metadata
-typedef struct __attribute__((__packed__)) {
-//typedef struct {
-    uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte
+//typedef struct __attribute__((__packed__)) {
+typedef struct {
+    char sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte
                                     // key + room for 16 byte MAC]
-    uint8_t owner_id;                  // 1-Byte
-    uint8_t region_ids[MAX_REGIONS];   // 64-Bytes
+    char owner_id;                  // 1-Byte
+    char region_ids[MAX_REGIONS];   // 64-Bytes
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
     char song_name[MAX_SONG_NAME];                             // 64-Bytes
     long int endFullSong;
@@ -55,12 +58,12 @@ typedef struct __attribute__((__packed__)) {
 
 // struct to interpret shared buffer as a drm song file
 // packing values skip over non-relevant WAV metadata
-typedef struct __attribute__((__packed__)) {
-//typedef struct {
+//typedef struct __attribute__((__packed__)) {
+typedef struct {
     char packing1[4];
-    u32 file_size;
+    int file_size;
     char packing2[32];
-    u32 wav_size;
+    int wav_size;
     drm_md md;
 } song;
 
@@ -74,8 +77,8 @@ enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGI
 enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 // struct to interpret shared command channel
-typedef volatile struct __attribute__((__packed__)) {
-//typedef volatile struct {
+//typedef volatile struct __attribute__((__packed__)) {
+typedef volatile struct {
     char cmd;                   // from commands enum
     char drm_state;             // from states enum
     char login_status;          // 0 = logged off, 1 = logged on
