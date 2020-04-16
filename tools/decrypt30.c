@@ -8,7 +8,7 @@
 
 
 struct metadata {
-    char sharedInfo[MAX_USERS][64 + MAC]; // [64-Bytes of Users to share] [32 byte key (stored as hex) + room for MAC]
+    uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
     uint8_t owner_id; // 1-Byte
     uint8_t region_ids[MAX_REGIONS]; // 64-Bytes
     char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
@@ -17,6 +17,30 @@ struct metadata {
     long int songSize;
 };
 
+
+
+void byte_me(char *dest, char *src, size_t src_len)
+{
+  for(int i = 0; i < src_len; i +=2)
+  {
+    if(src[i] >= '0' && src[i] <= '9')
+    {
+      dest[i/2] = src[i] - '0';
+    }
+    else
+    {
+      dest[i/2] = src[i] - 'a' + 10;
+    }
+    dest[i/2] = dest[i/2] << 4;
+    if(src[i+1] >= '0' && src[i+1] <= '9')
+    {
+      dest[i/2] += src[i+1] - '0';
+    }
+    else{
+      dest[i/2] += src[i+1] - 'a' + 10;
+    }
+  }
+}
 
 
 //works with the full song
@@ -113,7 +137,11 @@ int main(int argc, char *argv[]){
   /////////DECRYPT 30 SECOND SONG/////////
 
   uint8_t temphash[64] = {0};
-  crypto_blake2b(temphash, (const uint8_t *)argv[2], strlen(argv[2])); //turn long password into useable hash
+
+  uint8_t secretString30[64] = {0};
+  byte_me(secretString30, (const uint8_t *)argv[2],strlen(argv[2]));
+
+  crypto_blake2b(temphash, secretString30, 64); //turn long password into useable hash
 
   uint8_t hash[32] = {0};
   memcpy (hash, temphash, sizeof(hash)); // need to reduce the size of the hash for use in encryption
