@@ -185,12 +185,7 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
 
 
 void load_song_md() {
-    memcpy(s.song_md.sharedInfo, c->song.md.sharedInfo, (sizeof(uint8_t) * MAX_USERS * 48));
-    s.song_md.owner_id = c->song.md.owner_id;
-    memcpy(s.song_md.region_ids, c->song.md.region_ids, (sizeof(uint8_t) * MAX_REGIONS));
-    memcpy(s.song_md.song_name, c->song.md.song_name, (sizeof(char)*MAX_SONG_NAME));
-    s.song_md.endFullSong = c->song.md.endFullSong;
-    s.song_md.songSize = c->song.md.songSize;
+   memcpy(&s.song_md, &c->song.md, sizeof(song_md));
 }
 
 
@@ -406,23 +401,28 @@ void query_song() {
     memset((void *)&c->query, 0, sizeof(query));
 
     //copy owner to query struct
-    uid_to_username(s.song_md.owner_id+1, &name, FALSE);
+    uid_to_username(s.song_md.owner_id, &name, FALSE);
     strncpy((char *)c->query.owner, name, strlen(name));
 
     //count the number of users and put and copy the users
     for(int i = 0; i < MAX_USERS; i++) {
-        if(s.song_md.sharedInfo[i] != NULL) {
+        if(*s.song_md.sharedInfo[i] != NULL) {
             uid_to_username(i+1, &name, FALSE);
             strncpy((char *)q_user_lookup(c->query, i), name, strlen(name));
+            mb_printf("index %d is 0x%02x", i, s.song_md.sharedInfo[i]);
             num++;
         }
     }
     c->query.num_users = num;
+    mb_printf("num users: %d", num);
     num = 0;
     
     //count the number of regions and copy the regions
     for(int i = 0; i < MAX_REGIONS; i++) {
-        if(s.song_md.region_ids[i] == NULL) break;
+        if(s.song_md.region_ids[i] == NULL) {
+            mb_printf("index %d is null, value is 0x%02x", i, s.song_md.region_ids[i]);
+            break;
+        }
         else {
             rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
             strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
