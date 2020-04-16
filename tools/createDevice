@@ -81,7 +81,7 @@ def main(region_names, user_names, user_secrets, region_secrets, device_dir):
 
 struct R_Data {{
     uint8_t id;
-    char *name;
+	char *name;
     char *rand_pass;
 }};
 
