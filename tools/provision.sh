@@ -168,7 +168,7 @@ fi
 
 #Package Device
 printf "\n\nRunning packageDevice...\n"
-(time ./packageDevice ../boot-image/template.bif device/miPod.bin ../mb/Cora-Z7-07S/download.bit)
+(time ./packageDevice ../boot-image/template.bif device/miPod.bin ./device/download.bit)
 
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "packageDevice Failed!"
@@ -177,12 +177,6 @@ fi
 
   printf "\nInsert SD Card. Pass-through to VM."
   printf "\nPress any key to continue...\n"
-  while [ true ] ; do
-    read -t 3 -n 1
-    if [ $? != 0 ] ; then
-      exit $?;
-    fi
-  done
 
   #Deploy Device
   printf "\n\nRunning deployDevice...\n"
@@ -197,9 +191,11 @@ fi
            ;;
   esac
 
-  read -p "What is the name of your ssd card (sdb)? " DEVICE
+  lsblk
 
-  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
+  read -p "What is the name of your sd card (sdb)? " DEVICE
+
+  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ./device/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
 
 #printf "\n\nRunning buildDevice...\n"
 #(./buildDevice -p /ectf/ -n test -bf all -secrets_dir ./device)
