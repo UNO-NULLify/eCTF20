@@ -398,7 +398,7 @@ void query_song() {
 
 //NEW VERSION
 void query_song() {
-    char *name;
+    uint8_t *name;
     int num = 0;
 
     //load song
