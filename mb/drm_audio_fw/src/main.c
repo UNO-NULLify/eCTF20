@@ -185,15 +185,13 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
 
 
 void load_song_md() {
-   memcpy(&s.song_md, &c->song.md, sizeof(song_md));
-    /*
+   //memcpy(&s.song_md, &c->song.md, sizeof(song_md));
     memcpy(s.song_md.sharedInfo, c->song.md.sharedInfo, (sizeof(uint8_t) * MAX_USERS * 48));
     s.song_md.owner_id = c->song.md.owner_id;
     memcpy(s.song_md.region_ids, c->song.md.region_ids, (sizeof(uint8_t) * MAX_REGIONS));
     memcpy(s.song_md.song_name, c->song.md.song_name, (sizeof(char)*MAX_SONG_NAME));
     s.song_md.endFullSong = c->song.md.endFullSong;
     s.song_md.songSize = c->song.md.songSize;
-    */
 }
 
 
@@ -400,7 +398,7 @@ void query_song() {
 
 //NEW VERSION
 void query_song() {
-    uint8_t *name;
+    char *name;
     int num = 0;
 
     //load song
@@ -416,13 +414,12 @@ void query_song() {
     for(int i = 0; i < MAX_USERS; i++) {
         if(*s.song_md.sharedInfo[i] != NULL) {
             uid_to_username(i+1, &name, FALSE);
-            strncpy((char *)q_user_lookup(c->query, i+1), name, strlen(name));
+            strncpy((char *)q_user_lookup(c->query, i), name, strlen(name));
             mb_printf("user %d is authorized: %s", i+1, name);
             num++;
         }
     }
     c->query.num_users = num;
-    mb_printf("num users: %d", num);
     num = 0;
     
     //count the number of regions and copy the regions
