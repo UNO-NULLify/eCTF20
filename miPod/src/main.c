@@ -26,8 +26,7 @@ void send_command(int cmd) {
     //trigger gpio interrupt by writing to command register
 	char devmemcmd[64];
 	sprintf(devmemcmd, "devmem 0x%08x 32 0x%08x",cmdreg, cmd << 16);
-	printf(devmemcmd);
-    system(devmemcmd);
+  system(devmemcmd);
 }
 
 // parses the input of a command with up to two arguments
