@@ -83,7 +83,7 @@ int querySong(char *songPath) {
 
 int main(int argc, char *argv[]) {
 
-	char *songPath = "provision_test/audio/test-protect-small-step.drm";
+	char *songPath = "provision_test/audio/test-protect.drm";
 	if (querySong(songPath)) {
 		printf("\033[0;31m");
 		printf("\nThe song \"%s\" was not found!\n", songPath);
