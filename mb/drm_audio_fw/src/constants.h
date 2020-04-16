@@ -63,9 +63,11 @@ typedef struct {
     char users[MAX_USERS * USERNAME_SZ];
 } query;
 
+
 // simulate array of 64B names without pointer indirection
 #define q_region_lookup(q, i) (q.regions + (i * REGION_NAME_SZ))
 #define q_user_lookup(q, i) (q.users + (i * USERNAME_SZ))
+
 
 // struct to interpret shared buffer as a drm song file
 // packing values skip over non-relevant WAV metadata
@@ -75,6 +77,7 @@ typedef struct __attribute__((__packed__)) {
     char packing2[32];
     u32 wav_size;
 } song;
+
 
 // struct to interpret drm metadata
 //typedef struct __attribute__((__packed__)) {
@@ -89,6 +92,7 @@ typedef struct {
     long int songSize;
     song s_md;
 } drm_md;
+
 
 // accessors for variable-length metadata fields
 #define get_drm_rids(d) (d.md.buf)

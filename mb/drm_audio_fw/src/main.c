@@ -393,7 +393,7 @@ void query_song() {
 //NEW VERSION
 void query_song() {
     uint8_t *name;
-    int num = 1;
+    int num = 0;
 
     //load song
     load_song_md();
@@ -406,10 +406,9 @@ void query_song() {
 
     //count the number of users and put and copy the users
     for(int i = 0; i < MAX_USERS; i++) {
-        if(s.song_md.sharedInfo[i][0] != NULL) {
+        if(*s.song_md.sharedInfo[i] != NULL) {
             uid_to_username(i+1, &name, FALSE);
-            mb_printf("user %d:%s", i, name);            
-            strncpy((char *) (c->query.users + (i * USERNAME_SZ)), name, strlen(name));
+            strncpy((char *)q_user_lookup(c->query, num), name, strlen(name));
             num++;
         }
     }
