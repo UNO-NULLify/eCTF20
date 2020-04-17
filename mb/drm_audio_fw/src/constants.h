@@ -80,7 +80,6 @@ typedef struct __attribute__((__packed__)) {
 
 
 // struct to interpret drm metadata
-//typedef struct __attribute__((__packed__)) {
 typedef struct {
     uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte
                                     // key + room for 16 byte MAC]
@@ -106,7 +105,6 @@ enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 
 // struct to interpret shared command channel
-//typedef volatile struct __attribute__((__packed__)) {
 typedef volatile struct {
     char cmd;                   // from commands enum
     char drm_state;             // from states enum
