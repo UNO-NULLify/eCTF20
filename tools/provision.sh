@@ -168,7 +168,7 @@ fi
 
 #Package Device
 printf "\n\nRunning packageDevice...\n"
-(time ./packageDevice ../boot-image/template.bif device/miPod.bin ../mb/Cora-Z7-07S/download.bit)
+(time ./packageDevice ../boot-image/template.bif device/miPod.bin ./device/download.bit)
 
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "packageDevice Failed!"
