@@ -168,7 +168,7 @@ fi
 
 #Package Device
 printf "\n\nRunning packageDevice...\n"
-(time ./packageDevice ../boot-image/template.bif device/miPod.bin ./device/download.bit)
+(time ./packageDevice ../boot-image/template.bif device/miPod.bin ../mb/Cora-Z7-07S/download.bit)
 
 if [ ! $? -eq 0 ]; then
   printf "\nERROR: %s\n" "packageDevice Failed!"
@@ -195,7 +195,7 @@ fi
 
   read -p "What is the name of your sd card (sdb)? " DEVICE
 
-  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ./device/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
+  ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
 
 #printf "\n\nRunning buildDevice...\n"
 #(./buildDevice -p /ectf/ -n test -bf all -secrets_dir ./device)
