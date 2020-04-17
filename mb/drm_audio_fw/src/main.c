@@ -254,7 +254,6 @@ int gen_song_md(char *buf) {
 
 // attempt to log in to the credentials in the shared buffer
 void login() {
-    mb_printf("uname: %s\nPIN: %s\n\r\n", c->username, c->pin);
     if (s.logged_in) {
         mb_printf("Already logged in. Please log out first.\r\n");
         memcpy((void*)c->username, s.username, USERNAME_SZ);
@@ -276,7 +275,7 @@ void login() {
             	memset(work_area, 0, sizeof(work_area));
             	if (work_area == NULL)
             	{
-            		mb_printf("\nFailed to allocate the work area. Aborting.\r\n");
+            		mb_printf("\r\nFailed to allocate the work area. Aborting.\r\n");
             		memset((void*)c->username, 0, USERNAME_SZ);
             		memset((void*)c->pin, 0, MAX_PIN_SZ);
             		return;
@@ -309,7 +308,6 @@ void login() {
                     memset((void*)c->username, 0, USERNAME_SZ);
                     memset((void*)c->pin, 0, MAX_PIN_SZ);
                     free(work_area);
-                    mb_printf("returning");
                     return;
                 }
             }
