@@ -177,12 +177,6 @@ fi
 
   printf "\nInsert SD Card. Pass-through to VM."
   printf "\nPress any key to continue...\n"
-  while [ true ] ; do
-    read -t 3 -n 1
-    if [ $? != 0 ] ; then
-      exit $?;
-    fi
-  done
 
   #Deploy Device
   printf "\n\nRunning deployDevice...\n"
@@ -197,7 +191,9 @@ fi
            ;;
   esac
 
-  read -p "What is the name of your ssd card (sdb)? " DEVICE
+  lsblk
+
+  read -p "What is the name of your sd card (sdb)? " DEVICE
 
   ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ../mb/miPod/Debug/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
 

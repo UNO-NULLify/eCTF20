@@ -18,6 +18,9 @@
 #define USERNAME_SZ 64
 #define MAX_PIN_SZ 64
 #define MAX_SONG_SZ (1 << 25)
+#define MAX_SONG_NAME 64
+#define MAX_REGION_SECRET 64
+#define MAC 32
 
 // printing utility
 #define MP_PROMPT "mP> "
@@ -40,24 +43,28 @@ typedef struct {
 #define q_region_lookup(q, i) (q.regions + (i * REGION_NAME_SZ))
 #define q_user_lookup(q, i) (q.users + (i * USERNAME_SZ))
 
-// struct to interpret drm metadata
-typedef struct __attribute__((__packed__)) {
-  char md_size;
-  char owner_id;
-  char num_regions;
-  char num_users;
-  char buf[];
-} drm_md;
-
 // struct to interpret shared buffer as a drm song file
 // packing values skip over non-relevant WAV metadata
 typedef struct __attribute__((__packed__)) {
-  char packing1[4];
-  int file_size;
-  char packing2[32];
-  int wav_size;
-  drm_md md;
+    char packing1[4];
+    int file_size;
+    char packing2[32];
+    int wav_size;
 } song;
+
+// struct to interpret drm metadata
+//typedef struct __attribute__((__packed__)) {
+typedef struct {
+    char sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte
+                                    // key + room for 16 byte MAC]
+    char owner_id;                  // 1-Byte
+    char region_ids[MAX_REGIONS];   // 64-Bytes
+    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
+    char song_name[MAX_SONG_NAME];                             // 64-Bytes
+    long int endFullSong;
+    long int songSize;
+    song s_md;
+} drm_md;
 
 // accessors for variable-length metadata fields
 #define get_drm_rids(d) (d.md.buf)
@@ -69,20 +76,20 @@ enum commands { QUERY_PLAYER, QUERY_SONG, LOGIN, LOGOUT, SHARE, PLAY, STOP, DIGI
 enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 // struct to interpret shared command channel
-typedef volatile struct __attribute__((__packed__)) {
-  char cmd;                   // from commands enum
-  char drm_state;             // from states enum
-  char login_status;          // 0 = logged off, 1 = logged on
-  char padding;               // not used
-  char username[USERNAME_SZ]; // stores logged in or attempted username
-  char pin[MAX_PIN_SZ];       // stores logged in or attempted pin
+//typedef volatile struct __attribute__((__packed__)) {
+typedef volatile struct {
+    char cmd;                   // from commands enum
+    char drm_state;             // from states enum
+    char login_status;          // 0 = logged off, 1 = logged on
+    char padding;               // not used
+    char username[USERNAME_SZ]; // stores logged in or attempted username
+    char pin[MAX_PIN_SZ];       // stores logged in or attempted pin
 
-  // shared buffer is either a drm song or a query
-  union {
-    song song;
-    query query;
-    char buf[MAX_SONG_SZ]; // sets correct size of cmd_channel for allocation
-  };
+    // shared buffer is either a drm song or a query
+    union {
+        drm_md drm;
+        query query;
+    };
 } cmd_channel;
 
 #endif /* SRC_MIPOD_H_ */
