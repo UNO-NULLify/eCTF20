@@ -345,50 +345,17 @@ void query_player() {
 
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
 
-        strncpy((char *)q_region_lookup(c->query, i), region_data[i].name, strlen(region_data[i].name));
+        strcpy((char *)q_region_lookup(c->query, i), region_data[i].name);
 
     }
 
     for (int i = 0; i < PROVISIONED_USERS; i++) {
-        strncpy((char *)q_user_lookup(c->query, i), user_data[i].name, strlen(user_data[i].name));
+        strcpy((char *)q_user_lookup(c->query, i), user_data[i].name);
     }
 
     mb_printf("Queried player (%d regions, %d users)\r\n", c->query.num_regions, c->query.num_users);
 }
 
-/*
-//REFERENCE VERSION
-// handles a request to query song metadata
-void query_song() {
-    char *name;
-
-    // load song
-    load_song_md();
-
-    memset((void *)&c->query, 0, sizeof(query));
-
-    c->query.num_regions = s.song_md.num_regions;
-    c->query.num_users = s.song_md.num_users;
-
-    // copy owner name
-    uid_to_username(s.song_md.owner_id, &name, FALSE);
-    strcpy((char *)c->query.owner, name);
-
-    // copy region names
-    for (int i = 0; i < s.song_md.num_regions; i++) {
-        rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
-        strcpy((char *)q_region_lookup(c->query, i), name);
-    }
-
-    // copy authorized uid names
-    for (int i = 0; i < s.song_md.num_users; i++) {
-        uid_to_username(s.song_md.uids[i], &name, FALSE);
-        strcpy((char *)q_user_lookup(c->query, i), name);
-    }
-
-    mb_printf("Queried song (%d regions, %d users)\r\n", c->query.num_regions, c->query.num_users);
-}
-*/
 
 //NEW VERSION
 void query_song() {
