@@ -395,7 +395,8 @@ int main(int argc, char **argv) {
   }
 
   // unmap the command channel
-  munmap((void *)c, sizeof(cmd_channel));
+  munmap((void *)c, sizeof(*c));
+  //TODO: Fix the segfault that occurs here at Exit!
 
   return 0;
 }
