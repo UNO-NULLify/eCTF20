@@ -213,6 +213,7 @@ u32 read_cr() {
 	*cmdreg |= 0xFFFFFFFF;		//???
 }
 
+
 // returns whether an rid has been provisioned
 int is_provisioned_rid(char rid) {
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
@@ -222,6 +223,7 @@ int is_provisioned_rid(char rid) {
     }
     return FALSE;
 }
+
 
 // looks up the region name corresponding to the rid
 int rid_to_region_name(char rid, char **region_name, int provisioned_only) {
@@ -315,14 +317,8 @@ int writeMetadata() {
     return 0;
 }
 
-// loads the song metadata in the shared buffer into the local struct
 void load_song_md() {
-    s.song_md.md_size = c->song.md.md_size;
-    s.song_md.owner_id = c->song.md.owner_id;
-    s.song_md.num_regions = c->song.md.num_regions;
-    s.song_md.num_users = c->song.md.num_users;
-    memcpy(s.song_md.rids, (void *)get_drm_rids(c->song), s.song_md.num_regions);
-    memcpy(s.song_md.uids, (void *)get_drm_uids(c->song), s.song_md.num_users);
+   memcpy(&s.song_md, &c->drm, sizeof(drm_md));
 }
 
 
@@ -335,13 +331,12 @@ int is_locked() {
         mb_printf("No user logged in");
     } else {
         load_song_md();
-
         // check if user is authorized to play song
         if (s.uid == s.song_md.owner_id) {
             locked = FALSE;
         } else {
             for (int i = 0; i < PROVISIONED_USERS && locked; i++) {
-                if (s.uid == s.song_md.uids[i]) {
+                if (s.uid == s.song_md.sharedInfo[i]) {
                     locked = FALSE;
                 }
             }
@@ -355,9 +350,9 @@ int is_locked() {
         locked = TRUE; // reset lock for region check
 
         // search for region match
-        for (int i = 0; i < s.song_md.num_regions; i++) {
+        for (int i = 0; i < MAX_REGIONS && s.song_md.region_ids[i] != NULL; i++) {
             for (int j = 0; j < (u8)PROVISIONED_REGIONS; j++) {
-                if (region_data[j].id == s.song_md.rids[i]) {
+                if (region_data[j].id == s.song_md.region_ids[i]) {
                     locked = FALSE;
                 }
             }
@@ -372,7 +367,7 @@ int is_locked() {
     return locked;
 }
 
-
+/*
 // copy the local song metadata into buf in the correct format
 // returns the size of the metadata in buf (including the metadata size field)
 // song metadata should be loaded before call
@@ -381,15 +376,14 @@ int gen_song_md(char *buf) {
     buf[1] = s.song_md.owner_id;
     buf[2] = s.song_md.num_regions;
     buf[3] = s.song_md.num_users;
-    memcpy(buf + 4, s.song_md.rids, s.song_md.num_regions);
+    memcpy(buf + 4, s.song_md.region_ids, s.song_md.num_regions);
     memcpy(buf + 4 + s.song_md.num_regions, s.song_md.uids, s.song_md.num_users);
     return buf[0];
 }
-
+*/
 
 
 //////////////////////// COMMAND FUNCTIONS ////////////////////////
-
 
 // attempt to log in to the credentials in the shared buffer
 void login() {
@@ -414,7 +408,7 @@ void login() {
             	memset(work_area, 0, sizeof(work_area));
             	if (work_area == NULL)
             	{
-            		mb_printf("\nFailed to allocate the work area. Aborting.\n");
+            		mb_printf("\r\nFailed to allocate the work area. Aborting.\r\n");
             		memset((void*)c->username, 0, USERNAME_SZ);
             		memset((void*)c->pin, 0, MAX_PIN_SZ);
             		return;
@@ -422,7 +416,7 @@ void login() {
             	//salt bytes
             	uint8_t salt_bytes[ARGON_SALT_SZ] = {0};
             	byte_me(salt_bytes, user_data[i].salt, strlen(user_data[i].salt));
-            	crypto_argon2i(cmp_hash,
+                crypto_argon2i(cmp_hash,
             				   ARGON_HASH_SZ,
 							   work_area,
 							   ARGON_BLOCKS,
@@ -431,7 +425,6 @@ void login() {
 							   strlen((void*)c->pin),
 							   salt_bytes,
 							   ARGON_SALT_SZ);
-
                 if (!crypto_verify32(cmp_hash, usr_pin_bytes)) {
                     //update states
                     s.logged_in = 1;
@@ -495,35 +488,47 @@ void query_player() {
 }
 
 
-// handles a request to query song metadata
+//NEW VERSION
 void query_song() {
-    char *name;
+    uint8_t *name;
+    int num = 0;
 
-    // load song
+    //load song
     load_song_md();
+
     memset((void *)&c->query, 0, sizeof(query));
 
-    c->query.num_regions = s.song_md.num_regions;
-    c->query.num_users = s.song_md.num_users;
-
-    // copy owner name
+    //copy owner to query struct
     uid_to_username(s.song_md.owner_id, &name, FALSE);
-    strcpy((char *)c->query.owner, name);
+    strncpy((char *)c->query.owner, name, strlen(name));
 
-    // copy region names
-    for (int i = 0; i < s.song_md.num_regions; i++) {
-        rid_to_region_name(s.song_md.rids[i], &name, FALSE);
-        strcpy((char *)q_region_lookup(c->query, i), name);
+    //count the number of users and put and copy the users
+    for(int i = 0; i < MAX_USERS; i++) {
+        if(*s.song_md.sharedInfo[i] != NULL) {
+            uid_to_username(i+1, &name, FALSE);
+            strncpy((char *)q_user_lookup(c->query, num), name, strlen(name));
+            num++;
+        }
     }
-
-    // copy authorized uid names
-    for (int i = 0; i < s.song_md.num_users; i++) {
-        uid_to_username(s.song_md.uids[i], &name, FALSE);
-        strcpy((char *)q_user_lookup(c->query, i), name);
+    c->query.num_users = num;
+    num = 0;
+    
+    //count the number of regions and copy the regions
+    for(int i = 0; i < MAX_REGIONS; i++) {
+        if(s.song_md.region_ids[i] == NULL) {
+            break;
+        }
+        else {
+            rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
+            strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
+            num++;
+        }
     }
+    c->query.num_regions = num;
 
     mb_printf("Queried song (%d regions, %d users)\r\n", c->query.num_regions, c->query.num_users);
 }
+
 
 
 // add a user to the song's list of users
@@ -571,6 +576,39 @@ int share_song()
     puts("\n");
     uint8_t shared_key[32] = {0};
 
+    load_song_md();
+    // reject non-owner attempts to share
+    if (!s.logged_in) {
+        mb_printf("No user is logged in. Cannot share song\r\n");
+        c->song.wav_size = 0;
+        return;
+    } else if (s.uid != s.song_md.owner_id) {
+        mb_printf("User '%s' is not song's owner. Cannot share song\r\n", s.username);
+        c->song.wav_size = 0;
+        return;
+    } else if (!username_to_uid((char *)c->username, &uid, TRUE)) {
+        mb_printf("Username not found\r\n");
+        c->song.wav_size = 0;
+        return;
+    }
+
+    // generate new song metadata
+    s.song_md.uids[s.song_md.num_users++] = uid;
+    new_md_len = gen_song_md(new_md);
+    shift = new_md_len - s.song_md.md_size;
+
+    // shift over song and add new metadata
+    if (shift) {
+        memmove((void *)get_drm_song(c->song) + shift, (void *)get_drm_song(c->song), c->song.wav_size);
+    }
+    memcpy((void *)&c->song.md, new_md, new_md_len);
+
+    // update file size
+    c->song.file_size += shift;
+    c->song.wav_size  += shift;
+
+    mb_printf("Shared song with '%s'\r\n", c->username);
+}
 
     uint8_t pub_key[32] = {0};
     byte_me(pub_key, user_data[sid -1].pub_key, 64);
@@ -641,7 +679,6 @@ void play_song() {
     //https://www.xilinx.com/support/documentation/ip_documentation/axi_gpio/v2_0/pg144-axi-gpio.pdf#page=10
     volatile u32* fifo_fill_in  = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR + 0x8);			//input fifo uses second gpio bank
     volatile u32* fifo_fill_out = (u32 *)(XPAR_FIFO_COUNT_AXI_GPIO_0_BASEADDR);
-
 
     mb_printf("Reading Audio File...");
     load_song_md();
@@ -813,7 +850,7 @@ int main() {
     // clear command channel
     memset((void*)c, 0, sizeof(cmd_channel));
 
-    mb_printf("Audio DRM Module has Booted (Modified)\n\r");
+    mb_printf("Audio DRM Module has Booted (Modified)\r\n");
 
     // Handle commands forever
 
@@ -822,7 +859,6 @@ int main() {
         if (InterruptProcessed) {
         	uint32_t cmd = read_cr();
             InterruptProcessed = FALSE;
-            mb_printf("Command: %08X\r\n", cmd);
 
             set_working();
 
@@ -840,14 +876,14 @@ int main() {
                 query_song();
                 break;
             case SHARE:
-                share_song();
+                //share_song();
                 break;
             case PLAY:
-                play_song();
+                //play_song();
                 mb_printf("Done Playing Song\r\n");
                 break;
             case DIGITAL_OUT:
-                digital_out();
+                //digital_out();
                 break;
             default:
                 break;

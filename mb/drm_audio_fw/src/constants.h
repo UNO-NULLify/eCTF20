@@ -37,6 +37,14 @@
 #define ARGON_ITTERS 3
 #define ARGON_HASH_SZ 32
 #define ARGON_SALT_SZ 16
+#define MAX_USERNAME_SZ 16
+#define MAX_HASH_SZ 32
+#define MAX_SONG_NAME 64
+#define MAX_REGION_SZ 64
+#define MAX_REGION_SECRET 64
+#define MAC 32
+#define MAX_SONG_SZ (1 << 25)
+#define KEY_SZ 32
 
 // LED colors and controller
 struct color {
@@ -55,29 +63,10 @@ typedef struct {
     char users[MAX_USERS * USERNAME_SZ];
 } query;
 
+
 // simulate array of 64B names without pointer indirection
 #define q_region_lookup(q, i) (q.regions + (i * REGION_NAME_SZ))
 #define q_user_lookup(q, i) (q.users + (i * USERNAME_SZ))
-
-
-typedef struct {
-    uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte key + room for 16 byte MAC]
-    uint8_t owner_id;                     // 1-Byte
-    uint8_t region_ids[MAX_REGIONS];      // 64-Bytes
-    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
-    char song_name[MAX_SONG_NAME];                             // 64-Bytes
-    long int endFullSong;
-    long int songSize;
-} new_song_md;
-
-// struct to interpret drm metadata
-typedef struct __attribute__((__packed__)) {
-    char md_size;
-    char owner_id;
-    char num_regions;
-    char num_users;
-    char buf[];
-} drm_md;
 
 
 // struct to interpret shared buffer as a drm song file
@@ -87,8 +76,22 @@ typedef struct __attribute__((__packed__)) {
     u32 file_size;
     char packing2[32];
     u32 wav_size;
-    drm_md md;
 } song;
+
+
+// struct to interpret drm metadata
+typedef struct {
+    uint8_t sharedInfo[MAX_USERS][48]; // [64-Bytes of Users to share] [32 byte
+                                    // key + room for 16 byte MAC]
+    uint8_t owner_id;                  // 1-Byte
+    uint8_t region_ids[MAX_REGIONS];   // 64-Bytes
+    char region_secrets[MAX_REGIONS][MAX_REGION_SECRET + MAC]; // 64*96-Bytes
+    char song_name[MAX_SONG_NAME];                             // 64-Bytes
+    long int endFullSong;
+    long int songSize;
+    song s_md;
+} drm_md;
+
 
 // accessors for variable-length metadata fields
 #define get_drm_rids(d) (d.md.buf)
@@ -102,7 +105,7 @@ enum states   { STOPPED, WORKING, PLAYING, PAUSED };
 
 
 // struct to interpret shared command channel
-typedef volatile struct __attribute__((__packed__)) {
+typedef volatile struct {
     char cmd;                   // from commands enum
     char drm_state;             // from states enum
     char login_status;          // 0 = logged off, 1 = logged on
@@ -112,21 +115,10 @@ typedef volatile struct __attribute__((__packed__)) {
 
     // shared buffer is either a drm song or a query
     union {
-        song song;
+        drm_md drm;
         query query;
     };
 } cmd_channel;
-
-
-// local store for drm metadata
-typedef struct {
-    u8 md_size;
-    u8 owner_id;
-    u8 num_regions;
-    u8 rids[MAX_REGIONS];
-    u8 num_users;
-    u8 uids[MAX_USERS];
-} song_md;
 
 
 // store of internal state
@@ -135,7 +127,7 @@ typedef struct {
     u8 uid;                     // logged on user id
     char username[USERNAME_SZ]; // logged on username
     char pin[MAX_PIN_SZ];       // logged on pin
-    song_md song_md;            // current song metadata
+    drm_md song_md;            // current song metadata
 } internal_state;
 
 

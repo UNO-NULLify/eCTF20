@@ -177,7 +177,6 @@ fi
 
   printf "\nInsert SD Card. Pass-through to VM."
   printf "\nPress any key to continue...\n"
-  
 
   #Deploy Device
   printf "\n\nRunning deployDevice...\n"
@@ -191,10 +190,10 @@ fi
            cp ../boot-image/purchased_boards_BOOT.BIN ../BOOT.BIN
            ;;
   esac
-  
+
   lsblk
 
-  read -p "What is the name of your ssd card (sdb)? " DEVICE
+  read -p "What is the name of your sd card (sdb)? " DEVICE
 
   ./deployDevice /dev/$DEVICE ../BOOT.BIN ./provision_test/audio ./device/miPod ../boot-image/image.ub --mipod-bin-path device/miPod.bin
 

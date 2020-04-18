@@ -26,8 +26,7 @@ void send_command(int cmd) {
     //trigger gpio interrupt by writing to command register
 	char devmemcmd[64];
 	sprintf(devmemcmd, "devmem 0x%08x 32 0x%08x",cmdreg, cmd << 16);
-	printf(devmemcmd);
-    system(devmemcmd);
+  system(devmemcmd);
 }
 
 // parses the input of a command with up to two arguments
@@ -141,7 +140,7 @@ void query_player() {
 // queries the DRM about a song
 void query_song(char *song_name) {
   // load the song into the shared buffer
-  if (!load_file(song_name, (void *)&c->song)) {
+  if (!load_file(song_name, (void *)&c->drm)) {
     mp_printf("Failed to load song!\r\n");
     return;
   }
@@ -186,7 +185,7 @@ void share_song(char *song_name, char *username) {
   }
 
   // load the song into the shared buffer
-  if (!load_file(song_name, (void *)&c->song)) {
+  if (!load_file(song_name, (void *)&c->drm)) {
     mp_printf("Failed to load song!\r\n");
     return;
   }
@@ -201,7 +200,7 @@ void share_song(char *song_name, char *username) {
     continue; // wait for DRM to share song
 
   // request was rejected if WAV length is 0
-  length = c->song.wav_size;
+  length = c->drm.s_md.wav_size;
   if (length == 0) {
     mp_printf("Share rejected\r\n");
     return;
@@ -217,7 +216,7 @@ void share_song(char *song_name, char *username) {
   // write song dump to file
   mp_printf("Writing song to file '%s' (%dB)\r\n", song_name, length);
   while (written < length) {
-    wrote = write(fd, (char *)&c->song + written, length - written);
+    wrote = write(fd, (char *)&c->drm.s_md + written, length - written);
     if (wrote == -1) {
       mp_printf("Error in writing file! Error = %d\r\n", errno);
       return;
@@ -233,7 +232,7 @@ int play_song(char *song_name) {
   char usr_cmd[USR_CMD_SZ + 1], *cmd = NULL, *arg1 = NULL, *arg2 = NULL;
 
   // load song into shared buffer
-  if (!load_file(song_name, (void *)&c->song)) {
+  if (!load_file(song_name, (void *)&c->drm.s_md)) {
     mp_printf("Failed to load song!\r\n");
     return 0;
   }
@@ -304,7 +303,7 @@ void digital_out(char *song_name) {
   char fname[64];
 
   // load file into shared buffer
-  if (!load_file(song_name, (void *)&c->song)) {
+  if (!load_file(song_name, (void *)&c->drm.s_md)) {
     mp_printf("Failed to load song!\r\n");
     return;
   }
@@ -317,7 +316,7 @@ void digital_out(char *song_name) {
     continue; // wait for DRM to dump file
 
   // open digital output file
-  int written = 0, wrote, length = c->song.file_size + 8;
+  int written = 0, wrote, length = c->drm.s_md.file_size + 8;
   sprintf(fname, "%s.dout", song_name);
   int fd = open(fname, O_WRONLY | O_CREAT | O_TRUNC);
   if (fd == -1) {
@@ -328,7 +327,7 @@ void digital_out(char *song_name) {
   // write song dump to file
   mp_printf("Writing song to file '%s' (%dB)\r\n", fname, length);
   while (written < length) {
-    wrote = write(fd, (char *)&c->song + written, length - written);
+    wrote = write(fd, (char *)&c->drm.s_md + written, length - written);
     if (wrote == -1) {
       mp_printf("Error in writing file! Error = %d \r\n", errno);
       return;
@@ -396,7 +395,8 @@ int main(int argc, char **argv) {
   }
 
   // unmap the command channel
-  munmap((void *)c, sizeof(cmd_channel));
+  munmap((void *)c, sizeof(*c));
+  //TODO: Fix the segfault that occurs here at Exit!
 
   return 0;
 }
