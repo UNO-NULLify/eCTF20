@@ -42,13 +42,10 @@ const struct color BLUE =   {0x0000, 0x0000, 0x01ff};
 
 // shared command channel -- read/write for both PS and PL
 volatile cmd_channel *c = (cmd_channel*)SHARED_DDR_BASE;
-volatile u32* cmdreg = 0x80000000;		//todo use XPAR definition
+volatile u32* cmdreg = 0x80000000;		//TODO use XPAR definition
 
 // internal state store
 internal_state s;
-
-// new metadata
-new_song_md meta;
 
 //////////////////////// INTERRUPT HANDLING ////////////////////////
 // shared variable between main thread and interrupt processing thread
@@ -112,9 +109,9 @@ uint8_t * generateSecret(char *pin) {
     // First 64 of region_secret is the encrypted msg. Second 32 is the mac.
     for (int i = 0; i < 96; i++) {
         if (i < 64) {
-            msg[i] = meta.region_secrets[0][i];
+            msg[i] = s.song.region_secrets[0][i];
         } else {
-            mac[(i - 64)] = meta.region_secrets[0][i];
+            mac[(i - 64)] = s.song.region_secrets[0][i];
         }
     }
 
@@ -129,7 +126,7 @@ uint8_t * generateSecret(char *pin) {
     // Determine which region_data by region_id
     int region_index = 0;
     for (int i = 0; i < (sizeof(region_data) / sizeof(region_data[0])); i++) {
-        if (region_data[i].id == meta.region_ids[0]) {
+        if (region_data[i].id == s.song.region_ids[0]) {
             region_index = i;
             break;
         }
@@ -152,7 +149,7 @@ uint8_t * generateSecret(char *pin) {
         return 1;
     }
     // Check if decryption failed
-    if (regionKey[0] == NULL) {
+    if (&regionKey[0] == NULL) {
         printf("\033[0;31m");
         printf("\n\nCrypto Unlock Failed!\n\n");
         printf("\033[0m");
@@ -160,25 +157,25 @@ uint8_t * generateSecret(char *pin) {
     }
 
     for (int i = 0; i < (sizeof(user_data) / sizeof(user_data[1])); i++) {
-        if (user_data[i].id == meta.owner_id) {
+        if (user_data[i].id == s.song.owner_id) {
 
             // ------------ Generate hardwareSecretHash ------------
             uint8_t *hshu =
-                    malloc(strlen(user_data[i].hw_secret) + strlen(meta.song_name));
+                    malloc(strlen(user_data[i].hw_secret) + strlen(s.song.song_name));
             memcpy(hshu, user_data[i].hw_secret, strlen(user_data[i].hw_secret));
-            memcpy(hshu + strlen(user_data[i].hw_secret), meta.song_name,
-                   strlen(meta.song_name));
+            memcpy(hshu + strlen(user_data[i].hw_secret), s.song.song_name,
+                   strlen(s.song.song_name));
 
             uint8_t hardwareSecretHash[64] = {0};
             crypto_blake2b(hardwareSecretHash, hshu, strlen((char *)hshu));
 
             // ------------ Generate songKey ------------
             uint8_t *song_str = malloc(strlen(user_data[i].pin_hash) + strlen(pin) +
-                                       strlen(meta.song_name));
+                                       strlen(s.song.song_name));
             memcpy(song_str, user_data[i].pin_hash, strlen(user_data[i].pin_hash));
             memcpy(song_str + strlen(user_data[i].pin_hash), pin, strlen(pin));
             memcpy(song_str + strlen(user_data[i].pin_hash) + strlen(pin),
-                   meta.song_name, strlen(meta.song_name));
+                   s.song.song_name, strlen(s.song.song_name));
 
             uint8_t songKey[64] = {0};
             crypto_blake2b(songKey, song_str, strlen((char *)song_str));
@@ -204,6 +201,7 @@ uint8_t * generateSecret(char *pin) {
             return secret;
         }
     }
+    return 0;
 }
 
 u32 read_cr() {
@@ -307,7 +305,7 @@ int username_to_uid(char *username, char *uid, int provisioned_only) {
 //Target file is the file to write to
 // metaIn is the metadata struct in to write to the file
 int writeMetadata() {
-    int yay = memcpy((void *)&c->song.md, &meta, sizeof(new_song_md));
+    int yay = memcpy((void *)&c->song, &s.song, sizeof(song));
     if(yay != 0) {
         mb_printf("Metadata written successfully!\n");
     } else {
@@ -318,7 +316,7 @@ int writeMetadata() {
 }
 
 void load_song_md() {
-   memcpy(&s.song_md, &c->drm, sizeof(drm_md));
+	   memcpy(&s.song, &c->song, sizeof(song));
 }
 
 
@@ -332,11 +330,11 @@ int is_locked() {
     } else {
         load_song_md();
         // check if user is authorized to play song
-        if (s.uid == s.song_md.owner_id) {
+        if (s.uid == s.song.owner_id) {
             locked = FALSE;
         } else {
             for (int i = 0; i < PROVISIONED_USERS && locked; i++) {
-                if (s.uid == s.song_md.sharedInfo[i]) {
+                if (s.uid == &s.song.sharedInfo[i]) {
                     locked = FALSE;
                 }
             }
@@ -350,9 +348,9 @@ int is_locked() {
         locked = TRUE; // reset lock for region check
 
         // search for region match
-        for (int i = 0; i < MAX_REGIONS && s.song_md.region_ids[i] != NULL; i++) {
+        for (int i = 0; i < MAX_REGIONS && &s.song.region_ids[i] != NULL; i++) {
             for (int j = 0; j < (u8)PROVISIONED_REGIONS; j++) {
-                if (region_data[j].id == s.song_md.region_ids[i]) {
+                if (region_data[j].id == s.song.region_ids[i]) {
                     locked = FALSE;
                 }
             }
@@ -371,13 +369,13 @@ int is_locked() {
 // copy the local song metadata into buf in the correct format
 // returns the size of the metadata in buf (including the metadata size field)
 // song metadata should be loaded before call
-int gen_song_md(char *buf) {
-    buf[0] = ((5 + s.song_md.num_regions + s.song_md.num_users) / 2) * 2; // account for parity
-    buf[1] = s.song_md.owner_id;
-    buf[2] = s.song_md.num_regions;
-    buf[3] = s.song_md.num_users;
-    memcpy(buf + 4, s.song_md.region_ids, s.song_md.num_regions);
-    memcpy(buf + 4 + s.song_md.num_regions, s.song_md.uids, s.song_md.num_users);
+int gen_song(char *buf) {
+    buf[0] = ((5 + s.song.num_regions + s.song.num_users) / 2) * 2; // account for parity
+    buf[1] = s.song.owner_id;
+    buf[2] = s.song.num_regions;
+    buf[3] = s.song.num_users;
+    memcpy(buf + 4, s.song.region_ids, s.song.num_regions);
+    memcpy(buf + 4 + s.song.num_regions, s.song.uids, s.song.num_users);
     return buf[0];
 }
 */
@@ -405,7 +403,7 @@ void login() {
             	//work area
             	uint8_t *work_area;
             	work_area = (uint8_t *) malloc(ARGON_BLOCKS*1024);
-            	memset(work_area, 0, sizeof(work_area));
+            	memset(work_area, 0, ARGON_BLOCKS*1024);
             	if (work_area == NULL)
             	{
             		mb_printf("\r\nFailed to allocate the work area. Aborting.\r\n");
@@ -499,12 +497,12 @@ void query_song() {
     memset((void *)&c->query, 0, sizeof(query));
 
     //copy owner to query struct
-    uid_to_username(s.song_md.owner_id, &name, FALSE);
+    uid_to_username(s.song.owner_id, &name, FALSE);
     strncpy((char *)c->query.owner, name, strlen(name));
 
     //count the number of users and put and copy the users
     for(int i = 0; i < MAX_USERS; i++) {
-        if(*s.song_md.sharedInfo[i] != NULL) {
+        if(&s.song.sharedInfo[i] != NULL) {
             uid_to_username(i+1, &name, FALSE);
             strncpy((char *)q_user_lookup(c->query, num), name, strlen(name));
             num++;
@@ -515,11 +513,11 @@ void query_song() {
     
     //count the number of regions and copy the regions
     for(int i = 0; i < MAX_REGIONS; i++) {
-        if(s.song_md.region_ids[i] == NULL) {
+        if(&s.song.region_ids[i] == NULL) {
             break;
         }
         else {
-            rid_to_region_name(s.song_md.region_ids[i], &name, FALSE);
+            rid_to_region_name(s.song.region_ids[i], &name, FALSE);
             strncpy((char *)q_region_lookup(c->query, i), name, strlen(name));
             num++;
         }
@@ -534,9 +532,10 @@ void query_song() {
 // add a user to the song's list of users
 int share_song()
 {
-    //share_song(uint8_t uid, uint8_t sid, char * pin, new_song_md * meta)
+	load_song_md();
+    //share_song(uint8_t uid, uint8_t sid, char * pin, new_song * meta)
     uint8_t uid = s.uid;
-    uint8_t sid = 0; //TODO: what is the sid?!
+    uint8_t sid = 1; //TODO: what is the sid?!
     char* pin = s.pin;
     printf("The uid is %u\n", uid);
     printf("The sid is %u\n", sid);
@@ -568,48 +567,13 @@ int share_song()
         return 1;
     }
 
-    puts("decrypting private key");
+    printf("decrypting private key");
     for(int i=0; i<32; i++)
     {
         printf("%x", pvt_key[i]);
     }
-    puts("\n");
+    printf("\n");
     uint8_t shared_key[32] = {0};
-
-    load_song_md();
-    // reject non-owner attempts to share
-    if (!s.logged_in) {
-        mb_printf("No user is logged in. Cannot share song\r\n");
-        c->song.wav_size = 0;
-        return;
-    } else if (s.uid != s.song_md.owner_id) {
-        mb_printf("User '%s' is not song's owner. Cannot share song\r\n", s.username);
-        c->song.wav_size = 0;
-        return;
-    } else if (!username_to_uid((char *)c->username, &uid, TRUE)) {
-        mb_printf("Username not found\r\n");
-        c->song.wav_size = 0;
-        return;
-    }
-
-    // generate new song metadata
-    s.song_md.uids[s.song_md.num_users++] = uid;
-    new_md_len = gen_song_md(new_md);
-    shift = new_md_len - s.song_md.md_size;
-
-    // shift over song and add new metadata
-    if (shift) {
-        memmove((void *)get_drm_song(c->song) + shift, (void *)get_drm_song(c->song), c->song.wav_size);
-    }
-    memcpy((void *)&c->song.md, new_md, new_md_len);
-
-    // update file size
-    c->song.file_size += shift;
-    c->song.wav_size  += shift;
-
-    mb_printf("Shared song with '%s'\r\n", c->username);
-}
-
     uint8_t pub_key[32] = {0};
     byte_me(pub_key, user_data[sid -1].pub_key, 64);
 
@@ -630,7 +594,7 @@ int share_song()
 
     // hex_me(testArray, secretFull, (160 * sizeof(uint8_t)));
     //160 is length of secret
-    crypto_blake2b(temphash, secretFull, 160); //turn long password into useable hash
+    crypto_blake2b(temphash, secretFull, 160); //turn long password into usable hash
 
 
     printf("temphash ");
@@ -652,16 +616,16 @@ int share_song()
     uint8_t nonceEnc[24] = {0};
     uint8_t macEnc[16]= {0};
 
-    crypto_lock(meta.sharedInfo[sid-1] + 32, meta.sharedInfo[sid-1] , shared_key, nonceEnc, hash ,32 );
-    printf("encrypteddd\n ");
+    crypto_lock(s.song.sharedInfo[sid-1] + 32, s.song.sharedInfo[sid-1] , shared_key, nonceEnc, hash ,32 );
+    printf("encrypted\n ");
     for (int i = 0; i < (48); i++) {
-        printf("%x", *(meta.sharedInfo[sid-1]  + (i * sizeof(uint8_t))));
+        printf("%x", *(s.song.sharedInfo[sid-1]  + (i * sizeof(uint8_t))));
     }
     printf("\n\n");
     uint8_t decrypted[32]= {0};
     uint8_t nonceDec[24] = {0};
-    crypto_unlock(decrypted, shared_key, nonceDec, meta.sharedInfo[sid-1] + 32, meta.sharedInfo[sid-1], 32);
-    printf("decryptedd\n ");
+    crypto_unlock(decrypted, shared_key, nonceDec, s.song.sharedInfo[sid-1] + 32, s.song.sharedInfo[sid-1], 32);
+    printf("decrypted\n ");
     for (int i = 0; i < (32); i++) {
         printf("%x", *(decrypted + (i * sizeof(uint8_t))));
     }
@@ -670,7 +634,7 @@ int share_song()
     return 0;
 }
 
-// plays a song and looks for play-time commands
+/*// plays a song and looks for play-time commands
 void play_song() {
     u32 rem = 0;
     u32 length = 0;
@@ -811,6 +775,7 @@ void digital_out() {
 
     mb_printf("Song dump finished\r\n");
 }
+*/
 
 
 //////////////////////// MAIN ////////////////////////
@@ -876,7 +841,7 @@ int main() {
                 query_song();
                 break;
             case SHARE:
-                //share_song();
+                share_song();
                 break;
             case PLAY:
                 //play_song();

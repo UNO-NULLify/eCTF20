@@ -76,7 +76,8 @@ typedef struct __attribute__((__packed__)) {
     u32 file_size;
     char packing2[32];
     u32 wav_size;
-} song;
+    char* buf;
+} riff;
 
 
 // struct to interpret drm metadata
@@ -89,8 +90,8 @@ typedef struct {
     char song_name[MAX_SONG_NAME];                             // 64-Bytes
     long int endFullSong;
     long int songSize;
-    song s_md;
-} drm_md;
+    riff wav_md;
+} song;
 
 
 // accessors for variable-length metadata fields
@@ -115,7 +116,7 @@ typedef volatile struct {
 
     // shared buffer is either a drm song or a query
     union {
-        drm_md drm;
+        song song;
         query query;
     };
 } cmd_channel;
@@ -127,7 +128,7 @@ typedef struct {
     u8 uid;                     // logged on user id
     char username[USERNAME_SZ]; // logged on username
     char pin[MAX_PIN_SZ];       // logged on pin
-    drm_md song_md;            // current song metadata
+    song song;            // current song metadata
 } internal_state;
 
 

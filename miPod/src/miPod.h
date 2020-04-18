@@ -50,7 +50,8 @@ typedef struct __attribute__((__packed__)) {
     int file_size;
     char packing2[32];
     int wav_size;
-} song;
+    char* buf;
+} riff;
 
 // struct to interpret drm metadata
 //typedef struct __attribute__((__packed__)) {
@@ -63,8 +64,8 @@ typedef struct {
     char song_name[MAX_SONG_NAME];                             // 64-Bytes
     long int endFullSong;
     long int songSize;
-    song s_md;
-} drm_md;
+    riff wav_md;
+} song;
 
 // accessors for variable-length metadata fields
 #define get_drm_rids(d) (d.md.buf)
@@ -87,7 +88,7 @@ typedef volatile struct {
 
     // shared buffer is either a drm song or a query
     union {
-        drm_md drm;
+    	song song;
         query query;
     };
 } cmd_channel;
