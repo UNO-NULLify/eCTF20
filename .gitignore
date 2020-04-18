@@ -1,8 +1,10 @@
 BOOT.bin
 *.elf
 *.o
-*.bif
+*.i
+*.s
 *.d
+*.bif
 *.size
 *.wav
 *.drm
