@@ -39,7 +39,7 @@ Uses strcopy -- does not perform bounds checking.
     fd = open(fname, O_RDONLY);
 </code>
 
-We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
+We may be able to manipulate the environment to change what is opened or use a race condition
 
 
 <code>
@@ -48,7 +48,7 @@ We will be able to manipulate the environment to change what is opened or use a 
     fd = open(song_name, O_WRONLY);
 </code>
 
-We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
+We may be able to manipulate the environment to change what is opened or use a race condition
 
 
 <code>
@@ -57,7 +57,7 @@ We will be able to manipulate the environment to change what is opened or use a 
     int fd = open(fname, O_WRONLY | O_CREAT | O_TRUNC);
 </code>
 
-We will be able to manipulate the environment to change what is opened or use a race condition to bypass authentication
+We may be able to manipulate the environment to change what is opened or use a race condition
 
 
 <code>
@@ -68,8 +68,7 @@ We will be able to manipulate the environment to change what is opened or use a 
     c = mmap(NULL, sizeof(cmd_channel), PROT_READ | PROT_WRITE, MAP_SHARED, mem, 0);
 </code>
 
-Not vulnerable to environment manipulation, but we can watch it.
-
+We can watch/modify the contents of this.
 
 <code>
 	(line 89)
@@ -108,7 +107,7 @@ uses depricated usleep instead of nanosleep() or setitimer().
     #define print_prompt_msg(...) printf(USER_PROMPT, __VA_ARGS__)
 </code>
 
-Format string attack is possible on uses of mp_printf(), print_prompt(), and print_prompt_msg() -- not format specified.
+Format string attack may be possible on uses of mp_printf(), print_prompt(), and print_prompt_msg() -- not format specified.
 
 ## Reference Back-end Code review notes
 
@@ -160,7 +159,7 @@ Why would they not just use the number? Also, according to Frank, this number is
     #define mb_printf(...) xil_printf(MB_PROMPT __VA_ARGS__)
 </code>
 
-All uses of mb_printf (which is used for the system prompt and all print statements) need a formatter in the string that is passed to it. Otherwise they will be vulnerable to a string format attack.
+All uses of mb_printf (which is used for the system prompt and all print statements) need a formatter in the string that is passed to it. Otherwise, they may be vulnerable to a string format attack.
 
 
 
@@ -344,7 +343,7 @@ This printf does not contain a format specifier and the stack may be able to be 
 
 
 
-IMPORTANT NOTE: There are MANY uses of strcmp in the reference code, we NEED to replace these with strncmp and specify an expected size.
+IMPORTANT NOTE: There are MANY uses of strcmp in the reference code, we should replace these with strncmp and specify an expected size.
 
 ### /mb/drm_audio_fw/src/secrets.h
 
@@ -401,7 +400,7 @@ Complete: I worked with Frank to resolve this issue, this code checked if a user
 
 When reviewing our design we were concerned about the trust in the command register and the potential ability of an attacker to perform a race condition with the value of a song that the user owns and one that they do not own, however, if this occurs, they will not be able to properly decrypt the song and play it.
 
-TLDR: The crypto saves us from Race Conditions related to song authorization
+TLDR: The crypto saves us from Race Conditions related to song authorization and we don't trust the command channel, so we move everything to a local struct before using it.
 
 
 Another note on the one above, after some discussion, Frank added a function that basically caches the data from the command channel, so we don't have to trust the channel. This will offer another layer of protection.
