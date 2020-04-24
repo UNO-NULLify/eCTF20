@@ -26,7 +26,7 @@ module.exports = {
 				title: 'Official Documentation',
 				path: '/mitre/',
 				sidebarDepth: 2,
-				collapsable: false,
+				collapsable: true,
 				children: [
 					'/mitre/overview',
 					'/mitre/implementation',
@@ -36,7 +36,7 @@ module.exports = {
 				title: 'Internal Documentation',
 				path: '/internal/',
 				sidebarDepth: 2,
-				collapsable: false,
+				collapsable: true,
 				children: [
 					'/internal/initial-plans',
 					'/internal/code-reviews',
@@ -44,7 +44,22 @@ module.exports = {
 					'/internal/anti-re',
 					'/internal/attack',
 				]
-			}
+			},
+			{
+				title: 'Technical Reference',
+				path: '/technical-reference/',
+				sidebarDepth: 4,
+				collapsable: false,
+				children: [
+					'/technical-reference/login',
+					'/technical-reference/logout',
+					'/technical-reference/querying',
+					'/technical-reference/encryption',
+					'/technical-reference/sharing',
+					'/technical-reference/playing',
+					'/technical-reference/metadata',
+				]
+			},
 		]
 	},
 	repo: 'UNO-NULLify/eCTF-2020',
