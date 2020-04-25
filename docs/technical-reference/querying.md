@@ -58,18 +58,15 @@ for(int i = 0; i < sizeof(meta.region_ids)/sizeof(meta.region_ids[0]); i++) {
 ```
 
 ## Query Player
-This function runs once at device startup; telling the user what region(s) their miPod is provisioned and lists all the authorized usernames for the device. ```query_player``` has no parameters and returns ```void```
+This function runs once at device startup; telling the user what region(s) their miPod is provisioned and lists all the authorized usernames for the device. ```query_player``` has no parameters and returns ```void```.
 
 ```c
-// handles a request to query the player's metadata
 void query_player() {
     c->query.num_regions = PROVISIONED_REGIONS;
     c->query.num_users = PROVISIONED_USERS;
 
     for (int i = 0; i < PROVISIONED_REGIONS; i++) {
-
         strcpy((char *)q_region_lookup(c->query, i), region_data[i].name);
-
     }
 
     for (int i = 0; i < PROVISIONED_USERS; i++) {

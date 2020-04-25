@@ -8,6 +8,7 @@ Play a song from a region that the player is not provisioned for.
 Confidentiality
 
 #### Protection
+We verify the regions a song can be played in on every play to ensure it stays in it's provisioned regions.
 
 
 ### Unauthorized Play
@@ -42,6 +43,7 @@ Modify a protected song. Deliver a file of the modified, protected song.
 Integrity
 
 #### Protection
+We use a digital signature to verify the music has not been tampered with.
 
 
 ### Custom Music
@@ -52,11 +54,7 @@ Protect a provided custom song. Deliver a file of the custom, protected song.
 Authentication/Confidentiality
 
 #### Protection
-
-
-## Metadata
-
-## Crypto System
+We use strong encryption to protect your song.
 
 ## Compiler Changes
 **Original Flags**
