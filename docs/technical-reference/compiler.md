@@ -1,4 +1,5 @@
-## Compiler Changes
+# Compiler Fixes
+
 **Original Flags**
 ~~~ 
 mb-gcc -Wall -O0 -g3 -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessage-length=0 -MT"$@" -I"../../drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
@@ -26,7 +27,6 @@ mb-gcc -Wall -O0 -g3 -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessag
 
 ``-DBLAKE2_NO_UNROLLING`` Reduces Blake2 crypto code size.
 
-``
 
 **New Compiler Options**
 ~~~
