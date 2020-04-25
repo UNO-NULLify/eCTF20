@@ -32,6 +32,7 @@ module.exports = {
 					'/mitre/overview',
 					'/mitre/implementation',
 					'/mitre/attack',
+					'/mitre/hardware',
 				]
 			},
 			// {
