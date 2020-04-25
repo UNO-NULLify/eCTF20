@@ -407,8 +407,8 @@ void login() {
             	if (work_area == NULL)
             	{
             		mb_printf("\r\nFailed to allocate the work area. Aborting.\r\n");
-            		memset((void*)c->username, 0, USERNAME_SZ);
-            		memset((void*)c->pin, 0, MAX_PIN_SZ);
+            		crypto_wipe((void*)c->username,USERNAME_SZ);
+                    crypto_wipe((void*)c->pin,MAX_PIN_SZ);
             		return;
             	}
             	//salt bytes
@@ -436,8 +436,8 @@ void login() {
                 } else {
                     // reject login attempt
                     mb_printf("Incorrect pin for user '%s'\r\n", c->username);
-                    memset((void*)c->username, 0, USERNAME_SZ);
-                    memset((void*)c->pin, 0, MAX_PIN_SZ);
+                    crypto_wipe((void*)c->username,USERNAME_SZ);
+                    crypto_wipe((void*)c->pin,MAX_PIN_SZ);
                     free(work_area);
                     return;
                 }
@@ -446,8 +446,8 @@ void login() {
 
         // reject login attempt
         mb_printf("User not found\r\n");
-        memset((void*)c->username, 0, USERNAME_SZ);
-        memset((void*)c->pin, 0, MAX_PIN_SZ);
+        crypto_wipe((void*)c->username,USERNAME_SZ);
+        crypto_wipe((void*)c->pin,MAX_PIN_SZ);
     }
 }
 
