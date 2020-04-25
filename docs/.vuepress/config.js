@@ -41,6 +41,7 @@ module.exports = {
 				sidebarDepth: 4,
 				collapsable: true,
 				children: [
+				    '/technical-reference/compiler',
 					'/technical-reference/authentication',
 					'/technical-reference/querying',
 					'/technical-reference/encryption',
