@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Querying | eCTF Documentation</title>
+    <meta name="description" content="NULLify">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.78f28ec0.css" as="style"><link rel="preload" href="/assets/js/app.1a38b3e9.js" as="script"><link rel="preload" href="/assets/js/2.d81d59a6.js" as="script"><link rel="preload" href="/assets/js/22.949c40a6.js" as="script"><link rel="prefetch" href="/assets/js/10.007dda0f.js"><link rel="prefetch" href="/assets/js/11.13cf8a39.js"><link rel="prefetch" href="/assets/js/12.914841a3.js"><link rel="prefetch" href="/assets/js/13.fa5546fe.js"><link rel="prefetch" href="/assets/js/14.aa7165da.js"><link rel="prefetch" href="/assets/js/15.e18563b9.js"><link rel="prefetch" href="/assets/js/16.000a4300.js"><link rel="prefetch" href="/assets/js/17.de36a721.js"><link rel="prefetch" href="/assets/js/18.2dc52e2d.js"><link rel="prefetch" href="/assets/js/19.8a7d5380.js"><link rel="prefetch" href="/assets/js/20.f3895d39.js"><link rel="prefetch" href="/assets/js/21.48e417ca.js"><link rel="prefetch" href="/assets/js/23.7e7c4a24.js"><link rel="prefetch" href="/assets/js/24.2d48901e.js"><link rel="prefetch" href="/assets/js/25.ceaddddd.js"><link rel="prefetch" href="/assets/js/3.d4afdc96.js"><link rel="prefetch" href="/assets/js/4.90489dad.js"><link rel="prefetch" href="/assets/js/5.037880d8.js"><link rel="prefetch" href="/assets/js/6.071b6179.js"><link rel="prefetch" href="/assets/js/7.f0459ecd.js"><link rel="prefetch" href="/assets/js/8.f6099ec2.js"><link rel="prefetch" href="/assets/js/9.48e6ce21.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.78f28ec0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/nullify_lock_no_padding.png" alt="eCTF Documentation" class="logo"> <span class="site-name can-hide">eCTF Documentation</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/mitre/" class="nav-link">Official Documentation</a></div><div class="nav-item"><a href="/technical-reference/" class="nav-link router-link-active">Technical Reference</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/mitre/" class="nav-link">Official Documentation</a></div><div class="nav-item"><a href="/technical-reference/" class="nav-link router-link-active">Technical Reference</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">Home</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/mitre/" class="sidebar-heading clickable"><span>Official Documentation</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/technical-reference/" class="sidebar-heading clickable router-link-active open"><span>Technical Reference</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/technical-reference/authentication.html" class="sidebar-link">Authentication</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/authentication.html#login" class="sidebar-link">Login</a></li><li class="sidebar-sub-header"><a href="/technical-reference/authentication.html#logout" class="sidebar-link">Logout</a></li></ul></li><li><a href="/technical-reference/querying.html" class="active sidebar-link">Querying</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/querying.html#query-song" class="sidebar-link">Query Song</a></li><li class="sidebar-sub-header"><a href="/technical-reference/querying.html#query-player" class="sidebar-link">Query Player</a></li></ul></li><li><a href="/technical-reference/encryption.html" class="sidebar-link">Encryption</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#overview" class="sidebar-link">Overview</a></li><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#protect-song" class="sidebar-link">Protect Song</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#encrypt-song" class="sidebar-link">Encrypt Song</a></li></ul></li><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#generating-secrets" class="sidebar-link">Generating Secrets</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#generating-full-secret" class="sidebar-link">Generating Full Secret</a></li><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#generating-30-second-secret" class="sidebar-link">Generating 30 Second Secret</a></li></ul></li></ul></li><li><a href="/technical-reference/sharing.html" class="sidebar-link">Sharing</a></li><li><a href="/technical-reference/playing.html" class="sidebar-link">Playing</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#playing-full-song" class="sidebar-link">Playing Full Song</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#decrypting-a-full-song" class="sidebar-link">Decrypting a full song</a></li></ul></li><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#playing-a-shared-song" class="sidebar-link">Playing a Shared Song</a></li><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#playing-30-second-sample" class="sidebar-link">Playing 30 Second Sample</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#decrypting-30-second-sample" class="sidebar-link">Decrypting 30 second sample</a></li></ul></li></ul></li><li><a href="/technical-reference/metadata.html" class="sidebar-link">Song Metadata</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="querying"><a href="#querying" class="header-anchor">#</a> Querying</h1> <h2 id="query-song"><a href="#query-song" class="header-anchor">#</a> Query Song</h2> <p>The <code>querySong</code> function provides the users the song is provisioned to play for, along with the regions the song is provisioned to play in.</p> <p><code>querySong</code> only has one parameter:</p> <ul><li><code>char *songName</code> - The name of the song to query.</li></ul> <div class="language-c extra-class"><pre class="language-text"><code>void querySong(char *songName) {}
+</code></pre></div><p>The first step to showing the provisioned users is to get the songs owner. Since we keep track of users by ID, we need to relate that ID back to a name from the <code>device_secrets</code>.</p> <div class="language-c extra-class"><pre class="language-text"><code>// First, get the songs owner
+printf(&quot;Provisioned Users: &quot;);
+for (int j = 0; j &lt; (sizeof(user_data) / sizeof(user_data[1])); j++) {
+    if (user_data[j].id == meta.owner_id) {
+        printf(&quot;%s (owner), &quot;, user_data[j].name);
+    }
+}
+</code></pre></div><p>The rest of the users the song has been provisioned for can be found in the <code>sharedInfo</code> field of the <a href="/technical-reference/metadata.html">metadata structure</a>. We can see which users the song has been shared with by checking which indices of <code>sharedInfo</code> have data. The index in the array plus one (as provisioned users have a uid &gt; 0) corresponds to the users ID. For example, if the song is shared with the user of ID 6, the sharedInfo will be stored at index 5.</p> <div class="language-c extra-class"><pre class="language-text"><code>// Next, get the users it's shared with
+for(int i = 0; i &lt; sizeof(meta.sharedInfo)/sizeof(meta.sharedInfo[0]); i++) {
+    if (meta.sharedInfo[i][0] != NULL){
+        for (int j = 0; j &lt; (sizeof(user_data) / sizeof(user_data[1])); j++) {
+            if (user_data[j].id == (i + 1)) {
+                printf(&quot;%s, &quot;, user_data[j].name);
+            }
+        }
+    }
+}
+</code></pre></div><p>Finally, we can tell which regions the song has been provisioned for by looking at the <code>region_ids</code> field of the metadata. These ID's are stored sequentially, so we can break early when we hit a null. We then relate the ID back to a friendly name by using the <code>region_data</code> from the <code>device_secrets</code> as shown below:</p> <div class="language-c extra-class"><pre class="language-text"><code>// Print provisioned regions
+printf(&quot;Provisioned Regions: &quot;);
+for(int i = 0; i &lt; sizeof(meta.region_ids)/sizeof(meta.region_ids[0]); i++) {
+    if (meta.region_ids[i] == NULL){
+        break;
+    } else {
+        for (int j = 0; j &lt; (sizeof(region_data) / sizeof(region_data[1])); j++) {
+            if (region_data[j].id == meta.region_ids[i]) {
+                printf(&quot;%s, &quot;, region_data[j].name);
+            }
+        }
+    }
+}
+</code></pre></div><h2 id="query-player"><a href="#query-player" class="header-anchor">#</a> Query Player</h2> <p>This function runs once at device startup; telling the user what region(s) their miPod is provisioned and lists all the authorized usernames for the device. <code>query_player</code> has no parameters and returns <code>void</code>.</p> <div class="language-c extra-class"><pre class="language-text"><code>void query_player() {
+    c-&gt;query.num_regions = PROVISIONED_REGIONS;
+    c-&gt;query.num_users = PROVISIONED_USERS;
+
+    for (int i = 0; i &lt; PROVISIONED_REGIONS; i++) {
+        strcpy((char *)q_region_lookup(c-&gt;query, i), region_data[i].name);
+    }
+
+    for (int i = 0; i &lt; PROVISIONED_USERS; i++) {
+        strcpy((char *)q_user_lookup(c-&gt;query, i), user_data[i].name);
+    }
+
+    mb_printf(&quot;Queried player (%d regions, %d users)\r\n&quot;, c-&gt;query.num_regions, c-&gt;query.num_users);
+}
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/24/2020, 7:18:58 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/technical-reference/authentication.html" class="prev">Authentication</a></span> <span class="next"><a href="/technical-reference/encryption.html">Encryption</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.1a38b3e9.js" defer></script><script src="/assets/js/2.d81d59a6.js" defer></script><script src="/assets/js/22.949c40a6.js" defer></script>
+  </body>
+</html>

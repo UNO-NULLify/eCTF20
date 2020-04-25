@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Authentication | eCTF Documentation</title>
+    <meta name="description" content="NULLify">
+    
+    
+    <link rel="preload" href="/assets/css/0.styles.78f28ec0.css" as="style"><link rel="preload" href="/assets/js/app.1a38b3e9.js" as="script"><link rel="preload" href="/assets/js/2.d81d59a6.js" as="script"><link rel="preload" href="/assets/js/18.2dc52e2d.js" as="script"><link rel="prefetch" href="/assets/js/10.007dda0f.js"><link rel="prefetch" href="/assets/js/11.13cf8a39.js"><link rel="prefetch" href="/assets/js/12.914841a3.js"><link rel="prefetch" href="/assets/js/13.fa5546fe.js"><link rel="prefetch" href="/assets/js/14.aa7165da.js"><link rel="prefetch" href="/assets/js/15.e18563b9.js"><link rel="prefetch" href="/assets/js/16.000a4300.js"><link rel="prefetch" href="/assets/js/17.de36a721.js"><link rel="prefetch" href="/assets/js/19.8a7d5380.js"><link rel="prefetch" href="/assets/js/20.f3895d39.js"><link rel="prefetch" href="/assets/js/21.48e417ca.js"><link rel="prefetch" href="/assets/js/22.949c40a6.js"><link rel="prefetch" href="/assets/js/23.7e7c4a24.js"><link rel="prefetch" href="/assets/js/24.2d48901e.js"><link rel="prefetch" href="/assets/js/25.ceaddddd.js"><link rel="prefetch" href="/assets/js/3.d4afdc96.js"><link rel="prefetch" href="/assets/js/4.90489dad.js"><link rel="prefetch" href="/assets/js/5.037880d8.js"><link rel="prefetch" href="/assets/js/6.071b6179.js"><link rel="prefetch" href="/assets/js/7.f0459ecd.js"><link rel="prefetch" href="/assets/js/8.f6099ec2.js"><link rel="prefetch" href="/assets/js/9.48e6ce21.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.78f28ec0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/nullify_lock_no_padding.png" alt="eCTF Documentation" class="logo"> <span class="site-name can-hide">eCTF Documentation</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/mitre/" class="nav-link">Official Documentation</a></div><div class="nav-item"><a href="/technical-reference/" class="nav-link router-link-active">Technical Reference</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">Home</a></div><div class="nav-item"><a href="/mitre/" class="nav-link">Official Documentation</a></div><div class="nav-item"><a href="/technical-reference/" class="nav-link router-link-active">Technical Reference</a></div> <!----></nav>  <ul class="sidebar-links"><li><a href="/" class="sidebar-link">Home</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/mitre/" class="sidebar-heading clickable"><span>Official Documentation</span> <span class="arrow right"></span></a> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><a href="/technical-reference/" class="sidebar-heading clickable router-link-active open"><span>Technical Reference</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/technical-reference/authentication.html" class="active sidebar-link">Authentication</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/authentication.html#login" class="sidebar-link">Login</a></li><li class="sidebar-sub-header"><a href="/technical-reference/authentication.html#logout" class="sidebar-link">Logout</a></li></ul></li><li><a href="/technical-reference/querying.html" class="sidebar-link">Querying</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/querying.html#query-song" class="sidebar-link">Query Song</a></li><li class="sidebar-sub-header"><a href="/technical-reference/querying.html#query-player" class="sidebar-link">Query Player</a></li></ul></li><li><a href="/technical-reference/encryption.html" class="sidebar-link">Encryption</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#overview" class="sidebar-link">Overview</a></li><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#protect-song" class="sidebar-link">Protect Song</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#encrypt-song" class="sidebar-link">Encrypt Song</a></li></ul></li><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#generating-secrets" class="sidebar-link">Generating Secrets</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#generating-full-secret" class="sidebar-link">Generating Full Secret</a></li><li class="sidebar-sub-header"><a href="/technical-reference/encryption.html#generating-30-second-secret" class="sidebar-link">Generating 30 Second Secret</a></li></ul></li></ul></li><li><a href="/technical-reference/sharing.html" class="sidebar-link">Sharing</a></li><li><a href="/technical-reference/playing.html" class="sidebar-link">Playing</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#playing-full-song" class="sidebar-link">Playing Full Song</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#decrypting-a-full-song" class="sidebar-link">Decrypting a full song</a></li></ul></li><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#playing-a-shared-song" class="sidebar-link">Playing a Shared Song</a></li><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#playing-30-second-sample" class="sidebar-link">Playing 30 Second Sample</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/technical-reference/playing.html#decrypting-30-second-sample" class="sidebar-link">Decrypting 30 second sample</a></li></ul></li></ul></li><li><a href="/technical-reference/metadata.html" class="sidebar-link">Song Metadata</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="authentication"><a href="#authentication" class="header-anchor">#</a> Authentication</h1> <p>Explination of how we use monocypher to do logins and blah blah blah</p> <h2 id="login"><a href="#login" class="header-anchor">#</a> Login</h2> <p>The <code>login</code> function authenticates the user by takin in a username and pin. The function checks if the username matches any existing user stored on the player, generates a hash from the input pin, and compares it to the hash stored under the aforementioned user's secret struct within the player. The pin is hashed with <code>argon2id</code>, using 16-byte random salts, and is iterated 3 times.</p> <div class="language-c extra-class"><pre class="language-text"><code>void login() {
+    if (s.logged_in) {
+        mb_printf(&quot;Already logged in. Please log out first.\r\n&quot;);
+        memcpy((void*)c-&gt;username, s.username, USERNAME_SZ);
+        memcpy((void*)c-&gt;pin, s.pin, MAX_PIN_SZ);
+    } else {
+        for (int i = 0; i &lt; PROVISIONED_USERS; i++) {
+            // search for matching username
+            if (!strcmp((void*)c-&gt;username, user_data[i].name)) {
+                // check if pin matches
+            	//secrets pin hash to bytes
+            	uint8_t usr_pin_bytes[ARGON_HASH_SZ] = {0};
+            	byte_me(usr_pin_bytes, user_data[i].pin_hash, strlen(user_data[i].pin_hash));
+            	//
+            	//make comparison hash
+            	uint8_t cmp_hash[ARGON_HASH_SZ] = {0};
+            	//work area
+            	uint8_t *work_area;
+            	work_area = (uint8_t *) malloc(ARGON_BLOCKS*1024);
+            	crypto_wipe(work_area, sizeof(work_area);
+            	if (work_area == NULL)
+            	{
+            		mb_printf(&quot;\r\nFailed to allocate the work area. Aborting.\r\n&quot;);
+            		crypto_wipe((void*)c-&gt;username, USERNAME_SZ);
+                    crypto_wipe((void*)c-&gt;pin, MAX_PIN_SZ);
+            		return;
+            	}
+            	//salt bytes
+            	uint8_t salt_bytes[ARGON_SALT_SZ] = {0};
+            	byte_me(salt_bytes, user_data[i].salt, strlen(user_data[i].salt));
+                crypto_argon2i(cmp_hash,
+            				   ARGON_HASH_SZ,
+							   work_area,
+							   ARGON_BLOCKS,
+							   ARGON_ITTERS,
+							   (void*)c-&gt;pin,
+							   strlen((void*)c-&gt;pin),
+							   salt_bytes,
+							   ARGON_SALT_SZ);
+                if (!crypto_verify32(cmp_hash, usr_pin_bytes)) {
+                    //update states
+                    s.logged_in = 1;
+                    c-&gt;login_status = 1;
+                    memcpy(s.username, (void*)c-&gt;username, USERNAME_SZ);
+                    memcpy(s.pin, (void*)c-&gt;pin, MAX_PIN_SZ);
+                    s.uid = user_data[i].id;
+                    mb_printf(&quot;Logged in for user '%s'\r\n&quot;, c-&gt;username);
+                    free(work_area);
+                    return;
+                } else {
+                    // reject login attempt
+                    mb_printf(&quot;Incorrect pin for user '%s'\r\n&quot;, c-&gt;username);
+                    crypto_wipe((void*)c-&gt;username, USERNAME_SZ);
+                    crypto_wipe((void*)c-&gt;pin, MAX_PIN_SZ);
+                    free(work_area);
+                    return;
+                }
+            }
+        }
+
+        // reject login attempt
+        mb_printf(&quot;User not found\r\n&quot;);
+        crypto_wipe((void*)c-&gt;username, USERNAME_SZ);
+        crypto_wipe((void*)c-&gt;pin, MAX_PIN_SZ);
+    }
+}
+</code></pre></div><h2 id="logout"><a href="#logout" class="header-anchor">#</a> Logout</h2> <p>The <code>logout</code> function terminates a user's session on the miPod if and only if they are first logged in. This function zeros out the command channel <code>c</code> of all references to the user, changes the miPod's internal state <code>s.logged_in</code> to 0, has no parameters, and returns <code>void</code>.</p> <div class="language-c extra-class"><pre class="language-text"><code>void logout() {
+    if (c-&gt;login_status) {
+        mb_printf(&quot;Logging out...\r\n&quot;);
+        s.logged_in = 0;
+        c-&gt;login_status = 0;
+        memset((void*)c-&gt;username, 0, USERNAME_SZ);
+        memset((void*)c-&gt;pin, 0, MAX_PIN_SZ);
+        s.uid = 0;
+    } else {
+        mb_printf(&quot;Not logged in\r\n&quot;);
+    }
+}
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/24/2020, 9:53:05 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/mitre/hardware.html" class="prev">Hardware Considerations</a></span> <span class="next"><a href="/technical-reference/querying.html">Querying</a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.1a38b3e9.js" defer></script><script src="/assets/js/2.d81d59a6.js" defer></script><script src="/assets/js/18.2dc52e2d.js" defer></script>
+  </body>
+</html>

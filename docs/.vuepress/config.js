@@ -35,19 +35,6 @@ module.exports = {
 					'/mitre/hardware',
 				]
 			},
-			// {
-			// 	title: 'Internal Documentation',
-			// 	path: '/internal/',
-			// 	sidebarDepth: 2,
-			// 	collapsable: true,
-			// 	children: [
-			// 		'/internal/initial-plans',
-			// 		'/internal/code-reviews',
-			// 		'/internal/compiler-fixes',
-			// 		'/internal/anti-re',
-			// 		'/internal/attack',
-			// 	]
-			// },
 			{
 				title: 'Technical Reference',
 				path: '/technical-reference/',
@@ -64,7 +51,8 @@ module.exports = {
 			},
 		]
 	},
-	repo: 'UNO-NULLify/eCTF-2020',
+	repo: 'UNO-NULLify/eCTF20',
 	repoLabel: 'Github',
 	docsDir: 'docs',
+	base: 'UNO-NULLify'
 }

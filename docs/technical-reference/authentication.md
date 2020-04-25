@@ -1,7 +1,5 @@
 # Authentication
 
-Explination of how we use monocypher to do logins and blah blah blah
-
 ## Login
 The ```login``` function authenticates the user by takin in a username and pin. The function checks if the username matches any existing user stored on the player, generates a hash from the input pin, and compares it to the hash stored under the aforementioned user's secret struct within the player. The pin is hashed with ```argon2id```, using 16-byte random salts, and is iterated 3 times.
 
