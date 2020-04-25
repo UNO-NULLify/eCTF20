@@ -18,6 +18,6 @@ The metadata structure holds all of the information needed to query, play, and s
 - ```uint8_t owner_id;``` - The ID of the owner of the song.
 - ```uint8_t region_ids[64];``` - A maximum of 64 ID's of regions the song has been provisioned for.
 - ```char region_secrets[64][64 + 32];``` - 
-- ```char song_name[64]; ``` - The name of the song, up to 64 characters.
+- ```char song_name[64];``` - The name of the song, up to 64 characters.
 - ```long int endFullSong;``` - 
 - ```long int songSize;``` - 

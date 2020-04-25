@@ -14,10 +14,11 @@ module.exports = {
 	themeConfig: {
 		searchPlaceholder: 'Search...',
 		lastUpdated: 'Last Updated',
+		displayAllHeaders: true,
 		nav: [
 			{ text: 'Home', link: '/' },
 			{ text: 'Official Documentation', link: '/mitre/' },
-			{ text: 'Internal', link: '/internal/' }
+			{ text: 'Technical Reference', link: '/technical-reference/' }
 		],
 		logo: '/nullify_lock_no_padding.png',
 		sidebar: [
@@ -25,34 +26,33 @@ module.exports = {
 			{
 				title: 'Official Documentation',
 				path: '/mitre/',
-				sidebarDepth: 2,
+				sidebarDepth: 3,
 				collapsable: true,
 				children: [
 					'/mitre/overview',
 					'/mitre/implementation',
 				]
 			},
-			{
-				title: 'Internal Documentation',
-				path: '/internal/',
-				sidebarDepth: 2,
-				collapsable: true,
-				children: [
-					'/internal/initial-plans',
-					'/internal/code-reviews',
-					'/internal/compiler-fixes',
-					'/internal/anti-re',
-					'/internal/attack',
-				]
-			},
+			// {
+			// 	title: 'Internal Documentation',
+			// 	path: '/internal/',
+			// 	sidebarDepth: 2,
+			// 	collapsable: true,
+			// 	children: [
+			// 		'/internal/initial-plans',
+			// 		'/internal/code-reviews',
+			// 		'/internal/compiler-fixes',
+			// 		'/internal/anti-re',
+			// 		'/internal/attack',
+			// 	]
+			// },
 			{
 				title: 'Technical Reference',
 				path: '/technical-reference/',
 				sidebarDepth: 4,
-				collapsable: false,
+				collapsable: true,
 				children: [
-					'/technical-reference/login',
-					'/technical-reference/logout',
+					'/technical-reference/authentication',
 					'/technical-reference/querying',
 					'/technical-reference/encryption',
 					'/technical-reference/sharing',

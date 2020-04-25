@@ -19,3 +19,6 @@ Things being secured by crypto:
 - No custom music
 - No listening to full songs you don't have perms to
 - No listening to song preview on non MiPod device
+
+
+WE need to talk abt protectsong, encrypt song, encrypt 30, generate secret and generate 309 secret here too
