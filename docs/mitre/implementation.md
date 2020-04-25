@@ -85,6 +85,114 @@ mb-gcc -Wall -O0 -g3 -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessag
 mb-gcc -Wall -Wextra -Os -s -fvisibility=hidden -static -Wconversion -Wsign-conversion -fstack-check -mxl-reorder -Wstack-protector --param ssp-buffer-size=4 -ftrapv -Wl,-z,noexecstack -I"../../drm_audio_fw_bsp/microblaze_0/include" -c -fmessage-length=0 -MT"$@" -I"../../drm_audio_fw_bsp/microblaze_0/include" -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -o "$@" "$<"
 ~~~
 
+## Hardware Changes
+
+The overall layout of the programmable logic for this project will be left the same as the reference design.
+However, several key channels used to communicate between the main processor and the Microblaze will be
+changed to make them more secure, the overall goals for these changes are as follows.
+
+* Reduce overall attack surface
+* Protect from informed hardware attacks
+* Reduce side channel vulnerabilities
+
+The first goal will be addressed by reducing the use of the shared DDR memory present in the reference
+design, since the main processor has full authority over it. The DDR memory should always be considered untrusted
+and unreliable. It is preferable that the DDR is interacted with as little as possible, and that only strongly encrypted
+data be stored in it. Information should only be decrypted inside the programmable logic, where it is far safer.
+
+The second goal will be the subject of a proposed hardware integrity monitoring module. Since our
+attackers have access to all the information used to create our programmable logic, including the Vivado project,
+they will have copious information with which to devise hardware based attacks. Some of these attacks are
+described in the hardware integrity module section bellow.
+
+Side channel vulnerabilities, especially those that depend on fault injection, can be abated by minimizing
+the coupling between the main processor and the Microblaze. We propose replacing the GPIO based interrupt
+scheme with a more specialized command register, thus abstracting the DRM system, be used to do this. This
+command register should be the primary means for issuing instructions to the Microblaze going forward. Side
+channel resistant programming practices are also important for this goal, a primary task of the hardware team during
+the both phases should be to locate such vulnerabilities.
+
+### Hardware Integrity Module
+
+A hardware component should be provided to protect the other trusted components from physical attacks.
+This is especially important since attackers will have access to all resources necessary to implement the
+programmable logic, making such attacks highly informed and providing copious testing capabilities. The proposed
+module, hereafter referred to as the Basic Integrity Recording Device (BIRD), should provide protections from two
+basic forms of tampering: clock glitch attacks and voltage glitch attacks.
+
+Clock glitch attacks are spurious rising edges injected into a system with the purpose of violating setup
+times at specific points. One common use of clock glitching is to skip compare and branch instructions, which may
+compromise the target system by skipping security checks or placing the machine in an illegal state.
+
+Voltage glitch attacks are conducted by periodically shorting power to ground, creating a low voltage spike.
+The goal of a voltage glitch attack is very similiar to a clock glitch attack, to cause a malfunction that then
+compromises the system.
+
+One characteristic of both types of fault attack are that in order to have useful behavior they usually need
+something to base their timing off of. Often this trigger is based on power analysis, which increases the value of anti
+side-channel measures.
+
+Both types of glitch attacks, while difficult to prevent, can be detected using specialized glitch detection
+circuits. These circuits are designed to be especially vulnerable to glitching, thus providing an early indication that a glitch has occurred. This indication can then by used to help secure the system, such as by issuing a reset. The
+detection of glitch attacks can also be used to issue mockery to attackers via error messages. FPGA timing analysis
+tools can be used to construct such a detector circuit, and the operation of such a circuit can be verified in actual
+hardware by routing the clock input to a more easily accessible location.
+
+Our target device contains two ADCs which can be configured in a window compare mode to monitor
+internal voltages as well as die temperature. Each unit has a sampling rate of up to one megasample per second.
+Unfortunately this sampling rate may not be fast enough to detect voltage glitches, especially since each ADC's
+attention would have to be divided among several voltage rails. However, the ADCs can be used to prevent
+operation at excessively high or low voltages, which could otherwise be used to exacerbate the effects of
+aforementioned attacks.
+
+We propose that both the aforementioned integrity monitoring solutions be employed within our hardware
+design, as well as any fault detection features whose utility becomes apparent during software design.
+
+### Command Register
+
+In contrast to the provided reference design, which sends commands via a shared area in DDR, we propose
+a register based method of issuing commands to the embedded processor. Accessing this command register can be
+done almost identically to configuring a peripheral on a microcontroller. Using this scheme has two primary
+advantages over sharing memory.
+
+Firstly, we will have full physical control over the behavior of the register. For example, if we detect that
+the Microblaze has been compromised, we can lock the command register so that information cannot be smuggled
+out of the PL.
+
+Secondly, we can send interrupts to the embedded processor automatically when the register is written to.
+This makes the issuing of commands slightly more deterministic compared to the reference, but hides the
+acknowledgement by the Microblaze from the processor. This scheme may help reduce side channel vulnerability of
+the embedded processor by reducing the attack surface for fault injection. In the reference design, such a fault
+injection might consist of modifying values in the command channel struct while they are in use by the Microblaze.
+
+One should note that the command register need not be a simple register. Each bit or group of bits can be
+individually read or write protected, indicate status, trigger an interrupt, or perform another special function. For
+example, bits may feed into a shift register or block ram. This would allow for longer commands to be shifted into a
+safe area which only the Microblaze may access, again reducing the surface for fault injection attacks.
+
+An example implementation of the command register could be structured as follows, an 8 bit alignment was
+chosen to ensure that writes are made with a single instruction, and to allow use of the write strobe feature of the
+AXI bus.
+
+```
+MSB                                                              LSB
+[   COMMAND   (W)][   DATA IN   (W)][   STATUS   (R)][   RESP   (R)]
+W: write only, reads will return zero 
+R: read only, writes will have no effect
+```
+
+The command field in this instance should allow the main processor to signal any of the commands as implemented in the reference design. These are:
+|               |               |
+|:-------------:|:-------------:|
+| load_file     | query_song    |
+| login         | share_song    |
+| logout        | play_song     |
+| query_player  | digital_out   |
+
+The command register and DMA should be locked whenever a fault is detected, and only unlocked after the proper booting of the Microblaze. Additionally any areas which may contain secrets should be erased, such as the microblaze RAM and ROM, and the secrets container, if one is used. This functionality should be controlled by the basic integrity recording device (BIRD) discussed above.
+
+To avoid potential fault injection, the command register should not generate interrupts when they are not anticipated. In a scheme where the main processor polls the DRM, status flags, which may be presented in the status field in this example, should be the only method of stalling the main processor when the Microblaze is busy.
+
 ## Data Flow
 
 ![Data Flow](/data-flow.png)

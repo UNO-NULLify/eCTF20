@@ -31,6 +31,7 @@ module.exports = {
 				children: [
 					'/mitre/overview',
 					'/mitre/implementation',
+					'/mitre/attack',
 				]
 			},
 			// {

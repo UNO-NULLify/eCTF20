@@ -23,7 +23,7 @@ uint8_t playFull(FILE *encFile, struct metadata *meta, char *pin) {
 }
 ```
 
-First, we need to generate the secret key used to decrypt the song. For a detailed explanation on this process, refer to the [Secret Generation documentation](./metadata.md).
+First, we need to generate the secret key used to decrypt the song. For a detailed explanation on this process, refer to the [Secret Generation documentation](./encryption.md#generating-secrets).
 
 A pointer to this secret is then passed to the ```decryptFull``` function, along with the file pointer and metadata pointer, which will decrypt the song.
 
@@ -108,7 +108,7 @@ uint8_t play30(FILE *encFile, struct metadata *meta) {
 }
 ```
 
-First, we need to generate the secret key used to decrypt the sample. Generating secrets is explained in greater detail in the [Secret Generation documentation](./metadata.md).
+First, we need to generate the secret key used to decrypt the sample. Generating secrets is explained in greater detail in the [Secret Generation documentation](./encryption.md#generating-secrets).
 
 A pointer to the 30 second secret is then passed to the ```decrypt30``` function, along with the file pointer and metadata pointer, which will decrypt the 30 second sample.
 

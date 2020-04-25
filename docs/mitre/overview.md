@@ -49,12 +49,3 @@ Query | -- | 2 seconds
 Jump forwards/backwards | -- | 2 seconds
 Digital output mode | -- | No longer than the length of the song
 Share song | -- | 5 seconds
-
-## Provisioning Process
-
-1.
-2.
-3.
-4.
-
-[INSERT PROVISIONING GRAPHICS HERE]
